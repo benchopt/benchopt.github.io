@@ -13,7 +13,7 @@
     <script type="text/javascript" src="_static/language_data.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Writing a benchmark" href="how.html" />
+    <link rel="next" title="Write a benchmark" href="how.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -55,7 +55,7 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul>
-<li class="toctree-l1"><a class="reference internal" href="how.html">Writing a benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">    Fork benchopt on Github</a></li>
 </ul>
 </ul>
@@ -86,14 +86,33 @@
   <div class="row">
     <div class="body col-md-12 content" role="main">
       
-  <div class="section" id="contents">
+  <p>BenchOpt is a package to simplify and make more transparent and
+reproducible the comparisons of optimization algorithms.</p>
+<p>It involves the definition of objective functions, datasets
+and solvers. Once you have defined a benchmark as explained
+at <a class="reference internal" href="how.html#how"><span class="std std-ref">Write a benchmark</span></a>, making comparison figures becomes (hopefully) surprisingly easy!</p>
+<p>BenchOpt is typically used through a command line as documented
+in <a class="reference internal" href="api.html#api-documentation"><span class="std std-ref">API Documentation</span></a>.</p>
+<div class="section" id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="how.html">Writing a benchmark</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="how.html#objective">1. Objective</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how.html#dataset">2. Dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="how.html#solver">2. Solver</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="how.html#objective">1. Objective</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how.html#example">Example</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="how.html#datasets">2. Datasets</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how.html#id1">Example</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how.html#example-of-parametrized-dataset">Example of parametrized dataset</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="how.html#solvers">2. Solvers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="how.html#example-of-hand-written-solver">Example of hand written solver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how.html#example-of-a-solver-available-from-a-package-on-pypi">Example of a solver available from a package on PyPi</a></li>
+<li class="toctree-l3"><a class="reference internal" href="how.html#example-of-a-solver-available-from-a-package-available-from-source">Example of a solver available from a package available from source</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">    Fork benchopt on Github</a></li>
