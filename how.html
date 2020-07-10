@@ -3,16 +3,20 @@
 <html>
   <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Write a benchmark &#8212; benchopt 0.1.0dev0 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
     <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/language_data.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="prev" title="API Documentation" href="api.html" />
@@ -175,10 +179,10 @@ whose output can be passed to the <cite>set_data</cite> of an objective.</p>
 <p>Using a real dataset:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt.base</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
 
-<span class="kn">from</span> <span class="nn">benchopt.util</span> <span class="kn">import</span> <span class="n">safe_import</span>
+<span class="kn">from</span> <span class="nn">benchopt.util</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
 
 
-<span class="k">with</span> <span class="n">safe_import</span><span class="p">():</span>
+<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">load_boston</span>
 
 
@@ -186,9 +190,8 @@ whose output can be passed to the <cite>set_data</cite> of an objective.</p>
 
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Boston&quot;</span>
 
-    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s2">&quot;pip&quot;</span>
+    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
     <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scikit-learn&#39;</span><span class="p">]</span>
-    <span class="n">requirements_import</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sklearn&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 
@@ -299,10 +302,10 @@ from the union of the data and the objective parameters.</p>
 <p>Using a package available from PyPi:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 <span class="kn">from</span> <span class="nn">benchopt.base</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
-<span class="kn">from</span> <span class="nn">benchopt.util</span> <span class="kn">import</span> <span class="n">safe_import</span>
+<span class="kn">from</span> <span class="nn">benchopt.util</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
 
 
-<span class="k">with</span> <span class="n">safe_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">solver_import</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
     <span class="kn">from</span> <span class="nn">sklearn.exceptions</span> <span class="kn">import</span> <span class="n">ConvergenceWarning</span>
 
@@ -310,9 +313,8 @@ from the union of the data and the objective parameters.</p>
 <span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sklearn&#39;</span>
 
-    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;pip&#39;</span>
+    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
     <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scikit-learn&#39;</span><span class="p">]</span>
-    <span class="n">requirements_import</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;sklearn&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
@@ -336,10 +338,10 @@ from the union of the data and the objective parameters.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
 
 <span class="kn">from</span> <span class="nn">benchopt.base</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
-<span class="kn">from</span> <span class="nn">benchopt.util</span> <span class="kn">import</span> <span class="n">safe_import</span>
+<span class="kn">from</span> <span class="nn">benchopt.util</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
 
 
-<span class="k">with</span> <span class="n">safe_import</span><span class="p">()</span> <span class="k">as</span> <span class="n">solver_import</span><span class="p">:</span>
+<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
     <span class="kn">from</span> <span class="nn">celer</span> <span class="kn">import</span> <span class="n">Lasso</span>
     <span class="kn">from</span> <span class="nn">celer.homotopy</span> <span class="kn">import</span> <span class="n">ConvergenceWarning</span>
 
@@ -348,9 +350,10 @@ from the union of the data and the objective parameters.</p>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Celer&#39;</span>
     <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
 
-    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;pip&#39;</span>
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;celer&#39;</span><span class="p">]</span>
-    <span class="n">requirements_install</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;git+https://github.com/mathurinm/celer.git&#39;</span><span class="p">]</span>
+    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;pip:git+https://github.com/mathurinm/celer.git&#39;</span>
+    <span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
@@ -358,10 +361,9 @@ from the union of the data and the objective parameters.</p>
         <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">ConvergenceWarning</span><span class="p">)</span>
         <span class="n">n_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lasso</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span>
-            <span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="o">/</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">gap_freq</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span>
-            <span class="n">max_epochs</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span> <span class="n">p0</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">prune</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-            <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
-            <span class="n">positive</span><span class="o">=</span><span class="kc">False</span>
+            <span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="o">/</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">max_iter</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">max_epochs</span><span class="o">=</span><span class="mi">100000</span><span class="p">,</span>
+            <span class="n">tol</span><span class="o">=</span><span class="mf">1e-12</span><span class="p">,</span> <span class="n">prune</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">normalize</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">warm_start</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">positive</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
         <span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
@@ -389,7 +391,7 @@ from the union of the data and the objective parameters.</p>
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.0.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
     </p>
   </div>
 </footer>
