@@ -3,7 +3,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>API Documentation &#8212; benchopt 0.1.0dev0 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -113,13 +113,13 @@
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-check-install-arg-BENCHMARK">
-<code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-check-install-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-check-install-arg-CLASS_NAMES">
-<code class="sig-name descname">CLASS_NAMES</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-CLASS_NAMES" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-check-install-arg-class-names"></span><code class="sig-name descname">CLASS_NAMES</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-CLASS_NAMES" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument(s)</p>
 </dd></dl>
 
@@ -145,44 +145,54 @@
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-n">
-<span id="cmdoption-benchopt-run-n-rep"></span><code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--n-rep</code><code class="sig-prename descclassname"> &lt;n_rep&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-n" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-n-rep"></span><code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--n-rep</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-n" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of repetition used to estimate the runtime.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-s">
-<span id="cmdoption-benchopt-run-solver"></span><code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--solver</code><code class="sig-prename descclassname"> &lt;solver_names&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-s" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-solver"></span><code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--solver</code><code class="sig-prename descclassname"> &lt;solver_name&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Include &lt;solver_name&gt; in the benchmark. By default, all solvers are included. When <cite>-s</cite> is used, only listed estimators are included.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-f">
-<span id="cmdoption-benchopt-run-force-solver"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--force-solver</code><code class="sig-prename descclassname"> &lt;forced_solvers&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-f" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-force-solver"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--force-solver</code><code class="sig-prename descclassname"> &lt;solver_name&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-f" title="Permalink to this definition">¶</a></dt>
 <dd><p>Force the re-installation and run for &lt;solver_name&gt;. This avoids caching effect when adding an estimator.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-d">
-<span id="cmdoption-benchopt-run-dataset"></span><code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dataset</code><code class="sig-prename descclassname"> &lt;dataset_names&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-d" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-dataset"></span><code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dataset</code><code class="sig-prename descclassname"> &lt;dataset_name&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the benchmark on &lt;dataset_name&gt;. By default, all datasets are included. When <cite>-d</cite> is used, only listed datasets are included. Note that &lt;dataset_name&gt; can be a regexp.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-max-samples">
-<code class="sig-name descname">--max-samples</code><code class="sig-prename descclassname"> &lt;max_samples&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-max-samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximal number of iteration for each solver  [default: 100]</p>
+<code class="sig-name descname">--max-samples</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-max-samples" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximal number of iteration for each solver</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>100</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-timeout">
-<code class="sig-name descname">--timeout</code><code class="sig-prename descclassname"> &lt;timeout&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-timeout" title="Permalink to this definition">¶</a></dt>
-<dd><p>Timeout a solver when run for more than &lt;timeout&gt; seconds  [default: 100]</p>
+<code class="sig-name descname">--timeout</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-timeout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Timeout a solver when run for more than &lt;timeout&gt; seconds</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default</dt>
+<dd class="field-odd"><p>100</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-arg-BENCHMARK">
-<code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -203,7 +213,7 @@
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.1.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
     </p>
   </div>
 </footer>
