@@ -105,22 +105,23 @@
 </div>
 <div class="section" id="benchopt-check-install">
 <h3>check-install<a class="headerlink" href="#benchopt-check-install" title="Permalink to this headline">¶</a></h3>
-<p>Check that solvers from benchmark are correctly installed.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt check-install <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK
-                       <span class="o">[</span>CLASS_NAMES<span class="o">]</span>...
+<p>Check that a given solver or dataset is correctly installed.</p>
+<p>The class to be checked is specified with the absolute path of the file in which it is defined MODULE_FILENAME and the name of the base class BASE_CLASS_NAME.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt check-install <span class="o">[</span>OPTIONS<span class="o">]</span> MODULE_FILENAME
+                       BASE_CLASS_NAME
 </pre></div>
 </div>
 <p class="rubric">Arguments</p>
 <dl class="std option">
-<dt id="cmdoption-benchopt-check-install-arg-BENCHMARK">
-<span id="cmdoption-benchopt-check-install-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-benchopt-check-install-arg-MODULE_FILENAME">
+<span id="cmdoption-benchopt-check-install-arg-module-filename"></span><code class="sig-name descname">MODULE_FILENAME</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-MODULE_FILENAME" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-benchopt-check-install-arg-CLASS_NAMES">
-<span id="cmdoption-benchopt-check-install-arg-class-names"></span><code class="sig-name descname">CLASS_NAMES</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-CLASS_NAMES" title="Permalink to this definition">¶</a></dt>
-<dd><p>Optional argument(s)</p>
+<dt id="cmdoption-benchopt-check-install-arg-BASE_CLASS_NAME">
+<span id="cmdoption-benchopt-check-install-arg-base-class-name"></span><code class="sig-name descname">BASE_CLASS_NAME</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-BASE_CLASS_NAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
 </dd></dl>
 
 </div>
@@ -138,15 +139,15 @@
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-benchopt-run-r">
-<span id="cmdoption-benchopt-run-recreate"></span><code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--recreate</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-r" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-benchopt-run-recreate">
+<code class="sig-name descname">--recreate</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-recreate" title="Permalink to this definition">¶</a></dt>
 <dd><p>If this flag is set, start with a fresh conda env.</p>
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-benchopt-run-n">
-<span id="cmdoption-benchopt-run-n-rep"></span><code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--n-rep</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-n" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of repetition used to estimate the runtime.</p>
+<dt id="cmdoption-benchopt-run-r">
+<span id="cmdoption-benchopt-run-n-repetitions"></span><code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--n-repetitions</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Number of repetition that are averaged to estimate the runtime.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -168,9 +169,9 @@
 </dd></dl>
 
 <dl class="std option">
-<dt id="cmdoption-benchopt-run-max-samples">
-<code class="sig-name descname">--max-samples</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-max-samples" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximal number of iteration for each solver</p>
+<dt id="cmdoption-benchopt-run-n">
+<span id="cmdoption-benchopt-run-max-runs"></span><code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--max-runs</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-n" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maximal number of run for each solver. This corresponds to the number of points in the time/accuracy curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default</dt>
 <dd class="field-odd"><p>100</p>
