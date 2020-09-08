@@ -35,6 +35,27 @@ Examples Gallery
    :hidden:
 
    /auto_examples/plot_run_benchmark
+
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Demo benchmark with Julia/R/Python">
+
+.. only:: html
+
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_run_benchmark_python_R_julia_thumb.png
+     :alt: Demo benchmark with Julia/R/Python
+
+     :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R_julia.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /auto_examples/plot_run_benchmark_python_R_julia
 .. raw:: html
 
     <div class="sphx-glr-clear"></div>

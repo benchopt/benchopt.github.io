@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Demo benchmark with Julia/R/Python &#8212; benchopt 0.1.0dev0 documentation</title>
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          benchopt</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.0dev0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../how.html">Write a benchmark</a></li>
+                <li><a href="https://github.com/benchopt/benchOpt">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../api.html">API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how.html">Write a benchmark</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="body col-md-12 content" role="main">
+      
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-auto-examples-plot-run-benchmark-python-r-julia-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
+</div>
+<div class="sphx-glr-example-title section" id="demo-benchmark-with-julia-r-python">
+<span id="sphx-glr-auto-examples-plot-run-benchmark-python-r-julia-py"></span><h1>Demo benchmark with Julia/R/Python<a class="headerlink" href="#demo-benchmark-with-julia-r-python" title="Permalink to this headline">¶</a></h1>
+<ul class="sphx-glr-horizontal">
+<li><img alt="Lasso Regression[reg=0.05] Data: Simulated[n_samples=100,n_features=5000]" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_run_benchmark_python_R_julia_001.png" />
+</li>
+<li><img alt="Lasso Regression[reg=0.1] Data: Simulated[n_samples=100,n_features=5000]" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_run_benchmark_python_R_julia_002.png" />
+</li>
+<li><img alt="Lasso Regression[reg=0.5] Data: Simulated[n_samples=100,n_features=5000]" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_run_benchmark_python_R_julia_003.png" />
+</li>
+<li><img alt="Lasso Regression[reg=0.05] Data: Simulated[n_samples=100,n_features=5000]" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_run_benchmark_python_R_julia_004.png" />
+</li>
+<li><img alt="Lasso Regression[reg=0.1] Data: Simulated[n_samples=100,n_features=5000]" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_run_benchmark_python_R_julia_005.png" />
+</li>
+<li><img alt="Lasso Regression[reg=0.5] Data: Simulated[n_samples=100,n_features=5000]" class="sphx-glr-multi-img" src="../_images/sphx_glr_plot_run_benchmark_python_R_julia_006.png" />
+</li>
+</ul>
+<p class="sphx-glr-script-out">Out:</p>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Simulated[n_samples=100,n_features=5000]
+|--Lasso Regression[reg=0.05]
+
+Precompiling PyCall...
+Precompiling PyCall... DONE
+PyCall is installed and built successfully.
+/home/circleci/miniconda/lib/python3.8/site-packages/julia/core.py:687: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl = Julia(); jl.eval(&#39;&lt;name&gt;&#39;)`.
+  warnings.warn(
+[1;34m|----Julia-PGD:[0m   0.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   0.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   0.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  21.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  21.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  21.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  22.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  22.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  22.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  23.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  23.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m [1;33mdone (timeout)[0m
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  19.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  19.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  19.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  20.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  20.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  20.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  21.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  21.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  21.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  23.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m [1;33mdone (timeout)[0m
+[1;34m|----R-PGD:[0m   0.0% (0 / 3)
+[1;34m|----R-PGD:[0m   0.0% (1 / 3)
+[1;34m|----R-PGD:[0m   0.0% (2 / 3)
+[1;34m|----R-PGD:[0m   1.0% (0 / 3)
+[1;34m|----R-PGD:[0m   1.0% (1 / 3)
+[1;34m|----R-PGD:[0m   1.0% (2 / 3)
+[1;34m|----R-PGD:[0m   2.0% (0 / 3)
+[1;34m|----R-PGD:[0m   2.0% (1 / 3)
+[1;34m|----R-PGD:[0m   2.0% (2 / 3)
+[1;34m|----R-PGD:[0m   3.0% (0 / 3)
+[1;34m|----R-PGD:[0m   3.0% (1 / 3)
+[1;34m|----R-PGD:[0m   3.0% (2 / 3)
+[1;34m|----R-PGD:[0m   4.0% (0 / 3)
+[1;34m|----R-PGD:[0m   4.0% (1 / 3)
+[1;34m|----R-PGD:[0m   4.0% (2 / 3)
+[1;34m|----R-PGD:[0m   5.0% (0 / 3)
+[1;34m|----R-PGD:[0m   5.0% (1 / 3)
+[1;34m|----R-PGD:[0m   5.0% (2 / 3)
+[1;34m|----R-PGD:[0m   6.0% (0 / 3)
+[1;34m|----R-PGD:[0m   6.0% (1 / 3)
+[1;34m|----R-PGD:[0m   6.0% (2 / 3)
+[1;34m|----R-PGD:[0m   7.0% (0 / 3)
+[1;34m|----R-PGD:[0m   7.0% (1 / 3)
+[1;34m|----R-PGD:[0m   7.0% (2 / 3)
+[1;34m|----R-PGD:[0m   8.0% (0 / 3)
+[1;34m|----R-PGD:[0m   8.0% (1 / 3)
+[1;34m|----R-PGD:[0m   8.0% (2 / 3)
+[1;34m|----R-PGD:[0m   9.0% (0 / 3)
+[1;34m|----R-PGD:[0m   9.0% (1 / 3)
+[1;34m|----R-PGD:[0m   9.0% (2 / 3)
+[1;34m|----R-PGD:[0m  10.0% (0 / 3)
+[1;34m|----R-PGD:[0m  10.0% (1 / 3)
+[1;34m|----R-PGD:[0m  10.0% (2 / 3)
+[1;34m|----R-PGD:[0m  11.0% (0 / 3)
+[1;34m|----R-PGD:[0m  11.0% (1 / 3)
+[1;34m|----R-PGD:[0m  11.0% (2 / 3)
+[1;34m|----R-PGD:[0m  12.0% (0 / 3)
+[1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m
+|--Lasso Regression[reg=0.1]
+[1;34m|----Julia-PGD:[0m   0.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   0.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   0.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  19.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  21.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  21.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  21.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  22.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  22.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  22.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  23.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  23.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m [1;33mdone (timeout)[0m
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  19.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  19.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  19.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  20.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  20.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  20.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  21.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  21.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  21.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  23.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m [1;33mdone (timeout)[0m
+[1;34m|----R-PGD:[0m   0.0% (0 / 3)
+[1;34m|----R-PGD:[0m   0.0% (1 / 3)
+[1;34m|----R-PGD:[0m   0.0% (2 / 3)
+[1;34m|----R-PGD:[0m   1.0% (0 / 3)
+[1;34m|----R-PGD:[0m   1.0% (1 / 3)
+[1;34m|----R-PGD:[0m   1.0% (2 / 3)
+[1;34m|----R-PGD:[0m   2.0% (0 / 3)
+[1;34m|----R-PGD:[0m   2.0% (1 / 3)
+[1;34m|----R-PGD:[0m   2.0% (2 / 3)
+[1;34m|----R-PGD:[0m   3.0% (0 / 3)
+[1;34m|----R-PGD:[0m   3.0% (1 / 3)
+[1;34m|----R-PGD:[0m   3.0% (2 / 3)
+[1;34m|----R-PGD:[0m   4.0% (0 / 3)
+[1;34m|----R-PGD:[0m   4.0% (1 / 3)
+[1;34m|----R-PGD:[0m   4.0% (2 / 3)
+[1;34m|----R-PGD:[0m   5.0% (0 / 3)
+[1;34m|----R-PGD:[0m   5.0% (1 / 3)
+[1;34m|----R-PGD:[0m   5.0% (2 / 3)
+[1;34m|----R-PGD:[0m   6.0% (0 / 3)
+[1;34m|----R-PGD:[0m   6.0% (1 / 3)
+[1;34m|----R-PGD:[0m   6.0% (2 / 3)
+[1;34m|----R-PGD:[0m   7.0% (0 / 3)
+[1;34m|----R-PGD:[0m   7.0% (1 / 3)
+[1;34m|----R-PGD:[0m   7.0% (2 / 3)
+[1;34m|----R-PGD:[0m   8.0% (0 / 3)
+[1;34m|----R-PGD:[0m   8.0% (1 / 3)
+[1;34m|----R-PGD:[0m   8.0% (2 / 3)
+[1;34m|----R-PGD:[0m   9.0% (0 / 3)
+[1;34m|----R-PGD:[0m   9.0% (1 / 3)
+[1;34m|----R-PGD:[0m   9.0% (2 / 3)
+[1;34m|----R-PGD:[0m  10.0% (0 / 3)
+[1;34m|----R-PGD:[0m  10.0% (1 / 3)
+[1;34m|----R-PGD:[0m  10.0% (2 / 3)
+[1;34m|----R-PGD:[0m  11.0% (0 / 3)
+[1;34m|----R-PGD:[0m  11.0% (1 / 3)
+[1;34m|----R-PGD:[0m  11.0% (2 / 3)
+[1;34m|----R-PGD:[0m  12.0% (0 / 3)
+[1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m
+|--Lasso Regression[reg=0.5]
+[1;34m|----Julia-PGD:[0m   0.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   0.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   0.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   1.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   2.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   3.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   4.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   5.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   6.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   7.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   8.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m   9.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  10.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  11.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  12.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  13.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  14.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  15.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  16.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  17.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (1 / 3)
+[1;34m|----Julia-PGD:[0m  18.0% (2 / 3)
+[1;34m|----Julia-PGD:[0m  19.0% (0 / 3)
+[1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   0.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   1.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   2.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   3.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   4.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   5.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   6.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   7.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   8.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m   9.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  10.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  11.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  12.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  13.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  14.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  15.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  16.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  17.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  18.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  19.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.2% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.2% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  20.2% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  25.3% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  25.3% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  25.3% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  32.1% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  32.1% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  32.1% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  42.1% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  42.1% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m  42.1% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=False]:[0m [1;33mdone (timeout)[0m
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   0.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   1.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   2.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   3.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   4.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   5.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   6.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   7.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   8.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m   9.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  10.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  11.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  12.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  13.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  14.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  15.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  16.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  17.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  18.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.4% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.4% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  22.4% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  28.4% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  28.4% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  28.4% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  37.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  37.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  37.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  42.0% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  42.0% (1 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  42.0% (2 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m  52.8% (0 / 3)
+[1;34m|----Python-PGD[use_acceleration=True]:[0m [1;33mdone (timeout)[0m
+[1;34m|----R-PGD:[0m   0.0% (0 / 3)
+[1;34m|----R-PGD:[0m   0.0% (1 / 3)
+[1;34m|----R-PGD:[0m   0.0% (2 / 3)
+[1;34m|----R-PGD:[0m   1.0% (0 / 3)
+[1;34m|----R-PGD:[0m   1.0% (1 / 3)
+[1;34m|----R-PGD:[0m   1.0% (2 / 3)
+[1;34m|----R-PGD:[0m   2.0% (0 / 3)
+[1;34m|----R-PGD:[0m   2.0% (1 / 3)
+[1;34m|----R-PGD:[0m   2.0% (2 / 3)
+[1;34m|----R-PGD:[0m   3.0% (0 / 3)
+[1;34m|----R-PGD:[0m   3.0% (1 / 3)
+[1;34m|----R-PGD:[0m   3.0% (2 / 3)
+[1;34m|----R-PGD:[0m   4.0% (0 / 3)
+[1;34m|----R-PGD:[0m   4.0% (1 / 3)
+[1;34m|----R-PGD:[0m   4.0% (2 / 3)
+[1;34m|----R-PGD:[0m   5.0% (0 / 3)
+[1;34m|----R-PGD:[0m   5.0% (1 / 3)
+[1;34m|----R-PGD:[0m   5.0% (2 / 3)
+[1;34m|----R-PGD:[0m   6.0% (0 / 3)
+[1;34m|----R-PGD:[0m   6.0% (1 / 3)
+[1;34m|----R-PGD:[0m   6.0% (2 / 3)
+[1;34m|----R-PGD:[0m   7.0% (0 / 3)
+[1;34m|----R-PGD:[0m   7.0% (1 / 3)
+[1;34m|----R-PGD:[0m   7.0% (2 / 3)
+[1;34m|----R-PGD:[0m   8.0% (0 / 3)
+[1;34m|----R-PGD:[0m   8.0% (1 / 3)
+[1;34m|----R-PGD:[0m   8.0% (2 / 3)
+[1;34m|----R-PGD:[0m   9.0% (0 / 3)
+[1;34m|----R-PGD:[0m   9.0% (1 / 3)
+[1;34m|----R-PGD:[0m   9.0% (2 / 3)
+[1;34m|----R-PGD:[0m  10.0% (0 / 3)
+[1;34m|----R-PGD:[0m  10.0% (1 / 3)
+[1;34m|----R-PGD:[0m  10.0% (2 / 3)
+[1;34m|----R-PGD:[0m  11.0% (0 / 3)
+[1;34m|----R-PGD:[0m  11.0% (1 / 3)
+[1;34m|----R-PGD:[0m  11.0% (2 / 3)
+[1;34m|----R-PGD:[0m  12.0% (0 / 3)
+[1;34m|----R-PGD:[0m  12.0% (1 / 3)
+[1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">benchopt</span>
+<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">run_benchmark</span>
+<span class="kn">from</span> <span class="nn">benchopt.viz</span> <span class="kn">import</span> <span class="n">plot_benchmark</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cwd</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/os.html#os.getcwd" title="os.getcwd" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span></a><span class="p">()</span>
+<a href="https://docs.python.org/3/library/os.html#os.chdir" title="os.chdir" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">chdir</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/os.path.html#os.path.dirname" title="os.path.dirname" class="sphx-glr-backref-module-os-path sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span></a><span class="p">(</span><span class="n">benchopt</span><span class="o">.</span><span class="vm">__file__</span><span class="p">))</span> <span class="o">/</span> <span class="s1">&#39;..&#39;</span><span class="p">)</span>
+
+<span class="n">df</span> <span class="o">=</span> <span class="n">run_benchmark</span><span class="p">(</span><span class="s1">&#39;benchmarks/lasso&#39;</span><span class="p">,</span>
+                   <span class="p">[</span><span class="s1">&#39;Python-PGD&#39;</span><span class="p">,</span> <span class="s1">&#39;R-PGD&#39;</span><span class="p">,</span> <span class="s1">&#39;Julia-PGD&#39;</span><span class="p">],</span>
+                   <span class="n">forced_solvers</span><span class="o">=</span><span class="p">[],</span>
+                   <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Simulated*n_samples=100,n_features=500*&#39;</span><span class="p">],</span>
+                   <span class="n">max_runs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_repetitions</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">figs</span></a> <span class="o">=</span> <span class="n">plot_benchmark</span><span class="p">(</span><span class="n">df</span><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="s1">&#39;benchmarks/lasso&#39;</span><span class="p">)</span>
+
+<a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<a href="https://docs.python.org/3/library/os.html#os.chdir" title="os.chdir" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">chdir</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">cwd</span></a><span class="p">)</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 5 minutes  21.768 seconds)</p>
+<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-julia-py">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/d2dd5989796b6fc1e008c33958d2e61d/plot_run_benchmark_python_R_julia.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark_python_R_julia.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/b1eb2416c85d2f5f56b8316f67dc6949/plot_run_benchmark_python_R_julia.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark_python_R_julia.ipynb</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020-2020, Benchopt contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.2.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
