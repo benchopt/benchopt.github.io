@@ -71,7 +71,7 @@ Demo benchmark with Julia/R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 5 minutes  54.328 seconds)
+   **Total running time of the script:** ( 5 minutes  24.944 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:

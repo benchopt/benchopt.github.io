@@ -142,27 +142,27 @@ optimization benchmark should be <strong>as simple as doing</strong>:</p>
 <div class="math notranslate nohighlight">
 \[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
 <ul class="simple">
-<li><p><cite>ols</cite>: ordinary least-squares. This consists in solving the following program:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \frac{1}{2} \|y - Xw\|^2_2\]</div>
-<ul class="simple">
 <li><p><cite>lasso</cite>: l1-regularized least-squares. This consists in solving the following program:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_w \frac{1}{2} \|y - Xw\|^2_2 + \lambda \|w\|_1\]</div>
-<ul class="simple">
-<li><p><cite>logreg_l1</cite>: l1-regularized logistic regression. This consists in solving the following program:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
 <ul class="simple">
 <li><p><cite>logreg_l2</cite>: l2-regularized logistic regression. This consists in solving the following program:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \frac{\lambda}{2} \|w\|_2^2\]</div>
 <ul class="simple">
-<li><p><cite>nnls</cite>: non-negative least-squares. This consists in solving the following program:</p></li>
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">logreg_l1</a>: l1-regularized logistic regression. This consists in solving the following program:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_ols">ols</a>: ordinary least-squares. This consists in solving the following program:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \frac{1}{2} \|y - Xw\|^2_2\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_nnls">nnls</a>: non-negative least-squares. This consists in solving the following program:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_{w \geq 0} \frac{1}{2} \|y - Xw\|^2_2\]</div>
