@@ -33,7 +33,7 @@ Demo benchmark with Julia/R/Python
     [1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m                            
     [1;34m|----Python-PGD[use_acceleration=False]:[0m [1;32mdone[0m             
     [1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m                                
-    [1;32mSaving result in: /home/circleci/project/benchmarks/lasso/outputs/benchopt_run_2020-09-25_14h20:37.csv[0m
+    [1;32mSaving result in: /home/circleci/project/benchmarks/lasso/outputs/benchopt_run_2020-09-25_14h29:34.csv[0m
     Save convergence_curve plot for Simulated[n_samples=100,n_features=5000] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/e99c77bd390a0a648f0ba946ee3dac08_convergence_curve.pdf
 
 
@@ -79,7 +79,7 @@ Demo benchmark with Julia/R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 5 minutes  15.094 seconds)
+   **Total running time of the script:** ( 5 minutes  30.078 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:

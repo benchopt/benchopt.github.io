@@ -48,7 +48,7 @@ Run benchmark from a script
     [1;34m|----sklearn[liblinear]:[0m [1;32mdone[0m                             
     [1;34m|----sklearn[newton-cg]:[0m [1;32mdone[0m                             
     [1;34m|----sklearn[lbfgs]:[0m [1;32mdone[0m                                 
-    [1;32mSaving result in: /home/circleci/project/benchmarks/logreg_l2/outputs/benchopt_run_2020-09-25_14h15:21.csv[0m
+    [1;32mSaving result in: /home/circleci/project/benchmarks/logreg_l2/outputs/benchopt_run_2020-09-25_14h24:03.csv[0m
     Save convergence_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/logreg_l2/outputs/e0b54ae86432d8d158a1b837493eb6fd_convergence_curve.pdf
     Save convergence_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/logreg_l2/outputs/6d8bb6a001f7f55da29ee1065933994f_convergence_curve.pdf
 
@@ -95,7 +95,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  37.825 seconds)
+   **Total running time of the script:** ( 0 minutes  37.670 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
