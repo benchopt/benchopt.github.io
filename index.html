@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Benchmark repository for optimization &#8212; benchopt 0.1.0dev0 documentation</title>
+    <title>Benchmark repository for optimization &#8212; benchopt 1.0.0.dev2 documentation</title>
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.0dev0</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.0.0.dev2</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -109,10 +109,11 @@ command. If it can be installed via
 <p>BenchOpt is used through a command line as documented
 in <a class="reference internal" href="api.html#api-documentation"><span class="std std-ref">API Documentation</span></a>. Ultimately running and replicating an
 optimization benchmark should be <strong>as simple as doing</strong>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run benchmarks/logreg_l2
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_logreg_l2
+$ benchopt run ./benchmark_logreg_l2
 </pre></div>
 </div>
-<p>Running this command will give you a benchmark plot on l2-regularized logistic regression:</p>
+<p>Running these commands will fetch the benchmark files and give you a benchmark plot on l2-regularized logistic regression:</p>
 <div class="figure align-center">
 <a class="reference external image-reference" href="how.html"><img alt="_images/sphx_glr_plot_run_benchmark_001.png" src="_images/sphx_glr_plot_run_benchmark_001.png" style="width: 512.0px; height: 384.0px;" /></a>
 </div>
@@ -120,14 +121,23 @@ optimization benchmark should be <strong>as simple as doing</strong>:</p>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>This package can be installed through <cite>pip</cite> using:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -U https://api.github.com/repos/benchopt/benchOpt/zipball/master
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install benchopt
+</pre></div>
+</div>
+<p>This will install the command line tool to run the benchmark. Then, existing
+benchmarks can be retrieved from git or created locally. To discover which
+benchmarks are presently available look for
+<a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a>,
+such as for <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">l1-regularized logistic regression</a>.
+This benchmark can then be retrieved locally with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_lasso.git
 </pre></div>
 </div>
 </div>
 <div class="section" id="command-line-usage">
 <h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
 <p>To run Lasso benchmarks on all datasets and with all solvers, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run benchmarks/lasso
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run benchmark_lasso
 </pre></div>
 </div>
 <p>Use</p>
@@ -142,21 +152,6 @@ optimization benchmark should be <strong>as simple as doing</strong>:</p>
 <div class="math notranslate nohighlight">
 \[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
 <ul class="simple">
-<li><p><cite>lasso</cite>: l1-regularized least-squares. This consists in solving the following program:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \frac{1}{2} \|y - Xw\|^2_2 + \lambda \|w\|_1\]</div>
-<ul class="simple">
-<li><p><cite>logreg_l2</cite>: l2-regularized logistic regression. This consists in solving the following program:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \frac{\lambda}{2} \|w\|_2^2\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">logreg_l1</a>: l1-regularized logistic regression. This consists in solving the following program:</p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
-<ul class="simple">
 <li><p><a class="reference external" href="https://github.com/benchopt/benchmark_ols">ols</a>: ordinary least-squares. This consists in solving the following program:</p></li>
 </ul>
 <div class="math notranslate nohighlight">
@@ -166,6 +161,21 @@ optimization benchmark should be <strong>as simple as doing</strong>:</p>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_{w \geq 0} \frac{1}{2} \|y - Xw\|^2_2\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_lasso">lasso</a>: l1-regularized least-squares. This consists in solving the following program:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \frac{1}{2} \|y - Xw\|^2_2 + \lambda \|w\|_1\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l2">logreg_l2</a>: l2-regularized logistic regression. This consists in solving the following program:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \frac{\lambda}{2} \|w\|_2^2\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">logreg_l1</a>: l1-regularized logistic regression. This consists in solving the following program:</p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
 </div>
 </div>
 <div class="section" id="contents">
