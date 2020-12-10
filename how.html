@@ -142,7 +142,7 @@ to evaluate the objective for a given value of the iterate.</p>
 
 
 <span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Lasso Regression&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Dummy Sparse Regression&quot;</span>
 
     <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;reg&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="o">.</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span><span class="mi">5</span><span class="p">]</span>
@@ -158,14 +158,25 @@ to evaluate the objective for a given value of the iterate.</p>
 
     <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
         <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
-        <span class="k">return</span> <span class="o">.</span><span class="mi">5</span> <span class="o">*</span> <span class="n">diff</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="n">objective_value</span> <span class="o">=</span> <span class="o">.</span><span class="mi">5</span> <span class="o">*</span> <span class="n">diff</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+
+        <span class="c1"># To test for multiple type of return value, makes this depend on the</span>
+        <span class="c1"># parameter:</span>
+        <span class="c1">#   - reg == .1: Return a scalar</span>
+        <span class="c1">#   - reg &lt; .1: Return a scalar value for `objective_value`</span>
+        <span class="c1">#   - reg &gt; .1: Return multiple objective values</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">==</span> <span class="o">.</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">objective_value</span>
+        <span class="k">elif</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">&lt;</span> <span class="o">.</span><span class="mi">1</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">objective_value</span><span class="o">=</span><span class="n">objective_value</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">objective_value</span><span class="o">=</span><span class="n">objective_value</span><span class="p">,</span> <span class="n">val</span><span class="o">=</span><span class="n">objective_value</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_get_lambda_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
     <span class="k">def</span> <span class="nf">to_dict</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">)</span>
-        <span class="c1">#           fit_intercept=self.fit_intercept)</span>
 </pre></div>
 </div>
 </div>
