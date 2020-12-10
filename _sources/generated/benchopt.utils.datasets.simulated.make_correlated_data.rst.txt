@@ -1,0 +1,16 @@
+﻿.. raw:: html
+
+    <br/>
+
+benchopt.utils.datasets.simulated.make\_correlated\_data
+========================================================
+
+.. currentmodule:: benchopt.utils.datasets.simulated
+
+.. autofunction:: make_correlated_data
+
+.. _sphx_glr_backreferences_benchopt.utils.datasets.simulated.make_correlated_data:
+
+.. minigallery:: Examples
+    :add-heading: Minigallery using this function
+    :heading-level: ^
