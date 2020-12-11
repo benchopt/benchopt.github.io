@@ -148,7 +148,10 @@ the benchmark directory.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>df</strong><span class="classifier">instance of pandas.DataFrame</span></dt><dd><p>The benchmark results.</p>
+<dt><strong>df</strong><span class="classifier">instance of pandas.DataFrame</span></dt><dd><p>The benchmark results. If multiple metrics were computed, each
+one is stored in a separate column. If the number of metrics computed
+by the objective is not the same for all parameters, the missing data
+is set to <cite>NaN</cite>.</p>
 </dd>
 </dl>
 </dd>
