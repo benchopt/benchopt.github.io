@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>benchopt.BaseSolver &#8212; benchopt 1.1.0.dev0 documentation</title>
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/gallery-dataframe.css" />
+    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Write a benchmark" href="../how.html" />
+    <link rel="prev" title="benchopt.BaseDataset" href="benchopt.BaseDataset.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="../_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="../_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="../_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../index.html">
+          benchopt</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.0.dev0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="../cli.html">CLI</a></li>
+                <li><a href="../api.html">API</a></li>
+                <li><a href="../how.html">Write a benchmark</a></li>
+                <li><a href="https://github.com/benchopt/benchOpt">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../cli.html">Commande Line Interface (CLI) Documentation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../api.html">Python API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../how.html">Write a benchmark</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">benchopt.BaseSolver</a><ul>
+<li><a class="reference internal" href="#examples-using-benchopt-basesolver">Examples using <code class="docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code></a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <div class="section" id="benchopt-basesolver">
+<h1>benchopt.BaseSolver<a class="headerlink" href="#benchopt-basesolver" title="Permalink to this headline">¶</a></h1>
+<dl class="py class">
+<dt id="benchopt.BaseSolver">
+<em class="property">class </em><code class="sig-prename descclassname">benchopt.</code><code class="sig-name descname">BaseSolver</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver" title="Permalink to this definition">¶</a></dt>
+<dd><p>A base class for solver wrappers in BenchOpt.</p>
+<p>Solvers that derive from this class should implement three methods:</p>
+<ul class="simple">
+<li><p>set_objective(self, <a href="#id1"><span class="problematic" id="id2">**</span></a>objective_parameters): prepares the solver to be
+called on a given problem. <a href="#id3"><span class="problematic" id="id4">**</span></a>objective_parameters are the output of the
+method <code class="code docutils literal notranslate"><span class="pre">to_dict</span></code> from the benchmark objective. In particular, this
+method should dumps the parameter to compute the objective function in a
+file for command line solvers to reduce the impact of dumping the data to
+the disk in the benchmark.</p></li>
+<li><p>run(self, n_iter/tolerance): performs the computation for the previously
+given objective function, after a call to <code class="code docutils literal notranslate"><span class="pre">set_objective</span></code>. This
+method is the one timed in the benchmark and should not perform any
+operation unrelated to  the optimization procedure.</p></li>
+<li><p>get_result(self): returns the parameters computed by the previous call to
+run. For command line solvers, this retrieves the result from the disk.
+This utility is necessary to reduce the impact of loading the result from
+the disk in the benchmark.</p></li>
+</ul>
+<p>Note that two <cite>stop_strategy</cite> can be used to construct the benchmark
+curve:</p>
+<ul class="simple">
+<li><p><cite>iteration</cite>: call the run method with max_iter number increasing
+logarithmically to get more an more precise points.</p></li>
+<li><p><cite>tolerance</cite>: call the run method with tolerance deacreasing
+logarithmically to get more and more precise points.</p></li>
+</ul>
+<dl class="py method">
+<dt id="benchopt.BaseSolver.get_result">
+<em class="property">abstract </em><code class="sig-name descname">get_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the parameters computed by the previous run.</p>
+<p>The parameters should be returned as a flattened array.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>parameters</strong><span class="classifier">ndarray, shape (n_parameters,)</span></dt><dd><p>The computed coefficients by the solver.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="benchopt.BaseSolver.run">
+<em class="property">abstract </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stop_val</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run" title="Permalink to this definition">¶</a></dt>
+<dd><p>Call the solver with the given stop_val.</p>
+<p>This function should not return the parameters which will be
+retrieved by a subsequent call to get_result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stop_val</strong><span class="classifier">int | float</span></dt><dd><p>Value for the stopping criterion of the solver for. It allows to
+sample the time/accuracy curve in the benchmark.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="benchopt.BaseSolver.set_objective">
+<em class="property">abstract </em><code class="sig-name descname">set_objective</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">objective_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.set_objective" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prepare the objective for the solver.</p>
+</dd></dl>
+
+</dd></dl>
+
+<div class="section" id="examples-using-benchopt-basesolver">
+<span id="sphx-glr-backreferences-benchopt-basesolver"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code><a class="headerlink" href="#examples-using-benchopt-basesolver" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-clear"></div></div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020-2020, Benchopt contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
