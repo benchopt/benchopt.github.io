@@ -464,7 +464,6 @@ should differ between the two files. Here is the Python file:</p>
 <span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
 
-
 <span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
 
     <span class="kn">from</span> <span class="nn">rpy2</span> <span class="kn">import</span> <span class="n">robjects</span>
@@ -481,7 +480,7 @@ should differ between the two files. Here is the Python file:</p>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;R-PGD&quot;</span>
 
     <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;rpy2&#39;</span><span class="p">]</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;-c conda-forge r rpy2&#39;</span><span class="p">]</span>
     <span class="n">stop_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
     <span class="n">support_sparse</span> <span class="o">=</span> <span class="kc">False</span>
 
@@ -491,15 +490,9 @@ should differ between the two files. Here is the Python file:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;proximal_gradient_descent&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
-
-        <span class="c1"># There is an issue in loading Lapack library with rpy2 so</span>
-        <span class="c1"># we cannot compute the SVD in R for now. We compute it using</span>
-        <span class="c1"># numpy but this should be fixed at some point. See issue #52</span>
-        <span class="n">step_size</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="n">coefs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span>
-            <span class="n">step_size</span><span class="o">=</span><span class="n">step_size</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span>
-        <span class="p">)</span>
+            <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">)</span>
         <span class="n">as_matrix</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;as&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">as_matrix</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="s2">&quot;matrix&quot;</span><span class="p">))</span>
 
@@ -532,14 +525,14 @@ should differ between the two files. Here is the Python file:</p>
 
 
 <span class="c1"># Main algorithm</span>
-<span class="n">proximal_gradient_descent</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">,</span> <span class="n">step_size</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">)</span> <span class="p">{</span>
+<span class="n">proximal_gradient_descent</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1"># --------- Initialize parameter ---------</span>
     <span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
     <span class="n">parameters</span> <span class="o">&lt;-</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-
+    <span class="n">step_size</span> <span class="o">&lt;-</span> <span class="m">1</span> <span class="o">/</span> <span class="nf">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s">&quot;2&quot;</span><span class="p">)</span> <span class="o">**</span> <span class="m">2</span>
     <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">n_iter</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1"># Compute the gradient</span>
-        <span class="n">grad</span> <span class="o">&lt;-</span> <span class="nf">t</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="p">)</span> <span class="o">%*%</span> <span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">X</span> <span class="o">%*%</span> <span class="n">parameters</span><span class="p">)</span>
+        <span class="n">grad</span> <span class="o">&lt;-</span> <span class="nf">crossprod</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">X</span> <span class="o">%*%</span> <span class="n">parameters</span><span class="p">))</span>
         <span class="c1"># # Update the parameters</span>
         <span class="n">parameters</span> <span class="o">&lt;-</span> <span class="nf">St</span><span class="p">(</span><span class="n">step_size</span> <span class="o">*</span> <span class="n">lambda</span><span class="p">,</span> <span class="n">parameters</span> <span class="o">-</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">grad</span><span class="p">)</span>
     <span class="p">}</span>
