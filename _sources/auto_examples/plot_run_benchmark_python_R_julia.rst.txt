@@ -56,12 +56,12 @@ Demo benchmark with Julia/R/Python
     [1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m                                                
     [1;34m|----Python-PGD[use_acceleration=False]:[0m [1;33mdone (timeout)[0m                       
     [1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m                                                    
-    [1;32mSaving result in: /home/circleci/project/benchmarks/lasso/outputs/benchopt_run_2020-12-15_17h42m10.csv[0m
-    Save suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/60e67af0b20e8208e9860a68b0e7cf51_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/60e67af0b20e8208e9860a68b0e7cf51_relative_suboptimality_curve.pdf
-    Save objective_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/60e67af0b20e8208e9860a68b0e7cf51_objective_curve.pdf
+    [1;32mSaving result in: /home/circleci/project/benchmarks/lasso/outputs/benchopt_run_2020-12-16_11h08m51.csv[0m
+    Save suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/7688480c0242d0888e07ee8936df346b_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/7688480c0242d0888e07ee8936df346b_relative_suboptimality_curve.pdf
+    Save objective_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/7688480c0242d0888e07ee8936df346b_objective_curve.pdf
     Solver R-PGD did not reach precision 1e-06.
-    Save histogram plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/60e67af0b20e8208e9860a68b0e7cf51_histogram.pdf
+    Save histogram plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/7688480c0242d0888e07ee8936df346b_histogram.pdf
 
 
 
@@ -103,13 +103,13 @@ Demo benchmark with Julia/R/Python
         )
 
     kinds = list(PLOT_KINDS.keys())
-    figs = plot_benchmark(df, benchmark=str(BENCHMARK_PATH), kinds=kinds)
+    figs = plot_benchmark(df, benchmark=Benchmark(BENCHMARK_PATH), kinds=kinds)
     plt.show()
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 6 minutes  11.046 seconds)
+   **Total running time of the script:** ( 6 minutes  23.615 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:

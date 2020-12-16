@@ -101,6 +101,7 @@
 <li><a class="reference internal" href="#benchopt">benchopt</a><ul>
 <li><a class="reference internal" href="#benchopt-check-install">check-install</a></li>
 <li><a class="reference internal" href="#benchopt-plot">plot</a></li>
+<li><a class="reference internal" href="#benchopt-publish">publish</a></li>
 <li><a class="reference internal" href="#benchopt-run">run</a></li>
 <li><a class="reference internal" href="#benchopt-test">test</a></li>
 </ul>
@@ -179,6 +180,33 @@
 <dl class="std option">
 <dt id="cmdoption-benchopt-plot-arg-BENCHMARK">
 <span id="cmdoption-benchopt-plot-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="benchopt-publish">
+<h3>publish<a class="headerlink" href="#benchopt-publish" title="Permalink to this headline">¶</a></h3>
+<p>Publish the result from a previously run benchmark.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt publish <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-publish-t">
+<span id="cmdoption-benchopt-publish-token"></span><code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--token</code><code class="sig-prename descclassname"> &lt;token&gt;</code><a class="headerlink" href="#cmdoption-benchopt-publish-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Github token to access the result repo.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-publish-f">
+<span id="cmdoption-benchopt-publish-filename"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--filename</code><code class="sig-prename descclassname"> &lt;filename&gt;</code><a class="headerlink" href="#cmdoption-benchopt-publish-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the file to publish in the benchmark. If it is not specified, take the latest on in the benchmark output folder.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-publish-arg-BENCHMARK">
+<span id="cmdoption-benchopt-publish-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-publish-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
