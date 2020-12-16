@@ -125,7 +125,7 @@ command. If it can be installed via
 in <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Commande Line Interface (CLI) Documentation</span></a>. Ultimately running and replicating an
 optimization benchmark should be <strong>as simple as doing</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_logreg_l2
-$ benchopt run ./benchmark_logreg_l2
+$ benchopt run --env ./benchmark_logreg_l2
 </pre></div>
 </div>
 <p>Running these commands will fetch the benchmark files and give you a benchmark plot on l2-regularized logistic regression:</p>
@@ -152,7 +152,7 @@ This benchmark can then be retrieved locally with:</p>
 <div class="section" id="command-line-usage">
 <h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
 <p>To run Lasso benchmarks on all datasets and with all solvers, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run benchmark_lasso
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env benchmark_lasso
 </pre></div>
 </div>
 <p>Use</p>
