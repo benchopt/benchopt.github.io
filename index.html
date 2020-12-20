@@ -20,7 +20,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Commande Line Interface (CLI) Documentation" href="cli.html" />
+    <link rel="next" title="Command Line Interface (CLI) Documentation" href="cli.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -65,7 +65,7 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">Commande Line Interface (CLI) Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI) Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
@@ -102,7 +102,8 @@
 <li><a class="reference internal" href="#">Benchmark repository for optimization</a><ul>
 <li><a class="reference internal" href="#install">Install</a></li>
 <li><a class="reference internal" href="#command-line-usage">Command line usage</a></li>
-<li><a class="reference internal" href="#list-of-optimization-problems-available">List of optimization problems available</a></li>
+<li><a class="reference internal" href="#benchmarks-available">Benchmarks available</a></li>
+<li><a class="reference internal" href="#benchmark-results">Benchmark results</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#contents">Contents</a></li>
@@ -125,7 +126,7 @@ and compiled binaries written in C/C++ available via a terminal
 command. If it can be installed via
 <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> it should just work!</p>
 <p>BenchOpt is used through a command line as documented
-in <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Commande Line Interface (CLI) Documentation</span></a>. Ultimately running and replicating an
+in <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>. Ultimately running and replicating an
 optimization benchmark should be <strong>as simple as doing</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_logreg_l2
 $ benchopt run --env ./benchmark_logreg_l2
@@ -164,8 +165,8 @@ This benchmark can then be retrieved locally with:</p>
 </div>
 <p>for more details about different options read the <a class="reference internal" href="api.html#api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
 </div>
-<div class="section" id="list-of-optimization-problems-available">
-<h2>List of optimization problems available<a class="headerlink" href="#list-of-optimization-problems-available" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="benchmarks-available">
+<h2>Benchmarks available<a class="headerlink" href="#benchmarks-available" title="Permalink to this headline">¶</a></h2>
 <p>Notation:  In what follows, n (or n_samples) stands for the number of samples and p (or n_features) stands for the number of features.</p>
 <div class="math notranslate nohighlight">
 \[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
@@ -195,12 +196,16 @@ This benchmark can then be retrieved locally with:</p>
 <div class="math notranslate nohighlight">
 \[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
 </div>
+<div class="section" id="benchmark-results">
+<h2>Benchmark results<a class="headerlink" href="#benchmark-results" title="Permalink to this headline">¶</a></h2>
+<p>All the public benchmark results are available at <a class="reference external" href="https://benchopt.github.io/results/">BenchOpt Benchmarks results</a>.</p>
+</div>
 </div>
 <div class="section" id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">Commande Line Interface (CLI) Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI) Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
