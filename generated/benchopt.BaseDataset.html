@@ -100,10 +100,7 @@
   <div class="row">
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">benchopt.BaseDataset</a><ul>
-<li><a class="reference internal" href="#examples-using-benchopt-basedataset">Examples using <code class="docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">benchopt.BaseDataset</a></li>
 </ul>
 
         </div>
@@ -118,23 +115,23 @@
 <dd><p>Base class to define a dataset in a benchmark.</p>
 <p>Datasets that derive from this class should implement one method:</p>
 <ul class="simple">
-<li><p><cite>get_data()</cite>: retrieves/simulates the data contains in this data set and
-returns the <cite>scale</cite> of the data as well as a dictionary containing the
-data. This dictionary is passed as arguments of the objective function
-method <cite>set_data</cite>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_data()</span></code>: retrieves/simulates the data contains in this data set
+and returns the <code class="docutils literal notranslate"><span class="pre">dimension</span></code> of the data as well as a dictionary
+containing the data. This dictionary is passed as arguments of the
+objective function method <code class="docutils literal notranslate"><span class="pre">set_data</span></code>.</p></li>
 </ul>
 <dl class="py method">
 <dt id="benchopt.BaseDataset.get_data">
 <em class="property">abstract </em><code class="sig-name descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseDataset.get_data" title="Permalink to this definition">¶</a></dt>
-<dd><p>Return the scale of the problem as well as the objective parameters.</p>
+<dd><p>Return the problem’s dimension as well as the objective parameters.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
 <dd class="field-odd"><dl class="simple">
-<dt>scale: int</dt><dd><p>Size of the optimized parameter. The solvers should return a
-parameter of shape (scale,).</p>
+<dt>dimension: int or tuple</dt><dd><p>Dimension of the optimized parameter. The solvers should return a
+parameter of shape <code class="docutils literal notranslate"><span class="pre">(dimension,)</span></code> or <code class="docutils literal notranslate"><span class="pre">*dimension</span></code>.</p>
 </dd>
 <dt>data: dict</dt><dd><p>Extra parameters of the objective. The objective will be
-instanciated by calling <cite>Objective.set_data(**data)</cite>.</p>
+instanciated by calling <code class="docutils literal notranslate"><span class="pre">Objective.set_data(**data)</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -143,10 +140,7 @@ instanciated by calling <cite>Objective.set_data(**data)</cite>.</p>
 
 </dd></dl>
 
-<div class="section" id="examples-using-benchopt-basedataset">
-<span id="sphx-glr-backreferences-benchopt-basedataset"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code><a class="headerlink" href="#examples-using-benchopt-basedataset" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-clear"></div></div>
-</div>
+<span class="target" id="sphx-glr-backreferences-benchopt-basedataset"></span></div>
 
 
     </div>

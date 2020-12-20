@@ -8,6 +8,3 @@
    :members:
 
 .. _sphx_glr_backreferences_benchopt.safe_import_context:
-
-.. minigallery:: benchopt.safe_import_context
-    :add-heading:

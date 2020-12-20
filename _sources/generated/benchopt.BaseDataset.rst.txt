@@ -8,6 +8,3 @@
    :members:
 
 .. _sphx_glr_backreferences_benchopt.BaseDataset:
-
-.. minigallery:: benchopt.BaseDataset
-    :add-heading:

@@ -8,6 +8,3 @@
    :members:
 
 .. _sphx_glr_backreferences_benchopt.BaseSolver:
-
-.. minigallery:: benchopt.BaseSolver
-    :add-heading:

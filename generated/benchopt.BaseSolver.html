@@ -100,10 +100,7 @@
   <div class="row">
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">benchopt.BaseSolver</a><ul>
-<li><a class="reference internal" href="#examples-using-benchopt-basesolver">Examples using <code class="docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">benchopt.BaseSolver</a></li>
 </ul>
 
         </div>
@@ -118,27 +115,27 @@
 <dd><p>A base class for solver wrappers in BenchOpt.</p>
 <p>Solvers that derive from this class should implement three methods:</p>
 <ul class="simple">
-<li><p>set_objective(self, <a href="#id1"><span class="problematic" id="id2">**</span></a>objective_parameters): prepares the solver to be
-called on a given problem. <a href="#id3"><span class="problematic" id="id4">**</span></a>objective_parameters are the output of the
-method <code class="code docutils literal notranslate"><span class="pre">to_dict</span></code> from the benchmark objective. In particular, this
-method should dumps the parameter to compute the objective function in a
-file for command line solvers to reduce the impact of dumping the data to
-the disk in the benchmark.</p></li>
-<li><p>run(self, n_iter/tolerance): performs the computation for the previously
-given objective function, after a call to <code class="code docutils literal notranslate"><span class="pre">set_objective</span></code>. This
-method is the one timed in the benchmark and should not perform any
+<li><p><code class="docutils literal notranslate"><span class="pre">set_objective(self,</span> <span class="pre">**objective_parameters)</span></code>: prepares the solver to
+be called on a given problem. <code class="docutils literal notranslate"><span class="pre">**objective_parameters</span></code> are the output
+of the method <code class="docutils literal notranslate"><span class="pre">to_dict</span></code> from the benchmark objective. In particular,
+this method should dumps the parameter to compute the objective function
+in a file for command line solvers to reduce the impact of dumping the
+data to the disk in the benchmark.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">n_iter/tolerance)</span></code>: performs the computation for the
+previously given objective function, after a call to <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.
+This method is the one timed in the benchmark and should not perform any
 operation unrelated to  the optimization procedure.</p></li>
-<li><p>get_result(self): returns the parameters computed by the previous call to
-run. For command line solvers, this retrieves the result from the disk.
-This utility is necessary to reduce the impact of loading the result from
-the disk in the benchmark.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_result(self)</span></code>: returns the parameters computed by the previous
+call to run. For command line solvers, this retrieves the result from the
+disk. This utility is necessary to reduce the impact of loading the
+result from the disk in the benchmark.</p></li>
 </ul>
-<p>Note that two <cite>stop_strategy</cite> can be used to construct the benchmark
+<p>Note that two <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code> can be used to construct the benchmark
 curve:</p>
 <ul class="simple">
-<li><p><cite>iteration</cite>: call the run method with max_iter number increasing
+<li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: call the run method with max_iter number increasing
 logarithmically to get more an more precise points.</p></li>
-<li><p><cite>tolerance</cite>: call the run method with tolerance deacreasing
+<li><p><code class="docutils literal notranslate"><span class="pre">'tolerance'</span></code>: call the run method with tolerance deacreasing
 logarithmically to get more and more precise points.</p></li>
 </ul>
 <dl class="py method">
@@ -146,10 +143,10 @@ logarithmically to get more and more precise points.</p></li>
 <em class="property">abstract </em><code class="sig-name descname">get_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the parameters computed by the previous run.</p>
 <p>The parameters should be returned as a flattened array.</p>
-<dl class="field-list simple">
+<dl class="field-list">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>parameters</strong><span class="classifier">ndarray, shape (n_parameters,)</span></dt><dd><p>The computed coefficients by the solver.</p>
+<dd class="field-odd"><dl>
+<dt><strong>parameters</strong><span class="classifier">ndarray, shape <code class="docutils literal notranslate"><span class="pre">(dimension,)</span></code> or <code class="docutils literal notranslate"><span class="pre">*dimension</span></code></span></dt><dd><p>The computed coefficients by the solver.</p>
 </dd>
 </dl>
 </dd>
@@ -177,14 +174,44 @@ sample the time/accuracy curve in the benchmark.</p>
 <dt id="benchopt.BaseSolver.set_objective">
 <em class="property">abstract </em><code class="sig-name descname">set_objective</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">objective_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.set_objective" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prepare the objective for the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**objective_parameters</strong><span class="classifier">dict</span></dt><dd><p>Dictionary obtained as the output of the method <code class="docutils literal notranslate"><span class="pre">to_dict</span></code> from
+the benchmark <code class="docutils literal notranslate"><span class="pre">Objective</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt id="benchopt.BaseSolver.skip">
+<code class="sig-name descname">skip</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">objective_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Permalink to this definition">¶</a></dt>
+<dd><p>Used to decide if the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> is compatible with the objective.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**objective_parameters</strong><span class="classifier">dict</span></dt><dd><p>Dictionary obtained as the output of the method <code class="docutils literal notranslate"><span class="pre">to_dict</span></code> from
+the benchmark <code class="docutils literal notranslate"><span class="pre">Objective</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>skip</strong><span class="classifier">bool</span></dt><dd><p>Whether this solver should be skipped or not for this objective.</p>
+</dd>
+<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason why it should be skipped for display purposes.
+If skip is False, the reason should be None.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
 
-<div class="section" id="examples-using-benchopt-basesolver">
-<span id="sphx-glr-backreferences-benchopt-basesolver"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code><a class="headerlink" href="#examples-using-benchopt-basesolver" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-clear"></div></div>
-</div>
+<span class="target" id="sphx-glr-backreferences-benchopt-basesolver"></span></div>
 
 
     </div>

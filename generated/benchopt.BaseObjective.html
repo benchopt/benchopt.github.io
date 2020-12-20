@@ -100,10 +100,7 @@
   <div class="row">
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">benchopt.BaseObjective</a><ul>
-<li><a class="reference internal" href="#examples-using-benchopt-baseobjective">Examples using <code class="docutils literal notranslate"><span class="pre">benchopt.BaseObjective</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#">benchopt.BaseObjective</a></li>
 </ul>
 
         </div>
@@ -125,9 +122,9 @@ from the objective function as a dictionary that will be passed as
 parameters of the solver’s <cite>set_objective</cite> method in order to specify the
 objective function of the benchmark.</p></li>
 <li><p><cite>compute(beta)</cite>: computes the value of the objective function for an
-given estimate beta. Beta is given as a flat 1D vector of size
-corresponding to the <cite>scale</cite> value returned by <cite>Dataset.get_data</cite>. The
-output should be a float or a dictionary of floats.
+given estimate beta. Beta is given as np.array of size corresponding to
+the <cite>dimension</cite> value returned by <cite>Dataset.get_data</cite>. The output should
+be a float or a dictionary of floats.
 If a dictionary is returned, it should at least contain a key
 <cite>objective_value</cite> associated to a scalar value which will be used to
 detect convergence. With a dictionary, multiple metric values can be
@@ -135,10 +132,7 @@ stored at once instead of runnning each separately.</p></li>
 </ul>
 </dd></dl>
 
-<div class="section" id="examples-using-benchopt-baseobjective">
-<span id="sphx-glr-backreferences-benchopt-baseobjective"></span><h2>Examples using <code class="docutils literal notranslate"><span class="pre">benchopt.BaseObjective</span></code><a class="headerlink" href="#examples-using-benchopt-baseobjective" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-clear"></div></div>
-</div>
+<span class="target" id="sphx-glr-backreferences-benchopt-baseobjective"></span></div>
 
 
     </div>

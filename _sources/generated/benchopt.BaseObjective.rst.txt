@@ -8,6 +8,3 @@
    :members:
 
 .. _sphx_glr_backreferences_benchopt.BaseObjective:
-
-.. minigallery:: benchopt.BaseObjective
-    :add-heading:
