@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>What’s new &#8212; benchopt 1.1.0.dev0 documentation</title>
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/gallery-rendered-html.css" />
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Write a benchmark" href="how.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.11.0.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          benchopt</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.0.dev0</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="cli.html">CLI</a></li>
+                <li><a href="api.html">API</a></li>
+                <li><a href="how.html">Write a benchmark</a></li>
+                <li><a href="#">What's new</a></li>
+                <li><a href="https://github.com/benchopt/benchOpt">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Commande Line Interface (CLI) Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">What’s new</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">What’s new</a><ul>
+<li><a class="reference internal" href="#version-1-1-in-progress">Version 1.1 - in progress</a><ul>
+<li><a class="reference internal" href="#changelog">Changelog</a></li>
+<li><a class="reference internal" href="#api">API</a></li>
+<li><a class="reference internal" href="#cli">CLI</a></li>
+<li><a class="reference internal" href="#bug">BUG</a></li>
+<li><a class="reference internal" href="#doc">DOC</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#version-1-0-2020-09-25">Version 1.0 - 2020-09-25</a><ul>
+<li><a class="reference internal" href="#release-highlights">Release highlights</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <div class="section" id="what-s-new">
+<span id="whats-new"></span><h1>What’s new<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-1-1-in-progress">
+<span id="changes-1-1"></span><h2>Version 1.1 - in progress<a class="headerlink" href="#version-1-1-in-progress" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="changelog">
+<h3>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>New plotting functions with different optimality criteria,
+by <a class="reference external" href="https://ngazagna.github.io">Nidham Gazagnadou</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/96">#96</a>).</p></li>
+<li><p>Support plotly for plotting functions, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>,
+<a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="http://josephsalmon.eu">Joseph Salmon</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/110">#110</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/111">#111</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/112">#112</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">publish</span></code> command to push benchmark results to GitHub,
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/110">#110</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="api">
+<h3>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> can now return a dictionary with multiple outputs to
+monitor several metrics at once, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (gh:<cite>84</cite>).</p></li>
+</ul>
+</div>
+<div class="section" id="cli">
+<h3>CLI<a class="headerlink" href="#cli" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">--version</span></code> option for <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/83">#83</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">--pdb</span></code> option for <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> to open debugger on error and help
+benchmark debugging, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/86">#86</a>).</p></li>
+<li><p>Change default run to local mode. Can call a run in a dedicated env with
+option <code class="docutils literal notranslate"><span class="pre">--env</span></code> or <code class="docutils literal notranslate"><span class="pre">--env-name</span> <span class="pre">ENV_NAME</span></code> to specify the env,
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/94">#94</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="bug">
+<h3>BUG<a class="headerlink" href="#bug" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Throw a warning when benchopt version in conda env does not match the one of
+calling <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/83">#83</a>).</p></li>
+<li><p>Fix Lapack issue with R code, by <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/97">#97</a>).</p></li>
+</ul>
+</div>
+<div class="section" id="doc">
+<h3>DOC<a class="headerlink" href="#doc" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Improve how-to narative documentation, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/93">#93</a>).</p></li>
+<li><p>Add what’s new page, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/114">#114</a>).</p></li>
+</ul>
+</div>
+</div>
+<div class="section" id="version-1-0-2020-09-25">
+<span id="changes-1-0"></span><h2>Version 1.0 - 2020-09-25<a class="headerlink" href="#version-1-0-2020-09-25" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="release-highlights">
+<h3>Release highlights<a class="headerlink" href="#release-highlights" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>Provide a command line interface for benchmarking optimisation algorithm
+implementations:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> to run the benchmarks</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">plot</span></code> to display the results</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> to test that a benchmark folder is correctly structured.</p></li>
+</ul>
+</li>
+</ul>
+<p>The committer list for this release is the following:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a></p></li>
+<li><p><a class="reference external" href="http://josephsalmon.eu">Joseph Salmon</a></p></li>
+<li><p><a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a></p></li>
+<li><p><a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a></p></li>
+<li><p><a class="reference external" href="https://tomdlt.github.io">Tom Dupré la Tour</a></p></li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020-2020, Benchopt contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
