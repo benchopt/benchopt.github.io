@@ -67,8 +67,9 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publish.html">Publish benchmark results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">BenchOpt configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork BenchOpt on Github</a></li>
 </ul>
 </ul>
 </li>
@@ -108,6 +109,7 @@
 <div class="genindex-jumpbox">
  <a href="#Symbols"><strong>Symbols</strong></a>
  | <a href="#B"><strong>B</strong></a>
+ | <a href="#D"><strong>D</strong></a>
  | <a href="#G"><strong>G</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#P"><strong>P</strong></a>
@@ -118,6 +120,20 @@
 <h2 id="Symbols">Symbols</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --append
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-set-a">benchopt-config-set command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --benchmark &lt;benchmark&gt;
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-b">benchopt-config command line option</a>
+</li>
+      </ul></li>
       <li>
     --dataset &lt;dataset_name&gt;
 
@@ -239,8 +255,6 @@
         <li><a href="cli.html#cmdoption-benchopt-plot-plotly">benchopt-plot command line option</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     --recreate
 
@@ -248,6 +262,8 @@
         <li><a href="cli.html#cmdoption-benchopt-run-recreate">benchopt-run command line option</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     --solver &lt;solver_name&gt;
 
@@ -274,6 +290,20 @@
 
       <ul>
         <li><a href="cli.html#cmdoption-benchopt-v">benchopt command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -a
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-set-a">benchopt-config-set command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -b
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-b">benchopt-config command line option</a>
 </li>
       </ul></li>
       <li>
@@ -357,19 +387,28 @@
         <li><a href="cli.html#cmdoption-benchopt-v">benchopt command line option</a>
 </li>
       </ul></li>
+      <li>
+    &lt;name&gt;
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-get-arg-name">benchopt-config-get command line option</a>
+</li>
+        <li><a href="cli.html#cmdoption-benchopt-config-set-arg-name">benchopt-config-set command line option</a>
+</li>
+      </ul></li>
+      <li>
+    &lt;val&gt;
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-set-arg-val">benchopt-config-set command line option</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    BASE_CLASS_NAME
-
-      <ul>
-        <li><a href="cli.html#cmdoption-benchopt-check-install-arg-BASE_CLASS_NAME">benchopt-check-install command line option</a>
-</li>
-      </ul></li>
       <li><a href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset">BaseDataset (class in benchopt)</a>
 </li>
       <li><a href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective">BaseObjective (class in benchopt)</a>
@@ -380,18 +419,15 @@
     BENCHMARK
 
       <ul>
+        <li><a href="cli.html#cmdoption-benchopt-clean-arg-BENCHMARK">benchopt-clean command line option</a>
+</li>
         <li><a href="cli.html#cmdoption-benchopt-plot-arg-BENCHMARK">benchopt-plot command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-benchopt-publish-arg-BENCHMARK">benchopt-publish command line option</a>
 </li>
         <li><a href="cli.html#cmdoption-benchopt-run-arg-BENCHMARK">benchopt-run command line option</a>
 </li>
-      </ul></li>
-      <li>
-    BENCHMARK_DIR
-
-      <ul>
-        <li><a href="cli.html#cmdoption-benchopt-test-arg-BENCHMARK_DIR">benchopt-test command line option</a>
+        <li><a href="cli.html#cmdoption-benchopt-test-arg-BENCHMARK">benchopt-test command line option</a>
 </li>
       </ul></li>
       <li>
@@ -411,12 +447,39 @@
 </li>
       </ul></li>
       <li>
-    benchopt-check-install command line option
+    benchopt-clean command line option
 
       <ul>
-        <li><a href="cli.html#cmdoption-benchopt-check-install-arg-BASE_CLASS_NAME">BASE_CLASS_NAME</a>
+        <li><a href="cli.html#cmdoption-benchopt-clean-arg-BENCHMARK">BENCHMARK</a>
 </li>
-        <li><a href="cli.html#cmdoption-benchopt-check-install-arg-MODULE_FILENAME">MODULE_FILENAME</a>
+      </ul></li>
+      <li>
+    benchopt-config command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-b">--benchmark &lt;benchmark&gt;</a>
+</li>
+        <li><a href="cli.html#cmdoption-benchopt-config-b">-b</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-config-get command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-get-arg-name">&lt;name&gt;</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-config-set command line option
+
+      <ul>
+        <li><a href="cli.html#cmdoption-benchopt-config-set-a">--append</a>
+</li>
+        <li><a href="cli.html#cmdoption-benchopt-config-set-a">-a</a>
+</li>
+        <li><a href="cli.html#cmdoption-benchopt-config-set-arg-name">&lt;name&gt;</a>
+</li>
+        <li><a href="cli.html#cmdoption-benchopt-config-set-arg-val">&lt;val&gt;</a>
 </li>
       </ul></li>
       <li>
@@ -440,6 +503,8 @@
         <li><a href="cli.html#cmdoption-benchopt-plot-arg-BENCHMARK">BENCHMARK</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     benchopt-publish command line option
 
@@ -455,8 +520,6 @@
         <li><a href="cli.html#cmdoption-benchopt-publish-arg-BENCHMARK">BENCHMARK</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     benchopt-run command line option
 
@@ -514,11 +577,23 @@
       <ul>
         <li><a href="cli.html#cmdoption-benchopt-test-env-name">--env-name &lt;NAME&gt;</a>
 </li>
-        <li><a href="cli.html#cmdoption-benchopt-test-arg-BENCHMARK_DIR">BENCHMARK_DIR</a>
+        <li><a href="cli.html#cmdoption-benchopt-test-arg-BENCHMARK">BENCHMARK</a>
 </li>
         <li><a href="cli.html#cmdoption-benchopt-test-arg-PYTEST_ARGS">PYTEST_ARGS</a>
 </li>
       </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="config.html#benchopt.config.DEFAULT_BENCHMARK_CONFIG">DEFAULT_BENCHMARK_CONFIG (in module benchopt.config)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="config.html#benchopt.config.DEFAULT_GLOBAL_CONFIG">DEFAULT_GLOBAL_CONFIG (in module benchopt.config)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -539,20 +614,13 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="generated/benchopt.datasets.simulated.make_correlated_data.html#benchopt.datasets.simulated.make_correlated_data">make_correlated_data() (in module benchopt.datasets.simulated)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     module
 
       <ul>
         <li><a href="api.html#module-benchopt">benchopt</a>
-</li>
-      </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
-      <li>
-    MODULE_FILENAME
-
-      <ul>
-        <li><a href="cli.html#cmdoption-benchopt-check-install-arg-MODULE_FILENAME">benchopt-check-install command line option</a>
 </li>
       </ul></li>
   </ul></td>

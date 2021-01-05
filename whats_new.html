@@ -19,7 +19,7 @@
     <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Publish benchmark results" href="publish.html" />
+    <link rel="prev" title="BenchOpt configuration" href="config.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -68,8 +68,9 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publish.html">Publish benchmark results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">BenchOpt configuration</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">What’s new</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork BenchOpt on Github</a></li>
 </ul>
 </ul>
 </li>
@@ -131,8 +132,8 @@
 by <a class="reference external" href="https://ngazagna.github.io">Nidham Gazagnadou</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/96">#96</a>).</p></li>
 <li><p>Support plotly for plotting functions, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>,
 <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="http://josephsalmon.eu">Joseph Salmon</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/110">#110</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/111">#111</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/112">#112</a>).</p></li>
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">publish</span></code> command to push benchmark results to GitHub,
-by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/110">#110</a>).</p></li>
+<li><p>Change envrionment variable for config from <cite>BENCHO_*</cite> to <cite>BENCHOPT_*</cite>,
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/128">#128</a>).</p></li>
 </ul>
 </div>
 <div class="section" id="api">
@@ -153,12 +154,18 @@ benchmark debugging, by <a class="reference external" href="https://tommoral.git
 <li><p>Change default run to local mode. Can call a run in a dedicated env with
 option <code class="docutils literal notranslate"><span class="pre">--env</span></code> or <code class="docutils literal notranslate"><span class="pre">--env-name</span> <span class="pre">ENV_NAME</span></code> to specify the env,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/94">#94</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">publish</span></code> command to push benchmark results to GitHub,
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/110">#110</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">clean</span></code> command to remove cached file and output files locally,
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/128">#128</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code> command to allow easy configuration of <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>
+using the CLI, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/128">#128</a>).</p></li>
 </ul>
 </div>
 <div class="section" id="bug">
 <h3>BUG<a class="headerlink" href="#bug" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Throw a warning when benchopt version in conda env does not match the one of
+<li><p>Throw a warning when BenchOpt version in conda env does not match the one of
 calling <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/83">#83</a>).</p></li>
 <li><p>Fix Lapack issue with R code, by <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/97">#97</a>).</p></li>
 </ul>

@@ -69,8 +69,9 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publish.html">Publish benchmark results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">BenchOpt configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork BenchOpt on Github</a></li>
 </ul>
 </ul>
 </li>
@@ -267,7 +268,7 @@ across problem dimensions.</p>
 For example, one may want to change the dataset size, the noise level, etc.
 To be able to specify parameters to get a dataset, you can use a class
 attribute called <code class="docutils literal notranslate"><span class="pre">parameters</span></code>. This parameter must be a dictionary
-whose keys can be passed to the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> of the class. Then benchopt
+whose keys can be passed to the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> of the class. Then BenchOpt
 will automatically allow you to test all combinations of parameters.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -341,7 +342,7 @@ the running time. The parameter is called <code class="docutils literal notransl
 a positive float.</p></li>
 </ul>
 </div></blockquote>
-<p>benchopt supports different types of solvers:</p>
+<p>BenchOpt supports different types of solvers:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="#python-solvers"><span class="std std-ref">Python solver</span></a></p></li>
@@ -396,7 +397,7 @@ with no other dependencies. Here is an example:</p>
 </pre></div>
 </div>
 <p>If your Python solver requires some packages such as <a class="reference external" href="https://numba.pydata.org/">Numba</a>,
-benchopt allows you to list some requirements. The necessary packages should be available
+BenchOpt allows you to list some requirements. The necessary packages should be available
 via <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> or
 <a class="reference external" href="https://packaging.python.org/guides/tool-recommendations/">pip</a>.</p>
 <p>In this case the <code class="docutils literal notranslate"><span class="pre">install_cmd</span></code> class variable needs to be set to <code class="docutils literal notranslate"><span class="pre">'conda'</span></code>
@@ -443,7 +444,7 @@ dependencies. See <a class="reference internal" href="#source-solvers"><span cla
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Specifying the dependencies is necessary if you let benchopt
+<p>Specifying the dependencies is necessary if you let BenchOpt
 manage the creation of a dedicated environment. If you want to
 use your local environment the list of dependencies is
 not relevant. See <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>.</p>

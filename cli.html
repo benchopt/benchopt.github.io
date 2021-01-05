@@ -69,8 +69,9 @@
 <li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publish.html">Publish benchmark results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">BenchOpt configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork BenchOpt on Github</a></li>
 </ul>
 </ul>
 </li>
@@ -102,11 +103,25 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Command Line Interface (CLI) Documentation</a><ul>
 <li><a class="reference internal" href="#benchopt">benchopt</a><ul>
-<li><a class="reference internal" href="#benchopt-check-install">check-install</a></li>
-<li><a class="reference internal" href="#benchopt-plot">plot</a></li>
-<li><a class="reference internal" href="#benchopt-publish">publish</a></li>
+<li><a class="reference internal" href="#benchopt-principal-commands">Principal Commands</a><ul>
 <li><a class="reference internal" href="#benchopt-run">run</a></li>
 <li><a class="reference internal" href="#benchopt-test">test</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#benchopt-process-results">Process Results</a><ul>
+<li><a class="reference internal" href="#benchopt-plot">plot</a></li>
+<li><a class="reference internal" href="#benchopt-publish">publish</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#benchopt-helpers">Helpers</a><ul>
+<li><a class="reference internal" href="#benchopt-clean">clean</a></li>
+<li><a class="reference internal" href="#benchopt-config">config</a><ul>
+<li><a class="reference internal" href="#benchopt-config-get">get</a></li>
+<li><a class="reference internal" href="#benchopt-config-set">set</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -132,103 +147,11 @@
 <dd><p>Print version</p>
 </dd></dl>
 
-<div class="section" id="benchopt-check-install">
-<h3>check-install<a class="headerlink" href="#benchopt-check-install" title="Permalink to this headline">¶</a></h3>
-<p>Check that a given solver or dataset is correctly installed.</p>
-<p>The class to be checked is specified with the absolute path of the file in which it is defined MODULE_FILENAME and the name of the base class BASE_CLASS_NAME.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt check-install <span class="o">[</span>OPTIONS<span class="o">]</span> MODULE_FILENAME
-                       BASE_CLASS_NAME
-</pre></div>
-</div>
-<p class="rubric">Arguments</p>
-<dl class="std option">
-<dt id="cmdoption-benchopt-check-install-arg-MODULE_FILENAME">
-<span id="cmdoption-benchopt-check-install-arg-module-filename"></span><code class="sig-name descname">MODULE_FILENAME</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-MODULE_FILENAME" title="Permalink to this definition">¶</a></dt>
-<dd><p>Required argument</p>
-</dd></dl>
-
-<dl class="std option">
-<dt id="cmdoption-benchopt-check-install-arg-BASE_CLASS_NAME">
-<span id="cmdoption-benchopt-check-install-arg-base-class-name"></span><code class="sig-name descname">BASE_CLASS_NAME</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-check-install-arg-BASE_CLASS_NAME" title="Permalink to this definition">¶</a></dt>
-<dd><p>Required argument</p>
-</dd></dl>
-
-</div>
-<div class="section" id="benchopt-plot">
-<h3>plot<a class="headerlink" href="#benchopt-plot" title="Permalink to this headline">¶</a></h3>
-<p>Plot the result from a previously run benchmark.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt plot <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK
-</pre></div>
-</div>
-<p class="rubric">Options</p>
-<dl class="std option">
-<dt id="cmdoption-benchopt-plot-f">
-<span id="cmdoption-benchopt-plot-filename"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--filename</code><code class="sig-prename descclassname"> &lt;filename&gt;</code><a class="headerlink" href="#cmdoption-benchopt-plot-f" title="Permalink to this definition">¶</a></dt>
-<dd><p>Specify the file to select in the benchmark. If it is not specified, take the latest on in the benchmark output folder.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt id="cmdoption-benchopt-plot-k">
-<span id="cmdoption-benchopt-plot-kind"></span><code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kind</code><code class="sig-prename descclassname"> &lt;kinds&gt;</code><a class="headerlink" href="#cmdoption-benchopt-plot-k" title="Permalink to this definition">¶</a></dt>
-<dd><p>Specify the type of figure to plot:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">suboptimality_curve</span></code>: Plot suboptimality curve for a given benchmark and dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">relative_suboptimality_curve</span></code>: Plot relative suboptimality curve for a given benchmark and dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">objective_curve</span></code>: Plot objective curve for a given benchmark and dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">histogram</span></code>: Plot histogram for a given benchmark and dataset.</p></li>
-</ul>
-</dd></dl>
-
-<dl class="std option">
-<dt id="cmdoption-benchopt-plot-display">
-<span id="cmdoption-benchopt-plot-no-display"></span><code class="sig-name descname">--display</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-display</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-display" title="Permalink to this definition">¶</a></dt>
-<dd><p>Whether or not to display the plot on the screen.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt id="cmdoption-benchopt-plot-plotly">
-<code class="sig-name descname">--plotly</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-plotly" title="Permalink to this definition">¶</a></dt>
-<dd><p>If this flag is set, generate figure as HTML with plotly. This option does not work with all plot kinds and requires to have installed <cite>plotly</cite>.</p>
-</dd></dl>
-
-<p class="rubric">Arguments</p>
-<dl class="std option">
-<dt id="cmdoption-benchopt-plot-arg-BENCHMARK">
-<span id="cmdoption-benchopt-plot-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
-<dd><p>Required argument</p>
-</dd></dl>
-
-</div>
-<div class="section" id="benchopt-publish">
-<h3>publish<a class="headerlink" href="#benchopt-publish" title="Permalink to this headline">¶</a></h3>
-<p>Publish the result from a previously run benchmark.</p>
-<p>See the <a class="reference internal" href="publish.html#publish"><span class="std std-ref">Publish benchmark results</span></a> documentation for more info on how to use this command.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt publish <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK
-</pre></div>
-</div>
-<p class="rubric">Options</p>
-<dl class="std option">
-<dt id="cmdoption-benchopt-publish-t">
-<span id="cmdoption-benchopt-publish-token"></span><code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--token</code><code class="sig-prename descclassname"> &lt;token&gt;</code><a class="headerlink" href="#cmdoption-benchopt-publish-t" title="Permalink to this definition">¶</a></dt>
-<dd><p>Github token to access the result repo.</p>
-</dd></dl>
-
-<dl class="std option">
-<dt id="cmdoption-benchopt-publish-f">
-<span id="cmdoption-benchopt-publish-filename"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--filename</code><code class="sig-prename descclassname"> &lt;filename&gt;</code><a class="headerlink" href="#cmdoption-benchopt-publish-f" title="Permalink to this definition">¶</a></dt>
-<dd><p>Specify the file to publish in the benchmark. If it is not specified, take the latest on in the benchmark output folder.</p>
-</dd></dl>
-
-<p class="rubric">Arguments</p>
-<dl class="std option">
-<dt id="cmdoption-benchopt-publish-arg-BENCHMARK">
-<span id="cmdoption-benchopt-publish-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-publish-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
-<dd><p>Required argument</p>
-</dd></dl>
-
-</div>
+<div class="section" id="benchopt-principal-commands">
+<h3>Principal Commands<a class="headerlink" href="#benchopt-principal-commands" title="Permalink to this headline">¶</a></h3>
+<p>Principal commands that are used in <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>.</p>
 <div class="section" id="benchopt-run">
-<h3>run<a class="headerlink" href="#benchopt-run" title="Permalink to this headline">¶</a></h3>
+<h4>run<a class="headerlink" href="#benchopt-run" title="Permalink to this headline">¶</a></h4>
 <p>Run a benchmark with benchopt.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt run <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK
 </pre></div>
@@ -331,10 +254,9 @@
 
 </div>
 <div class="section" id="benchopt-test">
-<h3>test<a class="headerlink" href="#benchopt-test" title="Permalink to this headline">¶</a></h3>
-<p>Test a benchmark in BENCHMARK_DIR.</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt <span class="nb">test</span> <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK_DIR
-              <span class="o">[</span>PYTEST_ARGS<span class="o">]</span>...
+<h4>test<a class="headerlink" href="#benchopt-test" title="Permalink to this headline">¶</a></h4>
+<p>Test a benchmark for benchopt.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt <span class="nb">test</span> <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK <span class="o">[</span>PYTEST_ARGS<span class="o">]</span>...
 </pre></div>
 </div>
 <p class="rubric">Options</p>
@@ -346,8 +268,8 @@
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
-<dt id="cmdoption-benchopt-test-arg-BENCHMARK_DIR">
-<span id="cmdoption-benchopt-test-arg-benchmark-dir"></span><code class="sig-name descname">BENCHMARK_DIR</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-test-arg-BENCHMARK_DIR" title="Permalink to this definition">¶</a></dt>
+<dt id="cmdoption-benchopt-test-arg-BENCHMARK">
+<span id="cmdoption-benchopt-test-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-test-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -357,6 +279,157 @@
 <dd><p>Optional argument(s)</p>
 </dd></dl>
 
+</div>
+</div>
+<div class="section" id="benchopt-process-results">
+<h3>Process Results<a class="headerlink" href="#benchopt-process-results" title="Permalink to this headline">¶</a></h3>
+<p>Utilities to process benchmark outputs produced by benchOpt.</p>
+<div class="section" id="benchopt-plot">
+<h4>plot<a class="headerlink" href="#benchopt-plot" title="Permalink to this headline">¶</a></h4>
+<p>Plot the result from a previously run benchmark.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt plot <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-plot-f">
+<span id="cmdoption-benchopt-plot-filename"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--filename</code><code class="sig-prename descclassname"> &lt;filename&gt;</code><a class="headerlink" href="#cmdoption-benchopt-plot-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the file to select in the benchmark. If it is not specified, take the latest on in the benchmark output folder.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-plot-k">
+<span id="cmdoption-benchopt-plot-kind"></span><code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kind</code><code class="sig-prename descclassname"> &lt;kinds&gt;</code><a class="headerlink" href="#cmdoption-benchopt-plot-k" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the type of figure to plot:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">suboptimality_curve</span></code>: Plot suboptimality curve for a given benchmark and dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relative_suboptimality_curve</span></code>: Plot relative suboptimality curve for a given benchmark and dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objective_curve</span></code>: Plot objective curve for a given benchmark and dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">histogram</span></code>: Plot histogram for a given benchmark and dataset.</p></li>
+</ul>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-plot-display">
+<span id="cmdoption-benchopt-plot-no-display"></span><code class="sig-name descname">--display</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-display</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-display" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether or not to display the plot on the screen.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-plot-plotly">
+<code class="sig-name descname">--plotly</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-plotly" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this flag is set, generate figure as HTML with plotly. This option does not work with all plot kinds and requires to have installed <cite>plotly</cite>.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-plot-arg-BENCHMARK">
+<span id="cmdoption-benchopt-plot-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="benchopt-publish">
+<h4>publish<a class="headerlink" href="#benchopt-publish" title="Permalink to this headline">¶</a></h4>
+<p>Publish the result from a previously run benchmark.</p>
+<p>See the <a class="reference internal" href="publish.html#publish-doc"><span class="std std-ref">Publish benchmark results</span></a> documentation for more info on how to use this command.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt publish <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-publish-t">
+<span id="cmdoption-benchopt-publish-token"></span><code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--token</code><code class="sig-prename descclassname"> &lt;token&gt;</code><a class="headerlink" href="#cmdoption-benchopt-publish-t" title="Permalink to this definition">¶</a></dt>
+<dd><p>Github token to access the result repo.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-publish-f">
+<span id="cmdoption-benchopt-publish-filename"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--filename</code><code class="sig-prename descclassname"> &lt;filename&gt;</code><a class="headerlink" href="#cmdoption-benchopt-publish-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>Specify the file to publish in the benchmark. If it is not specified, take the latest on in the benchmark output folder.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-publish-arg-BENCHMARK">
+<span id="cmdoption-benchopt-publish-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-publish-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+</div>
+<div class="section" id="benchopt-helpers">
+<h3>Helpers<a class="headerlink" href="#benchopt-helpers" title="Permalink to this headline">¶</a></h3>
+<p>Helpers to clean and config <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>.</p>
+<div class="section" id="benchopt-clean">
+<h4>clean<a class="headerlink" href="#benchopt-clean" title="Permalink to this headline">¶</a></h4>
+<p>Clean the cache and the outputs from a benchmark.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt clean  BENCHMARK
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-clean-arg-BENCHMARK">
+<span id="cmdoption-benchopt-clean-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-clean-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="benchopt-config">
+<h4>config<a class="headerlink" href="#benchopt-config" title="Permalink to this headline">¶</a></h4>
+<p>Configuration helper for benchopt. The configuration of benchopt is detailed in <a class="reference internal" href="config.html#config-doc"><span class="std std-ref">BenchOpt configuration</span></a>.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt config <span class="o">[</span>OPTIONS<span class="o">]</span> COMMAND <span class="o">[</span>ARGS<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-config-b">
+<span id="cmdoption-benchopt-config-benchmark"></span><code class="sig-name descname">-b</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--benchmark</code><code class="sig-prename descclassname"> &lt;benchmark&gt;</code><a class="headerlink" href="#cmdoption-benchopt-config-b" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<div class="section" id="benchopt-config-get">
+<h5>get<a class="headerlink" href="#benchopt-config-get" title="Permalink to this headline">¶</a></h5>
+<p>Get config value for setting &lt;name&gt;.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt config get <span class="o">[</span>OPTIONS<span class="o">]</span> &lt;name&gt;
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-config-get-arg-name">
+<code class="sig-name descname">&lt;name&gt;</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-get-arg-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</div>
+<div class="section" id="benchopt-config-set">
+<h5>set<a class="headerlink" href="#benchopt-config-set" title="Permalink to this headline">¶</a></h5>
+<p>Set value of setting &lt;name&gt; to &lt;val&gt;.</p>
+<p>Multiple values can be provided as separate arguments. This will generate a list of values in the config file.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt config <span class="nb">set</span> <span class="o">[</span>OPTIONS<span class="o">]</span> &lt;name&gt; &lt;val&gt;
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-config-set-a">
+<span id="cmdoption-benchopt-config-set-append"></span><code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--append</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Can be used to append values to the existing ones for settings that takes list of values.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-config-set-arg-name">
+<code class="sig-name descname">&lt;name&gt;</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-arg-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-config-set-arg-val">
+<code class="sig-name descname">&lt;val&gt;</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-arg-val" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument(s)</p>
+</dd></dl>
+
+</div>
+</div>
 </div>
 </div>
 </div>
