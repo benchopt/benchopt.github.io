@@ -91,11 +91,11 @@ Run benchmark from a script
     [1;34m|----sklearn[newton-cg]:[0m [1;32mdone[0m                                                 
     [1;34m|----sklearn[lbfgs]:[0m [1;32mdone[0m                                                     
     |--L2 Logistic Regression[fit_intercept=False,lmbd=0.01]                                            
-    [1;34m|----Lightning:[0m [1;32mdone[0m                                                          
+    [1;34m|----Lightning:[0m [1;33mdone (timeout)[0m                                                
     [1;34m|----sklearn[liblinear]:[0m [1;32mdone[0m                                                 
     [1;34m|----sklearn[newton-cg]:[0m [1;32mdone[0m                                                 
     [1;34m|----sklearn[lbfgs]:[0m [1;32mdone[0m                                                     
-    [1;32mSaving result in: /home/circleci/project/benchmarks/logreg_l2/outputs/benchopt_run_2021-01-18_09h25m40.csv[0m
+    [1;32mSaving result in: /home/circleci/project/benchmarks/logreg_l2/outputs/benchopt_run_2021-01-18_09h41m48.csv[0m
     Save suboptimality_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/logreg_l2/outputs/972e47b372420a4bcb9b0d6c4145cfee_suboptimality_curve.pdf
     Save relative_suboptimality_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/logreg_l2/outputs/972e47b372420a4bcb9b0d6c4145cfee_relative_suboptimality_curve.pdf
     Save objective_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/logreg_l2/outputs/972e47b372420a4bcb9b0d6c4145cfee_objective_curve.pdf
@@ -149,7 +149,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  42.198 seconds)
+   **Total running time of the script:** ( 0 minutes  53.223 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
