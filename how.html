@@ -480,6 +480,15 @@ should differ between the two files. Here is the Python file:</p>
     <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;-c conda-forge r rpy2&#39;</span><span class="p">]</span>
     <span class="n">stop_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
     <span class="n">support_sparse</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;I. Daubechies, M. Defrise and C. De Mol, &#39;</span>
+        <span class="s1">&#39;&quot;An iterative thresholding algorithm for linear inverse problems &#39;</span>
+        <span class="s1">&#39;with a sparsity constraint&quot;, Comm. Pure Appl. Math., &#39;</span>
+        <span class="s1">&#39;vol. 57, pp. 1413-1457, no. 11, Wiley Online Library (2004)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;A. Beck and M. Teboulle, &quot;A fast iterative shrinkage-thresholding &#39;</span>
+        <span class="s1">&#39;algorithm for linear inverse problems&quot;, SIAM J. Imaging Sci., &#39;</span>
+        <span class="s1">&#39;vol. 2, no. 1, pp. 183-202 (2009)&#39;</span>
+    <span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
@@ -570,6 +579,15 @@ should differ between the two files. Here is the Python file:</p>
     <span class="c1"># Config of the solver</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Julia-PGD&#39;</span>
     <span class="n">stop_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;I. Daubechies, M. Defrise and C. De Mol, &#39;</span>
+        <span class="s1">&#39;&quot;An iterative thresholding algorithm for linear inverse problems &#39;</span>
+        <span class="s1">&#39;with a sparsity constraint&quot;, Comm. Pure Appl. Math., &#39;</span>
+        <span class="s1">&#39;vol. 57, pp. 1413-1457, no. 11, Wiley Online Library (2004)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;A. Beck and M. Teboulle, &quot;A fast iterative shrinkage-thresholding &#39;</span>
+        <span class="s1">&#39;algorithm for linear inverse problems&quot;, SIAM J. Imaging Sci., &#39;</span>
+        <span class="s1">&#39;vol. 2, no. 1, pp. 183-202 (2009)&#39;</span>
+    <span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
