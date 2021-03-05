@@ -16,7 +16,6 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Python API Documentation" href="api.html" />
@@ -134,6 +133,17 @@
       
   <div class="section" id="command-line-interface-cli-documentation">
 <span id="cli-documentation"></span><h1>Command Line Interface (CLI) Documentation<a class="headerlink" href="#command-line-interface-cli-documentation" title="Permalink to this headline">¶</a></h1>
+<p>The following commands are built using the
+<a class="reference external" href="https://click.palletsprojects.com/en/7.x/">click</a> package which provides tab
+completion for the command options. You however need to activate shell
+completion by following the instructions given in the
+<a class="reference external" href="https://click.palletsprojects.com/en/7.x/bashcomplete/#activation">click documentation</a>.
+For example using BASH shell you need to run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">eval</span> <span class="s2">&quot;$(_BENCHOPT_COMPLETE=source_bash benchopt)&quot;</span>
+</pre></div>
+</div>
+<p>The <cite>benchopt</cite> command also comes with tab completion for the solver name
+and the dataset name.</p>
 <div class="section" id="benchopt">
 <h2>benchopt<a class="headerlink" href="#benchopt" title="Permalink to this headline">¶</a></h2>
 <p>Command-line interface to benchOpt</p>
@@ -143,7 +153,7 @@
 <p class="rubric">Options</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-v">
-<span id="cmdoption-benchopt-version"></span><code class="sig-name descname">-v</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--version</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-v" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-version"></span><code class="sig-name descname"><span class="pre">-v</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--version</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-v" title="Permalink to this definition">¶</a></dt>
 <dd><p>Print version</p>
 </dd></dl>
 
@@ -159,37 +169,37 @@
 <p class="rubric">Options</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-recreate">
-<code class="sig-name descname">--recreate</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-recreate" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">--recreate</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-recreate" title="Permalink to this definition">¶</a></dt>
 <dd><p>If this flag is set, start with a fresh conda env.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-p">
-<span id="cmdoption-benchopt-run-objective-filter"></span><code class="sig-name descname">-p</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--objective-filter</code><code class="sig-prename descclassname"> &lt;objective_filter&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-p" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-objective-filter"></span><code class="sig-name descname"><span class="pre">-p</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--objective-filter</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;objective_filter&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-p" title="Permalink to this definition">¶</a></dt>
 <dd><p>Filter the objective based on its parametrized name. This can be used to only include one set of parameters.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-s">
-<span id="cmdoption-benchopt-run-solver"></span><code class="sig-name descname">-s</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--solver</code><code class="sig-prename descclassname"> &lt;solver_name&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-s" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-solver"></span><code class="sig-name descname"><span class="pre">-s</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--solver</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;solver_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-s" title="Permalink to this definition">¶</a></dt>
 <dd><p>Include &lt;solver_name&gt; in the benchmark. By default, all solvers are included. When <cite>-s</cite> is used, only listed estimators are included.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-f">
-<span id="cmdoption-benchopt-run-force-solver"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--force-solver</code><code class="sig-prename descclassname"> &lt;solver_name&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-f" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-force-solver"></span><code class="sig-name descname"><span class="pre">-f</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--force-solver</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;solver_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-f" title="Permalink to this definition">¶</a></dt>
 <dd><p>Force the re-installation and run for &lt;solver_name&gt;. This avoids caching effect when adding an estimator.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-d">
-<span id="cmdoption-benchopt-run-dataset"></span><code class="sig-name descname">-d</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--dataset</code><code class="sig-prename descclassname"> &lt;dataset_name&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-d" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-dataset"></span><code class="sig-name descname"><span class="pre">-d</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--dataset</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;dataset_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the benchmark on &lt;dataset_name&gt;. By default, all datasets are included. When <cite>-d</cite> is used, only listed datasets are included. Note that &lt;dataset_name&gt; can be a regexp.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-n">
-<span id="cmdoption-benchopt-run-max-runs"></span><code class="sig-name descname">-n</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--max-runs</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-n" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-max-runs"></span><code class="sig-name descname"><span class="pre">-n</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--max-runs</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;int&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-n" title="Permalink to this definition">¶</a></dt>
 <dd><p>Maximal number of run for each solver. This corresponds to the number of points in the time/accuracy curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default</dt>
@@ -200,13 +210,13 @@
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-r">
-<span id="cmdoption-benchopt-run-n-repetitions"></span><code class="sig-name descname">-r</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--n-repetitions</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-r" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-n-repetitions"></span><code class="sig-name descname"><span class="pre">-r</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--n-repetitions</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;int&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-r" title="Permalink to this definition">¶</a></dt>
 <dd><p>Number of repetition that are averaged to estimate the runtime.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-timeout">
-<code class="sig-name descname">--timeout</code><code class="sig-prename descclassname"> &lt;int&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-timeout" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">--timeout</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;int&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-timeout" title="Permalink to this definition">¶</a></dt>
 <dd><p>Timeout a solver when run for more than &lt;timeout&gt; seconds</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default</dt>
@@ -217,38 +227,38 @@
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-plot">
-<span id="cmdoption-benchopt-run-no-plot"></span><code class="sig-name descname">--plot</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-plot</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-plot" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-no-plot"></span><code class="sig-name descname"><span class="pre">--plot</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--no-plot</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-plot" title="Permalink to this definition">¶</a></dt>
 <dd><p>Wether or not to plot the results. Default is True.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-pdb">
-<code class="sig-name descname">--pdb</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-pdb" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">--pdb</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-pdb" title="Permalink to this definition">¶</a></dt>
 <dd><p>Launch a debugger if there is an error. This will launch ipdb if it is installed and default to pdb otherwise.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-l">
-<span id="cmdoption-benchopt-run-local"></span><code class="sig-name descname">-l</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--local</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-l" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-local"></span><code class="sig-name descname"><span class="pre">-l</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--local</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-l" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the benchmark in the local env. Must have all solvers and dataset dependencies installed.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-e">
-<span id="cmdoption-benchopt-run-env"></span><code class="sig-name descname">-e</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--env</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-e" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-env"></span><code class="sig-name descname"><span class="pre">-e</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--env</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-e" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the benchmark in a conda env for the benchmark. The env is named benchopt_&lt;BENCHMARK&gt; and all solver dependencies are installed in it.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-env-name">
-<code class="sig-name descname">--env-name</code><code class="sig-prename descclassname"> &lt;env_name&gt;</code><a class="headerlink" href="#cmdoption-benchopt-run-env-name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">--env-name</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;env_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-env-name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the benchmark in a conda env for the benchmark. The env is named &lt;env_name&gt; and all solver dependencies are installed in it.</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-arg-BENCHMARK">
-<span id="cmdoption-benchopt-run-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-run-arg-benchmark"></span><code class="sig-name descname"><span class="pre">BENCHMARK</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -262,20 +272,20 @@
 <p class="rubric">Options</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-test-env-name">
-<code class="sig-name descname">--env-name</code><code class="sig-prename descclassname"> &lt;NAME&gt;</code><a class="headerlink" href="#cmdoption-benchopt-test-env-name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">--env-name</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;NAME&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-test-env-name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Environment to run the test in. If it is not provided a temporary one is created for the test.</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-test-arg-BENCHMARK">
-<span id="cmdoption-benchopt-test-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-test-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-test-arg-benchmark"></span><code class="sig-name descname"><span class="pre">BENCHMARK</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-test-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-test-arg-PYTEST_ARGS">
-<span id="cmdoption-benchopt-test-arg-pytest-args"></span><code class="sig-name descname">PYTEST_ARGS</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-test-arg-PYTEST_ARGS" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-test-arg-pytest-args"></span><code class="sig-name descname"><span class="pre">PYTEST_ARGS</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-test-arg-PYTEST_ARGS" title="Permalink to this definition">¶</a></dt>
 <dd><p>Optional argument(s)</p>
 </dd></dl>
 
@@ -293,38 +303,38 @@
 <p class="rubric">Options</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-plot-f">
-<span id="cmdoption-benchopt-plot-filename"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--filename</code><code class="sig-prename descclassname"> &lt;filename&gt;</code><a class="headerlink" href="#cmdoption-benchopt-plot-f" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-plot-filename"></span><code class="sig-name descname"><span class="pre">-f</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--filename</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;filename&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-plot-f" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify the file to select in the benchmark. If it is not specified, take the latest on in the benchmark output folder.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-plot-k">
-<span id="cmdoption-benchopt-plot-kind"></span><code class="sig-name descname">-k</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--kind</code><code class="sig-prename descclassname"> &lt;kinds&gt;</code><a class="headerlink" href="#cmdoption-benchopt-plot-k" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-plot-kind"></span><code class="sig-name descname"><span class="pre">-k</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--kind</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;kinds&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-plot-k" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify the type of figure to plot:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">suboptimality_curve</span></code>: Plot suboptimality curve for a given benchmark and dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">relative_suboptimality_curve</span></code>: Plot relative suboptimality curve for a given benchmark and dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">objective_curve</span></code>: Plot objective curve for a given benchmark and dataset.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">histogram</span></code>: Plot histogram for a given benchmark and dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">suboptimality_curve</span></code>: str(object=’’) -&gt; str</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">relative_suboptimality_curve</span></code>: str(object=’’) -&gt; str</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objective_curve</span></code>: str(object=’’) -&gt; str</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">histogram</span></code>: str(object=’’) -&gt; str</p></li>
 </ul>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-plot-display">
-<span id="cmdoption-benchopt-plot-no-display"></span><code class="sig-name descname">--display</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--no-display</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-display" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-plot-no-display"></span><code class="sig-name descname"><span class="pre">--display</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--no-display</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-display" title="Permalink to this definition">¶</a></dt>
 <dd><p>Whether or not to display the plot on the screen.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-plot-plotly">
-<code class="sig-name descname">--plotly</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-plotly" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">--plotly</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-plotly" title="Permalink to this definition">¶</a></dt>
 <dd><p>If this flag is set, generate figure as HTML with plotly. This option does not work with all plot kinds and requires to have installed <cite>plotly</cite>.</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-plot-arg-BENCHMARK">
-<span id="cmdoption-benchopt-plot-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-plot-arg-benchmark"></span><code class="sig-name descname"><span class="pre">BENCHMARK</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-plot-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -339,20 +349,20 @@
 <p class="rubric">Options</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-publish-t">
-<span id="cmdoption-benchopt-publish-token"></span><code class="sig-name descname">-t</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--token</code><code class="sig-prename descclassname"> &lt;token&gt;</code><a class="headerlink" href="#cmdoption-benchopt-publish-t" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-publish-token"></span><code class="sig-name descname"><span class="pre">-t</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--token</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;token&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-publish-t" title="Permalink to this definition">¶</a></dt>
 <dd><p>Github token to access the result repo.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-publish-f">
-<span id="cmdoption-benchopt-publish-filename"></span><code class="sig-name descname">-f</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--filename</code><code class="sig-prename descclassname"> &lt;filename&gt;</code><a class="headerlink" href="#cmdoption-benchopt-publish-f" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-publish-filename"></span><code class="sig-name descname"><span class="pre">-f</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--filename</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;filename&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-publish-f" title="Permalink to this definition">¶</a></dt>
 <dd><p>Specify the file to publish in the benchmark. If it is not specified, take the latest on in the benchmark output folder.</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-publish-arg-BENCHMARK">
-<span id="cmdoption-benchopt-publish-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-publish-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-publish-arg-benchmark"></span><code class="sig-name descname"><span class="pre">BENCHMARK</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-publish-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -370,7 +380,7 @@
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-clean-arg-BENCHMARK">
-<span id="cmdoption-benchopt-clean-arg-benchmark"></span><code class="sig-name descname">BENCHMARK</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-clean-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-clean-arg-benchmark"></span><code class="sig-name descname"><span class="pre">BENCHMARK</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-clean-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -384,7 +394,7 @@
 <p class="rubric">Options</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-config-b">
-<span id="cmdoption-benchopt-config-benchmark"></span><code class="sig-name descname">-b</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--benchmark</code><code class="sig-prename descclassname"> &lt;benchmark&gt;</code><a class="headerlink" href="#cmdoption-benchopt-config-b" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-config-benchmark"></span><code class="sig-name descname"><span class="pre">-b</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--benchmark</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;benchmark&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-config-b" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <div class="section" id="benchopt-config-get">
@@ -396,7 +406,7 @@
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-config-get-arg-name">
-<code class="sig-name descname">&lt;name&gt;</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-get-arg-name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">&lt;name&gt;</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-get-arg-name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
@@ -411,20 +421,20 @@
 <p class="rubric">Options</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-config-set-a">
-<span id="cmdoption-benchopt-config-set-append"></span><code class="sig-name descname">-a</code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname">, </code><code class="sig-name descname">--append</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-a" title="Permalink to this definition">¶</a></dt>
+<span id="cmdoption-benchopt-config-set-append"></span><code class="sig-name descname"><span class="pre">-a</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--append</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-a" title="Permalink to this definition">¶</a></dt>
 <dd><p>Can be used to append values to the existing ones for settings that takes list of values.</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-config-set-arg-name">
-<code class="sig-name descname">&lt;name&gt;</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-arg-name" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">&lt;name&gt;</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-arg-name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-config-set-arg-val">
-<code class="sig-name descname">&lt;val&gt;</code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-arg-val" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">&lt;val&gt;</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-config-set-arg-val" title="Permalink to this definition">¶</a></dt>
 <dd><p>Required argument(s)</p>
 </dd></dl>
 
@@ -447,7 +457,7 @@
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.1.<br/>
     </p>
   </div>
 </footer>

@@ -16,7 +16,6 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Write a benchmark" href="../how.html" />
@@ -112,7 +111,7 @@
 <h1>benchopt.BaseSolver<a class="headerlink" href="#benchopt-basesolver" title="Permalink to this headline">¶</a></h1>
 <dl class="py class">
 <dt id="benchopt.BaseSolver">
-<em class="property">class </em><code class="sig-prename descclassname">benchopt.</code><code class="sig-name descname">BaseSolver</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">parameters</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">benchopt.</span></code><code class="sig-name descname"><span class="pre">BaseSolver</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver" title="Permalink to this definition">¶</a></dt>
 <dd><p>A base class for solver wrappers in BenchOpt.</p>
 <p>Solvers that derive from this class should implement three methods:</p>
 <ul class="simple">
@@ -141,7 +140,7 @@ logarithmically to get more and more precise points.</p></li>
 </ul>
 <dl class="py method">
 <dt id="benchopt.BaseSolver.get_result">
-<em class="property">abstract </em><code class="sig-name descname">get_result</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">get_result</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the parameters computed by the previous run.</p>
 <p>The parameters should be returned as a flattened array.</p>
 <dl class="field-list">
@@ -156,7 +155,7 @@ logarithmically to get more and more precise points.</p></li>
 
 <dl class="py method">
 <dt id="benchopt.BaseSolver.run">
-<em class="property">abstract </em><code class="sig-name descname">run</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">stop_val</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">run</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run" title="Permalink to this definition">¶</a></dt>
 <dd><p>Call the solver with the given stop_val.</p>
 <p>This function should not return the parameters which will be
 retrieved by a subsequent call to get_result.</p>
@@ -173,7 +172,7 @@ sample the time/accuracy curve in the benchmark.</p>
 
 <dl class="py method">
 <dt id="benchopt.BaseSolver.set_objective">
-<em class="property">abstract </em><code class="sig-name descname">set_objective</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">objective_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.set_objective" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">abstract</span> </em><code class="sig-name descname"><span class="pre">set_objective</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.set_objective" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prepare the objective for the solver.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -188,7 +187,7 @@ the benchmark <code class="docutils literal notranslate"><span class="pre">Objec
 
 <dl class="py method">
 <dt id="benchopt.BaseSolver.skip">
-<code class="sig-name descname">skip</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">**</span><span class="n">objective_dict</span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname"><span class="pre">skip</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used to decide if the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> is compatible with the objective.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -227,7 +226,7 @@ If skip is False, the reason should be None.</p>
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.4.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.1.<br/>
     </p>
   </div>
 </footer>
