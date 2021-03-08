@@ -95,7 +95,7 @@ Run benchmark from a script
     [1;34m|----sklearn[liblinear]:[0m [1;32mdone[0m                                                 
     [1;34m|----sklearn[newton-cg]:[0m [1;32mdone[0m                                                 
     [1;34m|----sklearn[lbfgs]:[0m [1;32mdone[0m                                                     
-    [1;32mSaving result in: /home/circleci/project/benchmarks/logreg_l2/outputs/benchopt_run_2021-03-05_20h59m11.csv[0m
+    [1;32mSaving result in: /home/circleci/project/benchmarks/logreg_l2/outputs/benchopt_run_2021-03-08_21h29m20.csv[0m
     Save suboptimality_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/logreg_l2/outputs/f6f176f9afeefc14246315e5f45cf1f4_suboptimality_curve.pdf
     Save relative_suboptimality_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/logreg_l2/outputs/f6f176f9afeefc14246315e5f45cf1f4_relative_suboptimality_curve.pdf
     Save objective_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/logreg_l2/outputs/f6f176f9afeefc14246315e5f45cf1f4_objective_curve.pdf
@@ -149,7 +149,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  41.123 seconds)
+   **Total running time of the script:** ( 0 minutes  51.366 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
