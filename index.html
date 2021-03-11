@@ -140,10 +140,17 @@ $ benchopt run --env ./benchmark_logreg_l2
 <p>Learn how to <a class="reference internal" href="how.html#how"><span class="std std-ref">Write a benchmark</span></a>.</p>
 <div class="section" id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
-<p>This package can be installed through <cite>pip</cite> using:</p>
+<p>This package can be installed through <cite>pip</cite>. To get the <strong>last release</strong>, use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install benchopt
 </pre></div>
 </div>
+<p>And to get the <strong>latest development version</strong>, you can use:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -U https://github.com/benchopt/benchOpt/archive/master.zip
+</pre></div>
+</div>
+<p><strong>Note:</strong> due to major API modifications, the last <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> release does
+not correspond to the latest version of the documentation at the moment.
+Until further notice, it is recommended to use the development version.</p>
 <p>This will install the command line tool to run the benchmark. Then, existing
 benchmarks can be retrieved from git or created locally. To discover which
 benchmarks are presently available look for
