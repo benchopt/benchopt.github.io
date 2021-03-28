@@ -320,7 +320,9 @@ from the objective. The goal of this method is to provide all necessary
 information to the solver so it can optimize the objective function.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">run(stop_value)</span></code>: This method takes only one parameter that controls the stopping
 condition of the solver. This is typically a number of iterations <code class="docutils literal notranslate"><span class="pre">n_iter</span></code>
-or a tolerance parameter <code class="docutils literal notranslate"><span class="pre">tol</span></code>. This is controled by the <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code>,
+or a tolerance parameter <code class="docutils literal notranslate"><span class="pre">tol</span></code>. Alternatively, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function that will be
+called at each iteration can be passed. The callback returns False once the
+computation should stop. The parameter is controlled by the <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code>,
 see below for details.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_result()</span></code>: This method returns a variable that can be passed
 to the <code class="docutils literal notranslate"><span class="pre">compute</span></code> method from the objective. This is the output of
@@ -339,6 +341,10 @@ is called <code class="docutils literal notranslate"><span class="pre">n_iter</s
 is parametrized by a tolerance that should decrease with
 the running time. The parameter is called <code class="docutils literal notranslate"><span class="pre">tol</span></code> and should be
 a positive float.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: in this case, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
+should call at each iteration the provided callback function. It will
+compute and store the objective and return False once the computations
+should stop.</p></li>
 </ul>
 </div></blockquote>
 <p>BenchOpt supports different types of solvers:</p>
@@ -356,10 +362,10 @@ a positive float.</p></li>
 <a class="reference external" href="https://www.python.org/">Python</a> without any compiled
 code. They are typically written in <a class="reference external" href="https://numpy.org/">Numpy</a>
 with no other dependencies. Here is an example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span><span class="p">,</span> <span class="n">safe_import_context</span>
 
-
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
+<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
 
 <span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
@@ -393,6 +399,32 @@ with no other dependencies. Here is an example:</p>
     <span class="c1"># Return the solution estimate computed.</span>
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span>
+</pre></div>
+</div>
+<p>For solvers that allow access to each iterate of the solution, using <code class="docutils literal notranslate"><span class="pre">&quot;callback&quot;</span></code>
+as a <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code> implies a slight modification for <code class="docutils literal notranslate"><span class="pre">run</span></code>. A <code class="docutils literal notranslate"><span class="pre">callback</span></code> should be called at
+each iteration with parameter the current value of the iterate.
+Here is an example in the same situation as above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>  <span class="c1"># instead of the number of iteration or tolerance</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_lipschitz_cst</span><span class="p">()</span>
+        <span class="n">n_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_acceleration</span><span class="p">:</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
+
+        <span class="n">t_new</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">callback</span><span class="p">(</span><span class="n">w</span><span class="p">):</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_acceleration</span><span class="p">:</span>
+                <span class="n">t_old</span> <span class="o">=</span> <span class="n">t_new</span>
+                <span class="n">t_new</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">t_old</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">w_old</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">z</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">@</span> <span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">st</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">w</span> <span class="o">+</span> <span class="p">(</span><span class="n">t_old</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">/</span> <span class="n">t_new</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="n">w_old</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">w</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">@</span> <span class="n">w</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">st</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">w</span>
 </pre></div>
 </div>
 <p>If your Python solver requires some packages such as <a class="reference external" href="https://numba.pydata.org/">Numba</a>,
