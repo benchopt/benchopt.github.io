@@ -115,14 +115,14 @@
 <h1>benchopt.plotting.plot_benchmark<a class="headerlink" href="#benchopt-plotting-plot-benchmark" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt id="benchopt.plotting.plot_benchmark">
-<code class="sig-prename descclassname"><span class="pre">benchopt.plotting.</span></code><code class="sig-name descname"><span class="pre">plot_benchmark</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.plotting.plot_benchmark" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">benchopt.plotting.</span></code><code class="sig-name descname"><span class="pre">plot_benchmark</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">benchmark</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">kinds</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plotly</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.plotting.plot_benchmark" title="Permalink to this definition">¶</a></dt>
 <dd><p>Plot convergence curve and histogram for a given benchmark.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>df</strong><span class="classifier">instance of pandas.DataFrame</span></dt><dd><p>The benchmark results.</p>
+<dt><strong>fname</strong><span class="classifier">str</span></dt><dd><p>Name of the file in which the results are saved.</p>
 </dd>
-<dt><strong>benchmark</strong><span class="classifier">str</span></dt><dd><p>The path to the benchmark folder.</p>
+<dt><strong>benchmark</strong><span class="classifier">benchopt.Benchmark object</span></dt><dd><p>Object to represent the benchmark.</p>
 </dd>
 <dt><strong>kinds</strong><span class="classifier">list of str or None</span></dt><dd><p>List of the plots that will be generated. If None are provided, use the
 config file to choose or default to suboptimality_curve.</p>
