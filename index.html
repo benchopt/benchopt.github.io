@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Benchmark repository for optimization &#8212; benchopt 1.1.0.dev0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
@@ -114,7 +115,7 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="benchmark-repository-for-optimization">
+  <section id="benchmark-repository-for-optimization">
 <h1>Benchmark repository for optimization<a class="headerlink" href="#benchmark-repository-for-optimization" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://dev.azure.com/benchopt/benchopt/_build/latest?definitionId=1&amp;branchName=master"><img alt="Build Status" src="https://dev.azure.com/benchopt/benchopt/_apis/build/status/benchopt.benchOpt?branchName=master" /></a> <a class="reference external" href="https://www.python.org/downloads/release/python-360/"><img alt="Python 3.6+" src="https://img.shields.io/badge/python-3.6%2B-blue" /></a> <a class="reference external" href="https://codecov.io/gh/benchopt/benchOpt"><img alt="codecov" src="https://codecov.io/gh/benchopt/benchOpt/branch/master/graph/badge.svg" /></a></p>
 <p>BenchOpt is a package to simplify, make more transparent and
@@ -134,11 +135,11 @@ $ benchopt run --env ./benchmark_logreg_l2
 </pre></div>
 </div>
 <p>Running these commands will fetch the benchmark files and give you a benchmark plot on l2-regularized logistic regression:</p>
-<div class="figure align-center">
+<figure class="align-center">
 <a class="reference external image-reference" href="how.html"><img alt="_images/sphx_glr_plot_run_benchmark_001.png" src="_images/sphx_glr_plot_run_benchmark_001.png" style="width: 512.0px; height: 384.0px;" /></a>
-</div>
+</figure>
 <p>Learn how to <a class="reference internal" href="how.html#how"><span class="std std-ref">Write a benchmark</span></a>.</p>
-<div class="section" id="install">
+<section id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>This package can be installed through <cite>pip</cite>. To get the <strong>last release</strong>, use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install benchopt
@@ -160,8 +161,8 @@ This benchmark can then be retrieved locally with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_lasso.git
 </pre></div>
 </div>
-</div>
-<div class="section" id="command-line-usage">
+</section>
+<section id="command-line-usage">
 <h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
 <p>To run Lasso benchmarks on all datasets and with all solvers, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env benchmark_lasso
@@ -173,8 +174,8 @@ This benchmark can then be retrieved locally with:</p>
 </div>
 <p>to get more details about the different options or read the
 <a class="reference internal" href="api.html#api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
-</div>
-<div class="section" id="benchmarks-available">
+</section>
+<section id="benchmarks-available">
 <h2>Benchmarks available<a class="headerlink" href="#benchmarks-available" title="Permalink to this headline">¶</a></h2>
 <p>Notation:  In what follows, n (or n_samples) stands for the number of samples and p (or n_features) stands for the number of features.</p>
 <div class="math notranslate nohighlight">
@@ -204,14 +205,14 @@ This benchmark can then be retrieved locally with:</p>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
-</div>
-<div class="section" id="benchmark-results">
+</section>
+<section id="benchmark-results">
 <h2>Benchmark results<a class="headerlink" href="#benchmark-results" title="Permalink to this headline">¶</a></h2>
 <p>All the public benchmark results are available at <a class="reference external" href="https://benchopt.github.io/results/">BenchOpt Benchmarks results</a>.</p>
 <p><strong>Publish results</strong>: You can directly publish the result of a run of <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> on <a class="reference external" href="https://benchopt.github.io/results/">BenchOpt Benchmarks results</a>. You can have a look at this page to <a class="reference internal" href="publish.html#publish-doc"><span class="std std-ref">Publish benchmark results</span></a>.</p>
-</div>
-</div>
-<div class="section" id="contents">
+</section>
+</section>
+<section id="contents">
 <h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
@@ -224,7 +225,7 @@ This benchmark can then be retrieved locally with:</p>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork BenchOpt on Github</a></li>
 </ul>
 </div>
-</div>
+</section>
 
 
     </div>
@@ -239,7 +240,7 @@ This benchmark can then be retrieved locally with:</p>
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>
 </footer>

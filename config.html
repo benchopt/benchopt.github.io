@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>BenchOpt configuration &#8212; benchopt 1.1.0.dev0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
@@ -116,14 +117,14 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="benchopt-configuration">
+  <section id="benchopt-configuration">
 <span id="config-doc"></span><h1>BenchOpt configuration<a class="headerlink" href="#benchopt-configuration" title="Permalink to this headline">¶</a></h1>
 <p>BenchOpt can be configured using setting files. These files can either be created directly or generated and modified using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code>.</p>
 <p>There are two configuration levels. The first level is the global config for the <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> client. It contains the system specific tweaks, the user info such as the <em>&lt;GitHub token&gt;</em> and the output levels. The second level is the configuration of the benchmarks. Each benchmark can have its own config for the kind of plots it displays by default and other display tweaks.</p>
 <p>To get the BenchOpt global config file used by the <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> command, you can run <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code>. Using the option <code class="docutils literal notranslate"><span class="pre">--benchmark,-b</span> <span class="pre">&lt;benchmark&gt;</span></code> allows to display the config file for a specific benchmark. See <a class="reference internal" href="#config-file"><span class="std std-ref">Config File Location</span></a> for more details on how the config file path is resolved.</p>
 <p>The structure of the files follows the Microsoft Windows INI files structure and is described in <a class="reference internal" href="#config-structure"><span class="std std-ref">Config File Structure</span></a>. The available settings are listed in <a class="reference internal" href="#config-settings"><span class="std std-ref">Config Settings</span></a>.</p>
 <p>The value of each setting can be accessed with the CLI using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">[-b</span> <span class="pre">&lt;benchmark&gt;]</span> <span class="pre">get</span> <span class="pre">&lt;name&gt;</span></code>. Similarly, the setting value can be set using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">[-b</span> <span class="pre">&lt;benchmark&gt;]</span> <span class="pre">set</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;value&gt;</span></code>.</p>
-<div class="section" id="config-file-location">
+<section id="config-file-location">
 <span id="config-file"></span><h2>Config File Location<a class="headerlink" href="#config-file-location" title="Permalink to this headline">¶</a></h2>
 <p>For global config file, the resolution order is the following:</p>
 <ol class="arabic simple">
@@ -132,8 +133,8 @@
 <li><p>The default file is <code class="docutils literal notranslate"><span class="pre">$HOME/.config/benchopt.ini</span></code>.</p></li>
 </ol>
 <p>For benchmark config files, they are usually located in the benchmark folder with name <code class="docutils literal notranslate"><span class="pre">benchopt.ini</span></code>. If it does not exists, the default is to use the global config file.</p>
-</div>
-<div class="section" id="config-file-structure">
+</section>
+<section id="config-file-structure">
 <span id="config-structure"></span><h2>Config File Structure<a class="headerlink" href="#config-file-structure" title="Permalink to this headline">¶</a></h2>
 <p>The config files for benchOpt follow the Microsoft Windows INI files structure. The global setting are grouped in a <code class="docutils literal notranslate"><span class="pre">[benchopt]</span></code> section:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[benchopt]</span>
@@ -150,11 +151,11 @@
     <span class="na">objective_curve</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="config-settings">
+</section>
+<section id="config-settings">
 <span id="id1"></span><h2>Config Settings<a class="headerlink" href="#config-settings" title="Permalink to this headline">¶</a></h2>
 <p>This section lists the available settings.</p>
-<div class="section" id="global-settings">
+<section id="global-settings">
 <h3>Global settings<a class="headerlink" href="#global-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="py data">
 <dt id="benchopt.config.DEFAULT_GLOBAL_CONFIG">
@@ -174,8 +175,8 @@ not directly installed on <code class="docutils literal notranslate"><span class
 </ul>
 </dd></dl>
 
-</div>
-<div class="section" id="benchmark-settings">
+</section>
+<section id="benchmark-settings">
 <h3>Benchmark settings<a class="headerlink" href="#benchmark-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="py data">
 <dt id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
@@ -193,9 +194,9 @@ indented, as:</p>
 </ul>
 </dd></dl>
 
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -210,7 +211,7 @@ indented, as:</p>
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>
 </footer>

@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>What’s new &#8212; benchopt 1.1.0.dev0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
@@ -120,11 +121,11 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="what-s-new">
+  <section id="what-s-new">
 <span id="whats-new"></span><h1>What’s new<a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="version-1-1-in-progress">
+<section id="version-1-1-in-progress">
 <span id="changes-1-1"></span><h2>Version 1.1 - in progress<a class="headerlink" href="#version-1-1-in-progress" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="changelog">
+<section id="changelog">
 <h3>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>New plotting functions with different optimality criteria,
@@ -136,17 +137,20 @@ by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <li><p>Add autocompletion support in the <cite>benchopt</cite> command,
 by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a>, <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/133">#133</a>).</p></li>
 </ul>
-</div>
-<div class="section" id="api">
+</section>
+<section id="api">
 <h3>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> can now return a dictionary with multiple outputs to
 monitor several metrics at once, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (gh:<cite>84</cite>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code> can now be used to skip objectives that are incompatible
 for the Solver, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/113">#113</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Solver</span></code> can now use <code class="docutils literal notranslate"><span class="pre">stop_strategy</span> <span class="pre">=</span> <span class="pre">'callback'</span></code> to allow for
+single call curve construction, by <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>
+(<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/137">#137</a>).</p></li>
 </ul>
-</div>
-<div class="section" id="cli">
+</section>
+<section id="cli">
 <h3>CLI<a class="headerlink" href="#cli" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">--version</span></code> option for <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/83">#83</a>).</p></li>
@@ -162,27 +166,27 @@ by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code> command to allow easy configuration of <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>
 using the CLI, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/128">#128</a>).</p></li>
 </ul>
-</div>
-<div class="section" id="bug">
+</section>
+<section id="bug">
 <h3>BUG<a class="headerlink" href="#bug" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Throw a warning when BenchOpt version in conda env does not match the one of
 calling <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/83">#83</a>).</p></li>
 <li><p>Fix Lapack issue with R code, by <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/97">#97</a>).</p></li>
 </ul>
-</div>
-<div class="section" id="doc">
+</section>
+<section id="doc">
 <h3>DOC<a class="headerlink" href="#doc" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Improve how-to narative documentation, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/93">#93</a>).</p></li>
 <li><p>Add what’s new page, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/114">#114</a>).</p></li>
 <li><p>Add documentation on how to publish results, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/118">#118</a>).</p></li>
 </ul>
-</div>
-</div>
-<div class="section" id="version-1-0-2020-09-25">
+</section>
+</section>
+<section id="version-1-0-2020-09-25">
 <span id="changes-1-0"></span><h2>Version 1.0 - 2020-09-25<a class="headerlink" href="#version-1-0-2020-09-25" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="release-highlights">
+<section id="release-highlights">
 <h3>Release highlights<a class="headerlink" href="#release-highlights" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Provide a command line interface for benchmarking optimisation algorithm
@@ -204,9 +208,9 @@ implementations:</p>
 <li><p><a class="reference external" href="https://tomdlt.github.io">Tom Dupré la Tour</a></p></li>
 </ul>
 </div></blockquote>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -221,7 +225,7 @@ implementations:</p>
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>
 </footer>

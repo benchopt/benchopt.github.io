@@ -3,7 +3,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Write a benchmark &#8212; benchopt 1.1.0.dev0 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
@@ -125,7 +126,7 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <div class="section" id="write-a-benchmark">
+  <section id="write-a-benchmark">
 <span id="how"></span><h1>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Permalink to this headline">¶</a></h1>
 <p>A benchmark is composed of three elements: an <a class="reference internal" href="#objective">objective</a> function,
 a list of <a class="reference internal" href="#datasets">datasets</a>, and a list of <a class="reference internal" href="#solvers">solvers</a>.</p>
@@ -152,7 +153,7 @@ as for <a class="reference external" href="https://github.com/benchopt/benchmark
 <p>The simplest way to create a benchmark is to copy an existing folder and
 modify the element to fit the new structure.</p>
 </div>
-<div class="section" id="objective">
+<section id="objective">
 <span id="id1"></span><h2>1. Objective<a class="headerlink" href="#objective" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>objective function</strong> is defined through a Python class.
 This class allows to monitor the quantities of interest along the iterations
@@ -175,7 +176,7 @@ to the <code class="docutils literal notranslate"><span class="pre">set_objectiv
 <p>Multiple values can be computed in one objective as long as they are
 stored in a dictionary with a key being <cite>objective_value</cite>. This allows
 to compute different metrics at once.</p>
-<div class="section" id="example">
+<section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt.base</span> <span class="kn">import</span> <span class="n">BaseObjective</span>
 
@@ -216,9 +217,9 @@ to compute different metrics at once.</p>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">))</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="datasets">
+</section>
+</section>
+<section id="datasets">
 <span id="id2"></span><h2>2. Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h2>
 <p>A dataset defines what can be passed to an objective. More specifically,
 a dataset should implement one method:</p>
@@ -232,7 +233,7 @@ the <code class="docutils literal notranslate"><span class="pre">set_data</span>
 </div></blockquote>
 <p>A dataset class also needs to inherit from a base class called
 <code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.base.BaseDataset</span></code>.</p>
-<div class="section" id="example-using-a-real-dataset">
+<section id="example-using-a-real-dataset">
 <h3>Example using a real dataset<a class="headerlink" href="#example-using-a-real-dataset" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
 <span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
@@ -260,8 +261,8 @@ the <code class="docutils literal notranslate"><span class="pre">set_data</span>
 </div>
 <p>You can also define a parametrized simulated dataset for example to test
 across problem dimensions.</p>
-</div>
-<div class="section" id="example-of-parametrized-simulated-dataset">
+</section>
+<section id="example-of-parametrized-simulated-dataset">
 <h3>Example of parametrized simulated dataset<a class="headerlink" href="#example-of-parametrized-simulated-dataset" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes one wants to test the solvers for variants of the same dataset.
 For example, one may want to change the dataset size, the noise level, etc.
@@ -307,9 +308,9 @@ will automatically allow you to test all combinations of parameters.</p>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features</span><span class="p">,</span> <span class="n">data</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="solvers">
+</section>
+</section>
+<section id="solvers">
 <span id="id3"></span><h2>3. Solvers<a class="headerlink" href="#solvers" title="Permalink to this headline">¶</a></h2>
 <p>A solver requires to define three methods:</p>
 <blockquote>
@@ -356,7 +357,7 @@ should stop.</p></li>
 <li><p><a class="reference internal" href="#source-solvers"><span class="std std-ref">Solver from source</span></a></p></li>
 </ul>
 </div></blockquote>
-<div class="section" id="python-solver">
+<section id="python-solver">
 <span id="python-solvers"></span><h3>Python solver<a class="headerlink" href="#python-solver" title="Permalink to this headline">¶</a></h3>
 <p>The simplest solvers to use are solvers written in pure
 <a class="reference external" href="https://www.python.org/">Python</a> without any compiled
@@ -480,8 +481,8 @@ manage the creation of a dedicated environment. If you want to
 use your local environment the list of dependencies is
 not relevant. See <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>.</p>
 </div>
-</div>
-<div class="section" id="r-solver">
+</section>
+<section id="r-solver">
 <span id="r-solvers"></span><h3>R solver<a class="headerlink" href="#r-solver" title="Permalink to this headline">¶</a></h3>
 <p>A solver written in <a class="reference external" href="https://www.r-project.org/">R</a> needs two files.
 A <code class="docutils literal notranslate"><span class="pre">.R</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
@@ -584,8 +585,8 @@ should differ between the two files. Here is the Python file:</p>
 a crash when R is not available. The solver is in this case
 just skipped.</p>
 </div>
-</div>
-<div class="section" id="julia-solver">
+</section>
+<section id="julia-solver">
 <span id="julia-solvers"></span><h3>Julia solver<a class="headerlink" href="#julia-solver" title="Permalink to this headline">¶</a></h3>
 <p>A solver written in <a class="reference external" href="https://julialang.org">Julia</a> needs two files.
 A <code class="docutils literal notranslate"><span class="pre">.jl</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
@@ -660,8 +661,8 @@ should differ between the two files. Here is the Python file:</p>
 <span class="k">end</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="solver-from-source">
+</section>
+<section id="solver-from-source">
 <span id="source-solvers"></span><h3>Solver from source<a class="headerlink" href="#solver-from-source" title="Permalink to this headline">¶</a></h3>
 <p>You can install a package from source in case it is not available
 as binaries from the package managers from either Python, R or Julia.</p>
@@ -677,9 +678,9 @@ or Fortran compiler.</p>
 <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1/blob/master/solvers/liblinear.py">an example</a>
 that uses a <code class="docutils literal notranslate"><span class="pre">'shell'</span></code> as <code class="docutils literal notranslate"><span class="pre">install_cmd</span></code>.</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
     </div>
@@ -694,7 +695,7 @@ that uses a <code class="docutils literal notranslate"><span class="pre">'shell'
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.3.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
     </p>
   </div>
 </footer>
