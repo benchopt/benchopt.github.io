@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Command Line Interface (CLI) Documentation &#8212; benchopt 0.1.dev325 documentation</title>
+    <title>Command Line Interface (CLI) Documentation &#8212; benchopt 0.1.dev326 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.dev325</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.dev326</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -104,6 +104,7 @@
 <li><a class="reference internal" href="#">Command Line Interface (CLI) Documentation</a><ul>
 <li><a class="reference internal" href="#benchopt">benchopt</a><ul>
 <li><a class="reference internal" href="#benchopt-principal-commands">Principal Commands</a><ul>
+<li><a class="reference internal" href="#benchopt-install">install</a></li>
 <li><a class="reference internal" href="#benchopt-run">run</a></li>
 <li><a class="reference internal" href="#benchopt-test">test</a></li>
 </ul>
@@ -163,6 +164,63 @@ and the dataset name.</p>
 <section id="benchopt-principal-commands">
 <h3>Principal Commands<a class="headerlink" href="#benchopt-principal-commands" title="Permalink to this headline">¶</a></h3>
 <p>Principal commands that are used in <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>.</p>
+<section id="benchopt-install">
+<h4>install<a class="headerlink" href="#benchopt-install" title="Permalink to this headline">¶</a></h4>
+<p>Install the requirements (solvers/datasets) for a benchmark.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt install <span class="o">[</span>OPTIONS<span class="o">]</span> BENCHMARK
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-install-f">
+<span id="cmdoption-benchopt-install-force"></span><code class="sig-name descname"><span class="pre">-f</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--force</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-install-f" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this flag is set, the reinstallation of the benchmark requirements is forced.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-install-s">
+<span id="cmdoption-benchopt-install-solver"></span><code class="sig-name descname"><span class="pre">-s</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--solver</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;solver_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-install-s" title="Permalink to this definition">¶</a></dt>
+<dd><p>Include &lt;solver_name&gt; in the installation. By default, all solvers are included. When <cite>-s</cite> is used, only listed estimators are included. To include multiple solvers, use multiple <cite>-s</cite> options.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-install-d">
+<span id="cmdoption-benchopt-install-dataset"></span><code class="sig-name descname"><span class="pre">-d</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--dataset</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;dataset_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-install-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install the dataset &lt;dataset_name&gt;. By default, all datasets are included. When <cite>-d</cite> is used, only listed datasets are included. Note that &lt;dataset_name&gt; can be a regexp. To include multiple datasets, use multiple <cite>-d</cite> options.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-install-e">
+<span id="cmdoption-benchopt-install-env"></span><code class="sig-name descname"><span class="pre">-e</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--env</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-install-e" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install all requirements in a dedicated conda environment for the benchmark. The environment is named ‘benchopt_&lt;BENCHMARK&gt;’ and all solver dependencies and datasets are installed in it.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-install-env-name">
+<code class="sig-name descname"><span class="pre">--env-name</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;env_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-install-env-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Install the benchmark requirements in the conda environment named &lt;env_name&gt;. If it does not exist, it will be created by this command.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-install-recreate">
+<code class="sig-name descname"><span class="pre">--recreate</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-install-recreate" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this flag is set, start with a fresh conda environment. It can only be used combined with options <cite>-e/–env</cite> or <cite>–env-name</cite>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt id="cmdoption-benchopt-install-y">
+<span id="cmdoption-benchopt-install-yes"></span><code class="sig-name descname"><span class="pre">-y</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--yes</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-install-y" title="Permalink to this definition">¶</a></dt>
+<dd><p>If this flag is set, no confirmation will be asked to the user to install requirements in the current environment. Useless with options <cite>-e/–env</cite> or <cite>–env-name</cite>.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt id="cmdoption-benchopt-install-arg-BENCHMARK">
+<span id="cmdoption-benchopt-install-arg-benchmark"></span><code class="sig-name descname"><span class="pre">BENCHMARK</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-install-arg-BENCHMARK" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
 <section id="benchopt-run">
 <h4>run<a class="headerlink" href="#benchopt-run" title="Permalink to this headline">¶</a></h4>
 <p>Run a benchmark with benchopt.</p>
@@ -170,12 +228,6 @@ and the dataset name.</p>
 </pre></div>
 </div>
 <p class="rubric">Options</p>
-<dl class="std option">
-<dt id="cmdoption-benchopt-run-recreate">
-<code class="sig-name descname"><span class="pre">--recreate</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-recreate" title="Permalink to this definition">¶</a></dt>
-<dd><p>If this flag is set, start with a fresh conda env.</p>
-</dd></dl>
-
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-p">
 <span id="cmdoption-benchopt-run-objective-filter"></span><code class="sig-name descname"><span class="pre">-p</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--objective-filter</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;objective_filter&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-p" title="Permalink to this definition">¶</a></dt>
@@ -185,19 +237,19 @@ and the dataset name.</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-s">
 <span id="cmdoption-benchopt-run-solver"></span><code class="sig-name descname"><span class="pre">-s</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--solver</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;solver_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-s" title="Permalink to this definition">¶</a></dt>
-<dd><p>Include &lt;solver_name&gt; in the benchmark. By default, all solvers are included. When <cite>-s</cite> is used, only listed estimators are included.</p>
+<dd><p>Include &lt;solver_name&gt; in the benchmark. By default, all solvers are included. When <cite>-s</cite> is used, only listed estimators are included. To include multiple solvers, use multiple <cite>-s</cite> options.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-f">
 <span id="cmdoption-benchopt-run-force-solver"></span><code class="sig-name descname"><span class="pre">-f</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--force-solver</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;solver_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-f" title="Permalink to this definition">¶</a></dt>
-<dd><p>Force the re-installation and run for &lt;solver_name&gt;. This avoids caching effect when adding an estimator.</p>
+<dd><p>Force the re-run for &lt;solver_name&gt;. This avoids caching effect when adding an estimator.To select multiple solvers, use multiple <cite>-f</cite> options.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-d">
 <span id="cmdoption-benchopt-run-dataset"></span><code class="sig-name descname"><span class="pre">-d</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--dataset</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;dataset_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-d" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run the benchmark on &lt;dataset_name&gt;. By default, all datasets are included. When <cite>-d</cite> is used, only listed datasets are included. Note that &lt;dataset_name&gt; can be a regexp.</p>
+<dd><p>Run the benchmark on &lt;dataset_name&gt;. By default, all datasets are included. When <cite>-d</cite> is used, only listed datasets are included. Note that &lt;dataset_name&gt; can be a regexp. To include multiple datasets, use multiple <cite>-d</cite> options.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -243,19 +295,19 @@ and the dataset name.</p>
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-l">
 <span id="cmdoption-benchopt-run-local"></span><code class="sig-name descname"><span class="pre">-l</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--local</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-l" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run the benchmark in the local env. Must have all solvers and dataset dependencies installed.</p>
+<dd><p>Run the benchmark in the local conda environment.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-e">
 <span id="cmdoption-benchopt-run-env"></span><code class="sig-name descname"><span class="pre">-e</span></code><code class="sig-prename descclassname"></code><code class="sig-prename descclassname"><span class="pre">,</span> </code><code class="sig-name descname"><span class="pre">--env</span></code><code class="sig-prename descclassname"></code><a class="headerlink" href="#cmdoption-benchopt-run-e" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run the benchmark in a conda env for the benchmark. The env is named benchopt_&lt;BENCHMARK&gt; and all solver dependencies are installed in it.</p>
+<dd><p>Run the benchmark in a dedicated conda environment for the benchmark. The environment is named benchopt_&lt;BENCHMARK&gt;.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt id="cmdoption-benchopt-run-env-name">
 <code class="sig-name descname"><span class="pre">--env-name</span></code><code class="sig-prename descclassname"> <span class="pre">&lt;env_name&gt;</span></code><a class="headerlink" href="#cmdoption-benchopt-run-env-name" title="Permalink to this definition">¶</a></dt>
-<dd><p>Run the benchmark in a conda env for the benchmark. The env is named &lt;env_name&gt; and all solver dependencies are installed in it.</p>
+<dd><p>Run the benchmark in the conda environment named &lt;env_name&gt;. To install the required solvers and datasets, see the command <cite>benchopt install</cite>.</p>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
@@ -265,6 +317,7 @@ and the dataset name.</p>
 <dd><p>Required argument</p>
 </dd></dl>
 
+<p>To (re-)install the required solvers and datasets in a benchmark-dedicated conda environment or in your own conda environment, see the command <cite>benchopt install</cite>.</p>
 </section>
 <section id="benchopt-test">
 <h4>test<a class="headerlink" href="#benchopt-test" title="Permalink to this headline">¶</a></h4>

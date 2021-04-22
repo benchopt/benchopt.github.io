@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchmark repository for optimization &#8212; benchopt 0.1.dev325 documentation</title>
+    <title>Benchmark repository for optimization &#8212; benchopt 0.1.dev326 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.dev325</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.dev326</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -131,10 +131,13 @@ command. If it can be installed via
 in <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>. Ultimately running and replicating an
 optimization benchmark should be <strong>as simple as doing</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_logreg_l2
+$ benchopt install --env ./benchmark_logreg_l2
 $ benchopt run --env ./benchmark_logreg_l2
 </pre></div>
 </div>
-<p>Running these commands will fetch the benchmark files and give you a benchmark plot on l2-regularized logistic regression:</p>
+<p>Running these commands will fetch the benchmark files, install the benchmark
+requirements in a dedicated environment <cite>benchop_benchmark_logreg_l2</cite> and
+give you a benchmark plot on l2-regularized logistic regression:</p>
 <figure class="align-center">
 <a class="reference external image-reference" href="how.html"><img alt="_images/sphx_glr_plot_run_benchmark_001.png" src="_images/sphx_glr_plot_run_benchmark_001.png" style="width: 512.0px; height: 384.0px;" /></a>
 </figure>
@@ -164,6 +167,10 @@ This benchmark can then be retrieved locally with:</p>
 </section>
 <section id="command-line-usage">
 <h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
+<p>To install all Lasso benchmarks requirements and dependencies, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt install --env benchmark_lasso
+</pre></div>
+</div>
 <p>To run Lasso benchmarks on all datasets and with all solvers, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env benchmark_lasso
 </pre></div>
