@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new &#8212; benchopt 0.1.dev326 documentation</title>
+    <title>What’s new &#8212; benchopt 0.1.dev327 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>0.1.dev326</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>0.1.dev327</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -135,7 +135,10 @@ by <a class="reference external" href="https://ngazagna.github.io">Nidham Gazagn
 <li><p>Change envrionment variable for config from <cite>BENCHO_*</cite> to <cite>BENCHOPT_*</cite>,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/128">#128</a>).</p></li>
 <li><p>Add autocompletion support in the <cite>benchopt</cite> command,
-by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a>, <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/133">#133</a>).</p></li>
+by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a>, <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>
+(<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/133">#133</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/135">#135</a>).</p></li>
+<li><p>Move most CI to github action, with auto-release on pypi,
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/150">#150</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/154">#154</a>).</p></li>
 </ul>
 </section>
 <section id="api">
@@ -148,6 +151,10 @@ for the Solver, by <a class="reference external" href="https://tommoral.github.i
 <li><p><code class="docutils literal notranslate"><span class="pre">Solver</span></code> can now use <code class="docutils literal notranslate"><span class="pre">stop_strategy</span> <span class="pre">=</span> <span class="pre">'callback'</span></code> to allow for
 single call curve construction, by <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>
 (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/137">#137</a>).</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> to reliably and flexibly assess a solver cvg.
+For now, only <code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion</span></code> is implemented but better
+API to set criterion per benchmark should be implemented in future release,
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/151">#151</a>)</p></li>
 </ul>
 </section>
 <section id="cli">
