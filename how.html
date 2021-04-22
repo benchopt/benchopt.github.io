@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.1.dev85 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.1.dev86 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.dev85</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.dev86</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -232,7 +232,7 @@ the <code class="docutils literal notranslate"><span class="pre">set_data</span>
 </ul>
 </div></blockquote>
 <p>A dataset class also needs to inherit from a base class called
-<code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.base.BaseDataset</span></code>.</p>
+<a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a>.</p>
 <section id="example-using-a-real-dataset">
 <h3>Example using a real dataset<a class="headerlink" href="#example-using-a-real-dataset" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
@@ -322,7 +322,7 @@ information to the solver so it can optimize the objective function.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">run(stop_value)</span></code>: This method takes only one parameter that controls the stopping
 condition of the solver. This is typically a number of iterations <code class="docutils literal notranslate"><span class="pre">n_iter</span></code>
 or a tolerance parameter <code class="docutils literal notranslate"><span class="pre">tol</span></code>. Alternatively, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function that will be
-called at each iteration can be passed. The callback returns False once the
+called at each iteration can be passed. The callback returns <code class="docutils literal notranslate"><span class="pre">False</span></code> once the
 computation should stop. The parameter is controlled by the <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code>,
 see below for details.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_result()</span></code>: This method returns a variable that can be passed
@@ -344,7 +344,7 @@ the running time. The parameter is called <code class="docutils literal notransl
 a positive float.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: in this case, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
 should call at each iteration the provided callback function. It will
-compute and store the objective and return False once the computations
+compute and store the objective and return <code class="docutils literal notranslate"><span class="pre">False</span></code> once the computations
 should stop.</p></li>
 </ul>
 </div></blockquote>
@@ -451,7 +451,7 @@ not <a class="reference external" href="https://conda-forge.org/">conda-forge</a
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sklearn&#39;</span>
 
     <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scikit-learn&#39;</span><span class="p">]</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pip:scikit-learn&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>

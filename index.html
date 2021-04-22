@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchmark repository for optimization &#8212; benchopt 1.1.dev85 documentation</title>
+    <title>Benchmark repository for optimization &#8212; benchopt 1.1.dev86 documentation</title>
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.dev85</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.dev86</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -104,7 +104,7 @@
 <li><a class="reference internal" href="#">Benchmark repository for optimization</a><ul>
 <li><a class="reference internal" href="#install">Install</a></li>
 <li><a class="reference internal" href="#command-line-usage">Command line usage</a></li>
-<li><a class="reference internal" href="#benchmarks-available">Benchmarks available</a></li>
+<li><a class="reference internal" href="#some-available-benchmarks">Some available benchmarks</a></li>
 <li><a class="reference internal" href="#benchmark-results">Benchmark results</a></li>
 </ul>
 </li>
@@ -152,14 +152,11 @@ give you a benchmark plot on l2-regularized logistic regression:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install -U https://github.com/benchopt/benchOpt/archive/master.zip
 </pre></div>
 </div>
-<p><strong>Note:</strong> due to major API modifications, the last <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> release does
-not correspond to the latest version of the documentation at the moment.
-Until further notice, it is recommended to use the development version.</p>
 <p>This will install the command line tool to run the benchmark. Then, existing
 benchmarks can be retrieved from git or created locally. To discover which
 benchmarks are presently available look for
 <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a>,
-such as for <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">l1-regularized logistic regression</a>.
+such as for <a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso – l1-regularized linear regression</a>.
 This benchmark can then be retrieved locally with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_lasso.git
 </pre></div>
@@ -168,11 +165,11 @@ This benchmark can then be retrieved locally with:</p>
 <section id="command-line-usage">
 <h2>Command line usage<a class="headerlink" href="#command-line-usage" title="Permalink to this headline">¶</a></h2>
 <p>To install all Lasso benchmarks requirements and dependencies, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt install --env benchmark_lasso
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt install --env ./benchmark_lasso
 </pre></div>
 </div>
 <p>To run Lasso benchmarks on all datasets and with all solvers, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env benchmark_lasso
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env ./benchmark_lasso
 </pre></div>
 </div>
 <p>Use</p>
@@ -182,8 +179,8 @@ This benchmark can then be retrieved locally with:</p>
 <p>to get more details about the different options or read the
 <a class="reference internal" href="api.html#api-documentation"><span class="std std-ref">Python API Documentation</span></a>.</p>
 </section>
-<section id="benchmarks-available">
-<h2>Benchmarks available<a class="headerlink" href="#benchmarks-available" title="Permalink to this headline">¶</a></h2>
+<section id="some-available-benchmarks">
+<h2>Some available benchmarks<a class="headerlink" href="#some-available-benchmarks" title="Permalink to this headline">¶</a></h2>
 <p>Notation:  In what follows, n (or n_samples) stands for the number of samples and p (or n_features) stands for the number of features.</p>
 <div class="math notranslate nohighlight">
 \[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
@@ -212,6 +209,7 @@ This benchmark can then be retrieved locally with:</p>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
+<p>See <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a> for more.</p>
 </section>
 <section id="benchmark-results">
 <h2>Benchmark results<a class="headerlink" href="#benchmark-results" title="Permalink to this headline">¶</a></h2>
