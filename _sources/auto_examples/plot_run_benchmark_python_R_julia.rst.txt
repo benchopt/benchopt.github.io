@@ -66,9 +66,9 @@ Demo benchmark with Julia/R/Python
     /home/circleci/miniconda/lib/python3.8/site-packages/julia/core.py:687: FutureWarning: Accessing `Julia().<name>` to obtain Julia objects is deprecated.  Use `from julia import Main; Main.<name>` or `jl = Julia(); jl.eval('<name>')`.
       warnings.warn(
     [1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m                                                
-    [1;34m|----Python-PGD[use_acceleration=False]:[0m [1;33mdone (timeout)[0m                       
+    [1;34m|----Python-PGD[use_acceleration=False]:[0m [1;32mdone[0m                                 
     [1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m                                                    
-    [1;32mSaving result in: /home/circleci/project/benchmarks/lasso/outputs/benchopt_run_2021-04-22_11h19m32.csv[0m
+    [1;32mSaving result in: /home/circleci/project/benchmarks/lasso/outputs/benchopt_run_2021-04-22_12h05m19.csv[0m
     Save suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/49f7f7f3fc77bb686924d18ffd2a277a_suboptimality_curve.pdf
     Save relative_suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/49f7f7f3fc77bb686924d18ffd2a277a_relative_suboptimality_curve.pdf
     Save objective_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/49f7f7f3fc77bb686924d18ffd2a277a_objective_curve.pdf
@@ -121,7 +121,7 @@ Demo benchmark with Julia/R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 6 minutes  41.836 seconds)
+   **Total running time of the script:** ( 6 minutes  3.139 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:
