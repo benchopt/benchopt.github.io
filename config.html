@@ -5,15 +5,15 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>BenchOpt configuration &#8212; benchopt 1.1.1.dev2 documentation</title>
-    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <title>BenchOpt configuration &#8212; benchopt 1.1.1.dev4 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="_static/gallery-rendered-html.css" />
-    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev4</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -158,8 +158,8 @@
 <section id="global-settings">
 <h3>Global settings<a class="headerlink" href="#global-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="py data">
-<dt id="benchopt.config.DEFAULT_GLOBAL_CONFIG">
-<code class="sig-prename descclassname"><span class="pre">benchopt.config.</span></code><code class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'bash'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="benchopt.config.DEFAULT_GLOBAL_CONFIG">
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'bash'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Permalink to this definition">¶</a></dt>
 <dd><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code>: If set to true, enable debug logs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">raise_install_error</span></code>, <em>boolean</em>: If set to true, raise error when
@@ -177,8 +177,8 @@ not directly installed on <code class="docutils literal notranslate"><span class
 <section id="benchmark-settings">
 <h3>Benchmark settings<a class="headerlink" href="#benchmark-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="py data">
-<dt id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
-<code class="sig-prename descclassname"><span class="pre">benchopt.config.</span></code><code class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></code><em class="property"> <span class="pre">=</span> <span class="pre">{'plots':</span> <span class="pre">['suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'objective_curve',</span> <span class="pre">'histogram']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Permalink to this definition">¶</a></dt>
+<dt class="sig sig-object py" id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"> <span class="pre">=</span> <span class="pre">{'plots':</span> <span class="pre">['suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'objective_curve',</span> <span class="pre">'histogram']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Permalink to this definition">¶</a></dt>
 <dd><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">plots</span></code>, <em>list</em>: Select the plots to display for the benchmark. Should be
 valid plot kinds. The list can simply be one item by line, with each item
@@ -209,7 +209,7 @@ indented, as:</p>
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 3.5.4.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.0.1.<br/>
     </p>
   </div>
 </footer>
