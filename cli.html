@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Command Line Interface (CLI) Documentation &#8212; benchopt 1.1.1.dev10 documentation</title>
+    <title>Command Line Interface (CLI) Documentation &#8212; benchopt 1.1.1.dev11 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev10</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev11</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -237,13 +237,13 @@ and the dataset name.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-s">
 <span id="cmdoption-benchopt-run-solver"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--solver</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;solver_name&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-s" title="Permalink to this definition">¶</a></dt>
-<dd><p>Include &lt;solver_name&gt; in the benchmark. By default, all solvers are included. When <cite>-s</cite> is used, only listed estimators are included. To include multiple solvers, use multiple <cite>-s</cite> options.</p>
+<dd><p>Include &lt;solver_name&gt; in the benchmark. By default, all solvers are included. When <cite>-s</cite> is used, only listed solvers are included. To include multiple solvers, use multiple <cite>-s</cite> options.</p>
 </dd></dl>
 
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-f">
 <span id="cmdoption-benchopt-run-force-solver"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--force-solver</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;solver_name&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-f" title="Permalink to this definition">¶</a></dt>
-<dd><p>Force the re-run for &lt;solver_name&gt;. This avoids caching effect when adding an estimator.To select multiple solvers, use multiple <cite>-f</cite> options.</p>
+<dd><p>Force the re-run for &lt;solver_name&gt;. This avoids caching effect when adding a solver.To select multiple solvers, use multiple <cite>-f</cite> options.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -255,7 +255,7 @@ and the dataset name.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-n">
 <span id="cmdoption-benchopt-run-max-runs"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--max-runs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;int&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-n" title="Permalink to this definition">¶</a></dt>
-<dd><p>Maximal number of run for each solver. This corresponds to the number of points in the time/accuracy curve.</p>
+<dd><p>Maximal number of runs for each solver. This corresponds to the number of points in the time/accuracy curve.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Default</dt>
 <dd class="field-odd"><p>100</p>
@@ -266,7 +266,7 @@ and the dataset name.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-r">
 <span id="cmdoption-benchopt-run-n-repetitions"></span><span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--n-repetitions</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;int&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-r" title="Permalink to this definition">¶</a></dt>
-<dd><p>Number of repetition that are averaged to estimate the runtime.</p>
+<dd><p>Number of repetitions that are averaged to estimate the runtime.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -283,7 +283,7 @@ and the dataset name.</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-plot">
 <span id="cmdoption-benchopt-run-no-plot"></span><span class="sig-name descname"><span class="pre">--plot</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-plot</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-benchopt-run-plot" title="Permalink to this definition">¶</a></dt>
-<dd><p>Wether or not to plot the results. Default is True.</p>
+<dd><p>Whether or not to plot the results. Default is True.</p>
 </dd></dl>
 
 <dl class="std option">
