@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.1.1.dev15 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.1.1.dev16 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev15</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev16</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -52,6 +52,7 @@
                 <li><a href="cli.html">CLI</a></li>
                 <li><a href="api.html">API</a></li>
                 <li><a href="#">Write a benchmark</a></li>
+                <li><a href="https://benchopt.github.io/results">Results</a></li>
                 <li><a href="whats_new.html">What's new</a></li>
                 <li><a href="https://github.com/benchopt/benchOpt">GitHub</a></li>
             
@@ -510,7 +511,7 @@ should differ between the two files. Here is the Python file:</p>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;R-PGD&quot;</span>
 
     <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;-c conda-forge r rpy2&#39;</span><span class="p">]</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;rpy2&#39;</span><span class="p">]</span>
     <span class="n">stop_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
     <span class="n">support_sparse</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
@@ -525,15 +526,14 @@ should differ between the two files. Here is the Python file:</p>
 
     <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">lmbd_max</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">y</span><span class="p">))</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;proximal_gradient_descent&#39;</span><span class="p">]</span>
 
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
         <span class="n">coefs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span>
             <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">)</span>
-        <span class="n">as_matrix</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;as&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">as_matrix</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="s2">&quot;matrix&quot;</span><span class="p">))</span>
+        <span class="n">as_r</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;as&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">as_r</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="s2">&quot;vector&quot;</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
