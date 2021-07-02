@@ -5,10 +5,10 @@
 
 Computation times
 =================
-**06:32.212** total execution time for **auto_examples** files:
+**07:12.248** total execution time for **auto_examples** files:
 
 +---------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R_julia.py` (``plot_run_benchmark_python_R_julia.py``) | 06:00.094 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R_julia.py` (``plot_run_benchmark_python_R_julia.py``) | 06:16.553 | 0.0 MB |
 +---------------------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_run_benchmark.py` (``plot_run_benchmark.py``)                               | 00:32.117 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_run_benchmark.py` (``plot_run_benchmark.py``)                               | 00:55.695 | 0.0 MB |
 +---------------------------------------------------------------------------------------------------------------+-----------+--------+
