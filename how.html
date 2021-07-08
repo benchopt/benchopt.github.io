@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.1.1.dev19 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.1.1.dev20 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev19</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev20</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -489,96 +489,7 @@ not relevant. See <a class="reference internal" href="cli.html#cli-documentation
 A <code class="docutils literal notranslate"><span class="pre">.R</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
 R solver using <a class="reference external" href="https://pypi.org/project/rpy2/">Rpy2</a>. Only the extensions
 should differ between the two files. Here is the Python file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
-
-<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-    <span class="kn">from</span> <span class="nn">rpy2</span> <span class="kn">import</span> <span class="n">robjects</span>
-    <span class="kn">from</span> <span class="nn">rpy2.robjects</span> <span class="kn">import</span> <span class="n">numpy2ri</span>
-    <span class="kn">from</span> <span class="nn">benchopt.helpers.r_lang</span> <span class="kn">import</span> <span class="n">import_func_from_r_file</span>
-
-    <span class="c1"># Setup the system to allow rpy2 running</span>
-    <span class="n">R_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.R&#39;</span><span class="p">))</span>
-    <span class="n">import_func_from_r_file</span><span class="p">(</span><span class="n">R_FILE</span><span class="p">)</span>
-    <span class="n">numpy2ri</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
-
-
-<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;R-PGD&quot;</span>
-
-    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;rpy2&#39;</span><span class="p">]</span>
-    <span class="n">stop_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
-    <span class="n">support_sparse</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;I. Daubechies, M. Defrise and C. De Mol, &#39;</span>
-        <span class="s1">&#39;&quot;An iterative thresholding algorithm for linear inverse problems &#39;</span>
-        <span class="s1">&#39;with a sparsity constraint&quot;, Comm. Pure Appl. Math., &#39;</span>
-        <span class="s1">&#39;vol. 57, pp. 1413-1457, no. 11, Wiley Online Library (2004)&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;A. Beck and M. Teboulle, &quot;A fast iterative shrinkage-thresholding &#39;</span>
-        <span class="s1">&#39;algorithm for linear inverse problems&quot;, SIAM J. Imaging Sci., &#39;</span>
-        <span class="s1">&#39;vol. 2, no. 1, pp. 183-202 (2009)&#39;</span>
-    <span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;proximal_gradient_descent&#39;</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
-        <span class="n">coefs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span><span class="p">(</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span>
-            <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">)</span>
-        <span class="n">as_r</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;as&#39;</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">as_r</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="s2">&quot;vector&quot;</span><span class="p">))</span>
-
-    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
-</pre></div>
-</div>
 <p>It uses the R code in:</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">##&#39; Functions used in ISTA algorithm</span>
-<span class="c1">##&#39;</span>
-<span class="c1">##&#39; @title Functions used in ISTA algorithm</span>
-<span class="c1">##&#39; @author Thomas Moreau</span>
-<span class="c1">##&#39; @export</span>
-
-
-<span class="c1"># Soft-thresholding operator</span>
-<span class="n">St</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">lambda</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">s</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">lambda0</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span> <span class="p">{</span>
-        <span class="nf">if </span><span class="p">(</span><span class="n">x</span> <span class="o">&gt;</span> <span class="n">lambda0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">result0</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">-</span> <span class="n">lambda0</span>
-        <span class="p">}</span> <span class="n">else</span> <span class="nf">if </span><span class="p">(</span><span class="n">x</span> <span class="o">&lt;</span> <span class="p">(</span><span class="m">-1</span><span class="p">)</span> <span class="o">*</span> <span class="n">lambda0</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">result0</span> <span class="o">&lt;-</span> <span class="n">x</span> <span class="o">+</span> <span class="n">lambda0</span>
-        <span class="p">}</span> <span class="n">else</span> <span class="n">result0</span> <span class="o">&lt;-</span> <span class="m">0</span>
-
-        <span class="nf">return</span><span class="p">(</span><span class="n">result0</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="n">result</span> <span class="o">&lt;-</span> <span class="nf">apply</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">lambda0</span> <span class="o">=</span> <span class="n">lambda</span><span class="p">)</span>
-    <span class="nf">return</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
-<span class="p">}</span>
-
-
-<span class="c1"># Main algorithm</span>
-<span class="n">proximal_gradient_descent</span> <span class="o">&lt;-</span> <span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1"># --------- Initialize parameter ---------</span>
-    <span class="n">p</span> <span class="o">&lt;-</span> <span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-    <span class="n">parameters</span> <span class="o">&lt;-</span> <span class="nf">numeric</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
-    <span class="n">step_size</span> <span class="o">&lt;-</span> <span class="m">1</span> <span class="o">/</span> <span class="nf">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="s">&quot;2&quot;</span><span class="p">)</span> <span class="o">**</span> <span class="m">2</span>
-    <span class="nf">for </span><span class="p">(</span><span class="n">i</span> <span class="n">in</span> <span class="m">1</span><span class="o">:</span><span class="n">n_iter</span><span class="p">)</span> <span class="p">{</span>
-        <span class="c1"># Compute the gradient</span>
-        <span class="n">grad</span> <span class="o">&lt;-</span> <span class="nf">crossprod</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="p">,</span> <span class="p">(</span><span class="n">Y</span> <span class="o">-</span> <span class="n">X</span> <span class="o">%*%</span> <span class="n">parameters</span><span class="p">))</span>
-        <span class="c1"># # Update the parameters</span>
-        <span class="n">parameters</span> <span class="o">&lt;-</span> <span class="nf">St</span><span class="p">(</span><span class="n">step_size</span> <span class="o">*</span> <span class="n">lambda</span><span class="p">,</span> <span class="n">parameters</span> <span class="o">-</span> <span class="n">step_size</span> <span class="o">*</span> <span class="n">grad</span><span class="p">)</span>
-    <span class="p">}</span>
-    <span class="nf">return</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This uses the function <a class="reference internal" href="generated/benchopt.safe_import_context.html#benchopt.safe_import_context" title="benchopt.safe_import_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.safe_import_context()</span></code></a> to avoid
@@ -592,75 +503,7 @@ just skipped.</p>
 A <code class="docutils literal notranslate"><span class="pre">.jl</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
 Julia solver using <a class="reference external" href="https://pypi.org/project/julia/">PyJulia</a>. Only the extensions
 should differ between the two files. Here is the Python file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
-
-<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">JuliaSolver</span>
-<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">get_jl_interpreter</span>
-<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">assert_julia_installed</span>
-
-<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="n">assert_julia_installed</span><span class="p">()</span>
-
-
-<span class="c1"># File containing the function to be called from julia</span>
-<span class="n">JULIA_SOLVER_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.jl&#39;</span><span class="p">))</span>
-
-
-<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">JuliaSolver</span><span class="p">):</span>
-
-    <span class="c1"># Config of the solver</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Julia-PGD&#39;</span>
-    <span class="n">stop_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
-    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s1">&#39;I. Daubechies, M. Defrise and C. De Mol, &#39;</span>
-        <span class="s1">&#39;&quot;An iterative thresholding algorithm for linear inverse problems &#39;</span>
-        <span class="s1">&#39;with a sparsity constraint&quot;, Comm. Pure Appl. Math., &#39;</span>
-        <span class="s1">&#39;vol. 57, pp. 1413-1457, no. 11, Wiley Online Library (2004)&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;A. Beck and M. Teboulle, &quot;A fast iterative shrinkage-thresholding &#39;</span>
-        <span class="s1">&#39;algorithm for linear inverse problems&quot;, SIAM J. Imaging Sci., &#39;</span>
-        <span class="s1">&#39;vol. 2, no. 1, pp. 183-202 (2009)&#39;</span>
-    <span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
-
-        <span class="n">jl</span> <span class="o">=</span> <span class="n">get_jl_interpreter</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">solve_lasso</span> <span class="o">=</span> <span class="n">jl</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">JULIA_SOLVER_FILE</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solve_lasso</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
-</pre></div>
-</div>
 <p>It uses the Julia code in:</p>
-<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span> <span class="n">Core</span>
-<span class="k">using</span> <span class="n">LinearAlgebra</span>
-
-
-<span class="k">function</span> <span class="n">st</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">map</span><span class="p">(</span><span class="n">sign</span><span class="p">,</span> <span class="n">w</span><span class="p">)</span> <span class="o">.*</span> <span class="n">map</span><span class="p">(</span><span class="n">x</span> <span class="o">-&gt;</span> <span class="n">max</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">-</span> <span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">w</span><span class="p">)</span>
-<span class="k">end</span>
-
-
-<span class="k">function</span> <span class="n">solve_lasso</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lambda</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">)</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="n">opnorm</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
-
-    <span class="n">n_features</span> <span class="o">=</span> <span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
-    <span class="n">w</span> <span class="o">=</span> <span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
-    <span class="n">t_new</span> <span class="o">=</span> <span class="mi">1</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="o">∈</span> <span class="mi">1</span><span class="o">:</span><span class="n">n_iter</span>
-        <span class="n">grad</span> <span class="o">=</span> <span class="n">X</span><span class="o">&#39;</span> <span class="o">*</span> <span class="p">(</span><span class="n">X</span> <span class="o">*</span> <span class="n">w</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span>
-        <span class="n">w</span> <span class="o">-=</span> <span class="n">grad</span> <span class="o">/</span> <span class="n">L</span>
-        <span class="n">w</span> <span class="o">=</span> <span class="n">st</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="n">lambda</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
-    <span class="k">end</span>
-
-    <span class="k">return</span> <span class="n">w</span>
-<span class="k">end</span>
-</pre></div>
-</div>
 </section>
 <section id="solver-from-source">
 <span id="source-solvers"></span><h3>Solver from source<a class="headerlink" href="#solver-from-source" title="Permalink to this headline">¶</a></h3>

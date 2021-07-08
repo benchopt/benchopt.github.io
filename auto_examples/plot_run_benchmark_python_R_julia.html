@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Demo benchmark with Julia/R/Python &#8212; benchopt 1.1.1.dev19 documentation</title>
+    <title>Demo benchmark with Julia/R/Python &#8212; benchopt 1.1.1.dev20 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -41,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev19</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev20</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -133,19 +133,18 @@ Simulated[n_samples=100,n_features=5000,rho=0]
 [1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m
 [1;34m|----Python-PGD[use_acceleration=False]:[0m [1;32mdone[0m
 [1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m
-[1;32mSaving result in: /home/circleci/project/benchmarks/lasso/outputs/benchopt_run_2021-07-07_12h31m55.csv[0m
-Save suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/49f7f7f3fc77bb686924d18ffd2a277a_suboptimality_curve.pdf
-Save relative_suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/49f7f7f3fc77bb686924d18ffd2a277a_relative_suboptimality_curve.pdf
-Save objective_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/49f7f7f3fc77bb686924d18ffd2a277a_objective_curve.pdf
+[1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-07-08_09h22m12.csv[0m
+Save suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_relative_suboptimality_curve.pdf
+Save objective_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_objective_curve.pdf
 Solver R-PGD did not reach precision 1e-06.
-Save histogram plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/lasso/outputs/49f7f7f3fc77bb686924d18ffd2a277a_histogram.pdf
+Save histogram plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_histogram.pdf
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <a href="../generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a>
 <span class="kn">from</span> <span class="nn">benchopt.benchmark</span> <span class="kn">import</span> <span class="n">Benchmark</span>
@@ -153,7 +152,7 @@ Save histogram plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso
 <span class="kn">from</span> <span class="nn">benchopt.plotting</span> <span class="kn">import</span> <a href="../generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">,</span> <span class="n">PLOT_KINDS</span>
 
 
-<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/os.html#os.getcwd" title="os.getcwd" class="sphx-glr-backref-module-os sphx-glr-backref-type-py-function"><span class="n">os</span><span class="o">.</span><span class="n">getcwd</span></a><span class="p">())</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;benchmarks&#39;</span> <span class="o">/</span> <span class="s1">&#39;lasso&#39;</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;benchmarks&#39;</span> <span class="o">/</span> <span class="s1">&#39;benchmark_lasso&#39;</span>
 
 <span class="k">try</span><span class="p">:</span>
     <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a> <span class="o">=</span> <a href="../generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a><span class="p">(</span>
@@ -178,7 +177,7 @@ Save histogram plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso
 <a href="https://matplotlib.org/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 6 minutes  15.556 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 5 minutes  49.191 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-julia-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/d2dd5989796b6fc1e008c33958d2e61d/plot_run_benchmark_python_R_julia.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark_python_R_julia.py</span></code></a></p>
