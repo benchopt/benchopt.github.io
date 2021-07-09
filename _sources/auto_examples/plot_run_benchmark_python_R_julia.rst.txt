@@ -68,7 +68,7 @@ Demo benchmark with Julia/R/Python
     [1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m                                                
     [1;34m|----Python-PGD[use_acceleration=False]:[0m [1;32mdone[0m                                 
     [1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m                                                    
-    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-07-08_09h22m12.csv[0m
+    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-07-09_15h49m36.csv[0m
     Save suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_suboptimality_curve.pdf
     Save relative_suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_relative_suboptimality_curve.pdf
     Save objective_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_objective_curve.pdf
@@ -120,7 +120,7 @@ Demo benchmark with Julia/R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 5 minutes  49.191 seconds)
+   **Total running time of the script:** ( 6 minutes  35.652 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:
