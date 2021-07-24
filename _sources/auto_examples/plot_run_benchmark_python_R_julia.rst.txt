@@ -66,14 +66,13 @@ Demo benchmark with Julia/R/Python
     /home/circleci/miniconda/lib/python3.8/site-packages/julia/core.py:687: FutureWarning: Accessing `Julia().<name>` to obtain Julia objects is deprecated.  Use `from julia import Main; Main.<name>` or `jl = Julia(); jl.eval('<name>')`.
       warnings.warn(
     [1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m                                                
-    [1;34m|----Python-PGD[use_acceleration=False]:[0m [1;32mdone[0m                                 
     [1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m                                                    
-    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-07-21_13h57m07.csv[0m
-    Save suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_relative_suboptimality_curve.pdf
-    Save objective_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_objective_curve.pdf
+    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-07-24_06h17m24.csv[0m
+    Save suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/e36f052a529e1a7c77887c25e13adcff_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/e36f052a529e1a7c77887c25e13adcff_relative_suboptimality_curve.pdf
+    Save objective_curve plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/e36f052a529e1a7c77887c25e13adcff_objective_curve.pdf
     Solver R-PGD did not reach precision 1e-06.
-    Save histogram plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/86df0d0e0bb036e436ee591c9c5e97c9_histogram.pdf
+    Save histogram plot for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/e36f052a529e1a7c77887c25e13adcff_histogram.pdf
 
 
 
@@ -120,7 +119,7 @@ Demo benchmark with Julia/R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 6 minutes  23.782 seconds)
+   **Total running time of the script:** ( 7 minutes  0.788 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:
