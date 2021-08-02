@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.1.1.dev25 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.1.1.dev26 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev25</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev26</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -365,6 +365,7 @@ should stop.</p></li>
 code. They are typically written in <a class="reference external" href="https://numpy.org/">Numpy</a>
 with no other dependencies. Here is an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span><span class="p">,</span> <span class="n">safe_import_context</span>
+<span class="kn">from</span> <span class="nn">benchopt.utils</span> <span class="kn">import</span> <span class="n">profile</span>
 
 <span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
     <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -384,6 +385,7 @@ with no other dependencies. Here is an example:</p>
 
     <span class="c1"># Main function of the solver, which compute a solution estimate.</span>
     <span class="c1"># Here this is the proximal gradient descent.</span>
+    <span class="nd">@profile</span>
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
         <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="n">step_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span> <span class="o">/</span> <span class="n">L</span>
