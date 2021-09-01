@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new &#8212; benchopt 1.1.1.dev27 documentation</title>
+    <title>What’s new &#8212; benchopt 1.1.1.dev28 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev27</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev28</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -136,6 +136,9 @@
 <li><p>New <code class="docutils literal notranslate"><span class="pre">--profile</span></code> option to the <code class="docutils literal notranslate"><span class="pre">run</span></code> command in order to profile
 with the line-profiler package all functions decorated with
 <a class="reference internal" href="generated/benchopt.utils.profile.html#benchopt.utils.profile" title="benchopt.utils.profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.utils.profile()</span></code></a>, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/186">#186</a>).</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion</span></code> by <code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion</span></code>,
+which measures progress relatively to the best attained value instead of
+the previous one, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/176">#176</a>)</p></li>
 </ul>
 </section>
 </section>
@@ -148,9 +151,9 @@ with the line-profiler package all functions decorated with
 by <a class="reference external" href="https://ngazagna.github.io">Nidham Gazagnadou</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/96">#96</a>).</p></li>
 <li><p>Support plotly for plotting functions, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>,
 <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="http://josephsalmon.eu">Joseph Salmon</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/110">#110</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/111">#111</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/112">#112</a>).</p></li>
-<li><p>Change envrionment variable for config from <cite>BENCHO_*</cite> to <cite>BENCHOPT_*</cite>,
+<li><p>Change envrionment variable for config from <code class="docutils literal notranslate"><span class="pre">BENCHO_*</span></code> to <code class="docutils literal notranslate"><span class="pre">BENCHOPT_*</span></code>,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/128">#128</a>).</p></li>
-<li><p>Add autocompletion support in the <cite>benchopt</cite> command,
+<li><p>Add autocompletion support in the <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> command,
 by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a>, <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>
 (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/133">#133</a>, <a class="reference external" href="https://github.com/benchopt/benchOpt/pull/135">#135</a>).</p></li>
 <li><p>Move most CI to github action, with auto-release on pypi,
