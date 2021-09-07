@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new &#8212; benchopt 1.1.1.dev30 documentation</title>
+    <title>What’s new &#8212; benchopt 1.1.1.dev31 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev30</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev31</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -104,11 +104,12 @@
 <li><a class="reference internal" href="#">What’s new</a><ul>
 <li><a class="reference internal" href="#version-1-2-in-progress">Version 1.2 - in progress</a><ul>
 <li><a class="reference internal" href="#changelog">Changelog</a></li>
+<li><a class="reference internal" href="#api">API</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#version-1-1-22-04-2021">Version 1.1 - 22-04-2021</a><ul>
 <li><a class="reference internal" href="#id1">Changelog</a></li>
-<li><a class="reference internal" href="#api">API</a></li>
+<li><a class="reference internal" href="#id2">API</a></li>
 <li><a class="reference internal" href="#cli">CLI</a></li>
 <li><a class="reference internal" href="#bug">BUG</a></li>
 <li><a class="reference internal" href="#doc">DOC</a></li>
@@ -139,6 +140,16 @@ with the line-profiler package all functions decorated with
 <li><p>Replace <code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion</span></code> by <code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion</span></code>,
 which measures progress relatively to the best attained value instead of
 the previous one, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/176">#176</a>)</p></li>
+<li><p>Now all values returned by <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> are included in reports,
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> and <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (gh:<cite>200</cite>).</p></li>
+</ul>
+</section>
+<section id="api">
+<h3>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>When returning a dict, <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> should at least include
+<code class="docutils literal notranslate"><span class="pre">value</span></code> key instead of <code class="docutils literal notranslate"><span class="pre">objective_value</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> and
+<a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (gh:<cite>200</cite>).</p></li>
 </ul>
 </section>
 </section>
@@ -163,8 +174,8 @@ user now must request explicitely the install,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchOpt/pull/155">#155</a>).</p></li>
 </ul>
 </section>
-<section id="api">
-<h3>API<a class="headerlink" href="#api" title="Permalink to this headline">¶</a></h3>
+<section id="id2">
+<h3>API<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> can now return a dictionary with multiple outputs to
 monitor several metrics at once, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (gh:<cite>84</cite>).</p></li>

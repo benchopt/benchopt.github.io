@@ -96,15 +96,15 @@ Run benchmark from a script
     [1;34m|----sklearn[liblinear]:[0m [1;32mdone[0m                                                 
     [1;34m|----sklearn[newton-cg]:[0m [1;32mdone[0m                                                 
     [1;34m|----sklearn[lbfgs]:[0m [1;32mdone[0m                                                     
-    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2021-09-06_21h36m55.csv[0m
-    Save suboptimality_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/3b85cf83eca78303a82706d8b8e48810_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/3b85cf83eca78303a82706d8b8e48810_relative_suboptimality_curve.pdf
-    Save objective_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/3b85cf83eca78303a82706d8b8e48810_objective_curve.pdf
-    Save histogram plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/3b85cf83eca78303a82706d8b8e48810_histogram.pdf
-    Save suboptimality_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/e9abaa2252e34f2cf866bb150aa81ece_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/e9abaa2252e34f2cf866bb150aa81ece_relative_suboptimality_curve.pdf
-    Save objective_curve plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/e9abaa2252e34f2cf866bb150aa81ece_objective_curve.pdf
-    Save histogram plot for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/e9abaa2252e34f2cf866bb150aa81ece_histogram.pdf
+    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2021-09-07_17h22m22.csv[0m
+    Save suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/3b85cf83eca78303a82706d8b8e48810_objective_value_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/3b85cf83eca78303a82706d8b8e48810_objective_value_relative_suboptimality_curve.pdf
+    Save objective_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/3b85cf83eca78303a82706d8b8e48810_objective_value_objective_curve.pdf
+    Save histogram plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/3b85cf83eca78303a82706d8b8e48810_objective_value_histogram.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/e9abaa2252e34f2cf866bb150aa81ece_objective_value_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/e9abaa2252e34f2cf866bb150aa81ece_objective_value_relative_suboptimality_curve.pdf
+    Save objective_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/e9abaa2252e34f2cf866bb150aa81ece_objective_value_objective_curve.pdf
+    Save histogram plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/e9abaa2252e34f2cf866bb150aa81ece_objective_value_histogram.pdf
 
 
 
@@ -152,7 +152,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  33.604 seconds)
+   **Total running time of the script:** ( 0 minutes  27.093 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
