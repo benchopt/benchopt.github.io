@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchmark repository for optimization &#8212; benchopt 1.1.1.dev32 documentation</title>
+    <title>Benchmark repository for optimization &#8212; benchopt 1.1.1.dev33 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev32</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev33</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -192,34 +192,58 @@ If you want to run a specific configuration, pass it explicitly, e.g., to run th
 </section>
 <section id="some-available-benchmarks">
 <h2>Some available benchmarks<a class="headerlink" href="#some-available-benchmarks" title="Permalink to this headline">¶</a></h2>
-<p>Notation:  In what follows, n (or n_samples) stands for the number of samples and p (or n_features) stands for the number of features.</p>
+<p><strong>Notation:</strong>  In what follows, n (or n_samples) stands for the number of samples and p (or n_features) stands for the number of features.</p>
 <div class="math notranslate nohighlight">
 \[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_ols">ols</a>: ordinary least-squares. This consists in solving the following program:</p></li>
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_ols">Ordinary Least Squares (OLS)</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_ols/actions"><img alt="Build Status OLS" src="https://github.com/benchopt/benchmark_ols/workflows/Tests/badge.svg" /></a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_w \frac{1}{2} \|y - Xw\|^2_2\]</div>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_nnls">nnls</a>: non-negative least-squares. This consists in solving the following program:</p></li>
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_nnls">Non-Negative Least Squares (NNLS)</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_nnls/actions"><img alt="Build Status NNLS" src="https://github.com/benchopt/benchmark_nnls/workflows/Tests/badge.svg" /></a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_{w \geq 0} \frac{1}{2} \|y - Xw\|^2_2\]</div>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_lasso">lasso</a>: l1-regularized least-squares. This consists in solving the following program:</p></li>
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_lasso">LASSO: L1-regularized least squares</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_lasso/actions"><img alt="Build Status Lasso" src="https://github.com/benchopt/benchmark_lasso/workflows/Tests/badge.svg" /></a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
 \[\min_w \frac{1}{2} \|y - Xw\|^2_2 + \lambda \|w\|_1\]</div>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l2">logreg_l2</a>: l2-regularized logistic regression. This consists in solving the following program:</p></li>
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l2">L2-regularized logistic regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l2/actions"><img alt="Build Status LogRegL2" src="https://github.com/benchopt/benchmark_logreg_l2/workflows/Tests/badge.svg" /></a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \frac{\lambda}{2} \|w\|_2^2\]</div>
+\[\min_w \sum_{i=1}^{n} \log(1 + \exp(-y_i x_i^\top w)) + \frac{\lambda}{2} \|w\|_2^2\]</div>
 <ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">logreg_l1</a>: l1-regularized logistic regression. This consists in solving the following program:</p></li>
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">L1-regularized logistic regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1/actions"><img alt="Build Status LogRegL1" src="https://github.com/benchopt/benchmark_logreg_l1/workflows/Tests/badge.svg" /></a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\min_w \sum_i \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
+\[\min_w \sum_{i=1}^{n} \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_huber_l2">L2-regularized Huber regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_huber_l2/actions"><img alt="Build Status HuberL2" src="https://github.com/benchopt/benchmark_huber_l2/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_{w, \sigma} {\sum_{i=1}^n \left(\sigma + H_{\epsilon}\left(\frac{X_{i}w - y_{i}}{\sigma}\right)\sigma\right) + \lambda {||w||_2}^2}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H_{\epsilon}(z) = \begin{cases}
+       z^2, &amp; \text {if } |z| &lt; \epsilon, \\
+       2\epsilon|z| - \epsilon^2, &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_quantile_regression">L1-regularized quantile regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_quantile_regression/actions"><img alt="Build Status QuantileRegL1" src="https://github.com/benchopt/benchmark_quantile_regression/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_{w} \frac{1}{n} \sum_{i=1}^{n} PB_q(y_i - X_i w) + \lambda ||w||_1.\]</div>
+<p>where <span class="math notranslate nohighlight">\(PB_q\)</span> is the pinball loss:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}PB_q(t) = q \max(t, 0) + (1 - q) \max(-t, 0) =
+\begin{cases}
+    q t, &amp; t &gt; 0, \\
+    0,    &amp; t = 0, \\
+    (1-q) t, &amp; t &lt; 0
+\end{cases}\end{split}\]</div>
 <p>See <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a> for more.</p>
 </section>
 <section id="benchmark-results">
