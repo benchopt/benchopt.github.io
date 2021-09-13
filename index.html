@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchmark repository for optimization &#8212; benchopt 1.1.1.dev35 documentation</title>
+    <title>Benchmark repository for optimization &#8212; benchopt 1.1.1.dev36 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev35</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev36</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -244,6 +244,17 @@ If you want to run a specific configuration, pass it explicitly, e.g., to run th
     0,    &amp; t = 0, \\
     (1-q) t, &amp; t &lt; 0
 \end{cases}\end{split}\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_linear_ica">Linear ICA</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_linear_ica/actions"><img alt="Build Status LinearICA" src="https://github.com/benchopt/benchmark_linear_ica/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<p>Given some data <span class="math notranslate nohighlight">\(X  \in \mathbb{R}^{d \times n}\)</span> assumed to be linearly
+related to unknown independent sources <span class="math notranslate nohighlight">\(S  \in \mathbb{R}^{d \times n}\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[X = A S\]</div>
+<p>where <span class="math notranslate nohighlight">\(A  \in \mathbb{R}^{d \times d}\)</span> is also unknown, the objective of
+linear ICA is to recover <span class="math notranslate nohighlight">\(A\)</span> up to permutation and scaling of its columns.
+The objective in this benchmark is related to some estimation on <span class="math notranslate nohighlight">\(A\)</span>
+quantified with the so-called AMARI distance.</p>
 <p>See <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a> for more.</p>
 </section>
 <section id="benchmark-results">
