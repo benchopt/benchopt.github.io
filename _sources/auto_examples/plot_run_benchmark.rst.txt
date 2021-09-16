@@ -152,7 +152,7 @@ Run benchmark from a script
     [1;34m|----sklearn[saga]:[0m [1;33mdone (timeout)[0m                                            
     [1;34m|----sklearn[sgd]:[0m [1;33mskip[0m                                                       
     Reason: Not enough samples for SGD
-    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2021-09-15_13h57m40.csv[0m
+    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2021-09-16_19h56m15.csv[0m
     Save objective_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_Test loss_objective_curve.pdf
     Save suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_value_suboptimality_curve.pdf
@@ -178,7 +178,6 @@ Run benchmark from a script
     Save histogram plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_value_histogram.pdf
     Solver Lightning did not reach precision 1e-06.
     Solver sklearn[liblinear] did not reach precision 1e-06.
-    Solver sklearn[newton-cg] did not reach precision 1e-06.
     Solver sklearn[lbfgs] did not reach precision 1e-06.
     Solver sklearn[sag] did not reach precision 1e-06.
     Solver sklearn[saga] did not reach precision 1e-06.
@@ -230,7 +229,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  47.986 seconds)
+   **Total running time of the script:** ( 2 minutes  32.608 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
