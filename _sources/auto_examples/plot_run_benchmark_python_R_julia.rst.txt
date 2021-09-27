@@ -31,27 +31,31 @@ Demo benchmark with Julia/R/Python
 
     *
 
-      .. image:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_001.png
-          :alt: Lasso Regression[reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
-          :class: sphx-glr-multi-img
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_001.png
+         :alt: Lasso Regression[reg=0.5,fit_intercept=False] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_001.png
+         :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_002.png
-          :alt: Lasso Regression[reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
-          :class: sphx-glr-multi-img
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_002.png
+         :alt: Lasso Regression[reg=0.5,fit_intercept=False] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_002.png
+         :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_003.png
-          :alt: Lasso Regression[reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
-          :class: sphx-glr-multi-img
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_003.png
+         :alt: Lasso Regression[reg=0.5,fit_intercept=False] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_003.png
+         :class: sphx-glr-multi-img
 
     *
 
-      .. image:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_004.png
-          :alt: Lasso Regression[reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
-          :class: sphx-glr-multi-img
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_004.png
+         :alt: Lasso Regression[reg=0.5,fit_intercept=False] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_julia_004.png
+         :class: sphx-glr-multi-img
 
 
 .. rst-class:: sphx-glr-script-out
@@ -62,17 +66,22 @@ Demo benchmark with Julia/R/Python
 
     BenchOpt is running
     Simulated[n_samples=100,n_features=5000,rho=0]                                                      
-    |--Lasso Regression[reg=0.5]                                                                        
+    |--Lasso Regression[reg=0.5,fit_intercept=True]                                                     
+    |----Julia-PGD: skip                                                          
+    Reason: Julia-PGD does not handle fit_intercept
+    |----R-PGD: skip                                                              
+    Reason: R-PGD does not handle fit_intercept
+    |--Lasso Regression[reg=0.5,fit_intercept=False]                                                    
     /home/circleci/miniconda/lib/python3.8/site-packages/julia/core.py:687: FutureWarning: Accessing `Julia().<name>` to obtain Julia objects is deprecated.  Use `from julia import Main; Main.<name>` or `jl = Julia(); jl.eval('<name>')`.
       warnings.warn(
-    [1;34m|----Julia-PGD:[0m [1;33mdone (timeout)[0m                                                
-    [1;34m|----R-PGD:[0m [1;33mdone (timeout)[0m                                                    
-    [1;32mSaving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-09-16_20h01m22.csv[0m
-    Save objective_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/a28802545335be7e1b8eec79f51d7bd4_objective_value_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/a28802545335be7e1b8eec79f51d7bd4_objective_value_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/a28802545335be7e1b8eec79f51d7bd4_objective_value_relative_suboptimality_curve.pdf
+    |----Julia-PGD: done (timeout)                                                
+    |----R-PGD: done (timeout)                                                    
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-09-27_12h53m43.csv
+    Save objective_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_value_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_value_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_value_relative_suboptimality_curve.pdf
     Solver R-PGD did not reach precision 1e-06.
-    Save histogram plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/a28802545335be7e1b8eec79f51d7bd4_objective_value_histogram.pdf
+    Save histogram plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_value_histogram.pdf
 
 
 
@@ -119,7 +128,7 @@ Demo benchmark with Julia/R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 4 minutes  52.887 seconds)
+   **Total running time of the script:** ( 5 minutes  4.848 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:
