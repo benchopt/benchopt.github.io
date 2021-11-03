@@ -72,11 +72,11 @@ Demo benchmark with Julia/R/Python
     |----R-PGD: skip                                                              
     Reason: R-PGD does not handle fit_intercept
     |--Lasso Regression[reg=0.5,fit_intercept=False]                                                    
-    /home/circleci/miniconda/lib/python3.8/site-packages/julia/core.py:687: FutureWarning: Accessing `Julia().<name>` to obtain Julia objects is deprecated.  Use `from julia import Main; Main.<name>` or `jl = Julia(); jl.eval('<name>')`.
+    /home/circleci/miniconda/lib/python3.8/site-packages/julia/core.py:703: FutureWarning: Accessing `Julia().<name>` to obtain Julia objects is deprecated.  Use `from julia import Main; Main.<name>` or `jl = Julia(); jl.eval('<name>')`.
       warnings.warn(
     |----Julia-PGD: done                                                          
     |----R-PGD: done (timeout)                                                    
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-10-23_10h08m14.csv
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-11-03_13h33m22.csv
     Save objective_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f7194d5ccdff52b2dc138805621aa002_objective_value_objective_curve.pdf
     Save suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f7194d5ccdff52b2dc138805621aa002_objective_value_suboptimality_curve.pdf
     Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f7194d5ccdff52b2dc138805621aa002_objective_value_relative_suboptimality_curve.pdf
@@ -128,7 +128,7 @@ Demo benchmark with Julia/R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 4 minutes  14.816 seconds)
+   **Total running time of the script:** ( 4 minutes  0.118 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:
