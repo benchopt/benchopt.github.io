@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchmark repository for optimization &#8212; benchopt 1.1.1.dev53 documentation</title>
+    <title>BenchOpt: Benchmark repository for optimization &#8212; benchopt 1.1.1.dev54 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev53</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev54</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -102,9 +102,9 @@
   <div class="row">
       <div class="col-md-3">
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">Benchmark repository for optimization</a><ul>
+<li><a class="reference internal" href="#">BenchOpt: Benchmark repository for optimization</a><ul>
 <li><a class="reference internal" href="#install">Install</a></li>
-<li><a class="reference internal" href="#example-of-command-line-usage-on-the-lasso-benchmark">Example of command line usage on the Lasso benchmark</a></li>
+<li><a class="reference internal" href="#quickstart-command-line-usage-on-the-lasso-benchmark">Quickstart: command line usage on the Lasso benchmark</a></li>
 <li><a class="reference internal" href="#some-available-benchmarks">Some available benchmarks</a></li>
 <li><a class="reference internal" href="#benchmark-results">Benchmark results</a></li>
 </ul>
@@ -116,28 +116,28 @@
       </div>
     <div class="body col-md-9 content" role="main">
       
-  <section id="benchmark-repository-for-optimization">
-<h1>Benchmark repository for optimization<a class="headerlink" href="#benchmark-repository-for-optimization" title="Permalink to this headline">¶</a></h1>
+  <section id="benchopt-benchmark-repository-for-optimization">
+<h1>BenchOpt: Benchmark repository for optimization<a class="headerlink" href="#benchopt-benchmark-repository-for-optimization" title="Permalink to this headline">¶</a></h1>
 <p><a class="reference external" href="https://github.com/benchopt/benchOpt/actions/workflows/test.yml"><img alt="Test Status" src="https://github.com/benchopt/benchOpt/actions/workflows/test.yml/badge.svg" /></a> <a class="reference external" href="https://www.python.org/downloads/release/python-360/"><img alt="Python 3.6+" src="https://img.shields.io/badge/python-3.6%2B-blue" /></a> <a class="reference external" href="https://codecov.io/gh/benchopt/benchOpt"><img alt="codecov" src="https://codecov.io/gh/benchopt/benchOpt/branch/master/graph/badge.svg" /></a></p>
-<p>BenchOpt is a package to simplify, make more transparent and
-more reproducible the comparisons of optimization algorithms.</p>
-<p>BenchOpt is written in Python but it is available with
+<p>BenchOpt is a package to make the comparison of optimizations algorithms simple, transparent and reproducible.</p>
+<p>It is written in Python but is available with
 <a class="reference external" href="auto_examples/plot_run_benchmark_python_R_julia.html">many programming languages</a>.
 So far it has been tested with <a class="reference external" href="https://www.python.org/">Python</a>,
 <a class="reference external" href="https://www.r-project.org/">R</a>, <a class="reference external" href="https://julialang.org/">Julia</a>
 and compiled binaries written in C/C++ available via a terminal
-command. If it can be installed via
-<a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> it should just work!</p>
+command.
+If a solver can be installed via
+<a class="reference external" href="https://docs.conda.io/en/latest/">conda</a>, it should just work in BenchOpt!</p>
 <p>BenchOpt is used through a command line as documented
-in <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>. Ultimately running and replicating an
-optimization benchmark should be <strong>as simple as doing</strong>:</p>
+in the <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>.
+Once BenchOpt is installed, running and replicating an optimization benchmark is <strong>as simple as doing</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_logreg_l2
 $ benchopt install --env ./benchmark_logreg_l2
 $ benchopt run --env ./benchmark_logreg_l2
 </pre></div>
 </div>
 <p>Running these commands will fetch the benchmark files, install the benchmark
-requirements in a dedicated environment <cite>benchopt_benchmark_logreg_l2</cite> and
+requirements in a dedicated environment called <code class="docutils literal notranslate"><span class="pre">benchopt_benchmark_logreg_l2</span></code> and
 give you a benchmark plot on l2-regularized logistic regression:</p>
 <figure class="align-center">
 <a class="reference external image-reference" href="how.html"><img alt="_images/sphx_glr_plot_run_benchmark_003.png" src="_images/sphx_glr_plot_run_benchmark_003.png" style="width: 512.0px; height: 384.0px;" /></a>
@@ -145,7 +145,7 @@ give you a benchmark plot on l2-regularized logistic regression:</p>
 <p>Learn how to <a class="reference internal" href="how.html#how"><span class="std std-ref">Write a benchmark</span></a>.</p>
 <section id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
-<p>This package can be installed through <cite>pip</cite>. To get the <strong>last release</strong>, use:</p>
+<p>This package can be installed through <cite>pip</cite>. To get the <strong>latest release</strong>, use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ pip install benchopt
 </pre></div>
 </div>
@@ -154,41 +154,47 @@ give you a benchmark plot on l2-regularized logistic regression:</p>
 </pre></div>
 </div>
 <p>This will install the command line tool to run the benchmark. Then, existing
-benchmarks can be retrieved from git or created locally. To discover which
+benchmarks can be retrieved from GitHub or created locally. To discover which
 benchmarks are presently available look for
 <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a>,
 such as for <a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso – l1-regularized linear regression</a>.
-This benchmark can then be retrieved locally with:</p>
+This benchmark can be retrieved locally with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_lasso.git
 </pre></div>
 </div>
 </section>
-<section id="example-of-command-line-usage-on-the-lasso-benchmark">
-<h2>Example of command line usage on the Lasso benchmark<a class="headerlink" href="#example-of-command-line-usage-on-the-lasso-benchmark" title="Permalink to this headline">¶</a></h2>
-<p>This section illustrates benchopt’s command line interface on the <a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso benchmark</a>; the syntax is applicable to any benchmark.</p>
-<p>To install all requirements and dependencies of the benchmark, run:</p>
+<section id="quickstart-command-line-usage-on-the-lasso-benchmark">
+<h2>Quickstart: command line usage on the Lasso benchmark<a class="headerlink" href="#quickstart-command-line-usage-on-the-lasso-benchmark" title="Permalink to this headline">¶</a></h2>
+<p>This section illustrates benchopt’s command line interface on the <a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso benchmark</a>; the syntax is applicable to any benchmark.
+All this section assumes that you are in the parent folder of the <code class="docutils literal notranslate"><span class="pre">benchmark_lasso</span></code> folder.
+The <code class="docutils literal notranslate"><span class="pre">--env</span></code> flag specifies that everything is run in the <code class="docutils literal notranslate"><span class="pre">benchopt_benchmark_lasso</span></code> conda environment.</p>
+<p><strong>Installing benchmark dependencies</strong>: to install all requirements of the benchmark, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt install --env ./benchmark_lasso
 </pre></div>
 </div>
-<p>To run benchmarks on all datasets and with all solvers, run:</p>
+<p><strong>Run a benchmark</strong>: to run benchmarks on all datasets and with all solvers, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env ./benchmark_lasso
 </pre></div>
 </div>
-<p>To run only the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> and <code class="docutils literal notranslate"><span class="pre">celer</span></code> solvers, on the <code class="docutils literal notranslate"><span class="pre">simulated</span></code> and <code class="docutils literal notranslate"><span class="pre">finance</span></code> datasets, run:</p>
+<p><strong>Run only some solvers and datasets</strong>: to run only the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> and <code class="docutils literal notranslate"><span class="pre">celer</span></code> solvers, on the <code class="docutils literal notranslate"><span class="pre">simulated</span></code> and <code class="docutils literal notranslate"><span class="pre">finance</span></code> datasets, run:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env ./benchmark_lasso -s sklearn -s celer -d simulated -d finance
 </pre></div>
 </div>
-<p>Some solvers and dataset have parameters; by default all combinations are run.
-If you want to run a specific configuration, pass it explicitly, e.g., to run the python-pgd solver only with its parameter <code class="docutils literal notranslate"><span class="pre">use_acceleration</span></code> set to True, use:</p>
+<p><strong>Run a solver or dataset with specific parameters</strong>:  some solvers and datasets have parameters; by default all combinations are run.
+If you want to run a specific configuration, pass it explicitly, e.g., to run the <code class="docutils literal notranslate"><span class="pre">python-pgd</span></code> solver only with its parameter <code class="docutils literal notranslate"><span class="pre">use_acceleration</span></code> set to True, use:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env ./benchmark_lasso -s python-pgd[use_acceleration=True]
 </pre></div>
 </div>
-<p>Use</p>
+<p><strong>Set the number of repetitions</strong>: the benchmark are repeated 5 times by default for greater precision. To run the benchmark 10 times, run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env ./benchmark_lasso -r 10
+</pre></div>
+</div>
+<p><strong>Getting help</strong>: use</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run -h
 </pre></div>
 </div>
-<p>to get more details about the different options read the
-<a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>.</p>
+<p>to get more details about the different options.
+You can also read the <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>.</p>
 </section>
 <section id="some-available-benchmarks">
 <h2>Some available benchmarks<a class="headerlink" href="#some-available-benchmarks" title="Permalink to this headline">¶</a></h2>
