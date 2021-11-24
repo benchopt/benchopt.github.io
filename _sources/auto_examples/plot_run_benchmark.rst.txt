@@ -22,7 +22,7 @@
 Run benchmark from a script
 ===========================
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-40
+.. GENERATED FROM PYTHON SOURCE LINES 7-41
 
 
 
@@ -154,51 +154,36 @@ Run benchmark from a script
     |----Lightning: done                                                          
     |----sklearn[liblinear]: done                                                 
     |----sklearn[newton-cg]: done                                                 
-    |----sklearn[lbfgs]: done                                                     
-    |----sklearn[sag]: done (timeout)                                             
     |----sklearn[saga]: done (timeout)                                            
-    |----sklearn[sgd]: skip                                                       
-    Reason: Not enough samples for SGD
     |--L2 Logistic Regression[fit_intercept=False,lmbd=0.01]                                            
     |----Lightning: done (timeout)                                                
     |----sklearn[liblinear]: done                                                 
     |----sklearn[newton-cg]: done                                                 
-    |----sklearn[lbfgs]: done                                                     
-    |----sklearn[sag]: done (timeout)                                             
     |----sklearn[saga]: done (timeout)                                            
-    |----sklearn[sgd]: skip                                                       
-    Reason: Not enough samples for SGD
-    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2021-11-23_14h04m04.csv
-    Save objective_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_value_objective_curve.pdf
-    Save objective_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_Test loss_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_value_suboptimality_curve.pdf
-    Save suboptimality_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_Test loss_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_value_relative_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_Test loss_relative_suboptimality_curve.pdf
-    Save histogram plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_value_histogram.pdf
+    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2021-11-24_10h40m57.csv
+    Save objective_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d32e7aba808054508f0176880100c343_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d32e7aba808054508f0176880100c343_objective_Test loss_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d32e7aba808054508f0176880100c343_objective_value_suboptimality_curve.pdf
+    Save suboptimality_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d32e7aba808054508f0176880100c343_objective_Test loss_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d32e7aba808054508f0176880100c343_objective_value_relative_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d32e7aba808054508f0176880100c343_objective_Test loss_relative_suboptimality_curve.pdf
+    Save histogram plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d32e7aba808054508f0176880100c343_objective_value_histogram.pdf
     Solver Lightning did not reach precision 1e-06.
     Solver sklearn[liblinear] did not reach precision 1e-06.
-    Solver sklearn[newton-cg] did not reach precision 1e-06.
-    Solver sklearn[lbfgs] did not reach precision 1e-06.
-    Solver sklearn[sag] did not reach precision 1e-06.
     Solver sklearn[saga] did not reach precision 1e-06.
-    Save histogram plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/37358af3790bfcbd840d6c2949ab44c7_objective_Test loss_histogram.pdf
-    Save objective_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_value_objective_curve.pdf
-    Save objective_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_Test loss_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_value_suboptimality_curve.pdf
-    Save suboptimality_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_Test loss_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_value_relative_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_Test loss_relative_suboptimality_curve.pdf
-    Solver sklearn[sag] did not reach precision 1e-06.
+    Save histogram plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d32e7aba808054508f0176880100c343_objective_Test loss_histogram.pdf
+    Save objective_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/5e1bbc9068cfc79c771debd98955974f_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/5e1bbc9068cfc79c771debd98955974f_objective_Test loss_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/5e1bbc9068cfc79c771debd98955974f_objective_value_suboptimality_curve.pdf
+    Save suboptimality_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/5e1bbc9068cfc79c771debd98955974f_objective_Test loss_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/5e1bbc9068cfc79c771debd98955974f_objective_value_relative_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/5e1bbc9068cfc79c771debd98955974f_objective_Test loss_relative_suboptimality_curve.pdf
     Solver sklearn[saga] did not reach precision 1e-06.
-    Save histogram plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_value_histogram.pdf
+    Save histogram plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/5e1bbc9068cfc79c771debd98955974f_objective_value_histogram.pdf
     Solver Lightning did not reach precision 1e-06.
     Solver sklearn[liblinear] did not reach precision 1e-06.
-    Solver sklearn[newton-cg] did not reach precision 1e-06.
-    Solver sklearn[lbfgs] did not reach precision 1e-06.
-    Solver sklearn[sag] did not reach precision 1e-06.
     Solver sklearn[saga] did not reach precision 1e-06.
-    Save histogram plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/ba554b04a6ccb0671aab352cf769e64f_objective_Test loss_histogram.pdf
+    Save histogram plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=0.01] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/5e1bbc9068cfc79c771debd98955974f_objective_Test loss_histogram.pdf
 
 
 
@@ -224,7 +209,8 @@ Run benchmark from a script
 
     try:
         save_file = run_benchmark(
-            Benchmark(BENCHMARK_PATH), ['sklearn', 'lightning'],
+            Benchmark(BENCHMARK_PATH), ['sklearn[liblinear]', 'sklearn[saga]',
+                                        'sklearn[newton-cg]', 'lightning'],
             dataset_names=['Simulated*n_samples=200,n_features=500*'],
             max_runs=100, timeout=20, n_repetitions=3,
             plot_result=False, show_progress=False
@@ -246,7 +232,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  37.142 seconds)
+   **Total running time of the script:** ( 1 minutes  48.712 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
