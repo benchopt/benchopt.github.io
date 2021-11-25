@@ -132,22 +132,22 @@ Demo benchmark with Julia/R/Python
       warnings.warn(
     |----Julia-PGD: done (timeout)                                                
     |----R-PGD: done (timeout)                                                    
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-11-24_16h08m25.csv
-    Save objective_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_value_objective_curve.pdf
-    Save objective_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_support_size_objective_curve.pdf
-    Save objective_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_duality_gap_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_value_suboptimality_curve.pdf
-    Save suboptimality_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_support_size_suboptimality_curve.pdf
-    Save suboptimality_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_duality_gap_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_value_relative_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_support_size_relative_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_duality_gap_relative_suboptimality_curve.pdf
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-11-25_12h00m39.csv
+    Save objective_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_support_size_objective_curve.pdf
+    Save objective_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_duality_gap_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_value_suboptimality_curve.pdf
+    Save suboptimality_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_support_size_suboptimality_curve.pdf
+    Save suboptimality_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_duality_gap_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_value_relative_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_support_size_relative_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_duality_gap_relative_suboptimality_curve.pdf
     Solver R-PGD did not reach precision 1e-06.
-    Save histogram plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_value_histogram.pdf
+    Save histogram plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_value_histogram.pdf
     Solver R-PGD did not reach precision 1e-06.
-    Save histogram plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_support_size_histogram.pdf
+    Save histogram plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_support_size_histogram.pdf
     Solver R-PGD did not reach precision 1e-06.
-    Save histogram plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f366400cd3c8eeb6add02cab8b906b30_objective_duality_gap_histogram.pdf
+    Save histogram plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/94cf5e1f75364f6ae57ad656e7b2c4b8_objective_duality_gap_histogram.pdf
 
 
 
@@ -194,7 +194,7 @@ Demo benchmark with Julia/R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 5 minutes  14.905 seconds)
+   **Total running time of the script:** ( 4 minutes  46.907 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R_julia.py:
