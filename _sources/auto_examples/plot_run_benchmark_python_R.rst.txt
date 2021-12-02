@@ -83,7 +83,7 @@ Demo benchmark with R/Python
     |--Lasso Regression[reg=0.5,fit_intercept=False]
     |----Python-PGD[use_acceleration=False]: done
     |----R-PGD: done (timeout)
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-12-02_16h24m38.csv
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2021-12-02_17h26m03.csv
     Save objective_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f6a20cc280d35c350bc47b0ac2d9da32_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f6a20cc280d35c350bc47b0ac2d9da32_objective_support_size_objective_curve.pdf
     Save objective_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[reg=0.5,fit_intercept=False] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/f6a20cc280d35c350bc47b0ac2d9da32_objective_duality_gap_objective_curve.pdf
@@ -138,7 +138,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  27.277 seconds)
+   **Total running time of the script:** ( 2 minutes  15.373 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
