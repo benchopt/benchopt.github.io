@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.1.1.dev59 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.1.1.dev60 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev59</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev60</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -54,7 +54,7 @@
                 <li><a href="#">Write a benchmark</a></li>
                 <li><a href="https://benchopt.github.io/results">Results</a></li>
                 <li><a href="whats_new.html">What's new</a></li>
-                <li><a href="https://github.com/benchopt/benchOpt">GitHub</a></li>
+                <li><a href="https://github.com/benchopt/benchopt">GitHub</a></li>
             
             
               <li class="dropdown globaltoc-container">
@@ -72,7 +72,7 @@
 <li class="toctree-l1"><a class="reference internal" href="publish.html">Publish benchmark results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">BenchOpt configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork BenchOpt on Github</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
 </ul>
 </ul>
 </li>
@@ -144,7 +144,7 @@ structure. For example</p>
 </pre></div>
 </div>
 <p>Examples of actual benchmarks are available in the
-<a class="reference external" href="https://github.com/benchopt/">benchOpt organisation</a> such
+<a class="reference external" href="https://github.com/benchopt/">benchopt organisation</a> such
 as for <a class="reference external" href="https://github.com/benchopt/benchmark_ols">Ordinary Least Square (OLS)</a>,
 <a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso</a> or
 <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">L1-regularized logistic regression</a>.</p>
@@ -279,7 +279,7 @@ across multiple problem dimensions.</p>
 For example, one may want to change the dataset size, the noise level, etc.
 To be able to specify parameters to get a dataset, you can use a class
 attribute called <code class="docutils literal notranslate"><span class="pre">parameters</span></code>. This parameter must be a dictionary
-whose keys are passed to the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> of the dataset class. Then BenchOpt
+whose keys are passed to the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> of the dataset class. Then Benchopt
 will automatically allow you to test all combinations of parameters.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
@@ -360,7 +360,7 @@ compute and store the objective and return <code class="docutils literal notrans
 should stop.</p></li>
 </ul>
 </div></blockquote>
-<p>BenchOpt supports different types of solvers:</p>
+<p>Benchopt supports different types of solvers:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference internal" href="#python-solvers"><span class="std std-ref">Python solver</span></a></p></li>
@@ -443,7 +443,7 @@ Here is an example in the same situation as above:</p>
 </pre></div>
 </div>
 <p>If your Python solver requires some packages such as <a class="reference external" href="https://numba.pydata.org/">Numba</a>,
-BenchOpt allows you to list some requirements. The necessary packages should be available
+Benchopt allows you to list some requirements. The necessary packages should be available
 via <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> or
 <a class="reference external" href="https://packaging.python.org/guides/tool-recommendations/">pip</a>.</p>
 <p>In this case the <code class="docutils literal notranslate"><span class="pre">install_cmd</span></code> class variable needs to be set to <code class="docutils literal notranslate"><span class="pre">'conda'</span></code>
@@ -490,7 +490,7 @@ dependencies. See <a class="reference internal" href="#source-solvers"><span cla
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Specifying the dependencies is necessary if you let BenchOpt
+<p>Specifying the dependencies is necessary if you let benchopt
 manage the creation of a dedicated environment. If you want to
 use your local environment the list of dependencies is
 not relevant. See <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>.</p>
