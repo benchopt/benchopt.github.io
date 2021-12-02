@@ -17,14 +17,14 @@ Examples Gallery
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Demo benchmark with Julia/R/Python">
+    <div class="sphx-glr-thumbcontainer" tooltip="Demo benchmark with R/Python">
 
 .. only:: html
 
- .. figure:: /auto_examples/images/thumb/sphx_glr_plot_run_benchmark_python_R_julia_thumb.png
-     :alt: Demo benchmark with Julia/R/Python
+ .. figure:: /auto_examples/images/thumb/sphx_glr_plot_run_benchmark_python_R_thumb.png
+     :alt: Demo benchmark with R/Python
 
-     :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R_julia.py`
+     :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R.py`
 
 .. raw:: html
 
@@ -34,7 +34,7 @@ Examples Gallery
 .. toctree::
    :hidden:
 
-   /auto_examples/plot_run_benchmark_python_R_julia
+   /auto_examples/plot_run_benchmark_python_R
 
 .. raw:: html
 
