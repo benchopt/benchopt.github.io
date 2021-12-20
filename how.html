@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.1.1.dev74 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.1.1.dev75 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev74</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev75</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -136,8 +136,8 @@ structure. For example</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_benchmark/
 ├── objective.py  # contains the definition of the objective
 ├── datasets/
-│   ├── simulated.py  # some dataset
-│   └── real.py  # some dataset
+│   ├── simulated.py  # some dataset
+│   └── real.py  # some dataset
 └── solvers/
     ├── solver1.py  # some solver
     └── solver2.py  # some solver
@@ -336,7 +336,7 @@ condition of the solver. Typically this is either a number of iterations <code c
 or a tolerance parameter <code class="docutils literal notranslate"><span class="pre">tol</span></code>. Alternatively, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function that will be
 called at each iteration can be passed. The callback should return <code class="docutils literal notranslate"><span class="pre">False</span></code> once the
 computation should stop.
-The parameter <code class="docutils literal notranslate"><span class="pre">stop_value</span></code> is controlled by the <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code>,
+The parameter <code class="docutils literal notranslate"><span class="pre">stop_value</span></code> is controlled by the <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code>,
 see below for details.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_result()</span></code>: This method returns a variable that can be passed
 to the <code class="docutils literal notranslate"><span class="pre">compute</span></code> method from the objective. This is the output of
@@ -344,8 +344,8 @@ the solver.</p></li>
 </ul>
 </div></blockquote>
 <p><strong>Stop strategy:</strong></p>
-<p>A solver should also define a <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code> as class attribute.
-This <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code> can be:</p>
+<p>A solver should also define a <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> as class attribute.
+This <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> can be:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: in this case the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
@@ -418,8 +418,8 @@ with no other dependencies. Here is an example:</p>
 </pre></div>
 </div>
 <p>For solvers that allow access to each iterate of the solution, using <code class="docutils literal notranslate"><span class="pre">&quot;callback&quot;</span></code>
-as a <code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code> implies a slight modification for <code class="docutils literal notranslate"><span class="pre">run</span></code>. A <code class="docutils literal notranslate"><span class="pre">callback</span></code> should be called at
-each iteration with parameter the current value of the iterate.
+as a <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> implies a slight modification for <code class="docutils literal notranslate"><span class="pre">run</span></code>. A <code class="docutils literal notranslate"><span class="pre">callback</span></code>
+should be called at each iteration with parameter the current value of the iterate.
 Here is an example in the same situation as above:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>  <span class="c1"># instead of the number of iteration or tolerance</span>
         <span class="n">L</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_lipschitz_cst</span><span class="p">()</span>
