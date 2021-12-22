@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new &#8212; benchopt 1.1.1.dev77 documentation</title>
+    <title>What’s new &#8212; benchopt 1.1.1.dev78 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev77</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev78</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -134,6 +134,8 @@
 <section id="changelog">
 <h3>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
+<li><p>New <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">info</span></code> command to display information about solvers and datasets
+of a benchmark, by <a class="reference external" href="https://gdurif.perso.math.cnrs.fr/">Ghislain Durif</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/140">#140</a>).</p></li>
 <li><p>New <code class="docutils literal notranslate"><span class="pre">--profile</span></code> option to the <code class="docutils literal notranslate"><span class="pre">run</span></code> command in order to profile
 with the line-profiler package all functions decorated with
 <a class="reference internal" href="generated/benchopt.utils.profile.html#benchopt.utils.profile" title="benchopt.utils.profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.utils.profile()</span></code></a>, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/186">#186</a>).</p></li>
@@ -141,7 +143,7 @@ with the line-profiler package all functions decorated with
 which measures progress relatively to the best attained value instead of
 the previous one, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/176">#176</a>)</p></li>
 <li><p>Now all values returned by <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> are included in reports,
-by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> and <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (gh:<cite>200</cite>).</p></li>
+by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> and <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/200">#200</a>).</p></li>
 </ul>
 </section>
 <section id="api">
@@ -149,9 +151,9 @@ by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <ul class="simple">
 <li><p>When returning a dict, <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> should at least include
 <code class="docutils literal notranslate"><span class="pre">value</span></code> key instead of <code class="docutils literal notranslate"><span class="pre">objective_value</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> and
-<a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (gh:<cite>200</cite>).</p></li>
+<a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/200">#200</a>).</p></li>
 <li><p>‘stop_strategy’ attribute is replaced by ‘stopping_strategy’ to harmonize
-with ‘stopping_criterion’, by <a href="#id3"><span class="problematic" id="id4">`Benoît Malézieux`_</span></a> (gh:<cite>274</cite>).</p></li>
+with ‘stopping_criterion’, by <a class="reference external" href="https://github.com/bmalezieux">Benoît Malézieux</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/274">#274</a>).</p></li>
 </ul>
 </section>
 </section>
@@ -180,7 +182,7 @@ by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <h3>API<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> can now return a dictionary with multiple outputs to
-monitor several metrics at once, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (gh:<cite>84</cite>).</p></li>
+monitor several metrics at once, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/84">#84</a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code> can now be used to skip objectives that are incompatible
 for the Solver, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/113">#113</a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Solver</span></code> can now use <code class="docutils literal notranslate"><span class="pre">stop_strategy</span> <span class="pre">=</span> <span class="pre">'callback'</span></code> to allow for
@@ -233,7 +235,7 @@ calling <code class="docutils literal notranslate"><span class="pre">benchopt</s
 <blockquote>
 <div><ul class="simple">
 <li><p><a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a></p></li>
-<li><p><a class="reference external" href="https://github.com/bmalezieux">Benoit Malézieux</a></p></li>
+<li><p><a class="reference external" href="https://github.com/bmalezieux">Benoît Malézieux</a></p></li>
 <li><p><a class="reference external" href="https://gdurif.perso.math.cnrs.fr/">Ghislain Durif</a></p></li>
 <li><p><a class="reference external" href="http://josephsalmon.eu">Joseph Salmon</a></p></li>
 <li><p><a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a></p></li>
