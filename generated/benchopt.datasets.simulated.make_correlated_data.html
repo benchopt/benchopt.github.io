@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.datasets.simulated.make_correlated_data &#8212; benchopt 1.1.1.dev78 documentation</title>
+    <title>benchopt.datasets.simulated.make_correlated_data &#8212; benchopt 1.1.1.dev79 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -44,7 +44,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev78</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev79</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -114,7 +114,7 @@
 <h1>benchopt.datasets.simulated.make_correlated_data<a class="headerlink" href="#benchopt-datasets-simulated-make-correlated-data" title="Permalink to this headline">¶</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="benchopt.datasets.simulated.make_correlated_data">
-<span class="sig-prename descclassname"><span class="pre">benchopt.datasets.simulated.</span></span><span class="sig-name descname"><span class="pre">make_correlated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_true</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.datasets.simulated.make_correlated_data" title="Permalink to this definition">¶</a></dt>
+<span class="sig-prename descclassname"><span class="pre">benchopt.datasets.simulated.</span></span><span class="sig-name descname"><span class="pre">make_correlated_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">n_samples</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">100</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_features</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">50</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_tasks</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rho</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.6</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">snr</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">3</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">w_true</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.2</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">random_state</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.datasets.simulated.make_correlated_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Generate a linear regression with decaying correlation for the design
 matrix <span class="math notranslate nohighlight">\(\rho^{|i-j|}\)</span>.</p>
 <p>The data are generated according to:</p>
@@ -134,19 +134,21 @@ and \quad \mathbb E[x_ix_j] = \rho^{|i-j|}\]</div>
 </dd>
 <dt><strong>n_features: int</strong></dt><dd><p>Number of features in the design matrix.</p>
 </dd>
+<dt><strong>n_tasks: int</strong></dt><dd><p>Number of tasks.</p>
+</dd>
 <dt><strong>rho: float</strong></dt><dd><p>Correlation <span class="math notranslate nohighlight">\(\rho\)</span> between successive features. The cross
 correlation <span class="math notranslate nohighlight">\(C_{i, j}\)</span> between feature i and feature j will be
 <span class="math notranslate nohighlight">\(\rho^{|i-j|}\)</span>. This parameter should be selected in
 <span class="math notranslate nohighlight">\([0, 1[\)</span>.</p>
 </dd>
-<dt><strong>snr</strong><span class="classifier">float</span></dt><dd><p>Signal-to-noise ratio.</p>
+<dt><strong>snr: float or np.inf</strong></dt><dd><p>Signal-to-noise ratio.</p>
 </dd>
-<dt><strong>w_true: np.array, shape (n_features,) | None</strong></dt><dd><p>True regression coefficients. If None, a sparse array with standard
+<dt><strong>w_true: np.array, shape (n_features,) or (n_features, n_tasks)| None</strong></dt><dd><p>True regression coefficients. If None, a sparse array with standard
 Gaussian non zero entries is simulated.</p>
 </dd>
 <dt><strong>density: float</strong></dt><dd><p>Proportion of non zero elements in w_true if the latter is simulated.</p>
 </dd>
-<dt><strong>random_state</strong><span class="classifier">int | RandomState instance | None (default)</span></dt><dd><p>Determines random number generation for data generation. Use an int to
+<dt><strong>random_state: int | RandomState instance | None (default)</strong></dt><dd><p>Determines random number generation for data generation. Use an int to
 make the randomness deterministic.</p>
 </dd>
 </dl>
@@ -155,9 +157,9 @@ make the randomness deterministic.</p>
 <dd class="field-even"><dl class="simple">
 <dt>X: ndarray, shape (n_samples, n_features)</dt><dd><p>A design matrix with Toeplitz covariance.</p>
 </dd>
-<dt>y: ndarray, shape (n_samples,)</dt><dd><p>Observation vector.</p>
+<dt>y: ndarray, shape (n_samples,) or (n_samples, n_tasks)</dt><dd><p>Observation vector/matrix.</p>
 </dd>
-<dt>w_true: ndarray, shape (n_features,)</dt><dd><p>True regression vector of the model.</p>
+<dt>w_true: ndarray, shape (n_features,) or (n_features, n_tasks)</dt><dd><p>True regression vector/matrix of the model.</p>
 </dd>
 </dl>
 </dd>
