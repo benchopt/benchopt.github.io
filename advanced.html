@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Advanced functionnalities in a benchmark &#8212; benchopt 1.1.1.dev80 documentation</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css" />
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What’s new" href="whats_new.html" />
+    <link rel="prev" title="BenchOpt configuration" href="config.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<script type="text/javascript" src="_static/js/jquery-1.12.4.min.js "></script>
+<script type="text/javascript" src="_static/js/jquery-fix.js "></script>
+<script type="text/javascript" src="_static/bootstrap-3.4.1/js/bootstrap.min.js "></script>
+<script type="text/javascript" src="_static/bootstrap-sphinx.js "></script>
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          benchopt</a>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev80</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="cli.html">CLI</a></li>
+                <li><a href="api.html">API</a></li>
+                <li><a href="how.html">Write a benchmark</a></li>
+                <li><a href="https://benchopt.github.io/results">Results</a></li>
+                <li><a href="whats_new.html">What's new</a></li>
+                <li><a href="https://github.com/benchopt/benchopt">GitHub</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI) Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="publish.html">Publish benchmark results</a></li>
+<li class="toctree-l1"><a class="reference internal" href="config.html">BenchOpt configuration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Advanced functionnalities in a benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+            
+            
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
+<li><a class="reference internal" href="#">Advanced functionnalities in a benchmark</a><ul>
+<li><a class="reference internal" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
+<li><a class="reference internal" href="#changing-the-strategy-to-grow-the-stop-val">Changing the strategy to grow the <code class="code docutils literal notranslate"><span class="pre">stop_val</span></code></a></li>
+<li><a class="reference internal" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    <div class="body col-md-9 content" role="main">
+      
+  <section id="advanced-functionnalities-in-a-benchmark">
+<span id="how"></span><h1>Advanced functionnalities in a benchmark<a class="headerlink" href="#advanced-functionnalities-in-a-benchmark" title="Permalink to this headline">¶</a></h1>
+<p>This page intends to list some advanced functionnality
+to make it easier to use the benchmark.</p>
+<section id="skipping-a-solver-for-a-given-problem">
+<span id="skiping-solver"></span><h2>Skipping a solver for a given problem<a class="headerlink" href="#skipping-a-solver-for-a-given-problem" title="Permalink to this headline">¶</a></h2>
+<p>Some solvers might not be able to run with all the datasets present
+in a benchmark. This is typically the case when some datasets are
+represented using sparse data or for datasets that are too large.</p>
+<p>In this cases, a solver can be skipped at runtime, depending on the
+characteristic of the objective. In order to define for which cases
+a solver should be skip, the user needs to implement a method
+<a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> in the solver class that will take
+the input as the <a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.set_objective" title="benchopt.BaseSolver.set_objective"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_objective()</span></code></a> method.
+This method should return a boolean value that evaluate to <code class="docutils literal notranslate"><span class="pre">True</span></code>
+if the solver should be skipped, and a string giving the reason of
+why the solver is skipped, for display purposes. For instance,
+for a solver where the objective is set with keys <cite>X, y, reg</cite>,
+we get</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+
+        <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;solver does not support sparse data X.&quot;</span>
+
+        <span class="k">if</span> <span class="n">reg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;solver does not work with reg=0&quot;</span>
+
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-the-strategy-to-grow-the-stop-val">
+<span id="sampling-strategy"></span><h2>Changing the strategy to grow the <code class="code docutils literal notranslate"><span class="pre">stop_val</span></code><a class="headerlink" href="#changing-the-strategy-to-grow-the-stop-val" title="Permalink to this headline">¶</a></h2>
+<p>By default, the number of iterations or the variation of the tolerance
+between  two evaluations of the objective is exponential. However, in
+some cases, this exponential growth might hide some effects, or might
+not be adapted to a given solver.</p>
+<p>The way this value is changed can be specified for each solver by
+implementing the <code class="docutils literal notranslate"><span class="pre">get_next</span></code> method in the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> class.
+This method takes as input the previous value where the objective
+function have been logged, and output the next one. For instance,
+if a solver needs to be evaluated every 10 iterations, we would have</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_val</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">stop_val</span> <span class="o">+</span> <span class="mi">10</span>
+</pre></div>
+</div>
+</section>
+<section id="reusing-some-code-in-a-benchmark">
+<span id="benchmark-utils-import"></span><h2>Reusing some code in a benchmark<a class="headerlink" href="#reusing-some-code-in-a-benchmark" title="Permalink to this headline">¶</a></h2>
+<p>In some situations, multiple solvers need to have access to the same
+functions. As a benchmark is not structured as proper python packages
+but imported dynamically to avoid installation issues, we resort to
+a special way of importing modules and functions defined for a benchmark.</p>
+<p>First, all code that need to be imported should be placed under
+<code class="docutils literal notranslate"><span class="pre">BENCHMARK_DIR/utils/</span></code>, as described here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_benchmark/
+├── objective.py  # contains the definition of the objective
+├── datasets/
+├── solvers/
+└── utils/
+    ├── helper1.py  # some helper
+    └─── helper_module  # some solver
+        ├── __init__.py  # some solver
+        └── submodule1.py  # some solver
+</pre></div>
+</div>
+<p>Then, these modules and packages can be imported using the method
+<a class="reference internal" href="generated/benchopt.safe_import_context.html#benchopt.safe_import_context.import_from" title="benchopt.safe_import_context.import_from"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.safe_import_context.import_from()</span></code></a>. This method
+takes as input the name of the module as a string and optionally
+the name of the object to load. The imported package can
+either be a simple <code class="docutils literal notranslate"><span class="pre">*.py</span></code> file or a more complex package
+with a <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file. The naming convention for import
+is the same as for regular import, with submodules
+separated with <code class="docutils literal notranslate"><span class="pre">.</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
+
+<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
+    <span class="n">helper1</span> <span class="o">=</span> <span class="n">import_ctx</span><span class="o">.</span><span class="n">import_from</span><span class="p">(</span><span class="s1">&#39;helper1&#39;</span><span class="p">)</span>
+    <span class="n">func1</span> <span class="o">=</span> <span class="n">import_ctx</span><span class="o">.</span><span class="n">import_from</span><span class="p">(</span><span class="s1">&#39;helper1&#39;</span><span class="p">,</span> <span class="s1">&#39;func1&#39;</span><span class="p">)</span>
+    <span class="n">func2</span> <span class="o">=</span> <span class="n">import_ctx</span><span class="o">.</span><span class="n">import_from</span><span class="p">(</span><span class="s1">&#39;helper_module.submodule1&#39;</span><span class="p">,</span> <span class="s1">&#39;func2&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2020-2020, Benchopt contributors.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.3.2.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

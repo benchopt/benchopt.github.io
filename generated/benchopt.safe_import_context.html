@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.safe_import_context &#8212; benchopt 1.1.1.dev79 documentation</title>
+    <title>benchopt.safe_import_context &#8212; benchopt 1.1.1.dev80 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev79</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev80</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -71,6 +71,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../publish.html">Publish benchmark results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../config.html">BenchOpt configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../advanced.html">Advanced functionnalities in a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
 </ul>
@@ -114,7 +115,45 @@
 <dl class="py class">
 <dt class="sig sig-object py" id="benchopt.safe_import_context">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">safe_import_context</span></span><a class="headerlink" href="#benchopt.safe_import_context" title="Permalink to this definition">¶</a></dt>
-<dd><p>Do not fail on ImportError and catch import warnings</p>
+<dd><p>Context used to manage import in benchmarks.</p>
+<p>This context allows to avoid errors on ImportError, to be able to report
+that a solver/dataset is not installed.</p>
+<p>Moreover, this context also allows to skip the import when simply listing
+all solvers, for benchmark’s installation or auto completion. Note that all
+costly imports should be protected with this import for benchopt to perform
+best.</p>
+<p>This context is also used to import module dynamically from the <code class="docutils literal notranslate"><span class="pre">utils</span></code>
+folder of a benchmark, using the
+<a class="reference internal" href="#benchopt.safe_import_context.import_from" title="benchopt.safe_import_context.import_from"><code class="xref py py-func docutils literal notranslate"><span class="pre">import_from()</span></code></a> method.
+See <a class="reference internal" href="../advanced.html#benchmark-utils-import"><span class="std std-ref">Reusing some code in a benchmark</span></a> for a detailed explanation of this part.</p>
+<p>Finally, this context also catches import warnings.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.safe_import_context.import_from">
+<span class="sig-name descname"><span class="pre">import_from</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">module_name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">obj</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.safe_import_context.import_from" title="Permalink to this definition">¶</a></dt>
+<dd><p>Dynamically import a module from BENCHMARK_DIR/utils.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>module_name: str</strong></dt><dd><p>Name of the module to import. It can be a module with a simple
+<code class="docutils literal notranslate"><span class="pre">*.py</span></code> file, or a more complex package with a <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>
+file. The naming convention for import is the same, with submodules
+separated with <code class="docutils literal notranslate"><span class="pre">.</span></code>. The module is imported directly from the
+BENCHMARK_DIR/utils/ folder.</p>
+</dd>
+<dt><strong>obj: str or None</strong></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">obj</span></code> is provided, the module is imported and only the
+attribute named <code class="docutils literal notranslate"><span class="pre">obj</span></code> from this module is returned.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><dl class="simple">
+<dt>module or obj: object</dt><dd><p>Module or object imported dynamically.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
 </dd></dl>
 
 <span class="target" id="sphx-glr-backreferences-benchopt-safe-import-context"></span></section>
