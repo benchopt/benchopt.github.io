@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Demo benchmark with R/Python &#8212; benchopt 1.1.1.dev83 documentation</title>
+    <title>Demo benchmark with R/Python &#8212; benchopt 1.1.1.dev84 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -41,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev83</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev84</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -127,9 +127,11 @@ to download the full example code</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Benchopt is running
 Simulated[n_samples=100,n_features=5000,rho=0]
 |--Lasso Regression[fit_intercept=False,reg=0.5]
+/home/circleci/project/benchopt/base.py:57: FutureWarning: &#39;stop_strategy&#39; attribute is deprecated, use &#39;stopping_strategy&#39; instead
+  warnings.warn(
 |----Python-PGD[use_acceleration=False]: done
 |----R-PGD: done (timeout)
-Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-03-03_12h37m33.csv
+Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-03-03_17h56m32.csv
 Save objective_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_support_size_objective_curve.pdf
 Save objective_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_duality_gap_objective_curve.pdf
@@ -176,7 +178,7 @@ Save histogram plot of objective_value for Simulated[n_samples=100,n_features=50
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  23.502 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  10.533 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/46d3545d2de3fcee6756b7d2ee7fb39f/plot_run_benchmark_python_R.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark_python_R.py</span></code></a></p>
