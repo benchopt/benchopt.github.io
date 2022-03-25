@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.BaseObjective &#8212; benchopt 1.1.1.dev90 documentation</title>
+    <title>benchopt.BaseObjective &#8212; benchopt 1.1.1.dev91 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev90</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev91</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -155,6 +155,19 @@ of runnning each separately.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.get_one_beta">
+<span class="sig-name descname"><span class="pre">get_one_beta</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_one_beta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return one point in which the objective function can be evaluated.</p>
+<p>This method is mainly for testing purposes, to check that the return
+computation and the return type of <cite>Objective.compute</cite>. It should
+return an object that can be passed to compute.</p>
+<p>By default, if <cite>Dataset.get_data</cite> returns a shape, this function will
+return an array full of 0. It can be overriden to provide a different
+point. When <cite>Dataset.get_data</cite> returns “object”, this method must be
+overwritten.</p>
 </dd></dl>
 
 <dl class="py method">
