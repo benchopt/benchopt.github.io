@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Run benchmark from a script &#8212; benchopt 1.1.1.dev92 documentation</title>
+    <title>Run benchmark from a script &#8212; benchopt 1.1.1.dev93 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -41,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev92</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev93</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -139,7 +139,6 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (1 / 15 reps)
 |----Lightning:  29.5% (1 / 15 reps)
 |----Lightning:  40.2% (1 / 15 reps)
-|----Lightning:  55.5% (1 / 15 reps)
 |----Lightning: initialization (2 / 15 reps)
 |----Lightning:   0.0% (2 / 15 reps)
 |----Lightning:   1.0% (2 / 15 reps)
@@ -153,7 +152,6 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (2 / 15 reps)
 |----Lightning:  29.5% (2 / 15 reps)
 |----Lightning:  40.2% (2 / 15 reps)
-|----Lightning:  55.5% (2 / 15 reps)
 |----Lightning: initialization (3 / 15 reps)
 |----Lightning:   0.0% (3 / 15 reps)
 |----Lightning:   1.0% (3 / 15 reps)
@@ -167,7 +165,6 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (3 / 15 reps)
 |----Lightning:  29.5% (3 / 15 reps)
 |----Lightning:  40.2% (3 / 15 reps)
-|----Lightning:  55.5% (3 / 15 reps)
 |----Lightning: initialization (4 / 15 reps)
 |----Lightning:   0.0% (4 / 15 reps)
 |----Lightning:   1.0% (4 / 15 reps)
@@ -181,7 +178,6 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (4 / 15 reps)
 |----Lightning:  29.5% (4 / 15 reps)
 |----Lightning:  40.2% (4 / 15 reps)
-|----Lightning:  55.5% (4 / 15 reps)
 |----Lightning: initialization (5 / 15 reps)
 |----Lightning:   0.0% (5 / 15 reps)
 |----Lightning:   1.0% (5 / 15 reps)
@@ -195,7 +191,6 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (5 / 15 reps)
 |----Lightning:  29.5% (5 / 15 reps)
 |----Lightning:  40.2% (5 / 15 reps)
-|----Lightning:  55.5% (5 / 15 reps)
 |----Lightning: initialization (6 / 15 reps)
 |----Lightning:   0.0% (6 / 15 reps)
 |----Lightning:   1.0% (6 / 15 reps)
@@ -223,7 +218,6 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (7 / 15 reps)
 |----Lightning:  29.5% (7 / 15 reps)
 |----Lightning:  40.2% (7 / 15 reps)
-|----Lightning:  55.5% (7 / 15 reps)
 |----Lightning: initialization (8 / 15 reps)
 |----Lightning:   0.0% (8 / 15 reps)
 |----Lightning:   1.0% (8 / 15 reps)
@@ -237,7 +231,6 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (8 / 15 reps)
 |----Lightning:  29.5% (8 / 15 reps)
 |----Lightning:  40.2% (8 / 15 reps)
-|----Lightning:  55.5% (8 / 15 reps)
 |----Lightning: initialization (9 / 15 reps)
 |----Lightning:   0.0% (9 / 15 reps)
 |----Lightning:   1.0% (9 / 15 reps)
@@ -264,7 +257,6 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (10 / 15 reps)
 |----Lightning:  29.5% (10 / 15 reps)
 |----Lightning:  40.2% (10 / 15 reps)
-|----Lightning:  55.5% (10 / 15 reps)
 |----Lightning: initialization (11 / 15 reps)
 |----Lightning:   0.0% (11 / 15 reps)
 |----Lightning:   1.0% (11 / 15 reps)
@@ -318,6 +310,7 @@ Simulated[n_samples=200,n_features=500]
 |----Lightning:  21.8% (14 / 15 reps)
 |----Lightning:  29.5% (14 / 15 reps)
 |----Lightning:  40.2% (14 / 15 reps)
+|----Lightning:  55.5% (14 / 15 reps)
 |----Lightning: initialization (15 / 15 reps)
 |----Lightning:   0.0% (15 / 15 reps)
 |----Lightning:   1.0% (15 / 15 reps)
@@ -680,7 +673,7 @@ Simulated[n_samples=200,n_features=500]
 |----sklearn[newton-cg]:  46.3% (15 / 15 reps)
 |----sklearn[newton-cg]: 1 (15 / 15 reps)
 |----sklearn[newton-cg]: done
-Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2022-03-26_11h24m06.csv
+Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2022-03-29_11h25m20.csv
 Save objective_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/27992fe699cff015fec8db6a24aab0d3_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_Test loss for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/27992fe699cff015fec8db6a24aab0d3_objective_Test loss_objective_curve.pdf
 Save suboptimality_curve plot of objective_value for Simulated[n_samples=200,n_features=500] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/27992fe699cff015fec8db6a24aab0d3_objective_value_suboptimality_curve.pdf
@@ -729,7 +722,7 @@ Save histogram plot of objective_value for Simulated[n_samples=200,n_features=50
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  34.777 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  34.314 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/d0a19eddcd9b5cc19e309134ae758ece/plot_run_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark.py</span></code></a></p>
@@ -754,7 +747,7 @@ Save histogram plot of objective_value for Simulated[n_samples=200,n_features=50
     </p>
     <p>
         &copy; Copyright 2020-2020, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.4.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>
