@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>BenchOpt configuration &#8212; benchopt 1.1.1.dev97 documentation</title>
+    <title>BenchOpt configuration &#8212; benchopt 1.1.1.dev99 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev97</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev99</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -111,6 +111,7 @@
 <li><a class="reference internal" href="#benchmark-settings">Benchmark settings</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#using-mamba-to-install-packages">Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages</a></li>
 </ul>
 </li>
 </ul>
@@ -169,7 +170,8 @@ install fails.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">github_token</span></code>, <em>str</em>: token to publish results on <code class="docutils literal notranslate"><span class="pre">benchopt/results</span></code>
 via github.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">conda_cmd</span></code>, <em>str</em>: can be used to give the path to <code class="docutils literal notranslate"><span class="pre">conda</span></code> if it is
-not directly installed on <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>.</p></li>
+not directly installed on <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>. This can also be used to use <code class="docutils literal notranslate"><span class="pre">mamba</span></code>
+to install benchmarks instead of conda. See <a class="reference internal" href="#config-mamba"><span class="std std-ref">Using mamba to install packages</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code>, <em>str</em>: can be used to specify the shell to use. Default to
 <cite>SHELL</cite> from env if it exists and <code class="docutils literal notranslate"><span class="pre">'bash'</span></code> otherwise.</p></li>
 </ul>
@@ -195,6 +197,11 @@ indented, as:</p>
 </dd></dl>
 
 </section>
+</section>
+<section id="using-mamba-to-install-packages">
+<span id="config-mamba"></span><h2>Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages<a class="headerlink" href="#using-mamba-to-install-packages" title="Permalink to this headline">¶</a></h2>
+<p>When many packages need to be installed, <code class="docutils literal notranslate"><span class="pre">conda</span></code> can be slow or even fail to resolve the dependency graph. Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> can speed up this process and make it more reliable.</p>
+<p>To use <code class="docutils literal notranslate"><span class="pre">mamba</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> when installing benchmark requirements, it is necessary to have <code class="docutils literal notranslate"><span class="pre">mamba</span></code> installed in the <code class="docutils literal notranslate"><span class="pre">base</span></code> conda environment, <em>e.g.</em> using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">base</span> <span class="pre">mamba</span></code>. Then, <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> can be configured to use this command instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> by either configuring the CLI using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">set</span> <span class="pre">conda_cmd</span> <span class="pre">mamba</span></code> or setting the environment variable <code class="docutils literal notranslate"><span class="pre">BENCHOPT_CONDA_CMD=mamba</span></code>.</p>
 </section>
 </section>
 
