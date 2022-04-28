@@ -32,42 +32,42 @@ Demo benchmark with R/Python
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_001.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_001.png
          :class: sphx-glr-multi-img
 
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_002.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_002.png
          :class: sphx-glr-multi-img
 
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_003.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_003.png
          :class: sphx-glr-multi-img
 
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_004.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_004.png
          :class: sphx-glr-multi-img
 
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_005.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_005.png
          :class: sphx-glr-multi-img
 
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_006.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_samples=100,n_features=5000,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_006.png
          :class: sphx-glr-multi-img
 
@@ -79,18 +79,20 @@ Demo benchmark with R/Python
  .. code-block:: none
 
     Benchopt is running
-    Simulated[n_samples=100,n_features=5000,rho=0]
+    Simulated[n_features=5000,n_samples=100,rho=0]
       |--Lasso Regression[fit_intercept=False,reg=0.5]
         |--Python-PGD[use_acceleration=False]: done
+
         |--R-PGD: done (timeout)
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-04-27_16h15m22.csv
-    Save objective_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_value_objective_curve.pdf
-    Save objective_curve plot of objective_support_size for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_support_size_objective_curve.pdf
-    Save objective_curve plot of objective_duality_gap for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_duality_gap_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_value_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_value_relative_suboptimality_curve.pdf
+
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-04-28_20h56m53.csv
+    Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_support_size_objective_curve.pdf
+    Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_duality_gap_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_relative_suboptimality_curve.pdf
     Solver R-PGD did not reach precision 1e-06.
-    Save bar_chart plot of objective_value for Simulated[n_samples=100,n_features=5000,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1bd803bd7f97cdcf679a61cd4a106fb6_objective_value_bar_chart.pdf
+    Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_bar_chart.pdf
 
 
 
@@ -138,7 +140,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  19.821 seconds)
+   **Total running time of the script:** ( 2 minutes  1.455 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
