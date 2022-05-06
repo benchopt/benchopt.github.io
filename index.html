@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchopt: Benchmark repository for optimization &#8212; benchopt 1.1.1.dev118 documentation</title>
+    <title>Benchopt: Benchmark repository for optimization &#8212; benchopt 1.1.1.dev119 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev118</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.1.1.dev119</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -190,6 +190,22 @@ If you want to run a specific configuration, pass it explicitly, e.g., to run th
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run --env ./benchmark_lasso -r 10
 </pre></div>
 </div>
+<p><strong>Passing option through configuration file</strong>: all options of <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> can be passed through a YAML configuration file, together with <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">&lt;configuration_file_name.yml&gt;</span></code>.
+The options are defined using the same name as the CLI options.
+An example of configuration file is:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">objective-filter</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lasso Regression[fit_intercept=False,reg=0.5]</span><span class="w"></span>
+<span class="nt">dataset</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulated</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leukemia</span><span class="w"></span>
+<span class="nt">solver</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celer</span><span class="w"></span>
+<span class="nt">force-solver</span><span class="p">:</span><span class="w"></span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd</span><span class="w"></span>
+<span class="nt">n-repetitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+</pre></div>
+</div>
+<p>When options are passed both via file and CLI, the CLI takes precedence.</p>
 <p><strong>Getting help</strong>: use</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt run -h
 </pre></div>
