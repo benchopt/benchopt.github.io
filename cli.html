@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Command Line Interface (CLI) Documentation &#8212; benchopt 1.2.1.dev5 documentation</title>
+    <title>Command Line Interface (CLI) Documentation &#8212; benchopt 1.2.1.dev6 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev5</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev6</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -202,6 +202,12 @@ and the dataset name.</p>
 <dt class="sig sig-object std" id="cmdoption-benchopt-install-d">
 <span id="cmdoption-benchopt-install-dataset"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dataset</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dataset_name&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-install-d" title="Permalink to this definition">¶</a></dt>
 <dd><p>Install the dataset &lt;dataset_name&gt;. By default, all datasets are included, except when -s flag is used. If -s flag is used, then no dataset is included. When <cite>-d</cite> is used, only listed datasets are included. Note that &lt;dataset_name&gt; can be a regexp. To include multiple datasets, use multiple <cite>-d</cite> options.To include all datasets, use -d ‘all’ option.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-install-config">
+<span class="sig-name descname"><span class="pre">--config</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;config_file&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-install-config" title="Permalink to this definition">¶</a></dt>
+<dd><p>YAML configuration file containing benchmark options, whose solvers and datasets will be installed.</p>
 </dd></dl>
 
 <dl class="std option">
