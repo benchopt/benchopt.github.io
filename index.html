@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchopt: Benchmark repository for optimization &#8212; benchopt 1.2.1.dev18 documentation</title>
+    <title>Benchopt: Benchmark repository for optimization &#8212; benchopt 1.2.1.dev19 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -20,7 +20,7 @@
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Command Line Interface (CLI) Documentation" href="cli.html" />
+    <link rel="next" title="Command line interface (CLI)" href="cli.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev18</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev19</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -51,7 +51,6 @@
             
                 <li><a href="cli.html">CLI</a></li>
                 <li><a href="api.html">API</a></li>
-                <li><a href="how.html">Write a benchmark</a></li>
                 <li><a href="https://benchopt.github.io/results">Results</a></li>
                 <li><a href="whats_new.html">What's new</a></li>
                 <li><a href="https://github.com/benchopt/benchopt">GitHub</a></li>
@@ -66,12 +65,12 @@
   <ul class="dropdown-menu globaltoc"
       role="menu"
       aria-labelledby="dLabelGlobalToc"><ul>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI) Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publish.html">Publish benchmark results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">BenchOpt configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced functionnalities in a benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced functionalities in a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
 </ul>
@@ -105,18 +104,19 @@
         <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
 <li><a class="reference internal" href="#">Benchopt: Benchmark repository for optimization</a><ul>
 <li><a class="reference internal" href="#install">Install</a></li>
-<li><a class="reference internal" href="#quickstart-command-line-usage-on-the-lasso-benchmark">Quickstart: command line usage on the Lasso benchmark</a></li>
-<li><a class="reference internal" href="#some-available-benchmarks">Some available benchmarks</a></li>
+<li><a class="reference internal" href="#run-a-benchmark">Run a benchmark</a></li>
+<li><a class="reference internal" href="#write-a-benchmark">Write a benchmark</a></li>
+<li><a class="reference internal" href="#available-benchmarks">Available benchmarks</a></li>
 <li><a class="reference internal" href="#benchmark-results">Benchmark results</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#how-to-contribute">How to contribute</a><ul>
-<li><a class="reference internal" href="#submitting-a-bug-report-or-a-feature-request">Submitting a bug report or a feature request</a></li>
-<li><a class="reference internal" href="#contributing-code">Contributing code</a></li>
+<li><a class="reference internal" href="#bug-report-and-feature-request">Bug report and feature request</a></li>
+<li><a class="reference internal" href="#code-contribution">Code contribution</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
 </ul>
 </li>
-<li><a class="reference internal" href="#contents">Contents</a></li>
+<li><a class="reference internal" href="#website-contents">Website contents</a></li>
 </ul>
 
         </div>
@@ -136,7 +136,7 @@ command.
 If a solver can be installed via
 <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a>, it should just work in benchopt!</p>
 <p>Benchopt is used through a command line as documented
-in the <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>.
+in the <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command line interface (CLI)</span></a>.
 Once benchopt is installed, running and replicating an optimization benchmark is <strong>as simple as doing</strong>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -151,7 +151,6 @@ give you a benchmark plot on l2-regularized logistic regression:</p>
 <figure class="align-center">
 <a class="reference external image-reference" href="how.html"><img alt="_images/sphx_glr_plot_run_benchmark_003.png" src="_images/sphx_glr_plot_run_benchmark_003.png" style="width: 512.0px; height: 384.0px;" /></a>
 </figure>
-<p>Learn how to <a class="reference internal" href="how.html#how"><span class="std std-ref">Write a benchmark</span></a>.</p>
 <section id="install">
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>This package can be installed through <cite>pip</cite>.  In order to allow benchopt to automatically
@@ -170,8 +169,8 @@ such as for <a class="reference external" href="https://github.com/benchopt/benc
 This benchmark can be retrieved locally with:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone https://github.com/benchopt/benchmark_lasso.git</span>
 </pre></div></div></section>
-<section id="quickstart-command-line-usage-on-the-lasso-benchmark">
-<h2>Quickstart: command line usage on the Lasso benchmark<a class="headerlink" href="#quickstart-command-line-usage-on-the-lasso-benchmark" title="Permalink to this headline">¶</a></h2>
+<section id="run-a-benchmark">
+<h2>Run a benchmark<a class="headerlink" href="#run-a-benchmark" title="Permalink to this headline">¶</a></h2>
 <p>This section illustrates benchopt’s command line interface on the <a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso benchmark</a>; the syntax is applicable to any benchmark.
 All this section assumes that you are in the parent folder of the <code class="docutils literal notranslate"><span class="pre">benchmark_lasso</span></code> folder.
 The <code class="docutils literal notranslate"><span class="pre">--env</span></code> flag specifies that everything is run in the <code class="docutils literal notranslate"><span class="pre">benchopt_benchmark_lasso</span></code> conda environment.</p>
@@ -190,14 +189,14 @@ If you want to run a specific configuration, pass it explicitly, e.g., to run th
 The options are defined using the same name as the CLI options.
 An example of configuration file is:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">objective-filter</span><span class="p">:</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lasso Regression[fit_intercept=False,reg=0.5]</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lasso Regression[fit_intercept=False,reg=0.5]</span><span class="w"></span>
 <span class="nt">dataset</span><span class="p">:</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulated</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leukemia</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulated</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leukemia</span><span class="w"></span>
 <span class="nt">solver</span><span class="p">:</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celer</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celer</span><span class="w"></span>
 <span class="nt">force-solver</span><span class="p">:</span><span class="w"></span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd</span><span class="w"></span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd</span><span class="w"></span>
 <span class="nt">n-repetitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
 </pre></div>
 </div>
@@ -205,10 +204,20 @@ An example of configuration file is:</p>
 <p><strong>Getting help</strong>: use</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt run -h</span>
 </pre></div></div><p>to get more details about the different options.
-You can also read the <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command Line Interface (CLI) Documentation</span></a>.</p>
+You can also read the <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command line interface (CLI)</span></a>.</p>
 </section>
-<section id="some-available-benchmarks">
-<h2>Some available benchmarks<a class="headerlink" href="#some-available-benchmarks" title="Permalink to this headline">¶</a></h2>
+<section id="write-a-benchmark">
+<h2>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Permalink to this headline">¶</a></h2>
+<p>Learn how to <a class="reference internal" href="how.html#how"><span class="std std-ref">Write a benchmark</span></a>, including creating an objective, a solver, and
+a dataset.</p>
+</section>
+<section id="available-benchmarks">
+<h2>Available benchmarks<a class="headerlink" href="#available-benchmarks" title="Permalink to this headline">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some benchmarks are briefly described in the list below. For a complete
+list of benchmarks, see GitHub repositories of the form <a class="reference external" href="https://github.com/orgs/benchopt/repositories?q=benchmark_&amp;type=all&amp;language=&amp;sort=stargazers/">benchopt/benchmark_*</a>.</p>
+</div>
 <p><strong>Notation:</strong>  In what follows, n (or n_samples) stands for the number of samples and p (or n_features) stands for the number of features.</p>
 <div class="math notranslate nohighlight">
 \[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
@@ -272,7 +281,6 @@ related to unknown independent sources <span class="math notranslate nohighlight
 linear ICA is to recover <span class="math notranslate nohighlight">\(A\)</span> up to permutation and scaling of its columns.
 The objective in this benchmark is related to some estimation on <span class="math notranslate nohighlight">\(A\)</span>
 quantified with the so-called AMARI distance.</p>
-<p>See <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a> for more.</p>
 </section>
 <section id="benchmark-results">
 <h2>Benchmark results<a class="headerlink" href="#benchmark-results" title="Permalink to this headline">¶</a></h2>
@@ -282,13 +290,13 @@ quantified with the so-called AMARI distance.</p>
 </section>
 <section id="how-to-contribute">
 <span id="contrib-doc"></span><h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Permalink to this headline">¶</a></h1>
-<section id="submitting-a-bug-report-or-a-feature-request">
-<h2>Submitting a bug report or a feature request<a class="headerlink" href="#submitting-a-bug-report-or-a-feature-request" title="Permalink to this headline">¶</a></h2>
+<section id="bug-report-and-feature-request">
+<h2>Bug report and feature request<a class="headerlink" href="#bug-report-and-feature-request" title="Permalink to this headline">¶</a></h2>
 <p>We use benchopt <a class="reference external" href="https://github.com/benchopt/benchopt/issues">GitHub repo</a> to track all bugs and feature requests; feel free to open
 an issue if you have found a bug or wish to see a feature implemented.</p>
 </section>
-<section id="contributing-code">
-<h2>Contributing code<a class="headerlink" href="#contributing-code" title="Permalink to this headline">¶</a></h2>
+<section id="code-contribution">
+<h2>Code contribution<a class="headerlink" href="#code-contribution" title="Permalink to this headline">¶</a></h2>
 <p>The preferred way to contribute to benchopt is to fork the <a class="reference external" href="https://github.com/benchopt/benchopt/">main
 repository</a> on GitHub,
 then submit a “Pull Request” (PR).</p>
@@ -371,16 +379,16 @@ HTML output by typing, in a shell:</p>
 <span class="prompt1">firefox _build/html/index.html</span>
 </pre></div></div></section>
 </section>
-<section id="contents">
-<h1>Contents<a class="headerlink" href="#contents" title="Permalink to this headline">¶</a></h1>
+<section id="website-contents">
+<h1>Website contents<a class="headerlink" href="#website-contents" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface (CLI) Documentation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="api.html">Python API Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command line interface (CLI)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api.html">Python API</a></li>
 <li class="toctree-l1"><a class="reference internal" href="how.html">Write a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="publish.html">Publish benchmark results</a></li>
 <li class="toctree-l1"><a class="reference internal" href="config.html">BenchOpt configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced functionnalities in a benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="advanced.html">Advanced functionalities in a benchmark</a></li>
 <li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
 </ul>
@@ -399,7 +407,7 @@ HTML output by typing, in a shell:</p>
       
     </p>
     <p>
-        &copy; Copyright 2020-2020, Benchopt contributors.<br/>
+        &copy; Copyright 2020-2022, Benchopt contributors.<br/>
       Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
