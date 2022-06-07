@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.BaseObjective &#8212; benchopt 1.2.1.dev31 documentation</title>
+    <title>benchopt.BaseObjective &#8212; benchopt 1.2.1.dev32 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -16,6 +16,7 @@
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -43,7 +44,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev31</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev32</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -110,7 +111,7 @@
     <div class="body col-md-9 content" role="main">
       
   <section id="benchopt-baseobjective">
-<h1>benchopt.BaseObjective<a class="headerlink" href="#benchopt-baseobjective" title="Permalink to this headline">¶</a></h1>
+<h1>benchopt.BaseObjective<a class="headerlink" href="#benchopt-baseobjective" title="Permalink to this heading">¶</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="benchopt.BaseObjective">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">BaseObjective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective" title="Permalink to this definition">¶</a></dt>
@@ -137,13 +138,13 @@ stored at once instead of runnning each separately.</p></li>
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.compute" title="Permalink to this definition">¶</a></dt>
 <dd><p>Compute the value of the objective given the current estimate beta.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>beta</strong><span class="classifier">ndarray or tuple of ndarray</span></dt><dd><p>The current estimate of the parameters being optimized.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>objective_value</strong><span class="classifier">float or dict {‘name’: float}</span></dt><dd><p>The value(s) of the objective function. If a dictionary is
 returned, it should at least contain a key <cite>value</cite> associated to a
@@ -174,7 +175,7 @@ overwritten.</p>
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.set_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Store the info on a dataset to be able to compute the objective.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>**data: dict</strong></dt><dd><p>Extra parameters of the objective. This dictionary is retrieved
 by calling <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">Dataset.get_data()</span></code>.</p>
@@ -189,14 +190,14 @@ by calling <code class="docutils literal notranslate"><span class="pre">data</sp
 <span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.skip" title="Permalink to this definition">¶</a></dt>
 <dd><p>Used to decide if the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> is compatible with the data.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt><strong>**data: dict</strong></dt><dd><p>Extra parameters of the objective. This dictionary is retrieved
 by calling <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">Dataset.get_data()</span></code>.</p>
 </dd>
 </dl>
 </dd>
-<dt class="field-even">Returns</dt>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
 <dt><strong>skip</strong><span class="classifier">bool</span></dt><dd><p>Whether this objective should be skipped or not for this data
 (accessible in the objective attributes).</p>
@@ -214,7 +215,7 @@ If skip is False, the reason should be None.</p>
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">to_dict</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.to_dict" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return the objective parameters for the solver.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Returns</dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
 <dt>objective_dict: dict</dt><dd><p>Parameters of the objective that will be given to the solver when
 calling <code class="docutils literal notranslate"><span class="pre">Solver.set_objective(**objective_dict)</span></code>.</p>
@@ -241,7 +242,7 @@ calling <code class="docutils literal notranslate"><span class="pre">Solver.set_
     </p>
     <p>
         &copy; Copyright 2020-2022, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.1.<br/>
     </p>
   </div>
 </footer>
