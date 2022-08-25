@@ -3,9 +3,9 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Demo benchmark with R/Python &#8212; benchopt 1.2.1.dev59 documentation</title>
+    <title>Demo benchmark with R/Python &#8212; benchopt 1.2.1.dev60 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev59</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev60</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -123,12 +123,11 @@ to download the full example code</p>
 <li><img src="../_images/sphx_glr_plot_run_benchmark_python_R_005.png" srcset="../_images/sphx_glr_plot_run_benchmark_python_R_005.png" alt="Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]" class = "sphx-glr-multi-img"/></li>
 <li><img src="../_images/sphx_glr_plot_run_benchmark_python_R_006.png" srcset="../_images/sphx_glr_plot_run_benchmark_python_R_006.png" alt="Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]" class = "sphx-glr-multi-img"/></li>
 </ul>
-<p class="sphx-glr-script-out">Out:</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Simulated[n_features=5000,n_samples=100,rho=0]
   |--Lasso Regression[fit_intercept=False,reg=0.5]
     |--Python-PGD[use_acceleration=False]: done
     |--R-PGD: done (timeout)
-Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-07-22_10h34m44.parquet
+Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-08-25_16h55m46.parquet
 Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_support_size_objective_curve.pdf
 Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_duality_gap_objective_curve.pdf
@@ -171,11 +170,11 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">PLOT_KINDS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">figs</span></a> <span class="o">=</span> <a href="../generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">),</span>
                       <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  20.302 seconds)</p>
-<div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  16.074 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/46d3545d2de3fcee6756b7d2ee7fb39f/plot_run_benchmark_python_R.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark_python_R.py</span></code></a></p>
 </div>
@@ -199,7 +198,7 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
     </p>
     <p>
         &copy; Copyright 2020-2022, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.0.2.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.1.1.<br/>
     </p>
   </div>
 </footer>
