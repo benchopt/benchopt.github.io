@@ -209,21 +209,7 @@ Demo benchmark with R/Python
     0.002260300813429973
     0.0013204779854479964
     0.0008936361508353177
-    2.0007555527735178e+95
-    -0.008673018031726518
-    0.008673018031726518
-    0.006847733674199854
-    0.0055533315251421874
-    0.008457306288127927
-    0.00852968946074692
-    0.007328081326273666
-    0.006775094595062184
-    0.0060185707762286
-    0.005210373339554449
-    0.003401653408713466
-    0.002260300813429973
-    0.0013204779854479964
-    0.0008936361508353177
+    0.0003286639397500624
     2.0007555527735178e+95
     -0.008673018031726518
     0.008673018031726518
@@ -270,9 +256,23 @@ Demo benchmark with R/Python
     0.002260300813429973
     0.0013204779854479964
     0.0008936361508353177
-    0.0003286639397500624
+    2.0007555527735178e+95
+    -0.008673018031726518
+    0.008673018031726518
+    0.006847733674199854
+    0.0055533315251421874
+    0.008457306288127927
+    0.00852968946074692
+    0.007328081326273666
+    0.006775094595062184
+    0.0060185707762286
+    0.005210373339554449
+    0.003401653408713466
+    0.002260300813429973
+    0.0013204779854479964
+    0.0008936361508353177
         |--R-PGD: done (timeout)
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-11-09_08h44m07.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-11-09_08h44m58.parquet
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
@@ -346,7 +346,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 2 minutes  7.979 seconds)
+   **Total running time of the script:** ( 2 minutes  6.968 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:

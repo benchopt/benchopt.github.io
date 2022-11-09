@@ -123,7 +123,6 @@ Run benchmark from a script
         |--Lightning:  43.2% (4 / 15 reps)    2.032412908075873e-08
         |--Lightning:  50.9% (4 / 15 reps)    1.0209260683925174e-10
         |--Lightning:  61.6% (4 / 15 reps)    4.497610811356145e-14
-        |--Lightning:  76.9% (4 / 15 reps)    6.4068530076298365e-18
         |--Lightning: initialization (5 / 15 reps)    7.213475204444819e+97
         |--Lightning:   0.0% (5 / 15 reps)    0.9125051713332406
         |--Lightning:   1.0% (5 / 15 reps)    0.023944340717169794
@@ -184,11 +183,6 @@ Run benchmark from a script
         |--Lightning:  16.2% (9 / 15 reps)    0.0013240643246482644
         |--Lightning:  21.3% (9 / 15 reps)    0.00026331513359622726
         |--Lightning:  25.4% (9 / 15 reps)    4.818581461608474e-05
-        |--Lightning:  28.8% (9 / 15 reps)    8.05347921275724e-06
-        |--Lightning:  35.8% (9 / 15 reps)    6.851943119147085e-07
-        |--Lightning:  43.2% (9 / 15 reps)    2.032412908075873e-08
-        |--Lightning:  50.9% (9 / 15 reps)    1.0209260683925174e-10
-        |--Lightning:  61.6% (9 / 15 reps)    4.497610811356145e-14
         |--Lightning: initialization (10 / 15 reps)    7.213475204444819e+97
         |--Lightning:   0.0% (10 / 15 reps)    0.9125051713332406
         |--Lightning:   1.0% (10 / 15 reps)    0.023944340717169794
@@ -584,37 +578,37 @@ Run benchmark from a script
         |--sklearn[newton-cg]:  25.5% (15 / 15 reps)    2.575362703476965e-13
         |--sklearn[newton-cg]:  41.0% (15 / 15 reps)    0.0
         |--sklearn[newton-cg]:  67.7% (15 / 15 reps)    0.0
-        |--sklearn[newton-cg]: done
-    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2022-11-09_08h44m47.parquet
+        |--sklearn[newton-cg]: done (timeout)
+    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2022-11-09_08h45m42.parquet
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
-    Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_objective_curve.pdf
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
-    Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_Test loss_objective_curve.pdf
+    Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_Test loss_objective_curve.pdf
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
-    Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_suboptimality_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_suboptimality_curve.pdf
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_relative_suboptimality_curve.pdf
-    Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_bar_chart.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_relative_suboptimality_curve.pdf
+    Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_bar_chart.pdf
 
 
 
@@ -665,7 +659,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  39.072 seconds)
+   **Total running time of the script:** ( 0 minutes  42.638 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
