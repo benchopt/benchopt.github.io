@@ -82,7 +82,7 @@ Demo benchmark with R/Python
       warnings.warn(
         |--Python-PGD[use_acceleration=False]: done
         |--R-PGD: done (timeout)
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-11-17_20h11m42.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2022-11-17_22h14m21.parquet
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
       curve = df_.groupby('stop_val').median()
     /home/circleci/project/benchopt/plotting/plot_objective_curve.py:83: FutureWarning: The default value of numeric_only in DataFrameGroupBy.median is deprecated. In a future version, numeric_only will default to False. Either specify numeric_only or select only columns which should be valid for the function.
@@ -156,7 +156,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 1 minutes  56.279 seconds)
+   **Total running time of the script:** ( 2 minutes  17.008 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
