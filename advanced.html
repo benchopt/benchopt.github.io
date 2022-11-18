@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Advanced functionalities in a benchmark &#8212; benchopt 1.2.1.dev76 documentation</title>
+    <title>Advanced functionalities in a benchmark &#8212; benchopt 1.2.1.dev77 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -45,7 +45,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev76</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.2.1.dev77</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -220,32 +220,27 @@ functions. As a benchmark is not structured as proper python packages
 but imported dynamically to avoid installation issues, we resort to
 a special way of importing modules and functions defined for a benchmark.</p>
 <p>First, all code that need to be imported should be placed under
-<code class="docutils literal notranslate"><span class="pre">BENCHMARK_DIR/utils/</span></code>, as described here:</p>
+<code class="docutils literal notranslate"><span class="pre">BENCHMARK_DIR/benchmark_utils/</span></code>, as described here:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_benchmark/
 ├── objective.py  # contains the definition of the objective
 ├── datasets/
 ├── solvers/
-└── utils/
+└── benchmark_utils/
+    ├── __init__.py
     ├── helper1.py  # some helper
-    └─── helper_module  # some solver
-        ├── __init__.py  # some solver
-        └── submodule1.py  # some solver
+    └─── helper_module  # a submodule
+        ├── __init__.py
+        └── submodule1.py  # some more helpers
 </pre></div>
 </div>
-<p>Then, these modules and packages can be imported using the method
-<a class="reference internal" href="generated/benchopt.safe_import_context.html#benchopt.safe_import_context.import_from" title="benchopt.safe_import_context.import_from"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.safe_import_context.import_from()</span></code></a>. This method
-takes as input the name of the module as a string and optionally
-the name of the object to load. The imported package can
-either be a simple <code class="docutils literal notranslate"><span class="pre">*.py</span></code> file or a more complex package
-with a <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file. The naming convention for import
-is the same as for regular import, with submodules
-separated with <code class="docutils literal notranslate"><span class="pre">.</span></code>.</p>
+<p>Then, these modules and packages can be imported as a regular package, i.e.,
+.. code-block:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
 
 <span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="n">helper1</span> <span class="o">=</span> <span class="n">import_ctx</span><span class="o">.</span><span class="n">import_from</span><span class="p">(</span><span class="s1">&#39;helper1&#39;</span><span class="p">)</span>
-    <span class="n">func1</span> <span class="o">=</span> <span class="n">import_ctx</span><span class="o">.</span><span class="n">import_from</span><span class="p">(</span><span class="s1">&#39;helper1&#39;</span><span class="p">,</span> <span class="s1">&#39;func1&#39;</span><span class="p">)</span>
-    <span class="n">func2</span> <span class="o">=</span> <span class="n">import_ctx</span><span class="o">.</span><span class="n">import_from</span><span class="p">(</span><span class="s1">&#39;helper_module.submodule1&#39;</span><span class="p">,</span> <span class="s1">&#39;func2&#39;</span><span class="p">)</span>
+    <span class="kn">from</span> <span class="nn">benchmark_utils</span> <span class="kn">import</span> <span class="n">helper1</span>
+    <span class="kn">from</span> <span class="nn">benchmark_utils.helper1</span> <span class="kn">import</span> <span class="n">func1</span>
+    <span class="kn">from</span> <span class="nn">benchmark_utils.helper_module.submodule1</span> <span class="kn">import</span> <span class="n">func2</span>
 </pre></div>
 </div>
 </section>
