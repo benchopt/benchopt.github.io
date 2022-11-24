@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>BenchOpt configuration &#8212; benchopt 1.3.1.dev2 documentation</title>
+    <title>BenchOpt configuration &#8212; benchopt 1.3.1.dev3 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -16,9 +16,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Advanced functionalities in a benchmark" href="advanced.html" />
@@ -45,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.1.dev2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.1.dev3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -108,14 +106,8 @@
 <li><a class="reference internal" href="#config-file-location">Config File Location</a></li>
 <li><a class="reference internal" href="#config-file-structure">Config File Structure</a></li>
 <li><a class="reference internal" href="#config-settings">Config Settings</a><ul>
-<li><a class="reference internal" href="#global-settings">Global settings</a><ul>
-<li><a class="reference internal" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></code></a></li>
-</ul>
-</li>
-<li><a class="reference internal" href="#benchmark-settings">Benchmark settings</a><ul>
-<li><a class="reference internal" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></code></a></li>
-</ul>
-</li>
+<li><a class="reference internal" href="#global-settings">Global settings</a></li>
+<li><a class="reference internal" href="#benchmark-settings">Benchmark settings</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#using-mamba-to-install-packages">Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages</a></li>
@@ -128,14 +120,14 @@
     <div class="body col-md-9 content" role="main">
       
   <section id="benchopt-configuration">
-<span id="config-doc"></span><h1>BenchOpt configuration<a class="headerlink" href="#benchopt-configuration" title="Permalink to this heading">¶</a></h1>
+<span id="config-doc"></span><h1>BenchOpt configuration<a class="headerlink" href="#benchopt-configuration" title="Permalink to this headline">¶</a></h1>
 <p>BenchOpt can be configured using setting files. These files can either be created directly or generated and modified using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code>.</p>
 <p>There are two configuration levels. The first level is the global config for the <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> client. It contains the system specific tweaks, the user info such as the <em>&lt;GitHub token&gt;</em> and the output levels. The second level is the configuration of the benchmarks. Each benchmark can have its own config for the kind of plots it displays by default and other display tweaks.</p>
 <p>To get the BenchOpt global config file used by the <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> command, you can run <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code>. Using the option <code class="docutils literal notranslate"><span class="pre">--benchmark,-b</span> <span class="pre">&lt;benchmark&gt;</span></code> allows to display the config file for a specific benchmark. See <a class="reference internal" href="#config-file"><span class="std std-ref">Config File Location</span></a> for more details on how the config file path is resolved.</p>
 <p>The structure of the files follows the Microsoft Windows INI files structure and is described in <a class="reference internal" href="#config-structure"><span class="std std-ref">Config File Structure</span></a>. The available settings are listed in <a class="reference internal" href="#config-settings"><span class="std std-ref">Config Settings</span></a>.</p>
 <p>The value of each setting can be accessed with the CLI using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">[-b</span> <span class="pre">&lt;benchmark&gt;]</span> <span class="pre">get</span> <span class="pre">&lt;name&gt;</span></code>. Similarly, the setting value can be set using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">[-b</span> <span class="pre">&lt;benchmark&gt;]</span> <span class="pre">set</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;value&gt;</span></code>.</p>
 <section id="config-file-location">
-<span id="config-file"></span><h2>Config File Location<a class="headerlink" href="#config-file-location" title="Permalink to this heading">¶</a></h2>
+<span id="config-file"></span><h2>Config File Location<a class="headerlink" href="#config-file-location" title="Permalink to this headline">¶</a></h2>
 <p>For global config file, the resolution order is the following:</p>
 <ol class="arabic simple">
 <li><p>The environment variable <code class="docutils literal notranslate"><span class="pre">BENCHOPT_CONFIG</span></code> is set to an existing file,</p></li>
@@ -145,7 +137,7 @@
 <p>For benchmark config files, they are usually located in the benchmark folder with name <code class="docutils literal notranslate"><span class="pre">benchopt.ini</span></code>. If it does not exists, the default is to use the global config file.</p>
 </section>
 <section id="config-file-structure">
-<span id="config-structure"></span><h2>Config File Structure<a class="headerlink" href="#config-file-structure" title="Permalink to this heading">¶</a></h2>
+<span id="config-structure"></span><h2>Config File Structure<a class="headerlink" href="#config-file-structure" title="Permalink to this headline">¶</a></h2>
 <p>The config files for benchopt follow the Microsoft Windows INI files structure. The global setting are grouped in a <code class="docutils literal notranslate"><span class="pre">[benchopt]</span></code> section:</p>
 <div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[benchopt]</span><span class="w"></span>
 <span class="na">debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true  # Activate or not debug logs</span><span class="w"></span>
@@ -163,10 +155,10 @@
 </div>
 </section>
 <section id="config-settings">
-<span id="id1"></span><h2>Config Settings<a class="headerlink" href="#config-settings" title="Permalink to this heading">¶</a></h2>
+<span id="id1"></span><h2>Config Settings<a class="headerlink" href="#config-settings" title="Permalink to this headline">¶</a></h2>
 <p>This section lists the available settings.</p>
 <section id="global-settings">
-<h3>Global settings<a class="headerlink" href="#global-settings" title="Permalink to this heading">¶</a></h3>
+<h3>Global settings<a class="headerlink" href="#global-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="py data">
 <dt class="sig sig-object py" id="benchopt.config.DEFAULT_GLOBAL_CONFIG">
 <span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cache':</span> <span class="pre">None,</span> <span class="pre">'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'bash'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Permalink to this definition">¶</a></dt>
@@ -190,7 +182,7 @@ results in having the cache for benchmark <cite>B1</cite> stored in <cite>${cach
 
 </section>
 <section id="benchmark-settings">
-<h3>Benchmark settings<a class="headerlink" href="#benchmark-settings" title="Permalink to this heading">¶</a></h3>
+<h3>Benchmark settings<a class="headerlink" href="#benchmark-settings" title="Permalink to this headline">¶</a></h3>
 <dl class="py data">
 <dt class="sig sig-object py" id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
 <span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'plots':</span> <span class="pre">['objective_curve',</span> <span class="pre">'suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'bar_chart']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Permalink to this definition">¶</a></dt>
@@ -210,7 +202,7 @@ indented, as:</p>
 </section>
 </section>
 <section id="using-mamba-to-install-packages">
-<span id="config-mamba"></span><h2>Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages<a class="headerlink" href="#using-mamba-to-install-packages" title="Permalink to this heading">¶</a></h2>
+<span id="config-mamba"></span><h2>Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages<a class="headerlink" href="#using-mamba-to-install-packages" title="Permalink to this headline">¶</a></h2>
 <p>When many packages need to be installed, <code class="docutils literal notranslate"><span class="pre">conda</span></code> can be slow or even fail to resolve the dependency graph. Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> can speed up this process and make it more reliable.</p>
 <p>To use <code class="docutils literal notranslate"><span class="pre">mamba</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> when installing benchmark requirements, it is necessary to have <code class="docutils literal notranslate"><span class="pre">mamba</span></code> installed in the <code class="docutils literal notranslate"><span class="pre">base</span></code> conda environment, <em>e.g.</em> using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">base</span> <span class="pre">mamba</span></code>. Then, <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> can be configured to use this command instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> by either configuring the CLI using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">set</span> <span class="pre">conda_cmd</span> <span class="pre">mamba</span></code> or setting the environment variable <code class="docutils literal notranslate"><span class="pre">BENCHOPT_CONDA_CMD=mamba</span></code>.</p>
 </section>
@@ -229,7 +221,7 @@ indented, as:</p>
     </p>
     <p>
         &copy; Copyright 2020-2022, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>

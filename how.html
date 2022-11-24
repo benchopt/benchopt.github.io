@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 
-<html lang="en">
+<html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.3.1.dev2 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.3.1.dev3 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -16,9 +16,7 @@
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Publish benchmark results" href="publish.html" />
@@ -45,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.1.dev2</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.1.dev3</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -130,7 +128,7 @@
     <div class="body col-md-9 content" role="main">
       
   <section id="write-a-benchmark">
-<span id="how"></span><h1>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Permalink to this heading">¶</a></h1>
+<span id="how"></span><h1>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Permalink to this headline">¶</a></h1>
 <p>A benchmark is composed of three elements: an <a class="reference internal" href="#objective">objective</a> function,
 a list of <a class="reference internal" href="#datasets">datasets</a>, and a list of <a class="reference internal" href="#solvers">solvers</a>.</p>
 <p>A benchmark is defined in a folder that should respect a certain
@@ -157,7 +155,7 @@ modify the element to fit the new structure.
 A benchmark template is provided as a <a class="reference external" href="https://github.com/benchopt/template_benchmark">GitHub template repo here</a></p>
 </div>
 <section id="objective">
-<span id="id1"></span><h2>1. Objective<a class="headerlink" href="#objective" title="Permalink to this heading">¶</a></h2>
+<span id="id1"></span><h2>1. Objective<a class="headerlink" href="#objective" title="Permalink to this headline">¶</a></h2>
 <p>The <strong>objective function</strong> is defined through a Python class.
 This class allows to monitor the quantities of interest along the iterations
 of the solvers. Typically it allows to evaluate the objective function to
@@ -188,7 +186,7 @@ stored in a dictionary with a key being <code class="docutils literal notranslat
 different metrics at once.</p>
 </div>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt.base</span> <span class="kn">import</span> <span class="n">BaseObjective</span><span class="p">,</span> <span class="n">safe_import_context</span>
 
 <span class="c1"># All packages other than benchopt should be imported in this context.</span>
@@ -241,7 +239,7 @@ different metrics at once.</p>
 </section>
 </section>
 <section id="datasets">
-<span id="id2"></span><h2>2. Datasets<a class="headerlink" href="#datasets" title="Permalink to this heading">¶</a></h2>
+<span id="id2"></span><h2>2. Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">¶</a></h2>
 <p>A dataset defines what can be passed to an objective. More specifically,
 a dataset should implement one method:</p>
 <blockquote>
@@ -255,7 +253,7 @@ the <code class="docutils literal notranslate"><span class="pre">set_data</span>
 <p>A dataset class also needs to inherit from a base class called
 <a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a>.</p>
 <section id="example-using-a-real-dataset">
-<h3>Example using a real dataset<a class="headerlink" href="#example-using-a-real-dataset" title="Permalink to this heading">¶</a></h3>
+<h3>Example using a real dataset<a class="headerlink" href="#example-using-a-real-dataset" title="Permalink to this headline">¶</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
 
 <span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
@@ -288,7 +286,7 @@ the <code class="docutils literal notranslate"><span class="pre">set_data</span>
 across multiple problem dimensions.</p>
 </section>
 <section id="example-of-parametrized-simulated-dataset">
-<h3>Example of parametrized simulated dataset<a class="headerlink" href="#example-of-parametrized-simulated-dataset" title="Permalink to this heading">¶</a></h3>
+<h3>Example of parametrized simulated dataset<a class="headerlink" href="#example-of-parametrized-simulated-dataset" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes one wants to test the solvers for variants of the same dataset.
 For example, one may want to change the dataset size, the noise level, etc.
 To be able to specify parameters to get a dataset, you can use a class
@@ -341,7 +339,7 @@ variant of the dataset.</p>
 </section>
 </section>
 <section id="solvers">
-<span id="id3"></span><h2>3. Solvers<a class="headerlink" href="#solvers" title="Permalink to this heading">¶</a></h2>
+<span id="id3"></span><h2>3. Solvers<a class="headerlink" href="#solvers" title="Permalink to this headline">¶</a></h2>
 <p>A solver must define three methods:</p>
 <blockquote>
 <div><ul class="simple">
@@ -389,7 +387,7 @@ should stop.</p></li>
 </ul>
 </div></blockquote>
 <section id="python-solver">
-<span id="python-solvers"></span><h3>Python solver<a class="headerlink" href="#python-solver" title="Permalink to this heading">¶</a></h3>
+<span id="python-solvers"></span><h3>Python solver<a class="headerlink" href="#python-solver" title="Permalink to this headline">¶</a></h3>
 <p>The simplest solvers to use are solvers written in pure
 <a class="reference external" href="https://www.python.org/">Python</a> without any compiled
 code. They are typically written in <a class="reference external" href="https://numpy.org/">Numpy</a>
@@ -516,7 +514,7 @@ not relevant. See <a class="reference internal" href="cli.html#cli-documentation
 </div>
 </section>
 <section id="r-solver">
-<span id="r-solvers"></span><h3>R solver<a class="headerlink" href="#r-solver" title="Permalink to this heading">¶</a></h3>
+<span id="r-solvers"></span><h3>R solver<a class="headerlink" href="#r-solver" title="Permalink to this headline">¶</a></h3>
 <p>A solver written in <a class="reference external" href="https://www.r-project.org/">R</a> needs two files.
 A <code class="docutils literal notranslate"><span class="pre">.R</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
 R solver using <a class="reference external" href="https://pypi.org/project/rpy2/">Rpy2</a>. Only the extensions
@@ -626,7 +624,7 @@ just skipped.</p>
 </div>
 </section>
 <section id="julia-solver">
-<span id="julia-solvers"></span><h3>Julia solver<a class="headerlink" href="#julia-solver" title="Permalink to this heading">¶</a></h3>
+<span id="julia-solvers"></span><h3>Julia solver<a class="headerlink" href="#julia-solver" title="Permalink to this headline">¶</a></h3>
 <p>A solver written in <a class="reference external" href="https://julialang.org">Julia</a> needs two files.
 A <code class="docutils literal notranslate"><span class="pre">.jl</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
 Julia solver using <a class="reference external" href="https://pypi.org/project/julia/">PyJulia</a>. Only the extensions
@@ -718,7 +716,7 @@ should differ between the two files. Here is the Python file:</p>
 </div>
 </section>
 <section id="solver-from-source">
-<span id="source-solvers"></span><h3>Solver from source<a class="headerlink" href="#solver-from-source" title="Permalink to this heading">¶</a></h3>
+<span id="source-solvers"></span><h3>Solver from source<a class="headerlink" href="#solver-from-source" title="Permalink to this headline">¶</a></h3>
 <p>You can install a package from source in case it is not available
 as binaries from the package managers from either Python, R or Julia.</p>
 <div class="admonition note">
@@ -781,7 +779,7 @@ that uses a <code class="docutils literal notranslate"><span class="pre">'shell'
     </p>
     <p>
         &copy; Copyright 2020-2022, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 5.3.0.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
     </p>
   </div>
 </footer>
