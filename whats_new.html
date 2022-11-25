@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new &#8212; benchopt 1.3.1.dev4 documentation</title>
+    <title>What’s new &#8212; benchopt 1.3.1.dev5 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.1.dev4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.1.dev5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -168,26 +168,26 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">archive</span></code> to create a <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> archive with the benchmark’s
 files for sharing with others or as supplementary materials for papers.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/408">#408</a>).</p></li>
-<li><p>Now the result data are saved in the Parquet format. The use of CSV file is deprecated.
+<li><p>Now the result data are saved in the Parquet format. The use of CSV files is deprecated.
 By <a class="reference external" href="https://github.com/Melvin-klein">Melvine Nargeot</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/433">#433</a>).</p></li>
-<li><p>Change default number of repetitions to <code class="docutils literal notranslate"><span class="pre">1</span></code>.
+<li><p>Change the default number of repetitions to <code class="docutils literal notranslate"><span class="pre">1</span></code>.
 By <a class="reference external" href="https://github.com/bmalezieux">Benoît Malézieux</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/457">#457</a>).</p></li>
 </ul>
 </section>
 <section id="id2">
 <h3>API<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Allow to change tracked metric in <cite>StoppingCriterion</cite>.
+<li><p>Allow changing tracked metric in <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code>.
 By <a class="reference external" href="https://github.com/AmelieVernay">Amélie Vernay</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/461">#461</a>).</p></li>
 <li><p>Add latest git tag via <code class="docutils literal notranslate"><span class="pre">benchmark-git-tag</span></code> key in <code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.utils.sys_info.get_sys_info()</span></code>.
 By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/421">#421</a>).</p></li>
 <li><p>Deprecate <code class="docutils literal notranslate"><span class="pre">Objective.to_dict</span></code> in favor of <a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.get_objective" title="benchopt.BaseObjective.get_objective"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_objective()</span></code></a>.
 By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/489">#489</a>).</p></li>
-<li><p>Deprecate <cite>import_from</cite> in favor of a <cite>benchmark_utils</cite> module dynamically installed
+<li><p>Deprecate <code class="docutils literal notranslate"><span class="pre">import_from</span></code> in favor of a <code class="docutils literal notranslate"><span class="pre">benchmark_utils</span></code> module dynamically installed
 when running a benchmark. By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/472">#472</a>).</p></li>
-<li><p>Allow to specify channels for conda requirements with synthax <cite>chan:deps</cite>.
+<li><p>Allow specifying channels for conda requirements with syntax <code class="docutils literal notranslate"><span class="pre">chan:deps</span></code>.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/483">#483</a>).</p></li>
-<li><p>Allow for template <cite>Solver</cite> and <cite>Dataset</cite> in <cite>datasets/solvers</cite> directory.
+<li><p>Allow for template <code class="docutils literal notranslate"><span class="pre">Solver</span></code> and <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> in <code class="docutils literal notranslate"><span class="pre">datasets</span></code>/ <code class="docutils literal notranslate"><span class="pre">solvers</span></code> directory.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/473">#473</a>).</p></li>
 </ul>
 </section>
@@ -203,7 +203,7 @@ of a benchmark, by <a class="reference external" href="https://gdurif.perso.math
 with the line-profiler package all functions decorated with
 <a class="reference internal" href="generated/benchopt.utils.profile.html#benchopt.utils.profile" title="benchopt.utils.profile"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.utils.profile()</span></code></a>, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/186">#186</a>).</p></li>
 <li><p>Replace <code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion</span></code> by <code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion</span></code>,
-which measures progress relatively to the best attained value instead of
+which measures progress relative to the best attained value instead of
 the previous one, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/176">#176</a>)</p></li>
 <li><p>Now all values returned by <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> are included in reports,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> and <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/200">#200</a>).</p></li>
@@ -214,17 +214,17 @@ by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <section id="id4">
 <h3>API<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>When returning a dict, <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> should at least include
+<li><p>When returning a dictionary, <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> should at least include
 <code class="docutils literal notranslate"><span class="pre">value</span></code> key instead of <code class="docutils literal notranslate"><span class="pre">objective_value</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> and
 <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/200">#200</a>).</p></li>
-<li><p>‘stop_strategy’ attribute is replaced by ‘stopping_strategy’ to harmonize
-with ‘stopping_criterion’, by <a class="reference external" href="https://github.com/bmalezieux">Benoît Malézieux</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/274">#274</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stop_strategy</span></code> attribute is replaced by <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> to harmonize
+with <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code>, by <a class="reference external" href="https://github.com/bmalezieux">Benoît Malézieux</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/274">#274</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">import_from</span></code> method in <code class="docutils literal notranslate"><span class="pre">safe_import_context</span></code> to allow importing common
-files and packages without install from <cite>BENCHMARK_DIR/utils</cite>,
+files and packages without installation from <cite>BENCHMARK_DIR/utils</cite>,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/286">#286</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">X_density</span></code> argument to <code class="docutils literal notranslate"><span class="pre">datasets.make_correlated_data</span></code> to simulate
 sparse design matrices, by <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/289">#289</a>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Dataset.get_data</span></code> should now return a dict and not a tuple. A point for
+<li><p><code class="docutils literal notranslate"><span class="pre">Dataset.get_data</span></code> should now return a dictionary and not a tuple. A point for
 testing  should be returned by a dedicated method
 <code class="docutils literal notranslate"><span class="pre">Objective.get_one_solution</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/345">#345</a>).</p></li>
 </ul>
@@ -245,17 +245,17 @@ config file, by <a class="reference external" href="https://mathurinm.github.io"
 <ul class="simple">
 <li><p>New plotting functions with different optimality criteria,
 by <a class="reference external" href="https://ngazagna.github.io">Nidham Gazagnadou</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/96">#96</a>).</p></li>
-<li><p>Support plotly for plotting functions, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>,
+<li><p>Support Plotly for plotting functions, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>,
 <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="http://josephsalmon.eu">Joseph Salmon</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/110">#110</a>, <a class="reference external" href="https://github.com/benchopt/benchopt/pull/111">#111</a>, <a class="reference external" href="https://github.com/benchopt/benchopt/pull/112">#112</a>).</p></li>
 <li><p>Change envrionment variable for config from <code class="docutils literal notranslate"><span class="pre">BENCHO_*</span></code> to <code class="docutils literal notranslate"><span class="pre">BENCHOPT_*</span></code>,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/128">#128</a>).</p></li>
 <li><p>Add autocompletion support in the <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> command,
 by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a>, <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>
 (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/133">#133</a>, <a class="reference external" href="https://github.com/benchopt/benchopt/pull/135">#135</a>).</p></li>
-<li><p>Move most CI to github action, with auto-release on pypi,
+<li><p>Move most CI to GitHub action, with auto-release on PyPi,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/150">#150</a>, <a class="reference external" href="https://github.com/benchopt/benchopt/pull/154">#154</a>).</p></li>
 <li><p>Remove <code class="docutils literal notranslate"><span class="pre">BENCHOPT_ALLOW_INSTALL</span></code> and always install to requested env as
-user now must request explicitely the install,
+the user now must request explicitly the install,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/155">#155</a>).</p></li>
 </ul>
 </section>
@@ -266,12 +266,12 @@ by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 monitor several metrics at once, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/84">#84</a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code> can now be used to skip objectives that are incompatible
 for the Solver, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/113">#113</a>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Solver</span></code> can now use <code class="docutils literal notranslate"><span class="pre">stop_strategy</span> <span class="pre">=</span> <span class="pre">'callback'</span></code> to allow for
+<li><p><code class="docutils literal notranslate"><span class="pre">Solver</span></code> can now use <code class="docutils literal notranslate"><span class="pre">stop_strategy='callback'</span></code> to allow for
 single call curve construction, by <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>
 (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/137">#137</a>).</p></li>
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> to reliably and flexibly assess a solver cvg.
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> to reliably and flexibly assess a solver convergence (cvg).
 For now, only <code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion</span></code> is implemented but better
-API to set criterion per benchmark should be implemented in future release,
+API to set criterion per benchmark should be implemented in a future release,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/151">#151</a>)</p></li>
 </ul>
 </section>
@@ -286,7 +286,7 @@ option <code class="docutils literal notranslate"><span class="pre">--env</span>
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/94">#94</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">publish</span></code> command to push benchmark results to GitHub,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/110">#110</a>).</p></li>
-<li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">clean</span></code> command to remove cached file and output files locally,
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">clean</span></code> command to remove cached files and output files locally,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/128">#128</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code> command to allow easy configuration of <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>
 using the CLI, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/128">#128</a>).</p></li>
@@ -308,7 +308,7 @@ calling <code class="docutils literal notranslate"><span class="pre">benchopt</s
 <section id="doc">
 <h3>DOC<a class="headerlink" href="#doc" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>Improve how-to narative documentation, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/93">#93</a>).</p></li>
+<li><p>Improve how-to narrative documentation, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/93">#93</a>).</p></li>
 <li><p>Add what’s new page, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/114">#114</a>).</p></li>
 <li><p>Add documentation on how to publish results, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/118">#118</a>).</p></li>
 </ul>
