@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.BaseSolver &#8212; benchopt 1.3.2.dev7 documentation</title>
+    <title>benchopt.BaseSolver &#8212; benchopt 1.3.2.dev8 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -19,7 +19,7 @@
     <script src="../_static/doctools.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Write a benchmark" href="../how.html" />
+    <link rel="next" title="benchopt.run_benchmark" href="benchopt.run_benchmark.html" />
     <link rel="prev" title="benchopt.BaseDataset" href="benchopt.BaseDataset.html" />
 <meta charset='utf-8'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev7</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev8</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -184,6 +184,27 @@ the computations should stop.</p>
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.run_once">
+<span class="sig-name descname"><span class="pre">run_once</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run_once" title="Permalink to this definition">¶</a></dt>
+<dd><p>Run the solver once, to cache warmup times (e.g. pre-compilations).</p>
+<p>This function is intended to be called in <code class="docutils literal notranslate"><span class="pre">Solver.set_objective</span></code>
+method to avoid taking into account a solver’s warmup costs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stop_val</strong><span class="classifier">int or float, (default: 1)</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> is ‘iteration’, this should be an integer
+corresponding to the number of iterations the solver is run for.
+If it is ‘callback’, it is an integer corresponding to the number
+of times the callback is called.
+If it is ‘tolerance’, it is a float which can be passed to call
+the solver on an easy to solve problem.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.set_objective">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_objective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.set_objective" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prepare the objective for the solver.</p>
@@ -201,7 +222,7 @@ from the benchmark <code class="docutils literal notranslate"><span class="pre">
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.skip">
 <span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Permalink to this definition">¶</a></dt>
-<dd><p>Used to decide if the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> is compatible with the objective.</p>
+<dd><p>Hook to decide if the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> is compatible with the objective.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
