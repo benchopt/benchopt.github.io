@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchopt: Benchmark repository for optimization &#8212; benchopt 1.3.2.dev9 documentation</title>
+    <title>Benchopt: Benchmark repository for optimization &#8212; benchopt 1.3.2.dev10 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev9</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev10</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -106,6 +106,7 @@
 <li><a class="reference internal" href="#install">Install</a></li>
 <li><a class="reference internal" href="#run-a-benchmark">Run a benchmark</a></li>
 <li><a class="reference internal" href="#write-a-benchmark">Write a benchmark</a></li>
+<li><a class="reference internal" href="#frequently-asked-questions">Frequently asked questions</a></li>
 <li><a class="reference internal" href="#available-benchmarks">Available benchmarks</a></li>
 <li><a class="reference internal" href="#benchmark-results">Benchmark results</a></li>
 </ul>
@@ -143,9 +144,9 @@ Once benchopt is installed, running and replicating an optimization benchmark is
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">git clone https://github.com/benchopt/benchmark_logreg_l2</span>
-<span class="prompt1">benchopt install --env ./benchmark_logreg_l2</span>
-<span class="prompt1">benchopt run --env ./benchmark_logreg_l2</span>
+</style><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/benchopt/benchmark_logreg_l2</span>
+<span class="prompt1">benchopt<span class="w"> </span>install<span class="w"> </span>--env<span class="w"> </span>./benchmark_logreg_l2</span>
+<span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>--env<span class="w"> </span>./benchmark_logreg_l2</span>
 </pre></div></div><p>Running these commands will fetch the benchmark files, install the benchmark
 requirements in a dedicated environment called <code class="docutils literal notranslate"><span class="pre">benchopt_benchmark_logreg_l2</span></code> and
 give you a benchmark plot on l2-regularized logistic regression:</p>
@@ -156,19 +157,19 @@ give you a benchmark plot on l2-regularized logistic regression:</p>
 <h2>Install<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h2>
 <p>This package can be installed through <cite>pip</cite>.  In order to allow benchopt to automatically
 install solvers dependencies, the install needs to be done in a <cite>conda</cite> environment.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda create -n benchopt python</span>
-<span class="prompt1">conda activate benchopt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>benchopt<span class="w"> </span>python</span>
+<span class="prompt1">conda<span class="w"> </span>activate<span class="w"> </span>benchopt</span>
 </pre></div></div><p>To get the <strong>latest release</strong>, use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip install benchopt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>benchopt</span>
 </pre></div></div><p>And to get the <strong>latest development version</strong>, you can use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip install -U -i https://test.pypi.org/simple/ benchopt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>-i<span class="w"> </span>https://test.pypi.org/simple/<span class="w"> </span>benchopt</span>
 </pre></div></div><p>This will install the command line tool to run the benchmark. Then, existing
 benchmarks can be retrieved from GitHub or created locally. To discover which
 benchmarks are presently available look for
 <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a>,
 such as for <a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso – l1-regularized linear regression</a>.
 This benchmark can be retrieved locally with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone https://github.com/benchopt/benchmark_lasso.git</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/benchopt/benchmark_lasso.git</span>
 </pre></div></div></section>
 <section id="run-a-benchmark">
 <h2>Run a benchmark<a class="headerlink" href="#run-a-benchmark" title="Permalink to this headline">¶</a></h2>
@@ -178,36 +179,36 @@ The <code class="docutils literal notranslate"><span class="pre">--env</span></c
 <p><strong>Installing benchmark dependencies</strong>: <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> exposes a CLI to install solvers’ dependencies automatically.
 It only works inside a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment. To install all requirements of the benchmark, make sure a <code class="docutils literal notranslate"><span class="pre">conda</span></code>
 environment is activated and run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt install --env ./benchmark_lasso</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>install<span class="w"> </span>--env<span class="w"> </span>./benchmark_lasso</span>
 </pre></div></div><p><strong>Run a benchmark</strong>: to run benchmarks on all datasets and with all solvers, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt run --env ./benchmark_lasso</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>--env<span class="w"> </span>./benchmark_lasso</span>
 </pre></div></div><p>The command <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> can also be used outside of a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment without the flag <code class="docutils literal notranslate"><span class="pre">-e/--env</span></code>.
 In that case, the benchmark will only run solvers that are currently installed.</p>
 <p><strong>Run only some solvers and datasets</strong>: to run only the <code class="docutils literal notranslate"><span class="pre">sklearn</span></code> and <code class="docutils literal notranslate"><span class="pre">celer</span></code> solvers, on the <code class="docutils literal notranslate"><span class="pre">simulated</span></code> and <code class="docutils literal notranslate"><span class="pre">finance</span></code> datasets, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt run --env ./benchmark_lasso -s sklearn -s celer -d simulated -d finance</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>--env<span class="w"> </span>./benchmark_lasso<span class="w"> </span>-s<span class="w"> </span>sklearn<span class="w"> </span>-s<span class="w"> </span>celer<span class="w"> </span>-d<span class="w"> </span>simulated<span class="w"> </span>-d<span class="w"> </span>finance</span>
 </pre></div></div><p><strong>Run a solver or dataset with specific parameters</strong>:  some solvers and datasets have parameters; by default all combinations are run.
 If you want to run a specific configuration, pass it explicitly, e.g., to run the <code class="docutils literal notranslate"><span class="pre">python-pgd</span></code> solver only with its parameter <code class="docutils literal notranslate"><span class="pre">use_acceleration</span></code> set to True, use:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt run --env ./benchmark_lasso -s python-pgd<span class="o">[</span><span class="nv">use_acceleration</span><span class="o">=</span>True<span class="o">]</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>--env<span class="w"> </span>./benchmark_lasso<span class="w"> </span>-s<span class="w"> </span>python-pgd<span class="o">[</span><span class="nv">use_acceleration</span><span class="o">=</span>True<span class="o">]</span></span>
 </pre></div></div><p><strong>Set the number of repetitions</strong>: the benchmark are repeated 5 times by default for greater precision. To run the benchmark 10 times, run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt run --env ./benchmark_lasso -r <span class="m">10</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>--env<span class="w"> </span>./benchmark_lasso<span class="w"> </span>-r<span class="w"> </span><span class="m">10</span></span>
 </pre></div></div><p><strong>Passing option through configuration file</strong>: all options of <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> can be passed through a YAML configuration file, together with <code class="docutils literal notranslate"><span class="pre">--config</span> <span class="pre">&lt;configuration_file_name.yml&gt;</span></code>.
 The options are defined using the same name as the CLI options.
 An example of configuration file is:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">objective-filter</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lasso Regression[fit_intercept=False,reg=0.5]</span><span class="w"></span>
-<span class="nt">dataset</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulated</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leukemia</span><span class="w"></span>
-<span class="nt">solver</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celer</span><span class="w"></span>
-<span class="nt">force-solver</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd</span><span class="w"></span>
-<span class="nt">n-repetitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">objective-filter</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Lasso Regression[fit_intercept=False,reg=0.5]</span>
+<span class="nt">dataset</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulated</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leukemia</span>
+<span class="nt">solver</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celer</span>
+<span class="nt">force-solver</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">cd</span>
+<span class="nt">n-repetitions</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span>
 </pre></div>
 </div>
 <p>When options are passed both via file and CLI, the CLI takes precedence.</p>
 <p><strong>Getting help</strong>: use</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt run -h</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>-h</span>
 </pre></div></div><p>to get more details about the different options.
 You can also read the <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command line interface (CLI)</span></a>.</p>
 </section>
@@ -215,6 +216,12 @@ You can also read the <a class="reference internal" href="cli.html#cli-documenta
 <h2>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Permalink to this headline">¶</a></h2>
 <p>Learn how to <a class="reference internal" href="how.html#how"><span class="std std-ref">Write a benchmark</span></a>, including creating an objective, a solver, and
 a dataset.</p>
+</section>
+<section id="frequently-asked-questions">
+<h2>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference internal" href="convergence_curves.html#convergence-curves"><span class="std std-ref">How are the convergence curves sampled?</span></a></p></li>
+</ul>
 </section>
 <section id="available-benchmarks">
 <h2>Available benchmarks<a class="headerlink" href="#available-benchmarks" title="Permalink to this headline">¶</a></h2>
@@ -327,15 +334,15 @@ account on the GitHub user account. For more details on how to fork a
 repository see <a class="reference external" href="https://help.github.com/articles/fork-a-repo/">this guide</a>.</p></li>
 <li><p>Clone your fork of the benchopt repo from your GitHub account to your
 local disk:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git clone git@github.com:YourLogin/benchopt.git</span>
-<span class="prompt1"><span class="nb">cd</span> benchopt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:YourLogin/benchopt.git</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>benchopt</span>
 </pre></div></div></li>
 </ol>
 <ol class="arabic" id="upstream" start="4">
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">upstream</span></code> remote. This saves a reference to the main
 benchopt repository, which you can use to keep your repository
 synchronized with the latest changes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote add upstream https://github.com/benchopt/benchopt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/benchopt/benchopt</span>
 </pre></div></div></li>
 <li><p>Check that the <cite>upstream</cite> and <cite>origin</cite> remote aliases are configured correctly
 by running <cite>git remote -v</cite> which should display:</p>
@@ -353,23 +360,23 @@ modifying code and submitting a PR:</p>
 <ol class="arabic" start="6">
 <li><p>Synchronize your <code class="docutils literal notranslate"><span class="pre">main</span></code> branch with the <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code> branch,
 more details on <a class="reference external" href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork">GitHub Docs</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git switch main</span>
-<span class="prompt1">git fetch upstream</span>
-<span class="prompt1">git merge upstream/main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>switch<span class="w"> </span>main</span>
+<span class="prompt1">git<span class="w"> </span>fetch<span class="w"> </span>upstream</span>
+<span class="prompt1">git<span class="w"> </span>merge<span class="w"> </span>upstream/main</span>
 </pre></div></div></li>
 <li><p>Create a feature branch to hold your development changes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git switch -c my_feature</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>my_feature</span>
 </pre></div></div><p>and start making changes. Always use a feature branch. It’s good
 practice to never work on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch!</p>
 </li>
 <li><p>Develop the feature on your feature branch on your computer, using Git to
 do the version control. When you’re done editing, add changed files using
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> and then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add modified_files</span>
-<span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>modified_files</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>to record your changes in Git, then push the changes to your GitHub
 account with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push -u origin my_feature</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>my_feature</span>
 </pre></div></div></li>
 <li><p>Follow <a class="reference external" href="https://help.github.com/articles/creating-a-pull-request-from-a-fork">these</a> instructions
 to create a pull request from your fork.</p></li>
@@ -378,8 +385,8 @@ to create a pull request from your fork.</p></li>
 <p class="admonition-title">Note</p>
 <p>It is often helpful to keep your local feature branch synchronized with the latest
 changes of the main benchopt repository:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git fetch upstream</span>
-<span class="prompt1">git merge upstream/main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>fetch<span class="w"> </span>upstream</span>
+<span class="prompt1">git<span class="w"> </span>merge<span class="w"> </span>upstream/main</span>
 </pre></div></div></div>
 </section>
 <section id="documentation">
@@ -389,25 +396,25 @@ reStructuredText documents (like this one), tutorials, etc. reStructuredText
 documents live in the source code repository under the <code class="docutils literal notranslate"><span class="pre">doc/</span></code> directory.</p>
 <p>You can edit the documentation using any text editor, and then generate the
 HTML output by typing, in a shell:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip install benchopt<span class="o">[</span>doc<span class="o">]</span></span>
-<span class="prompt1"><span class="nb">cd</span> doc/</span>
-<span class="prompt1">make html</span>
-<span class="prompt1">firefox _build/html/index.html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>benchopt<span class="o">[</span>doc<span class="o">]</span></span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>doc/</span>
+<span class="prompt1">make<span class="w"> </span>html</span>
+<span class="prompt1">firefox<span class="w"> </span>_build/html/index.html</span>
 </pre></div></div></section>
 <section id="citing-benchopt">
 <h2>Citing Benchopt<a class="headerlink" href="#citing-benchopt" title="Permalink to this headline">¶</a></h2>
 <p>If you use <code class="docutils literal notranslate"><span class="pre">Benchopt</span></code> in a scientific publication, please cite the following paper</p>
-<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">benchopt</span><span class="p">,</span><span class="w"></span>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">benchopt</span><span class="p">,</span>
 <span class="w">   </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Moreau, Thomas and Massias, Mathurin and Gramfort, Alexandre and Ablin, Pierre</span>
 <span class="s">             and Bannier, Pierre-Antoine and Charlier, Benjamin and Dagréou, Mathieu and Dupré la Tour, Tom</span>
 <span class="s">             and Durif, Ghislain and F. Dantas, Cassio and Klopfenstein, Quentin</span>
 <span class="s">             and Larsson, Johan and Lai, En and Lefort, Tanguy and Malézieux, Benoit</span>
 <span class="s">             and Moufad, Badr and T. Nguyen, Binh and Rakotomamonjy, Alain and Ramzi, Zaccharie</span>
-<span class="s">             and Salmon, Joseph and Vaiter, Samuel}</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="na">title</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">{Benchopt: Reproducible, efficient and collaborative optimization benchmarks}</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="na">year</span><span class="w">   </span><span class="p">=</span><span class="w"> </span><span class="s">{2022}</span><span class="p">,</span><span class="w"></span>
-<span class="w">   </span><span class="na">url</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{https://arxiv.org/abs/2206.13424}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="s">             and Salmon, Joseph and Vaiter, Samuel}</span><span class="p">,</span>
+<span class="w">   </span><span class="na">title</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">{Benchopt: Reproducible, efficient and collaborative optimization benchmarks}</span><span class="p">,</span>
+<span class="w">   </span><span class="na">year</span><span class="w">   </span><span class="p">=</span><span class="w"> </span><span class="s">{2022}</span><span class="p">,</span>
+<span class="w">   </span><span class="na">url</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{https://arxiv.org/abs/2206.13424}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>

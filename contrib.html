@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>How to contribute &#8212; benchopt 1.3.2.dev9 documentation</title>
+    <title>How to contribute &#8212; benchopt 1.3.2.dev10 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -41,7 +41,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev9</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev10</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -139,15 +139,15 @@ local disk:</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">git clone git@github.com:YourLogin/benchopt.git</span>
-<span class="prompt1"><span class="nb">cd</span> benchopt</span>
+</style><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:YourLogin/benchopt.git</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>benchopt</span>
 </pre></div></div></li>
 </ol>
 <ol class="arabic" id="upstream" start="4">
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">upstream</span></code> remote. This saves a reference to the main
 benchopt repository, which you can use to keep your repository
 synchronized with the latest changes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git remote add upstream https://github.com/benchopt/benchopt</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/benchopt/benchopt</span>
 </pre></div></div></li>
 <li><p>Check that the <cite>upstream</cite> and <cite>origin</cite> remote aliases are configured correctly
 by running <cite>git remote -v</cite> which should display:</p>
@@ -165,23 +165,23 @@ modifying code and submitting a PR:</p>
 <ol class="arabic" start="6">
 <li><p>Synchronize your <code class="docutils literal notranslate"><span class="pre">main</span></code> branch with the <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code> branch,
 more details on <a class="reference external" href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork">GitHub Docs</a>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git switch main</span>
-<span class="prompt1">git fetch upstream</span>
-<span class="prompt1">git merge upstream/main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>switch<span class="w"> </span>main</span>
+<span class="prompt1">git<span class="w"> </span>fetch<span class="w"> </span>upstream</span>
+<span class="prompt1">git<span class="w"> </span>merge<span class="w"> </span>upstream/main</span>
 </pre></div></div></li>
 <li><p>Create a feature branch to hold your development changes:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git switch -c my_feature</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>my_feature</span>
 </pre></div></div><p>and start making changes. Always use a feature branch. It’s good
 practice to never work on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch!</p>
 </li>
 <li><p>Develop the feature on your feature branch on your computer, using Git to
 do the version control. When you’re done editing, add changed files using
 <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> and then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git add modified_files</span>
-<span class="prompt1">git commit</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>modified_files</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
 </pre></div></div><p>to record your changes in Git, then push the changes to your GitHub
 account with:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git push -u origin my_feature</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>my_feature</span>
 </pre></div></div></li>
 <li><p>Follow <a class="reference external" href="https://help.github.com/articles/creating-a-pull-request-from-a-fork">these</a> instructions
 to create a pull request from your fork.</p></li>
@@ -190,8 +190,8 @@ to create a pull request from your fork.</p></li>
 <p class="admonition-title">Note</p>
 <p>It is often helpful to keep your local feature branch synchronized with the latest
 changes of the main benchopt repository:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git fetch upstream</span>
-<span class="prompt1">git merge upstream/main</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>fetch<span class="w"> </span>upstream</span>
+<span class="prompt1">git<span class="w"> </span>merge<span class="w"> </span>upstream/main</span>
 </pre></div></div></div>
 </section>
 <section id="documentation">
@@ -201,10 +201,10 @@ reStructuredText documents (like this one), tutorials, etc. reStructuredText
 documents live in the source code repository under the <code class="docutils literal notranslate"><span class="pre">doc/</span></code> directory.</p>
 <p>You can edit the documentation using any text editor, and then generate the
 HTML output by typing, in a shell:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip install benchopt<span class="o">[</span>doc<span class="o">]</span></span>
-<span class="prompt1"><span class="nb">cd</span> doc/</span>
-<span class="prompt1">make html</span>
-<span class="prompt1">firefox _build/html/index.html</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>benchopt<span class="o">[</span>doc<span class="o">]</span></span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>doc/</span>
+<span class="prompt1">make<span class="w"> </span>html</span>
+<span class="prompt1">firefox<span class="w"> </span>_build/html/index.html</span>
 </pre></div></div></section>
 </section>
 
