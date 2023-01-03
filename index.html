@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Benchopt: Benchmark repository for optimization &#8212; benchopt 1.3.2.dev10 documentation</title>
+    <title>Benchopt: Benchmark repository for optimization &#8212; benchopt 1.3.2.dev11 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="#">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev10</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev11</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -105,19 +105,25 @@
 <li><a class="reference internal" href="#">Benchopt: Benchmark repository for optimization</a><ul>
 <li><a class="reference internal" href="#install">Install</a></li>
 <li><a class="reference internal" href="#run-a-benchmark">Run a benchmark</a></li>
-<li><a class="reference internal" href="#write-a-benchmark">Write a benchmark</a></li>
-<li><a class="reference internal" href="#frequently-asked-questions">Frequently asked questions</a></li>
-<li><a class="reference internal" href="#available-benchmarks">Available benchmarks</a></li>
 <li><a class="reference internal" href="#benchmark-results">Benchmark results</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#frequently-asked-questions-faq">Frequently asked questions (FAQ)</a><ul>
+<li><a class="reference internal" href="#write-a-benchmark">Write a benchmark</a></li>
+<li><a class="reference internal" href="#curve-sampling">Curve sampling</a></li>
+<li><a class="reference internal" href="#re-using-code-in-a-benchmark">Re-using code in a benchmark</a></li>
+<li><a class="reference internal" href="#parallel-run">Parallel run</a></li>
+<li><a class="reference internal" href="#citing-benchopt">Citing Benchopt</a></li>
+<li><a class="reference internal" href="#other-functionalities">Other functionalities</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#how-to-contribute">How to contribute</a><ul>
 <li><a class="reference internal" href="#bug-report-and-feature-request">Bug report and feature request</a></li>
 <li><a class="reference internal" href="#code-contribution">Code contribution</a></li>
 <li><a class="reference internal" href="#documentation">Documentation</a></li>
-<li><a class="reference internal" href="#citing-benchopt">Citing Benchopt</a></li>
 </ul>
 </li>
+<li><a class="reference internal" href="#some-available-benchmarks">Some available benchmarks</a></li>
 <li><a class="reference internal" href="#website-contents">Website contents</a></li>
 </ul>
 
@@ -212,103 +218,55 @@ An example of configuration file is:</p>
 </pre></div></div><p>to get more details about the different options.
 You can also read the <a class="reference internal" href="cli.html#cli-documentation"><span class="std std-ref">Command line interface (CLI)</span></a>.</p>
 </section>
+<section id="benchmark-results">
+<h2>Benchmark results<a class="headerlink" href="#benchmark-results" title="Permalink to this headline">¶</a></h2>
+<p>All the public benchmark results are available at <a class="reference external" href="https://benchopt.github.io/results/">Benchopt Benchmarks results</a>.</p>
+<p><strong>Publish results</strong>: You can directly publish the result of a run of <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> on <a class="reference external" href="https://benchopt.github.io/results/">Benchopt Benchmarks results</a>. You can have a look at this page to <a class="reference internal" href="publish.html#publish-doc"><span class="std std-ref">Publish benchmark results</span></a>.</p>
+</section>
+</section>
+<section id="frequently-asked-questions-faq">
+<h1>Frequently asked questions (FAQ)<a class="headerlink" href="#frequently-asked-questions-faq" title="Permalink to this headline">¶</a></h1>
 <section id="write-a-benchmark">
 <h2>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Permalink to this headline">¶</a></h2>
 <p>Learn how to <a class="reference internal" href="how.html#how"><span class="std std-ref">Write a benchmark</span></a>, including creating an objective, a solver, and
 a dataset.</p>
 </section>
-<section id="frequently-asked-questions">
-<h2>Frequently asked questions<a class="headerlink" href="#frequently-asked-questions" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li><p><a class="reference internal" href="convergence_curves.html#convergence-curves"><span class="std std-ref">How are the convergence curves sampled?</span></a></p></li>
-</ul>
+<section id="curve-sampling">
+<h2>Curve sampling<a class="headerlink" href="#curve-sampling" title="Permalink to this headline">¶</a></h2>
+<p>Benchopt allows to sample both black-boxed solvers and solvers that allow for callbacks. Learn <a class="reference internal" href="convergence_curves.html#convergence-curves"><span class="std std-ref">How are the convergence curves sampled?</span></a>. Note that the sampling strategy can also be tweaked on a per-solver basis, as described in: <a class="reference internal" href="advanced.html#sampling-strategy"><span class="std std-ref">Changing the strategy to grow the stop_val</span></a>.</p>
 </section>
-<section id="available-benchmarks">
-<h2>Available benchmarks<a class="headerlink" href="#available-benchmarks" title="Permalink to this headline">¶</a></h2>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Some benchmarks are briefly described in the list below. For a complete
-list of benchmarks, see GitHub repositories of the form <a class="reference external" href="https://github.com/orgs/benchopt/repositories?q=benchmark_&amp;type=all&amp;language=&amp;sort=stargazers/">benchopt/benchmark_*</a>.</p>
+<section id="re-using-code-in-a-benchmark">
+<h2>Re-using code in a benchmark<a class="headerlink" href="#re-using-code-in-a-benchmark" title="Permalink to this headline">¶</a></h2>
+<p>For some solver and datasets, it is necessary to share some operations or pre-processing steps. Benchopt allows to factorize this code by <a class="reference internal" href="advanced.html#benchmark-utils-import"><span class="std std-ref">Reusing some code in a benchmark</span></a>.</p>
+</section>
+<section id="parallel-run">
+<h2>Parallel run<a class="headerlink" href="#parallel-run" title="Permalink to this headline">¶</a></h2>
+<p>Benchopt allows to run different benchmarked methods in parallel, either with <code class="docutils literal notranslate"><span class="pre">joblib</span></code> using <code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">4</span></code> to run on multiple CPUs of a single machine or using SLURM, as described in <a class="reference internal" href="advanced.html#slurm-run"><span class="std std-ref">Running the benchmark on a SLURM cluster</span></a>.</p>
+</section>
+<section id="citing-benchopt">
+<h2>Citing Benchopt<a class="headerlink" href="#citing-benchopt" title="Permalink to this headline">¶</a></h2>
+<p>If you use <code class="docutils literal notranslate"><span class="pre">Benchopt</span></code> in a scientific publication, please cite the following paper</p>
+<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@inproceedings</span><span class="p">{</span><span class="nl">benchopt</span><span class="p">,</span>
+<span class="w">   </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Moreau, Thomas and Massias, Mathurin and Gramfort, Alexandre and Ablin, Pierre</span>
+<span class="s">             and Bannier, Pierre-Antoine and Charlier, Benjamin and Dagréou, Mathieu and Dupré la Tour, Tom</span>
+<span class="s">             and Durif, Ghislain and F. Dantas, Cassio and Klopfenstein, Quentin</span>
+<span class="s">             and Larsson, Johan and Lai, En and Lefort, Tanguy and Malézieux, Benoit</span>
+<span class="s">             and Moufad, Badr and T. Nguyen, Binh and Rakotomamonjy, Alain and Ramzi, Zaccharie</span>
+<span class="s">             and Salmon, Joseph and Vaiter, Samuel}</span><span class="p">,</span>
+<span class="w">   </span><span class="na">title</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">{Benchopt: Reproducible, efficient and collaborative optimization benchmarks}</span><span class="p">,</span>
+<span class="w">   </span><span class="na">year</span><span class="w">   </span><span class="p">=</span><span class="w"> </span><span class="s">{2022}</span><span class="p">,</span>
+<span class="w">   </span><span class="na">booktitle</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{NeurIPS}</span><span class="p">,</span>
+<span class="w">   </span><span class="na">url</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{https://arxiv.org/abs/2206.13424}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
-<p><strong>Notation:</strong>  In what follows, n (or n_samples) stands for the number of samples and p (or n_features) stands for the number of features.</p>
-<div class="math notranslate nohighlight">
-\[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_ols">Ordinary Least Squares (OLS)</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_ols/actions"><img alt="Build Status OLS" src="https://github.com/benchopt/benchmark_ols/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \frac{1}{2} \|y - Xw\|^2_2\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_nnls">Non-Negative Least Squares (NNLS)</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_nnls/actions"><img alt="Build Status NNLS" src="https://github.com/benchopt/benchmark_nnls/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_{w \geq 0} \frac{1}{2} \|y - Xw\|^2_2\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_lasso">LASSO: L1-regularized least squares</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_lasso/actions"><img alt="Build Status Lasso" src="https://github.com/benchopt/benchmark_lasso/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \frac{1}{2} \|y - Xw\|^2_2 + \lambda \|w\|_1\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l2">L2-regularized logistic regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l2/actions"><img alt="Build Status LogRegL2" src="https://github.com/benchopt/benchmark_logreg_l2/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \sum_{i=1}^{n} \log(1 + \exp(-y_i x_i^\top w)) + \frac{\lambda}{2} \|w\|_2^2\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">L1-regularized logistic regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1/actions"><img alt="Build Status LogRegL1" src="https://github.com/benchopt/benchmark_logreg_l1/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_w \sum_{i=1}^{n} \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_huber_l2">L2-regularized Huber regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_huber_l2/actions"><img alt="Build Status HuberL2" src="https://github.com/benchopt/benchmark_huber_l2/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_{w, \sigma} {\sum_{i=1}^n \left(\sigma + H_{\epsilon}\left(\frac{X_{i}w - y_{i}}{\sigma}\right)\sigma\right) + \lambda {\|w\|_2}^2}\]</div>
-<p>where</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}H_{\epsilon}(z) = \begin{cases}
-       z^2, &amp; \text {if } |z| &lt; \epsilon, \\
-       2\epsilon|z| - \epsilon^2, &amp; \text{otherwise}
-\end{cases}\end{split}\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_quantile_regression">L1-regularized quantile regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_quantile_regression/actions"><img alt="Build Status QuantileRegL1" src="https://github.com/benchopt/benchmark_quantile_regression/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<div class="math notranslate nohighlight">
-\[\min_{w} \frac{1}{n} \sum_{i=1}^{n} PB_q(y_i - X_i w) + \lambda ||w||_1.\]</div>
-<p>where <span class="math notranslate nohighlight">\(PB_q\)</span> is the pinball loss:</p>
-<div class="math notranslate nohighlight">
-\[\begin{split}PB_q(t) = q \max(t, 0) + (1 - q) \max(-t, 0) =
-\begin{cases}
-    q t, &amp; t &gt; 0, \\
-    0,    &amp; t = 0, \\
-    (1-q) t, &amp; t &lt; 0
-\end{cases}\end{split}\]</div>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_linear_ica">Linear ICA</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_linear_ica/actions"><img alt="Build Status LinearICA" src="https://github.com/benchopt/benchmark_linear_ica/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<p>Given some data <span class="math notranslate nohighlight">\(X  \in \mathbb{R}^{d \times n}\)</span> assumed to be linearly
-related to unknown independent sources <span class="math notranslate nohighlight">\(S  \in \mathbb{R}^{d \times n}\)</span> with</p>
-<div class="math notranslate nohighlight">
-\[X = A S\]</div>
-<p>where <span class="math notranslate nohighlight">\(A  \in \mathbb{R}^{d \times d}\)</span> is also unknown, the objective of
-linear ICA is to recover <span class="math notranslate nohighlight">\(A\)</span> up to permutation and scaling of its columns.
-The objective in this benchmark is related to some estimation on <span class="math notranslate nohighlight">\(A\)</span>
-quantified with the so-called AMARI distance.</p>
-<ul class="simple">
-<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_jointdiag">Approximate Joint Diagonalization (AJD)</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_jointdiag/actions"><img alt="Build Status JointDiag" src="https://github.com/benchopt/benchmark_jointdiag/workflows/Tests/badge.svg" /></a></p></li>
-</ul>
-<p>Given n square symmetric positive matrices <span class="math notranslate nohighlight">\(C^i\)</span>, it consists of solving
-the following problem:</p>
-<div class="math notranslate nohighlight">
-\[\min_B \frac{1}{2n} \sum_{i=1}^n \log |\textrm{diag} (B C^i B^{\top}) | - \log | B C^i B^{\top} |\]</div>
-<p>where <span class="math notranslate nohighlight">\(|\cdot|\)</span> stands for the matrix determinant and <span class="math notranslate nohighlight">\(\textrm{diag}\)</span> stands
-for the operator that keeps only the diagonal elements of a matrix. Optionally, the
-matrix <span class="math notranslate nohighlight">\(B\)</span> can be enforced to be orthogonal.</p>
-<p>See <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a> for more.</p>
 </section>
-<section id="benchmark-results">
-<h2>Benchmark results<a class="headerlink" href="#benchmark-results" title="Permalink to this headline">¶</a></h2>
-<p>All the public benchmark results are available at <a class="reference external" href="https://benchopt.github.io/results/">Benchopt Benchmarks results</a>.</p>
-<p><strong>Publish results</strong>: You can directly publish the result of a run of <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> on <a class="reference external" href="https://benchopt.github.io/results/">Benchopt Benchmarks results</a>. You can have a look at this page to <a class="reference internal" href="publish.html#publish-doc"><span class="std std-ref">Publish benchmark results</span></a>.</p>
+<section id="other-functionalities">
+<h2>Other functionalities<a class="headerlink" href="#other-functionalities" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Some solvers are not compatible with certain datasets or objective configurations. This can be accommodated by <a class="reference internal" href="advanced.html#skiping-solver"><span class="std std-ref">Skipping a solver for a given problem</span></a>.</p></li>
+<li><p>For some solvers, it is necessary to cache some pre-compilation for fair benchmarks. This can easily be done with benchopt, as described in <a class="reference internal" href="advanced.html#precompilation"><span class="std std-ref">Caching pre-compilation and warmup effects</span></a>.</p></li>
+</ul>
 </section>
 </section>
 <section id="how-to-contribute">
@@ -401,23 +359,88 @@ HTML output by typing, in a shell:</p>
 <span class="prompt1">make<span class="w"> </span>html</span>
 <span class="prompt1">firefox<span class="w"> </span>_build/html/index.html</span>
 </pre></div></div></section>
-<section id="citing-benchopt">
-<h2>Citing Benchopt<a class="headerlink" href="#citing-benchopt" title="Permalink to this headline">¶</a></h2>
-<p>If you use <code class="docutils literal notranslate"><span class="pre">Benchopt</span></code> in a scientific publication, please cite the following paper</p>
-<div class="highlight-bibtex notranslate"><div class="highlight"><pre><span></span><span class="nc">@article</span><span class="p">{</span><span class="nl">benchopt</span><span class="p">,</span>
-<span class="w">   </span><span class="na">author</span><span class="w"> </span><span class="p">=</span><span class="w"> </span><span class="s">{Moreau, Thomas and Massias, Mathurin and Gramfort, Alexandre and Ablin, Pierre</span>
-<span class="s">             and Bannier, Pierre-Antoine and Charlier, Benjamin and Dagréou, Mathieu and Dupré la Tour, Tom</span>
-<span class="s">             and Durif, Ghislain and F. Dantas, Cassio and Klopfenstein, Quentin</span>
-<span class="s">             and Larsson, Johan and Lai, En and Lefort, Tanguy and Malézieux, Benoit</span>
-<span class="s">             and Moufad, Badr and T. Nguyen, Binh and Rakotomamonjy, Alain and Ramzi, Zaccharie</span>
-<span class="s">             and Salmon, Joseph and Vaiter, Samuel}</span><span class="p">,</span>
-<span class="w">   </span><span class="na">title</span><span class="w">  </span><span class="p">=</span><span class="w"> </span><span class="s">{Benchopt: Reproducible, efficient and collaborative optimization benchmarks}</span><span class="p">,</span>
-<span class="w">   </span><span class="na">year</span><span class="w">   </span><span class="p">=</span><span class="w"> </span><span class="s">{2022}</span><span class="p">,</span>
-<span class="w">   </span><span class="na">url</span><span class="w">    </span><span class="p">=</span><span class="w"> </span><span class="s">{https://arxiv.org/abs/2206.13424}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
 </section>
+<section id="some-available-benchmarks">
+<h1>Some available benchmarks<a class="headerlink" href="#some-available-benchmarks" title="Permalink to this headline">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Some benchmarks are briefly described in the list below. For a complete
+list of benchmarks, see GitHub repositories of the form <a class="reference external" href="https://github.com/orgs/benchopt/repositories?q=benchmark_&amp;type=all&amp;language=&amp;sort=stargazers/">benchopt/benchmark_*</a>.</p>
+</div>
+<p><strong>Notation:</strong>  In what follows, <span class="math notranslate nohighlight">\(n\)</span> (or <code class="docutils literal notranslate"><span class="pre">n_samples</span></code>) stands for the number of samples and <span class="math notranslate nohighlight">\(p\)</span> (or <code class="docutils literal notranslate"><span class="pre">n_features</span></code>) stands for the number of features.</p>
+<div class="math notranslate nohighlight">
+\[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_ols">Ordinary Least Squares (OLS)</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_ols/actions"><img alt="Build Status OLS" src="https://github.com/benchopt/benchmark_ols/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \frac{1}{2} \|y - Xw\|^2_2\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_nnls">Non-Negative Least Squares (NNLS)</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_nnls/actions"><img alt="Build Status NNLS" src="https://github.com/benchopt/benchmark_nnls/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_{w \geq 0} \frac{1}{2} \|y - Xw\|^2_2\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_lasso">LASSO: L1-regularized least squares</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_lasso/actions"><img alt="Build Status Lasso" src="https://github.com/benchopt/benchmark_lasso/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \frac{1}{2} \|y - Xw\|^2_2 + \lambda \|w\|_1\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l2">L2-regularized logistic regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l2/actions"><img alt="Build Status LogRegL2" src="https://github.com/benchopt/benchmark_logreg_l2/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \sum_{i=1}^{n} \log(1 + \exp(-y_i x_i^\top w)) + \frac{\lambda}{2} \|w\|_2^2\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">L1-regularized logistic regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1/actions"><img alt="Build Status LogRegL1" src="https://github.com/benchopt/benchmark_logreg_l1/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_w \sum_{i=1}^{n} \log(1 + \exp(-y_i x_i^\top w)) + \lambda \|w\|_1\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_huber_l2">L2-regularized Huber regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_huber_l2/actions"><img alt="Build Status HuberL2" src="https://github.com/benchopt/benchmark_huber_l2/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_{w, \sigma} {\sum_{i=1}^n \left(\sigma + H_{\epsilon}\left(\frac{X_{i}w - y_{i}}{\sigma}\right)\sigma\right) + \lambda {\|w\|_2}^2}\]</div>
+<p>where</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}H_{\epsilon}(z) = \begin{cases}
+       z^2, &amp; \text {if } |z| &lt; \epsilon, \\
+       2\epsilon|z| - \epsilon^2, &amp; \text{otherwise}
+\end{cases}\end{split}\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_quantile_regression">L1-regularized quantile regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_quantile_regression/actions"><img alt="Build Status QuantileRegL1" src="https://github.com/benchopt/benchmark_quantile_regression/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[\min_{w} \frac{1}{n} \sum_{i=1}^{n} PB_q(y_i - X_i w) + \lambda ||w||_1.\]</div>
+<p>where <span class="math notranslate nohighlight">\(PB_q\)</span> is the pinball loss:</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}PB_q(t) = q \max(t, 0) + (1 - q) \max(-t, 0) =
+\begin{cases}
+    q t, &amp; t &gt; 0, \\
+    0,    &amp; t = 0, \\
+    (q - 1) t, &amp; t &lt; 0
+\end{cases}\end{split}\]</div>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_linear_ica">Linear ICA</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_linear_ica/actions"><img alt="Build Status LinearICA" src="https://github.com/benchopt/benchmark_linear_ica/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<p>Given some data <span class="math notranslate nohighlight">\(X  \in \mathbb{R}^{d \times n}\)</span> assumed to be linearly
+related to unknown independent sources <span class="math notranslate nohighlight">\(S  \in \mathbb{R}^{d \times n}\)</span> with</p>
+<div class="math notranslate nohighlight">
+\[X = A S\]</div>
+<p>where <span class="math notranslate nohighlight">\(A  \in \mathbb{R}^{d \times d}\)</span> is also unknown, the objective of
+linear ICA is to recover <span class="math notranslate nohighlight">\(A\)</span> up to permutation and scaling of its columns.
+The objective in this benchmark is related to some estimation on <span class="math notranslate nohighlight">\(A\)</span>
+quantified with the so-called AMARI distance.</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/benchopt/benchmark_jointdiag">Approximate Joint Diagonalization (AJD)</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_jointdiag/actions"><img alt="Build Status JointDiag" src="https://github.com/benchopt/benchmark_jointdiag/workflows/Tests/badge.svg" /></a></p></li>
+</ul>
+<p>Given n square symmetric positive matrices <span class="math notranslate nohighlight">\(C^i\)</span>, it consists of solving
+the following problem:</p>
+<div class="math notranslate nohighlight">
+\[\min_B \frac{1}{2n} \sum_{i=1}^n \log |\textrm{diag} (B C^i B^{\top}) | - \log | B C^i B^{\top} |\]</div>
+<p>where <span class="math notranslate nohighlight">\(|\cdot|\)</span> stands for the matrix determinant and <span class="math notranslate nohighlight">\(\textrm{diag}\)</span> stands
+for the operator that keeps only the diagonal elements of a matrix. Optionally, the
+matrix <span class="math notranslate nohighlight">\(B\)</span> can be enforced to be orthogonal.</p>
+<p>See <a class="reference external" href="https://github.com/benchopt/">benchmark_* repositories on GitHub</a> for more.</p>
 </section>
 <section id="website-contents">
 <h1>Website contents<a class="headerlink" href="#website-contents" title="Permalink to this headline">¶</a></h1>
