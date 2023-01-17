@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Python API &#8212; benchopt 1.3.2.dev11 documentation</title>
+    <title>Python API &#8212; benchopt 1.3.2.dev12 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -44,7 +44,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev11</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev12</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -145,6 +145,10 @@
 Also available for <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">Objective</span></code>.</p>
 <p><code class="xref py py-func docutils literal notranslate"><span class="pre">get_next()</span></code>: hook to change the sampling points for
 a given solver.</p>
+<p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.pre_run_hook" title="benchopt.BaseSolver.pre_run_hook"><code class="xref py py-func docutils literal notranslate"><span class="pre">pre_run_hook()</span></code></a>: hook called before each call to
+<code class="docutils literal notranslate"><span class="pre">run</span></code>, with the same argument. Allows to skip certain computation that
+cannot be cached globally, such as precompilation with different number of
+iterations in for jitted <code class="docutils literal notranslate"><span class="pre">jax</span></code> functions.</p>
 </section>
 <section id="benchopt-utils">
 <h2>Benchopt utils<a class="headerlink" href="#benchopt-utils" title="Permalink to this headline">¶</a></h2>
