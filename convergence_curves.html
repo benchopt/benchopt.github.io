@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>How are the convergence curves sampled? &#8212; benchopt 1.3.2.dev12 documentation</title>
+    <title>How are the convergence curves sampled? &#8212; benchopt 1.3.2.dev13 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev12</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.3.2.dev13</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -165,10 +165,12 @@ It returns <code class="docutils literal notranslate"><span class="pre">False</s
 <p>For each of the sampling strategies above, the solvers continue running (i.e. the callback returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, the number of iterations passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> increases or the tolerance passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> decreases) until it the <code class="docutils literal notranslate"><span class="pre">StoppingCriterion.should_stop()</span></code> associated to the solver <code class="docutils literal notranslate"><span class="pre">Solver.stopping_criterion</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <p>This method takes into account the maximal number of runs given as <code class="docutils literal notranslate"><span class="pre">--max-runs</span></code>, the timeout given by <code class="docutils literal notranslate"><span class="pre">--timeout</span></code> and also tries to stop the solver if it has converged.
 The convergence of a solver is determined by  the <code class="docutils literal notranslate"><span class="pre">StoppingCriterion.check_convergence()</span></code> method, based on the objective curve so far.
-There are three <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> implemented in <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>:
-- <code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion(eps,</span> <span class="pre">patience)</span></code> considers that the solver has converged when the relative decrease of the objective was less than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>.
-- <code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion(eps,</span> <span class="pre">patience)</span></code> considers that the solver has converged when the objective has not decreased by more than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>.
-- <code class="docutils literal notranslate"><span class="pre">SingleRunCriterion(stop_val)</span></code> only call the solver once with the given stop_val. This criterion designed for methods that converge to a given value, when one aim to benchmark final performance of multiple solvers.</p>
+There are three <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> implemented in <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion(eps,</span> <span class="pre">patience)</span></code> considers that the solver has converged when the relative decrease of the objective was less than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion(eps,</span> <span class="pre">patience)</span></code> considers that the solver has converged when the objective has not decreased by more than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SingleRunCriterion(stop_val)</span></code> only call the solver once with the given stop_val. This criterion designed for methods that converge to a given value, when one aim to benchmark final performance of multiple solvers.</p></li>
+</ul>
 </section>
 
 
