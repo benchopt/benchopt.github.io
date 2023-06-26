@@ -6,10 +6,10 @@
 
 Computation times
 =================
-**02:54.205** total execution time for **auto_examples** files:
+**02:49.500** total execution time for **auto_examples** files:
 
 +---------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R.py` (``plot_run_benchmark_python_R.py``) | 02:10.250 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R.py` (``plot_run_benchmark_python_R.py``) | 02:09.986 | 0.0 MB |
 +---------------------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_auto_examples_plot_run_benchmark.py` (``plot_run_benchmark.py``)                   | 00:43.955 | 0.0 MB |
+| :ref:`sphx_glr_auto_examples_plot_run_benchmark.py` (``plot_run_benchmark.py``)                   | 00:39.514 | 0.0 MB |
 +---------------------------------------------------------------------------------------------------+-----------+--------+
