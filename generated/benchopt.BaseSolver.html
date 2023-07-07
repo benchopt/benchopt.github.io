@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.BaseSolver &#8212; benchopt 1.4.1.dev4 documentation</title>
+    <title>benchopt.BaseSolver &#8212; benchopt 1.4.1.dev5 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.4.1.dev4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.4.1.dev5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -132,7 +132,7 @@ call to run. For command line solvers, this retrieves the result from the
 disk. This utility is necessary to reduce the impact of loading the
 result from the disk in the benchmark.</p></li>
 </ul>
-<p>Note that two <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> can be used to construct the benchmark
+<p>Note that two <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be used to construct the benchmark
 curve:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: call the run method with max_iter number increasing
@@ -185,7 +185,7 @@ the computations should stop.</p>
 <dd><p>Call the solver with the given stop_val.</p>
 <p>This function should not return the parameters which will be
 retrieved by a subsequent call to get_result.</p>
-<p>If <cite>stopping_strategy</cite> is set to <cite>“callback”</cite>, then <cite>run</cite> should call
+<p>If <cite>sampling_strategy</cite> is set to <cite>“callback”</cite>, then <cite>run</cite> should call
 the callback at each iteration. The callback will compute the time,
 the objective function and store relevant quantities for BenchOpt.
 Else, the <cite>stop_val</cite> parameter should be specified.</p>
@@ -213,7 +213,7 @@ method to avoid taking into account a solver’s warmup costs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>stop_val</strong><span class="classifier">int or float, (default: 1)</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> is ‘iteration’, this should be an integer
+<dt><strong>stop_val</strong><span class="classifier">int or float, (default: 1)</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> is ‘iteration’, this should be an integer
 corresponding to the number of iterations the solver is run for.
 If it is ‘callback’, it is an integer corresponding to the number
 of times the callback is called.

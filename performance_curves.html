@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>How are the performance curves sampled? &#8212; benchopt 1.4.1.dev4 documentation</title>
+    <title>How are the performance curves sampled? &#8212; benchopt 1.4.1.dev5 documentation</title>
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/style.css" />
@@ -42,7 +42,7 @@
         </button>
         <a class="navbar-brand" href="index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.4.1.dev4</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.4.1.dev5</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -120,21 +120,21 @@ With “<em>performance curves</em>”, we refer to the evolution of the perform
 function of the computational budget.
 With <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>, there are different ways to vary the computational budget
 to sample the performance curve.
-They are chosen by the <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> attribute of each solver.</p>
+They are chosen by the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> attribute of each solver.</p>
 <section id="using-iterations-or-tolerance">
 <h2>1. Using iterations or tolerance<a class="headerlink" href="#using-iterations-or-tolerance" title="Permalink to this headline">¶</a></h2>
-<p>The first way is to use <code class="docutils literal notranslate"><span class="pre">Solver.stopping_strategy</span> <span class="pre">=</span> <span class="pre">&quot;iteration&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">Solver.stopping_strategy</span> <span class="pre">=</span> <span class="pre">&quot;tolerance&quot;</span></code>.
+<p>The first way is to use <code class="docutils literal notranslate"><span class="pre">Solver.sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;iteration&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">Solver.sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;tolerance&quot;</span></code>.
 This is used for black box solvers, where one can only get the result of the solver for a given number of iterations or for a given numerical tolerance.
-This stopping strategy creates curves by calling <code class="docutils literal notranslate"><span class="pre">Solver.run(stop_val)</span></code> several times with different values for the <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> parameter:</p>
+This sampling strategy creates curves by calling <code class="docutils literal notranslate"><span class="pre">Solver.run(stop_val)</span></code> several times with different values for the <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> parameter:</p>
 <ul>
-<li><p>if the solver’s <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;iteration&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> is the number of iterations passed to <code class="docutils literal notranslate"><span class="pre">run</span></code>.
+<li><p>if the solver’s <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;iteration&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> is the number of iterations passed to <code class="docutils literal notranslate"><span class="pre">run</span></code>.
 It increases geometrically by at least 1, starting from 1 with a factor <span class="math notranslate nohighlight">\(\rho=1.5\)</span>.
 Note that the first call uses a number of iterations of 0.
 The value from one call to the other follows:</p>
 <div class="math notranslate nohighlight">
 \[\text{stop_val} = \max(\text{stop_val} + 1, \text{int}(\rho * \text{stop_val}))\]</div>
 </li>
-<li><p>if the solver’s <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;tolerance&quot;</span></code>, the <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> parameter corresponds to the numerical tolerance.
+<li><p>if the solver’s <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;tolerance&quot;</span></code>, the <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> parameter corresponds to the numerical tolerance.
 It decreases geometrically by a factor <span class="math notranslate nohighlight">\(\rho=1.5\)</span> between each call to <code class="docutils literal notranslate"><span class="pre">run</span></code>, starting from 1 at the second call.
 Note that the first call uses a tolerance of 1e38.
 The value from one call to the other follows:</p>
@@ -149,9 +149,9 @@ For more advanced configurations, the evolution of <code class="docutils literal
 <section id="using-a-callback">
 <h2>2. Using a callback<a class="headerlink" href="#using-a-callback" title="Permalink to this headline">¶</a></h2>
 <p>Restarting the solver from scratch, though inevitable to handle black box solvers, can be costly.</p>
-<p>When a solver exposes the intermediate values of the iterates, it is possible to create the curve in a single solver run, by using <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span> <span class="pre">=</span> <span class="pre">&quot;callback&quot;</span></code>.
+<p>When a solver exposes the intermediate values of the iterates, it is possible to create the curve in a single solver run, by using <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;callback&quot;</span></code>.
 In that case, the argument passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> will be a callable object, <code class="docutils literal notranslate"><span class="pre">callback</span></code>.
-Like with <code class="docutils literal notranslate"><span class="pre">stopping_strategy</span> <span class="pre">==</span> <span class="pre">&quot;iteration&quot;</span></code>, the objective is computed after a number of callback’s calls that grows geometrically. If the objective was computed after <span class="math notranslate nohighlight">\(n\)</span> calls, the objective and timing will be computed again when reaching <span class="math notranslate nohighlight">\(\max(n+1, \rho * n)\)</span> calls to the callback.
+Like with <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">==</span> <span class="pre">&quot;iteration&quot;</span></code>, the objective is computed after a number of callback’s calls that grows geometrically. If the objective was computed after <span class="math notranslate nohighlight">\(n\)</span> calls, the objective and timing will be computed again when reaching <span class="math notranslate nohighlight">\(\max(n+1, \rho * n)\)</span> calls to the callback.
 The callback makes sure we do not account for objective computation time and also check for convergence every time the objective is computed (as described in the next section).
 It returns <code class="docutils literal notranslate"><span class="pre">False</span></code> when the solver should be stopped. A classical usage pattern is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
