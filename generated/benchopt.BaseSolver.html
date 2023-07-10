@@ -5,7 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.BaseSolver &#8212; benchopt 1.4.1.dev6 documentation</title>
+    <title>benchopt.BaseSolver &#8212; benchopt 1.4.1.dev7 documentation</title>
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css" />
@@ -43,7 +43,7 @@
         </button>
         <a class="navbar-brand" href="../index.html">
           benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.4.1.dev6</b></span>
+        <span class="navbar-text navbar-version pull-left"><b>1.4.1.dev7</b></span>
       </div>
 
         <div class="collapse navbar-collapse nav-collapse">
@@ -208,7 +208,7 @@ the computations should stop.</p>
 <dt class="sig sig-object py" id="benchopt.BaseSolver.run_once">
 <span class="sig-name descname"><span class="pre">run_once</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run_once" title="Permalink to this definition">¶</a></dt>
 <dd><p>Run the solver once, to cache warmup times (e.g. pre-compilations).</p>
-<p>This function is intended to be called in <code class="docutils literal notranslate"><span class="pre">Solver.set_objective</span></code>
+<p>This function is intended to be called in <code class="docutils literal notranslate"><span class="pre">Solver.warm_up</span></code>
 method to avoid taking into account a solver’s warmup costs.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -262,6 +262,15 @@ If skip is False, the reason should be None.</p>
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.warm_up">
+<span class="sig-name descname"><span class="pre">warm_up</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.warm_up" title="Permalink to this definition">¶</a></dt>
+<dd><p>User specified warm up step, called once before the runs.</p>
+<p>The time it takes to run this function is not taken into account.
+The function <cite>Solver.run_once</cite> can be used here for solvers that
+require jit compilation.</p>
 </dd></dl>
 
 </dd></dl>
