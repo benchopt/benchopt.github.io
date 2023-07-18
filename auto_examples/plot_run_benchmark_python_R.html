@@ -1,119 +1,300 @@
+
+
 <!DOCTYPE html>
 
-<html>
+
+<html >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Demo benchmark with R/Python &#8212; benchopt 1.4.1.dev11 documentation</title>
+    <title>Demo benchmark with R/Python &#8212; benchopt 1.4.1.dev12 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/bootstrap-sphinx.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
     <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/plot_run_benchmark_python_R';</script>
+    <link rel="shortcut icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-<meta charset='utf-8'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<script type="text/javascript" src="../_static/js/jquery-1.12.4.min.js"></script>
-<script type="text/javascript" src="../_static/js/jquery-fix.js"></script>
-<script type="text/javascript" src="../_static/bootstrap-3.4.1/js/bootstrap.min.js"></script>
-<script type="text/javascript" src="../_static/bootstrap-sphinx.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="None"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-  </head><body>
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
 
-  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
-    <div class="container">
-      <div class="navbar-header">
-        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a class="navbar-brand" href="../index.html">
-          benchopt</a>
-        <span class="navbar-text navbar-version pull-left"><b>1.4.1.dev11</b></span>
-      </div>
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
 
-        <div class="collapse navbar-collapse nav-collapse">
-          <ul class="nav navbar-nav">
-            
-                <li><a href="../cli.html">CLI</a></li>
-                <li><a href="../api.html">API</a></li>
-                <li><a href="https://benchopt.github.io/results">Results</a></li>
-                <li><a href="../whats_new.html">What's new</a></li>
-                <li><a href="https://github.com/benchopt/benchopt">GitHub</a></li>
-            
-            
-              <li class="dropdown globaltoc-container">
-  <a role="button"
-     id="dLabelGlobalToc"
-     data-toggle="dropdown"
-     data-target="#"
-     href="../index.html">Site <b class="caret"></b></a>
-  <ul class="dropdown-menu globaltoc"
-      role="menu"
-      aria-labelledby="dLabelGlobalToc"><ul>
-<li class="toctree-l1"><a class="reference internal" href="../cli.html">Command line interface (CLI)</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../api.html">Python API</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../how.html">Write a benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../publish.html">Publish benchmark results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../config.html">BenchOpt configuration</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../advanced.html">Advanced functionalities in a benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/benchopt/benchopt">Fork benchopt on Github</a></li>
-</ul>
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
+  
+  
+    <p class="title logo__title">1.4.1.dev12</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/publish_benchmark.html">Publish benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
 </ul>
 </li>
-              
-            
-            
-            
-            
-            
-          </ul>
-
-          
-            
-<form class="navbar-form navbar-right" action="../search.html" method="get">
- <div class="form-group">
-  <input type="text" name="q" class="form-control" placeholder="Search" />
- </div>
-  <input type="hidden" name="check_keywords" value="yes" />
-  <input type="hidden" name="area" value="default" />
-</form>
-          
-        </div>
-    </div>
-  </div>
-
-<div class="container">
-  <div class="row">
-      <div class="col-md-3">
-        <div id="sidebar" class="bs-sidenav" role="complementary"><ul>
-<li><a class="reference internal" href="#">Demo benchmark with R/Python</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-3"><i class="fa-solid fa-chevron-down"></i></label><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
 </ul>
 
-        </div>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
       </div>
-    <div class="body col-md-9 content" role="main">
       
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Demo benchmark with R/Python</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="demo-benchmark-with-r-python">
-<span id="sphx-glr-auto-examples-plot-run-benchmark-python-r-py"></span><h1>Demo benchmark with R/Python<a class="headerlink" href="#demo-benchmark-with-r-python" title="Permalink to this headline">¶</a></h1>
+<span id="sphx-glr-auto-examples-plot-run-benchmark-python-r-py"></span><h1>Demo benchmark with R/Python<a class="headerlink" href="#demo-benchmark-with-r-python" title="Permalink to this headline">#</a></h1>
 <ul class="sphx-glr-horizontal">
 <li><img src="../_images/sphx_glr_plot_run_benchmark_python_R_001.png" srcset="../_images/sphx_glr_plot_run_benchmark_python_R_001.png" alt="Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]" class = "sphx-glr-multi-img"/></li>
 <li><img src="../_images/sphx_glr_plot_run_benchmark_python_R_002.png" srcset="../_images/sphx_glr_plot_run_benchmark_python_R_002.png" alt="Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]" class = "sphx-glr-multi-img"/></li>
@@ -130,7 +311,7 @@ to download the full example code</p>
 /home/circleci/project/benchopt/base.py:109: FutureWarning: Skipping sparse X via `support_sparse = False` is deprecated and will be removed in v 1.5. Skip explicitly using `Solver.skip`.
   warnings.warn(
     |--R-PGD: done (timeout)
-Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2023-07-18_08h19m35.parquet
+Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2023-07-18_20h41m38.parquet
 Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_support_size_objective_curve.pdf
 Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_duality_gap_objective_curve.pdf
@@ -145,9 +326,9 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <a href="../generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a>
+<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a>
 <span class="kn">from</span> <span class="nn">benchopt.benchmark</span> <span class="kn">import</span> <span class="n">Benchmark</span>
-<span class="kn">from</span> <span class="nn">benchopt.plotting</span> <span class="kn">import</span> <a href="../generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">,</span> <span class="n">PLOT_KINDS</span>
+<span class="kn">from</span> <span class="nn">benchopt.plotting</span> <span class="kn">import</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">,</span> <span class="n">PLOT_KINDS</span>
 <span class="kn">from</span> <span class="nn">benchopt.plotting.plot_objective_curve</span> <span class="kn">import</span> <span class="n">reset_solver_styles_idx</span>
 
 
@@ -161,7 +342,7 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.resolve" title="pathlib.Path.resolve" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">BENCHMARK_PATH</span><span class="o">.</span><span class="n">resolve</span></a><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="p">)</span>
 
-<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a> <span class="o">=</span> <a href="../generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a><span class="p">(</span>
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a> <span class="o">=</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a><span class="p">(</span>
     <span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">),</span>
     <span class="p">[</span><span class="s1">&#39;Python-PGD[use_acceleration=False]&#39;</span><span class="p">,</span> <span class="s1">&#39;R-PGD&#39;</span><span class="p">],</span>
     <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Simulated[n_features=5000,n_samples=100,rho=0]&quot;</span><span class="p">],</span>
@@ -173,12 +354,12 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
 
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">PLOT_KINDS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <span class="n">reset_solver_styles_idx</span><span class="p">()</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">figs</span></a> <span class="o">=</span> <a href="../generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">),</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">figs</span></a> <span class="o">=</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">),</span>
                       <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  12.565 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  1.659 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/46d3545d2de3fcee6756b7d2ee7fb39f/plot_run_benchmark_python_R.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark_python_R.py</span></code></a></p>
@@ -191,21 +372,73 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
 </section>
 
 
-    </div>
-      
-  </div>
+                </article>
+              
+
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
 </div>
-<footer class="footer">
-  <div class="container">
-    <p class="pull-right">
-      <a href="#">Back to top</a>
-      
-    </p>
-    <p>
-        &copy; Copyright 2020-2022, Benchopt contributors.<br/>
-      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 4.5.0.<br/>
-    </p>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
   </div>
-</footer>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2020-2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
