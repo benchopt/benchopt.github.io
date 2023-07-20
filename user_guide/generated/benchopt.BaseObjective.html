@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.BaseObjective &#8212; benchopt 1.4.1.dev14 documentation</title>
+    <title>benchopt.BaseObjective &#8212; benchopt 1.4.1.dev15 documentation</title>
   
   
   
@@ -133,7 +133,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev14</p>
+    <p class="title logo__title">1.4.1.dev15</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -304,23 +304,24 @@ compute the objective value on these data.</p></li>
 from the objective function as a dictionary that will be passed as
 parameters of the solver’s <cite>set_objective</cite> method in order to specify the
 objective function of the benchmark.</p></li>
-<li><p><cite>compute(beta)</cite>: computes the value of the objective function for an
-given estimate beta. Beta is given as np.array of size corresponding to
-the <cite>dimension</cite> value returned by <cite>Dataset.get_data</cite>. The output should
-be a float or a dictionary of floats.
+<li><p><cite>evaluate_result(**result)</cite>: evaluate the metrics on the results of a
+solver. Is passed the output of <cite>Solver.get_result</cite>.
 If a dictionary is returned, it should at least contain a key
 <cite>value</cite> associated to a scalar value which will be used to
 detect convergence. With a dictionary, multiple metric values can be
-stored at once instead of runnning each separately.</p></li>
+stored at once instead of running each separately.</p></li>
 </ul>
 <dl class="py method">
-<dt class="sig sig-object py" id="benchopt.BaseObjective.compute">
-<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">compute</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">beta</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.compute" title="Permalink to this definition">#</a></dt>
-<dd><p>Compute the value of the objective given the current estimate beta.</p>
+<dt class="sig sig-object py" id="benchopt.BaseObjective.evaluate_result">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">solver_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.evaluate_result" title="Permalink to this definition">#</a></dt>
+<dd><p>Compute the objective value given the output of a solver.</p>
+<p>The arguments are the keys in the result dictionary returned
+by <code class="docutils literal notranslate"><span class="pre">Solver.get_result</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>beta</strong><span class="classifier">ndarray or tuple of ndarray</span></dt><dd><p>The current estimate of the parameters being optimized.</p>
+<dt><strong>solver_result</strong><span class="classifier">dict</span></dt><dd><p>All values needed to compute the objective metrics. This dictionary
+is retrieved by calling <code class="docutils literal notranslate"><span class="pre">solver_result</span> <span class="pre">=</span> <span class="pre">Solver.get_result()</span></code>.</p>
 </dd>
 </dl>
 </dd>
@@ -330,7 +331,7 @@ stored at once instead of runnning each separately.</p></li>
 returned, it should at least contain a key <cite>value</cite> associated to a
 scalar value which will be used to detect convergence. With a
 dictionary, multiple metric values can be stored at once instead
-of runnning each separately.</p>
+of running each separately.</p>
 </dd>
 </dl>
 </dd>

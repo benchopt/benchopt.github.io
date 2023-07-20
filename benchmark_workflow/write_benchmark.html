@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.4.1.dev14 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.4.1.dev15 documentation</title>
   
   
   
@@ -133,7 +133,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev14</p>
+    <p class="title logo__title">1.4.1.dev15</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -413,8 +413,12 @@ different metrics at once.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lambda_max</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">compute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
-        <span class="s2">&quot;Compute the objective value given the output x of a solver.&quot;</span>
+    <span class="k">def</span> <span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value given the output of a solver.</span>
+
+<span class="sd">        The arguments are the keys in the result dictionary returned</span>
+<span class="sd">        by ``Solver.get_result``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">@</span> <span class="n">beta</span>
         <span class="n">objective_value</span> <span class="o">=</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">diff</span> <span class="o">@</span> <span class="n">diff</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">objective_value</span>  <span class="c1"># or return dict(value=objective_value)</span>
@@ -608,7 +612,7 @@ with no other dependencies. Here is an example:</p>
 
     <span class="c1"># Return the solution estimate computed.</span>
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>For solvers that allow access to each iterate of the solution, using <code class="docutils literal notranslate"><span class="pre">&quot;callback&quot;</span></code>
@@ -674,7 +678,7 @@ not <a class="reference external" href="https://conda-forge.org/">conda-forge</a
         <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()}</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -931,7 +935,7 @@ or Fortran compiler.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()}</span>
 </pre></div>
 </div>
 <div class="admonition note">

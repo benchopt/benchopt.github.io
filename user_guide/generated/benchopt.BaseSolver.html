@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.BaseSolver &#8212; benchopt 1.4.1.dev14 documentation</title>
+    <title>benchopt.BaseSolver &#8212; benchopt 1.4.1.dev15 documentation</title>
   
   
   
@@ -133,7 +133,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev14</p>
+    <p class="title logo__title">1.4.1.dev15</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -295,30 +295,28 @@ document.write(`
 <dl class="py class">
 <dt class="sig sig-object py" id="benchopt.BaseSolver">
 <em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">BaseSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver" title="Permalink to this definition">#</a></dt>
-<dd><p>A base class for solver wrappers in BenchOpt.</p>
+<dd><p>A base class for solver wrappers in Benchopt.</p>
 <p>Solvers that derive from this class should implement three methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">set_objective(self,</span> <span class="pre">**objective_parameters)</span></code>: prepares the solver to
 be called on a given problem. <code class="docutils literal notranslate"><span class="pre">**objective_parameters</span></code> is the output of
-the method <code class="docutils literal notranslate"><span class="pre">get_objective</span></code> from the benchmark objective. In particular,
+<code class="docutils literal notranslate"><span class="pre">Objective.get_objective</span></code> from the benchmark objective. In particular,
 this method should dumps the parameter to compute the objective function
 in a file for command line solvers to reduce the impact of dumping the
 data to the disk in the benchmark.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">n_iter/tolerance)</span></code>: performs the computation for the
 previously given objective function, after a call to <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.
 This method is the one timed in the benchmark and should not perform any
-operation unrelated to  the optimization procedure.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get_result(self)</span></code>: returns the parameters computed by the previous
-call to run. For command line solvers, this retrieves the result from the
-disk. This utility is necessary to reduce the impact of loading the
-result from the disk in the benchmark.</p></li>
+operation unrelated to the optimization procedure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_result(self)</span></code>: returns all parameters of interest, as a dict.
+The output is passed to <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.</p></li>
 </ul>
 <p>Note that two <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be used to construct the benchmark
 curve:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: call the run method with max_iter number increasing
 logarithmically to get more an more precise points.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'tolerance'</span></code>: call the run method with tolerance deacreasing
+<li><p><code class="docutils literal notranslate"><span class="pre">'tolerance'</span></code>: call the run method with tolerance decreasing
 logarithmically to get more and more precise points.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: a callable that should be called after each iteration or
 epoch. This callable periodically calls the objective’s <cite>compute</cite>
@@ -328,11 +326,11 @@ and returns False when the solver should stop.</p></li>
 <dt class="sig sig-object py" id="benchopt.BaseSolver.get_result">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Permalink to this definition">#</a></dt>
 <dd><p>Return the parameters computed by the previous run.</p>
-<p>The parameters should be returned as a flattened array.</p>
-<dl class="field-list">
+<p>The parameters should be returned as a dictionary.</p>
+<dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><dl>
-<dt><strong>parameters</strong><span class="classifier">ndarray, shape <code class="docutils literal notranslate"><span class="pre">(dimension,)</span></code> or <code class="docutils literal notranslate"><span class="pre">*dimension</span></code></span></dt><dd><p>The computed coefficients by the solver.</p>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>parameters</strong><span class="classifier">dictionary</span></dt><dd><p>All quantities of interest to evaluate the objective.</p>
 </dd>
 </dl>
 </dd>

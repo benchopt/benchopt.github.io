@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new &#8212; benchopt 1.4.1.dev14 documentation</title>
+    <title>What’s new &#8212; benchopt 1.4.1.dev15 documentation</title>
   
   
   
@@ -132,7 +132,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev14</p>
+    <p class="title logo__title">1.4.1.dev15</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -343,6 +343,11 @@ document.write(`
 <section id="api">
 <h3>API<a class="headerlink" href="#api" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
+<li><p>Deprecate <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> in favor of <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>, for
+consistency with <code class="docutils literal notranslate"><span class="pre">Solver.get_result</span></code>. Like <code class="docutils literal notranslate"><span class="pre">Dataset.get_data</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Solver.get_result</span></code> must now return a dictionary, which is unpacked as
+arguments to <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.
+By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/576">#576</a>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Solver.support_sparse</span></code> attribute is deprecated in favor of the use of</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code>, by <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/614">#614</a>).</p>
