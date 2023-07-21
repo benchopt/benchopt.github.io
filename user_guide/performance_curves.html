@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Performance curves &#8212; benchopt 1.4.1.dev15 documentation</title>
+    <title>Performance curves &#8212; benchopt 1.4.1.dev16 documentation</title>
   
   
   
@@ -134,7 +134,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev15</p>
+    <p class="title logo__title">1.4.1.dev16</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -350,11 +350,13 @@ Like with <code class="docutils literal notranslate"><span class="pre">sampling_
 The callback makes sure we do not account for objective computation time and also check for convergence every time the objective is computed (as described in the next section).
 It returns <code class="docutils literal notranslate"><span class="pre">False</span></code> when the solver should be stopped. A classical usage pattern is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
-    <span class="n">x</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># Initialize iterate</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># Initialize iterate</span>
 
-    <span class="k">while</span> <span class="n">callback</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># Update iterate</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="n">x</span>
+    <span class="k">while</span> <span class="n">callback</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># Update iterate</span>
+
+<span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>

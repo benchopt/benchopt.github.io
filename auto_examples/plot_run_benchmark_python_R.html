@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Demo benchmark with R/Python &#8212; benchopt 1.4.1.dev15 documentation</title>
+    <title>Demo benchmark with R/Python &#8212; benchopt 1.4.1.dev16 documentation</title>
   
   
   
@@ -131,7 +131,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev15</p>
+    <p class="title logo__title">1.4.1.dev16</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -307,15 +307,17 @@ to download the full example code</p>
   |--Lasso Regression[fit_intercept=False,reg=0.5]
 /home/circleci/project/benchopt/base.py:69: FutureWarning: &#39;stopping_strategy&#39; attribute is deprecated and will be removed in benchopt 1.5, use &#39;sampling_strategy&#39; instead.
   warnings.warn(
-/home/circleci/project/benchopt/base.py:433: FutureWarning: objective.compute was renamed `objective.evaluate_result` in v 1.5
+/home/circleci/project/benchopt/callback.py:88: FutureWarning: Starting 1.5, the callback does not take any arguments. The results are passed to `Objective.evaluate_result` directly from `Solver.get_result`.
   warnings.warn(
-/home/circleci/project/benchopt/base.py:442: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
+/home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
+  warnings.warn(
+/home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
   warnings.warn(
     |--Python-PGD[use_acceleration=False]: done
 /home/circleci/project/benchopt/base.py:107: FutureWarning: Skipping sparse X via `support_sparse = False` is deprecated and will be removed in v 1.5. Skip explicitly using `Solver.skip`.
   warnings.warn(
     |--R-PGD: done (timeout)
-Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2023-07-20_17h12m42.parquet
+Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2023-07-21_23h50m01.parquet
 Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_support_size_objective_curve.pdf
 Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_duality_gap_objective_curve.pdf
@@ -363,7 +365,7 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  21.797 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 2 minutes  22.669 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/46d3545d2de3fcee6756b7d2ee7fb39f/plot_run_benchmark_python_R.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark_python_R.py</span></code></a></p>
