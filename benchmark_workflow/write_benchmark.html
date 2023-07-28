@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.4.1.dev17 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.4.1.dev18 documentation</title>
   
   
   
@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -46,13 +47,15 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/design-tabs.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/write_benchmark';</script>
     <link rel="shortcut icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Publish benchmark results" href="publish_benchmark.html" />
+    <link rel="next" title="Run a benchmark" href="run_benchmark.html" />
     <link rel="prev" title="Benchmark workflow" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
@@ -133,7 +136,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev17</p>
+    <p class="title logo__title">1.4.1.dev18</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -167,6 +170,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="publish_benchmark.html">Publish benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
 </ul>
@@ -340,19 +345,19 @@ as for <a class="reference external" href="https://github.com/benchopt/benchmark
 <p class="admonition-title">Note</p>
 <p>The simplest way to create a benchmark is to copy an existing folder and
 to adapt its content.
-A benchmark template is provided as a <a class="reference external" href="https://github.com/benchopt/template_benchmark">GitHub template repo here</a></p>
+A benchmark template is provided as a <a class="reference external" href="https://github.com/benchopt/template_benchmark">GitHub template repository here</a>.</p>
 </div>
 <section id="objective">
 <span id="id1"></span><h2>1. Objective<a class="headerlink" href="#objective" title="Permalink to this headline">#</a></h2>
-<p>The <strong>objective function</strong> is defined through a Python class.
-This class allows to monitor the quantities of interest along the iterations
-of the solvers. Typically it allows to evaluate the objective function to
-be minimized by the solvers. An objective class should define 3 methods:</p>
+<p>The <strong>objective function</strong> is defined through a Python class, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, defined in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>.
+This class allows to monitor the quantities of interest along the iterations of the solvers.
+Typically it allows to evaluate the objective function to be minimized by the solvers.
+An objective class should define 4 methods:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">get_one_result()</span></code>: it returns one solution that can be returned by a solver.
+<li><p><code class="docutils literal notranslate"><span class="pre">get_one_result()</span></code>: returns one solution that can be returned by a solver.
 This defines the shape of the solution and will be used to test that the
 benchmark works properly.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">set_data(**data)</span></code>: it allows to specify the data. See the data as a dictionary
+<li><p><code class="docutils literal notranslate"><span class="pre">set_data(**data)</span></code>: allows to specify the data. See the data as a dictionary
 of Python variables without any constraint.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">compute(x)</span></code>: it allows to evaluate the objective for a given value
 of the iterate, here called <code class="docutils literal notranslate"><span class="pre">x</span></code>. This method should take only one parameter,
@@ -362,16 +367,15 @@ a float (understood as the objective value) or a dictionary. If a dictionary
 is returned it should contain a key called <code class="docutils literal notranslate"><span class="pre">value</span></code> (the objective value) and all other keys
 should have <code class="docutils literal notranslate"><span class="pre">float</span></code> values allowing to track more than one value
 of interest (e.g. train and test errors).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get_objective()</span></code>: method that returns a dictionary to be passed
+<li><p><code class="docutils literal notranslate"><span class="pre">get_objective()</span></code>: returns a dictionary to be passed
 to the <code class="docutils literal notranslate"><span class="pre">set_objective</span></code> methods of <a class="reference internal" href="#solvers">solvers</a>.</p></li>
 </ul>
-<p>An objective class also needs to inherit from a base class,
+<p>An objective class needs to inherit from a base class,
 <a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseObjective</span></code></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Multiple values can be computed in one objective as long as they are
-stored in a dictionary with a key being <code class="docutils literal notranslate"><span class="pre">value</span></code>. This allows to compute
-different metrics at once.</p>
+<p>Multiple metrics can be returned by <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> as long as they are
+stored in a dictionary, with a key being <code class="docutils literal notranslate"><span class="pre">value</span></code> corresponding to the main metric to track.</p>
 </div>
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h3>
@@ -435,7 +439,7 @@ different metrics at once.</p>
 <p>A dataset defines what can be passed to an objective. More specifically,
 a dataset should implement one method:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">get_data()</span></code>: A method which outputs a dictionary that can be passed as
+<li><p><code class="docutils literal notranslate"><span class="pre">get_data()</span></code>: A method which outputs a dictionary that is passed as
 keyword arguments <code class="docutils literal notranslate"><span class="pre">**data</span></code> to the <code class="docutils literal notranslate"><span class="pre">set_data</span></code> method of an <a class="reference internal" href="#objective">objective</a>.</p></li>
 </ul>
 <p>A dataset class also needs to inherit from a base class called
@@ -545,7 +549,7 @@ see below for details.</p></li>
 to the <code class="docutils literal notranslate"><span class="pre">compute</span></code> method from the objective. This is the output of
 the solver.</p></li>
 </ul>
-<p><strong>Stop strategy:</strong></p>
+<p><strong>Sampling strategy:</strong></p>
 <p>A solver should also define a <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> as class attribute.
 This <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be:</p>
 <ul class="simple">
@@ -570,10 +574,8 @@ should stop.</p></li>
 </ul>
 <section id="python-solver">
 <span id="python-solvers"></span><h3>Python solver<a class="headerlink" href="#python-solver" title="Permalink to this headline">#</a></h3>
-<p>The simplest solvers to use are solvers written in pure
-<a class="reference external" href="https://www.python.org/">Python</a> without any compiled
-code. They are typically written in <a class="reference external" href="https://numpy.org/">Numpy</a>
-with no other dependencies. Here is an example:</p>
+<p>The simplest solvers to use are solvers using <a class="reference external" href="https://www.python.org/">Python</a> code.
+Here is an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span><span class="p">,</span> <span class="n">safe_import_context</span>
 <span class="kn">from</span> <span class="nn">benchopt.utils</span> <span class="kn">import</span> <span class="n">profile</span>
 
@@ -970,11 +972,11 @@ that uses a <code class="docutils literal notranslate"><span class="pre">'shell'
       </div>
     </a>
     <a class="right-next"
-       href="publish_benchmark.html"
+       href="run_benchmark.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Publish benchmark results</p>
+        <p class="prev-next-title">Run a benchmark</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Run benchmark from a script &#8212; benchopt 1.4.1.dev17 documentation</title>
+    <title>Run benchmark from a script &#8212; benchopt 1.4.1.dev18 documentation</title>
   
   
   
@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
     <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
@@ -46,6 +47,8 @@
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
     <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/design-tabs.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/plot_run_benchmark';</script>
@@ -131,7 +134,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev17</p>
+    <p class="title logo__title">1.4.1.dev18</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -165,6 +168,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/publish_benchmark.html">Publish benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
 </ul>
@@ -499,6 +504,11 @@ to download the full example code</p>
   warnings.warn(
 /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
   warnings.warn(
+    |--Lightning:  76.9% (3 / 15 reps)
+/home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
+  warnings.warn(
+/home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
+  warnings.warn(
     |--Lightning: initialization (4 / 15 reps)
 /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
   warnings.warn(
@@ -560,6 +570,11 @@ to download the full example code</p>
 /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
   warnings.warn(
     |--Lightning:  61.6% (4 / 15 reps)
+/home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
+  warnings.warn(
+/home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
+  warnings.warn(
+    |--Lightning:  76.9% (4 / 15 reps)
 /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
   warnings.warn(
 /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
@@ -1010,6 +1025,11 @@ to download the full example code</p>
 /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
   warnings.warn(
     |--Lightning:  50.9% (11 / 15 reps)
+/home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
+  warnings.warn(
+/home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
+  warnings.warn(
+    |--Lightning:  61.6% (11 / 15 reps)
 /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
   warnings.warn(
 /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
@@ -2852,12 +2872,12 @@ to download the full example code</p>
 /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
   warnings.warn(
     |--sklearn[newton-cg]: done
-Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2023-07-28_13h26m04.parquet
-Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_objective_curve.pdf
-Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_Test loss_objective_curve.pdf
-Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_suboptimality_curve.pdf
-Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_relative_suboptimality_curve.pdf
-Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_bar_chart.pdf
+Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2023-07-28_14h24m56.parquet
+Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_objective_curve.pdf
+Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_Test loss_objective_curve.pdf
+Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_relative_suboptimality_curve.pdf
+Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_bar_chart.pdf
 </pre></div>
 </div>
 <div class="line-block">
@@ -2902,7 +2922,7 @@ Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=20
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  45.217 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  39.947 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/d0a19eddcd9b5cc19e309134ae758ece/plot_run_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark.py</span></code></a></p>

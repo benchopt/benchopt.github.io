@@ -227,6 +227,10 @@ Run benchmark from a script
       warnings.warn(
     /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
       warnings.warn(
+        |--Lightning:  76.9% (3 / 15 reps)    /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
+      warnings.warn(
+    /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
+      warnings.warn(
         |--Lightning: initialization (4 / 15 reps)    /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
       warnings.warn(
     /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
@@ -276,6 +280,10 @@ Run benchmark from a script
     /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
       warnings.warn(
         |--Lightning:  61.6% (4 / 15 reps)    /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
+      warnings.warn(
+    /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
+      warnings.warn(
+        |--Lightning:  76.9% (4 / 15 reps)    /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
       warnings.warn(
     /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
       warnings.warn(
@@ -636,6 +644,10 @@ Run benchmark from a script
     /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
       warnings.warn(
         |--Lightning:  50.9% (11 / 15 reps)    /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
+      warnings.warn(
+    /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
+      warnings.warn(
+        |--Lightning:  61.6% (11 / 15 reps)    /home/circleci/project/benchopt/base.py:445: FutureWarning: From benchopt 1.5, Solver.get_result() should return a dict.
       warnings.warn(
     /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
       warnings.warn(
@@ -2110,12 +2122,12 @@ Run benchmark from a script
     /home/circleci/project/benchopt/base.py:424: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
       warnings.warn(
         |--sklearn[newton-cg]: done
-    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2023-07-28_13h26m04.parquet
-    Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_objective_curve.pdf
-    Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_Test loss_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_relative_suboptimality_curve.pdf
-    Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_bar_chart.pdf
+    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2023-07-28_14h24m56.parquet
+    Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_Test loss_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_relative_suboptimality_curve.pdf
+    Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_bar_chart.pdf
 
 
 
@@ -2168,7 +2180,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  45.217 seconds)
+   **Total running time of the script:** ( 0 minutes  39.947 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:

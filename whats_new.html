@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>What’s new &#8212; benchopt 1.4.1.dev17 documentation</title>
+    <title>What’s new &#8212; benchopt 1.4.1.dev18 documentation</title>
   
   
   
@@ -31,6 +31,7 @@
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
     <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css" />
@@ -46,6 +47,8 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
     <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="_static/design-tabs.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'whats_new';</script>
@@ -132,7 +135,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev17</p>
+    <p class="title logo__title">1.4.1.dev18</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -166,6 +169,8 @@
 <li class="toctree-l1"><a class="reference internal" href="get_started.html">Get started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="benchmark_workflow/index.html">Benchmark workflow</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/publish_benchmark.html">Publish benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
 </ul>
@@ -289,6 +294,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-5-dev">Version 1.5 (dev)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-4-03-07-2023">Version 1.4 - 03/07/2023</a><ul class="nav section-nav flex-column">
@@ -318,7 +324,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">API</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">CLI</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bug">BUG</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">DOC</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-0-2020-09-25">Version 1.0 - 2020-09-25</a><ul class="nav section-nav flex-column">
@@ -354,15 +360,20 @@ consistency with <code class="docutils literal notranslate"><span class="pre">So
 <code class="docutils literal notranslate"><span class="pre">Solver.get_result</span></code> must now return a dictionary, which is unpacked as
 arguments to <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.
 By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/576">#576</a>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Solver.support_sparse</span></code> attribute is deprecated in favor of the use of</p></li>
-</ul>
-<p><code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code>, by <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/614">#614</a>).</p>
-<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Solver.support_sparse</span></code> attribute is deprecated in favor of the use of
+<code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code>, by <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/614">#614</a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stopping_strategy</span></code> attribute is replaced by <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> to clarify
 the concept, by <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/585">#585</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">Solver.warm_up</span></code> function for explicit warmup instructions, such as
 empty run for jitting. This function is called only once per solver.
 By <a class="reference external" href="https://github.com/pierreablin">Pierre Ablin</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/602">#602</a>).</p></li>
+</ul>
+</section>
+<section id="doc">
+<h3>DOC<a class="headerlink" href="#doc" title="Permalink to this headline">#</a></h3>
+<ul class="simple">
+<li><p>Reformatting and enriching the documentation for easy onboarding.
+By <a class="reference external" href="https://github.com/Badr-MOUFAD">Badr Moufad</a> and <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/619">#619</a>, <a class="reference external" href="https://github.com/benchopt/benchopt/pull/629">#629</a>).</p></li>
 </ul>
 </section>
 </section>
@@ -579,8 +590,8 @@ calling <code class="docutils literal notranslate"><span class="pre">benchopt</s
 <li><p>Fix Lapack issue with R code, by <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/97">#97</a>).</p></li>
 </ul>
 </section>
-<section id="doc">
-<h3>DOC<a class="headerlink" href="#doc" title="Permalink to this headline">#</a></h3>
+<section id="id10">
+<h3>DOC<a class="headerlink" href="#id10" title="Permalink to this headline">#</a></h3>
 <ul class="simple">
 <li><p>Improve how-to narrative documentation, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/93">#93</a>).</p></li>
 <li><p>Add what’s new page, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/114">#114</a>).</p></li>
@@ -671,6 +682,7 @@ implementations:</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-5-dev">Version 1.5 (dev)</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-4-03-07-2023">Version 1.4 - 03/07/2023</a><ul class="nav section-nav flex-column">
@@ -700,7 +712,7 @@ implementations:</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">API</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">CLI</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bug">BUG</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">DOC</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-0-2020-09-25">Version 1.0 - 2020-09-25</a><ul class="nav section-nav flex-column">

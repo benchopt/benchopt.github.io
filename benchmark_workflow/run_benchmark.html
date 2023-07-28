@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Configure Benchopt &#8212; benchopt 1.4.1.dev18 documentation</title>
+    <title>Run a benchmark &#8212; benchopt 1.4.1.dev18 documentation</title>
   
   
   
@@ -51,12 +51,12 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
     <script src="../_static/design-tabs.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/config_benchopt';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/run_benchmark';</script>
     <link rel="shortcut icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="User guide" href="../user_guide/index.html" />
-    <link rel="prev" title="Publish benchmark results" href="publish_benchmark.html" />
+    <link rel="next" title="Visualize a benchmark" href="visualize_benchmark.html" />
+    <link rel="prev" title="Write a benchmark" href="write_benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="None"/>
   </head>
@@ -170,10 +170,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Run a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="publish_benchmark.html">Publish benchmark results</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Configure Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
 </ul>
 </li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-2"><i class="fa-solid fa-chevron-down"></i></label><ul>
@@ -283,7 +283,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Configure Benchopt</h1>
+    <h1>Run a benchmark</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -293,10 +293,8 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-location">Config File Location</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-structure">Config File Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-settings">Config Settings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-mamba-to-install-packages">Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-configuration-file">Using a configuration file</a></li>
 </ul>
             </nav>
         </div>
@@ -308,88 +306,74 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article" role="main">
                   
-  <section id="configure-benchopt">
-<span id="config-benchopt"></span><h1>Configure Benchopt<a class="headerlink" href="#configure-benchopt" title="Permalink to this headline">#</a></h1>
-<p>Benchopt can be configured using setting files. These files can either be created directly or generated and modified using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code>.</p>
-<p>There are two configuration levels. The first level is the global config for the benchopt client. It contains the system-specific tweaks, the user info such as the <em>&lt;GitHub token&gt;</em>, and the output levels. The second level is the configuration of the benchmarks. Each benchmark can have its own config for the kind of plots it displays by default and other display tweaks.</p>
-<p>To get the BenchOpt global config file used by the benchopt command, you can run <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code>. Using the option <code class="docutils literal notranslate"><span class="pre">--benchmark,-b</span> <span class="pre">&lt;benchmark&gt;</span></code> allows to display the config file for a specific benchmark. See <a class="reference internal" href="#config-file"><span class="std std-ref">Config File Location</span></a> for more details on how the config file path is resolved.</p>
-<p>The structure of the files follows the Microsoft Windows INI files structure and is described in <a class="reference internal" href="#config-structure"><span class="std std-ref">Config File Structure</span></a>. The available settings are listed in <a class="reference internal" href="#config-settings"><span class="std std-ref">Config Settings</span></a>.</p>
-<p>The value of each setting can be accessed with the CLI using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">[-b</span> <span class="pre">&lt;benchmark&gt;]</span> <span class="pre">get</span> <span class="pre">&lt;name&gt;</span></code>. Similarly, the setting value can be set using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">[-b</span> <span class="pre">&lt;benchmark&gt;]</span> <span class="pre">set</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;value&gt;</span></code>.</p>
-<section id="config-file-location">
-<span id="config-file"></span><h2>Config File Location<a class="headerlink" href="#config-file-location" title="Permalink to this headline">#</a></h2>
-<p>For the global configuration file, the resolution order is the following:</p>
-<ol class="arabic simple">
-<li><p>The environment variable <code class="docutils literal notranslate"><span class="pre">BENCHOPT_CONFIG</span></code> is set to an existing file,</p></li>
-<li><p>A file <code class="docutils literal notranslate"><span class="pre">benchopt.ini</span></code> in the current directory,</p></li>
-<li><p>The default file is <code class="docutils literal notranslate"><span class="pre">$HOME/.config/benchopt.ini</span></code>.</p></li>
-</ol>
-<p>For benchmark configuration files, they are usually located in the benchmark folder, and named <code class="docutils literal notranslate"><span class="pre">benchopt.ini</span></code>. If it does not exist, the default is to use the global config file.</p>
-</section>
-<section id="config-file-structure">
-<span id="config-structure"></span><h2>Config File Structure<a class="headerlink" href="#config-file-structure" title="Permalink to this headline">#</a></h2>
-<p>The config files for benchopt follow the Microsoft Windows INI files structure. The global setting are grouped in a <code class="docutils literal notranslate"><span class="pre">[benchopt]</span></code> section:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[benchopt]</span>
-<span class="na">debug</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span><span class="w">  </span><span class="c1"># Activate or not debug logs</span>
-<span class="na">raise_install_error</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">no</span><span class="w">  </span><span class="c1"># Raise/ignore install error. Default is ignore.</span>
-<span class="na">github_token</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">0...0</span><span class="w">  </span><span class="c1"># Token used to publish results on benchopt/results</span>
-</pre></div>
+  <section id="run-a-benchmark">
+<span id="run-benchmark"></span><h1>Run a benchmark<a class="headerlink" href="#run-a-benchmark" title="Permalink to this headline">#</a></h1>
+<p>Let’s use the Lasso benchmark to illustrate ways of running a benchmark.</p>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>Head to <a class="reference internal" href="../get_started.html#get-started"><span class="std std-ref">Get started</span></a> to first install benchopt
+and setup the Lasso benchmark.</p>
 </div>
-<p>For benchmark settings, they are grouped in a section with the same name as the benchmark. For a benchmark named <code class="docutils literal notranslate"><span class="pre">benchmark_bench</span></code>, the config structure is:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="k">[benchmark_bench]</span>
-<span class="na">plots</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="na">suboptimality_curve</span>
-<span class="w">    </span><span class="na">bar_chart</span>
-<span class="w">    </span><span class="na">objective_curve</span>
-</pre></div>
+<p>With the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI) references</span></a>, there are two ways to run a benchmark: passing options with flags in the CLI, or with a configuration file.</p>
+<section id="specifying-options-with-cli-flags">
+<h2>Specifying options with CLI flags<a class="headerlink" href="#specifying-options-with-cli-flags" title="Permalink to this headline">#</a></h2>
+<p>It is possible to specify the solvers as well as the datasets
+to include in the benchmark run by using flags after <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">.</span></code>.</p>
+<p>For instance, the following command runs the benchmark with solvers
+<code class="docutils literal notranslate"><span class="pre">skglm</span></code> and <code class="docutils literal notranslate"><span class="pre">celer</span></code>, on datasets <code class="docutils literal notranslate"><span class="pre">leukemia</span></code> and <code class="docutils literal notranslate"><span class="pre">simulated</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span>skglm<span class="w"> </span>-s<span class="w"> </span>celer<span class="w"> </span>-d<span class="w"> </span>leukemia<span class="w"> </span>-d<span class="w"> </span>simulated</span>
+</pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">-s</span></code> flag is to specify a solver whereas <code class="docutils literal notranslate"><span class="pre">-d</span></code> specifies a dataset.
+To include multiple datasets/solvers, use multiple <code class="docutils literal notranslate"><span class="pre">-d</span></code>/<code class="docutils literal notranslate"><span class="pre">-s</span></code> flags, as in the above snippet.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">run</span></code> command accepts other flags such as <code class="docutils literal notranslate"><span class="pre">-j</span></code> to run the benchmark in parallel with a given number of processes.
+The list of flags is available through <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">--help</span></code> or in the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI) references</span></a> page.</p>
+</div>
+<p>In addition, it is possible to specify the parameters of solvers and datasets by wrapping them in square brackets in comma separated format.</p>
+<p>The following snippet runs the <code class="docutils literal notranslate"><span class="pre">Python-PGD</span></code> solver with its acceleration parameter set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, on the <code class="docutils literal notranslate"><span class="pre">simulated</span></code> dataset.
+This dataset has parameters <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">n_features</span></code> that we set to <code class="docutils literal notranslate"><span class="pre">100</span></code> and <code class="docutils literal notranslate"><span class="pre">20</span></code> respectively.</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+shell</label><div class="sd-tab-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span>Python-PGD<span class="o">[</span><span class="nv">use_acceleration</span><span class="o">=</span>True<span class="o">]</span><span class="w"> </span>-d<span class="w"> </span>simulated<span class="o">[</span><span class="nv">n_samples</span><span class="o">=</span><span class="m">100</span>,n_features<span class="o">=</span><span class="m">20</span><span class="o">]</span></span>
+</pre></div></div></div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+zsh</label><div class="sd-tab-content docutils">
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;Python-PGD[use_acceleration=True]&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;simulated[n_samples=100,n_features=20]&quot;</span></span>
+</pre></div></div></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If a parameter of a solver/dataset is not explicitly set via CLI, benchopt uses all its values specified in the code.</p>
 </div>
 </section>
-<section id="config-settings">
-<span id="id1"></span><h2>Config Settings<a class="headerlink" href="#config-settings" title="Permalink to this headline">#</a></h2>
-<p>This section lists the available settings.</p>
-<p><strong>Global settings</strong></p>
-<dl class="py data">
-<dt class="sig sig-object py" id="benchopt.config.DEFAULT_GLOBAL_CONFIG">
-<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cache':</span> <span class="pre">None,</span> <span class="pre">'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'bash'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Permalink to this definition">#</a></dt>
-<dd><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code>: If set to true, enable debug logs.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">raise_install_error</span></code>, <em>boolean</em>: If set to true, raise error when
-install fails.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">github_token</span></code>, <em>str</em>: token to publish results on <code class="docutils literal notranslate"><span class="pre">benchopt/results</span></code>
-via github.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">conda_cmd</span></code>, <em>str</em>: can be used to give the path to <code class="docutils literal notranslate"><span class="pre">conda</span></code> if it is
-not directly installed on <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>. This can also be used to use <code class="docutils literal notranslate"><span class="pre">mamba</span></code>
-to install benchmarks instead of conda. See <a class="reference internal" href="#config-mamba"><span class="std std-ref">Using mamba to install packages</span></a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code>, <em>str</em>: can be used to specify the shell to use. Default to
-<cite>SHELL</cite> from env if it exists and <code class="docutils literal notranslate"><span class="pre">'bash'</span></code> otherwise.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code>, <em>str</em>: can be used to specify where the cache for the benchmarks
-should be stored. By default, the cache files are stored in the benchmark
-directory, under the folder __cache__. Setting this configuration would
-results in having the cache for benchmark <cite>B1</cite> stored in <cite>${cache}/B1/</cite>.</p></li>
-</ul>
-</dd></dl>
+<section id="using-a-configuration-file">
+<span id="run-with-config-file"></span><h2>Using a configuration file<a class="headerlink" href="#using-a-configuration-file" title="Permalink to this headline">#</a></h2>
+<p>When using a complex configuration, it is more handy to specify it through a configuration file.
+Using a YAML file and the <code class="docutils literal notranslate"><span class="pre">--config</span></code> flag, it is possible to describe all details of the benchmark run and execute instead</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>--config<span class="w"> </span>./example_config.yml</span>
+</pre></div></div><p>Here is the content of configuration file <code class="docutils literal notranslate"><span class="pre">example_config.yml</span></code> if we were to run the two previous example into a single one.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">solver</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skglm</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celer</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python-pgd[use_acceleration=True]</span>
 
-<p><strong>Benchmark settings</strong></p>
-<dl class="py data">
-<dt class="sig sig-object py" id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
-<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'plots':</span> <span class="pre">['objective_curve',</span> <span class="pre">'suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'bar_chart']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Permalink to this definition">#</a></dt>
-<dd><ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">plots</span></code>, <em>list</em>: Select the plots to display for the benchmark. Should be
-valid plot kinds. The list can simply be one item by line, with each item
-indented, as:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">plots</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="na">suboptimality_curve</span>
-<span class="w">    </span><span class="na">bar_chart</span>
+<span class="nt">dataset</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leukemia</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulated[n_samples=100,n_features=20]</span>
 </pre></div>
 </div>
-</li>
-</ul>
-</dd></dl>
-
-</section>
-<section id="using-mamba-to-install-packages">
-<span id="config-mamba"></span><h2>Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages<a class="headerlink" href="#using-mamba-to-install-packages" title="Permalink to this headline">#</a></h2>
-<p>When many packages need to be installed, <code class="docutils literal notranslate"><span class="pre">conda</span></code> can be slow or even fail to resolve the dependency graph. Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> can speed up this process and make it more reliable.</p>
-<p>To use <code class="docutils literal notranslate"><span class="pre">mamba</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> when installing benchmark requirements, it is necessary to have <code class="docutils literal notranslate"><span class="pre">mamba</span></code> installed in the <code class="docutils literal notranslate"><span class="pre">base</span></code> conda environment, <em>e.g.</em> using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">base</span> <span class="pre">mamba</span></code>. Then, benchopt can be configured to use this command instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> by either configuring the CLI using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">set</span> <span class="pre">conda_cmd</span> <span class="pre">mamba</span></code> or setting the environment variable <code class="docutils literal notranslate"><span class="pre">BENCHOPT_CONDA_CMD=mamba</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A third, less frequent, option to run a benchmark is using a Python script.
+Check it out on <a class="reference internal" href="../user_guide/advanced.html#run-benchmark-with-py-script"><span class="std std-ref">advanced usage</span></a>.</p>
+</div>
 </section>
 </section>
 
@@ -406,20 +390,20 @@ indented, as:</p>
     <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
-       href="publish_benchmark.html"
+       href="write_benchmark.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Publish benchmark results</p>
+        <p class="prev-next-title">Write a benchmark</p>
       </div>
     </a>
     <a class="right-next"
-       href="../user_guide/index.html"
+       href="visualize_benchmark.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">User guide</p>
+        <p class="prev-next-title">Visualize a benchmark</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -441,10 +425,8 @@ indented, as:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-location">Config File Location</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-structure">Config File Structure</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-settings">Config Settings</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-mamba-to-install-packages">Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-configuration-file">Using a configuration file</a></li>
 </ul>
   </nav></div>
 
