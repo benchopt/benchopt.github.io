@@ -90,7 +90,7 @@ Demo benchmark with R/Python
     /home/circleci/project/benchopt/base.py:107: FutureWarning: Skipping sparse X via `support_sparse = False` is deprecated and will be removed in v 1.5. Skip explicitly using `Solver.skip`.
       warnings.warn(
         |--R-PGD: done (timeout)
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2023-08-27_13h35m31.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2023-09-04_19h39m27.parquet
     Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_support_size_objective_curve.pdf
     Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_duality_gap_objective_curve.pdf
@@ -146,7 +146,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (2 minutes 0.870 seconds)
+   **Total running time of the script:** (1 minutes 57.963 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
