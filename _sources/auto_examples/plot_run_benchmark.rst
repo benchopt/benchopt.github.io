@@ -2114,7 +2114,7 @@ Run benchmark from a script
     /home/circleci/project/benchopt/base.py:443: FutureWarning: `Objective.compute` was renamed `Objective.evaluate_result` in v 1.5, and now takes as input the unpacked dict returned by `Solver.get_result`
       warnings.warn(
         |--sklearn[newton-cg]: done
-    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2023-09-04_19h40m10.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2023-09-05_22h34m57.parquet
     Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_Test loss_objective_curve.pdf
     Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_suboptimality_curve.pdf
@@ -2172,7 +2172,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 42.101 seconds)
+   **Total running time of the script:** (0 minutes 40.374 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
