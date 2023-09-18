@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Performance curves &#8212; benchopt 1.4.1.dev33 documentation</title>
+    <title>Performance curves &#8212; benchopt 1.4.1.dev34 documentation</title>
   
   
   
@@ -137,7 +137,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev33</p>
+    <p class="title logo__title">1.4.1.dev34</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -322,7 +322,7 @@ With “<em>performance curves</em>”, we refer to the evolution of the perform
 function of the computational budget.
 With benchopt, there are different ways to vary the computational budget
 to sample the performance curve.
-They are chosen by the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> attribute of each solver.</p>
+They are chosen by the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> attribute of each solver, or if specified, the <code class="docutils literal notranslate"><span class="pre">strategy</span></code> parameter of the <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code> of the solver.</p>
 <section id="sampling-strategies">
 <h2>Sampling strategies<a class="headerlink" href="#sampling-strategies" title="Permalink to this headline">#</a></h2>
 <section id="using-iterations-or-tolerance">
@@ -355,6 +355,7 @@ For more advanced configurations, the evolution of <code class="docutils literal
 <p>Restarting the solver from scratch, though inevitable to handle black box solvers, can be costly.</p>
 <p>When a solver exposes the intermediate values of the iterates, it is possible to create the curve in a single solver run, by using <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;callback&quot;</span></code>.
 In that case, the argument passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> will be a callable object, <code class="docutils literal notranslate"><span class="pre">callback</span></code>.
+This callback is created and manage by <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>.
 Like with <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">==</span> <span class="pre">&quot;iteration&quot;</span></code>, the objective is computed after a number of callback’s calls that grows geometrically. If the objective was computed after <span class="math notranslate nohighlight">\(n\)</span> calls, the objective and timing will be computed again when reaching <span class="math notranslate nohighlight">\(\max(n+1, \rho * n)\)</span> calls to the callback.
 The callback makes sure we do not account for objective computation time and also check for convergence every time the objective is computed (as described in the next section).
 It returns <code class="docutils literal notranslate"><span class="pre">False</span></code> when the solver should be stopped. A classical usage pattern is:</p>

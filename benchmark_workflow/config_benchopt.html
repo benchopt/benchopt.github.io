@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Configure Benchopt &#8212; benchopt 1.4.1.dev33 documentation</title>
+    <title>Configure Benchopt &#8212; benchopt 1.4.1.dev34 documentation</title>
   
   
   
@@ -136,7 +136,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev33</p>
+    <p class="title logo__title">1.4.1.dev34</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -375,16 +375,44 @@ results in having the cache for benchmark <cite>B1</cite> stored in <cite>${cach
 <p><strong>Benchmark settings</strong></p>
 <dl class="py data">
 <dt class="sig sig-object py" id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
-<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'plots':</span> <span class="pre">['objective_curve',</span> <span class="pre">'suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'bar_chart']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Permalink to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'plot_configs':</span> <span class="pre">{},</span> <span class="pre">'plots':</span> <span class="pre">['objective_curve',</span> <span class="pre">'suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'bar_chart']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Permalink to this definition">#</a></dt>
 <dd><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">plots</span></code>, <em>list</em>: Select the plots to display for the benchmark. Should be
 valid plot kinds. The list can simply be one item by line, with each item
 indented, as:</p>
-<div class="highlight-ini notranslate"><div class="highlight"><pre><span></span><span class="na">plots</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="na">suboptimality_curve</span>
-<span class="w">    </span><span class="na">bar_chart</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suboptimality_curve</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">relative_suboptimality_curve</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
 </pre></div>
 </div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_configs</span></code>, <em>list</em>: list of saved views that can be easily display for
+the plot. Each view corresponds to a name, with specified values to select
+either:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code>,  <code class="docutils literal notranslate"><span class="pre">objective</span></code>, <code class="docutils literal notranslate"><span class="pre">objective_column</span></code>, <code class="docutils literal notranslate"><span class="pre">kind</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code>,
+<code class="docutils literal notranslate"><span class="pre">with_quantiles</span></code>, <code class="docutils literal notranslate"><span class="pre">xaxis_type</span></code>, <code class="docutils literal notranslate"><span class="pre">xlim</span></code>, <code class="docutils literal notranslate"><span class="pre">ylim</span></code></p>
+</div></blockquote>
+<p>Values that are not specified by the view are left as is when setting the
+view in the interface. An example of views is:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">linear_objective</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
+<span class="w">      </span><span class="nt">ylim</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linear</span>
+<span class="w">  </span><span class="nt">view2</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">objective_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_score_train</span>
+<span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suboptimality_curve</span>
+<span class="w">      </span><span class="nt">ylim</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1e-10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
+</pre></div>
+</div>
+<p>These views can be easily created from the interactive HTML page, by hitting
+the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">as</span> <span class="pre">view</span></code> button in the plot controls and downloading eiher the
+new HTML file to save them or the config file in th erepo of the benchmark,
+so that these saved views are embeded in the next plot results automatically.</p>
 </li>
 </ul>
 </dd></dl>
