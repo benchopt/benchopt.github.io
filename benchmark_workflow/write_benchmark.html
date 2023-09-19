@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.4.1.dev34 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.4.1.dev35 documentation</title>
   
   
   
@@ -136,7 +136,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev34</p>
+    <p class="title logo__title">1.4.1.dev35</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -731,7 +731,7 @@ should differ between the two files. Here is the Python file:</p>
 
     <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
     <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;rpy2&#39;</span><span class="p">]</span>
-    <span class="n">stopping_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
     <span class="n">support_sparse</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;I. Daubechies, M. Defrise and C. De Mol, &#39;</span>
@@ -762,7 +762,7 @@ should differ between the two files. Here is the Python file:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">as_r</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="s2">&quot;vector&quot;</span><span class="p">))</span>
 
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">flatten</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>It uses the R code in:</p>
@@ -837,7 +837,7 @@ should differ between the two files. Here is the Python file:</p>
 
     <span class="c1"># Config of the solver</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Julia-PGD&#39;</span>
-    <span class="n">stopping_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
     <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
         <span class="s1">&#39;I. Daubechies, M. Defrise and C. De Mol, &#39;</span>
         <span class="s1">&#39;&quot;An iterative thresholding algorithm for linear inverse problems &#39;</span>
@@ -866,7 +866,7 @@ should differ between the two files. Here is the Python file:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solve_lasso</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">ravel</span><span class="p">()</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
 </pre></div>
 </div>
 <p>It uses the Julia code in:</p>
