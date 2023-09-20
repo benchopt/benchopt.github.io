@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>benchopt.BaseObjective &#8212; benchopt 1.4.1.dev36 documentation</title>
+    <title>benchopt.BaseObjective &#8212; benchopt 1.4.1.dev37 documentation</title>
   
   
   
@@ -136,7 +136,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.4.1.dev36</p>
+    <p class="title logo__title">1.4.1.dev37</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -336,7 +336,7 @@ this benchmark.</p></li>
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseObjective.evaluate_result">
-<span class="sig-name descname"><span class="pre">evaluate_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">solver_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.evaluate_result" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">solver_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.evaluate_result" title="Permalink to this definition">#</a></dt>
 <dd><p>Compute the objective value given the output of a solver.</p>
 <p>The arguments are the keys in the result dictionary returned
 by <code class="docutils literal notranslate"><span class="pre">Solver.get_result</span></code>.</p>
@@ -378,7 +378,7 @@ calling <code class="docutils literal notranslate"><span class="pre">Solver.set_
 
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseObjective.get_one_result">
-<span class="sig-name descname"><span class="pre">get_one_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_one_result" title="Permalink to this definition">#</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_one_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_one_result" title="Permalink to this definition">#</a></dt>
 <dd><p>Return one result for which the objective can be evaluated.</p>
 <p>This method is mainly for testing purposes, to check that the method
 <cite>Objective.compute</cite> can be called and that it returns a compatible
