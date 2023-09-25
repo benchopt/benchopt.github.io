@@ -9,7 +9,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
-    <title>Write a benchmark &#8212; benchopt 1.5.1.dev2 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.5.2.dev1 documentation</title>
   
   
   
@@ -136,7 +136,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.1.dev2</p>
+    <p class="title logo__title">1.5.2.dev1</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -363,7 +363,7 @@ This defines the shape of the solution and will be used to test that the
 benchmark works properly.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_data(**data)</span></code>: allows to specify the data. See the data as a dictionary
 of Python variables without any constraint.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">compute(x)</span></code>: it allows to evaluate the objective for a given value
+<li><p><code class="docutils literal notranslate"><span class="pre">evaluate_result(x)</span></code>: it allows to evaluate the objective for a given value
 of the iterate, here called <code class="docutils literal notranslate"><span class="pre">x</span></code>. This method should take only one parameter,
 the output returned by the solver. All other parameters should be stored
 in the class with the <code class="docutils literal notranslate"><span class="pre">set_data</span></code> method. The <code class="docutils literal notranslate"><span class="pre">compute</span></code> function should return
