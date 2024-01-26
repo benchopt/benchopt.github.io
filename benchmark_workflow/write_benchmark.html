@@ -1,15 +1,14 @@
 
-
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Write a benchmark &#8212; benchopt 1.5.2.dev5 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.5.2.dev6 documentation</title>
   
   
   
@@ -19,46 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/documentation_options.js?v=43698252"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/write_benchmark';</script>
-    <link rel="shortcut icon" href="../_static/logo_benchopt.png"/>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Run a benchmark" href="run_benchmark.html" />
     <link rel="prev" title="Benchmark workflow" href="index.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -66,7 +65,15 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -101,11 +108,14 @@
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -120,9 +130,11 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -136,7 +148,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev5</p>
+    <p class="title logo__title">1.5.2.dev6</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -156,7 +168,7 @@
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -258,20 +270,22 @@
 </a>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -323,10 +337,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="write-a-benchmark">
-<span id="write-benchmark"></span><h1>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Permalink to this headline">#</a></h1>
+<span id="write-benchmark"></span><h1>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Link to this heading">#</a></h1>
 <p>A benchmark is composed of three elements: an <a class="reference internal" href="#objective">objective</a> function,
 a list of <a class="reference internal" href="#datasets">datasets</a>, and a list of <a class="reference internal" href="#solvers">solvers</a>.</p>
 <p>A benchmark is defined in a folder that should respect a certain
@@ -353,7 +367,7 @@ to adapt its content.
 A benchmark template is provided as a <a class="reference external" href="https://github.com/benchopt/template_benchmark">GitHub template repository here</a>.</p>
 </div>
 <section id="objective">
-<span id="id1"></span><h2>1. Objective<a class="headerlink" href="#objective" title="Permalink to this headline">#</a></h2>
+<span id="id1"></span><h2>1. Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
 <p>The <strong>objective function</strong> is defined through a Python class, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, defined in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>.
 This class allows to monitor the quantities of interest along the iterations of the solvers.
 Typically it allows to evaluate the objective function to be minimized by the solvers.
@@ -383,7 +397,7 @@ to the <code class="docutils literal notranslate"><span class="pre">set_objectiv
 stored in a dictionary, with a key being <code class="docutils literal notranslate"><span class="pre">value</span></code> corresponding to the main metric to track.</p>
 </div>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this headline">#</a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseObjective</span><span class="p">,</span> <span class="n">safe_import_context</span>
 
 <span class="c1"># All packages other than benchopt should be imported in this context.</span>
@@ -440,7 +454,7 @@ stored in a dictionary, with a key being <code class="docutils literal notransla
 </section>
 </section>
 <section id="datasets">
-<span id="id2"></span><h2>2. Datasets<a class="headerlink" href="#datasets" title="Permalink to this headline">#</a></h2>
+<span id="id2"></span><h2>2. Datasets<a class="headerlink" href="#datasets" title="Link to this heading">#</a></h2>
 <p>A dataset defines what can be passed to an objective. More specifically,
 a dataset should implement one method:</p>
 <ul class="simple">
@@ -450,7 +464,7 @@ keyword arguments <code class="docutils literal notranslate"><span class="pre">*
 <p>A dataset class also needs to inherit from a base class called
 <a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a>.</p>
 <section id="example-using-a-real-dataset">
-<h3>Example using a real dataset<a class="headerlink" href="#example-using-a-real-dataset" title="Permalink to this headline">#</a></h3>
+<h3>Example using a real dataset<a class="headerlink" href="#example-using-a-real-dataset" title="Link to this heading">#</a></h3>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
 
 <span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
@@ -483,7 +497,7 @@ keyword arguments <code class="docutils literal notranslate"><span class="pre">*
 across multiple problem dimensions.</p>
 </section>
 <section id="example-of-parametrized-simulated-dataset">
-<h3>Example of parametrized simulated dataset<a class="headerlink" href="#example-of-parametrized-simulated-dataset" title="Permalink to this headline">#</a></h3>
+<h3>Example of parametrized simulated dataset<a class="headerlink" href="#example-of-parametrized-simulated-dataset" title="Link to this heading">#</a></h3>
 <p>Sometimes one wants to test the solvers for variants of the same dataset.
 For example, one may want to change the dataset size, the noise level, etc.
 To be able to specify parameters to get a dataset, you can use a class
@@ -537,7 +551,7 @@ variant of the dataset.</p>
 </section>
 </section>
 <section id="solvers">
-<span id="id3"></span><h2>3. Solvers<a class="headerlink" href="#solvers" title="Permalink to this headline">#</a></h2>
+<span id="id3"></span><h2>3. Solvers<a class="headerlink" href="#solvers" title="Link to this heading">#</a></h2>
 <p>A solver must define three methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">set_objective(**objective_dict)</span></code>: This method will be called with the
@@ -579,7 +593,7 @@ should stop.</p></li>
 <li><p><a class="reference internal" href="#source-solvers"><span class="std std-ref">Solver from source</span></a></p></li>
 </ul>
 <section id="python-solver">
-<span id="python-solvers"></span><h3>Python solver<a class="headerlink" href="#python-solver" title="Permalink to this headline">#</a></h3>
+<span id="python-solvers"></span><h3>Python solver<a class="headerlink" href="#python-solver" title="Link to this heading">#</a></h3>
 <p>The simplest solvers to use are solvers using <a class="reference external" href="https://www.python.org/">Python</a> code.
 Here is an example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span><span class="p">,</span> <span class="n">safe_import_context</span>
@@ -704,7 +718,7 @@ not relevant. See <a class="reference internal" href="../user_guide/CLI_ref.html
 </div>
 </section>
 <section id="r-solver">
-<span id="r-solvers"></span><h3>R solver<a class="headerlink" href="#r-solver" title="Permalink to this headline">#</a></h3>
+<span id="r-solvers"></span><h3>R solver<a class="headerlink" href="#r-solver" title="Link to this heading">#</a></h3>
 <p>A solver written in <a class="reference external" href="https://www.r-project.org/">R</a> needs two files.
 A <code class="docutils literal notranslate"><span class="pre">.R</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
 R solver using <a class="reference external" href="https://pypi.org/project/rpy2/">Rpy2</a>. Only the extensions
@@ -814,7 +828,7 @@ just skipped.</p>
 </div>
 </section>
 <section id="julia-solver">
-<span id="julia-solvers"></span><h3>Julia solver<a class="headerlink" href="#julia-solver" title="Permalink to this headline">#</a></h3>
+<span id="julia-solvers"></span><h3>Julia solver<a class="headerlink" href="#julia-solver" title="Link to this heading">#</a></h3>
 <p>A solver written in <a class="reference external" href="https://julialang.org">Julia</a> needs two files.
 A <code class="docutils literal notranslate"><span class="pre">.jl</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
 Julia solver using <a class="reference external" href="https://pypi.org/project/julia/">PyJulia</a>. Only the extensions
@@ -906,7 +920,7 @@ should differ between the two files. Here is the Python file:</p>
 </div>
 </section>
 <section id="solver-from-source">
-<span id="source-solvers"></span><h3>Solver from source<a class="headerlink" href="#solver-from-source" title="Permalink to this headline">#</a></h3>
+<span id="source-solvers"></span><h3>Solver from source<a class="headerlink" href="#solver-from-source" title="Link to this heading">#</a></h3>
 <p>You can install a package from source in case it is not available
 as binaries from the package managers from either Python, R or Julia.</p>
 <div class="admonition note">
@@ -962,11 +976,10 @@ that uses a <code class="docutils literal notranslate"><span class="pre">'shell'
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="index.html"
@@ -986,10 +999,7 @@ that uses a <code class="docutils literal notranslate"><span class="pre">'shell'
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -997,6 +1007,7 @@ that uses a <code class="docutils literal notranslate"><span class="pre">'shell'
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -1041,9 +1052,10 @@ By Benchopt contributors
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2020-2023.
+      © Copyright 2020-2024.
       <br/>
     
   </p>
@@ -1067,8 +1079,8 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

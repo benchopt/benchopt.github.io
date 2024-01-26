@@ -1,15 +1,14 @@
 
-
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Add a solver to an existing benchmark &#8212; benchopt 1.5.2.dev5 documentation</title>
+    <title>Add a solver to an existing benchmark &#8212; benchopt 1.5.2.dev6 documentation</title>
   
   
   
@@ -19,46 +18,46 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/documentation_options.js?v=43698252"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/add_solver';</script>
-    <link rel="shortcut icon" href="../_static/logo_benchopt.png"/>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="User guide" href="../user_guide/index.html" />
     <link rel="prev" title="Understanding and building a simple benchmark" href="build_benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -66,7 +65,15 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -101,11 +108,14 @@
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -120,9 +130,11 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -136,7 +148,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev5</p>
+    <p class="title logo__title">1.5.2.dev6</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -156,7 +168,7 @@
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -258,20 +270,22 @@
 </a>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -315,10 +329,10 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section id="add-a-solver-to-an-existing-benchmark">
-<span id="add-solver"></span><h1>Add a solver to an existing benchmark<a class="headerlink" href="#add-a-solver-to-an-existing-benchmark" title="Permalink to this headline">#</a></h1>
+<span id="add-solver"></span><h1>Add a solver to an existing benchmark<a class="headerlink" href="#add-a-solver-to-an-existing-benchmark" title="Link to this heading">#</a></h1>
 <p>This tutorial shows how to add a new solver to a benchmark.
 We illustrate the process on the <a class="reference external" href="https://github.com/benchopt/benchmark_ridge">Ridge regression benchmark</a> by implementing a solver based on the <code class="docutils literal notranslate"><span class="pre">scikit-learn</span></code> Ridge estimator.</p>
 <div class="admonition hint">
@@ -326,10 +340,10 @@ We illustrate the process on the <a class="reference external" href="https://git
 <p>If not yet done, you can review the <a class="reference internal" href="../get_started.html#get-started"><span class="std std-ref">get started page</span></a> to learn how to install benchopt and download an existing benchmark.</p>
 </div>
 <section id="before-the-implementation">
-<h2>Before the implementation<a class="headerlink" href="#before-the-implementation" title="Permalink to this headline">#</a></h2>
+<h2>Before the implementation<a class="headerlink" href="#before-the-implementation" title="Link to this heading">#</a></h2>
 <p>First, create a <code class="docutils literal notranslate"><span class="pre">mysolver.py</span></code> file in the <code class="docutils literal notranslate"><span class="pre">solvers/</span></code> directory and put inside it the following content:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
 
 <span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
@@ -351,7 +365,7 @@ The attribute <code class="docutils literal notranslate"><span class="pre">name<
 </div>
 </section>
 <section id="implementation">
-<h2>Implementation<a class="headerlink" href="#implementation" title="Permalink to this headline">#</a></h2>
+<h2>Implementation<a class="headerlink" href="#implementation" title="Link to this heading">#</a></h2>
 <p>Once the Python file is created, we can start the implementation by adding methods and attributes to the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> class.
 To do so, we follow the order that benchopt uses to call the methods during the benchmark’s run: first <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>, then <code class="docutils literal notranslate"><span class="pre">run</span></code> and finally <code class="docutils literal notranslate"><span class="pre">get_result</span></code>.</p>
 <figure class="align-center">
@@ -359,14 +373,14 @@ To do so, we follow the order that benchopt uses to call the methods during the 
 </figure>
 <p>Let’s go over them one by one.</p>
 <section id="initializing-the-setup">
-<h3>Initializing the setup<a class="headerlink" href="#initializing-the-setup" title="Permalink to this headline">#</a></h3>
+<h3>Initializing the setup<a class="headerlink" href="#initializing-the-setup" title="Link to this heading">#</a></h3>
 <p>The first method we need to implement is <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.
 It receives all the information about the dataset and objective parameters, that the solver will need to run.
 This information is standardized in the <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file of the benchmark, through the <code class="docutils literal notranslate"><span class="pre">Objective.get_objective</span></code> method.
 This method is part of the objective definition and has already been implemented when the benchmark was created; we do not need to write it.</p>
 <p>In the Ridge benchmark, the relevant information is the following:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">benchmark_ridge/objective.py</span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">benchmark_ridge/objective.py</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
 <span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
     <span class="o">...</span>
@@ -391,7 +405,7 @@ It is also used to initialize unchanging variables across the solver run.</p>
 <p>In our case, we store <code class="docutils literal notranslate"><span class="pre">X</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">lmbd</span></code>, and <code class="docutils literal notranslate"><span class="pre">fit_intercept</span></code> to use them when we will actually run the solver.
 We also use the method to instantiate a Ridge estimator that will be used to perform computation of the solution.</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
@@ -410,7 +424,7 @@ We also use the method to instantiate a Ridge estimator that will be used to per
 </div>
 </section>
 <section id="defining-the-solver-run-procedure">
-<h3>Defining the solver run procedure<a class="headerlink" href="#defining-the-solver-run-procedure" title="Permalink to this headline">#</a></h3>
+<h3>Defining the solver run procedure<a class="headerlink" href="#defining-the-solver-run-procedure" title="Link to this heading">#</a></h3>
 <p>Next, we implement the <code class="docutils literal notranslate"><span class="pre">run</span></code> method, and declare the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> attribute of the solver.
 Together, they define how the performance curves of the solver will be constructed.</p>
 <p>There are three possible choices for the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> attribute: <strong>iteration</strong>, <strong>tolerance</strong>, and <strong>callback</strong>.
@@ -422,7 +436,7 @@ We show how to implement the <code class="docutils literal notranslate"><span cl
 In this case, benchopt treats the solver as a black box and observes its behavior for different number of iterations.</p>
 <p>Therefore, the signature of the <code class="docutils literal notranslate"><span class="pre">run</span></code> method is <code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">n_iter)</span></code> and its implementation resembles the snippet below.</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;iteration&quot;</span>
@@ -448,7 +462,7 @@ In this case, benchopt treats the solver as a black box and observes its behavio
 <p>Similar to <strong>iteration</strong>, this sampling strategy is used for <strong>solvers controlled by the tolerance on the optimization process</strong>.
 In this case, the signature of the <code class="docutils literal notranslate"><span class="pre">run</span></code> method is <code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">tolerance)</span></code>; it would be implemented as follows.</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;tolerance&quot;</span>
@@ -476,7 +490,7 @@ In that case, all intermediate iterates are available, and one should use the <s
 <p>Let’s say that we no longer implement the scikit-learn solver, but instead our own implementation of Gradient Descent.
 The following snippet shows how to use the callback strategy with a user-coded solver.</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id6" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;callback&quot;</span>
@@ -504,12 +518,12 @@ The following snippet shows how to use the callback strategy with a user-coded s
 </div>
 </section>
 <section id="getting-the-solver-s-results">
-<h3>Getting the solver’s results<a class="headerlink" href="#getting-the-solver-s-results" title="Permalink to this headline">#</a></h3>
+<h3>Getting the solver’s results<a class="headerlink" href="#getting-the-solver-s-results" title="Link to this heading">#</a></h3>
 <p>Finally, we define a <code class="docutils literal notranslate"><span class="pre">get_result</span></code> method that is used to pass the solver’s result back to the objective.
 It must return a dictionary whose keys are the input arguments of <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.</p>
 <p>In the Ridge case the input of <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code> is <code class="docutils literal notranslate"><span class="pre">beta</span></code>, hence we return a dictionary with a single key, <code class="docutils literal notranslate"><span class="pre">&quot;beta&quot;</span></code>.</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id7" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -526,12 +540,12 @@ It must return a dictionary whose keys are the input arguments of <code class="d
 </section>
 </section>
 <section id="specifying-the-solver-parameters">
-<h2>Specifying the solver parameters<a class="headerlink" href="#specifying-the-solver-parameters" title="Permalink to this headline">#</a></h2>
+<h2>Specifying the solver parameters<a class="headerlink" href="#specifying-the-solver-parameters" title="Link to this heading">#</a></h2>
 <p>If your solver has hyperparameters, you can specify them by adding an attribute <code class="docutils literal notranslate"><span class="pre">parameters</span></code>.
 This attribute is a dictionary whose keys are the solver’s hyperparameters.</p>
 <p>For example, if our solver has two hyperparameters, <code class="docutils literal notranslate"><span class="pre">stepsize</span></code> and <code class="docutils literal notranslate"><span class="pre">momentum</span></code>, we implement them as follows:</p>
 <div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id8" title="Permalink to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text">benchmark_ridge/solvers/mysolver.py</span><a class="headerlink" href="#id8" title="Link to this code">#</a></div>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="o">...</span>
     <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
@@ -557,11 +571,10 @@ Hence, unless specified otherwise, our solver will be run 2 x 2 = 4 times.</p>
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="build_benchmark.html"
@@ -581,10 +594,7 @@ Hence, unless specified otherwise, our solver will be run 2 x 2 = 4 times.</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -592,6 +602,7 @@ Hence, unless specified otherwise, our solver will be run 2 x 2 = 4 times.</p>
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -628,9 +639,10 @@ By Benchopt contributors
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2020-2023.
+      © Copyright 2020-2024.
       <br/>
     
   </p>
@@ -654,8 +666,8 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>

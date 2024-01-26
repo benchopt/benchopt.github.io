@@ -80,7 +80,7 @@ Demo benchmark with R/Python
       |--Lasso Regression[fit_intercept=False,reg=0.5]
         |--Python-PGD[use_acceleration=False]: done
         |--R-PGD: done (timeout)
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2023-10-30_16h26m47.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2024-01-26_20h44m59.parquet
     Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_support_size_objective_curve.pdf
     Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_duality_gap_objective_curve.pdf
@@ -96,7 +96,7 @@ Demo benchmark with R/Python
 
 |
 
-.. code-block:: default
+.. code-block:: Python
 
 
     from pathlib import Path
@@ -136,7 +136,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (2 minutes 9.969 seconds)
+   **Total running time of the script:** (2 minutes 22.651 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
@@ -145,16 +145,13 @@ Demo benchmark with R/Python
 
   .. container:: sphx-glr-footer sphx-glr-footer-example
 
+    .. container:: sphx-glr-download sphx-glr-download-jupyter
 
-
+      :download:`Download Jupyter notebook: plot_run_benchmark_python_R.ipynb <plot_run_benchmark_python_R.ipynb>`
 
     .. container:: sphx-glr-download sphx-glr-download-python
 
       :download:`Download Python source code: plot_run_benchmark_python_R.py <plot_run_benchmark_python_R.py>`
-
-    .. container:: sphx-glr-download sphx-glr-download-jupyter
-
-      :download:`Download Jupyter notebook: plot_run_benchmark_python_R.ipynb <plot_run_benchmark_python_R.ipynb>`
 
 
 .. only:: html

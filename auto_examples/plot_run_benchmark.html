@@ -1,15 +1,14 @@
 
-
 <!DOCTYPE html>
 
 
-<html >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Run benchmark from a script &#8212; benchopt 1.5.2.dev5 documentation</title>
+    <title>Run benchmark from a script &#8212; benchopt 1.5.2.dev6 documentation</title>
   
   
   
@@ -19,44 +18,44 @@
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.1/css/all.min.css?digest=8d27b9dea8ad943066ae" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.1/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/style.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=61a4c737" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
+  <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/documentation_options.js?v=43698252"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/plot_run_benchmark';</script>
-    <link rel="shortcut icon" href="../_static/logo_benchopt.png"/>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <meta name="docsearch:language" content="None"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
   
   
@@ -64,7 +63,15 @@
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <a id="pst-skip-link" class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>
+    Back to top
+  </button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
@@ -99,11 +106,14 @@
 </form></div>
   </div>
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -118,9 +128,11 @@
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../index.html">
+  
   
   
   
@@ -134,7 +146,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev5</p>
+    <p class="title logo__title">1.5.2.dev6</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -154,7 +166,7 @@
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
@@ -256,20 +268,22 @@
 </a>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -296,7 +310,7 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
@@ -304,7 +318,7 @@ document.write(`
 to download the full example code</p>
 </div>
 <section class="sphx-glr-example-title" id="run-benchmark-from-a-script">
-<span id="sphx-glr-auto-examples-plot-run-benchmark-py"></span><h1>Run benchmark from a script<a class="headerlink" href="#run-benchmark-from-a-script" title="Permalink to this headline">#</a></h1>
+<span id="sphx-glr-auto-examples-plot-run-benchmark-py"></span><h1>Run benchmark from a script<a class="headerlink" href="#run-benchmark-from-a-script" title="Link to this heading">#</a></h1>
 <ul class="sphx-glr-horizontal">
 <li><img src="../_images/sphx_glr_plot_run_benchmark_001.png" srcset="../_images/sphx_glr_plot_run_benchmark_001.png" alt="L2 Logistic Regression[lmbd=1.0] Data: Simulated[n_features=500,n_samples=200]" class = "sphx-glr-multi-img"/></li>
 <li><img src="../_images/sphx_glr_plot_run_benchmark_002.png" srcset="../_images/sphx_glr_plot_run_benchmark_002.png" alt="L2 Logistic Regression[lmbd=1.0] Data: Simulated[n_features=500,n_samples=200]" class = "sphx-glr-multi-img"/></li>
@@ -326,7 +340,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (1 / 15 reps)
     |--Lightning:  43.2% (1 / 15 reps)
     |--Lightning:  50.9% (1 / 15 reps)
-    |--Lightning:  61.6% (1 / 15 reps)
     |--Lightning: initialization (2 / 15 reps)
     |--Lightning:   0.0% (2 / 15 reps)
     |--Lightning:   1.0% (2 / 15 reps)
@@ -339,7 +352,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (2 / 15 reps)
     |--Lightning:  43.2% (2 / 15 reps)
     |--Lightning:  50.9% (2 / 15 reps)
-    |--Lightning:  61.6% (2 / 15 reps)
     |--Lightning: initialization (3 / 15 reps)
     |--Lightning:   0.0% (3 / 15 reps)
     |--Lightning:   1.0% (3 / 15 reps)
@@ -352,7 +364,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (3 / 15 reps)
     |--Lightning:  43.2% (3 / 15 reps)
     |--Lightning:  50.9% (3 / 15 reps)
-    |--Lightning:  61.6% (3 / 15 reps)
     |--Lightning: initialization (4 / 15 reps)
     |--Lightning:   0.0% (4 / 15 reps)
     |--Lightning:   1.0% (4 / 15 reps)
@@ -365,7 +376,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (4 / 15 reps)
     |--Lightning:  43.2% (4 / 15 reps)
     |--Lightning:  50.9% (4 / 15 reps)
-    |--Lightning:  61.6% (4 / 15 reps)
     |--Lightning: initialization (5 / 15 reps)
     |--Lightning:   0.0% (5 / 15 reps)
     |--Lightning:   1.0% (5 / 15 reps)
@@ -391,7 +401,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (6 / 15 reps)
     |--Lightning:  43.2% (6 / 15 reps)
     |--Lightning:  50.9% (6 / 15 reps)
-    |--Lightning:  61.6% (6 / 15 reps)
     |--Lightning: initialization (7 / 15 reps)
     |--Lightning:   0.0% (7 / 15 reps)
     |--Lightning:   1.0% (7 / 15 reps)
@@ -404,7 +413,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (7 / 15 reps)
     |--Lightning:  43.2% (7 / 15 reps)
     |--Lightning:  50.9% (7 / 15 reps)
-    |--Lightning:  61.6% (7 / 15 reps)
     |--Lightning: initialization (8 / 15 reps)
     |--Lightning:   0.0% (8 / 15 reps)
     |--Lightning:   1.0% (8 / 15 reps)
@@ -417,7 +425,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (8 / 15 reps)
     |--Lightning:  43.2% (8 / 15 reps)
     |--Lightning:  50.9% (8 / 15 reps)
-    |--Lightning:  61.6% (8 / 15 reps)
     |--Lightning: initialization (9 / 15 reps)
     |--Lightning:   0.0% (9 / 15 reps)
     |--Lightning:   1.0% (9 / 15 reps)
@@ -430,7 +437,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (9 / 15 reps)
     |--Lightning:  43.2% (9 / 15 reps)
     |--Lightning:  50.9% (9 / 15 reps)
-    |--Lightning:  61.6% (9 / 15 reps)
     |--Lightning: initialization (10 / 15 reps)
     |--Lightning:   0.0% (10 / 15 reps)
     |--Lightning:   1.0% (10 / 15 reps)
@@ -443,7 +449,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (10 / 15 reps)
     |--Lightning:  43.2% (10 / 15 reps)
     |--Lightning:  50.9% (10 / 15 reps)
-    |--Lightning:  61.6% (10 / 15 reps)
     |--Lightning: initialization (11 / 15 reps)
     |--Lightning:   0.0% (11 / 15 reps)
     |--Lightning:   1.0% (11 / 15 reps)
@@ -469,7 +474,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (12 / 15 reps)
     |--Lightning:  43.2% (12 / 15 reps)
     |--Lightning:  50.9% (12 / 15 reps)
-    |--Lightning:  61.6% (12 / 15 reps)
     |--Lightning: initialization (13 / 15 reps)
     |--Lightning:   0.0% (13 / 15 reps)
     |--Lightning:   1.0% (13 / 15 reps)
@@ -482,7 +486,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (13 / 15 reps)
     |--Lightning:  43.2% (13 / 15 reps)
     |--Lightning:  50.9% (13 / 15 reps)
-    |--Lightning:  61.6% (13 / 15 reps)
     |--Lightning: initialization (14 / 15 reps)
     |--Lightning:   0.0% (14 / 15 reps)
     |--Lightning:   1.0% (14 / 15 reps)
@@ -495,7 +498,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (14 / 15 reps)
     |--Lightning:  43.2% (14 / 15 reps)
     |--Lightning:  50.9% (14 / 15 reps)
-    |--Lightning:  61.6% (14 / 15 reps)
     |--Lightning: initialization (15 / 15 reps)
     |--Lightning:   0.0% (15 / 15 reps)
     |--Lightning:   1.0% (15 / 15 reps)
@@ -508,7 +510,6 @@ to download the full example code</p>
     |--Lightning:  35.8% (15 / 15 reps)
     |--Lightning:  43.2% (15 / 15 reps)
     |--Lightning:  50.9% (15 / 15 reps)
-    |--Lightning:  61.6% (15 / 15 reps)
     |--Lightning: done (timeout)
     |--sklearn[liblinear]: initialization (1 / 15 reps)
     |--sklearn[liblinear]:   0.0% (1 / 15 reps)
@@ -670,8 +671,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (1 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (1 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (1 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (1 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (1 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (1 / 15 reps)
     |--sklearn[newton-cg]: initialization (2 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (2 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (2 / 15 reps)
@@ -681,8 +681,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (2 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (2 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (2 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (2 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (2 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (2 / 15 reps)
     |--sklearn[newton-cg]: initialization (3 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (3 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (3 / 15 reps)
@@ -692,8 +691,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (3 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (3 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (3 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (3 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (3 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (3 / 15 reps)
     |--sklearn[newton-cg]: initialization (4 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (4 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (4 / 15 reps)
@@ -703,8 +701,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (4 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (4 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (4 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (4 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (4 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (4 / 15 reps)
     |--sklearn[newton-cg]: initialization (5 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (5 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (5 / 15 reps)
@@ -714,8 +711,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (5 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (5 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (5 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (5 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (5 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (5 / 15 reps)
     |--sklearn[newton-cg]: initialization (6 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (6 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (6 / 15 reps)
@@ -725,8 +721,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (6 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (6 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (6 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (6 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (6 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (6 / 15 reps)
     |--sklearn[newton-cg]: initialization (7 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (7 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (7 / 15 reps)
@@ -736,8 +731,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (7 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (7 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (7 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (7 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (7 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (7 / 15 reps)
     |--sklearn[newton-cg]: initialization (8 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (8 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (8 / 15 reps)
@@ -747,8 +741,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (8 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (8 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (8 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (8 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (8 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (8 / 15 reps)
     |--sklearn[newton-cg]: initialization (9 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (9 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (9 / 15 reps)
@@ -758,8 +751,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (9 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (9 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (9 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (9 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (9 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (9 / 15 reps)
     |--sklearn[newton-cg]: initialization (10 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (10 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (10 / 15 reps)
@@ -769,8 +761,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (10 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (10 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (10 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (10 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (10 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (10 / 15 reps)
     |--sklearn[newton-cg]: initialization (11 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (11 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (11 / 15 reps)
@@ -780,8 +771,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (11 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (11 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (11 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (11 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (11 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (11 / 15 reps)
     |--sklearn[newton-cg]: initialization (12 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (12 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (12 / 15 reps)
@@ -791,8 +781,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (12 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (12 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (12 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (12 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (12 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (12 / 15 reps)
     |--sklearn[newton-cg]: initialization (13 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (13 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (13 / 15 reps)
@@ -802,8 +791,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (13 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (13 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (13 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (13 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (13 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (13 / 15 reps)
     |--sklearn[newton-cg]: initialization (14 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (14 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (14 / 15 reps)
@@ -813,8 +801,7 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (14 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (14 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (14 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (14 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (14 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (14 / 15 reps)
     |--sklearn[newton-cg]: initialization (15 / 15 reps)
     |--sklearn[newton-cg]:   0.0% (15 / 15 reps)
     |--sklearn[newton-cg]:   1.0% (15 / 15 reps)
@@ -824,10 +811,9 @@ to download the full example code</p>
     |--sklearn[newton-cg]:  11.2% (15 / 15 reps)
     |--sklearn[newton-cg]:  17.5% (15 / 15 reps)
     |--sklearn[newton-cg]:  25.5% (15 / 15 reps)
-    |--sklearn[newton-cg]:  41.0% (15 / 15 reps)
-    |--sklearn[newton-cg]:  67.7% (15 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (15 / 15 reps)
     |--sklearn[newton-cg]: done
-Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2023-10-30_16h27m31.parquet
+Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2024-01-26_20h45m45.parquet
 Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_Test loss_objective_curve.pdf
 Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/d1772497002e28b14c604350392ce9f7_objective_value_suboptimality_curve.pdf
@@ -838,7 +824,7 @@ Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=20
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a>
 <span class="kn">from</span> <span class="nn">benchopt.benchmark</span> <span class="kn">import</span> <span class="n">Benchmark</span>
@@ -877,13 +863,13 @@ Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=20
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 42.449 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 43.615 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-py">
-<div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/d0a19eddcd9b5cc19e309134ae758ece/plot_run_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark.py</span></code></a></p>
-</div>
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/cdb26c80ea62f96a318a8bcdbbf34171/plot_run_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/d0a19eddcd9b5cc19e309134ae758ece/plot_run_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark.py</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -895,21 +881,19 @@ Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=20
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
             
             
+              
+                <div class="bd-sidebar-secondary bd-toc"></div>
               
             
           </div>
@@ -927,9 +911,10 @@ By Benchopt contributors
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
-      © Copyright 2020-2023.
+      © Copyright 2020-2024.
       <br/>
     
   </p>
@@ -953,8 +938,8 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=8d27b9dea8ad943066ae"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae"></script>
 
   <footer class="bd-footer">
   </footer>
