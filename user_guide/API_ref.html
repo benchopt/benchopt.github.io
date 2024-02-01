@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>API references &#8212; benchopt 1.5.2.dev6 documentation</title>
+    <title>API references &#8212; benchopt 1.5.2.dev7 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=43698252"></script>
+    <script src="../_static/documentation_options.js?v=f895004f"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -149,7 +149,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev6</p>
+    <p class="title logo__title">1.5.2.dev7</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -361,7 +361,7 @@ Refer to <a class="reference internal" href="advanced.html#skipping-solver"><spa
 <p><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.get_next()</span></code>: hook called repeatedly after <code class="docutils literal notranslate"><span class="pre">run</span></code>
 to change the sampling points for a given solver. It is called with the
 previous <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> (i.e. tolerance or number of iterations), and returns
-the value for the next run. Refer to <a class="reference internal" href="advanced.html#sampling-strategy"><span class="std std-ref">Advanced usage</span></a>
+the value for the next run. Refer to <a class="reference internal" href="performance_curves.html#sampling-strategy"><span class="std std-ref">Advanced usage</span></a>
 for an example.</p>
 <p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.warm_up" title="benchopt.BaseSolver.warm_up"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.warm_up()</span></code></a>: hook called once before the solver runs.
 It is typically used to cache jit compilation of solver while not accounting

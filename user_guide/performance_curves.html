@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Performance curves &#8212; benchopt 1.5.2.dev6 documentation</title>
+    <title>Performance curves &#8212; benchopt 1.5.2.dev7 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=43698252"></script>
+    <script src="../_static/documentation_options.js?v=f895004f"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -149,7 +149,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev6</p>
+    <p class="title logo__title">1.5.2.dev7</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -316,6 +316,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-strategies">Sampling strategies</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-iterations-or-tolerance">1. Using iterations or tolerance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-callback">2. Using a callback</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-strategy-to-grow-the-computational-budget-stop-val">3. Changing the strategy to grow the computational budget (<code class="code docutils literal notranslate"><span class="pre">stop_val</span></code>)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-are-the-solvers-stopped">When are the solvers stopped?</a></li>
@@ -364,6 +365,7 @@ The value from one call to the other follows:</p>
 <p>In both cases, if the objective curve is flat (i.e., the variation of the objective between two points is numerically 0), the geometric rate <span class="math notranslate nohighlight">\(\rho\)</span> is multiplied by 1.2.</p>
 <p>Note that the solver is restarted from scratch at each call to <code class="docutils literal notranslate"><span class="pre">solver.run</span></code>.
 For more advanced configurations, the evolution of <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> can be controlled on a per solver basis, by implementing a <code class="docutils literal notranslate"><span class="pre">Solver.get_next</span></code> method, which receives the current value for tolerance/number of iterations, and returns the next one.</p>
+<p>Note that the formula to compute the next <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> can be configured on a per-solver basis, as described in: <a class="reference internal" href="#sampling-strategy"><span class="std std-ref">3. Changing the strategy to grow the computational budget (stop_val)</span></a>.</p>
 </section>
 <section id="using-a-callback">
 <h3>2. Using a callback<a class="headerlink" href="#using-a-callback" title="Link to this heading">#</a></h3>
@@ -384,6 +386,21 @@ It returns <code class="docutils literal notranslate"><span class="pre">False</s
     <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="changing-the-strategy-to-grow-the-computational-budget-stop-val">
+<span id="sampling-strategy"></span><h3>3. Changing the strategy to grow the computational budget (<code class="code docutils literal notranslate"><span class="pre">stop_val</span></code>)<a class="headerlink" href="#changing-the-strategy-to-grow-the-computational-budget-stop-val" title="Link to this heading">#</a></h3>
+<p>The way benchopt varies the computational budget <code class="code docutils literal notranslate"><span class="pre">stop_val</span></code> can be
+configured on a per-solver basis. This is done by implementing a <code class="docutils literal notranslate"><span class="pre">get_next</span></code>
+method in the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> class. This method takes as input the previous value
+where the objective function has been logged, and outputs the next one. For
+instance, if a solver needs to be evaluated every 10 iterations, we would have</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_val</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">stop_val</span> <span class="o">+</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>This example allow to set a linear growth for the solver computational budget, instead of the default geometric growth.</p>
 </section>
 </section>
 <section id="when-are-the-solvers-stopped">
@@ -448,6 +465,7 @@ There are three <code class="docutils literal notranslate"><span class="pre">Sto
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-strategies">Sampling strategies</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-iterations-or-tolerance">1. Using iterations or tolerance</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-callback">2. Using a callback</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-strategy-to-grow-the-computational-budget-stop-val">3. Changing the strategy to grow the computational budget (<code class="code docutils literal notranslate"><span class="pre">stop_val</span></code>)</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-are-the-solvers-stopped">When are the solvers stopped?</a></li>
