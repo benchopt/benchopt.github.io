@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.BaseObjective &#8212; benchopt 1.5.2.dev11 documentation</title>
+    <title>benchopt.BaseObjective &#8212; benchopt 1.5.2.dev12 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../../_static/documentation_options.js?v=06505e6b"></script>
+    <script src="../../_static/documentation_options.js?v=1124de0d"></script>
     <script src="../../_static/doctools.js?v=888ff710"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -148,7 +148,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev11</p>
+    <p class="title logo__title">1.5.2.dev12</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -207,6 +207,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../CLI_ref.html">Command line interface (CLI) references</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../performance_curves.html">Performance curves</a></li>
 </ul>
 </li>
@@ -316,6 +317,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.evaluate_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.evaluate_result()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.set_data"><code class="docutils literal notranslate"><span class="pre">BaseObjective.set_data()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.skip"><code class="docutils literal notranslate"><span class="pre">BaseObjective.skip()</span></code></a></li>
 </ul>
@@ -419,6 +421,21 @@ type for benchopt. The returned object will be passed to
 </dd></dl>
 
 <dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.get_split">
+<span class="sig-name descname"><span class="pre">get_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arrays</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_split" title="Link to this definition">#</a></dt>
+<dd><p>Return the split of the data according to the cv attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>arrays: list of array-like</strong></dt><dd><p>The data to split. It should be indexable with the output of the
+<code class="docutils literal notranslate"><span class="pre">cv.split</span></code> iterator, or compatible with <code class="docutils literal notranslate"><span class="pre">Objective.split</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseObjective.set_data">
 <em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.set_data" title="Link to this definition">#</a></dt>
 <dd><p>Store the info on a dataset to be able to compute the objective.</p>
@@ -511,6 +528,7 @@ If skip is False, the reason should be None.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.evaluate_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.evaluate_result()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.set_data"><code class="docutils literal notranslate"><span class="pre">BaseObjective.set_data()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.skip"><code class="docutils literal notranslate"><span class="pre">BaseObjective.skip()</span></code></a></li>
 </ul>

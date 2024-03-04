@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Write a benchmark &#8212; benchopt 1.5.2.dev11 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.5.2.dev12 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=06505e6b"></script>
+    <script src="../_static/documentation_options.js?v=1124de0d"></script>
     <script src="../_static/doctools.js?v=888ff710"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -148,7 +148,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev11</p>
+    <p class="title logo__title">1.5.2.dev12</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -207,6 +207,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
 </ul>
 </li>
@@ -666,56 +667,8 @@ Here is an example in the same situation as above:</p>
 <p>If your Python solver requires some packages such as <a class="reference external" href="https://numba.pydata.org/">Numba</a>,
 Benchopt allows you to list some requirements. The necessary packages should be available
 via <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> or
-<a class="reference external" href="https://packaging.python.org/guides/tool-recommendations/">pip</a>.</p>
-<p>In this case the <code class="docutils literal notranslate"><span class="pre">install_cmd</span></code> class variable needs to be set to <code class="docutils literal notranslate"><span class="pre">'conda'</span></code>
-and the list of needed packages is specified in the variable
-<code class="docutils literal notranslate"><span class="pre">requirements</span></code> that needs to be a Python list. If a requirement
-starts with <code class="docutils literal notranslate"><span class="pre">pip:</span></code> then the package is installed from <a class="reference external" href="https://pypi.org/">pypi</a> and
-not <a class="reference external" href="https://conda-forge.org/">conda-forge</a>. See example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
-
-
-<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
-    <span class="kn">from</span> <span class="nn">sklearn.exceptions</span> <span class="kn">import</span> <span class="n">ConvergenceWarning</span>
-
-
-<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sklearn&#39;</span>
-
-    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scikit-learn&#39;</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
-
-        <span class="n">n_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">clf</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="o">/</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">ConvergenceWarning</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()}</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">install_cmd</span></code> can either be <code class="docutils literal notranslate"><span class="pre">'conda'</span></code> or <code class="docutils literal notranslate"><span class="pre">'shell'</span></code>. If <code class="docutils literal notranslate"><span class="pre">'shell'</span></code>
-a shell script is necessary to explain how to setup the required
-dependencies. See <a class="reference internal" href="#source-solvers"><span class="std std-ref">Solver from source</span></a>.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Specifying the dependencies is necessary if you let benchopt
-manage the creation of a dedicated environment. If you want to
-use your local environment the list of dependencies is
-not relevant. See <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI) references</span></a>.</p>
-</div>
+<a class="reference external" href="https://packaging.python.org/guides/tool-recommendations/">pip</a>.
+See <a href="#id4"><span class="problematic" id="id5">`specifying_requirements`_</span></a> for more details on how to specify the requirements for benchopt classes.</p>
 </section>
 <section id="r-solver">
 <span id="r-solvers"></span><h3>R solver<a class="headerlink" href="#r-solver" title="Link to this heading">#</a></h3>
@@ -927,38 +880,6 @@ as binaries from the package managers from either Python, R or Julia.</p>
 <p class="admonition-title">Note</p>
 <p>A package available from source may require a C++
 or Fortran compiler.</p>
-</div>
-<p>Here is example using pip from a Python package on GitHub:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
-
-
-<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">sklearn.linear_model</span> <span class="kn">import</span> <span class="n">Lasso</span>
-    <span class="kn">from</span> <span class="nn">sklearn.exceptions</span> <span class="kn">import</span> <span class="n">ConvergenceWarning</span>
-
-
-<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;sklearn&#39;</span>
-
-    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scikit-learn&#39;</span><span class="p">]</span>
-
-    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
-
-        <span class="n">n_samples</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">clf</span> <span class="o">=</span> <span class="n">Lasso</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="o">/</span><span class="n">n_samples</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">tol</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">filterwarnings</span><span class="p">(</span><span class="s1">&#39;ignore&#39;</span><span class="p">,</span> <span class="n">category</span><span class="o">=</span><span class="n">ConvergenceWarning</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">max_iter</span> <span class="o">=</span> <span class="n">n_iter</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">clf</span><span class="o">.</span><span class="n">coef_</span><span class="o">.</span><span class="n">flatten</span><span class="p">()}</span>
-</pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
