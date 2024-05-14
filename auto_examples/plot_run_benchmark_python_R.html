@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Demo benchmark with R/Python &#8212; benchopt 1.5.2.dev25 documentation</title>
+    <title>Demo benchmark with R/Python &#8212; benchopt 1.5.2.dev26 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=20f7ec31"></script>
+    <script src="../_static/documentation_options.js?v=37836c57"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -146,7 +146,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev25</p>
+    <p class="title logo__title">1.5.2.dev26</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -332,7 +332,7 @@ to download the full example code.</p>
   |--Lasso Regression[fit_intercept=False,reg=0.5]
     |--Python-PGD[use_acceleration=False]: done
     |--R-PGD: done (timeout)
-Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2024-05-14_07h35m14.parquet
+Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2024-05-14_11h49m09.parquet
 Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_support_size_objective_curve.pdf
 Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_duality_gap_objective_curve.pdf
@@ -363,11 +363,20 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
         <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.resolve" title="pathlib.Path.resolve" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">BENCHMARK_PATH</span><span class="o">.</span><span class="n">resolve</span></a><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
     <span class="p">)</span>
 
+<span class="n">benchmark</span> <span class="o">=</span> <span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">)</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solvers</span></a> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">check_solver_patterns</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;Python-PGD[use_acceleration=False]&#39;</span><span class="p">,</span> <span class="s1">&#39;R-PGD&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">datasets</span></a> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">check_dataset_patterns</span><span class="p">(</span>
+    <span class="p">[</span><span class="s2">&quot;Simulated[n_features=5000,n_samples=100,rho=0]&quot;</span><span class="p">]</span>
+<span class="p">)</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">objectives</span></a> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">check_objective_filters</span><span class="p">(</span>
+    <span class="p">[</span><span class="s1">&#39;*[fit_intercept=False,reg=0.5]&#39;</span><span class="p">]</span>
+<span class="p">)</span>
+
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a> <span class="o">=</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a><span class="p">(</span>
-    <span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">),</span>
-    <span class="p">[</span><span class="s1">&#39;Python-PGD[use_acceleration=False]&#39;</span><span class="p">,</span> <span class="s1">&#39;R-PGD&#39;</span><span class="p">],</span>
-    <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Simulated[n_features=5000,n_samples=100,rho=0]&quot;</span><span class="p">],</span>
-    <span class="n">objective_filters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;*[fit_intercept=False,reg=0.5]&#39;</span><span class="p">],</span>
+    <span class="n">benchmark</span><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solvers</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">solvers</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">datasets</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">datasets</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">objectives</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">objectives</span></a><span class="p">,</span>
     <span class="n">max_runs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">n_repetitions</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span>
     <span class="n">plot_result</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="kc">False</span>
 <span class="p">)</span>
@@ -375,12 +384,13 @@ Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=1
 
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">PLOT_KINDS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
 <span class="n">reset_solver_styles_idx</span><span class="p">()</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">figs</span></a> <span class="o">=</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">),</span>
-                      <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">figs</span></a> <span class="o">=</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">(</span>
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">),</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (2 minutes 0.431 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (2 minutes 12.756 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/dc84f98e56bc6933a9be8456166d8561/plot_run_benchmark_python_R.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark_python_R.ipynb</span></code></a></p>
