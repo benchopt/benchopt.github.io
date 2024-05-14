@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Run benchmark from a script &#8212; benchopt 1.5.2.dev24 documentation</title>
+    <title>Run benchmark from a script &#8212; benchopt 1.5.2.dev25 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=9b0b6e2c"></script>
+    <script src="../_static/documentation_options.js?v=20f7ec31"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -146,7 +146,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev24</p>
+    <p class="title logo__title">1.5.2.dev25</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -179,10 +179,10 @@
         <ul class="nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/publish_benchmark.html">Publish benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
 </ul>
 </li>
@@ -342,7 +342,6 @@ to download the full example code.</p>
     |--Lightning:  43.2% (1 / 15 reps)
     |--Lightning:  50.9% (1 / 15 reps)
     |--Lightning:  61.6% (1 / 15 reps)
-    |--Lightning:  76.9% (1 / 15 reps)
     |--Lightning: initialization (2 / 15 reps)
     |--Lightning:   0.0% (2 / 15 reps)
     |--Lightning:   1.0% (2 / 15 reps)
@@ -398,7 +397,6 @@ to download the full example code.</p>
     |--Lightning:  43.2% (5 / 15 reps)
     |--Lightning:  50.9% (5 / 15 reps)
     |--Lightning:  61.6% (5 / 15 reps)
-    |--Lightning:  76.9% (5 / 15 reps)
     |--Lightning: initialization (6 / 15 reps)
     |--Lightning:   0.0% (6 / 15 reps)
     |--Lightning:   1.0% (6 / 15 reps)
@@ -482,7 +480,6 @@ to download the full example code.</p>
     |--Lightning:  43.2% (11 / 15 reps)
     |--Lightning:  50.9% (11 / 15 reps)
     |--Lightning:  61.6% (11 / 15 reps)
-    |--Lightning:  76.9% (11 / 15 reps)
     |--Lightning: initialization (12 / 15 reps)
     |--Lightning:   0.0% (12 / 15 reps)
     |--Lightning:   1.0% (12 / 15 reps)
@@ -496,7 +493,6 @@ to download the full example code.</p>
     |--Lightning:  43.2% (12 / 15 reps)
     |--Lightning:  50.9% (12 / 15 reps)
     |--Lightning:  61.6% (12 / 15 reps)
-    |--Lightning:  76.9% (12 / 15 reps)
     |--Lightning: initialization (13 / 15 reps)
     |--Lightning:   0.0% (13 / 15 reps)
     |--Lightning:   1.0% (13 / 15 reps)
@@ -842,7 +838,7 @@ to download the full example code.</p>
     |--sklearn[newton-cg]:  25.5% (15 / 15 reps)
     |--sklearn[newton-cg]:  43.8% (15 / 15 reps)
     |--sklearn[newton-cg]: done
-Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2024-05-14_05h12m00.parquet
+Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2024-05-14_07h35m51.parquet
 Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_Test loss_objective_curve.pdf
 Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/473cdae16b079094a377bc180aaf3a0d_objective_value_suboptimality_curve.pdf
@@ -892,7 +888,7 @@ Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=20
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 34.765 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 35.651 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/cdb26c80ea62f96a318a8bcdbbf34171/plot_run_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark.ipynb</span></code></a></p>

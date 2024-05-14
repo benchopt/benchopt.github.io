@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Benchmark workflow &#8212; benchopt 1.5.2.dev24 documentation</title>
+    <title>Benchmark workflow &#8212; benchopt 1.5.2.dev25 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8d27b9dea8ad943066ae" />
   <script src="../_static/vendor/fontawesome/6.5.1/js/all.min.js?digest=8d27b9dea8ad943066ae"></script>
 
-    <script src="../_static/documentation_options.js?v=9b0b6e2c"></script>
+    <script src="../_static/documentation_options.js?v=20f7ec31"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -54,7 +54,7 @@
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Write a benchmark" href="write_benchmark.html" />
+    <link rel="next" title="Run a benchmark" href="run_benchmark.html" />
     <link rel="prev" title="Get started" href="../get_started.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -148,7 +148,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev24</p>
+    <p class="title logo__title">1.5.2.dev25</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -181,10 +181,10 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">Benchmark workflow</a><input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/><label class="toctree-toggle" for="toctree-checkbox-1"><i class="fa-solid fa-chevron-down"></i></label><ul>
-<li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="publish_benchmark.html">Publish benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
 </ul>
 </li>
@@ -319,11 +319,37 @@ document.write(`
 <span id="id1"></span><h1>Benchmark workflow<a class="headerlink" href="#benchmark-workflow" title="Link to this heading">#</a></h1>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l1"><a class="reference internal" href="publish_benchmark.html">Publish benchmark results</a></li>
-<li class="toctree-l1"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html#using-a-configuration-file">Using a configuration file</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="write_benchmark.html#objective">1. Objective</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_benchmark.html#datasets">2. Datasets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_benchmark.html#solvers">3. Solvers</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html#part-1-header">Part 1: Header</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html#part-2-figure">Part 2: Figure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html#part-3-legend">Part 3: Legend</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html#part-4-sidebar">Part 4: Sidebar</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html#collect-benchmark-results">Collect benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html#clean-benchmark-results">Clean benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html#publish-benchmark-results">Publish benchmark results</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html#config-file-location">Config File Location</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html#config-file-structure">Config File Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html#config-settings">Config Settings</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html#using-mamba-to-install-packages">Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages</a></li>
+</ul>
+</li>
 </ul>
 </div>
 </section>
@@ -349,11 +375,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="write_benchmark.html"
+       href="run_benchmark.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Write a benchmark</p>
+        <p class="prev-next-title">Run a benchmark</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
