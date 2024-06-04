@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Configure Benchopt &#8212; benchopt 1.5.2.dev41 documentation</title>
+    <title>Configure Benchopt &#8212; benchopt 1.5.2.dev42 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script src="../_static/documentation_options.js?v=306a891d"></script>
+    <script src="../_static/documentation_options.js?v=271e097b"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -149,7 +149,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev41</p>
+    <p class="title logo__title">1.5.2.dev42</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -210,6 +210,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -396,7 +397,7 @@ results in having the cache for benchmark <cite>B1</cite> stored in <cite>${cach
 <p><strong>Benchmark settings</strong></p>
 <dl class="py data">
 <dt class="sig sig-object py" id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
-<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'plot_configs':</span> <span class="pre">{},</span> <span class="pre">'plots':</span> <span class="pre">['objective_curve',</span> <span class="pre">'suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'bar_chart']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'data_home':</span> <span class="pre">'',</span> <span class="pre">'data_paths':</span> <span class="pre">{},</span> <span class="pre">'plot_configs':</span> <span class="pre">{},</span> <span class="pre">'plots':</span> <span class="pre">['objective_curve',</span> <span class="pre">'suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'bar_chart']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Link to this definition">#</a></dt>
 <dd><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">plots</span></code>, <em>list</em>: Select the plots to display for the benchmark. Should be
 valid plot kinds. The list can simply be one item by line, with each item
@@ -409,7 +410,7 @@ indented, as:</p>
 </pre></div>
 </div>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">plot_configs</span></code>, <em>list</em>: list of saved views that can be easily display for
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_configs</span></code>, <em>dict</em>: list of saved views that can be easily display for
 the plot. Each view corresponds to a name, with specified values to select
 either:</p>
 <blockquote>
@@ -434,6 +435,19 @@ view in the interface. An example of views is:</p>
 the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">as</span> <span class="pre">view</span></code> button in the plot controls and downloading eiher the
 new HTML file to save them or the config file in th erepo of the benchmark,
 so that these saved views are embeded in the next plot results automatically.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_home</span></code>, <em>str</em>: Allows users to define a home path where the function
+<code class="docutils literal notranslate"><span class="pre">get_data_path()</span></code> search data files defined in <code class="docutils literal notranslate"><span class="pre">data_paths</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_paths</span></code>, <em>dict</em>: Allows users to store some data files in custom
+locations. If you are writing your own benchmark, you can use this
+options to allow users to use custom location for data files.
+Otherwise, please refer to the benchmark’s documentation you
+use to know if you can use this option and which paths you must define.</p>
+<p>For example, if the benchmark asks you to define a data path,
+you can proceed as follows in the benchmark’s <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file:</p>
+<p>In your benchmark’s datasets, you can use the <code class="docutils literal notranslate"><span class="pre">get_data_path()</span></code>
+to retrieve the paths:</p>
+<p>If no paths are provided, the default path used is <code class="docutils literal notranslate"><span class="pre">your_benchmark/data</span></code></p>
 </li>
 </ul>
 </dd></dl>
