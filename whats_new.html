@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new &#8212; benchopt 1.5.2.dev39 documentation</title>
+    <title>What’s new &#8212; benchopt 1.5.2.dev41 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script src="_static/documentation_options.js?v=1e987df2"></script>
+    <script src="_static/documentation_options.js?v=306a891d"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -148,7 +148,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev39</p>
+    <p class="title logo__title">1.5.2.dev41</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -382,6 +382,8 @@ document.write(`
 <section id="api">
 <h3>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Add a <cite>save_final_results</cite> method to Objective. If implemented it is run after the last solver iteration, to get desired outputs to be saved to file system.
+By <a class="reference external" href="https://github.com/paquiteau">Pierre-Antoine Comby</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/722">#722</a>)</p></li>
 <li><p>Add native way to do cross-validation in a benchmark with
 <code class="docutils literal notranslate"><span class="pre">Objective.cv</span></code> attribute that change split for each repetition.
 By <a class="reference external" href="https://github.com/chris-mrn">Christopher Marouani</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/623">#623</a>).</p></li>

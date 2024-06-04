@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.BaseObjective &#8212; benchopt 1.5.2.dev39 documentation</title>
+    <title>benchopt.BaseObjective &#8212; benchopt 1.5.2.dev41 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script src="../../_static/documentation_options.js?v=1e987df2"></script>
+    <script src="../../_static/documentation_options.js?v=306a891d"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -149,7 +149,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev39</p>
+    <p class="title logo__title">1.5.2.dev41</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -319,6 +319,7 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.save_final_results"><code class="docutils literal notranslate"><span class="pre">BaseObjective.save_final_results()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.set_data"><code class="docutils literal notranslate"><span class="pre">BaseObjective.set_data()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.skip"><code class="docutils literal notranslate"><span class="pre">BaseObjective.skip()</span></code></a></li>
 </ul>
@@ -359,6 +360,18 @@ stored at once instead of running each separately.</p></li>
 <li><p><cite>get_one_result()</cite>: return one result for which the objective can be
 evaluated. This should be a dictionary where the keys correspond to the
 keyword arguments of <cite>evaluate_result</cite>.</p></li>
+</ul>
+<p>Optionally, the <cite>Solver</cite> can implement the following methods to change its
+behavior:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><cite>save_final_results(**result)</cite>: Return the data to be saved from the</dt><dd><p>results of the solver. It will be saved as a <cite>.pkl</cite> file in the
+<cite>output/results</cite> folder, and link to the benchmark results.</p>
+</dd>
+</dl>
+</li>
+<li><p><cite>get_next(stop_val)</cite>: Return the next iteration where the result will be
+evaluated.</p></li>
 </ul>
 <p>This class is also used to specify information about the benchmark.
 In particular, it should have the following class attributes:</p>
@@ -431,6 +444,24 @@ type for benchopt. The returned object will be passed to
 <dt><strong>arrays: list of array-like</strong></dt><dd><p>The data to split. It should be indexable with the output of the
 <code class="docutils literal notranslate"><span class="pre">cv.split</span></code> iterator, or compatible with <code class="docutils literal notranslate"><span class="pre">Objective.split</span></code>.</p>
 </dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.save_final_results">
+<span class="sig-name descname"><span class="pre">save_final_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">solver_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.save_final_results" title="Link to this definition">#</a></dt>
+<dd><p>Save the final results of the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>solver_result</strong><span class="classifier">dict</span></dt><dd><p>All values needed to compute the objective metrics. This dictionary
+is retrieved by calling <code class="docutils literal notranslate"><span class="pre">solver_result</span> <span class="pre">=</span> <span class="pre">Solver.get_result()</span></code>.</p>
+</dd>
+<dt><strong>Returns</strong></dt><dd></dd>
+<dt><strong>——-</strong></dt><dd></dd>
+<dt><strong>dict of values to save</strong></dt><dd></dd>
 </dl>
 </dd>
 </dl>
@@ -530,6 +561,7 @@ If skip is False, the reason should be None.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.save_final_results"><code class="docutils literal notranslate"><span class="pre">BaseObjective.save_final_results()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.set_data"><code class="docutils literal notranslate"><span class="pre">BaseObjective.set_data()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.skip"><code class="docutils literal notranslate"><span class="pre">BaseObjective.skip()</span></code></a></li>
 </ul>

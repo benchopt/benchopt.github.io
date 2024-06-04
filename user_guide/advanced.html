@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Advanced usage &#8212; benchopt 1.5.2.dev39 documentation</title>
+    <title>Advanced usage &#8212; benchopt 1.5.2.dev41 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script src="../_static/documentation_options.js?v=1e987df2"></script>
+    <script src="../_static/documentation_options.js?v=306a891d"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -149,7 +149,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev39</p>
+    <p class="title logo__title">1.5.2.dev41</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -319,6 +319,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-pre-compilation-and-warmup-effects">Caching pre-compilation and warmup effects</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-final-results-of-a-solver">Saving Final Results of a Solver</a></li>
 </ul>
             </nav>
         </div>
@@ -501,6 +502,10 @@ It assume that the python script is located at the same level as the benchmark f
 function on <a class="reference internal" href="API_ref.html#api-ref"><span class="std std-ref">API references</span></a>.</p>
 </div>
 </section>
+<section id="saving-final-results-of-a-solver">
+<span id="save-final-results"></span><h2>Saving Final Results of a Solver<a class="headerlink" href="#saving-final-results-of-a-solver" title="Link to this heading">#</a></h2>
+<p>Using the <cite>save_final_results(**results)</cite> method of the objective function to retrieve the results to save. They are saved in <cite>outputs/final_results/</cite> directory and reference is added in the benchmark <cite>.parquet</cite> file.</p>
+</section>
 </section>
 
 
@@ -553,6 +558,7 @@ function on <a class="reference internal" href="API_ref.html#api-ref"><span clas
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-pre-compilation-and-warmup-effects">Caching pre-compilation and warmup effects</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-final-results-of-a-solver">Saving Final Results of a Solver</a></li>
 </ul>
   </nav></div>
 
