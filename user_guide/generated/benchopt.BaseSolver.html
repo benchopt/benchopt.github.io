@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.BaseSolver &#8212; benchopt 1.5.2.dev46 documentation</title>
+    <title>benchopt.BaseSolver &#8212; benchopt 1.5.2.dev47 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script src="../../_static/documentation_options.js?v=a57f0bcc"></script>
+    <script src="../../_static/documentation_options.js?v=1e8389d1"></script>
     <script src="../../_static/doctools.js?v=9a2dae69"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -149,7 +149,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev46</p>
+    <p class="title logo__title">1.5.2.dev47</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -357,7 +357,7 @@ operation unrelated to the optimization procedure.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_result(self)</span></code>: returns all parameters of interest, as a dict.
 The output is passed to <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.</p></li>
 </ul>
-<p>Note that two <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be used to construct the benchmark
+<p>Note that four <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be used to construct the benchmark
 curve:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: call the run method with max_iter number increasing
@@ -367,6 +367,8 @@ logarithmically to get more and more precise points.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: a callable that should be called after each iteration or
 epoch. This callable periodically calls the objective’s <cite>compute</cite>
 and returns False when the solver should stop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'run_once'</span></code>: call the run method once to get a single point. This is
+typically used for ML benchmarks.</p></li>
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.get_result">
