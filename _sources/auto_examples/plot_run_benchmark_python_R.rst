@@ -22,7 +22,7 @@
 Demo benchmark with R/Python
 ============================
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-51
+.. GENERATED FROM PYTHON SOURCE LINES 7-42
 
 
 
@@ -80,7 +80,7 @@ Demo benchmark with R/Python
       |--Lasso Regression[fit_intercept=False,reg=0.5]
         |--Python-PGD[use_acceleration=False]: done
         |--R-PGD: done (timeout)
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2024-07-10_14h07m02.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2024-07-10_15h04m34.parquet
     Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_support_size_objective_curve.pdf
     Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/3ebdde1738d5255ff1b6b4a7ea598289_objective_duality_gap_objective_curve.pdf
@@ -117,20 +117,11 @@ Demo benchmark with R/Python
             f"{BENCHMARK_PATH.resolve()}"
         )
 
-    benchmark = Benchmark(BENCHMARK_PATH)
-
-    solvers = benchmark.check_solver_patterns(
-        ['Python-PGD[use_acceleration=False]', 'R-PGD']
-    )
-    datasets = benchmark.check_dataset_patterns(
-        ["Simulated[n_features=5000,n_samples=100,rho=0]"]
-    )
-    objectives = benchmark.check_objective_filters(
-        ['*[fit_intercept=False,reg=0.5]']
-    )
-
     save_file = run_benchmark(
-        benchmark, solvers=solvers, datasets=datasets, objectives=objectives,
+        BENCHMARK_PATH,
+        solver_names=['Python-PGD[use_acceleration=False]', 'R-PGD'],
+        dataset_names=["Simulated[n_features=5000,n_samples=100,rho=0]"],
+        objective_filters=['*[fit_intercept=False,reg=0.5]'],
         max_runs=100, timeout=100, n_repetitions=5,
         plot_result=False, show_progress=False
     )
@@ -146,7 +137,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (2 minutes 1.829 seconds)
+   **Total running time of the script:** (2 minutes 7.975 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:

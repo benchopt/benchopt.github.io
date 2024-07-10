@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Advanced usage &#8212; benchopt 1.5.2.dev52 documentation</title>
+    <title>Advanced usage &#8212; benchopt 1.5.2.dev53 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=44a39920"></script>
+    <script src="../_static/documentation_options.js?v=ff5f1b3d"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev52</p>
+    <p class="title logo__title">1.5.2.dev53</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -478,15 +478,11 @@ Typical use-cases of that are</p>
 <p>The following script illustrate running the <a class="reference internal" href="../benchmark_workflow/run_benchmark.html#run-with-config-file"><span class="std std-ref">benchmark Lasso</span></a>.
 It assume that the python script is located at the same level as the benchmark folder.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">run_benchmark</span>
-<span class="kn">from</span> <span class="nn">benchopt.benchmark</span> <span class="kn">import</span> <span class="n">Benchmark</span>
 
-<span class="c1"># load benchmark</span>
-<span class="n">BENCHMARK_PATH</span> <span class="o">=</span> <span class="s2">&quot;./&quot;</span>
-<span class="n">benchmark</span> <span class="o">=</span> <span class="n">Benchmark</span><span class="p">(</span><span class="n">BENCHMARK_PATH</span><span class="p">)</span>
 
 <span class="c1"># run benchmark</span>
 <span class="n">run_benchmark</span><span class="p">(</span>
-    <span class="n">benchmark</span><span class="p">,</span>
+    <span class="n">benchmark_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
     <span class="n">solver_names</span><span class="o">=</span><span class="p">[</span>
         <span class="s2">&quot;skglm&quot;</span><span class="p">,</span>
         <span class="s2">&quot;celer&quot;</span><span class="p">,</span>
