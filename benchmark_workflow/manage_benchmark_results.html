@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Manage benchmark results &#8212; benchopt 1.5.2.dev53 documentation</title>
+    <title>Manage benchmark results &#8212; benchopt 1.5.2.dev54 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=ff5f1b3d"></script>
+    <script src="../_static/documentation_options.js?v=6a4a99ec"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev53</p>
+    <p class="title logo__title">1.5.2.dev54</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -343,7 +343,7 @@ document.write(`
 By default, the name of the file include the date and time of the run,
 but a custom name can be given using the <code class="xref std std-option docutils literal notranslate"><span class="pre">--output</span></code> option of
 <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.</p>
-<p>This result file is produce only once the full benchmark has been run.
+<p>This result file is produced only once the full benchmark has been run.
 When the benchmark is run in parallel, the results that have already been
 computed can be collected using the <code class="xref std std-option docutils literal notranslate"><span class="pre">--collect</span></code> option with
 <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>. Adding this option with the same command line will
@@ -351,7 +351,7 @@ produce a parquet file with all the results that have been computed so far.</p>
 </section>
 <section id="clean-benchmark-results">
 <h2>Clean benchmark results<a class="headerlink" href="#clean-benchmark-results" title="Link to this heading">#</a></h2>
-<p>The results and cache of previously run benchmark can be cleaned using then
+<p>The results and cache of previously run benchmark can be cleaned using the
 <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">clean</span></code> command. This command will remove the <code class="docutils literal notranslate"><span class="pre">./results</span></code> and
 <code class="docutils literal notranslate"><span class="pre">./__cache__</span></code> directories in the benchmark directory.</p>
 </section>
@@ -370,7 +370,7 @@ $ benchopt publish ./benchmark_logreg_l2 -t &lt;GITHUB_TOKEN&gt;
 </pre></div>
 </div>
 <p>You see that to publish you need to specify the value of <code class="docutils literal notranslate"><span class="pre">&lt;GITHUB_TOKEN&gt;</span></code>.
-This GitHub access token contains 40 alphanumeric characters that allows GitHub
+This GitHub access token contains 40 alphanumeric characters that allow GitHub
 to identify you and use your account.
 After getting your personal token as explained below the last
 line will read something like:</p>
@@ -382,7 +382,7 @@ line will read something like:</p>
 <p>Your GitHub access token is a sensitive information. Keep it
 secret as it is as powerful as your GitHub password!</p>
 </div>
-<p>Let’s now look how to create your personal GitHub token.</p>
+<p>Let’s now see how to create your personal GitHub token.</p>
 <section id="obtaining-a-github-token">
 <h3>Obtaining a GitHub token<a class="headerlink" href="#obtaining-a-github-token" title="Link to this heading">#</a></h3>
 <p>Visit <a class="github reference external" href="https://github.com/settings/tokens">settings/tokens</a>

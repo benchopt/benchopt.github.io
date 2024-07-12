@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>How to contribute &#8212; benchopt 1.5.2.dev53 documentation</title>
+    <title>How to contribute &#8212; benchopt 1.5.2.dev54 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=ff5f1b3d"></script>
+    <script src="_static/documentation_options.js?v=6a4a99ec"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev53</p>
+    <p class="title logo__title">1.5.2.dev54</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -448,7 +448,7 @@ This page describes the various tweaks that can be made to the benchmark tests.<
 </section>
 <section id="test-for-solver-run">
 <h3>Test for Solver run<a class="headerlink" href="#test-for-solver-run" title="Link to this heading">#</a></h3>
-<p>To ensure point 4, benchopt needs to load at least one small dataset that is compatible with each solver. This is why each benchmark needs to implement at least a <code class="docutils literal notranslate"><span class="pre">Simulated</span></code> dataset, that will be used for testing purposes. However, some solvers require different datasets and objective settings to be able to run. There is two way to ensure that a solver can find an appropriate configuration:</p>
+<p>To ensure point 4, benchopt needs to load at least one small dataset that is compatible with each solver. This is why each benchmark needs to implement at least a <code class="docutils literal notranslate"><span class="pre">Simulated</span></code> dataset, that will be used for testing purposes. However, some solvers require different datasets and objective settings to be able to run. There are two ways to ensure that a solver can find an appropriate configuration:</p>
 <ul class="simple">
 <li><p>In the simulated dataset, one can add the class attribute <code class="docutils literal notranslate"><span class="pre">test_parameters</span></code>, which stands for a list of parameters that will be tried to test the solver. For each solver, at least one of these configurations should be compatible (not skipped). See benchopt.github.io/how.html#example-of-parametrized-simulated-dataset</p></li>
 <li><p>The solvers can also provide a <code class="docutils literal notranslate"><span class="pre">test_config</span></code> class attribute, which is a dictionary with optional keys <code class="docutils literal notranslate"><span class="pre">dataset,</span> <span class="pre">objective</span></code>. The value of these keys should be a dictionary of parameters for the classes <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, that will be compatible with the given <code class="docutils literal notranslate"><span class="pre">Solver</span></code>.</p></li>

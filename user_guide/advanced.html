@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Advanced usage &#8212; benchopt 1.5.2.dev53 documentation</title>
+    <title>Advanced usage &#8212; benchopt 1.5.2.dev54 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=ff5f1b3d"></script>
+    <script src="../_static/documentation_options.js?v=6a4a99ec"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev53</p>
+    <p class="title logo__title">1.5.2.dev54</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -352,7 +352,7 @@ span.prompt1:before {
 <span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>slurm<span class="o">]</span></span>
 </pre></div></div><p>Note that for some clusters with shared python installation, it is necessary
 to call <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> to install the packages in the user space and
-not in the the system one.</p>
+not in the system one.</p>
 <p>Using the <code class="docutils literal notranslate"><span class="pre">--slurm</span></code> option for <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, one can pass a config file
 used to setup the SLURM jobs. This file is a YAML file that can contain any key
 to be passed to the <a class="reference external" href="https://github.com/facebookincubator/submitit/blob/main/submitit/slurm/slurm.py#L386"><code class="docutils literal notranslate"><span class="pre">update_parameters</span></code></a> method of <a class="reference external" href="https://github.com/facebookincubator/submitit/blob/main/submitit/slurm/slurm.py#L214"><code class="docutils literal notranslate"><span class="pre">submitit.SlurmExecutor</span></code></a>.
@@ -371,8 +371,8 @@ Hereafter is an example of such config file:</p>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">module load cuda/10.1.2 cudnn/7.6.5.32-cuda-10.1 nccl/2.5.6-2-cuda</span>
 </pre></div>
 </div>
-<p>Using such option, each configuration of <code class="docutils literal notranslate"><span class="pre">(dataset,</span> <span class="pre">objective,</span> <span class="pre">solver)</span></code> with
-unique parameters are launched as a separated job in a job-array on the SLURM
+<p>Using such options, each configuration of <code class="docutils literal notranslate"><span class="pre">(dataset,</span> <span class="pre">objective,</span> <span class="pre">solver)</span></code> with
+unique parameters is launched as a separated job in a job-array on the SLURM
 cluster. Note that by default, no limitation is used on the number of
 simultaneous jobs that are run.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">slurm_time</span></code> is not set in the config file, benchopt uses by default
@@ -387,12 +387,12 @@ a shared file-system between the nodes used for the computations.</p>
 <p>Some solvers might not be able to run with all the datasets present
 in a benchmark. This is typically the case when some datasets are
 represented using sparse data or for datasets that are too large.</p>
-<p>In this cases, a solver can be skipped at runtime, depending on the
+<p>In these cases, a solver can be skipped at runtime, depending on the
 characteristic of the objective. In order to define for which cases
 a solver should be skip, the user needs to implement a method
 <a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> in the solver class that will take
 the input as the <a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.set_objective" title="benchopt.BaseSolver.set_objective"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_objective()</span></code></a> method.
-This method should return a boolean value that evaluate to <code class="docutils literal notranslate"><span class="pre">True</span></code>
+This method should return a boolean value that evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>
 if the solver should be skipped, and a string giving the reason of
 why the solver is skipped, for display purposes. For instance,
 for a solver where the objective is set with keys <cite>X, y, reg</cite>,
@@ -418,7 +418,7 @@ we get</p>
 functions. As a benchmark is not structured as proper python packages
 but imported dynamically to avoid installation issues, we resort to
 a special way of importing modules and functions defined for a benchmark.</p>
-<p>First, all code that need to be imported should be placed under
+<p>First, all code that needs to be imported should be placed under
 <code class="docutils literal notranslate"><span class="pre">BENCHMARK_DIR/benchmark_utils/</span></code>, as described here:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_benchmark/
 ├── objective.py  # contains the definition of the objective
@@ -444,9 +444,9 @@ a special way of importing modules and functions defined for a benchmark.</p>
 </section>
 <section id="caching-pre-compilation-and-warmup-effects">
 <span id="precompilation"></span><h2>Caching pre-compilation and warmup effects<a class="headerlink" href="#caching-pre-compilation-and-warmup-effects" title="Link to this heading">#</a></h2>
-<p>For some solvers, such as solver relying on just-in-time compilation with
+<p>For some solvers, such as solvers relying on just-in-time compilation with
 <code class="docutils literal notranslate"><span class="pre">numba</span></code> or <code class="docutils literal notranslate"><span class="pre">jax</span></code>, the first iteration might be longer due to “warmup”
-effects. To avoid having such effect in the benchmark results, it is usually
+effects. To avoid having such effects in the benchmark results, it is usually
 advised to call the solver once before running the benchmark. This should be
 implemented in the <code class="docutils literal notranslate"><span class="pre">Solver.warm_up</span></code> method, which is empty by default and
 called after the <cite>set_objective</cite> method. For solvers with
@@ -475,8 +475,8 @@ Typical use-cases of that are</p>
 <li><p>Automating the run of several benchmarks</p></li>
 <li><p>Using <code class="docutils literal notranslate"><span class="pre">vscode</span></code> debugger where the python script serves as an entry point to benchopt internals</p></li>
 </ul>
-<p>The following script illustrate running the <a class="reference internal" href="../benchmark_workflow/run_benchmark.html#run-with-config-file"><span class="std std-ref">benchmark Lasso</span></a>.
-It assume that the python script is located at the same level as the benchmark folder.</p>
+<p>The following script illustrates running the <a class="reference internal" href="../benchmark_workflow/run_benchmark.html#run-with-config-file"><span class="std std-ref">benchmark Lasso</span></a>.
+It assumes that the python script is located at the same level as the benchmark folder.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">run_benchmark</span>
 
 

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setting up an ML benchmark &#8212; benchopt 1.5.2.dev53 documentation</title>
+    <title>Setting up an ML benchmark &#8212; benchopt 1.5.2.dev54 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=ff5f1b3d"></script>
+    <script src="../_static/documentation_options.js?v=6a4a99ec"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev53</p>
+    <p class="title logo__title">1.5.2.dev54</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -335,7 +335,7 @@ document.write(`
 explains the specificities of setting up a benchmark in this context.</p>
 <p>To easily get started with a new ML benchmark, we recommend using the dedicated
 <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>’s <a class="reference external" href="https://github.com/benchopt/template_benchmark_ml">ML template</a> from github.
-This template provide a simple structure, with the different benchopt’s options set to accomodate ML workflows.</p>
+This template provides a simple structure, with the different benchopt’s options set to accommodate ML workflows.</p>
 <section id="cross-validation">
 <h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h2>
 <p>In order to evaluate the generalization performance of a method, a common
@@ -347,7 +347,7 @@ the average performance is reported.</p>
 where the data is split into folds in <code class="docutils literal notranslate"><span class="pre">Objective.get_objective</span></code>, by calling
 <code class="docutils literal notranslate"><span class="pre">Objective.get_split</span></code>. This method takes in the data to split (typically
 <code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays or <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframes) and returns the split data.
-The way the splits are defined depend on the <code class="docutils literal notranslate"><span class="pre">Objective.cv</span></code> attribute, which
+The way the splits are defined depends on the <code class="docutils literal notranslate"><span class="pre">Objective.cv</span></code> attribute, which
 must be defined by the user. A typical workflow is the following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
     <span class="o">...</span>
@@ -365,7 +365,7 @@ must be defined by the user. A typical workflow is the following:</p>
 
     <span class="k">def</span> <span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Call `self.get_split` with the arrays to split.</span>
-        <span class="c1"># This method default behavior behave like sklearn&#39;s</span>
+        <span class="c1"># This method&#39;s default behavior is similar to sklearn&#39;s</span>
         <span class="c1"># `train_test_split`, splitting the input arrays using</span>
         <span class="c1"># the indexes returned by `self.cv.split`.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_test</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_test</span> <span class="o">=</span> \

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Understanding and building a simple benchmark &#8212; benchopt 1.5.2.dev53 documentation</title>
+    <title>Understanding and building a simple benchmark &#8212; benchopt 1.5.2.dev54 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=ff5f1b3d"></script>
+    <script src="../_static/documentation_options.js?v=6a4a99ec"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -152,7 +152,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev53</p>
+    <p class="title logo__title">1.5.2.dev54</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -455,7 +455,7 @@ To follow through this section, it is advised to open an editor (like vscode) at
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">objective.py</span></code>: it contains the information about the cost function we want to minimize. In other words, it defines the formal problem we are interested in.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">solvers/python-gd.py</span></code>: it contains the information and code for the gradient descent solver, dedicated to the problem at hand.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">datasets/simulated.py</span></code>: it contains the information about the dataset, i.e. the values of \(y \) and \(X \) used to test the algorithms. All benchmark in fact must have a <code class="docutils literal notranslate"><span class="pre">simulated.py</span></code> file which is used for testing by Benchopt.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datasets/simulated.py</span></code>: it contains the information about the dataset, i.e. the values of \(y \) and \(X \) used to test the algorithms. All benchmarks in fact must have a <code class="docutils literal notranslate"><span class="pre">simulated.py</span></code> file which is used for testing by Benchopt.</p></li>
 </ul>
 </div></blockquote>
 <p>Any benchmark must implement these three components; <strong>in Benchopt indeed we consider that objectives, solvers and dataset are the building blocks of any optimization problem</strong>.</p>
@@ -468,7 +468,7 @@ The following figure details the methods that must be implemented in each file, 
 <figure class="align-default">
 <a class="reference internal image-reference" href="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg"><img alt="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg" src="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg" width="800" /></a>
 </figure>
-<p>There are two kind of contents.
+<p>There are two kinds of contents.
 First, code that defines core elements of the problem:</p>
 <blockquote>
 <div><ul class="simple">
@@ -482,7 +482,7 @@ First, code that defines core elements of the problem:</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>the <code class="docutils literal notranslate"><span class="pre">run</span></code> method in each solver, here <code class="docutils literal notranslate"><span class="pre">python-gd</span></code>. It defines the steps taken by the algorithm. Benchopt dictates the maximal number of iterations to the solver, and therefore <code class="docutils literal notranslate"><span class="pre">run</span></code> takes the number of iterations as input while other parameters like the stepsize are class attributes. The estimate value of \(\beta \) is updated in the class attributes, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method does not require returns. For GD, the <code class="docutils literal notranslate"><span class="pre">run</span></code> function looks like</p></li>
+<li><p>the <code class="docutils literal notranslate"><span class="pre">run</span></code> method in each solver, here <code class="docutils literal notranslate"><span class="pre">python-gd</span></code>. It defines the steps taken by the algorithm. Benchopt dictates the maximal number of iterations to the solver, and therefore <code class="docutils literal notranslate"><span class="pre">run</span></code> takes the number of iterations as input while other parameters like the stepsize are class attributes. The estimated value of \(\beta \) is updated in the class attributes, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method does not require returns. For GD, the <code class="docutils literal notranslate"><span class="pre">run</span></code> function looks like</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
     <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
@@ -581,7 +581,7 @@ It can be modified as follows</p>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Ridge Regression&#39;</span>
 </pre></div>
 </div>
-<p>That’s it for the <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file! We can now modify the solver. For simplicity we may directly edit <code class="docutils literal notranslate"><span class="pre">python-gd.py</span></code>, but adding a new solver to the benchmark is a simple as adding another file in the solvers folder (more information in the <a class="reference external" href="https://benchopt.github.io/tutorials/add_solver.html">add a solver tutorial</a>).</p>
+<p>That’s it for the <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file! We can now modify the solver. For simplicity we may directly edit <code class="docutils literal notranslate"><span class="pre">python-gd.py</span></code>, but adding a new solver to the benchmark is as simple as adding another file in the solvers folder (more information in the <a class="reference external" href="https://benchopt.github.io/tutorials/add_solver.html">add a solver tutorial</a>).</p>
 <p>Modifying the solver means updating the <code class="docutils literal notranslate"><span class="pre">run</span></code> method, more specifically the gradient formula.
 Inside the <code class="docutils literal notranslate"><span class="pre">python-gd.py</span></code> file, the new <code class="docutils literal notranslate"><span class="pre">run</span></code> method looks like this</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
@@ -642,7 +642,7 @@ For instance, select the following plotting options:</p>
 <p><span class="caption-text">Screenshot of the results computed by benchopt, shown in the default navigator. Plotting options can be manually changed in the left part of the window.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
 </figcaption>
 </figure>
-<p>We may observe that the GD-ridge with <code class="docutils literal notranslate"><span class="pre">stepsize=1</span></code> reaches a low cost value faster that when using smaller or larger stepsize. This is expected since the stepsize has been scaled optimally according to the theory of convex optimization, and therefore <code class="docutils literal notranslate"><span class="pre">stepsize=1</span></code> is in principle the fastest safe step.</p>
+<p>We may observe that the GD-ridge with <code class="docutils literal notranslate"><span class="pre">stepsize=1</span></code> reaches a low cost value faster than when using smaller or larger stepsize. This is expected since the stepsize has been scaled optimally according to the theory of convex optimization, and therefore <code class="docutils literal notranslate"><span class="pre">stepsize=1</span></code> is in principle the fastest safe step.</p>
 <p>One of the interesting features of Benchopt is its ability to easily compute and show several metrics over the run.
 We have computed the ridge penalization alongside the iterations, and we can observe its values by changing the <code class="docutils literal notranslate"><span class="pre">Objective_column</span></code> field to <code class="docutils literal notranslate"><span class="pre">objective_penalty</span></code>. For better visualisation, you may change the <code class="docutils literal notranslate"><span class="pre">Scale</span></code> field to  <code class="docutils literal notranslate"><span class="pre">semilog-x</span></code>. Observe that the ridge regularisation term increases with the iterations. Again this is expected since we initialized GD with a null vector for which the Euclidean norm is zero.</p>
 </section>
