@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new &#8212; benchopt 1.5.2.dev54 documentation</title>
+    <title>What’s new &#8212; benchopt 1.5.2.dev55 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=6a4a99ec"></script>
+    <script src="_static/documentation_options.js?v=d1b61bf1"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -150,7 +150,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev54</p>
+    <p class="title logo__title">1.5.2.dev55</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -386,15 +386,17 @@ document.write(`
 <section id="api">
 <h3>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Add a <cite>save_final_results</cite> method to Objective. If implemented it is run after the last solver iteration, to get desired outputs to be saved to file system.
-By <a class="reference external" href="https://github.com/paquiteau">Pierre-Antoine Comby</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/722">#722</a>)</p></li>
+<li><p>Add a <cite>save_final_results</cite> method to Objective. If implemented it is run
+after the last solver iteration, to get desired outputs to be saved to file
+system. By <a class="reference external" href="https://github.com/paquiteau">Pierre-Antoine Comby</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/722">#722</a>)</p></li>
 <li><p>Add native way to do cross-validation in a benchmark with
 <code class="docutils literal notranslate"><span class="pre">Objective.cv</span></code> attribute that change split for each repetition.
 By <a class="reference external" href="https://github.com/chris-mrn">Christopher Marouani</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/623">#623</a>).</p></li>
 <li><p>Run-config files now support having parameters as nested dict, with
 potentially non-trivial structures (like dictionaries).
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/706">#706</a>).</p></li>
-<li><p>Raise error when an invalid install_cmd is provided. By <cite>Jad Yehya</cite> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/714">#714</a>).</p></li>
+<li><p>Raise error when an invalid install_cmd is provided.
+By <cite>Jad Yehya</cite> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/714">#714</a>).</p></li>
 </ul>
 </section>
 <section id="cli">
@@ -406,6 +408,8 @@ in cache in a single parquet file. By <a class="reference external" href="https:
 the data when installing the benchmark. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/718">#718</a>)</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">--no-timeout</span></code> option in <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> to allow solvers to bypass
 timeout. By <a class="reference external" href="https://github.com/ceelestin">Célestin Eve</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/725">#725</a>)</p></li>
+<li><p>Remove support for deprecated <code class="docutils literal notranslate"><span class="pre">.ini</span></code> config files. All config files should
+now use the <code class="docutils literal notranslate"><span class="pre">yaml</span></code> format. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/699">#699</a>)</p></li>
 </ul>
 </section>
 <section id="fix">
