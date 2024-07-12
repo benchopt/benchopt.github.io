@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Visualize a benchmark &#8212; benchopt 1.5.2.dev55 documentation</title>
+    <title>Visualize a benchmark &#8212; benchopt 1.5.2.dev56 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=d1b61bf1"></script>
+    <script src="../_static/documentation_options.js?v=c6c29b97"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev55</p>
+    <p class="title logo__title">1.5.2.dev56</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -376,7 +376,18 @@ The same as for <strong>Objective</strong> dropdown.</p>
 These metrics are the ones defined in the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> and correspond to the quantities returned by <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.</p>
 <p>Hovering over the question mark shows a tooltip with details about the objective. Like solver, the details are the content of the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> docstring.</p>
 <p>The <strong>Chart type</strong> dropdown allows applying transformations to the plotted metric, such as suboptimality <code class="docutils literal notranslate"><span class="pre">metric</span> <span class="pre">-</span> <span class="pre">min(metric)</span></code> or
-relative suboptimality <code class="docutils literal notranslate"><span class="pre">(metric</span> <span class="pre">-</span> <span class="pre">min(metric))</span> <span class="pre">/</span> <span class="pre">(metric[0]</span> <span class="pre">-</span> <span class="pre">min(metric))</span></code>.</p>
+relative suboptimality <code class="docutils literal notranslate"><span class="pre">(metric</span> <span class="pre">-</span> <span class="pre">min(metric))</span> <span class="pre">/</span> <span class="pre">(metric[0]</span> <span class="pre">-</span> <span class="pre">min(metric))</span></code>. It also allows to show bar charts or boxplots.</p>
+<div class="pst-scrollable-table-container"><table class="table table-center">
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/barchart.png"><img alt="Bar Chart" src="../_images/barchart.png" style="width: 49%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/boxplot.png"><img alt="Boxplot" src="../_images/boxplot.png" style="width: 49%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>For suboptimality plots, <code class="docutils literal notranslate"><span class="pre">min(metric)</span></code> is evaluated across all solvers and iterations.
