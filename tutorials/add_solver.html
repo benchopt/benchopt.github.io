@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Add a solver to an existing benchmark &#8212; benchopt 1.5.2.dev56 documentation</title>
+    <title>Add a solver to an existing benchmark &#8212; benchopt 1.5.2.dev57 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=c6c29b97"></script>
+    <script src="../_static/documentation_options.js?v=7d3e198a"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.5.2.dev56</p>
+    <p class="title logo__title">1.5.2.dev57</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -374,7 +374,8 @@ The attribute <code class="docutils literal notranslate"><span class="pre">name<
 <p>Once the Python file is created, we can start the implementation by adding methods and attributes to the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> class.
 To do so, we follow the order that benchopt uses to call the methods during the benchmark’s run: first <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>, then <code class="docutils literal notranslate"><span class="pre">run</span></code> and finally <code class="docutils literal notranslate"><span class="pre">get_result</span></code>.</p>
 <figure class="align-center">
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/benchopt/communication_materials/master/sharedimages/benchopt_schema_dependency.svg"><img alt="https://raw.githubusercontent.com/benchopt/communication_materials/master/sharedimages/benchopt_schema_dependency.svg" src="https://raw.githubusercontent.com/benchopt/communication_materials/master/sharedimages/benchopt_schema_dependency.svg" width="90%" /></a>
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/benchopt/communication_materials/master/sharedimages/benchopt_schema_dependency.svg"><img alt="https://raw.githubusercontent.com/benchopt/communication_materials/master/sharedimages/benchopt_schema_dependency.svg" src="https://raw.githubusercontent.com/benchopt/communication_materials/master/sharedimages/benchopt_schema_dependency.svg" style="width: 90%;" />
+</a>
 </figure>
 <p>Let’s go over them one by one.</p>
 <section id="initializing-the-setup">
