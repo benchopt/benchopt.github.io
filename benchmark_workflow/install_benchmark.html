@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Install a benchmark &#8212; benchopt 1.6.1.dev2 documentation</title>
+    <title>Install a benchmark &#8212; benchopt 1.6.1.dev3 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=5b12b407"></script>
+    <script src="../_static/documentation_options.js?v=e0ee361a"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev2</p>
+    <p class="title logo__title">1.6.1.dev3</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -368,13 +368,13 @@ Benchopt will execute this script in the shell and pass the Conda environment di
 correctly. This will help users to run your benchmarks without any issues.</p>
 <p>Examples:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pkg&#39;</span><span class="p">]</span>  <span class="c1"># conda package `pkg`</span>
-<span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chan:pkg&#39;</span><span class="p">]</span>  <span class="c1"># package `pkg` in conda channel `chan`</span>
+<span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chan::pkg&#39;</span><span class="p">]</span>  <span class="c1"># package `pkg` in conda channel `chan`</span>
 </pre></div>
 </div>
 <p>One might also need to install pip packages. This can be done by using the
 channel <cite>pip</cite> and the <cite>conda</cite> installer. The syntax is the following:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>  <span class="c1"># optional</span>
-<span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pip:pkg&#39;</span><span class="p">]</span>  <span class="c1"># pip package `pkg`</span>
+<span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pip::pkg&#39;</span><span class="p">]</span>  <span class="c1"># pip package `pkg`</span>
 </pre></div>
 </div>
 </section>
