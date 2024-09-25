@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new &#8212; benchopt 1.6.1.dev12 documentation</title>
+    <title>What’s new &#8212; benchopt 1.6.1.dev13 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=5fba476d"></script>
+    <script src="_static/documentation_options.js?v=e446c570"></script>
     <script src="_static/doctools.js?v=9a2dae69"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -150,7 +150,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev12</p>
+    <p class="title logo__title">1.6.1.dev13</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -405,6 +405,10 @@ By <a class="reference external" href="https://wassimmazouz.github.io/">Wassim M
 <li><p>Change channel specification in requirements, replacing the split format
 with <code class="docutils literal notranslate"><span class="pre">::</span></code> instead of <code class="docutils literal notranslate"><span class="pre">:</span></code>. This allow specifying URL channels.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/758">#758</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, <code class="docutils literal notranslate"><span class="pre">Solver</span></code> and <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> parameters as columns in the
+result DataFrame. The parameters’ names are respectively prefixed with
+<code class="docutils literal notranslate"><span class="pre">p_obj_|p_solver_|p_dataset_</span></code> to avoid collapse between the different
+components. By <a class="reference external" href="https://github.com/Melvin-klein">Melvine Nargeot</a>  and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/703">#703</a>).</p></li>
 </ul>
 </section>
 <section id="fix">

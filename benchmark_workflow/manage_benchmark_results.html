@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Manage benchmark results &#8212; benchopt 1.6.1.dev12 documentation</title>
+    <title>Manage benchmark results &#8212; benchopt 1.6.1.dev13 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=5fba476d"></script>
+    <script src="../_static/documentation_options.js?v=e446c570"></script>
     <script src="../_static/doctools.js?v=9a2dae69"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev12</p>
+    <p class="title logo__title">1.6.1.dev13</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -317,6 +317,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-benchmark-results-dataframe">Description of the benchmark results DataFrame</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collect-benchmark-results">Collect benchmark results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-benchmark-results">Clean benchmark results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-benchmark-results">Publish benchmark results</a><ul class="nav section-nav flex-column">
@@ -336,14 +337,39 @@ document.write(`
                   
   <section id="manage-benchmark-results">
 <span id="manage-results"></span><h1>Manage benchmark results<a class="headerlink" href="#manage-benchmark-results" title="Link to this heading">#</a></h1>
+<section id="description-of-the-benchmark-results-dataframe">
+<span id="benchmark-results"></span><h2>Description of the benchmark results DataFrame<a class="headerlink" href="#description-of-the-benchmark-results-dataframe" title="Link to this heading">#</a></h2>
+<p>Once the benchmark is run, the results are stored as a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> in a
+<code class="docutils literal notranslate"><span class="pre">.parquet</span></code> file, located in a directory <code class="docutils literal notranslate"><span class="pre">./outputs</span></code> in the benchmark
+directory, with a <code class="docutils literal notranslate"><span class="pre">.parquet</span></code> file.
+By default, the name of the file include the date and time of the run,
+as <code class="docutils literal notranslate"><span class="pre">benchopt_run_&lt;date&gt;_&lt;time&gt;.parquet</span></code> but a custom name can be given using
+the <code class="xref std std-option docutils literal notranslate"><span class="pre">--output</span></code> option of <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.
+The DataFrame contains the following columns:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">objective_name|solver_name|data_name</span></code>: the names of the different benchopt
+components used for this line.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">obj_description|solver_description</span></code>: A more verbose description of the
+objective and solver, displayed in the HTML page.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p_obj_p</span></code>: the value of the objective’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p_solver_p</span></code>: the value of the solver’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p_dateset_p</span></code>: the value of the dataset’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code>: the time taken to run the solver until this point of the performance curve.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stop_val</span></code>: the number of iterations or the tolerance reached by the solver.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">idx_rep</span></code>: If multiple repetitions are run for each solver with <code class="docutils literal notranslate"><span class="pre">--n-rep</span></code>,
+this column contains the repetition number.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>: The sampling strategy used to generate the performance
+curve of this solver. This allow to adapt the plot in the HTML depending on
+each solver.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">objective_k</span></code>: The value associated to the key <code class="docutils literal notranslate"><span class="pre">k</span></code> in the
+<code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code> dictionary.</p></li>
+</ul>
+<p>The remaining columns are informations about the system used to run the
+benchmark, with keys <code class="docutils literal notranslate"><span class="pre">{'env_OMP_NUM_THREADS',</span> <span class="pre">'platform',</span> <span class="pre">'platform-architecture',</span> <span class="pre">'platform-release',</span> <span class="pre">'platform-version',</span> <span class="pre">'system-cpus',</span> <span class="pre">'system-processor',</span> <span class="pre">'system-ram</span> <span class="pre">(GB)',</span> <span class="pre">'version-cuda',</span> <span class="pre">'version-numpy',</span> <span class="pre">'version-scipy',</span> <span class="pre">'benchmark-git-tag'}</span></code>.</p>
+</section>
 <section id="collect-benchmark-results">
 <span id="collect-results"></span><h2>Collect benchmark results<a class="headerlink" href="#collect-benchmark-results" title="Link to this heading">#</a></h2>
-<p>Once the benchmark is run, the results are stored in a directory
-<code class="docutils literal notranslate"><span class="pre">./results</span></code> in the benchmark directory, with a <code class="docutils literal notranslate"><span class="pre">.parquet</span></code> file.
-By default, the name of the file include the date and time of the run,
-but a custom name can be given using the <code class="xref std std-option docutils literal notranslate"><span class="pre">--output</span></code> option of
-<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.</p>
-<p>This result file is produced only once the full benchmark has been run.
+<p>The result file is produced only once the full benchmark has been run.
 When the benchmark is run in parallel, the results that have already been
 computed can be collected using the <code class="xref std std-option docutils literal notranslate"><span class="pre">--collect</span></code> option with
 <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>. Adding this option with the same command line will
@@ -445,6 +471,7 @@ be found in <span class="xref std std-ref">config_doc</span>.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-benchmark-results-dataframe">Description of the benchmark results DataFrame</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collect-benchmark-results">Collect benchmark results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-benchmark-results">Clean benchmark results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-benchmark-results">Publish benchmark results</a><ul class="nav section-nav flex-column">
