@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Run benchmark from a script &#8212; benchopt 1.6.1.dev13 documentation</title>
+    <title>Run benchmark from a script &#8212; benchopt 1.6.1.dev14 documentation</title>
   
   
   
@@ -16,17 +16,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -38,13 +40,14 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=e446c570"></script>
-    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/documentation_options.js?v=715347a1"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
@@ -56,6 +59,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.6.1.dev14" />
   </head>
   
   
@@ -71,19 +75,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -91,7 +84,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -99,8 +91,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,7 +108,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -146,10 +139,10 @@
     
     
     <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
-    <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
   
   
-    <p class="title logo__title">1.6.1.dev13</p>
+    <p class="title logo__title">1.6.1.dev14</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -160,7 +153,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -224,9 +216,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -274,24 +271,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 
 </div></div>
       
@@ -335,12 +324,308 @@ to download the full example code.</p>
 </ul>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Simulated[n_features=500,n_samples=200]
   |--L2 Logistic Regression[lmbd=1.0]
-Traceback (most recent call last):
-  File &quot;/home/circleci/project/benchmarks/benchmark_logreg_l2/solvers/sklearn.py&quot;, line 12, in &lt;module&gt;
-    from scipy.optimize.linesearch import LineSearchWarning
-ImportError: cannot import name &#39;LineSearchWarning&#39; from &#39;scipy.optimize.linesearch&#39; (/home/circleci/miniconda/lib/python3.10/site-packages/scipy/optimize/linesearch.py)
-    |--sklearn: not installed
-    |--sklearn: not installed
+    |--sklearn[liblinear]: initialization (1 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (1 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (1 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (1 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (1 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (1 / 15 reps)
+    |--sklearn[liblinear]: initialization (2 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (2 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (2 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (2 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (2 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (2 / 15 reps)
+    |--sklearn[liblinear]: initialization (3 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (3 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (3 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (3 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (3 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (3 / 15 reps)
+    |--sklearn[liblinear]: initialization (4 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (4 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (4 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (4 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (4 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (4 / 15 reps)
+    |--sklearn[liblinear]: initialization (5 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (5 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (5 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (5 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (5 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (5 / 15 reps)
+    |--sklearn[liblinear]: initialization (6 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (6 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (6 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (6 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (6 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (6 / 15 reps)
+    |--sklearn[liblinear]: initialization (7 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (7 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (7 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (7 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (7 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (7 / 15 reps)
+    |--sklearn[liblinear]: initialization (8 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (8 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (8 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (8 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (8 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (8 / 15 reps)
+    |--sklearn[liblinear]: initialization (9 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (9 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (9 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (9 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (9 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (9 / 15 reps)
+    |--sklearn[liblinear]: initialization (10 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (10 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (10 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (10 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (10 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (10 / 15 reps)
+    |--sklearn[liblinear]: initialization (11 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (11 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (11 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (11 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (11 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (11 / 15 reps)
+    |--sklearn[liblinear]: initialization (12 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (12 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (12 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (12 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (12 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (12 / 15 reps)
+    |--sklearn[liblinear]: initialization (13 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (13 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (13 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (13 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (13 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (13 / 15 reps)
+    |--sklearn[liblinear]: initialization (14 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (14 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (14 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (14 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (14 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (14 / 15 reps)
+    |--sklearn[liblinear]: initialization (15 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   9.4% (15 / 15 reps)
+    |--sklearn[liblinear]:  15.3% (15 / 15 reps)
+    |--sklearn[liblinear]:  22.0% (15 / 15 reps)
+    |--sklearn[liblinear]:  28.9% (15 / 15 reps)
+    |--sklearn[liblinear]:  66.6% (15 / 15 reps)
+    |--sklearn[liblinear]: done
+    |--sklearn[newton-cg]: initialization (1 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (1 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (1 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (1 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (1 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (1 / 15 reps)
+    |--sklearn[newton-cg]: initialization (2 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (2 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (2 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (2 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (2 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (2 / 15 reps)
+    |--sklearn[newton-cg]: initialization (3 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (3 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (3 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (3 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (3 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (3 / 15 reps)
+    |--sklearn[newton-cg]: initialization (4 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (4 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (4 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (4 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (4 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (4 / 15 reps)
+    |--sklearn[newton-cg]: initialization (5 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (5 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (5 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (5 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (5 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (5 / 15 reps)
+    |--sklearn[newton-cg]: initialization (6 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (6 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (6 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (6 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (6 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (6 / 15 reps)
+    |--sklearn[newton-cg]: initialization (7 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (7 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (7 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (7 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (7 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (7 / 15 reps)
+    |--sklearn[newton-cg]: initialization (8 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (8 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (8 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (8 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (8 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (8 / 15 reps)
+    |--sklearn[newton-cg]: initialization (9 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (9 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (9 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (9 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (9 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (9 / 15 reps)
+    |--sklearn[newton-cg]: initialization (10 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (10 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (10 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (10 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (10 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (10 / 15 reps)
+    |--sklearn[newton-cg]: initialization (11 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (11 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (11 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (11 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (11 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (11 / 15 reps)
+    |--sklearn[newton-cg]: initialization (12 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (12 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (12 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (12 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (12 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (12 / 15 reps)
+    |--sklearn[newton-cg]: initialization (13 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (13 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (13 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (13 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (13 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (13 / 15 reps)
+    |--sklearn[newton-cg]: initialization (14 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (14 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (14 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (14 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (14 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (14 / 15 reps)
+    |--sklearn[newton-cg]: initialization (15 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   6.3% (15 / 15 reps)
+    |--sklearn[newton-cg]:  11.2% (15 / 15 reps)
+    |--sklearn[newton-cg]:  17.5% (15 / 15 reps)
+    |--sklearn[newton-cg]:  25.5% (15 / 15 reps)
+    |--sklearn[newton-cg]:  43.8% (15 / 15 reps)
+    |--sklearn[newton-cg]: done
     |--Lightning: initialization (1 / 15 reps)
     |--Lightning:   0.0% (1 / 15 reps)
     |--Lightning:   1.0% (1 / 15 reps)
@@ -552,14 +837,14 @@ ImportError: cannot import name &#39;LineSearchWarning&#39; from &#39;scipy.opti
     |--Lightning:  61.6% (15 / 15 reps)
     |--Lightning:  76.9% (15 / 15 reps)
     |--Lightning: done (timeout)
-Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2024-09-25_20h34m34.parquet
-Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/9348ade1e8f5682bfd9864f3fd1919ae_objective_value_objective_curve.pdf
-Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/9348ade1e8f5682bfd9864f3fd1919ae_objective_Test loss_objective_curve.pdf
-Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/9348ade1e8f5682bfd9864f3fd1919ae_objective_value_suboptimality_curve.pdf
-Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/9348ade1e8f5682bfd9864f3fd1919ae_objective_value_relative_suboptimality_curve.pdf
-Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/9348ade1e8f5682bfd9864f3fd1919ae_objective_value_bar_chart.pdf
-Save boxplot plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/9348ade1e8f5682bfd9864f3fd1919ae_objective_value_boxplot.pdf
-Save boxplot plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/9348ade1e8f5682bfd9864f3fd1919ae_objective_Test loss_boxplot.pdf
+Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2024-12-31_00h43m47.parquet
+Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/a015812b8ebac8c87f4dcaf5b6ba0e77_objective_value_objective_curve.pdf
+Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/a015812b8ebac8c87f4dcaf5b6ba0e77_objective_Test loss_objective_curve.pdf
+Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/a015812b8ebac8c87f4dcaf5b6ba0e77_objective_value_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/a015812b8ebac8c87f4dcaf5b6ba0e77_objective_value_relative_suboptimality_curve.pdf
+Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/a015812b8ebac8c87f4dcaf5b6ba0e77_objective_value_bar_chart.pdf
+Save boxplot plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/a015812b8ebac8c87f4dcaf5b6ba0e77_objective_value_boxplot.pdf
+Save boxplot plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/a015812b8ebac8c87f4dcaf5b6ba0e77_objective_Test loss_boxplot.pdf
 </pre></div>
 </div>
 <div class="line-block">
@@ -605,7 +890,7 @@ Save boxplot plot of objective_Test loss for Simulated[n_features=500,n_samples=
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 24.531 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 36.752 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/cdb26c80ea62f96a318a8bcdbbf34171/plot_run_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark.ipynb</span></code></a></p>
@@ -681,8 +966,8 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
   <footer class="bd-footer">
   </footer>
