@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Write a benchmark &#8212; benchopt 1.6.1.dev16 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.6.1.dev17 documentation</title>
   
   
   
@@ -16,22 +16,20 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
-  <!--
-    this give us a css class that will be invisible only if js is disabled
-  -->
-  <noscript>
-    <style>
-      .pst-js-only { display: none !important; }
-
-    </style>
-  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -40,13 +38,12 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
   
-  <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=dddb45da"></script>
+    <script src="../_static/documentation_options.js?v=6627c7c7"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -61,7 +58,6 @@
     <link rel="prev" title="Run a benchmark" href="run_benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
-  <meta name="docsearch:version" content="1.6.1.dev16" />
   </head>
   
   
@@ -77,8 +73,19 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <dialog id="pst-search-dialog">
-    
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -86,6 +93,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -93,8 +101,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form>
-  </dialog>
+</form></div>
+  </div>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -110,8 +118,7 @@
       
       
       
-      <dialog id="pst-primary-sidebar-modal"></dialog>
-      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+      <div class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -141,10 +148,10 @@
     
     
     <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
-    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+    <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev16</p>
+    <p class="title logo__title">1.6.1.dev17</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -155,6 +162,7 @@
   <input type="search"
          class="form-control"
          name="q"
+         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -218,14 +226,9 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
-      <div class="sidebar-primary-item">
-<div id="ethical-ad-placement"
-      class="flat"
-      data-ea-publisher="readthedocs"
-      data-ea-type="readthedocs-sidebar"
-      data-ea-manual="true">
-</div></div>
   </div>
+  
+  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -273,16 +276,24 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
 
 
-<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-</button>
+  </button>
+`);
+</script>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -392,7 +403,7 @@ stored in a dictionary, with a key being <code class="docutils literal notransla
 </div>
 <section id="example">
 <h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseObjective</span><span class="p">,</span> <span class="n">safe_import_context</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span><span class="p">,</span> <span class="n">safe_import_context</span>
 
 <span class="c1"># All packages other than benchopt should be imported in this context.</span>
 <span class="c1"># - This allows to list solvers even when a package is not installed,</span>
@@ -400,10 +411,10 @@ stored in a dictionary, with a key being <code class="docutils literal notransla
 <span class="c1"># - This allows to skip imports when listing solvers and datasets</span>
 <span class="c1">#   for auto completion.</span>
 <span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
-<span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
     <span class="c1"># Name of the Objective function</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Lasso Regression&quot;</span>
 
@@ -413,15 +424,15 @@ stored in a dictionary, with a key being <code class="docutils literal notransla
         <span class="s1">&#39;reg&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">]</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s2">&quot;Return one solution for which the objective can be evaluated.&quot;</span>
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 
-    <span class="k">def</span> <span class="nf">_get_lambda_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_get_lambda_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s2">&quot;Helper to compute the scaling of lambda on the given data.&quot;</span>
         <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data from a Dataset to compute the objective.</span>
 
 <span class="sd">        The argument are the keys in the data dictionary returned by</span>
@@ -430,7 +441,7 @@ stored in a dictionary, with a key being <code class="docutils literal notransla
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lambda_max</span><span class="p">()</span>
 
-    <span class="k">def</span> <span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value given the output of a solver.</span>
 
 <span class="sd">        The arguments are the keys in the result dictionary returned</span>
@@ -440,7 +451,7 @@ stored in a dictionary, with a key being <code class="docutils literal notransla
         <span class="n">objective_value</span> <span class="o">=</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">diff</span> <span class="o">@</span> <span class="n">diff</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">objective_value</span>  <span class="c1"># or return dict(value=objective_value)</span>
 
-    <span class="k">def</span> <span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s2">&quot;Returns a dict to pass to the set_objective method of a solver.&quot;</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">)</span>
 </pre></div>
@@ -459,24 +470,24 @@ keyword arguments <code class="docutils literal notranslate"><span class="pre">*
 <a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a>.</p>
 <section id="example-using-a-real-dataset">
 <h3>Example using a real dataset<a class="headerlink" href="#example-using-a-real-dataset" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_import_context</span>
 
 
 <span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
-    <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelBinarizer</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">fetch_openml</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">sklearn.preprocessing</span><span class="w"> </span><span class="kn">import</span> <span class="n">LabelBinarizer</span>
 
 
-<span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
 
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;leukemia&quot;</span>
 
     <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
     <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scikit-learn&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Unlike libsvm[leukemia], this dataset corresponds to the whole</span>
         <span class="c1"># leukemia  data with train + test data (72 samples) and not just</span>
         <span class="c1"># the training set.</span>
@@ -498,13 +509,13 @@ To be able to specify parameters to get a dataset, you can use a class
 attribute called <code class="docutils literal notranslate"><span class="pre">parameters</span></code>. This parameter must be a dictionary
 whose keys are passed to the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> of the dataset class. Then Benchopt
 will automatically allow you to test all combinations of parameters.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
-<span class="kn">from</span> <span class="nn">benchopt.datasets</span> <span class="kn">import</span> <span class="n">make_correlated_data</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.datasets</span><span class="w"> </span><span class="kn">import</span> <span class="n">make_correlated_data</span>
 
 
-<span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
 
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Simulated&quot;</span>
     <span class="vm">__name__</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
@@ -519,14 +530,14 @@ will automatically allow you to test all combinations of parameters.</p>
         <span class="s1">&#39;rho&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
     <span class="p">}</span>
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>  <span class="n">rho</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">27</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>  <span class="n">rho</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">27</span><span class="p">):</span>
         <span class="c1"># Store the parameters of the dataset</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_samples</span> <span class="o">=</span> <span class="n">n_samples</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">n_features</span> <span class="o">=</span> <span class="n">n_features</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
 
-    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
 
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_correlated_data</span><span class="p">(</span>
@@ -592,14 +603,14 @@ should stop.</p></li>
 <span id="python-solvers"></span><h3>Python solver<a class="headerlink" href="#python-solver" title="Link to this heading">#</a></h3>
 <p>The simplest solvers to use are solvers using <a class="reference external" href="https://www.python.org/">Python</a> code.
 Here is an example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span><span class="p">,</span> <span class="n">safe_import_context</span>
-<span class="kn">from</span> <span class="nn">benchopt.utils</span> <span class="kn">import</span> <span class="n">profile</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span><span class="p">,</span> <span class="n">safe_import_context</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">profile</span>
 
 <span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
-<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Python-PGD&#39;</span>  <span class="c1"># proximal gradient, optionally accelerated</span>
 
     <span class="c1"># Any parameter defined here is accessible as an attribute of the solver.</span>
@@ -608,13 +619,13 @@ Here is an example:</p>
     <span class="c1"># Store the information to compute the objective. The parameters of this</span>
     <span class="c1"># function are the keys of the dictionary obtained when calling</span>
     <span class="c1"># ``Objective.get_objective``.</span>
-    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
 
     <span class="c1"># Main function of the solver, which compute a solution estimate.</span>
     <span class="c1"># Here this is the proximal gradient descent.</span>
     <span class="nd">@profile</span>
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
         <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
         <span class="n">step_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span> <span class="o">/</span> <span class="n">L</span>
         <span class="n">mu</span> <span class="o">=</span> <span class="n">step_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span>
@@ -629,7 +640,7 @@ Here is an example:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">w</span>
 
     <span class="c1"># Return the solution estimate computed.</span>
-    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">}</span>
 </pre></div>
 </div>
@@ -637,7 +648,7 @@ Here is an example:</p>
 as a <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> implies a slight modification for <code class="docutils literal notranslate"><span class="pre">run</span></code>. A <code class="docutils literal notranslate"><span class="pre">callback</span></code>
 should be called at each iteration with parameter the current value of the iterate.
 Here is an example in the same situation as above:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>  <span class="c1"># instead of the number of iteration or tolerance</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>  <span class="c1"># instead of the number of iteration or tolerance</span>
         <span class="n">L</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_lipschitz_cst</span><span class="p">()</span>
         <span class="n">n_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
@@ -671,17 +682,17 @@ See <a href="#id4"><span class="problematic" id="id5">:ref:`specify_requirements
 A <code class="docutils literal notranslate"><span class="pre">.R</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
 R solver using <a class="reference external" href="https://pypi.org/project/rpy2/">Rpy2</a>. Only the extensions
 should differ between the two files. Here is the Python file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_import_context</span>
 
 <span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
-    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-    <span class="kn">from</span> <span class="nn">rpy2</span> <span class="kn">import</span> <span class="n">robjects</span>
-    <span class="kn">from</span> <span class="nn">rpy2.robjects</span> <span class="kn">import</span> <span class="n">numpy2ri</span>
-    <span class="kn">from</span> <span class="nn">benchopt.helpers.r_lang</span> <span class="kn">import</span> <span class="n">import_func_from_r_file</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">rpy2</span><span class="w"> </span><span class="kn">import</span> <span class="n">robjects</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">rpy2.robjects</span><span class="w"> </span><span class="kn">import</span> <span class="n">numpy2ri</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.r_lang</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_func_from_r_file</span>
 
     <span class="c1"># Setup the system to allow rpy2 running</span>
     <span class="n">R_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.R&#39;</span><span class="p">))</span>
@@ -689,7 +700,7 @@ should differ between the two files. Here is the Python file:</p>
     <span class="n">numpy2ri</span><span class="o">.</span><span class="n">activate</span><span class="p">()</span>
 
 
-<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;R-PGD&quot;</span>
 
     <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
@@ -706,25 +717,25 @@ should differ between the two files. Here is the Python file:</p>
         <span class="s1">&#39;vol. 2, no. 1, pp. 183-202 (2009)&#39;</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">fit_intercept</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not handle fit_intercept&quot;</span>
 
         <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span> <span class="o">=</span> <span class="n">fit_intercept</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;proximal_gradient_descent&#39;</span><span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
         <span class="n">coefs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span><span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span>
             <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">)</span>
         <span class="n">as_r</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;as&#39;</span><span class="p">]</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">as_r</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="s2">&quot;vector&quot;</span><span class="p">))</span>
 
-    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -737,34 +748,34 @@ should differ between the two files. Here is the Python file:</p>
 
 
 <span class="c1"># Soft-thresholding operator</span>
-<span class="n">St</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">lambda0</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lambda0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="n">St</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">lambda0</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lambda0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">result0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lambda0</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="m">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lambda0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="kr">if</span><span class="w"> </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="m">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lambda0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="n">result0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lambda0</span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="n">result0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="kr">else</span><span class="w"> </span><span class="n">result0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
 
-<span class="w">        </span><span class="nf">return</span><span class="p">(</span><span class="n">result0</span><span class="p">)</span>
+<span class="w">        </span><span class="kr">return</span><span class="p">(</span><span class="n">result0</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">lambda0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="p">)</span>
-<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 <span class="p">}</span>
 
 
 <span class="c1"># Main algorithm</span>
-<span class="n">proximal_gradient_descent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">n_iter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="n">proximal_gradient_descent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">n_iter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1"># --------- Initialize parameter ---------</span>
 <span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="w">    </span><span class="n">parameters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
 <span class="w">    </span><span class="n">step_size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="m">2</span>
-<span class="w">    </span><span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_iter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_iter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="c1"># Compute the gradient</span>
 <span class="w">        </span><span class="n">grad</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">crossprod</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">parameters</span><span class="p">))</span>
 <span class="w">        </span><span class="c1"># # Update the parameters</span>
 <span class="w">        </span><span class="n">parameters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">St</span><span class="p">(</span><span class="n">step_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">step_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">grad</span><span class="p">)</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -781,12 +792,12 @@ just skipped.</p>
 A <code class="docutils literal notranslate"><span class="pre">.jl</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
 Julia solver using <a class="reference external" href="https://pypi.org/project/julia/">PyJulia</a>. Only the extensions
 should differ between the two files. Here is the Python file:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
-<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">safe_import_context</span>
 
-<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">JuliaSolver</span>
-<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">get_jl_interpreter</span>
-<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">assert_julia_installed</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">JuliaSolver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_jl_interpreter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">assert_julia_installed</span>
 
 <span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
     <span class="n">assert_julia_installed</span><span class="p">()</span>
@@ -796,7 +807,7 @@ should differ between the two files. Here is the Python file:</p>
 <span class="n">JULIA_SOLVER_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.jl&#39;</span><span class="p">))</span>
 
 
-<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">JuliaSolver</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">JuliaSolver</span><span class="p">):</span>
 
     <span class="c1"># Config of the solver</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Julia-PGD&#39;</span>
@@ -811,24 +822,24 @@ should differ between the two files. Here is the Python file:</p>
         <span class="s1">&#39;vol. 2, no. 1, pp. 183-202 (2009)&#39;</span>
     <span class="p">]</span>
 
-    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
         <span class="c1"># XXX - fit intercept is not yet implemented in julia.jl</span>
         <span class="k">if</span> <span class="n">fit_intercept</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not handle fit_intercept&quot;</span>
 
         <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
 
-    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span> <span class="o">=</span> <span class="n">fit_intercept</span>
 
         <span class="n">jl</span> <span class="o">=</span> <span class="n">get_jl_interpreter</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">solve_lasso</span> <span class="o">=</span> <span class="n">jl</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">JULIA_SOLVER_FILE</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solve_lasso</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
 </pre></div>
 </div>
@@ -922,8 +933,7 @@ that uses a <code class="docutils literal notranslate"><span class="pre">'shell'
             
             
               
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -972,7 +982,7 @@ By Benchopt contributors
 
   <p class="copyright">
     
-      © Copyright 2020-2024.
+      © Copyright 2020-2025.
       <br/>
     
   </p>
@@ -996,8 +1006,8 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
   <footer class="bd-footer">
   </footer>
