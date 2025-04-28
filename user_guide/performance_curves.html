@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Performance curves &#8212; benchopt 1.6.1.dev20 documentation</title>
+    <title>Performance curves &#8212; benchopt 1.6.1.dev21 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=57f4f5fb"></script>
+    <script src="../_static/documentation_options.js?v=ec0877e6"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -152,7 +152,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev20</p>
+    <p class="title logo__title">1.6.1.dev21</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -409,15 +409,16 @@ instance, if a solver needs to be evaluated every 10 iterations, we would have</
 </section>
 </section>
 <section id="when-are-the-solvers-stopped">
-<h2>When are the solvers stopped?<a class="headerlink" href="#when-are-the-solvers-stopped" title="Link to this heading">#</a></h2>
-<p>For each of the sampling strategies above, the solvers continue running (i.e. the callback returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, the number of iterations passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> increases or the tolerance passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> decreases) until the <code class="docutils literal notranslate"><span class="pre">StoppingCriterion.should_stop()</span></code> associated to the solver <code class="docutils literal notranslate"><span class="pre">Solver.stopping_criterion</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<span id="stopping-criterion"></span><h2>When are the solvers stopped?<a class="headerlink" href="#when-are-the-solvers-stopped" title="Link to this heading">#</a></h2>
+<p>For each of the sampling strategies above, the solvers continue running (i.e. the callback returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, the number of iterations/tolerance passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> increases/decreases) until the <code class="docutils literal notranslate"><span class="pre">StoppingCriterion.should_stop()</span></code> associated to the solver <code class="docutils literal notranslate"><span class="pre">Solver.stopping_criterion</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
 <p>This method takes into account the maximal number of runs given as <code class="docutils literal notranslate"><span class="pre">--max-runs</span></code>, the timeout given by <code class="docutils literal notranslate"><span class="pre">--timeout</span></code> and also tries to stop the solver if it has converged.
 The convergence of a solver is determined by the <code class="docutils literal notranslate"><span class="pre">StoppingCriterion.check_convergence()</span></code> method, based on the objective curve so far.
-There are three <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> implemented in benchopt:</p>
+There are four <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> implemented in benchopt:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion(eps,</span> <span class="pre">patience)</span></code> considers that the solver has converged when the relative decrease of the objective was less than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion(eps,</span> <span class="pre">patience)</span></code> considers that the solver has converged when the objective has not decreased by more than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SingleRunCriterion(stop_val)</span></code> only calls the solver once with the given stop_val. This criterion is designed for methods that converge to a given value, when one aims to benchmark final performance of multiple solvers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NoCriterion()</span></code> runs the solver for a fixed number of steps, given by the <code class="docutils literal notranslate"><span class="pre">--max-runs</span></code> argument. This criterion deactivate the checks for convergence.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion(eps,</span> <span class="pre">patience,</span> <span class="pre">key_to_monitor)</span></code> considers that the solver has converged when the relative decrease of the objective was less than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>. The <code class="docutils literal notranslate"><span class="pre">key_to_monitor</span></code> is the key of the objective dictionary to monitor. By default, it is set to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion(eps,</span> <span class="pre">patience,</span> <span class="pre">key_to_monitor)</span></code> considers that the solver has converged when the objective has not decreased by more than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>. The <code class="docutils literal notranslate"><span class="pre">key_to_monitor</span></code> is the key of the objective dictionary to monitor. By default, it is set to <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></li>
 </ul>
 </section>
 </section>

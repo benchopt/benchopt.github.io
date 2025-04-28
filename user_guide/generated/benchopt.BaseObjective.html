@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.BaseObjective &#8212; benchopt 1.6.1.dev20 documentation</title>
+    <title>benchopt.BaseObjective &#8212; benchopt 1.6.1.dev21 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=57f4f5fb"></script>
+    <script src="../../_static/documentation_options.js?v=ec0877e6"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev20</p>
+    <p class="title logo__title">1.6.1.dev21</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -319,6 +319,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective"><code class="docutils literal notranslate"><span class="pre">BaseObjective</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.evaluate_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.evaluate_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.format_objective_dict"><code class="docutils literal notranslate"><span class="pre">BaseObjective.format_objective_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
@@ -354,12 +355,13 @@ parameters of the solver’s <cite>set_objective</cite> method in order to speci
 objective function of the benchmark.</p></li>
 <li><p><cite>evaluate_result(**result)</cite>: evaluate the metrics on the results of a
 solver. Its arguments should correspond to the key of the dictionary
-returned by <cite>Solver.get_result</cite> and it can return a scalar value or
-a dictionary.
+returned by <cite>Solver.get_result</cite> and it can return a scalar value,
+a dictionary or a list of dictionaries.
 If it returns a dictionary, it should at least contain a key
 <cite>value</cite> associated to a scalar value which will be used to
 detect convergence. With a dictionary, multiple metric values can be
-stored at once instead of running each separately.</p></li>
+stored at once instead of running each separately. With a list of
+dictionaries, these metrics can be computed on different objects.</p></li>
 <li><p><cite>get_one_result()</cite>: return one result for which the objective can be
 evaluated. This should be a dictionary where the keys correspond to the
 keyword arguments of <cite>evaluate_result</cite>.</p></li>
@@ -401,11 +403,34 @@ is retrieved by calling <code class="docutils literal notranslate"><span class="
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>objective_value</strong><span class="classifier">float or dict {‘name’: float}</span></dt><dd><p>The value(s) of the objective function. If a dictionary is
+<dt><strong>objective_value</strong><span class="classifier">float or dict {str: float} or list of dict</span></dt><dd><p>The value(s) of the objective function. If a dictionary is
 returned, it should at least contain a key <cite>value</cite> associated to a
 scalar value which will be used to detect convergence. With a
 dictionary, multiple metric values can be stored at once instead
 of running each separately.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.format_objective_dict">
+<span class="sig-name descname"><span class="pre">format_objective_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.format_objective_dict" title="Link to this definition">#</a></dt>
+<dd><p>Format the output of Objective.evaluate_results.</p>
+<p>This will prefix all keys in the dictionary with <cite>objective_</cite>
+to make the objective part of the results clear.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>objective_dict: dict</strong></dt><dd><p>The output of the objective function, which should be a dictionary
+not containing the key ‘name’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>objective_dict</strong><span class="classifier">dict</span></dt><dd><p>The formatted objective to include in the DataFrame.</p>
 </dd>
 </dl>
 </dd>
@@ -561,6 +586,7 @@ If skip is False, the reason should be None.</p>
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective"><code class="docutils literal notranslate"><span class="pre">BaseObjective</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.evaluate_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.evaluate_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.format_objective_dict"><code class="docutils literal notranslate"><span class="pre">BaseObjective.format_objective_dict()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
