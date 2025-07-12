@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Advanced usage &#8212; benchopt 1.6.1.dev30 documentation</title>
+    <title>Advanced usage &#8212; benchopt 1.6.1.dev31 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=344965a0"></script>
+    <script src="../_static/documentation_options.js?v=8fb5e7bd"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev30</p>
+    <p class="title logo__title">1.6.1.dev31</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -318,6 +318,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-on-a-slurm-cluster">Running the benchmark on a SLURM cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-slurm-parameters-for-one-solver">Overriding the SLURM parameters for one solver</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
@@ -389,6 +390,41 @@ the cluster to adjust this.</p>
 <p>As we rely on <code class="docutils literal notranslate"><span class="pre">joblib.Memory</span></code> for caching the results, the cache should work
 exactly as if you were running the computation sequentially, as long as you have
 a shared file-system between the nodes used for the computations.</p>
+</section>
+<section id="overriding-the-slurm-parameters-for-one-solver">
+<span id="slurm-override"></span><h2>Overriding the SLURM parameters for one solver<a class="headerlink" href="#overriding-the-slurm-parameters-for-one-solver" title="Link to this heading">#</a></h2>
+<p>You can also override the SLURM parameters for a specific solver by
+defining a <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> attribute in the solver class. This allows to
+specify a different SLURM partition, resources, or other parameters that
+are specific to that solver. The parameters defined in the solver class
+will override the global SLURM config defined in the config file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;GPU-based solver that needs GPU partition and specific resources.&quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;GPU-Solver&#39;</span>
+
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+
+    <span class="c1"># Override global SLURM config for this solver</span>
+    <span class="n">slurm_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;slurm_partition&#39;</span><span class="p">:</span> <span class="s1">&#39;gpu&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_gres&#39;</span><span class="p">:</span> <span class="s1">&#39;gpu:1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_time&#39;</span><span class="p">:</span> <span class="s1">&#39;02:00:00&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_cpus_per_task&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_mem&#39;</span><span class="p">:</span> <span class="s1">&#39;16GB&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;torch&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>The parameters defined in the <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> should be compatible with
+the <cite>submitit</cite> library, as they are passed to the <cite>submitit.AutoExecutor</cite>
+class. For more information on the available parameters, please refer to
+the <a class="reference external" href="https://github.com/facebookincubator/submitit">submitit documentation</a>.
+Note that in this case, the jobs with different SLURM parameters will be
+launched as one job array per configuration.</p>
 </section>
 <section id="skipping-a-solver-for-a-given-problem">
 <span id="skipping-solver"></span><h2>Skipping a solver for a given problem<a class="headerlink" href="#skipping-a-solver-for-a-given-problem" title="Link to this heading">#</a></h2>
@@ -585,6 +621,7 @@ function on <a class="reference internal" href="API_ref.html#api-ref"><span clas
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-on-a-slurm-cluster">Running the benchmark on a SLURM cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-slurm-parameters-for-one-solver">Overriding the SLURM parameters for one solver</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
