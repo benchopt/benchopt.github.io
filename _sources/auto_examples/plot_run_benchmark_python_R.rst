@@ -100,13 +100,11 @@ Demo benchmark with R/Python
     Simulated[n_features=5000,n_samples=100,rho=0]
       |--Lasso Regression[fit_intercept=False,reg=0.5]
         |--Python-PGD[use_acceleration=False]: done
-    Failed to import Solver from /home/circleci/project/benchmarks/benchmark_lasso/solvers/spams.py. Please fix the following error to use this file with benchopt:
+    Failed to import Solver from /home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py. Please fix the following error to use this file with benchopt:
     Traceback (most recent call last):
-      File "/home/circleci/project/benchopt/benchmark.py", line 227, in _list_benchmark_classes
-        cls = _load_class_from_module(
-      File "/home/circleci/project/benchopt/utils/dynamic_modules.py", line 67, in _load_class_from_module
-        module = _get_module_from_file(
-      File "/home/circleci/project/benchopt/utils/dynamic_modules.py", line 35, in _get_module_from_file
+      File "/home/circleci/project/benchopt/utils/dynamic_modules.py", line 86, in _load_class_from_module
+        module = _get_module_from_file(module_filename, benchmark_dir)
+      File "/home/circleci/project/benchopt/utils/dynamic_modules.py", line 52, in _get_module_from_file
         spec.loader.exec_module(module)
       File "<frozen importlib._bootstrap_external>", line 883, in exec_module
       File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
@@ -120,7 +118,7 @@ Demo benchmark with R/Python
 
 
         |--R-PGD: not installed
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-07-28_21h29m22.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-08-01_15h25m11.parquet
     Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_support_size_objective_curve.pdf
     Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_duality_gap_objective_curve.pdf
@@ -191,7 +189,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 8.395 seconds)
+   **Total running time of the script:** (0 minutes 8.933 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
