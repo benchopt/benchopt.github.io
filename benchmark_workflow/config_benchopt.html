@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Configure Benchopt &#8212; benchopt 1.6.1.dev40 documentation</title>
+    <title>Configure Benchopt &#8212; benchopt 1.6.1.dev41 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=c5089260"></script>
+    <script src="../_static/documentation_options.js?v=7ef4107d"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev40</p>
+    <p class="title logo__title">1.6.1.dev41</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -379,7 +379,7 @@ github_token: 0...0  # Token used to publish results on benchopt/results
 <p><strong>Global settings</strong></p>
 <dl class="py data">
 <dt class="sig sig-object py" id="benchopt.config.DEFAULT_GLOBAL_CONFIG">
-<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cache':</span> <span class="pre">None,</span> <span class="pre">'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'default_timeout':</span> <span class="pre">100,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'bash'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cache':</span> <span class="pre">None,</span> <span class="pre">'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'default_timeout':</span> <span class="pre">100,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'bash</span> <span class="pre">--norc</span> <span class="pre">--noprofile'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Link to this definition">#</a></dt>
 <dd><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code>: If set to true, enable debug logs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">raise_install_error</span></code>, <em>boolean</em>: If set to true, raise error when
@@ -449,8 +449,21 @@ Otherwise, please refer to the benchmark’s documentation you
 use to know if you can use this option and which paths you must define.</p>
 <p>For example, if the benchmark asks you to define a data path,
 you can proceed as follows in the benchmark’s <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">data_home</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path/to/data/home</span>
+
+<span class="nt">data_paths</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">my_data_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path/to/my/file.npz</span>
+</pre></div>
+</div>
 <p>In your benchmark’s datasets, you can use the <code class="docutils literal notranslate"><span class="pre">get_data_path()</span></code>
 to retrieve the paths:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.config</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_data_path</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">get_data_path</span><span class="p">(</span><span class="s1">&#39;my_data_file&#39;</span><span class="p">)</span>
+
+<span class="c1"># The &quot;path&quot; variable now contains &quot;path/to/data/home/path/to/my/file.npz&quot;</span>
+</pre></div>
+</div>
 <p>If no paths are provided, the default path used is <code class="docutils literal notranslate"><span class="pre">your_benchmark/data</span></code></p>
 </li>
 </ul>
