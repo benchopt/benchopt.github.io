@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new &#8212; benchopt 1.6.1.dev41 documentation</title>
+    <title>What’s new &#8212; benchopt 1.6.1.dev42 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=7ef4107d"></script>
+    <script src="_static/documentation_options.js?v=6980901b"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -150,7 +150,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.6.1.dev41</p>
+    <p class="title logo__title">1.6.1.dev42</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -316,7 +316,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-7-in-development">Version 1.7 - in development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-7-18-09-2025">Version 1.7 - 18/09/2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-change">Major change</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
@@ -386,8 +386,8 @@ document.write(`
                   
   <section id="what-s-new">
 <span id="whats-new"></span><h1>What’s new<a class="headerlink" href="#what-s-new" title="Link to this heading">#</a></h1>
-<section id="version-1-7-in-development">
-<span id="changes-1-7"></span><h2>Version 1.7 - in development<a class="headerlink" href="#version-1-7-in-development" title="Link to this heading">#</a></h2>
+<section id="version-1-7-18-09-2025">
+<span id="changes-1-7"></span><h2>Version 1.7 - 18/09/2025<a class="headerlink" href="#version-1-7-18-09-2025" title="Link to this heading">#</a></h2>
 </section>
 <section id="major-change">
 <h2>Major change<a class="headerlink" href="#major-change" title="Link to this heading">#</a></h2>
@@ -416,8 +416,8 @@ running in various environment and debugging. By <a class="reference external" h
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">Solver</span></code> to allow overriding the
 default SLURM config. By <a href="#id20"><span class="problematic" id="id21">`Pierre-Louis Barbarant`_</span></a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/805">#805</a>)</p></li>
-<li><p>Support <code class="docutils literal notranslate"><span class="pre">requirements</span></code> being a dictionary with keys <code class="docutils literal notranslate"><span class="pre">&quot;gpu&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;cpu&quot;</span></code>, for
-classes whose install differ on GPU and CPU.
+<li><p>Support <code class="docutils literal notranslate"><span class="pre">requirements</span></code> being a dictionary with keys <code class="docutils literal notranslate"><span class="pre">&quot;gpu&quot;</span></code> and
+<code class="docutils literal notranslate"><span class="pre">&quot;cpu&quot;</span></code>, for classes whose install differ on GPU and CPU.
 By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/793">#793</a>)</p></li>
 <li><p>Change channel specification in requirements, replacing the split format
 with <code class="docutils literal notranslate"><span class="pre">::</span></code> instead of <code class="docutils literal notranslate"><span class="pre">:</span></code>. This allow specifying URL channels.
@@ -426,8 +426,9 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 result DataFrame. The parameters’ names are respectively prefixed with
 <code class="docutils literal notranslate"><span class="pre">p_obj_|p_solver_|p_dataset_</span></code> to avoid collapse between the different
 components. By <a class="reference external" href="https://github.com/Melvin-klein">Melvine Nargeot</a>  and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/703">#703</a>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Objective</span></code> can now return multiple evaluation at once, to store non-aggregated
-metrics. See <a class="reference internal" href="user_guide/advanced.html#multiple-evaluation"><span class="std std-ref">Producing multiple evaluations at once</span></a>. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/778">#778</a>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Objective</span></code> can now return multiple evaluation at once, to store
+non-aggregated metrics. See <a class="reference internal" href="user_guide/advanced.html#multiple-evaluation"><span class="std std-ref">Producing multiple evaluations at once</span></a>.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/778">#778</a>).</p></li>
 </ul>
 </section>
 <section id="fix">
@@ -874,7 +875,7 @@ implementations:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-7-in-development">Version 1.7 - in development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-7-18-09-2025">Version 1.7 - 18/09/2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-change">Major change</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
