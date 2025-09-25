@@ -591,16 +591,12 @@ fetch("../../versions.json")
       const opt = document.createElement("option");
       opt.value = "/" + v + "/";
       opt.text = v;
-      if (current === v) {
-            opt.selected = true;
-            select.current = v;
-      }
+      if (current === v) opt.selected = true;
       select.appendChild(opt);
     });
 
     select.onchange = function() {
-      window.location.replace(select.current, select.value);
-      select.current = select.value;
+      window.location.replace(current, select.value);
     };
   });
 </script>
