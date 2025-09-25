@@ -398,10 +398,10 @@ Run benchmark from a script
 
  .. code-block:: none
 
-    Simulated[n_features=500,n_samples=200,scaled=True]                                                                                                                                                                                                                                       
-      |--L2 Logistic Regression[fit_intercept=True,lmbd=1.0]                                                                                                                                                                                                                                  
-        |--sklearn[liblinear]: done                                                                                                                                                                                                                                                           
-        |--sklearn[newton-cg]: done                                                                                                                                                                                                                                                           
+    Simulated[n_features=500,n_samples=200,scaled=True]                                                     
+      |--L2 Logistic Regression[fit_intercept=True,lmbd=1.0]                                                
+        |--sklearn[liblinear]: done                                                                         
+        |--sklearn[newton-cg]: done                                                                         
     Failed to import Solver from /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/solvers/lightning.py. Please fix the following error to use this file with benchopt:
     Traceback (most recent call last):
       File "/home/tom/Work/prog/benchopt/benchopt/utils/dynamic_modules.py", line 86, in _load_class_from_module
@@ -429,21 +429,21 @@ Run benchmark from a script
         from torchmetrics import Metric
     ModuleNotFoundError: No module named 'torchmetrics'
 
-        |--Lightning: not installed                                                                                                                                                                                                                                                           
-      |--L2 Logistic Regression[fit_intercept=False,lmbd=1.0]                                                                                                                                                                                                                                 
-        |--sklearn[liblinear]: done                                                                                                                                                                                                                                                           
-        |--sklearn[newton-cg]: done                                                                                                                                                                                                                                                           
-        |--Lightning: not installed                                                                                                                                                                                                                                                           
-    Simulated[n_features=500,n_samples=200,scaled=False]                                                                                                                                                                                                                                      
-      |--L2 Logistic Regression[fit_intercept=True,lmbd=1.0]                                                                                                                                                                                                                                  
-        |--sklearn[liblinear]: done                                                                                                                                                                                                                                                           
-        |--sklearn[newton-cg]: done                                                                                                                                                                                                                                                           
-        |--Lightning: not installed                                                                                                                                                                                                                                                           
-      |--L2 Logistic Regression[fit_intercept=False,lmbd=1.0]                                                                                                                                                                                                                                 
-        |--sklearn[liblinear]: done                                                                                                                                                                                                                                                           
-        |--sklearn[newton-cg]: done                                                                                                                                                                                                                                                           
-        |--Lightning: not installed                                                                                                                                                                                                                                                           
-    Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2025-09-24_22h12m23.parquet                                                                                                                                                            
+        |--Lightning: not installed                                                                         
+      |--L2 Logistic Regression[fit_intercept=False,lmbd=1.0]                                               
+        |--sklearn[liblinear]: done                                                                         
+        |--sklearn[newton-cg]: done                                                                         
+        |--Lightning: not installed                                                                         
+    Simulated[n_features=500,n_samples=200,scaled=False]                                                    
+      |--L2 Logistic Regression[fit_intercept=True,lmbd=1.0]                                                
+        |--sklearn[liblinear]: done                                                                         
+        |--sklearn[newton-cg]: done                                                                         
+        |--Lightning: not installed                                                                         
+      |--L2 Logistic Regression[fit_intercept=False,lmbd=1.0]                                               
+        |--sklearn[liblinear]: done                                                                         
+        |--sklearn[newton-cg]: done                                                                         
+        |--Lightning: not installed                                                                         
+    Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2025-09-25_09h08m57.parquet
     Save objective_curve plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Train loss_objective_curve.pdf
     Save objective_curve plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Train error_objective_curve.pdf
     Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Test loss_objective_curve.pdf
@@ -555,7 +555,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 18.454 seconds)
+   **Total running time of the script:** (0 minutes 17.920 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
