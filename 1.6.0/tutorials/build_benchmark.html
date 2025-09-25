@@ -763,14 +763,14 @@ fetch("../../versions.json")
     // Then all versions
     data.versions.forEach(v => {
       const opt = document.createElement("option");
-      opt.value = "/" + v + "/";
+      opt.value = v;
       opt.text = v;
       if (current === v) opt.selected = true;
       select.appendChild(opt);
     });
 
     select.onchange = function() {
-      window.location.href = select.value;
+      window.location.href = window.location.href.replace(current, select.value);
     };
   });
 </script>
