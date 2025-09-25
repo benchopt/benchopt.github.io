@@ -1,5 +1,5 @@
 {
               "stable": "stable",
               "dev": "dev",
-              "versions": ["deploy.sh"]
+              "versions": ["1.7.0","1.6.0"]
 }
