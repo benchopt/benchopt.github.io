@@ -125,22 +125,38 @@ Demo benchmark with R/Python
       warnings.warn(
     /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "PWD" redefined by R and overriding existing variable. Current: "/home/tom/Work/prog/benchopt/doc", R: "/home/tom/Work/prog/benchopt/examples"
       warnings.warn(
-    /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "R_SESSION_TMPDIR" redefined by R and overriding existing variable. Current: "/tmp/RtmphKg89x", R: "/tmp/Rtmpeuq70Q"
+    /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "R_SESSION_TMPDIR" redefined by R and overriding existing variable. Current: "/tmp/RtmpxzQQXG", R: "/tmp/RtmpTHpABK"
       warnings.warn(
     Simulated[n_features=5000,n_samples=100,rho=0]                                                          
       |--Lasso Regression[fit_intercept=False,reg=0.5]                                                      
         |--Python-PGD[use_acceleration=False]: done                                                         
-        |--R-PGD: done (timeout)                                                                            
-    Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-25_09h28m56.parquet
-    Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_objective_curve.pdf
-    Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_support_size_objective_curve.pdf
-    Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_duality_gap_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_relative_suboptimality_curve.pdf
-    Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_bar_chart.pdf
-    Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_boxplot.pdf
-    Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_support_size_boxplot.pdf
-    Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_duality_gap_boxplot.pdf
+    Failed to import Solver from /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/solvers/spams.py. Please fix the following error to use this file with benchopt:
+    Traceback (most recent call last):
+      File "/home/tom/Work/prog/benchopt/benchopt/benchmark.py", line 201, in _list_benchmark_classes
+        cls = _load_class_from_module(
+              ^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/home/tom/Work/prog/benchopt/benchopt/utils/dynamic_modules.py", line 67, in _load_class_from_module
+        module = _get_module_from_file(module_filename, benchmark_dir)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      File "/home/tom/Work/prog/benchopt/benchopt/utils/dynamic_modules.py", line 35, in _get_module_from_file
+        spec.loader.exec_module(module)
+      File "<frozen importlib._bootstrap_external>", line 999, in exec_module
+      File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+      File "/home/tom/Work/prog/benchopt/benchmarks/lasso/solvers/spams.py", line 5, in <module>
+        from spams import lasso, fistaFlat
+    ModuleNotFoundError: No module named 'spams'
+
+        |--R-PGD: not installed                                                                             
+    Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-25_11h24m38.parquet
+    Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_support_size_objective_curve.pdf
+    Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_duality_gap_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_relative_suboptimality_curve.pdf
+    Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_bar_chart.pdf
+    Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_boxplot.pdf
+    Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_support_size_boxplot.pdf
+    Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_duality_gap_boxplot.pdf
 
 
 
@@ -190,7 +206,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 3.421 seconds)
+   **Total running time of the script:** (0 minutes 2.928 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
