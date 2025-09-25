@@ -712,7 +712,7 @@ fetch("../../versions.json")
     });
 
     select.onchange = function() {
-      window.location.replace(current, select.value);
+      window.location.href = window.location.href.replace(current, select.value);
     };
   });
 </script>
