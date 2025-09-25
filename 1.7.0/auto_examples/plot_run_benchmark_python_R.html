@@ -347,23 +347,38 @@ to download the full example code.</p>
   warnings.warn(
 /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;PWD&quot; redefined by R and overriding existing variable. Current: &quot;/home/tom/Work/prog/benchopt/doc&quot;, R: &quot;/home/tom/Work/prog/benchopt/examples&quot;
   warnings.warn(
-/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;R_SESSION_TMPDIR&quot; redefined by R and overriding existing variable. Current: &quot;/tmp/RtmpCbELmx&quot;, R: &quot;/tmp/RtmpgxjsZn&quot;
+/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;R_SESSION_TMPDIR&quot; redefined by R and overriding existing variable. Current: &quot;/tmp/RtmpxzQQXG&quot;, R: &quot;/tmp/RtmpTHpABK&quot;
   warnings.warn(
 Simulated[n_features=5000,n_samples=100,rho=0]
   |--Lasso Regression[fit_intercept=False,reg=0.5]
     |--Python-PGD[use_acceleration=False]: done
-    |--R-PGD: done (timeout)
-Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-25_09h08m51.parquet
-Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_objective_curve.pdf
-Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_support_size_objective_curve.pdf
-Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_duality_gap_objective_curve.pdf
-Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_suboptimality_curve.pdf
-Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_relative_suboptimality_curve.pdf
-Solver R-PGD did not reach precision 1e-06.
-Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_bar_chart.pdf
-Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_boxplot.pdf
-Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_support_size_boxplot.pdf
-Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_duality_gap_boxplot.pdf
+Failed to import Solver from /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/solvers/spams.py. Please fix the following error to use this file with benchopt:
+Traceback (most recent call last):
+  File &quot;/home/tom/Work/prog/benchopt/benchopt/benchmark.py&quot;, line 201, in _list_benchmark_classes
+    cls = _load_class_from_module(
+          ^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/tom/Work/prog/benchopt/benchopt/utils/dynamic_modules.py&quot;, line 67, in _load_class_from_module
+    module = _get_module_from_file(module_filename, benchmark_dir)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/tom/Work/prog/benchopt/benchopt/utils/dynamic_modules.py&quot;, line 35, in _get_module_from_file
+    spec.loader.exec_module(module)
+  File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 999, in exec_module
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 488, in _call_with_frames_removed
+  File &quot;/home/tom/Work/prog/benchopt/benchmarks/lasso/solvers/spams.py&quot;, line 5, in &lt;module&gt;
+    from spams import lasso, fistaFlat
+ModuleNotFoundError: No module named &#39;spams&#39;
+
+    |--R-PGD: not installed
+Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-25_11h24m38.parquet
+Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_objective_curve.pdf
+Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_support_size_objective_curve.pdf
+Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_duality_gap_objective_curve.pdf
+Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_relative_suboptimality_curve.pdf
+Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_bar_chart.pdf
+Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_boxplot.pdf
+Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_support_size_boxplot.pdf
+Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_duality_gap_boxplot.pdf
 </pre></div>
 </div>
 <div class="line-block">
@@ -405,7 +420,7 @@ Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_sampl
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.223 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 2.928 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/dc84f98e56bc6933a9be8456166d8561/plot_run_benchmark_python_R.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark_python_R.ipynb</span></code></a></p>
@@ -484,7 +499,44 @@ By Benchopt contributors
   <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
 <script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
+
+<script>
+fetch("../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = "/" + name + "/";
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = "/" + v + "/";
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = select.value;
+    };
+  });
+</script>
+
+
   <footer class="bd-footer">
   </footer>
+
   </body>
 </html>
