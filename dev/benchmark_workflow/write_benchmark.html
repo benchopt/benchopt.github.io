@@ -1,0 +1,714 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Write a benchmark &#8212; benchopt 1.7.1.dev7 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=704908b7"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/write_benchmark';</script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Testing a benchmark" href="test_benchmark.html" />
+    <link rel="prev" title="Manage benchmark results" href="manage_benchmark_results.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1.dev7" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.1.dev7</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="install_benchmark.html">Install a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_benchmark.html">Testing a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Write a benchmark</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">1. Objective</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets">2. Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solvers">3. Solvers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Example</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="write-a-benchmark">
+<span id="write-benchmark"></span><h1>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Link to this heading">#</a></h1>
+<p>A benchmark is composed of three elements: an <a class="reference internal" href="#objective">objective</a> function,
+a list of <a class="reference internal" href="#datasets">datasets</a>, and a list of <a class="reference internal" href="#solvers">solvers</a>.</p>
+<p>A benchmark is defined in a folder that should respect a certain
+structure. For example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_benchmark/
+├── objective.py  # contains the definition of the objective
+├── datasets/
+│   ├── dataset1.py  # some dataset
+│   └── dataset2.py  # some dataset
+└── solvers/
+    ├── solver1.py  # some solver
+    └── solver2.py  # some solver
+</pre></div>
+</div>
+<p>Examples of actual benchmarks are available in the
+<a class="reference external" href="https://github.com/benchopt/">benchopt organisation</a> such
+as for <a class="reference external" href="https://github.com/benchopt/benchmark_ols">Ordinary Least Square (OLS)</a>,
+<a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso</a> or
+<a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">L1-regularized logistic regression</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The simplest way to create a benchmark is to copy an existing folder and
+to adapt its content.
+A benchmark template is provided as a <a class="reference external" href="https://github.com/benchopt/template_benchmark">GitHub template repository here</a>.</p>
+</div>
+<section id="objective">
+<span id="id1"></span><h2>1. Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
+<p>The <strong>objective function</strong> is defined through a Python class, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, defined in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>.
+This class allows to monitor the quantities of interest along the iterations of the solvers.
+Typically it allows to evaluate the objective function to be minimized by the solvers.
+An objective class should define 4 methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">set_data(**data)</span></code>: allows to specify the data. See the data as a dictionary
+of Python variables without any constraint. In the following example, the data
+contains only one variable <code class="docutils literal notranslate"><span class="pre">X</span></code>. This data is provided by the
+<code class="docutils literal notranslate"><span class="pre">Dataset.get_data()</span></code> method of a <a href="#id6"><span class="problematic" id="id7">dataset_</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_objective()</span></code>: returns the information that each method will need to
+provide a result. The information is also passed as a dictionary, which will
+serve as input for the <code class="docutils literal notranslate"><span class="pre">Solver.set_objective</span></code> method of the <a class="reference internal" href="#solvers">solvers</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">evaluate_result(X_hat)</span></code>: it allows to evaluate the output of the different
+methods, here called <code class="docutils literal notranslate"><span class="pre">X_hat</span></code>. This method should take a dictionary as
+input, which is provided by the <code class="docutils literal notranslate"><span class="pre">Solver.get_result</span></code> method. All other
+parameters should be stored in the class with the <code class="docutils literal notranslate"><span class="pre">set_data</span></code> method.
+<code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code> should return a float (understood as the objective value)
+or a dictionary. If a dictionary is returned it should contain a key called
+<code class="docutils literal notranslate"><span class="pre">value</span></code> (the objective value) and all other keys should have <code class="docutils literal notranslate"><span class="pre">float</span></code>
+values allowing to track more than one value of interest (e.g. train and test
+errors).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_one_result()</span></code>: returns one solution that can be returned by a solver.
+This defines the shape of the solution and will be used to test that the
+benchmark works properly.</p></li>
+</ul>
+<p>An objective class needs to inherit from a base class,
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseObjective</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Multiple metrics can be returned by <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code> as long as
+they are stored in a dictionary, with a key being <code class="docutils literal notranslate"><span class="pre">value</span></code> corresponding to the main metric to track.</p>
+</div>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseObjective</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+    <span class="c1"># Name of the Objective function</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Quadratic&#39;</span>
+
+    <span class="c1"># The three methods below define the links between the Dataset,</span>
+    <span class="c1"># the Objective and the Solver.</span>
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data from a Dataset to compute the objective.</span>
+
+<span class="sd">        The argument are the keys of the dictionary returned by</span>
+<span class="sd">        ``Dataset.get_data``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
+
+    <span class="k">def</span> <span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns a dict passed to ``Solver.set_objective`` method.&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value(s) given the output of a solver.</span>
+
+<span class="sd">        The arguments are the keys in the dictionary returned</span>
+<span class="sd">        by ``Solver.get_result``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_hat</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return one solution for which the objective can be evaluated.</span>
+
+<span class="sd">        This function is mostly used for testing and debugging purposes.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="datasets">
+<span id="id2"></span><h2>2. Datasets<a class="headerlink" href="#datasets" title="Link to this heading">#</a></h2>
+<p>A dataset defines what can be passed to an objective. More specifically,
+a dataset should implement one method:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_data()</span></code>: A method which outputs a dictionary that is passed as
+keyword arguments <code class="docutils literal notranslate"><span class="pre">**data</span></code> to the <code class="docutils literal notranslate"><span class="pre">Objective.set_data</span></code> method of
+the <a class="reference internal" href="#objective">objective</a>.</p></li>
+</ul>
+<p>A dataset class also needs to inherit from a base class called
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a>.</p>
+<section id="id3">
+<h3>Example<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+    <span class="c1"># Name of the Dataset, used to select it in the CLI</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;simulated&#39;</span>
+
+    <span class="c1"># ``get_data()`` is the only method a dataset should implement.</span>
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load the data for this Dataset.</span>
+
+<span class="sd">        Usually, the data are either loaded from disk as arrays or Tensors,</span>
+<span class="sd">        or a dataset/dataloader object is used to allow the models to load</span>
+<span class="sd">        the data in more flexible forms (e.g. with mini-batches).</span>
+
+<span class="sd">        The dictionary&#39;s keys are the kwargs passed to ``Objective.set_data``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="solvers">
+<span id="id4"></span><h2>3. Solvers<a class="headerlink" href="#solvers" title="Link to this heading">#</a></h2>
+<p>A solver must define three methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">set_objective(**objective_dict)</span></code>: Store information about the data,
+objective and initialize required quantities. This method is called with the
+dictionary returned by the method <code class="docutils literal notranslate"><span class="pre">Objective.get_objective</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run(stop_condition)</span></code>: Run the actual method to benchmark. This is where
+the important part of the solver goes. This method takes one parameter
+controlling the stopping condition of the solver. This is either a number of
+iterations <code class="docutils literal notranslate"><span class="pre">n_iter</span></code>, a tolerance parameter <code class="docutils literal notranslate"><span class="pre">tol</span></code>, or a <code class="docutils literal notranslate"><span class="pre">callback</span></code>
+function that will be called at each iteration can be passed. See the note
+bellow for more information on this parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_result()</span></code>: Format the output of the method to be evaluated in the
+Objective. This method returns a dictionary that is passed to
+<code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.</p></li>
+</ul>
+<section id="id5">
+<h3>Example<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="c1"># Name of the Solver, used to select it in the CLI</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gd&#39;</span>
+
+    <span class="c1"># By default, benchopt will evaluate the result of a method after various</span>
+    <span class="c1"># number of iterations. Setting the sampling_strategy controls how this is</span>
+    <span class="c1"># done. Here, we use a callback function that is called at each iteration.</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;callback&#39;</span>
+
+    <span class="c1"># Parameters of the method, that will be tested by the benchmark.</span>
+    <span class="c1"># Each parameter ``param_name`` will be accessible as ``self.param_name``.</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+
+    <span class="c1"># The three methods below define the necessary methods for the Solver, to</span>
+    <span class="c1"># get the info from the Objective, to run the method and to return a</span>
+    <span class="c1"># result that can be evaluated by the Objective.</span>
+    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the info from a Objective, to run the method.</span>
+
+<span class="sd">        This method is also typically used to adapt the solver&#39;s parameters to</span>
+<span class="sd">        the data (e.g. scaling) or to initialize the algorithm.</span>
+
+<span class="sd">        The kwargs are the keys of the dictionary returned by</span>
+<span class="sd">        ``Objective.get_objective``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the actual method to benchmark.</span>
+
+<span class="sd">        Here, as we use a &quot;callback&quot;, we need to call it at each iteration to</span>
+<span class="sd">        evaluate the result as the procedure progresses.</span>
+
+<span class="sd">        The callback implements a stopping mechanism, based on the number of</span>
+<span class="sd">        iterations, the time and the evoluation of the performances.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the output of the method to be evaluated in the Objective.</span>
+
+<span class="sd">        Returns a dict which is passed to ``Objective.evaluate_result`` method.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Sampling strategy:</strong></p>
+<p>A solver should also define a <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> as class attribute.
+This <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: in this case the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
+is parametrized by the number of iterations computed. The parameter
+is called <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> and should be an integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'tolerance'</span></code>: in this case the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
+is parametrized by a tolerance that should decrease with
+the running time. The parameter is called <code class="docutils literal notranslate"><span class="pre">tol</span></code> and should be
+a positive float.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: in this case, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
+should call at each iteration the provided callback function. It will
+compute and store the objective and return <code class="docutils literal notranslate"><span class="pre">False</span></code> once the computations
+should stop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'run_once'</span></code>: in this case, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver is run only</p></li>
+</ul>
+<p>once during the benchmark.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="manage_benchmark_results.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Manage benchmark results</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="test_benchmark.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Testing a benchmark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">1. Objective</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets">2. Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solvers">3. Solvers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Example</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+
+<script>
+fetch("../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = "/" + name + "/";
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = "/" + v + "/";
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = select.value;
+    };
+  });
+</script>
+
+
+  <footer class="bd-footer">
+  </footer>
+
+  </body>
+</html>
