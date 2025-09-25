@@ -463,7 +463,7 @@ fetch("../../../versions.json")
     // Stable and dev first
     ["stable", "dev"].forEach(name => {
       const opt = document.createElement("option");
-      opt.value = "/" + name + "/";
+      opt.value = name;
       opt.text = name;
       if (current === name) opt.selected = true;
       select.appendChild(opt);
