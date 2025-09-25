@@ -1,0 +1,670 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Advanced usage &#8212; benchopt 1.7.1.dev6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=cbb58aaa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/advanced';</script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Setting up an ML benchmark" href="ml_benchmark.html" />
+    <link rel="prev" title="Command line interface (CLI) references" href="CLI_ref.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1.dev6" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.1.dev6</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Advanced usage</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-on-a-slurm-cluster">Running the benchmark on a SLURM cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-slurm-parameters-for-one-solver">Overriding the SLURM parameters for one solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-final-results-of-a-solver">Saving Final Results of a Solver</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-pre-compilation-and-warmup-effects">Caching pre-compilation and warmup effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="advanced-usage">
+<span id="id1"></span><h1>Advanced usage<a class="headerlink" href="#advanced-usage" title="Link to this heading">#</a></h1>
+<p>This page intends to list some advanced functionality
+to make it easier to use the benchmark.</p>
+<section id="running-the-benchmark-on-a-slurm-cluster">
+<span id="slurm-run"></span><h2>Running the benchmark on a SLURM cluster<a class="headerlink" href="#running-the-benchmark-on-a-slurm-cluster" title="Link to this heading">#</a></h2>
+<p>Benchopt also allows easily running the benchmark in parallel on a SLURM
+cluster. To install the necessary dependencies, please run:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>benchopt<span class="o">[</span>slurm<span class="o">]</span></span>
+<span class="prompt1"></span>
+<span class="prompt1"><span class="c1"># Or for dev install</span></span>
+<span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>slurm<span class="o">]</span></span>
+</pre></div></div><p>Note that for some clusters with shared python installation, it is necessary
+to call <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> to install the packages in the user space and
+not in the system one.</p>
+<p>Using the <code class="docutils literal notranslate"><span class="pre">--slurm</span></code> option for <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, one can pass a config file
+used to setup the SLURM jobs. This file is a YAML file that can contain any key
+to be passed to the <a class="reference external" href="https://github.com/facebookincubator/submitit/blob/main/submitit/slurm/slurm.py#L386"><code class="docutils literal notranslate"><span class="pre">update_parameters</span></code></a> method of <a class="reference external" href="https://github.com/facebookincubator/submitit/blob/main/submitit/slurm/slurm.py#L214"><code class="docutils literal notranslate"><span class="pre">submitit.SlurmExecutor</span></code></a>.
+Hereafter is an example of such config file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">slurm_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">01:00:00</span><span class="w">        </span><span class="c1"># max runtime 1 hour</span>
+<span class="nt">slurm_gres</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu:1</span><span class="w">           </span><span class="c1"># requires 1 GPU per job</span>
+<span class="nt">slurm_additional_parameters</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">ntasks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                 </span><span class="c1"># Number of tasks per job</span>
+<span class="w">  </span><span class="nt">cpus-per-task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">         </span><span class="c1"># requires 10 CPUs per job</span>
+<span class="w">  </span><span class="nt">qos</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QOS_NAME</span><span class="w">             </span><span class="c1"># Queue used for the jobs</span>
+<span class="w">  </span><span class="nt">distribution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">block:block</span><span class="w"> </span><span class="c1"># Distribution on the node&#39;s architectures</span>
+<span class="w">  </span><span class="nt">account</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ACC@NAME</span><span class="w">         </span><span class="c1"># Account for the jobs</span>
+<span class="nt">slurm_setup</span><span class="p">:</span><span class="w">  </span><span class="c1"># sbatch script commands added before the main job</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;#SBATCH</span><span class="nv"> </span><span class="s">-C</span><span class="nv"> </span><span class="s">v100-16g&#39;</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">module purge</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">module load cuda/10.1.2 cudnn/7.6.5.32-cuda-10.1 nccl/2.5.6-2-cuda</span>
+</pre></div>
+</div>
+<p>Using such options, each configuration of <code class="docutils literal notranslate"><span class="pre">(dataset,</span> <span class="pre">objective,</span> <span class="pre">solver)</span></code> with
+unique parameters is launched as a separated job in a job-array on the SLURM
+cluster. Note that by default, no limitation is used on the number of
+simultaneous jobs that are run.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">slurm_time</span></code> is not set in the config file, benchopt uses by default
+the value of <code class="docutils literal notranslate"><span class="pre">--timeout</span></code> multiplied by <code class="docutils literal notranslate"><span class="pre">1.5</span></code> for each job.
+Note that the logs of each benchmark run can be found in <code class="docutils literal notranslate"><span class="pre">./benchopt_run/</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">slurm_array_parallelism</span></code> can be used to limit the number of simultaneous
+jobs that are run. This is useful when the cluster has no limit on the number of
+simultaneous jobs that can be run. By default, this value is not set, leaving it to
+the cluster to adjust this.</p>
+<p>As we rely on <code class="docutils literal notranslate"><span class="pre">joblib.Memory</span></code> for caching the results, the cache should work
+exactly as if you were running the computation sequentially, as long as you have
+a shared file-system between the nodes used for the computations.</p>
+</section>
+<section id="overriding-the-slurm-parameters-for-one-solver">
+<span id="slurm-override"></span><h2>Overriding the SLURM parameters for one solver<a class="headerlink" href="#overriding-the-slurm-parameters-for-one-solver" title="Link to this heading">#</a></h2>
+<p>You can also override the SLURM parameters for a specific solver by
+defining a <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> attribute in the solver class. This allows to
+specify a different SLURM partition, resources, or other parameters that
+are specific to that solver. The parameters defined in the solver class
+will override the global SLURM config defined in the config file:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;GPU-based solver that needs GPU partition and specific resources.&quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;GPU-Solver&#39;</span>
+
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
+
+    <span class="c1"># Override global SLURM config for this solver</span>
+    <span class="n">slurm_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;slurm_partition&#39;</span><span class="p">:</span> <span class="s1">&#39;gpu&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_gres&#39;</span><span class="p">:</span> <span class="s1">&#39;gpu:1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_time&#39;</span><span class="p">:</span> <span class="s1">&#39;02:00:00&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_cpus_per_task&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_mem&#39;</span><span class="p">:</span> <span class="s1">&#39;16GB&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;torch&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>The parameters defined in the <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> should be compatible with
+the <cite>submitit</cite> library, as they are passed to the <cite>submitit.AutoExecutor</cite>
+class. For more information on the available parameters, please refer to
+the <a class="reference external" href="https://github.com/facebookincubator/submitit">submitit documentation</a>.
+Note that in this case, the jobs with different SLURM parameters will be
+launched as one job array per configuration.</p>
+</section>
+<section id="skipping-a-solver-for-a-given-problem">
+<span id="skipping-solver"></span><h2>Skipping a solver for a given problem<a class="headerlink" href="#skipping-a-solver-for-a-given-problem" title="Link to this heading">#</a></h2>
+<p>Some solvers might not be able to run with all the datasets present
+in a benchmark. This is typically the case when some datasets are
+represented using sparse data or for datasets that are too large.</p>
+<p>In these cases, a solver can be skipped at runtime, depending on the
+characteristic of the objective. In order to define for which cases
+a solver should be skip, the user needs to implement a method
+<a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> in the solver class that will take
+the input as the <a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.set_objective" title="benchopt.BaseSolver.set_objective"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_objective()</span></code></a> method.
+This method should return a boolean value that evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>
+if the solver should be skipped, and a string giving the reason of
+why the solver is skipped, for display purposes. For instance,
+for a solver where the objective is set with keys <cite>X, y, reg</cite>,
+we get</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+        <span class="kn">from</span> <span class="nn">scipy</span> <span class="kn">import</span> <span class="n">sparse</span>
+
+        <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;solver does not support sparse data X.&quot;</span>
+
+        <span class="k">if</span> <span class="n">reg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;solver does not work with reg=0&quot;</span>
+
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+</pre></div>
+</div>
+</section>
+<section id="advanced-usage-of-objective-class">
+<span id="extra-objectives"></span><h2>Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class<a class="headerlink" href="#advanced-usage-of-objective-class" title="Link to this heading">#</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class is used to evaluate each method’s result, with
+a call to the <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code> method. This method is called with the
+dictionary returned by the solver’s <code class="docutils literal notranslate"><span class="pre">get_result</span></code> method and should
+return a dictionary, whose keys/values are the names and values of the metrics.
+Each solver’s run constitutes a single row in the benchmark result dataframe.
+For more flexibility, the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class can also be used to produce
+multiple rows in the benchmark result dataframe at once, or to save the
+final results of a solver.</p>
+<section id="producing-multiple-evaluations-at-once">
+<span id="multiple-evaluation"></span><h3>Producing multiple evaluations at once<a class="headerlink" href="#producing-multiple-evaluations-at-once" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code> method can be used to produce multiple rows in the
+benchmark result dataframe. This is done by returning a list of dictionaries
+instead of a single dictionary. Each dictionary in the list should be a valid
+result dictionary, <em>i.e.</em>, it should not contain a <code class="docutils literal notranslate"><span class="pre">name</span></code> key and should
+have a key that matches the <code class="docutils literal notranslate"><span class="pre">key_to_monitor</span></code> for the solver (see <a class="reference internal" href="performance_curves.html#stopping-criterion"><span class="std std-ref">When are the solvers stopped?</span></a>).</p>
+<p>This feature typically allows to store metrics for each sample in a test set
+or for each fold in a cross-validation setting, allowing to compute aggregated
+statistics at plotting time.</p>
+</section>
+<section id="saving-final-results-of-a-solver">
+<span id="save-final-results"></span><h3>Saving Final Results of a Solver<a class="headerlink" href="#saving-final-results-of-a-solver" title="Link to this heading">#</a></h3>
+<p>Using the <cite>save_final_results(**results)</cite> method of the objective function to
+retrieve the results to save. They are saved in <cite>outputs/final_results/</cite> directory
+and reference is added in the benchmark <cite>.parquet</cite> file.</p>
+</section>
+</section>
+<section id="reusing-some-code-in-a-benchmark">
+<span id="benchmark-utils-import"></span><h2>Reusing some code in a benchmark<a class="headerlink" href="#reusing-some-code-in-a-benchmark" title="Link to this heading">#</a></h2>
+<p>In some situations, multiple solvers need to have access to the same
+functions. As a benchmark is not structured as proper python packages
+but imported dynamically to avoid installation issues, we resort to
+a special way of importing modules and functions defined for a benchmark.</p>
+<p>First, all code that needs to be imported should be placed under
+<code class="docutils literal notranslate"><span class="pre">BENCHMARK_DIR/benchmark_utils/</span></code>, as described here:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_benchmark/
+├── objective.py  # contains the definition of the objective
+├── datasets/
+├── solvers/
+└── benchmark_utils/
+    ├── __init__.py
+    ├── helper1.py  # some helper
+    └─── helper_module  # a submodule
+        ├── __init__.py
+        └── submodule1.py  # some more helpers
+</pre></div>
+</div>
+<p>Then, these modules and packages can be imported as a regular package, i.e.,</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchmark_utils</span> <span class="kn">import</span> <span class="n">helper1</span>
+<span class="kn">from</span> <span class="nn">benchmark_utils.helper1</span> <span class="kn">import</span> <span class="n">func1</span>
+<span class="kn">from</span> <span class="nn">benchmark_utils.helper_module.submodule1</span> <span class="kn">import</span> <span class="n">func2</span>
+</pre></div>
+</div>
+</section>
+<section id="caching-pre-compilation-and-warmup-effects">
+<span id="precompilation"></span><h2>Caching pre-compilation and warmup effects<a class="headerlink" href="#caching-pre-compilation-and-warmup-effects" title="Link to this heading">#</a></h2>
+<p>For some solvers, such as solvers relying on just-in-time compilation with
+<code class="docutils literal notranslate"><span class="pre">numba</span></code> or <code class="docutils literal notranslate"><span class="pre">jax</span></code>, the first iteration might be longer due to “warmup”
+effects. To avoid having such effects in the benchmark results, it is usually
+advised to call the solver once before running the benchmark. This should be
+implemented in the <code class="docutils literal notranslate"><span class="pre">Solver.warm_up</span></code> method, which is empty by default and
+called after the <cite>set_objective</cite> method. For solvers with
+<code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> in <code class="docutils literal notranslate"><span class="pre">{'tolerance',</span>&#160; <span class="pre">'iteration'}</span></code>, simply calling the
+<code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> with a simple enough value is usually enough. For solvers with
+<code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> set to <code class="docutils literal notranslate"><span class="pre">'callback'</span></code>, it is possible to call
+<code class="docutils literal notranslate"><span class="pre">Solver.run_once</span></code>, which will call the <code class="docutils literal notranslate"><span class="pre">run</span></code> method with a simple callback
+that does not compute the objective value and stops after <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> calls to
+callback (default to 1).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+
+    <span class="k">def</span> <span class="nf">warm_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Cache pre-compilation and other one-time setups that should</span>
+        <span class="c1"># not be included in the benchmark timing.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># For sampling_strategy == &#39;iteration&#39; | &#39;tolerance&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">run_once</span><span class="p">()</span>  <span class="c1"># For sampling_strategy == &#39;callback&#39;</span>
+</pre></div>
+</div>
+</section>
+<section id="run-a-benchmark-using-a-python-script">
+<span id="run-benchmark-with-py-script"></span><h2>Run a benchmark using a Python script<a class="headerlink" href="#run-a-benchmark-using-a-python-script" title="Link to this heading">#</a></h2>
+<p>Another way to run a benchmark is via a Python script.
+Typical use-cases of that are</p>
+<ul class="simple">
+<li><p>Automating the run of several benchmarks</p></li>
+<li><p>Using <code class="docutils literal notranslate"><span class="pre">vscode</span></code> debugger where the python script serves as an entry point to benchopt internals</p></li>
+</ul>
+<p>The following script illustrates running the <a class="reference internal" href="../benchmark_workflow/run_benchmark.html#run-with-config-file"><span class="std std-ref">benchmark Lasso</span></a>.
+It assumes that the python script is located at the same level as the benchmark folder.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">run_benchmark</span>
+
+
+<span class="c1"># run benchmark</span>
+<span class="n">run_benchmark</span><span class="p">(</span>
+    <span class="n">benchmark_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
+    <span class="n">solver_names</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;skglm&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;celer&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;python-pgd[use_acceleration=True]&quot;</span><span class="p">,</span>
+    <span class="p">],</span>
+    <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span>
+        <span class="s2">&quot;leukemia&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;simulated[n_samples=100,n_features=20]&quot;</span>
+    <span class="p">],</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Learn more about the different parameters supported by <code class="docutils literal notranslate"><span class="pre">run_benchmark</span></code>
+function on <a class="reference internal" href="API_ref.html#api-ref"><span class="std std-ref">API references</span></a>.</p>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="CLI_ref.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Command line interface (CLI) references</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="ml_benchmark.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Setting up an ML benchmark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-on-a-slurm-cluster">Running the benchmark on a SLURM cluster</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-slurm-parameters-for-one-solver">Overriding the SLURM parameters for one solver</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-final-results-of-a-solver">Saving Final Results of a Solver</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-pre-compilation-and-warmup-effects">Caching pre-compilation and warmup effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

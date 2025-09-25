@@ -1,0 +1,572 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Configure Benchopt &#8212; benchopt 1.7.1.dev6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=cbb58aaa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/config_benchopt';</script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Tutorials" href="../tutorials/index.html" />
+    <link rel="prev" title="Manage benchmark results" href="manage_benchmark_results.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1.dev6" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.1.dev6</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Configure Benchopt</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-location">Config File Location</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-structure">Config File Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-settings">Config Settings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-mamba-to-install-packages">Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="configure-benchopt">
+<span id="config-benchopt"></span><h1>Configure Benchopt<a class="headerlink" href="#configure-benchopt" title="Link to this heading">#</a></h1>
+<p>Benchopt can be configured using setting files. These files can either be created directly or generated and modified using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code>.</p>
+<p>There are two configuration levels. The first level is the global config for the benchopt client. It contains the system-specific tweaks, the user info such as the <em>&lt;GitHub token&gt;</em>, and the output levels. The second level is the configuration of the benchmarks. Each benchmark can have its own config for the kind of plots it displays by default and other display tweaks.</p>
+<p>To get the BenchOpt global config file used by the benchopt command, you can run <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span></code>. Using the option <code class="docutils literal notranslate"><span class="pre">--benchmark,-b</span> <span class="pre">&lt;benchmark&gt;</span></code> allows to display the config file for a specific benchmark. See <a class="reference internal" href="#config-file"><span class="std std-ref">Config File Location</span></a> for more details on how the config file path is resolved.</p>
+<p>The structure of the files follows the Yaml files structure and is described in <a class="reference internal" href="#config-structure"><span class="std std-ref">Config File Structure</span></a>. The available settings are listed in <a class="reference internal" href="#config-settings"><span class="std std-ref">Config Settings</span></a>.</p>
+<p>The value of each setting can be accessed with the CLI using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">[-b</span> <span class="pre">&lt;benchmark&gt;]</span> <span class="pre">get</span> <span class="pre">&lt;name&gt;</span></code>. Similarly, the setting value can be set using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">[-b</span> <span class="pre">&lt;benchmark&gt;]</span> <span class="pre">set</span> <span class="pre">&lt;name&gt;</span> <span class="pre">&lt;value&gt;</span></code>.</p>
+<section id="config-file-location">
+<span id="config-file"></span><h2>Config File Location<a class="headerlink" href="#config-file-location" title="Link to this heading">#</a></h2>
+<p>For the global configuration file, the resolution order is the following:</p>
+<ol class="arabic simple">
+<li><p>The environment variable <code class="docutils literal notranslate"><span class="pre">BENCHOPT_CONFIG</span></code> is set to an existing file,</p></li>
+<li><p>A file <code class="docutils literal notranslate"><span class="pre">benchopt.yml</span></code> in the current directory,</p></li>
+<li><p>The default file is <code class="docutils literal notranslate"><span class="pre">$HOME/.config/benchopt.yml</span></code>.</p></li>
+</ol>
+<p>For benchmark configuration files, they are usually located in the benchmark folder, and named <code class="docutils literal notranslate"><span class="pre">benchopt.yml</span></code>. If it does not exist, the default is to use the global config file.</p>
+</section>
+<section id="config-file-structure">
+<span id="config-structure"></span><h2>Config File Structure<a class="headerlink" href="#config-file-structure" title="Link to this heading">#</a></h2>
+<p>The config files for benchopt follow the YAML files structure:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>debug: true  # Activate or not debug logs. Default is false.
+conda_cmd: mamba  # Command to use to install packages. Default is conda.
+github_token: 0...0  # Token used to publish results on benchopt/results
+</pre></div>
+</div>
+<p>For benchmark settings, they are grouped in a section with the same name as the benchmark. For a benchmark named <code class="docutils literal notranslate"><span class="pre">benchmark_bench</span></code>, the config structure is:</p>
+<div class="highlight-yml notranslate"><div class="highlight"><pre><span></span>benchmark_bench:
+    plots:
+        - suboptimality_curve
+        - bar_chart
+        - objective_curve
+    data_paths:
+        imagenet: /path/to/imagenet
+</pre></div>
+</div>
+<p>Note that specific benchmark config can also be set into the config file of the benchmark, located in the benchmark folder. The global config file is used as a fallback if the benchmark config file does not exist.</p>
+</section>
+<section id="config-settings">
+<span id="id1"></span><h2>Config Settings<a class="headerlink" href="#config-settings" title="Link to this heading">#</a></h2>
+<p>This section lists the available settings.</p>
+<p><strong>Global settings</strong></p>
+<dl class="py data">
+<dt class="sig sig-object py" id="benchopt.config.DEFAULT_GLOBAL_CONFIG">
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cache':</span> <span class="pre">None,</span> <span class="pre">'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'default_timeout':</span> <span class="pre">100,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'/bin/bash'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Link to this definition">#</a></dt>
+<dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code>: If set to true, enable debug logs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">raise_install_error</span></code>, <em>boolean</em>: If set to true, raise error when
+install fails.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">github_token</span></code>, <em>str</em>: token to publish results on <code class="docutils literal notranslate"><span class="pre">benchopt/results</span></code>
+via github.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">conda_cmd</span></code>, <em>str</em>: can be used to give the path to <code class="docutils literal notranslate"><span class="pre">conda</span></code> if it is
+not directly installed on <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>. This can also be used to use <code class="docutils literal notranslate"><span class="pre">mamba</span></code>
+to install benchmarks instead of conda. See <a class="reference internal" href="#config-mamba"><span class="std std-ref">Using mamba to install packages</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code>, <em>str</em>: can be used to specify the shell to use. Default to
+<cite>SHELL</cite> from env if it exists and <code class="docutils literal notranslate"><span class="pre">'bash'</span></code> otherwise.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code>, <em>str</em>: can be used to specify where the cache for the benchmarks
+should be stored. By default, the cache files are stored in the benchmark
+directory, under the folder __cache__. Setting this configuration would
+results in having the cache for benchmark <cite>B1</cite> stored in <cite>${cache}/B1/</cite>.</p></li>
+</ul>
+</dd></dl>
+
+<p><strong>Benchmark settings</strong></p>
+<dl class="py data">
+<dt class="sig sig-object py" id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'data_home':</span> <span class="pre">'',</span> <span class="pre">'data_paths':</span> <span class="pre">{},</span> <span class="pre">'plot_configs':</span> <span class="pre">{},</span> <span class="pre">'plots':</span> <span class="pre">['objective_curve',</span> <span class="pre">'suboptimality_curve',</span> <span class="pre">'relative_suboptimality_curve',</span> <span class="pre">'bar_chart',</span> <span class="pre">'boxplot']}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Link to this definition">#</a></dt>
+<dd><ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">plots</span></code>, <em>list</em>: Select the plots to display for the benchmark. Should be
+valid plot kinds. The list can simply be one item by line, with each item
+indented, as:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suboptimality_curve</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">relative_suboptimality_curve</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">plot_configs</span></code>, <em>dict</em>: list of saved views that can be easily display for
+the plot. Each view corresponds to a name, with specified values to select
+either:</p>
+<blockquote>
+<div><p><code class="docutils literal notranslate"><span class="pre">dataset</span></code>,  <code class="docutils literal notranslate"><span class="pre">objective</span></code>, <code class="docutils literal notranslate"><span class="pre">objective_column</span></code>, <code class="docutils literal notranslate"><span class="pre">kind</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code>,
+<code class="docutils literal notranslate"><span class="pre">with_quantiles</span></code>, <code class="docutils literal notranslate"><span class="pre">xaxis_type</span></code>, <code class="docutils literal notranslate"><span class="pre">xlim</span></code>, <code class="docutils literal notranslate"><span class="pre">ylim</span></code></p>
+</div></blockquote>
+<p>Values that are not specified by the view are left as is when setting the
+view in the interface. An example of views is:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">linear_objective</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
+<span class="w">      </span><span class="nt">ylim</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">linear</span>
+<span class="w">  </span><span class="nt">view2</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">objective_column</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_score_train</span>
+<span class="w">      </span><span class="nt">kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suboptimality_curve</span>
+<span class="w">      </span><span class="nt">ylim</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1e-10</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.0</span><span class="p p-Indicator">]</span>
+<span class="w">      </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
+</pre></div>
+</div>
+<p>These views can be easily created from the interactive HTML page, by hitting
+the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">as</span> <span class="pre">view</span></code> button in the plot controls and downloading eiher the
+new HTML file to save them or the config file in th erepo of the benchmark,
+so that these saved views are embeded in the next plot results automatically.</p>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_home</span></code>, <em>str</em>: Allows users to define a home path where the function
+<code class="docutils literal notranslate"><span class="pre">get_data_path()</span></code> search data files defined in <code class="docutils literal notranslate"><span class="pre">data_paths</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_paths</span></code>, <em>dict</em>: Allows users to store some data files in custom
+locations. If you are writing your own benchmark, you can use this
+options to allow users to use custom location for data files.
+Otherwise, please refer to the benchmark’s documentation you
+use to know if you can use this option and which paths you must define.</p>
+<p>For example, if the benchmark asks you to define a data path,
+you can proceed as follows in the benchmark’s <code class="docutils literal notranslate"><span class="pre">config.yaml</span></code> file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">data_home</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path/to/data/home</span>
+
+<span class="nt">data_paths</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">my_data_file</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path/to/my/file.npz</span>
+</pre></div>
+</div>
+<p>In your benchmark’s datasets, you can use the <code class="docutils literal notranslate"><span class="pre">get_data_path()</span></code>
+to retrieve the paths:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt.config</span> <span class="kn">import</span> <span class="n">get_data_path</span>
+
+<span class="n">path</span> <span class="o">=</span> <span class="n">get_data_path</span><span class="p">(</span><span class="s1">&#39;my_data_file&#39;</span><span class="p">)</span>
+
+<span class="c1"># The &quot;path&quot; variable now contains &quot;path/to/data/home/path/to/my/file.npz&quot;</span>
+</pre></div>
+</div>
+<p>If no paths are provided, the default path used is <code class="docutils literal notranslate"><span class="pre">your_benchmark/data</span></code></p>
+</li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="using-mamba-to-install-packages">
+<span id="config-mamba"></span><h2>Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages<a class="headerlink" href="#using-mamba-to-install-packages" title="Link to this heading">#</a></h2>
+<p>When many packages need to be installed, <code class="docutils literal notranslate"><span class="pre">conda</span></code> can be slow or even fail to resolve the dependency graph. Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> can speed up this process and make it more reliable.</p>
+<p>To use <code class="docutils literal notranslate"><span class="pre">mamba</span></code> instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> when installing benchmark requirements, it is necessary to have <code class="docutils literal notranslate"><span class="pre">mamba</span></code> installed in the <code class="docutils literal notranslate"><span class="pre">base</span></code> conda environment, <em>e.g.</em> using <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">install</span> <span class="pre">-n</span> <span class="pre">base</span> <span class="pre">mamba</span></code>. Then, benchopt can be configured to use this command instead of <code class="docutils literal notranslate"><span class="pre">conda</span></code> by either configuring the CLI using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">set</span> <span class="pre">conda_cmd</span> <span class="pre">mamba</span></code> or setting the environment variable <code class="docutils literal notranslate"><span class="pre">BENCHOPT_CONDA_CMD=mamba</span></code>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="manage_benchmark_results.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Manage benchmark results</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../tutorials/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Tutorials</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-location">Config File Location</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-file-structure">Config File Structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#config-settings">Config Settings</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG"><code class="docutils literal notranslate"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-mamba-to-install-packages">Using <code class="docutils literal notranslate"><span class="pre">mamba</span></code> to install packages</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

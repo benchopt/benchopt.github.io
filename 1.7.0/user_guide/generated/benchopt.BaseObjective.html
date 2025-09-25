@@ -1,0 +1,637 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>benchopt.BaseObjective &#8212; benchopt 1.7.1.dev6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=cbb58aaa"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=30646c52"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/generated/benchopt.BaseObjective';</script>
+    <link rel="icon" href="../../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="benchopt.BaseDataset" href="benchopt.BaseDataset.html" />
+    <link rel="prev" title="API references" href="../API_ref.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1.dev6" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.1.dev6</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../API_ref.html">API references</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>benchopt.BaseObjective</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective"><code class="docutils literal notranslate"><span class="pre">BaseObjective</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.evaluate_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.evaluate_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.format_objective_dict"><code class="docutils literal notranslate"><span class="pre">BaseObjective.format_objective_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.save_final_results"><code class="docutils literal notranslate"><span class="pre">BaseObjective.save_final_results()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.set_data"><code class="docutils literal notranslate"><span class="pre">BaseObjective.set_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.skip"><code class="docutils literal notranslate"><span class="pre">BaseObjective.skip()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="benchopt-baseobjective">
+<h1>benchopt.BaseObjective<a class="headerlink" href="#benchopt-baseobjective" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="benchopt.BaseObjective">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">BaseObjective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective" title="Link to this definition">#</a></dt>
+<dd><p>Base class to define an objective function</p>
+<p>Objectives that derive from this class needs to implement four methods:</p>
+<ul class="simple">
+<li><p><cite>set_data(**data)</cite>: stores the info from a given dataset to be able to
+compute the objective value on these data.</p></li>
+<li><p><cite>get_objective()</cite>: exports the data from the dataset and the parameters
+from the objective function as a dictionary that will be passed as
+parameters of the solver’s <cite>set_objective</cite> method in order to specify the
+objective function of the benchmark.</p></li>
+<li><p><cite>evaluate_result(**result)</cite>: evaluate the metrics on the results of a
+solver. Its arguments should correspond to the key of the dictionary
+returned by <cite>Solver.get_result</cite> and it can return a scalar value,
+a dictionary or a list of dictionaries.
+If it returns a dictionary, it should at least contain a key
+<cite>value</cite> associated to a scalar value which will be used to
+detect convergence. With a dictionary, multiple metric values can be
+stored at once instead of running each separately. With a list of
+dictionaries, these metrics can be computed on different objects.</p></li>
+<li><p><cite>get_one_result()</cite>: return one result for which the objective can be
+evaluated. This should be a dictionary where the keys correspond to the
+keyword arguments of <cite>evaluate_result</cite>.</p></li>
+</ul>
+<p>Optionally, the <cite>Solver</cite> can implement the following methods to change its
+behavior:</p>
+<ul class="simple">
+<li><dl class="simple">
+<dt><cite>save_final_results(**result)</cite>: Return the data to be saved from the</dt><dd><p>results of the solver. It will be saved as a <cite>.pkl</cite> file in the
+<cite>output/results</cite> folder, and link to the benchmark results.</p>
+</dd>
+</dl>
+</li>
+<li><p><cite>get_next(stop_val)</cite>: Return the next iteration where the result will be
+evaluated.</p></li>
+</ul>
+<p>This class is also used to specify information about the benchmark.
+In particular, it should have the following class attributes:</p>
+<ul class="simple">
+<li><p><cite>name</cite>: a name for the benchmark, that will be used to display results.</p></li>
+<li><p><cite>url</cite>: the url of the original benchmark repository.</p></li>
+<li><p><cite>requirements</cite>: the minimal requirements to be able to run the benchmark.</p></li>
+<li><p><cite>min_benchopt_version</cite>: the minimal version of benchopt required to run
+this benchmark.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.evaluate_result">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">evaluate_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">solver_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.evaluate_result" title="Link to this definition">#</a></dt>
+<dd><p>Compute the objective value given the output of a solver.</p>
+<p>The arguments are the keys in the result dictionary returned
+by <code class="docutils literal notranslate"><span class="pre">Solver.get_result</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>solver_result</strong><span class="classifier">dict</span></dt><dd><p>All values needed to compute the objective metrics. This dictionary
+is retrieved by calling <code class="docutils literal notranslate"><span class="pre">solver_result</span> <span class="pre">=</span> <span class="pre">Solver.get_result()</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>objective_value</strong><span class="classifier">float or dict {str: float} or list of dict</span></dt><dd><p>The value(s) of the objective function. If a dictionary is
+returned, it should at least contain a key <cite>value</cite> associated to a
+scalar value which will be used to detect convergence. With a
+dictionary, multiple metric values can be stored at once instead
+of running each separately.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.format_objective_dict">
+<span class="sig-name descname"><span class="pre">format_objective_dict</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.format_objective_dict" title="Link to this definition">#</a></dt>
+<dd><p>Format the output of Objective.evaluate_results.</p>
+<p>This will prefix all keys in the dictionary with <cite>objective_</cite>
+to make the objective part of the results clear.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>objective_dict: dict</strong></dt><dd><p>The output of the objective function, which should be a dictionary
+not containing the key ‘name’.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>objective_dict</strong><span class="classifier">dict</span></dt><dd><p>The formatted objective to include in the DataFrame.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.get_objective">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_objective</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_objective" title="Link to this definition">#</a></dt>
+<dd><p>Return the objective parameters for the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt>objective_dict: dict</dt><dd><p>Parameters of the objective that will be given to the solver when
+calling <code class="docutils literal notranslate"><span class="pre">Solver.set_objective(**objective_dict)</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.get_one_result">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_one_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_one_result" title="Link to this definition">#</a></dt>
+<dd><p>Return one result for which the objective can be evaluated.</p>
+<p>This method is mainly for testing purposes, to check that the method
+<cite>Objective.compute</cite> can be called and that it returns a compatible
+type for benchopt. The returned object will be passed to
+<code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code>.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.get_split">
+<span class="sig-name descname"><span class="pre">get_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arrays</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_split" title="Link to this definition">#</a></dt>
+<dd><p>Return the split of the data according to the cv attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>arrays: list of array-like</strong></dt><dd><p>The data to split. It should be indexable with the output of the
+<code class="docutils literal notranslate"><span class="pre">cv.split</span></code> iterator, or compatible with <code class="docutils literal notranslate"><span class="pre">Objective.split</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.save_final_results">
+<span class="sig-name descname"><span class="pre">save_final_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">solver_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.save_final_results" title="Link to this definition">#</a></dt>
+<dd><p>Save the final results of the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>solver_result</strong><span class="classifier">dict</span></dt><dd><p>All values needed to compute the objective metrics. This dictionary
+is retrieved by calling <code class="docutils literal notranslate"><span class="pre">solver_result</span> <span class="pre">=</span> <span class="pre">Solver.get_result()</span></code>.</p>
+</dd>
+<dt><strong>Returns</strong></dt><dd></dd>
+<dt><strong>——-</strong></dt><dd></dd>
+<dt><strong>dict of values to save</strong></dt><dd></dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.set_data">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.set_data" title="Link to this definition">#</a></dt>
+<dd><p>Store the info on a dataset to be able to compute the objective.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**data: dict</strong></dt><dd><p>Extra parameters of the objective. This dictionary is retrieved
+by calling <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">Dataset.get_data()</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseObjective.skip">
+<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.skip" title="Link to this definition">#</a></dt>
+<dd><p>Used to decide if the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> is compatible with the data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**data: dict</strong></dt><dd><p>Extra parameters of the objective. This dictionary is retrieved
+by calling <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">Dataset.get_data()</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>skip</strong><span class="classifier">bool</span></dt><dd><p>Whether this objective should be skipped or not for this data
+(accessible in the objective attributes).</p>
+</dd>
+<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason why it should be skipped for display purposes.
+If skip is False, the reason should be None.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="sphx-glr-backreferences-benchopt-baseobjective"></span></section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../API_ref.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">API references</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="benchopt.BaseDataset.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">benchopt.BaseDataset</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective"><code class="docutils literal notranslate"><span class="pre">BaseObjective</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.evaluate_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.evaluate_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.format_objective_dict"><code class="docutils literal notranslate"><span class="pre">BaseObjective.format_objective_dict()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.save_final_results"><code class="docutils literal notranslate"><span class="pre">BaseObjective.save_final_results()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.set_data"><code class="docutils literal notranslate"><span class="pre">BaseObjective.set_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.skip"><code class="docutils literal notranslate"><span class="pre">BaseObjective.skip()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

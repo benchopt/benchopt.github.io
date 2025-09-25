@@ -1,0 +1,603 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>benchopt.BaseSolver &#8212; benchopt 1.7.1.dev6 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../../_static/documentation_options.js?v=cbb58aaa"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=30646c52"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/generated/benchopt.BaseSolver';</script>
+    <link rel="icon" href="../../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="benchopt.run_benchmark" href="benchopt.run_benchmark.html" />
+    <link rel="prev" title="benchopt.BaseDataset" href="benchopt.BaseDataset.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1.dev6" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.1.dev6</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="../API_ref.html">API references</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>benchopt.BaseSolver</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver"><code class="docutils literal notranslate"><span class="pre">BaseSolver</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.get_result"><code class="docutils literal notranslate"><span class="pre">BaseSolver.get_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.pre_run_hook"><code class="docutils literal notranslate"><span class="pre">BaseSolver.pre_run_hook()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.run"><code class="docutils literal notranslate"><span class="pre">BaseSolver.run()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.run_once"><code class="docutils literal notranslate"><span class="pre">BaseSolver.run_once()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.set_objective"><code class="docutils literal notranslate"><span class="pre">BaseSolver.set_objective()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.skip"><code class="docutils literal notranslate"><span class="pre">BaseSolver.skip()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.warm_up"><code class="docutils literal notranslate"><span class="pre">BaseSolver.warm_up()</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="benchopt-basesolver">
+<h1>benchopt.BaseSolver<a class="headerlink" href="#benchopt-basesolver" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="benchopt.BaseSolver">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">BaseSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver" title="Link to this definition">#</a></dt>
+<dd><p>A base class for solver wrappers in Benchopt.</p>
+<p>Solvers that derive from this class should implement three methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">set_objective(self,</span> <span class="pre">**objective_parameters)</span></code>: prepares the solver to
+be called on a given problem. <code class="docutils literal notranslate"><span class="pre">**objective_parameters</span></code> is the output of
+<code class="docutils literal notranslate"><span class="pre">Objective.get_objective</span></code> from the benchmark objective. In particular,
+this method should dumps the parameter to compute the objective function
+in a file for command line solvers to reduce the impact of dumping the
+data to the disk in the benchmark.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">n_iter/tolerance)</span></code>: performs the computation for the
+previously given objective function, after a call to <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.
+This method is the one timed in the benchmark and should not perform any
+operation unrelated to the optimization procedure.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_result(self)</span></code>: returns all parameters of interest, as a dict.
+The output is passed to <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.</p></li>
+</ul>
+<p>Note that four <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be used to construct the benchmark
+curve:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: call the run method with max_iter number increasing
+logarithmically to get more an more precise points.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'tolerance'</span></code>: call the run method with tolerance decreasing
+logarithmically to get more and more precise points.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: a callable that should be called after each iteration or
+epoch. This callable periodically calls the objective’s <cite>compute</cite>
+and returns False when the solver should stop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'run_once'</span></code>: call the run method once to get a single point. This is
+typically used for ML benchmarks.</p></li>
+</ul>
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.get_result">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Link to this definition">#</a></dt>
+<dd><p>Return the parameters computed by the previous run.</p>
+<p>The parameters should be returned as a dictionary.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>parameters</strong><span class="classifier">dictionary</span></dt><dd><p>All quantities of interest to evaluate the objective.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.pre_run_hook">
+<span class="sig-name descname"><span class="pre">pre_run_hook</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.pre_run_hook" title="Link to this definition">#</a></dt>
+<dd><p>Hook to run pre-run operations.</p>
+<p>This is mostly necessary to cache stop_val dependent computations, for
+instance in <code class="docutils literal notranslate"><span class="pre">jax</span></code> with different number of iterations in a for loop.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stop_val</strong><span class="classifier">int | float | callable</span></dt><dd><p>Value for the stopping criterion of the solver for. It allows to
+sample the time/accuracy curve in the benchmark.
+If it is a callable, then it should act as a callback. This
+callback should be called once for each iteration with argument
+the current iterate <cite>parameters</cite>. The callback returns False when
+the computations should stop.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.run">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run" title="Link to this definition">#</a></dt>
+<dd><p>Call the solver with the given stop_val.</p>
+<p>This function should not return the parameters which will be
+retrieved by a subsequent call to get_result.</p>
+<p>If <cite>sampling_strategy</cite> is set to <cite>“callback”</cite>, then <cite>run</cite> should call
+the callback at each iteration. The callback will compute the time,
+the objective function and store relevant quantities for BenchOpt.
+Else, the <cite>stop_val</cite> parameter should be specified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stop_val</strong><span class="classifier">int | float | callable</span></dt><dd><p>Value for the stopping criterion of the solver for. It allows to
+sample the time/accuracy curve in the benchmark.
+If it is a callable, then it should act as a callback. This
+callback should be called once for each iteration with argument
+the current iterate <cite>parameters</cite>. The callback returns False when
+the computations should stop.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.run_once">
+<span class="sig-name descname"><span class="pre">run_once</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_val</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run_once" title="Link to this definition">#</a></dt>
+<dd><p>Run the solver once, to cache warmup times (e.g. pre-compilations).</p>
+<p>This function is intended to be called in <code class="docutils literal notranslate"><span class="pre">Solver.warm_up</span></code>
+method to avoid taking into account a solver’s warmup costs.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>stop_val</strong><span class="classifier">int or float, (default: 1)</span></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> is ‘iteration’, this should be an integer
+corresponding to the number of iterations the solver is run for.
+If it is ‘callback’, it is an integer corresponding to the number
+of times the callback is called.
+If it is ‘tolerance’, it is a float which can be passed to call
+the solver on an easy to solve problem.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.set_objective">
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_objective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.set_objective" title="Link to this definition">#</a></dt>
+<dd><p>Prepare the objective for the solver.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**objective_parameters</strong><span class="classifier">dict</span></dt><dd><p>Dictionary obtained as the output of the method <code class="docutils literal notranslate"><span class="pre">get_objective</span></code>
+from the benchmark <code class="docutils literal notranslate"><span class="pre">Objective</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.skip">
+<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Link to this definition">#</a></dt>
+<dd><p>Hook to decide if the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> is compatible with the objective.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>**objective_parameters</strong><span class="classifier">dict</span></dt><dd><p>Dictionary obtained as the output of the method <code class="docutils literal notranslate"><span class="pre">get_objective</span></code>
+from the benchmark <code class="docutils literal notranslate"><span class="pre">Objective</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><strong>skip</strong><span class="classifier">bool</span></dt><dd><p>Whether this solver should be skipped or not for this objective.</p>
+</dd>
+<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason why it should be skipped for display purposes.
+If skip is False, the reason should be None.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseSolver.warm_up">
+<span class="sig-name descname"><span class="pre">warm_up</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.warm_up" title="Link to this definition">#</a></dt>
+<dd><p>User specified warm up step, called once before the runs.</p>
+<p>The time it takes to run this function is not taken into account.
+The function <cite>Solver.run_once</cite> can be used here for solvers that
+require jit compilation.</p>
+</dd></dl>
+
+</dd></dl>
+
+<span class="target" id="sphx-glr-backreferences-benchopt-basesolver"></span></section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="benchopt.BaseDataset.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">benchopt.BaseDataset</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="benchopt.run_benchmark.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">benchopt.run_benchmark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver"><code class="docutils literal notranslate"><span class="pre">BaseSolver</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.get_result"><code class="docutils literal notranslate"><span class="pre">BaseSolver.get_result()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.pre_run_hook"><code class="docutils literal notranslate"><span class="pre">BaseSolver.pre_run_hook()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.run"><code class="docutils literal notranslate"><span class="pre">BaseSolver.run()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.run_once"><code class="docutils literal notranslate"><span class="pre">BaseSolver.run_once()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.set_objective"><code class="docutils literal notranslate"><span class="pre">BaseSolver.set_objective()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.skip"><code class="docutils literal notranslate"><span class="pre">BaseSolver.skip()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseSolver.warm_up"><code class="docutils literal notranslate"><span class="pre">BaseSolver.warm_up()</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
