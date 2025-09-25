@@ -1,0 +1,1803 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Run benchmark from a script &#8212; benchopt 1.7.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=62544db9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/plot_run_benchmark';</script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Run benchmark from a script</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-run-benchmark-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="run-benchmark-from-a-script">
+<span id="sphx-glr-auto-examples-plot-run-benchmark-py"></span><h1>Run benchmark from a script<a class="headerlink" href="#run-benchmark-from-a-script" title="Link to this heading">#</a></h1>
+<ul class="sphx-glr-horizontal">
+<li><img src="../_images/sphx_glr_plot_run_benchmark_001.png" srcset="../_images/sphx_glr_plot_run_benchmark_001.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_002.png" srcset="../_images/sphx_glr_plot_run_benchmark_002.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_003.png" srcset="../_images/sphx_glr_plot_run_benchmark_003.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_004.png" srcset="../_images/sphx_glr_plot_run_benchmark_004.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_005.png" srcset="../_images/sphx_glr_plot_run_benchmark_005.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_006.png" srcset="../_images/sphx_glr_plot_run_benchmark_006.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_007.png" srcset="../_images/sphx_glr_plot_run_benchmark_007.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_008.png" srcset="../_images/sphx_glr_plot_run_benchmark_008.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_009.png" srcset="../_images/sphx_glr_plot_run_benchmark_009.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_010.png" srcset="../_images/sphx_glr_plot_run_benchmark_010.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_011.png" srcset="../_images/sphx_glr_plot_run_benchmark_011.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_012.png" srcset="../_images/sphx_glr_plot_run_benchmark_012.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_013.png" srcset="../_images/sphx_glr_plot_run_benchmark_013.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_014.png" srcset="../_images/sphx_glr_plot_run_benchmark_014.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_015.png" srcset="../_images/sphx_glr_plot_run_benchmark_015.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_016.png" srcset="../_images/sphx_glr_plot_run_benchmark_016.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_017.png" srcset="../_images/sphx_glr_plot_run_benchmark_017.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_018.png" srcset="../_images/sphx_glr_plot_run_benchmark_018.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_019.png" srcset="../_images/sphx_glr_plot_run_benchmark_019.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_020.png" srcset="../_images/sphx_glr_plot_run_benchmark_020.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_021.png" srcset="../_images/sphx_glr_plot_run_benchmark_021.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_022.png" srcset="../_images/sphx_glr_plot_run_benchmark_022.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_023.png" srcset="../_images/sphx_glr_plot_run_benchmark_023.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_024.png" srcset="../_images/sphx_glr_plot_run_benchmark_024.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_025.png" srcset="../_images/sphx_glr_plot_run_benchmark_025.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_026.png" srcset="../_images/sphx_glr_plot_run_benchmark_026.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=True]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_027.png" srcset="../_images/sphx_glr_plot_run_benchmark_027.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_028.png" srcset="../_images/sphx_glr_plot_run_benchmark_028.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_029.png" srcset="../_images/sphx_glr_plot_run_benchmark_029.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_030.png" srcset="../_images/sphx_glr_plot_run_benchmark_030.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_031.png" srcset="../_images/sphx_glr_plot_run_benchmark_031.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_032.png" srcset="../_images/sphx_glr_plot_run_benchmark_032.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_033.png" srcset="../_images/sphx_glr_plot_run_benchmark_033.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_034.png" srcset="../_images/sphx_glr_plot_run_benchmark_034.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_035.png" srcset="../_images/sphx_glr_plot_run_benchmark_035.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_036.png" srcset="../_images/sphx_glr_plot_run_benchmark_036.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_037.png" srcset="../_images/sphx_glr_plot_run_benchmark_037.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_038.png" srcset="../_images/sphx_glr_plot_run_benchmark_038.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_039.png" srcset="../_images/sphx_glr_plot_run_benchmark_039.png" alt="L2 Logistic Regression[fit_intercept=True,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_040.png" srcset="../_images/sphx_glr_plot_run_benchmark_040.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_041.png" srcset="../_images/sphx_glr_plot_run_benchmark_041.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_042.png" srcset="../_images/sphx_glr_plot_run_benchmark_042.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_043.png" srcset="../_images/sphx_glr_plot_run_benchmark_043.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_044.png" srcset="../_images/sphx_glr_plot_run_benchmark_044.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_045.png" srcset="../_images/sphx_glr_plot_run_benchmark_045.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_046.png" srcset="../_images/sphx_glr_plot_run_benchmark_046.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_047.png" srcset="../_images/sphx_glr_plot_run_benchmark_047.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_048.png" srcset="../_images/sphx_glr_plot_run_benchmark_048.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_049.png" srcset="../_images/sphx_glr_plot_run_benchmark_049.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_050.png" srcset="../_images/sphx_glr_plot_run_benchmark_050.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_051.png" srcset="../_images/sphx_glr_plot_run_benchmark_051.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_plot_run_benchmark_052.png" srcset="../_images/sphx_glr_plot_run_benchmark_052.png" alt="L2 Logistic Regression[fit_intercept=False,lmbd=1.0] Data: Simulated[n_features=500,n_samples=200,scaled=False]" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;BASH_FUNC_blame%%&quot; redefined by R and overriding existing variable. Current: &quot;() {  RESSOURCE=${1:-cpu};
+ if [[ &quot;$RESSOURCE&quot; == &quot;memory&quot; ]]; then
+ col=10;
+ else
+ if [[ &quot;$RESSOURCE&quot; == &quot;cpu&quot; ]]; then
+ col=9;
+ fi;
+ fi;
+ for user in $(top -bn 1 | awk &#39;NR&gt;7 { if ($2 !~ /\+/) print $2; }&#39; | sort -u);
+ do
+ top -b -n 1 -u &quot;$user&quot; | awk -v user=&quot;$user&quot; -v col=&quot;$col&quot; &#39;NR&gt;7 { gsub ( &quot;,&quot;, &quot;.&quot;, $col); sum += $col ; } END { if (sum &gt; 0.0){ if (col == 9) print user, sum / 100. &quot; cores &quot;; else print user, sum &quot;%&quot;;}}&#39;;
+ done
+}&quot;, R: &quot;() {  RESSOURCE=${1:-cpu}; if [[ &quot;$RESSOURCE&quot; == &quot;memory&quot; ]]; then col=10; else if [[ &quot;$RESSOURCE&quot; == &quot;cpu&quot; ]]; then col=9; fi; fi; for user in $(top -bn 1 | awk &#39;NR&gt;7 { if ($2 !~ /\+/) print $2; }&#39; | sort -u); do top -b -n 1 -u &quot;$user&quot; | awk -v user=&quot;$user&quot; -v col=&quot;$col&quot; &#39;NR&gt;7 { gsub ( &quot;,&quot;, &quot;.&quot;, $col); sum += $col ; } END { if (sum &gt; 0.0){ if (col == 9) print user, sum / 100. &quot; cores &quot;; else print user, sum &quot;%&quot;;}}&#39;; done}&quot;
+  warnings.warn(
+/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;BASH_FUNC_git_add_images%%&quot; redefined by R and overriding existing variable. Current: &quot;() {  main_tex=${1:-main.tex};
+ image_dir=${2:-images};
+ [[ -f &quot;$main_tex&quot; ]] || ( echo &quot;main file &#39;$main_tex&#39; does not exist&quot; &amp;&amp; return 1 );
+ [[ -d &quot;$image_dir&quot; ]] || ( echo &quot;images dir &#39;$image_dir&#39; does not exist&quot; &amp;&amp; return 1 );
+ for f in $images_dir/*;
+ do
+ [[ -d $f ]] &amp;&amp; continue;
+ basename=$(echo $f | sed &#39;s|images/\(.*\)\..\+|\1|&#39;);
+ grep --color=auto $basename $main_tex -q &amp;&amp; git add $f || git rm $f;
+ done
+}&quot;, R: &quot;() {  main_tex=${1:-main.tex}; image_dir=${2:-images}; [[ -f &quot;$main_tex&quot; ]] || ( echo &quot;main file &#39;$main_tex&#39; does not exist&quot; &amp;&amp; return 1 ); [[ -d &quot;$image_dir&quot; ]] || ( echo &quot;images dir &#39;$image_dir&#39; does not exist&quot; &amp;&amp; return 1 ); for f in $images_dir/*; do [[ -d $f ]] &amp;&amp; continue; basename=$(echo $f | sed &#39;s|images/\(.*\)\..\+|\1|&#39;); grep --color=auto $basename $main_tex -q &amp;&amp; git add $f || git rm $f; done}&quot;
+  warnings.warn(
+/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;PWD&quot; redefined by R and overriding existing variable. Current: &quot;/home/tom/Work/prog/benchopt/doc&quot;, R: &quot;/home/tom/Work/prog/benchopt/examples&quot;
+  warnings.warn(
+/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;R_SESSION_TMPDIR&quot; redefined by R and overriding existing variable. Current: &quot;/tmp/RtmpDK0333&quot;, R: &quot;/tmp/RtmpS72Ntz&quot;
+  warnings.warn(
+Simulated[n_features=500,n_samples=200,scaled=True]
+  |--L2 Logistic Regression[fit_intercept=True,lmbd=1.0]
+    |--sklearn[liblinear]: initialization (1 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (1 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (1 / 15 reps)
+    |--sklearn[liblinear]: initialization (2 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (2 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (2 / 15 reps)
+    |--sklearn[liblinear]: initialization (3 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (3 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (3 / 15 reps)
+    |--sklearn[liblinear]: initialization (4 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (4 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (4 / 15 reps)
+    |--sklearn[liblinear]: initialization (5 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (5 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (5 / 15 reps)
+    |--sklearn[liblinear]: initialization (6 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (6 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (6 / 15 reps)
+    |--sklearn[liblinear]: initialization (7 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (7 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (7 / 15 reps)
+    |--sklearn[liblinear]: initialization (8 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (8 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (8 / 15 reps)
+    |--sklearn[liblinear]: initialization (9 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (9 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (9 / 15 reps)
+    |--sklearn[liblinear]: initialization (10 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (10 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (10 / 15 reps)
+    |--sklearn[liblinear]: initialization (11 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (11 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (11 / 15 reps)
+    |--sklearn[liblinear]: initialization (12 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (12 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (12 / 15 reps)
+    |--sklearn[liblinear]: initialization (13 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (13 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (13 / 15 reps)
+    |--sklearn[liblinear]: initialization (14 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (14 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (14 / 15 reps)
+    |--sklearn[liblinear]: initialization (15 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (15 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (15 / 15 reps)
+    |--sklearn[liblinear]: done
+    |--sklearn[newton-cg]: initialization (1 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (1 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (1 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (1 / 15 reps)
+    |--sklearn[newton-cg]: initialization (2 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (2 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (2 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (2 / 15 reps)
+    |--sklearn[newton-cg]: initialization (3 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (3 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (3 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (3 / 15 reps)
+    |--sklearn[newton-cg]: initialization (4 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (4 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (4 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (4 / 15 reps)
+    |--sklearn[newton-cg]: initialization (5 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (5 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (5 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (5 / 15 reps)
+    |--sklearn[newton-cg]: initialization (6 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (6 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (6 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (6 / 15 reps)
+    |--sklearn[newton-cg]: initialization (7 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (7 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (7 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (7 / 15 reps)
+    |--sklearn[newton-cg]: initialization (8 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (8 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (8 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (8 / 15 reps)
+    |--sklearn[newton-cg]: initialization (9 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (9 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (9 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (9 / 15 reps)
+    |--sklearn[newton-cg]: initialization (10 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (10 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (10 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (10 / 15 reps)
+    |--sklearn[newton-cg]: initialization (11 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (11 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (11 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (11 / 15 reps)
+    |--sklearn[newton-cg]: initialization (12 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (12 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (12 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (12 / 15 reps)
+    |--sklearn[newton-cg]: initialization (13 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (13 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (13 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (13 / 15 reps)
+    |--sklearn[newton-cg]: initialization (14 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (14 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (14 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (14 / 15 reps)
+    |--sklearn[newton-cg]: initialization (15 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:  14.9% (15 / 15 reps)
+    |--sklearn[newton-cg]:  19.6% (15 / 15 reps)
+    |--sklearn[newton-cg]:  42.0% (15 / 15 reps)
+    |--sklearn[newton-cg]: done
+Failed to import Solver from /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/solvers/lightning.py. Please fix the following error to use this file with benchopt:
+Traceback (most recent call last):
+  File &quot;/home/tom/Work/prog/benchopt/benchopt/utils/dynamic_modules.py&quot;, line 86, in _load_class_from_module
+    module = _get_module_from_file(module_filename, benchmark_dir)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/tom/Work/prog/benchopt/benchopt/utils/dynamic_modules.py&quot;, line 52, in _get_module_from_file
+    spec.loader.exec_module(module)
+  File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 999, in exec_module
+  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 488, in _call_with_frames_removed
+  File &quot;/home/tom/Work/prog/benchopt/benchmarks/logreg_l2/solvers/lightning.py&quot;, line 4, in &lt;module&gt;
+    from lightning import classification
+  File &quot;/home/tom/.local/miniconda/lib/python3.12/site-packages/lightning/__init__.py&quot;, line 20, in &lt;module&gt;
+    from lightning.pytorch.callbacks import Callback  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/tom/.local/miniconda/lib/python3.12/site-packages/lightning/pytorch/__init__.py&quot;, line 27, in &lt;module&gt;
+    from lightning.pytorch.callbacks import Callback  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/tom/.local/miniconda/lib/python3.12/site-packages/lightning/pytorch/callbacks/__init__.py&quot;, line 14, in &lt;module&gt;
+    from lightning.pytorch.callbacks.batch_size_finder import BatchSizeFinder
+  File &quot;/home/tom/.local/miniconda/lib/python3.12/site-packages/lightning/pytorch/callbacks/batch_size_finder.py&quot;, line 26, in &lt;module&gt;
+    from lightning.pytorch.callbacks.callback import Callback
+  File &quot;/home/tom/.local/miniconda/lib/python3.12/site-packages/lightning/pytorch/callbacks/callback.py&quot;, line 22, in &lt;module&gt;
+    from lightning.pytorch.utilities.types import STEP_OUTPUT
+  File &quot;/home/tom/.local/miniconda/lib/python3.12/site-packages/lightning/pytorch/utilities/types.py&quot;, line 36, in &lt;module&gt;
+    from torchmetrics import Metric
+ModuleNotFoundError: No module named &#39;torchmetrics&#39;
+
+    |--Lightning: not installed
+  |--L2 Logistic Regression[fit_intercept=False,lmbd=1.0]
+    |--sklearn[liblinear]: initialization (1 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (1 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (1 / 15 reps)
+    |--sklearn[liblinear]: initialization (2 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (2 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (2 / 15 reps)
+    |--sklearn[liblinear]: initialization (3 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (3 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (3 / 15 reps)
+    |--sklearn[liblinear]: initialization (4 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (4 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (4 / 15 reps)
+    |--sklearn[liblinear]: initialization (5 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (5 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (5 / 15 reps)
+    |--sklearn[liblinear]: initialization (6 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (6 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (6 / 15 reps)
+    |--sklearn[liblinear]: initialization (7 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (7 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (7 / 15 reps)
+    |--sklearn[liblinear]: initialization (8 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (8 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (8 / 15 reps)
+    |--sklearn[liblinear]: initialization (9 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (9 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (9 / 15 reps)
+    |--sklearn[liblinear]: initialization (10 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (10 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (10 / 15 reps)
+    |--sklearn[liblinear]: initialization (11 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (11 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (11 / 15 reps)
+    |--sklearn[liblinear]: initialization (12 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (12 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (12 / 15 reps)
+    |--sklearn[liblinear]: initialization (13 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (13 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (13 / 15 reps)
+    |--sklearn[liblinear]: initialization (14 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (14 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (14 / 15 reps)
+    |--sklearn[liblinear]: initialization (15 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (15 / 15 reps)
+    |--sklearn[liblinear]:  18.4% (15 / 15 reps)
+    |--sklearn[liblinear]: done
+    |--sklearn[newton-cg]: initialization (1 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (1 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (1 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (1 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (1 / 15 reps)
+    |--sklearn[newton-cg]: initialization (2 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (2 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (2 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (2 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (2 / 15 reps)
+    |--sklearn[newton-cg]: initialization (3 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (3 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (3 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (3 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (3 / 15 reps)
+    |--sklearn[newton-cg]: initialization (4 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (4 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (4 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (4 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (4 / 15 reps)
+    |--sklearn[newton-cg]: initialization (5 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (5 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (5 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (5 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (5 / 15 reps)
+    |--sklearn[newton-cg]: initialization (6 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (6 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (6 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (6 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (6 / 15 reps)
+    |--sklearn[newton-cg]: initialization (7 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (7 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (7 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (7 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (7 / 15 reps)
+    |--sklearn[newton-cg]: initialization (8 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (8 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (8 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (8 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (8 / 15 reps)
+    |--sklearn[newton-cg]: initialization (9 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (9 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (9 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (9 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (9 / 15 reps)
+    |--sklearn[newton-cg]: initialization (10 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (10 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (10 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (10 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (10 / 15 reps)
+    |--sklearn[newton-cg]: initialization (11 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (11 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (11 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (11 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (11 / 15 reps)
+    |--sklearn[newton-cg]: initialization (12 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (12 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (12 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (12 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (12 / 15 reps)
+    |--sklearn[newton-cg]: initialization (13 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (13 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (13 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (13 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (13 / 15 reps)
+    |--sklearn[newton-cg]: initialization (14 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (14 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (14 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (14 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (14 / 15 reps)
+    |--sklearn[newton-cg]: initialization (15 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:  20.3% (15 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (15 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (15 / 15 reps)
+    |--sklearn[newton-cg]:  67.6% (15 / 15 reps)
+    |--sklearn[newton-cg]: done
+    |--Lightning: not installed
+Simulated[n_features=500,n_samples=200,scaled=False]
+  |--L2 Logistic Regression[fit_intercept=True,lmbd=1.0]
+    |--sklearn[liblinear]: initialization (1 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (1 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (1 / 15 reps)
+    |--sklearn[liblinear]: initialization (2 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (2 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (2 / 15 reps)
+    |--sklearn[liblinear]: initialization (3 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (3 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (3 / 15 reps)
+    |--sklearn[liblinear]: initialization (4 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (4 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (4 / 15 reps)
+    |--sklearn[liblinear]: initialization (5 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (5 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (5 / 15 reps)
+    |--sklearn[liblinear]: initialization (6 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (6 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (6 / 15 reps)
+    |--sklearn[liblinear]: initialization (7 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (7 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (7 / 15 reps)
+    |--sklearn[liblinear]: initialization (8 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (8 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (8 / 15 reps)
+    |--sklearn[liblinear]: initialization (9 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (9 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (9 / 15 reps)
+    |--sklearn[liblinear]: initialization (10 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (10 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (10 / 15 reps)
+    |--sklearn[liblinear]: initialization (11 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (11 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (11 / 15 reps)
+    |--sklearn[liblinear]: initialization (12 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (12 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (12 / 15 reps)
+    |--sklearn[liblinear]: initialization (13 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (13 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (13 / 15 reps)
+    |--sklearn[liblinear]: initialization (14 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (14 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (14 / 15 reps)
+    |--sklearn[liblinear]: initialization (15 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (15 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (15 / 15 reps)
+    |--sklearn[liblinear]: done
+    |--sklearn[newton-cg]: initialization (1 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (1 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (1 / 15 reps)
+    |--sklearn[newton-cg]: initialization (2 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (2 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (2 / 15 reps)
+    |--sklearn[newton-cg]: initialization (3 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (3 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (3 / 15 reps)
+    |--sklearn[newton-cg]: initialization (4 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (4 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (4 / 15 reps)
+    |--sklearn[newton-cg]: initialization (5 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (5 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (5 / 15 reps)
+    |--sklearn[newton-cg]: initialization (6 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (6 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (6 / 15 reps)
+    |--sklearn[newton-cg]: initialization (7 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (7 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (7 / 15 reps)
+    |--sklearn[newton-cg]: initialization (8 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (8 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (8 / 15 reps)
+    |--sklearn[newton-cg]: initialization (9 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (9 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (9 / 15 reps)
+    |--sklearn[newton-cg]: initialization (10 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (10 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (10 / 15 reps)
+    |--sklearn[newton-cg]: initialization (11 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (11 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (11 / 15 reps)
+    |--sklearn[newton-cg]: initialization (12 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (12 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (12 / 15 reps)
+    |--sklearn[newton-cg]: initialization (13 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (13 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (13 / 15 reps)
+    |--sklearn[newton-cg]: initialization (14 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (14 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (14 / 15 reps)
+    |--sklearn[newton-cg]: initialization (15 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:  20.2% (15 / 15 reps)
+    |--sklearn[newton-cg]:  31.0% (15 / 15 reps)
+    |--sklearn[newton-cg]: done
+    |--Lightning: not installed
+  |--L2 Logistic Regression[fit_intercept=False,lmbd=1.0]
+    |--sklearn[liblinear]: initialization (1 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (1 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (1 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (1 / 15 reps)
+    |--sklearn[liblinear]: initialization (2 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (2 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (2 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (2 / 15 reps)
+    |--sklearn[liblinear]: initialization (3 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (3 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (3 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (3 / 15 reps)
+    |--sklearn[liblinear]: initialization (4 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (4 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (4 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (4 / 15 reps)
+    |--sklearn[liblinear]: initialization (5 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (5 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (5 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (5 / 15 reps)
+    |--sklearn[liblinear]: initialization (6 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (6 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (6 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (6 / 15 reps)
+    |--sklearn[liblinear]: initialization (7 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (7 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (7 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (7 / 15 reps)
+    |--sklearn[liblinear]: initialization (8 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (8 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (8 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (8 / 15 reps)
+    |--sklearn[liblinear]: initialization (9 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (9 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (9 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (9 / 15 reps)
+    |--sklearn[liblinear]: initialization (10 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (10 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (10 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (10 / 15 reps)
+    |--sklearn[liblinear]: initialization (11 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (11 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (11 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (11 / 15 reps)
+    |--sklearn[liblinear]: initialization (12 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (12 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (12 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (12 / 15 reps)
+    |--sklearn[liblinear]: initialization (13 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (13 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (13 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (13 / 15 reps)
+    |--sklearn[liblinear]: initialization (14 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (14 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (14 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (14 / 15 reps)
+    |--sklearn[liblinear]: initialization (15 / 15 reps)
+    |--sklearn[liblinear]:   0.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   1.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   2.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   3.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   4.0% (15 / 15 reps)
+    |--sklearn[liblinear]:   5.0% (15 / 15 reps)
+    |--sklearn[liblinear]:  18.5% (15 / 15 reps)
+    |--sklearn[liblinear]: done
+    |--sklearn[newton-cg]: initialization (1 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (1 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (1 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (1 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (1 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (1 / 15 reps)
+    |--sklearn[newton-cg]: initialization (2 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (2 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (2 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (2 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (2 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (2 / 15 reps)
+    |--sklearn[newton-cg]: initialization (3 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (3 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (3 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (3 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (3 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (3 / 15 reps)
+    |--sklearn[newton-cg]: initialization (4 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (4 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (4 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (4 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (4 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (4 / 15 reps)
+    |--sklearn[newton-cg]: initialization (5 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (5 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (5 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (5 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (5 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (5 / 15 reps)
+    |--sklearn[newton-cg]: initialization (6 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (6 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (6 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (6 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (6 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (6 / 15 reps)
+    |--sklearn[newton-cg]: initialization (7 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (7 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (7 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (7 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (7 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (7 / 15 reps)
+    |--sklearn[newton-cg]: initialization (8 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (8 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (8 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (8 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (8 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (8 / 15 reps)
+    |--sklearn[newton-cg]: initialization (9 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (9 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (9 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (9 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (9 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (9 / 15 reps)
+    |--sklearn[newton-cg]: initialization (10 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (10 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (10 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (10 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (10 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (10 / 15 reps)
+    |--sklearn[newton-cg]: initialization (11 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (11 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (11 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (11 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (11 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (11 / 15 reps)
+    |--sklearn[newton-cg]: initialization (12 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (12 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (12 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (12 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (12 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (12 / 15 reps)
+    |--sklearn[newton-cg]: initialization (13 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (13 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (13 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (13 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (13 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (13 / 15 reps)
+    |--sklearn[newton-cg]: initialization (14 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (14 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (14 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (14 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (14 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (14 / 15 reps)
+    |--sklearn[newton-cg]: initialization (15 / 15 reps)
+    |--sklearn[newton-cg]:   0.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   1.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   2.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   3.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   4.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:   5.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:  15.0% (15 / 15 reps)
+    |--sklearn[newton-cg]:  20.4% (15 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (15 / 15 reps)
+    |--sklearn[newton-cg]:  31.5% (15 / 15 reps)
+    |--sklearn[newton-cg]:  67.4% (15 / 15 reps)
+    |--sklearn[newton-cg]: done
+    |--Lightning: not installed
+Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2025-09-25_11h25m45.parquet
+Save objective_curve plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Train loss_objective_curve.pdf
+Save objective_curve plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Train error_objective_curve.pdf
+Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Test loss_objective_curve.pdf
+Save objective_curve plot of objective_Test error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Test error_objective_curve.pdf
+Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_value_objective_curve.pdf
+Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_value_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_value_relative_suboptimality_curve.pdf
+Solver sklearn[liblinear] did not reach precision 1e-06.
+Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_value_bar_chart.pdf
+Save boxplot plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Train loss_boxplot.pdf
+Save boxplot plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Train error_boxplot.pdf
+Save boxplot plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Test loss_boxplot.pdf
+Save boxplot plot of objective_Test error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_Test error_boxplot.pdf
+Save boxplot plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/91de008a1aae8ffbd33335cbde357906_objective_value_boxplot.pdf
+Save objective_curve plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_Train loss_objective_curve.pdf
+Save objective_curve plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_Train error_objective_curve.pdf
+Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_Test loss_objective_curve.pdf
+Save objective_curve plot of objective_Test error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_Test error_objective_curve.pdf
+Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_value_objective_curve.pdf
+Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_value_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_value_relative_suboptimality_curve.pdf
+/home/tom/Work/prog/benchopt/benchopt/plotting/helpers_compat.py:13: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+  return plt.figure()
+Solver sklearn[newton-cg] did not reach precision 1e-06.
+Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_value_bar_chart.pdf
+Save boxplot plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_Train loss_boxplot.pdf
+Save boxplot plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_Train error_boxplot.pdf
+Save boxplot plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_Test loss_boxplot.pdf
+Save boxplot plot of objective_Test error for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_Test error_boxplot.pdf
+Save boxplot plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=True] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/fb18f637f8179c14cc8d1b7d2524d30f_objective_value_boxplot.pdf
+Save objective_curve plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_Train loss_objective_curve.pdf
+Save objective_curve plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_Train error_objective_curve.pdf
+Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_Test loss_objective_curve.pdf
+Save objective_curve plot of objective_Test error for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_Test error_objective_curve.pdf
+Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_value_objective_curve.pdf
+Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_value_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_value_relative_suboptimality_curve.pdf
+Solver sklearn[liblinear] did not reach precision 1e-06.
+Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_value_bar_chart.pdf
+Save boxplot plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_Train loss_boxplot.pdf
+Save boxplot plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_Train error_boxplot.pdf
+Save boxplot plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_Test loss_boxplot.pdf
+Save boxplot plot of objective_Test error for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_Test error_boxplot.pdf
+Save boxplot plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=True,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/5a616cc8eba0a57629c4f674f572e2f1_objective_value_boxplot.pdf
+Save objective_curve plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_Train loss_objective_curve.pdf
+Save objective_curve plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_Train error_objective_curve.pdf
+Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_Test loss_objective_curve.pdf
+Save objective_curve plot of objective_Test error for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_Test error_objective_curve.pdf
+Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_value_objective_curve.pdf
+Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_value_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_value_relative_suboptimality_curve.pdf
+Solver sklearn[newton-cg] did not reach precision 1e-06.
+Save bar_chart plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_value_bar_chart.pdf
+Save boxplot plot of objective_Train loss for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_Train loss_boxplot.pdf
+Save boxplot plot of objective_Train error for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_Train error_boxplot.pdf
+Save boxplot plot of objective_Test loss for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_Test loss_boxplot.pdf
+Save boxplot plot of objective_Test error for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_Test error_boxplot.pdf
+Save boxplot plot of objective_value for Simulated[n_features=500,n_samples=200,scaled=False] and L2 Logistic Regression[fit_intercept=False,lmbd=1.0] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_logreg_l2/outputs/07097c43fdaf8773b0bd5532626d2b46_objective_value_boxplot.pdf
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a>
+<span class="kn">from</span> <span class="nn">benchopt.benchmark</span> <span class="kn">import</span> <span class="n">Benchmark</span>
+<span class="kn">from</span> <span class="nn">benchopt.plotting</span> <span class="kn">import</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">,</span> <span class="n">PLOT_KINDS</span>
+<span class="kn">from</span> <span class="nn">benchopt.plotting.plot_objective_curve</span> <span class="kn">import</span> <span class="n">reset_solver_styles_idx</span>
+
+
+<a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a> <span class="o">=</span> <span class="p">(</span>
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;benchmarks&#39;</span> <span class="o">/</span> <span class="s1">&#39;benchmark_logreg_l2&#39;</span>
+<span class="p">)</span>
+
+
+<span class="k">try</span><span class="p">:</span>
+
+    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a> <span class="o">=</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a><span class="p">(</span>
+        <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">,</span>
+        <span class="n">solver_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sklearn[liblinear]&#39;</span><span class="p">,</span> <span class="s1">&#39;sklearn[newton-cg]&#39;</span><span class="p">,</span> <span class="s1">&#39;lightning&#39;</span><span class="p">],</span>
+        <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Simulated[n_features=500,n_samples=200]&quot;</span><span class="p">],</span>
+        <span class="n">objective_filters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;L2 Logistic Regression[lmbd=1.0]&#39;</span><span class="p">],</span>
+        <span class="n">max_runs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_repetitions</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
+        <span class="n">plot_result</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+<span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
+        <span class="s2">&quot;This example can only work when Logreg-l2 benchmark is cloned in a &quot;</span>
+        <span class="s2">&quot;`benchmarks` folder. Please run:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;$ git clone https://github.com/benchopt/benchmark_logreg_l2 &quot;</span>
+        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.resolve" title="pathlib.Path.resolve" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">BENCHMARK_PATH</span><span class="o">.</span><span class="n">resolve</span></a><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="p">)</span>
+
+
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">PLOT_KINDS</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="n">reset_solver_styles_idx</span><span class="p">()</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">figs</span></a> <span class="o">=</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">save_file</span></a><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a><span class="p">),</span>
+                      <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">kinds</span></a><span class="p">,</span> <span class="n">html</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+</pre></div>
+</div>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 40.734 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/cdb26c80ea62f96a318a8bcdbbf34171/plot_run_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/d0a19eddcd9b5cc19e309134ae758ece/plot_run_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/b6a0a50a7a6c020b6c5ce18f62b67968/plot_run_benchmark.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_run_benchmark.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+
+<script>
+fetch("../../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = "/" + name + "/";
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = "/" + v + "/";
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = select.value;
+    };
+  });
+</script>
+
+
+  <footer class="bd-footer">
+  </footer>
+
+  </body>
+</html>

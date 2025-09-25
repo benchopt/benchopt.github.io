@@ -1,0 +1,783 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Understanding and building a simple benchmark &#8212; benchopt 1.7.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=62544db9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/build_benchmark';</script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Add a solver to an existing benchmark" href="add_solver.html" />
+    <link rel="prev" title="Tutorials" href="index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Tutorials</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Understanding and building a simple benchmark</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-benchopt">Installing Benchopt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-and-running-a-first-benchmark">Installing and running a first benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-benchmark-structure">Exploring the benchmark structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-the-template-to-implement-a-ridge-regression-benchmark">Updating the template to implement a ridge regression benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concluding-remarks">Concluding remarks</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="understanding-and-building-a-simple-benchmark">
+<span id="build-benchmark"></span><h1>Understanding and building a simple benchmark<a class="headerlink" href="#understanding-and-building-a-simple-benchmark" title="Link to this heading">#</a></h1>
+<p>Are you looking for a simple, step-by-step introduction to the <a class="reference external" href="https://benchopt.github.io/index.html">Benchopt</a> library?
+Then look no further!
+In this tutorial, we are going to learn how to use the Benchopt library to compare various algorithms in order to minimize a given cost.
+This tutorial complements the <a class="reference external" href="https://benchopt.github.io/benchmark_workflow/write_benchmark.html">write a benchmark</a> webpage with a more practical, hands-on approach.</p>
+<p>Let’s say you are interested in benchmarking solvers to minimize the cost function of the <a class="reference external" href="https://en.wikipedia.org/wiki/Ridge_regression">ridge regression problem</a>, a variant of linear regression which is a common problem in supervised machine learning. This cost function writes as follows:</p>
+<div class="math notranslate nohighlight">
+\[f(\beta) = \frac{1}{2} {\|y - X\beta\|}^2 + \lambda{\|\beta\|}^2\]</div>
+<p>where</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>\(y\) is a vector with \(m\) elements, typically some observations</p></li>
+<li><p>\(X\) is a matrix with \(m \times n\) elements, typically the regressors</p></li>
+<li><p><span class="math notranslate nohighlight">\(\beta\)</span> is a vector with \(n\) elements that we obtain by regressing \(y\) on \(X\).</p></li>
+<li><p>\(\|\cdot\|\) is the Euclidean norm.</p></li>
+</ul>
+</div></blockquote>
+<p>Let us also suppose that we are working with a specific optimization algorithm that aims at solving the ridge regression problem: <a class="reference external" href="https://en.wikipedia.org/wiki/Gradient_descent">the gradient descent (GD) algorithm</a>.
+GD is a simple algorithm that moves iteratively along the steepest descent direction.
+Given an estimate <span class="math notranslate nohighlight">\(\beta\)</span>, GD iterates the following step:</p>
+<div class="math notranslate nohighlight">
+\[\beta \leftarrow \beta - \eta \nabla f(\beta)\]</div>
+<p>where <span class="math notranslate nohighlight">\(\eta\)</span> is the learning rate or stepsize, and controls how much the iterate is moved alongside the descent direction.
+The vector <span class="math notranslate nohighlight">\(\nabla f(\beta)\)</span> is the gradient of the cost function defined above, evaluated at \(\beta\).</p>
+<p>Ridge regression computed with GD is overall a simple procedure, however
+we should be mindful of the two hyperparameters: the regularization parameter \(\lambda\), and the gradient stepsize \( \eta\).
+It is very common in machine learning that we are facing a situation where we want to vary these parameters, and compare the behavior of our algorithm in each scenario.
+Benchopt we can create a benchmark for this problem, here is a screenshot of what we will get at the end of this tutorial.</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="../_images/screenshot_mytemplate_ridgeloss.png"><img alt="../_images/screenshot_mytemplate_ridgeloss.png" src="../_images/screenshot_mytemplate_ridgeloss.png" style="width: 800px;" />
+</a>
+</figure>
+<p>We can now dive into the framework and see how to leverage it to easily create our benchmark!</p>
+<section id="installing-benchopt">
+<h2>Installing Benchopt<a class="headerlink" href="#installing-benchopt" title="Link to this heading">#</a></h2>
+<p>Let’s start by installing the benchopt package.
+It is a python package, so we are assuming that you are starting this tutorial with a functioning python installation.
+It is recommended to run all this tutorial in a dedicated environment (such as a <a class="reference external" href="https://docs.python.org/fr/3/library/venv.html">virtual environment</a> or a conda environment)</p>
+<p>Benchopt can be installed simply using <code class="docutils literal notranslate"><span class="pre">pip</span></code> by running in a terminal</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>benchopt</span>
+</pre></div></div><p>Benchopt and its dependencies are going to be installed, just wait until this is done.
+If you have any issue with the installation, you may have a look at the <a class="reference external" href="https://benchopt.github.io/get_started.html">installation page</a>.</p>
+</section>
+<section id="installing-and-running-a-first-benchmark">
+<h2>Installing and running a first benchmark<a class="headerlink" href="#installing-and-running-a-first-benchmark" title="Link to this heading">#</a></h2>
+<p>Benchopt in itself is like a mother package: it supervises and runs smaller libraries, a.k.a. the benchmarks.
+Therefore, <strong>benchmarks are repositories</strong> with a predefined structure and some required files (we will go over each of them in the next section) that are processed by benchopt.
+The benchmark specifies information about:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the problem (typically the loss function to minimize),</p></li>
+<li><p>the dataset on which the algorithms are tested (values of \(X \) and \( y\))</p></li>
+<li><p>the solvers (like our GD algorithm).</p></li>
+</ul>
+</div></blockquote>
+<p>It is likely that if you are reading this tutorial, you are in fact interested in writing and running a benchmark.</p>
+<p>To write a benchmark, it is recommended to start from the <a class="reference external" href="https://github.com/benchopt/template_benchmark">template benchmark</a> shared in the Benchopt organisation.
+To get this template and rename it <code class="docutils literal notranslate"><span class="pre">my_benchmark</span></code>, you can clone it from its Github repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:benchopt/template_benchmark<span class="w"> </span>my_benchmark</span>
+</pre></div></div><p>The template benchmark is not designed to model our ridge regression problem, but luckily it is pretty close!
+The cost which is implemented in the template benchmark is the Ordinary Least Squares (OLS)</p>
+<div class="math notranslate nohighlight">
+\[g(\beta) = \frac{1}{2} \|y - X\beta \|^2\]</div>
+<p>and the only implemented solver is GD with \(\nabla g(\beta) = -X^Ty + X^TX\beta \) the gradient of \(g\) at \(\beta \).</p>
+<p>We will modify this template to adapt it to the ridge regression problem next, but before that let us run this benchmark.
+In other words, let us use benchopt to read the contents of the template benchmark and run GD on OLS. The solver will use a predefined set of stepsizes, in our case \( [1, 1.99] \) (the stepsize is scaled by the inverse of the gradient’s Lipschitz constant, you can ignore this detail if you are not familiar with this concept).</p>
+<p>To run the template benchmark, simply run the following command in the terminal:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>my_benchmark</span>
+</pre></div></div><figure class="align-default" id="id1">
+<a class="reference internal image-reference" href="../_images/console_template.png"><img alt="../_images/console_template.png" src="../_images/console_template.png" style="width: 600px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">A screenshot of the console during the benchopt run command</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>You will see something similar to the screenshot above in your terminal</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><em>Simulated</em> tells us that the dataset run by benchopt is the simulation set up in the benchmark.</p></li>
+<li><p><em>Ordinary Least Squares</em> tells us which loss is minimized, and the hyperparameters are written in bracket.</p></li>
+<li><p><em>GD</em> is a line indicating the progress of algorithm GD for this problem (Simulated dataset, OLS loss). Again its hyperparameters are written in brackets (here the stepsize value).</p></li>
+</ul>
+</div></blockquote>
+<p>Once the benchmark has been run, a window should open in your default navigator.
+This provides a visualization of the results of the run, which is useful to immediately observe, comment and share the results.
+After running the template benchmark, we can observe the convergence plots of GD with the two different stepsize choices, for two different simulated datasets.</p>
+<p>The convergence plot scales can be changed for easier reading.
+In this specific toy example, the runtime is so low that the convergence plot with respect to time may not be reliable: you can also look at the results in terms of iterations, by scrolling the menu on the bottom left of the webpage.
+Feel free to play around with the plotting options here!
+Note that the objective comes with two possible values for a  <cite>whiten</cite> parameter.
+Let us ignore this detail in the tutorial.</p>
+</section>
+<section id="exploring-the-benchmark-structure">
+<h2>Exploring the benchmark structure<a class="headerlink" href="#exploring-the-benchmark-structure" title="Link to this heading">#</a></h2>
+<p>The template benchmark we are using at the moment is not exactly encoding the information we need for the ridge regression problem.
+To properly modify the benchmark, first we need to dive deeper into how benchmarks work.
+To follow through this section, it is advised to open an editor (like vscode) at the root of the template benchmark to easily navigate between the files and folders.</p>
+<p>Here is the architecture of our template benchmark (files which are not mandatory were ignored):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>template_benchmark
+├── datasets
+│   └── simulated.py
+├── solvers
+│   └── python-gd.py
+├── benchmark_utils
+│   └── __init__.py
+├── outputs
+│   └── ...
+├── objective.py
+├── README.rst
+</pre></div>
+</div>
+<p>The three most important files are</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">objective.py</span></code>: it contains the information about the cost function we want to minimize. In other words, it defines the formal problem we are interested in.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">solvers/python-gd.py</span></code>: it contains the information and code for the gradient descent solver, dedicated to the problem at hand.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datasets/simulated.py</span></code>: it contains the information about the dataset, i.e. the values of \(y \) and \(X \) used to test the algorithms. All benchmarks in fact must have a <code class="docutils literal notranslate"><span class="pre">simulated.py</span></code> file which is used for testing by Benchopt.</p></li>
+</ul>
+</div></blockquote>
+<p>Any benchmark must implement these three components; <strong>in Benchopt indeed we consider that objectives, solvers and dataset are the building blocks of any optimization problem</strong>.</p>
+<p>There can be several solvers in the <code class="docutils literal notranslate"><span class="pre">solvers/</span></code> directory, and similarly there can be several datasets in the <code class="docutils literal notranslate"><span class="pre">datasets/</span></code> directory.
+Benchopt will then run all the solvers for each dataset.
+The other files are not very important right now, let us forget about them.</p>
+<p>The content of <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>, <code class="docutils literal notranslate"><span class="pre">solvers</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset</span></code> is predetermined.
+In particular these three files each define a class inherited from Benchopt.
+The following figure details the methods that must be implemented in each file, and the order in which Benchopt will call these methods:</p>
+<figure class="align-default">
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg"><img alt="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg" src="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg" style="width: 800px;" />
+</a>
+</figure>
+<p>There are two kinds of contents.
+First, code that defines core elements of the problem:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code> method in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>. It implements the loss function. For the template benchmark, this is exactly \(g(\beta) \) when \( \beta \) is provided as input:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">@</span> <span class="n">beta</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="mf">.5</span> <span class="o">*</span> <span class="n">diff</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">run</span></code> method in each solver, here <code class="docutils literal notranslate"><span class="pre">python-gd</span></code>. It defines the steps taken by the algorithm. Benchopt dictates the maximal number of iterations to the solver, and therefore <code class="docutils literal notranslate"><span class="pre">run</span></code> takes the number of iterations as input while other parameters like the stepsize are class attributes. The estimated value of \(\beta \) is updated in the class attributes, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method does not require returns. For GD, the <code class="docutils literal notranslate"><span class="pre">run</span></code> function looks like</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_step</span> <span class="o">/</span> <span class="n">L</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+        <span class="n">beta</span> <span class="o">-=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">gradient_ols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>the <code class="docutils literal notranslate"><span class="pre">get_data</span></code> method in <code class="docutils literal notranslate"><span class="pre">simulated.py</span></code> where \(y \) and \(X \) are defined. In this template benchmark, they are simply generated randomly using numpy.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features</span><span class="p">)</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n_samples</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>The second type of methods found in these three python files are the <strong>communication</strong> tools.
+Indeed, solvers, dataset and objectives need to exchange information.
+Typically, the solver needs to know the parameters used for the loss, in our case the value of the regularization parameter.
+The objective needs to know the values of \( X\) and \( y\) defined in the dataset.
+This part of the benchmark can be hard to comprehend if you are not familiar with the structure of the benchmark, but the figure above should be a good reference point.
+When a method from a class feeds a method in another class, it returns a dictionary (such as <code class="docutils literal notranslate"><span class="pre">get_data</span></code> we just discussed), otherwise it simply updates the class attributes.</p>
+<p>Finally, one may wonder where to define the hyperparameters of the problem.
+The general rule of thumb is that hyperparameters are defined as attributes of solvers, objectives or dataset depending on where it makes the most sense.
+For instance the stepsize is a solver-dependent parameter, it is defined as an attribute of the <code class="docutils literal notranslate"><span class="pre">python-gd</span></code> solver</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt2:before {
+  content: " ";
+}
+</style><span class="prompt2"><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span></span>
+<span class="prompt2">    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;GD&quot;</span></span>
+<span class="prompt2">    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span></span>
+<span class="prompt2">        <span class="s1">&#39;scale_step&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">]</span></span>
+<span class="prompt2">    <span class="p">}</span></span>
+</pre></div></div></section>
+<section id="updating-the-template-to-implement-a-ridge-regression-benchmark">
+<h2>Updating the template to implement a ridge regression benchmark<a class="headerlink" href="#updating-the-template-to-implement-a-ridge-regression-benchmark" title="Link to this heading">#</a></h2>
+<p>We are now equipped with enough knowledge to update the template benchmark to a ridge regression benchmark.
+Formally, we are starting from OLS and GD implemented for the OLS problem.
+Therefore we need to implement the following modifications:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>we should add the regularization term \( +\lambda \|\beta \|^2 \) to the loss in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>, and values for the regularization parameter.</p></li>
+<li><p>we should modify the computed gradient, knowing that \( \nabla f(\beta) = \nabla g(\beta) + 2\lambda\beta \).</p></li>
+</ul>
+</div></blockquote>
+<p>We will not modify anything in the dataset since the inputs \(X,y \) of the regression and ridge regression are the same.</p>
+<p>Let’s start with the <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file.
+The regularization parameter values are part of the formal definition of the problem, so we can define them as attributes of the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class. In other words, we can simply add a <code class="docutils literal notranslate"><span class="pre">reg</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> dictionary to tell benchopt to grid over this parameter in the runs. The <code class="docutils literal notranslate"><span class="pre">whiten_y</span></code> parameter is not useful for us here, and we will remove the True option.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Ordinary Least Squares&quot;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;whiten_y&#39;</span><span class="p">:</span> <span class="p">[</span><span class="kc">False</span><span class="p">],</span>
+        <span class="s1">&#39;reg&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e1</span><span class="p">,</span> <span class="mf">1e2</span><span class="p">]</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>This piece of code says that \( \lambda\) should take two values, \( 10\) or \( 100\), in the benchmark.</p>
+<p>Then we update the <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code> method as follows:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+    <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+    <span class="n">l2reg</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="mf">.5</span> <span class="o">*</span> <span class="n">diff</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">diff</span><span class="p">)</span> <span class="o">+</span> <span class="n">l2reg</span><span class="p">,</span>
+        <span class="n">ols</span><span class="o">=</span><span class="mf">.5</span> <span class="o">*</span> <span class="n">diff</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">diff</span><span class="p">),</span>
+        <span class="n">penalty</span><span class="o">=</span><span class="n">l2reg</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>We have done several modifications here:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">l2reg</span></code> variable computes the regularization term. It is added to the OLS term in the <code class="docutils literal notranslate"><span class="pre">value</span></code> field of the output dictionary. This <code class="docutils literal notranslate"><span class="pre">value</span></code> field is the main loss of the benchmark, used by all algorithms to track convergence. In fact the naming convention here matters, by default the main loss must be named <code class="docutils literal notranslate"><span class="pre">value</span></code>.</p></li>
+<li><p>Additional metrics are computed, namely <code class="docutils literal notranslate"><span class="pre">ols</span></code> and <code class="docutils literal notranslate"><span class="pre">penalty</span></code>. Benchmark will compute these metrics alongside the loss function, and we will be able to look at them in the resulting plots.</p></li>
+</ul>
+</div></blockquote>
+<p>One additional modification handles the fact that the solvers will require the knowledge of \(\lambda\).
+The way to communicate from objectives to solvers, according to the figure above, is by using the <code class="docutils literal notranslate"><span class="pre">get_objective</span></code> method.
+It can be modified as follows</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span>
+        <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span>
+        <span class="n">reg</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>Moreover we should also change the name of the objective from <code class="docutils literal notranslate"><span class="pre">Ordinary</span> <span class="pre">Least</span> <span class="pre">Squares</span></code> to <code class="docutils literal notranslate"><span class="pre">Ridge</span> <span class="pre">Regression</span></code> in the attributes of the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Ridge Regression&#39;</span>
+</pre></div>
+</div>
+<p>That’s it for the <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file! We can now modify the solver. For simplicity we may directly edit <code class="docutils literal notranslate"><span class="pre">python-gd.py</span></code>, but adding a new solver to the benchmark is as simple as adding another file in the solvers folder (more information in the <a class="reference external" href="https://benchopt.github.io/tutorials/add_solver.html">add a solver tutorial</a>).</p>
+<p>Modifying the solver means updating the <code class="docutils literal notranslate"><span class="pre">run</span></code> method, more specifically the gradient formula.
+Inside the <code class="docutils literal notranslate"><span class="pre">python-gd.py</span></code> file, the new <code class="docutils literal notranslate"><span class="pre">run</span></code> method looks like this</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">scale_step</span> <span class="o">/</span> <span class="n">L</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+        <span class="n">beta</span> <span class="o">-=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="p">(</span><span class="n">gradient_ols</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">beta</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">reg</span><span class="o">*</span><span class="n">beta</span><span class="p">)</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="n">beta</span>
+</pre></div>
+</div>
+<p>Note that we are using <code class="docutils literal notranslate"><span class="pre">self.reg</span></code> as the value of \( \lambda \).
+To get this value from the <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file, we need to update the <code class="docutils literal notranslate"><span class="pre">set_objective</span></code> method, which is the counterpart of <code class="docutils literal notranslate"><span class="pre">get_objective</span></code> we just updated in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span>
+</pre></div>
+</div>
+<p>As a final step, because the goal of this benchmark is to look at GD performance for various hyperparameters, and in particular the stepsize, we are interested in setting the stepsize grid. The values taken by the stepsize are defined as attributes of the solver GD class, since they are parameters of the solver.
+Let us add scaled values 0.1 and 0.5 to the stepsize grid.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;GD&#39;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;scale_step&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mf">1.99</span><span class="p">],</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>And that’s it, you now have your first benchmark setup! Congratulations :)</p>
+<p>All that’s left is to run the benchmark and look at the results.
+We run the benchopt with the same command as earlier, in the parent directory of the template benchmark:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>my_benchmark</span>
+</pre></div></div><p>Notice how the prompt in the terminal now contains logging for the GD algorithm with each stepsize 0.1, 0.5, 1 and 1.99.</p>
+<figure class="align-default" id="id2">
+<a class="reference internal image-reference" href="../_images/console_ridge.png"><img alt="../_images/console_ridge.png" src="../_images/console_ridge.png" style="width: 600px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Screenshot of the console after running the updated benchmark.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>Upon completion of the run, you should again have all the results collected in a new interactive window in your default web navigator.
+There is a lot of interesting information contained in these results.
+For instance, select the following plotting options:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Simulated[n_features=500, n_samples=1000]</p></li>
+<li><p>Ridge Regression[reg=10.0, whiten_y=False]</p></li>
+<li><p>objective_value</p></li>
+<li><p>suboptimality_curve</p></li>
+<li><p>semilog-y</p></li>
+<li><p>iteration</p></li>
+</ul>
+</div></blockquote>
+<p>You should see the following plot (click image to zoom).</p>
+<figure class="align-default" id="id3">
+<a class="reference internal image-reference" href="../_images/screenshot_mytemplate_ridgeloss.png"><img alt="../_images/screenshot_mytemplate_ridgeloss.png" src="../_images/screenshot_mytemplate_ridgeloss.png" style="width: 800px;" />
+</a>
+<figcaption>
+<p><span class="caption-text">Screenshot of the results computed by benchopt, shown in the default navigator. Plotting options can be manually changed in the left part of the window.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>We may observe that the GD-ridge with <code class="docutils literal notranslate"><span class="pre">stepsize=1</span></code> reaches a low cost value faster than when using smaller or larger stepsize. This is expected since the stepsize has been scaled optimally according to the theory of convex optimization, and therefore <code class="docutils literal notranslate"><span class="pre">stepsize=1</span></code> is in principle the fastest safe step.</p>
+<p>One of the interesting features of Benchopt is its ability to easily compute and show several metrics over the run.
+We have computed the ridge penalization alongside the iterations, and we can observe its values by changing the <code class="docutils literal notranslate"><span class="pre">Objective_column</span></code> field to <code class="docutils literal notranslate"><span class="pre">objective_penalty</span></code>. For better visualisation, you may change the <code class="docutils literal notranslate"><span class="pre">Scale</span></code> field to  <code class="docutils literal notranslate"><span class="pre">semilog-x</span></code>. Observe that the ridge regularisation term increases with the iterations. Again this is expected since we initialized GD with a null vector for which the Euclidean norm is zero.</p>
+</section>
+<section id="concluding-remarks">
+<h2>Concluding remarks<a class="headerlink" href="#concluding-remarks" title="Link to this heading">#</a></h2>
+<p>Thank you for completing this tutorial! Hopefully your understanding of Benchopt benchmark is now sufficient to start your own benchmark. You may find more information in the online documentation about <a class="reference external" href="https://benchopt.github.io/benchmark_workflow/write_benchmark.html">writing a benchmark</a>. Moreover, there are a lot of other interesting features to Benchopt, feel free to go over the online documentation to learn more about <a class="reference external" href="https://benchopt.github.io/user_guide/CLI_ref.html">Command Line Interface</a>, <a class="reference external" href="https://benchopt.github.io/benchmark_workflow/publish_benchmark.html">publishing benchmark results</a>, or <a class="reference external" href="https://benchopt.github.io/benchmark_workflow/config_benchopt.html">configuring Benchopt</a>.</p>
+<p>As a final word, for simplicity, the way we cloned the template_benchmark repository to create our benchmark slightly differs from the recommended procedure. Instead, to start you benchmark, follow the instructions found in the <a class="reference external" href="https://github.com/benchopt/template_benchmark">README.rst file</a>.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Tutorials</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="add_solver.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Add a solver to an existing benchmark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-benchopt">Installing Benchopt</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-and-running-a-first-benchmark">Installing and running a first benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exploring-the-benchmark-structure">Exploring the benchmark structure</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#updating-the-template-to-implement-a-ridge-regression-benchmark">Updating the template to implement a ridge regression benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#concluding-remarks">Concluding remarks</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+
+<script>
+fetch("../../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = "/" + name + "/";
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = "/" + v + "/";
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = select.value;
+    };
+  });
+</script>
+
+
+  <footer class="bd-footer">
+  </footer>
+
+  </body>
+</html>
