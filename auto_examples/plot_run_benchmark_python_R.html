@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Demo benchmark with R/Python &#8212; benchopt 1.7.1.dev3 documentation</title>
+    <title>Demo benchmark with R/Python &#8212; benchopt 1.7.1.dev7 documentation</title>
   
   
   
@@ -16,20 +16,22 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
-
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -38,12 +40,13 @@
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
-    <script src="../_static/documentation_options.js?v=f2280a00"></script>
+    <script src="../_static/documentation_options.js?v=704908b7"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -56,6 +59,7 @@
     <link rel="search" title="Search" href="../search.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.1.dev7" />
   </head>
   
   
@@ -71,19 +75,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -91,7 +84,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -99,8 +91,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -116,7 +108,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -146,10 +139,10 @@
     
     
     <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
-    <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
   
   
-    <p class="title logo__title">1.7.1.dev3</p>
+    <p class="title logo__title">1.7.1.dev7</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -160,7 +153,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -276,24 +268,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 
 </div></div>
       
@@ -337,60 +321,61 @@ to download the full example code.</p>
 <li><img src="../_images/sphx_glr_plot_run_benchmark_python_R_008.png" srcset="../_images/sphx_glr_plot_run_benchmark_python_R_008.png" alt="Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]" class = "sphx-glr-multi-img"/></li>
 <li><img src="../_images/sphx_glr_plot_run_benchmark_python_R_009.png" srcset="../_images/sphx_glr_plot_run_benchmark_python_R_009.png" alt="Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]" class = "sphx-glr-multi-img"/></li>
 </ul>
-<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Simulated[n_features=5000,n_samples=100,rho=0]
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;BASH_FUNC_blame%%&quot; redefined by R and overriding existing variable. Current: &quot;() {  RESSOURCE=${1:-cpu};
+ if [[ &quot;$RESSOURCE&quot; == &quot;memory&quot; ]]; then
+ col=10;
+ else
+ if [[ &quot;$RESSOURCE&quot; == &quot;cpu&quot; ]]; then
+ col=9;
+ fi;
+ fi;
+ for user in $(top -bn 1 | awk &#39;NR&gt;7 { if ($2 !~ /\+/) print $2; }&#39; | sort -u);
+ do
+ top -b -n 1 -u &quot;$user&quot; | awk -v user=&quot;$user&quot; -v col=&quot;$col&quot; &#39;NR&gt;7 { gsub ( &quot;,&quot;, &quot;.&quot;, $col); sum += $col ; } END { if (sum &gt; 0.0){ if (col == 9) print user, sum / 100. &quot; cores &quot;; else print user, sum &quot;%&quot;;}}&#39;;
+ done
+}&quot;, R: &quot;() {  RESSOURCE=${1:-cpu}; if [[ &quot;$RESSOURCE&quot; == &quot;memory&quot; ]]; then col=10; else if [[ &quot;$RESSOURCE&quot; == &quot;cpu&quot; ]]; then col=9; fi; fi; for user in $(top -bn 1 | awk &#39;NR&gt;7 { if ($2 !~ /\+/) print $2; }&#39; | sort -u); do top -b -n 1 -u &quot;$user&quot; | awk -v user=&quot;$user&quot; -v col=&quot;$col&quot; &#39;NR&gt;7 { gsub ( &quot;,&quot;, &quot;.&quot;, $col); sum += $col ; } END { if (sum &gt; 0.0){ if (col == 9) print user, sum / 100. &quot; cores &quot;; else print user, sum &quot;%&quot;;}}&#39;; done}&quot;
+  warnings.warn(
+/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;BASH_FUNC_git_add_images%%&quot; redefined by R and overriding existing variable. Current: &quot;() {  main_tex=${1:-main.tex};
+ image_dir=${2:-images};
+ [[ -f &quot;$main_tex&quot; ]] || ( echo &quot;main file &#39;$main_tex&#39; does not exist&quot; &amp;&amp; return 1 );
+ [[ -d &quot;$image_dir&quot; ]] || ( echo &quot;images dir &#39;$image_dir&#39; does not exist&quot; &amp;&amp; return 1 );
+ for f in $images_dir/*;
+ do
+ [[ -d $f ]] &amp;&amp; continue;
+ basename=$(echo $f | sed &#39;s|images/\(.*\)\..\+|\1|&#39;);
+ grep --color=auto $basename $main_tex -q &amp;&amp; git add $f || git rm $f;
+ done
+}&quot;, R: &quot;() {  main_tex=${1:-main.tex}; image_dir=${2:-images}; [[ -f &quot;$main_tex&quot; ]] || ( echo &quot;main file &#39;$main_tex&#39; does not exist&quot; &amp;&amp; return 1 ); [[ -d &quot;$image_dir&quot; ]] || ( echo &quot;images dir &#39;$image_dir&#39; does not exist&quot; &amp;&amp; return 1 ); for f in $images_dir/*; do [[ -d $f ]] &amp;&amp; continue; basename=$(echo $f | sed &#39;s|images/\(.*\)\..\+|\1|&#39;); grep --color=auto $basename $main_tex -q &amp;&amp; git add $f || git rm $f; done}&quot;
+  warnings.warn(
+/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;PWD&quot; redefined by R and overriding existing variable. Current: &quot;/home/tom/Work/prog/benchopt/doc&quot;, R: &quot;/home/tom/Work/prog/benchopt/examples&quot;
+  warnings.warn(
+/home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable &quot;R_SESSION_TMPDIR&quot; redefined by R and overriding existing variable. Current: &quot;/tmp/RtmphKg89x&quot;, R: &quot;/tmp/Rtmpeuq70Q&quot;
+  warnings.warn(
+Simulated[n_features=5000,n_samples=100,rho=0]
   |--Lasso Regression[fit_intercept=False,reg=0.5]
     |--Python-PGD[use_acceleration=False]: done
-Failed to import Solver from /home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py. Please fix the following error to use this file with benchopt:
-Traceback (most recent call last):
-  File &quot;/home/circleci/project/benchopt/utils/dynamic_modules.py&quot;, line 86, in _load_class_from_module
-    module = _get_module_from_file(module_filename, benchmark_dir)
-  File &quot;/home/circleci/project/benchopt/utils/dynamic_modules.py&quot;, line 52, in _get_module_from_file
-    spec.loader.exec_module(module)
-  File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 883, in exec_module
-  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 241, in _call_with_frames_removed
-  File &quot;/home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py&quot;, line 16, in &lt;module&gt;
-    numpy2ri.activate()
-  File &quot;/home/circleci/miniconda/lib/python3.10/site-packages/rpy2/robjects/numpy2ri.py&quot;, line 267, in activate
-    raise DeprecationWarning(_DEPRECATION_MSG)
-DeprecationWarning:
-The activate and deactivate are deprecated. To set a conversion
-context check the docstring for rpy2.robjects.conversion.Converter.context.
-
-
-    |--R-PGD: not installed
-Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-24_22h28m22.parquet
-Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_objective_curve.pdf
-Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_support_size_objective_curve.pdf
-Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_duality_gap_objective_curve.pdf
-Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_suboptimality_curve.pdf
-Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_relative_suboptimality_curve.pdf
-Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_bar_chart.pdf
-/home/circleci/project/benchopt/plotting/plot_boxplot.py:72: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  .groupby(&#39;idx_rep&#39;).apply(
-/home/circleci/project/benchopt/plotting/plot_boxplot.py:78: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  .groupby(&#39;idx_rep&#39;).apply(
-Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_boxplot.pdf
-/home/circleci/project/benchopt/plotting/plot_boxplot.py:72: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  .groupby(&#39;idx_rep&#39;).apply(
-/home/circleci/project/benchopt/plotting/plot_boxplot.py:78: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  .groupby(&#39;idx_rep&#39;).apply(
-Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_support_size_boxplot.pdf
-/home/circleci/project/benchopt/plotting/plot_boxplot.py:72: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  .groupby(&#39;idx_rep&#39;).apply(
-/home/circleci/project/benchopt/plotting/plot_boxplot.py:78: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-  .groupby(&#39;idx_rep&#39;).apply(
-Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_duality_gap_boxplot.pdf
+    |--R-PGD: done (timeout)
+Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-25_09h28m56.parquet
+Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_objective_curve.pdf
+Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_support_size_objective_curve.pdf
+Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_duality_gap_objective_curve.pdf
+Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_suboptimality_curve.pdf
+Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_relative_suboptimality_curve.pdf
+Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_bar_chart.pdf
+Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_boxplot.pdf
+Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_support_size_boxplot.pdf
+Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_duality_gap_boxplot.pdf
 </pre></div>
 </div>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.benchmark</span><span class="w"> </span><span class="kn">import</span> <span class="n">Benchmark</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.plotting</span><span class="w"> </span><span class="kn">import</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">,</span> <span class="n">PLOT_KINDS</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.plotting.plot_objective_curve</span><span class="w"> </span><span class="kn">import</span> <span class="n">reset_solver_styles_idx</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a>
+<span class="kn">from</span> <span class="nn">benchopt.benchmark</span> <span class="kn">import</span> <span class="n">Benchmark</span>
+<span class="kn">from</span> <span class="nn">benchopt.plotting</span> <span class="kn">import</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">,</span> <span class="n">PLOT_KINDS</span>
+<span class="kn">from</span> <span class="nn">benchopt.plotting.plot_objective_curve</span> <span class="kn">import</span> <span class="n">reset_solver_styles_idx</span>
 
 
 <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">BENCHMARK_PATH</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class"><span class="n">Path</span></a><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;benchmarks&#39;</span> <span class="o">/</span> <span class="s1">&#39;benchmark_lasso&#39;</span>
@@ -421,7 +406,7 @@ Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_sampl
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.948 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 3.421 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/dc84f98e56bc6933a9be8456166d8561/plot_run_benchmark_python_R.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark_python_R.ipynb</span></code></a></p>
@@ -497,10 +482,47 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+
+<script>
+fetch("../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = "/" + name + "/";
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = "/" + v + "/";
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = select.value;
+    };
+  });
+</script>
+
 
   <footer class="bd-footer">
   </footer>
+
   </body>
 </html>

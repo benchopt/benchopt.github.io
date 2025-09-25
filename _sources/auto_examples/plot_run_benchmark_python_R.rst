@@ -97,49 +97,50 @@ Demo benchmark with R/Python
 
  .. code-block:: none
 
-    Simulated[n_features=5000,n_samples=100,rho=0]
-      |--Lasso Regression[fit_intercept=False,reg=0.5]
-        |--Python-PGD[use_acceleration=False]: done
-    Failed to import Solver from /home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py. Please fix the following error to use this file with benchopt:
-    Traceback (most recent call last):
-      File "/home/circleci/project/benchopt/utils/dynamic_modules.py", line 86, in _load_class_from_module
-        module = _get_module_from_file(module_filename, benchmark_dir)
-      File "/home/circleci/project/benchopt/utils/dynamic_modules.py", line 52, in _get_module_from_file
-        spec.loader.exec_module(module)
-      File "<frozen importlib._bootstrap_external>", line 883, in exec_module
-      File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
-      File "/home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py", line 16, in <module>
-        numpy2ri.activate()
-      File "/home/circleci/miniconda/lib/python3.10/site-packages/rpy2/robjects/numpy2ri.py", line 267, in activate
-        raise DeprecationWarning(_DEPRECATION_MSG)
-    DeprecationWarning: 
-    The activate and deactivate are deprecated. To set a conversion
-    context check the docstring for rpy2.robjects.conversion.Converter.context.
-
-
-        |--R-PGD: not installed
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-24_22h28m22.parquet
-    Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_objective_curve.pdf
-    Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_support_size_objective_curve.pdf
-    Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_duality_gap_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_relative_suboptimality_curve.pdf
-    Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_bar_chart.pdf
-    /home/circleci/project/benchopt/plotting/plot_boxplot.py:72: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-      .groupby('idx_rep').apply(
-    /home/circleci/project/benchopt/plotting/plot_boxplot.py:78: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-      .groupby('idx_rep').apply(
-    Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_value_boxplot.pdf
-    /home/circleci/project/benchopt/plotting/plot_boxplot.py:72: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-      .groupby('idx_rep').apply(
-    /home/circleci/project/benchopt/plotting/plot_boxplot.py:78: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-      .groupby('idx_rep').apply(
-    Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_support_size_boxplot.pdf
-    /home/circleci/project/benchopt/plotting/plot_boxplot.py:72: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-      .groupby('idx_rep').apply(
-    /home/circleci/project/benchopt/plotting/plot_boxplot.py:78: FutureWarning: DataFrameGroupBy.apply operated on the grouping columns. This behavior is deprecated, and in a future version of pandas the grouping columns will be excluded from the operation. Either pass `include_groups=False` to exclude the groupings or explicitly select the grouping columns after groupby to silence this warning.
-      .groupby('idx_rep').apply(
-    Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/1dff79120c8bce501fb47423cf47baa3_objective_duality_gap_boxplot.pdf
+    /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "BASH_FUNC_blame%%" redefined by R and overriding existing variable. Current: "() {  RESSOURCE=${1:-cpu};
+     if [[ "$RESSOURCE" == "memory" ]]; then
+     col=10;
+     else
+     if [[ "$RESSOURCE" == "cpu" ]]; then
+     col=9;
+     fi;
+     fi;
+     for user in $(top -bn 1 | awk 'NR>7 { if ($2 !~ /\+/) print $2; }' | sort -u);
+     do
+     top -b -n 1 -u "$user" | awk -v user="$user" -v col="$col" 'NR>7 { gsub ( ",", ".", $col); sum += $col ; } END { if (sum > 0.0){ if (col == 9) print user, sum / 100. " cores "; else print user, sum "%";}}';
+     done
+    }", R: "() {  RESSOURCE=${1:-cpu}; if [[ "$RESSOURCE" == "memory" ]]; then col=10; else if [[ "$RESSOURCE" == "cpu" ]]; then col=9; fi; fi; for user in $(top -bn 1 | awk 'NR>7 { if ($2 !~ /\+/) print $2; }' | sort -u); do top -b -n 1 -u "$user" | awk -v user="$user" -v col="$col" 'NR>7 { gsub ( ",", ".", $col); sum += $col ; } END { if (sum > 0.0){ if (col == 9) print user, sum / 100. " cores "; else print user, sum "%";}}'; done}"
+      warnings.warn(
+    /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "BASH_FUNC_git_add_images%%" redefined by R and overriding existing variable. Current: "() {  main_tex=${1:-main.tex};
+     image_dir=${2:-images};
+     [[ -f "$main_tex" ]] || ( echo "main file '$main_tex' does not exist" && return 1 );
+     [[ -d "$image_dir" ]] || ( echo "images dir '$image_dir' does not exist" && return 1 );
+     for f in $images_dir/*;
+     do
+     [[ -d $f ]] && continue;
+     basename=$(echo $f | sed 's|images/\(.*\)\..\+|\1|');
+     grep --color=auto $basename $main_tex -q && git add $f || git rm $f;
+     done
+    }", R: "() {  main_tex=${1:-main.tex}; image_dir=${2:-images}; [[ -f "$main_tex" ]] || ( echo "main file '$main_tex' does not exist" && return 1 ); [[ -d "$image_dir" ]] || ( echo "images dir '$image_dir' does not exist" && return 1 ); for f in $images_dir/*; do [[ -d $f ]] && continue; basename=$(echo $f | sed 's|images/\(.*\)\..\+|\1|'); grep --color=auto $basename $main_tex -q && git add $f || git rm $f; done}"
+      warnings.warn(
+    /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "PWD" redefined by R and overriding existing variable. Current: "/home/tom/Work/prog/benchopt/doc", R: "/home/tom/Work/prog/benchopt/examples"
+      warnings.warn(
+    /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "R_SESSION_TMPDIR" redefined by R and overriding existing variable. Current: "/tmp/RtmphKg89x", R: "/tmp/Rtmpeuq70Q"
+      warnings.warn(
+    Simulated[n_features=5000,n_samples=100,rho=0]                                                          
+      |--Lasso Regression[fit_intercept=False,reg=0.5]                                                      
+        |--Python-PGD[use_acceleration=False]: done                                                         
+        |--R-PGD: done (timeout)                                                                            
+    Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-25_09h28m56.parquet
+    Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_support_size_objective_curve.pdf
+    Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_duality_gap_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_relative_suboptimality_curve.pdf
+    Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_bar_chart.pdf
+    Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_value_boxplot.pdf
+    Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_support_size_boxplot.pdf
+    Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/04448a7cd8c11710469d96c7ce4ed5b9_objective_duality_gap_boxplot.pdf
 
 
 
@@ -189,7 +190,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 7.948 seconds)
+   **Total running time of the script:** (0 minutes 3.421 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:

@@ -1,5 +1,6 @@
 
-DEST=$1
+SRC=$1
+DEST=$2
 
 # copying the current doc to its destination
 rm -rf "$DEST"
