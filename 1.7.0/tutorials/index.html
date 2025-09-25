@@ -419,7 +419,7 @@ fetch("../../versions.json")
     // Then all versions
     data.versions.forEach(v => {
       const opt = document.createElement("option");
-      opt.value = "/" + v + "/";
+      opt.value = v;
       opt.text = v;
       if (current === v) opt.selected = true;
       select.appendChild(opt);
