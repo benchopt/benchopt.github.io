@@ -125,7 +125,7 @@ Demo benchmark with R/Python
       warnings.warn(
     /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "PWD" redefined by R and overriding existing variable. Current: "/home/tom/Work/prog/benchopt/doc", R: "/home/tom/Work/prog/benchopt/examples"
       warnings.warn(
-    /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "R_SESSION_TMPDIR" redefined by R and overriding existing variable. Current: "/tmp/Rtmpitn3A3", R: "/tmp/Rtmp8c8X7U"
+    /home/tom/.local/miniconda/lib/python3.12/site-packages/rpy2/rinterface/__init__.py:1211: UserWarning: Environment variable "R_SESSION_TMPDIR" redefined by R and overriding existing variable. Current: "/tmp/RtmpG49nN0", R: "/tmp/RtmpAUMNzl"
       warnings.warn(
     Simulated[n_features=5000,n_samples=100,rho=0]                                                          
       |--Lasso Regression[fit_intercept=False,reg=0.5]                                                      
@@ -147,7 +147,7 @@ Demo benchmark with R/Python
     ModuleNotFoundError: No module named 'spams'
 
         |--R-PGD: not installed                                                                             
-    Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-25_09h12m19.parquet
+    Saving result in: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-09-25_11h22m29.parquet
     Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_support_size_objective_curve.pdf
     Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/tom/Work/prog/benchopt/benchmarks/benchmark_lasso/outputs/2af7dcbf2df6f8e0e43f36411ae0b7e2_objective_duality_gap_objective_curve.pdf
@@ -206,7 +206,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 4.697 seconds)
+   **Total running time of the script:** (0 minutes 5.130 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
