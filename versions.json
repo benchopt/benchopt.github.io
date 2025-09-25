@@ -1,5 +1,5 @@
 {
               "stable": "stable",
               "dev": "dev",
-              "versions": ["versions.json"]
+              "versions": ["deploy.sh"]
 }

@@ -1,0 +1,1323 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Index &#8212; benchopt 1.7.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=62544db9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=30646c52"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'genindex';</script>
+    <link rel="icon" href="_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="#" />
+    <link rel="search" title="Search" href="search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+
+<h1 id="index">Index</h1>
+
+<div class="genindex-jumpbox">
+ <a href="#Symbols"><strong>Symbols</strong></a>
+ | <a href="#B"><strong>B</strong></a>
+ | <a href="#D"><strong>D</strong></a>
+ | <a href="#E"><strong>E</strong></a>
+ | <a href="#G"><strong>G</strong></a>
+ | <a href="#M"><strong>M</strong></a>
+ | <a href="#P"><strong>P</strong></a>
+ | <a href="#R"><strong>R</strong></a>
+ | <a href="#S"><strong>S</strong></a>
+ | <a href="#W"><strong>W</strong></a>
+ 
+</div>
+<h2 id="Symbols">Symbols</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --all
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-all">benchopt-plot command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --append
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-set-a">benchopt-config-set command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --benchmark
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-b">benchopt-config command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-b">benchopt-generate-results command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --check-editable
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-check-editable">benchopt command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --collect
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-collect">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --config
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-config">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-config">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --dataset
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-d">benchopt-info command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-d">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-d">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --display
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-display">benchopt-generate-results command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-display">benchopt-plot command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-display">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --download
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-download">benchopt-install command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --env
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-e">benchopt-info command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-e">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-e">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --env-name
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-env-name">benchopt-info command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-env-name">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-env-name">benchopt-run command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-test-env-name">benchopt-test command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --filename
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-clean-f">benchopt-clean command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-f">benchopt-plot command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-f">benchopt-publish command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --force
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-f">benchopt-install command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --force-solver
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-f">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --html
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-html">benchopt-plot command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-html">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --kind
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-k">benchopt-plot command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --local
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-l">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --max-runs
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-n">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --minimal
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-minimal">benchopt-install command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --n-jobs
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-j">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --n-repetitions
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-r">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --no-display
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-display">benchopt-generate-results command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-display">benchopt-plot command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-display">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --no-html
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-html">benchopt-plot command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-html">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --no-plot
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-plot">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --no-timeout
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-no-timeout">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --objective
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-o">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --output
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-output">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --pattern
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-k">benchopt-generate-results command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --pdb
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-pdb">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --plot
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-plot">benchopt-run command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    --plotly
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-plotly">benchopt-plot command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --profile
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-profile">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --quiet
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-q">benchopt-install command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --recreate
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-recreate">benchopt-install command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --root
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-root">benchopt-generate-results command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --slurm
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-slurm">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --solver
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-s">benchopt-info command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-s">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-s">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --timeout
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-timeout">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --token
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-t">benchopt-publish command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --verbose
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-v">benchopt-info command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --version
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-v">benchopt command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --with-outputs
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-archive-with-outputs">benchopt-archive command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --yes
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-y">benchopt-install command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -a
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-set-a">benchopt-config-set command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -b
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-b">benchopt-config command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-b">benchopt-generate-results command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -d
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-d">benchopt-info command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-d">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-d">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -e
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-e">benchopt-info command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-e">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-e">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -f
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-clean-f">benchopt-clean command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-f">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-f">benchopt-plot command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-f">benchopt-publish command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-f">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -j
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-j">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -k
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-k">benchopt-generate-results command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-k">benchopt-plot command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -l
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-l">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -n
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-n">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -o
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-o">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -q
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-q">benchopt-install command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -r
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-r">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -s
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-s">benchopt-info command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-s">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-s">benchopt-run command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -t
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-t">benchopt-publish command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -v
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-v">benchopt command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-v">benchopt-info command line option</a>
+</li>
+      </ul></li>
+      <li>
+    -y
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-y">benchopt-install command line option</a>
+</li>
+      </ul></li>
+      <li>
+    &lt;name&gt;
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-get-arg-name">benchopt-config-get command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-set-arg-name">benchopt-config-set command line option</a>
+</li>
+      </ul></li>
+      <li>
+    &lt;val&gt;
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-set-arg-val">benchopt-config-set command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="B">B</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset">BaseDataset (class in benchopt)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective">BaseObjective (class in benchopt)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver">BaseSolver (class in benchopt)</a>
+</li>
+      <li>
+    BENCHMARK
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-archive-arg-BENCHMARK">benchopt-archive command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-clean-arg-BENCHMARK">benchopt-clean command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-arg-BENCHMARK">benchopt-info command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-arg-BENCHMARK">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-arg-BENCHMARK">benchopt-plot command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-arg-BENCHMARK">benchopt-publish command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-arg-BENCHMARK">benchopt-run command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-test-arg-BENCHMARK">benchopt-test command line option</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt
+
+      <ul>
+        <li><a href="user_guide/API_ref.html#module-benchopt">module</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-check-editable">--check-editable</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-v">--version</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-v">-v</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-archive command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-archive-with-outputs">--with-outputs</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-archive-arg-BENCHMARK">BENCHMARK</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-clean command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-clean-f">--filename</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-clean-f">-f</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-clean-arg-BENCHMARK">BENCHMARK</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-config command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-b">--benchmark</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-b">-b</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-config-get command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-get-arg-name">&lt;name&gt;</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-config-set command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-set-a">--append</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-set-a">-a</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-set-arg-name">&lt;name&gt;</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-config-set-arg-val">&lt;val&gt;</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-generate-results command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-b">--benchmark</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-display">--display</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-display">--no-display</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-k">--pattern</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-root">--root</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-b">-b</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-generate-results-k">-k</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-info command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-d">--dataset</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-e">--env</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-env-name">--env-name</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-s">--solver</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-v">--verbose</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-d">-d</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-e">-e</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-s">-s</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-v">-v</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-arg-BENCHMARK">BENCHMARK</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-install command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-config">--config</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-d">--dataset</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-download">--download</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-e">--env</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-env-name">--env-name</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-f">--force</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-minimal">--minimal</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-q">--quiet</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-recreate">--recreate</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-s">--solver</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-y">--yes</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-d">-d</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-e">-e</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-f">-f</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-q">-q</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-s">-s</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-y">-y</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-arg-BENCHMARK">BENCHMARK</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    benchopt-plot command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-all">--all</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-display">--display</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-f">--filename</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-html">--html</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-k">--kind</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-display">--no-display</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-html">--no-html</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-plotly">--plotly</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-f">-f</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-k">-k</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-arg-BENCHMARK">BENCHMARK</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-publish command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-f">--filename</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-t">--token</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-f">-f</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-t">-t</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-arg-BENCHMARK">BENCHMARK</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-run command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-collect">--collect</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-config">--config</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-d">--dataset</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-display">--display</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-e">--env</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-env-name">--env-name</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-f">--force-solver</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-html">--html</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-l">--local</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-n">--max-runs</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-j">--n-jobs</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-r">--n-repetitions</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-display">--no-display</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-html">--no-html</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-plot">--no-plot</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-no-timeout">--no-timeout</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-o">--objective</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-output">--output</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-pdb">--pdb</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-plot">--plot</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-profile">--profile</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-slurm">--slurm</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-s">--solver</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-timeout">--timeout</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-d">-d</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-e">-e</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-f">-f</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-j">-j</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-l">-l</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-n">-n</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-o">-o</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-r">-r</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-s">-s</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-arg-BENCHMARK">BENCHMARK</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-test command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-test-env-name">--env-name</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-test-arg-BENCHMARK">BENCHMARK</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-test-arg-PYTEST_ARGS">PYTEST_ARGS</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="D">D</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="benchmark_workflow/config_benchopt.html#benchopt.config.DEFAULT_BENCHMARK_CONFIG">DEFAULT_BENCHMARK_CONFIG (in module benchopt.config)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="benchmark_workflow/config_benchopt.html#benchopt.config.DEFAULT_GLOBAL_CONFIG">DEFAULT_GLOBAL_CONFIG (in module benchopt.config)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="E">E</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.evaluate_result">evaluate_result() (benchopt.BaseObjective method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset.get_data">get_data() (benchopt.BaseDataset method)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.get_objective">get_objective() (benchopt.BaseObjective method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.get_one_result">get_one_result() (benchopt.BaseObjective method)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.get_result">get_result() (benchopt.BaseSolver method)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.get_split">get_split() (benchopt.BaseObjective method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="M">M</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html#benchopt.datasets.simulated.make_correlated_data">make_correlated_data() (in module benchopt.datasets.simulated)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    module
+
+      <ul>
+        <li><a href="user_guide/API_ref.html#module-benchopt">benchopt</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="P">P</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark">plot_benchmark() (in module benchopt.plotting)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.pre_run_hook">pre_run_hook() (benchopt.BaseSolver method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.utils.profile.html#benchopt.utils.profile">profile() (in module benchopt.utils)</a>
+</li>
+      <li>
+    PYTEST_ARGS
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-test-arg-PYTEST_ARGS">benchopt-test command line option</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="R">R</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.run">run() (benchopt.BaseSolver method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark">run_benchmark() (in module benchopt)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.run_once">run_once() (benchopt.BaseSolver method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="S">S</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.safe_import_context.html#benchopt.safe_import_context">safe_import_context (class in benchopt)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.save_final_results">save_final_results() (benchopt.BaseObjective method)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.set_data">set_data() (benchopt.BaseObjective method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.set_objective">set_objective() (benchopt.BaseSolver method)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip">skip() (benchopt.BaseObjective method)</a>
+
+      <ul>
+        <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip">(benchopt.BaseSolver method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.warm_up">warm_up() (benchopt.BaseSolver method)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

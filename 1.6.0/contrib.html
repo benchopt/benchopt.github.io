@@ -1,0 +1,566 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>How to contribute &#8212; benchopt 1.7.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="_static/documentation_options.js?v=62544db9"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=30646c52"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contrib';</script>
+    <link rel="icon" href="_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="What’s new" href="whats_new.html" />
+    <link rel="prev" title="Available benchmarks" href="available_benchmarks.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>How to contribute</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-report-and-feature-request">Bug report and feature request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-contribution">Code contribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-a-benchmark">Testing a benchmark</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-philosophy">Basic philosophy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-for-solver-run">Test for Solver run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-configuration">Test configuration</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="how-to-contribute">
+<span id="contrib-doc"></span><h1>How to contribute<a class="headerlink" href="#how-to-contribute" title="Link to this heading">#</a></h1>
+<section id="bug-report-and-feature-request">
+<h2>Bug report and feature request<a class="headerlink" href="#bug-report-and-feature-request" title="Link to this heading">#</a></h2>
+<p>We use benchopt <a class="reference external" href="https://github.com/benchopt/benchopt/issues">GitHub repo</a> to track all bugs and feature requests; feel free to open
+an issue if you have found a bug or wish to see a feature implemented.</p>
+</section>
+<section id="code-contribution">
+<h2>Code contribution<a class="headerlink" href="#code-contribution" title="Link to this heading">#</a></h2>
+<p>The preferred way to contribute to benchopt is to fork the <a class="reference external" href="https://github.com/benchopt/benchopt/">main
+repository</a> on GitHub,
+then submit a “Pull Request” (PR).</p>
+<p>In the first few steps, we explain how to locally install benchopt, and
+how to set up your git repository:</p>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://github.com/join">Create an account</a> on
+GitHub if you do not already have one.</p></li>
+<li><p>Fork the <a class="reference external" href="https://github.com/benchopt/benchopt">project repository</a>: click on the ‘Fork’
+button near the top of the page. This creates a copy of the code under your
+account on the GitHub user account. For more details on how to fork a
+repository see <a class="reference external" href="https://help.github.com/articles/fork-a-repo/">this guide</a>.</p></li>
+<li><p>Clone your fork of the benchopt repo from your GitHub account to your
+local disk:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>git@github.com:YourLogin/benchopt.git</span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>benchopt</span>
+</pre></div></div></li>
+</ol>
+<ol class="arabic" id="upstream" start="4">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">upstream</span></code> remote. This saves a reference to the main
+benchopt repository, which you can use to keep your repository
+synchronized with the latest changes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>upstream<span class="w"> </span>https://github.com/benchopt/benchopt</span>
+</pre></div></div></li>
+<li><p>Check that the <cite>upstream</cite> and <cite>origin</cite> remote aliases are configured correctly
+by running <cite>git remote -v</cite> which should display:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">origin</span>  <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">YourLogin</span><span class="o">/</span><span class="n">benchopt</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">origin</span>  <span class="n">git</span><span class="nd">@github</span><span class="o">.</span><span class="n">com</span><span class="p">:</span><span class="n">YourLogin</span><span class="o">/</span><span class="n">benchopt</span><span class="o">.</span><span class="n">git</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+<span class="n">upstream</span>        <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">benchopt</span><span class="o">/</span><span class="n">benchopt</span> <span class="p">(</span><span class="n">fetch</span><span class="p">)</span>
+<span class="n">upstream</span>        <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">benchopt</span><span class="o">/</span><span class="n">benchopt</span> <span class="p">(</span><span class="n">push</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ol>
+<p>You should now have a working installation of benchopt, and your git
+repository properly configured. The next steps now describe the process of
+modifying code and submitting a PR:</p>
+<ol class="arabic" start="6">
+<li><p>Synchronize your <code class="docutils literal notranslate"><span class="pre">main</span></code> branch with the <code class="docutils literal notranslate"><span class="pre">upstream/main</span></code> branch,
+more details on <a class="reference external" href="https://docs.github.com/en/github/collaborating-with-issues-and-pull-requests/syncing-a-fork">GitHub Docs</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>switch<span class="w"> </span>main</span>
+<span class="prompt1">git<span class="w"> </span>fetch<span class="w"> </span>upstream</span>
+<span class="prompt1">git<span class="w"> </span>merge<span class="w"> </span>upstream/main</span>
+</pre></div></div></li>
+<li><p>Create a feature branch to hold your development changes:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>switch<span class="w"> </span>-c<span class="w"> </span>my_feature</span>
+</pre></div></div><p>and start making changes. Always use a feature branch. It’s good
+practice to never work on the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch!</p>
+</li>
+<li><p>Develop the feature on your feature branch on your computer, using Git to
+do the version control. When you’re done editing, add changed files using
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">add</span></code> and then <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>add<span class="w"> </span>modified_files</span>
+<span class="prompt1">git<span class="w"> </span>commit</span>
+</pre></div></div><p>to record your changes in Git, then push the changes to your GitHub
+account with:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>my_feature</span>
+</pre></div></div></li>
+<li><p>Follow <a class="reference external" href="https://help.github.com/articles/creating-a-pull-request-from-a-fork">these</a> instructions
+to create a pull request from your fork.</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is often helpful to keep your local feature branch synchronized with the latest
+changes of the main benchopt repository:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>fetch<span class="w"> </span>upstream</span>
+<span class="prompt1">git<span class="w"> </span>merge<span class="w"> </span>upstream/main</span>
+</pre></div></div></div>
+</section>
+<section id="documentation">
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">#</a></h2>
+<p>We are glad to accept any sort of documentation: function docstrings,
+reStructuredText documents (like this one), tutorials, etc. reStructuredText
+documents live in the source code repository under the <code class="docutils literal notranslate"><span class="pre">doc/</span></code> directory.</p>
+<p>You can edit the documentation using any text editor, and then generate the
+HTML output by typing, in a shell:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>benchopt<span class="o">[</span>doc<span class="o">]</span></span>
+<span class="prompt1"><span class="nb">cd</span><span class="w"> </span>doc/</span>
+<span class="prompt1">make<span class="w"> </span>html</span>
+<span class="prompt1">firefox<span class="w"> </span>_build/html/index.html</span>
+</pre></div></div></section>
+<section id="testing-a-benchmark">
+<span id="test-config"></span><h2>Testing a benchmark<a class="headerlink" href="#testing-a-benchmark" title="Link to this heading">#</a></h2>
+<p>To ensure that the benchmark is reproducible and can be run by others, benchopt provides a set of tools to test that the benchmark is properly formatted and that it can be installed and run easily.
+This page describes the various tweaks that can be made to the benchmark tests.</p>
+<section id="basic-philosophy">
+<h3>Basic philosophy<a class="headerlink" href="#basic-philosophy" title="Link to this heading">#</a></h3>
+<p>The test run by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> will make sure that:</p>
+<ol class="arabic simple">
+<li><p>All classes can be retrieved easily from the benchmark, even when some dependencies are missing.</p></li>
+<li><p>The classes which have dependencies can be properly installed in a new environment and can then be imported.</p></li>
+<li><p>The datasets are compatible with the objective API.</p></li>
+<li><p>The solvers can all be run for a few number of iterations.</p></li>
+<li><p>For convex problems, the tests will also check that the solution is optimal for a small enough problem. This test can be deactivated by setting the <code class="docutils literal notranslate"><span class="pre">Objective.is_convex</span></code> flag to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
+</ol>
+</section>
+<section id="test-for-solver-run">
+<h3>Test for Solver run<a class="headerlink" href="#test-for-solver-run" title="Link to this heading">#</a></h3>
+<p>To ensure point 4, benchopt needs to load at least one small dataset that is compatible with each solver. This is why each benchmark needs to implement at least a <code class="docutils literal notranslate"><span class="pre">Simulated</span></code> dataset, that will be used for testing purposes. However, some solvers require different datasets and objective settings to be able to run. There are two ways to ensure that a solver can find an appropriate configuration:</p>
+<ul class="simple">
+<li><p>In the simulated dataset, one can add the class attribute <code class="docutils literal notranslate"><span class="pre">test_parameters</span></code>, which stands for a list of parameters that will be tried to test the solver. For each solver, at least one of these configurations should be compatible (not skipped). See benchopt.github.io/how.html#example-of-parametrized-simulated-dataset</p></li>
+<li><p>The solvers can also provide a <code class="docutils literal notranslate"><span class="pre">test_config</span></code> class attribute, which is a dictionary with optional keys <code class="docutils literal notranslate"><span class="pre">dataset,</span> <span class="pre">objective</span></code>. The value of these keys should be a dictionary of parameters for the classes <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, that will be compatible with the given <code class="docutils literal notranslate"><span class="pre">Solver</span></code>.</p></li>
+</ul>
+</section>
+<section id="test-configuration">
+<h3>Test configuration<a class="headerlink" href="#test-configuration" title="Link to this heading">#</a></h3>
+<p>In some cases, some tests should be <code class="docutils literal notranslate"><span class="pre">skip</span></code>, or <code class="docutils literal notranslate"><span class="pre">xfail</span></code> for a given benchmark. You can configure this for benchopt using a <code class="docutils literal notranslate"><span class="pre">test_config.py</span></code> file at the root of the benchmark. Implementing a function named <code class="docutils literal notranslate"><span class="pre">check_TESTNAME</span></code> with the same argument as the original test, you can then call <code class="docutils literal notranslate"><span class="pre">pytest.xfail</span></code> or <code class="docutils literal notranslate"><span class="pre">pytest.skip</span></code> to mark the test appropriately. For instance, to skip install tests for solver <code class="docutils literal notranslate"><span class="pre">XXX</span></code>, you can have the following:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># test_config.py</span>
+<span class="kn">import</span> <span class="nn">pytest</span>
+
+
+<span class="k">def</span> <span class="nf">check_test_solver_install</span><span class="p">(</span><span class="n">solver_class</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;xxx&#39;</span><span class="p">:</span>
+        <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s1">&#39;XXX is not easy to install automatically.&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="available_benchmarks.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Available benchmarks</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="whats_new.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">What’s new</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-report-and-feature-request">Bug report and feature request</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-contribution">Code contribution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-a-benchmark">Testing a benchmark</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-philosophy">Basic philosophy</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-for-solver-run">Test for Solver run</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-configuration">Test configuration</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -11,7 +11,7 @@ if [ -n "$CIRCLE_TAG" ]; then
 fi
 
 # Creating the version dropdown
-VERSIONS=$(ls -d v* | sort -Vr | jq -R -s -c 'split("\n")[:-1]')
+VERSIONS=$(ls -d \d* | sort -Vr | jq -R -s -c 'split("\n")[:-1]')
 cat > versions.json <<EOF
 {
               "stable": "stable",

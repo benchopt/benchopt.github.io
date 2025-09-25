@@ -1,0 +1,998 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Write a benchmark &#8212; benchopt 1.7.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=d6e0657c" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=62544db9"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/write_benchmark';</script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Visualize a benchmark" href="visualize_benchmark.html" />
+    <link rel="prev" title="Run a benchmark" href="run_benchmark.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.7.0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.7.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Write a benchmark</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">1. Objective</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets">2. Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-a-real-dataset">Example using a real dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-parametrized-simulated-dataset">Example of parametrized simulated dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solvers">3. Solvers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-solver">Python solver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-solver">R solver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-solver">Julia solver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-from-source">Solver from source</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="write-a-benchmark">
+<span id="write-benchmark"></span><h1>Write a benchmark<a class="headerlink" href="#write-a-benchmark" title="Link to this heading">#</a></h1>
+<p>A benchmark is composed of three elements: an <a class="reference internal" href="#objective">objective</a> function,
+a list of <a class="reference internal" href="#datasets">datasets</a>, and a list of <a class="reference internal" href="#solvers">solvers</a>.</p>
+<p>A benchmark is defined in a folder that should respect a certain
+structure. For example</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>my_benchmark/
+├── objective.py  # contains the definition of the objective
+├── datasets/
+│   ├── dataset1.py  # some dataset
+│   └── dataset2.py  # some dataset
+└── solvers/
+    ├── solver1.py  # some solver
+    └── solver2.py  # some solver
+</pre></div>
+</div>
+<p>Examples of actual benchmarks are available in the
+<a class="reference external" href="https://github.com/benchopt/">benchopt organisation</a> such
+as for <a class="reference external" href="https://github.com/benchopt/benchmark_ols">Ordinary Least Square (OLS)</a>,
+<a class="reference external" href="https://github.com/benchopt/benchmark_lasso">Lasso</a> or
+<a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1">L1-regularized logistic regression</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The simplest way to create a benchmark is to copy an existing folder and
+to adapt its content.
+A benchmark template is provided as a <a class="reference external" href="https://github.com/benchopt/template_benchmark">GitHub template repository here</a>.</p>
+</div>
+<section id="objective">
+<span id="id1"></span><h2>1. Objective<a class="headerlink" href="#objective" title="Link to this heading">#</a></h2>
+<p>The <strong>objective function</strong> is defined through a Python class, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, defined in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>.
+This class allows to monitor the quantities of interest along the iterations of the solvers.
+Typically it allows to evaluate the objective function to be minimized by the solvers.
+An objective class should define 4 methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_one_result()</span></code>: returns one solution that can be returned by a solver.
+This defines the shape of the solution and will be used to test that the
+benchmark works properly.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">set_data(**data)</span></code>: allows to specify the data. See the data as a dictionary
+of Python variables without any constraint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">evaluate_result(x)</span></code>: it allows to evaluate the objective for a given value
+of the iterate, here called <code class="docutils literal notranslate"><span class="pre">x</span></code>. This method should take only one parameter,
+the output returned by the solver. All other parameters should be stored
+in the class with the <code class="docutils literal notranslate"><span class="pre">set_data</span></code> method. The <code class="docutils literal notranslate"><span class="pre">compute</span></code> function should return
+a float (understood as the objective value) or a dictionary. If a dictionary
+is returned it should contain a key called <code class="docutils literal notranslate"><span class="pre">value</span></code> (the objective value) and all other keys
+should have <code class="docutils literal notranslate"><span class="pre">float</span></code> values allowing to track more than one value
+of interest (e.g. train and test errors).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_objective()</span></code>: returns a dictionary to be passed
+to the <code class="docutils literal notranslate"><span class="pre">set_objective</span></code> methods of <a class="reference internal" href="#solvers">solvers</a>.</p></li>
+</ul>
+<p>An objective class needs to inherit from a base class,
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseObjective</span></code></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Multiple metrics can be returned by <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> as long as they are
+stored in a dictionary, with a key being <code class="docutils literal notranslate"><span class="pre">value</span></code> corresponding to the main metric to track.</p>
+</div>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseObjective</span><span class="p">,</span> <span class="n">safe_import_context</span>
+
+<span class="c1"># All packages other than benchopt should be imported in this context.</span>
+<span class="c1"># - This allows to list solvers even when a package is not installed,</span>
+<span class="c1">#   in particular for listing dependencies to install.</span>
+<span class="c1"># - This allows to skip imports when listing solvers and datasets</span>
+<span class="c1">#   for auto completion.</span>
+<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">class</span> <span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+    <span class="c1"># Name of the Objective function</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Lasso Regression&quot;</span>
+
+    <span class="c1"># parametrization of the objective with various regularization parameters.</span>
+    <span class="c1"># All parameters `p` defined here will be accessible as `self.p`.</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;reg&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.05</span><span class="p">,</span> <span class="mf">.1</span><span class="p">,</span> <span class="mf">.5</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Return one solution for which the objective can be evaluated.&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+    <span class="k">def</span> <span class="nf">_get_lambda_max</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Helper to compute the scaling of lambda on the given data.&quot;</span>
+        <span class="k">return</span> <span class="nb">abs</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">max</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data from a Dataset to compute the objective.</span>
+
+<span class="sd">        The argument are the keys in the data dictionary returned by</span>
+<span class="sd">        get_data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">reg</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_lambda_max</span><span class="p">()</span>
+
+    <span class="k">def</span> <span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value given the output of a solver.</span>
+
+<span class="sd">        The arguments are the keys in the result dictionary returned</span>
+<span class="sd">        by ``Solver.get_result``.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">diff</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">@</span> <span class="n">beta</span>
+        <span class="n">objective_value</span> <span class="o">=</span> <span class="mf">.5</span> <span class="o">*</span> <span class="n">diff</span> <span class="o">@</span> <span class="n">diff</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">*</span> <span class="nb">abs</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">objective_value</span>  <span class="c1"># or return dict(value=objective_value)</span>
+
+    <span class="k">def</span> <span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Returns a dict to pass to the set_objective method of a solver.&quot;</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="datasets">
+<span id="id2"></span><h2>2. Datasets<a class="headerlink" href="#datasets" title="Link to this heading">#</a></h2>
+<p>A dataset defines what can be passed to an objective. More specifically,
+a dataset should implement one method:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_data()</span></code>: A method which outputs a dictionary that is passed as
+keyword arguments <code class="docutils literal notranslate"><span class="pre">**data</span></code> to the <code class="docutils literal notranslate"><span class="pre">set_data</span></code> method of an <a class="reference internal" href="#objective">objective</a>.</p></li>
+</ul>
+<p>A dataset class also needs to inherit from a base class called
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a>.</p>
+<section id="example-using-a-real-dataset">
+<h3>Example using a real dataset<a class="headerlink" href="#example-using-a-real-dataset" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
+
+<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">safe_import_context</span>
+
+
+<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">sklearn.datasets</span> <span class="kn">import</span> <span class="n">fetch_openml</span>
+    <span class="kn">from</span> <span class="nn">sklearn.preprocessing</span> <span class="kn">import</span> <span class="n">LabelBinarizer</span>
+
+
+<span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;leukemia&quot;</span>
+
+    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;scikit-learn&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># Unlike libsvm[leukemia], this dataset corresponds to the whole</span>
+        <span class="c1"># leukemia  data with train + test data (72 samples) and not just</span>
+        <span class="c1"># the training set.</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">fetch_openml</span><span class="p">(</span><span class="s2">&quot;leukemia&quot;</span><span class="p">,</span> <span class="n">return_X_y</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+        <span class="n">y</span> <span class="o">=</span> <span class="n">LabelBinarizer</span><span class="p">()</span><span class="o">.</span><span class="n">fit_transform</span><span class="p">(</span><span class="n">y</span><span class="p">)[:,</span> <span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">X</span><span class="o">.</span><span class="n">dtype</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>You can also define a parametrized simulated dataset, for example to test
+across multiple problem dimensions.</p>
+</section>
+<section id="example-of-parametrized-simulated-dataset">
+<h3>Example of parametrized simulated dataset<a class="headerlink" href="#example-of-parametrized-simulated-dataset" title="Link to this heading">#</a></h3>
+<p>Sometimes one wants to test the solvers for variants of the same dataset.
+For example, one may want to change the dataset size, the noise level, etc.
+To be able to specify parameters to get a dataset, you can use a class
+attribute called <code class="docutils literal notranslate"><span class="pre">parameters</span></code>. This parameter must be a dictionary
+whose keys are passed to the <code class="docutils literal notranslate"><span class="pre">__init__</span></code> of the dataset class. Then Benchopt
+will automatically allow you to test all combinations of parameters.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseDataset</span>
+<span class="kn">from</span> <span class="nn">benchopt.datasets</span> <span class="kn">import</span> <span class="n">make_correlated_data</span>
+
+
+<span class="k">class</span> <span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Simulated&quot;</span>
+    <span class="vm">__name__</span> <span class="o">=</span> <span class="s1">&#39;test&#39;</span>
+
+    <span class="c1"># List of parameters to generate the datasets. The benchmark will consider</span>
+    <span class="c1"># the cross product for each key in the dictionary.</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;n_samples, n_features&#39;</span><span class="p">:</span> <span class="p">[</span>
+            <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
+            <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">200</span><span class="p">)</span>
+        <span class="p">],</span>
+        <span class="s1">&#39;rho&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_samples</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">n_features</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>  <span class="n">rho</span><span class="o">=</span><span class="mf">0.6</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">27</span><span class="p">):</span>
+        <span class="c1"># Store the parameters of the dataset</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_samples</span> <span class="o">=</span> <span class="n">n_samples</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">n_features</span> <span class="o">=</span> <span class="n">n_features</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">rho</span> <span class="o">=</span> <span class="n">rho</span>
+
+    <span class="k">def</span> <span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">make_correlated_data</span><span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">n_samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features</span><span class="p">,</span> <span class="n">rho</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">rho</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">rng</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="n">y</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>However, all of these variants will not be tested during the call to <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code>.
+If you want to test different variants of the simulated dataset with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code>,
+you may use the <code class="docutils literal notranslate"><span class="pre">test_parameters</span></code> class attribute.
+The construction of this attribute is similar to the one described above for
+<code class="docutils literal notranslate"><span class="pre">parameters</span></code>. This allows you to test solvers that could not be used for a single
+variant of the dataset.</p>
+</section>
+</section>
+<section id="solvers">
+<span id="id3"></span><h2>3. Solvers<a class="headerlink" href="#solvers" title="Link to this heading">#</a></h2>
+<p>A solver must define three methods:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">set_objective(**objective_dict)</span></code>: This method will be called with the
+dictionary <code class="docutils literal notranslate"><span class="pre">objective_dict</span></code> returned by the method <code class="docutils literal notranslate"><span class="pre">get_objective</span></code>
+from the objective. The goal of this method is to provide all necessary
+information to the solver so it can optimize the objective function.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">run(stop_value)</span></code>: This method takes only one parameter that controls the stopping
+condition of the solver. Typically this is either a number of iterations <code class="docutils literal notranslate"><span class="pre">n_iter</span></code>
+or a tolerance parameter <code class="docutils literal notranslate"><span class="pre">tol</span></code>. Alternatively, a <code class="docutils literal notranslate"><span class="pre">callback</span></code> function that will be
+called at each iteration can be passed. The callback should return <code class="docutils literal notranslate"><span class="pre">False</span></code> once the
+computation should stop.
+The parameter <code class="docutils literal notranslate"><span class="pre">stop_value</span></code> is controlled by the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>,
+see below for details.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_result()</span></code>: This method returns a variable that can be passed
+to the <code class="docutils literal notranslate"><span class="pre">compute</span></code> method from the objective. This is the output of
+the solver.</p></li>
+</ul>
+<p><strong>Sampling strategy:</strong></p>
+<p>A solver should also define a <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> as class attribute.
+This <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: in this case the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
+is parametrized by the number of iterations computed. The parameter
+is called <code class="docutils literal notranslate"><span class="pre">n_iter</span></code> and should be an integer.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'tolerance'</span></code>: in this case the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
+is parametrized by a tolerance that should decrease with
+the running time. The parameter is called <code class="docutils literal notranslate"><span class="pre">tol</span></code> and should be
+a positive float.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: in this case, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver
+should call at each iteration the provided callback function. It will
+compute and store the objective and return <code class="docutils literal notranslate"><span class="pre">False</span></code> once the computations
+should stop.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">'run_once'</span></code>: in this case, the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of the solver is run only</p></li>
+</ul>
+<p>once during the benchmark.</p>
+<p>Benchopt supports different types of solvers:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#python-solvers"><span class="std std-ref">Python solver</span></a></p></li>
+<li><p><a class="reference internal" href="#r-solvers"><span class="std std-ref">R solver</span></a></p></li>
+<li><p><a class="reference internal" href="#julia-solvers"><span class="std std-ref">Julia solver</span></a></p></li>
+<li><p><a class="reference internal" href="#source-solvers"><span class="std std-ref">Solver from source</span></a></p></li>
+</ul>
+<section id="python-solver">
+<span id="python-solvers"></span><h3>Python solver<a class="headerlink" href="#python-solver" title="Link to this heading">#</a></h3>
+<p>The simplest solvers to use are solvers using <a class="reference external" href="https://www.python.org/">Python</a> code.
+Here is an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span><span class="p">,</span> <span class="n">safe_import_context</span>
+<span class="kn">from</span> <span class="nn">benchopt.utils</span> <span class="kn">import</span> <span class="n">profile</span>
+
+<span class="k">with</span> <span class="n">safe_import_context</span><span class="p">()</span> <span class="k">as</span> <span class="n">import_ctx</span><span class="p">:</span>
+    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Python-PGD&#39;</span>  <span class="c1"># proximal gradient, optionally accelerated</span>
+
+    <span class="c1"># Any parameter defined here is accessible as an attribute of the solver.</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;step_size&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.5</span><span class="p">]}</span>
+
+    <span class="c1"># Store the information to compute the objective. The parameters of this</span>
+    <span class="c1"># function are the keys of the dictionary obtained when calling</span>
+    <span class="c1"># ``Objective.get_objective``.</span>
+    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
+
+    <span class="c1"># Main function of the solver, which compute a solution estimate.</span>
+    <span class="c1"># Here this is the proximal gradient descent.</span>
+    <span class="nd">@profile</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">step_size</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">step_size</span> <span class="o">/</span> <span class="n">L</span>
+        <span class="n">mu</span> <span class="o">=</span> <span class="n">step_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span>
+
+        <span class="n">n_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
+
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n_iter</span><span class="p">):</span>
+            <span class="n">w</span> <span class="o">-=</span> <span class="n">step_size</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">@</span> <span class="n">w</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
+            <span class="n">w</span> <span class="o">-=</span> <span class="n">np</span><span class="o">.</span><span class="n">clip</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="o">-</span><span class="n">mu</span><span class="p">,</span> <span class="n">mu</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">w</span>
+
+    <span class="c1"># Return the solution estimate computed.</span>
+    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;beta&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>For solvers that allow access to each iterate of the solution, using <code class="docutils literal notranslate"><span class="pre">&quot;callback&quot;</span></code>
+as a <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> implies a slight modification for <code class="docutils literal notranslate"><span class="pre">run</span></code>. A <code class="docutils literal notranslate"><span class="pre">callback</span></code>
+should be called at each iteration with parameter the current value of the iterate.
+Here is an example in the same situation as above:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>  <span class="c1"># instead of the number of iteration or tolerance</span>
+        <span class="n">L</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_lipschitz_cst</span><span class="p">()</span>
+        <span class="n">n_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_acceleration</span><span class="p">:</span>
+            <span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">n_features</span><span class="p">)</span>
+
+        <span class="n">t_new</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="k">while</span> <span class="n">callback</span><span class="p">():</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">use_acceleration</span><span class="p">:</span>
+                <span class="n">t_old</span> <span class="o">=</span> <span class="n">t_new</span>
+                <span class="n">t_new</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">t_old</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span> <span class="o">/</span> <span class="mi">2</span>
+                <span class="n">w_old</span> <span class="o">=</span> <span class="n">w</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+                <span class="n">z</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">@</span> <span class="n">z</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">st</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+                <span class="n">z</span> <span class="o">=</span> <span class="n">w</span> <span class="o">+</span> <span class="p">(</span><span class="n">t_old</span> <span class="o">-</span> <span class="mf">1.</span><span class="p">)</span> <span class="o">/</span> <span class="n">t_new</span> <span class="o">*</span> <span class="p">(</span><span class="n">w</span> <span class="o">-</span> <span class="n">w_old</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">w</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">@</span> <span class="n">w</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span> <span class="o">/</span> <span class="n">L</span>
+                <span class="n">w</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">st</span><span class="p">(</span><span class="n">w</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">/</span> <span class="n">L</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">w</span>
+</pre></div>
+</div>
+<p>If your Python solver requires some packages such as <a class="reference external" href="https://numba.pydata.org/">Numba</a>,
+Benchopt allows you to list some requirements. The necessary packages should be available
+via <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> or
+<a class="reference external" href="https://packaging.python.org/guides/tool-recommendations/">pip</a>.
+See <a href="#id4"><span class="problematic" id="id5">:ref:`specify_requirements`_</span></a> for more details on how to specify the requirements for benchopt classes.</p>
+</section>
+<section id="r-solver">
+<span id="r-solvers"></span><h3>R solver<a class="headerlink" href="#r-solver" title="Link to this heading">#</a></h3>
+<p>A solver written in <a class="reference external" href="https://www.r-project.org/">R</a> needs two files.
+A <code class="docutils literal notranslate"><span class="pre">.R</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
+R solver using <a class="reference external" href="https://pypi.org/project/rpy2/">Rpy2</a>. Only the extensions
+should differ between the two files. Here is the Python file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">benchopt</span> <span class="kn">import</span> <span class="n">BaseSolver</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.sparse</span> <span class="kn">import</span> <span class="n">issparse</span>
+
+<span class="kn">from</span> <span class="nn">rpy2</span> <span class="kn">import</span> <span class="n">robjects</span>
+<span class="kn">from</span> <span class="nn">benchopt.helpers.r_lang</span> <span class="kn">import</span> <span class="n">import_func_from_r_file</span><span class="p">,</span> <span class="n">converter_ctx</span>
+
+<span class="c1"># Setup the system to allow rpy2 running</span>
+<span class="n">R_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.R&#39;</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;R-PGD&quot;</span>
+
+    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;rpy2&#39;</span><span class="p">]</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;I. Daubechies, M. Defrise and C. De Mol, &#39;</span>
+        <span class="s1">&#39;&quot;An iterative thresholding algorithm for linear inverse problems &#39;</span>
+        <span class="s1">&#39;with a sparsity constraint&quot;, Comm. Pure Appl. Math., &#39;</span>
+        <span class="s1">&#39;vol. 57, pp. 1413-1457, no. 11, Wiley Online Library (2004)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;A. Beck and M. Teboulle, &quot;A fast iterative shrinkage-thresholding &#39;</span>
+        <span class="s1">&#39;algorithm for linear inverse problems&quot;, SIAM J. Imaging Sci., &#39;</span>
+        <span class="s1">&#39;vol. 2, no. 1, pp. 183-202 (2009)&#39;</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not handle fit_intercept&quot;</span>
+
+        <span class="k">if</span> <span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not handle sparse data&quot;</span>
+
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span> <span class="o">=</span> <span class="n">fit_intercept</span>
+
+        <span class="n">import_func_from_r_file</span><span class="p">(</span><span class="n">R_FILE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;proximal_gradient_descent&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">converter_ctx</span><span class="p">():</span>
+            <span class="n">coefs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_pgd</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span>
+                <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span><span class="p">)</span>
+            <span class="n">as_r</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;as&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">as_r</span><span class="p">(</span><span class="n">coefs</span><span class="p">,</span> <span class="s2">&quot;vector&quot;</span><span class="p">))</span>
+
+    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">w</span><span class="o">.</span><span class="n">flatten</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>It uses the R code in:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">##&#39; Functions used in ISTA algorithm</span>
+<span class="c1">##&#39;</span>
+<span class="c1">##&#39; @title Functions used in ISTA algorithm</span>
+<span class="c1">##&#39; @author Thomas Moreau</span>
+<span class="c1">##&#39; @export</span>
+
+
+<span class="c1"># Soft-thresholding operator</span>
+<span class="n">St</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">X</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">s</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">lambda0</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">lambda0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">result0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lambda0</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="nf">if </span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="p">(</span><span class="m">-1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lambda0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">result0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">lambda0</span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="n">else</span><span class="w"> </span><span class="n">result0</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">        </span><span class="nf">return</span><span class="p">(</span><span class="n">result0</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">result</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">apply</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">lambda0</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">lambda</span><span class="p">)</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+<span class="p">}</span>
+
+
+<span class="c1"># Main algorithm</span>
+<span class="n">proximal_gradient_descent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">Y</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">n_iter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># --------- Initialize parameter ---------</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="w">    </span><span class="n">parameters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">numeric</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="w">    </span><span class="n">step_size</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="m">2</span>
+<span class="w">    </span><span class="nf">for </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="n">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_iter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1"># Compute the gradient</span>
+<span class="w">        </span><span class="n">grad</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">crossprod</span><span class="p">(</span><span class="o">-</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">%*%</span><span class="w"> </span><span class="n">parameters</span><span class="p">))</span>
+<span class="w">        </span><span class="c1"># # Update the parameters</span>
+<span class="w">        </span><span class="n">parameters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">St</span><span class="p">(</span><span class="n">step_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">lambda</span><span class="p">,</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">step_size</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">grad</span><span class="p">)</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="nf">return</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This uses the function <a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html#benchopt.safe_import_context" title="benchopt.safe_import_context"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.safe_import_context()</span></code></a> to avoid
+a crash when R is not available. The solver is in this case
+just skipped.</p>
+</div>
+</section>
+<section id="julia-solver">
+<span id="julia-solvers"></span><h3>Julia solver<a class="headerlink" href="#julia-solver" title="Link to this heading">#</a></h3>
+<p>A solver written in <a class="reference external" href="https://julialang.org">Julia</a> needs two files.
+A <code class="docutils literal notranslate"><span class="pre">.jl</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to call the
+Julia solver using <a class="reference external" href="https://pypi.org/project/julia/">PyJulia</a>. Only the extensions
+should differ between the two files. Here is the Python file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">JuliaSolver</span>
+<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">get_jl_interpreter</span>
+<span class="kn">from</span> <span class="nn">benchopt.helpers.julia</span> <span class="kn">import</span> <span class="n">assert_julia_installed</span>
+
+
+<span class="c1"># File containing the function to be called from julia</span>
+<span class="n">assert_julia_installed</span><span class="p">()</span>
+<span class="n">JULIA_SOLVER_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.jl&#39;</span><span class="p">))</span>
+
+
+<span class="k">class</span> <span class="nc">Solver</span><span class="p">(</span><span class="n">JuliaSolver</span><span class="p">):</span>
+
+    <span class="c1"># Config of the solver</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Julia-PGD&#39;</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+    <span class="n">references</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="s1">&#39;I. Daubechies, M. Defrise and C. De Mol, &#39;</span>
+        <span class="s1">&#39;&quot;An iterative thresholding algorithm for linear inverse problems &#39;</span>
+        <span class="s1">&#39;with a sparsity constraint&quot;, Comm. Pure Appl. Math., &#39;</span>
+        <span class="s1">&#39;vol. 57, pp. 1413-1457, no. 11, Wiley Online Library (2004)&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;A. Beck and M. Teboulle, &quot;A fast iterative shrinkage-thresholding &#39;</span>
+        <span class="s1">&#39;algorithm for linear inverse problems&quot;, SIAM J. Imaging Sci., &#39;</span>
+        <span class="s1">&#39;vol. 2, no. 1, pp. 183-202 (2009)&#39;</span>
+    <span class="p">]</span>
+
+    <span class="k">def</span> <span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
+        <span class="c1"># XXX - fit intercept is not yet implemented in julia.jl</span>
+        <span class="k">if</span> <span class="n">fit_intercept</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2"> does not handle fit_intercept&quot;</span>
+
+        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+
+    <span class="k">def</span> <span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span><span class="p">,</span> <span class="n">fit_intercept</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">lmbd</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fit_intercept</span> <span class="o">=</span> <span class="n">fit_intercept</span>
+
+        <span class="n">jl</span> <span class="o">=</span> <span class="n">get_jl_interpreter</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">solve_lasso</span> <span class="o">=</span> <span class="n">jl</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">JULIA_SOLVER_FILE</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">beta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">solve_lasso</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lmbd</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">beta</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">beta</span><span class="o">.</span><span class="n">ravel</span><span class="p">())</span>
+</pre></div>
+</div>
+<p>It uses the Julia code in:</p>
+<div class="highlight-julia notranslate"><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
+<span class="k">using</span><span class="w"> </span><span class="n">LinearAlgebra</span>
+
+<span class="n">st</span><span class="p">(</span><span class="n">w</span><span class="o">::</span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">},</span><span class="w"> </span><span class="n">t</span><span class="o">::</span><span class="kt">Float64</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nd">@.</span><span class="w"> </span><span class="n">sign</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">max</span><span class="p">(</span><span class="n">abs</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t</span><span class="p">,</span><span class="w"> </span><span class="mf">0.</span><span class="p">)</span>
+
+<span class="k">function</span><span class="w"> </span><span class="n">solve_lasso</span><span class="p">(</span>
+<span class="w">    </span><span class="n">X</span><span class="o">::</span><span class="kt">Matrix</span><span class="p">{</span><span class="kt">Float64</span><span class="p">},</span><span class="w"> </span>
+<span class="w">    </span><span class="n">y</span><span class="o">::</span><span class="kt">Vector</span><span class="p">{</span><span class="kt">Float64</span><span class="p">},</span><span class="w"> </span>
+<span class="w">    </span><span class="n">lambda</span><span class="o">::</span><span class="kt">Float64</span><span class="p">,</span>
+<span class="w">    </span><span class="n">n_iter</span><span class="o">::</span><span class="kt">Int</span>
+<span class="p">)</span>
+<span class="w">    </span><span class="n">L</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">opnorm</span><span class="p">(</span><span class="n">X</span><span class="p">)</span><span class="o">^</span><span class="mi">2</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">zeros</span><span class="p">(</span><span class="n">p</span><span class="p">)</span>
+<span class="w">    </span><span class="n">residual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">similar</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+<span class="w">    </span><span class="n">diffvec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">similar</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>
+<span class="w">    </span><span class="n">gradient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">similar</span><span class="p">(</span><span class="n">w</span><span class="p">)</span><span class="w">                  </span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">∈</span><span class="w"> </span><span class="mi">1</span><span class="o">:</span><span class="n">n_iter</span>
+<span class="w">        </span><span class="n">residual</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">y</span>
+<span class="w">        </span><span class="n">gradient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">X</span><span class="o">&#39;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">residual</span>
+<span class="w">        </span><span class="n">diffvec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">w</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gradient</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">L</span>
+<span class="w">        </span><span class="n">w</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">st</span><span class="p">(</span><span class="n">diffvec</span><span class="p">,</span><span class="w"> </span><span class="n">lambda</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">L</span><span class="p">)</span>
+<span class="w">    </span><span class="k">end</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">w</span>
+<span class="k">end</span>
+</pre></div>
+</div>
+<div class="admonition-installing-julia-dependencies admonition">
+<p class="admonition-title">Installing Julia dependencies</p>
+<p>Note that it is also possible to install <code class="docutils literal notranslate"><span class="pre">julia</span></code> dependencies using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code> with the class attribute <code class="docutils literal notranslate"><span class="pre">julia_requirements</span></code>. This attribute should be a list of package names, whose string are directly passed to <code class="docutils literal notranslate"><span class="pre">Pkg.add</span></code>.</p>
+<p>In case it is necessary to install dependencies from a GitHub repository, one can use the following format: <code class="docutils literal notranslate"><span class="pre">PkgName::https://github.com/org/Pkg.jl#branch_name</span></code>. This will be processed to recover both the url and the package name. Note that the <code class="docutils literal notranslate"><span class="pre">branch_name</span></code> is optional. Using the <code class="docutils literal notranslate"><span class="pre">::</span></code> to specify the <code class="docutils literal notranslate"><span class="pre">PkgName</span></code> is necessary to allow <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> to check if it is installed in the targeted environment.</p>
+</div>
+</section>
+<section id="solver-from-source">
+<span id="source-solvers"></span><h3>Solver from source<a class="headerlink" href="#solver-from-source" title="Link to this heading">#</a></h3>
+<p>You can install a package from source in case it is not available
+as binaries from the package managers from either Python, R or Julia.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A package available from source may require a C++
+or Fortran compiler.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>See for example on the L1 logistic regression benchmark for
+<a class="reference external" href="https://github.com/benchopt/benchmark_logreg_l1/blob/master/solvers/liblinear.py">an example</a>
+that uses a <code class="docutils literal notranslate"><span class="pre">'shell'</span></code> as <code class="docutils literal notranslate"><span class="pre">install_cmd</span></code>.</p>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="run_benchmark.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Run a benchmark</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="visualize_benchmark.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Visualize a benchmark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">1. Objective</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#datasets">2. Datasets</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-using-a-real-dataset">Example using a real dataset</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-parametrized-simulated-dataset">Example of parametrized simulated dataset</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solvers">3. Solvers</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#python-solver">Python solver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#r-solver">R solver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#julia-solver">Julia solver</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#solver-from-source">Solver from source</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2025.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
