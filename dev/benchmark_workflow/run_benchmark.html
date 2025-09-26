@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Run a benchmark &#8212; benchopt 1.7.1.dev11 documentation</title>
+    <title>Run a benchmark &#8212; benchopt 1.7.1.dev12 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=b5bef84d"></script>
+    <script src="../_static/documentation_options.js?v=a2ca782b"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev11</p>
+    <p class="title logo__title">1.7.1.dev12</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -210,7 +210,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI) references</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
@@ -340,7 +340,7 @@ document.write(`
 <p>Head to <a class="reference internal" href="../get_started.html#get-started"><span class="std std-ref">Get started</span></a> to first install benchopt
 and setup the Lasso benchmark.</p>
 </div>
-<p>With the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI) references</span></a>, there are two ways to run a benchmark: passing options with flags in the CLI, or with a configuration file.</p>
+<p>With the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI)</span></a>, there are two ways to run a benchmark: passing options with flags in the CLI, or with a configuration file.</p>
 <section id="specifying-options-with-cli-flags">
 <h2>Specifying options with CLI flags<a class="headerlink" href="#specifying-options-with-cli-flags" title="Link to this heading">#</a></h2>
 <p>It is possible to specify the solvers as well as the datasets
@@ -357,7 +357,7 @@ To include multiple datasets/solvers, use multiple <code class="docutils literal
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">run</span></code> command accepts other flags such as <code class="docutils literal notranslate"><span class="pre">-j</span></code> to run the benchmark in parallel with a given number of processes.
-The list of flags is available through <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">--help</span></code> or in the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI) references</span></a> page.</p>
+The list of flags is available through <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">--help</span></code> or in the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI)</span></a> page.</p>
 </div>
 <p>In addition, it is possible to specify the parameters of solvers and datasets by wrapping them in square brackets in comma separated format.</p>
 <p>The following snippet runs the <code class="docutils literal notranslate"><span class="pre">Python-PGD</span></code> solver with its acceleration parameter set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, on the <code class="docutils literal notranslate"><span class="pre">simulated</span></code> dataset.
