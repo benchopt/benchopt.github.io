@@ -100,7 +100,7 @@ Run benchmark from a script
     ModuleNotFoundError: No module named 'lightning'
 
         |--Lightning: not installed
-    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2025-10-02_12h07m19.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2025-10-02_14h06m13.parquet
     Save objective_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/4f5128281a863804250ff5680466d3e4_objective_value_objective_curve.pdf
     Save objective_curve plot of objective_Test loss for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/4f5128281a863804250ff5680466d3e4_objective_Test loss_objective_curve.pdf
     Save suboptimality_curve plot of objective_value for Simulated[n_features=500,n_samples=200] and L2 Logistic Regression[lmbd=1.0] as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/4f5128281a863804250ff5680466d3e4_objective_value_suboptimality_curve.pdf
@@ -177,7 +177,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 12.269 seconds)
+   **Total running time of the script:** (0 minutes 20.081 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
