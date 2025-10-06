@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.run_benchmark &#8212; benchopt 1.7.1.dev17 documentation</title>
+    <title>benchopt.run_benchmark &#8212; benchopt 1.7.1.dev18 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=9b57f881"></script>
+    <script src="../../_static/documentation_options.js?v=d1f1797f"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev17</p>
+    <p class="title logo__title">1.7.1.dev18</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -215,6 +215,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../performance_curves.html">Performance curves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../distributed_run.html">Distributed run with Benchopt</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../available_benchmarks.html">Available benchmarks</a></li>
@@ -335,7 +336,7 @@ document.write(`
 <h1>benchopt.run_benchmark<a class="headerlink" href="#benchopt-run-benchmark" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="benchopt.run_benchmark">
-<span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">run_benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">benchmark_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forced_solvers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_repetitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'None'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.run_benchmark" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">run_benchmark</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">benchmark_path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">solver_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">forced_solvers</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">()</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset_names</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">objective_filters</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">max_runs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">10</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_repetitions</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">timeout</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">n_jobs</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">parallel_config</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">slurm</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">plot_result</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">display</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">html</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">collect</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">show_progress</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">pdb</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">no_cache</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output_file</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'None'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.run_benchmark" title="Link to this definition">#</a></dt>
 <dd><p>Run full benchmark.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -363,7 +364,11 @@ the convergence curve.</p>
 </dd>
 <dt><strong>n_jobs</strong><span class="classifier">int</span></dt><dd><p>Maximal number of workers to use to run the benchmark in parallel.</p>
 </dd>
-<dt><strong>slurm</strong><span class="classifier">Path | None</span></dt><dd><p>If not None, launch the job on a slurm cluster using the file to get
+<dt><strong>parallel_config</strong><span class="classifier">dict | None</span></dt><dd><p>If not None, launch the job in parallel. The provided config serves to
+set up parallelism using <code class="docutils literal notranslate"><span class="pre">joblib.parallel_backend</span></code> or <code class="docutils literal notranslate"><span class="pre">submitit</span></code>.
+See <a class="reference internal" href="../distributed_run.html#parallel-run"><span class="std std-ref">Distributed run with Benchopt</span></a> for detailed description.</p>
+</dd>
+<dt><strong>slurm</strong><span class="classifier">Path | None, (_Deprecated_)</span></dt><dd><p>If not None, launch the job on a slurm cluster using the file to get
 the cluster config parameters.</p>
 </dd>
 <dt><strong>plot_result</strong><span class="classifier">bool</span></dt><dd><p>If set to True (default), generate the result plot and save them in
@@ -386,7 +391,7 @@ and ignore the results that are not computed yet, default is False.</p>
 benchopt. Note that this makes the run less tolerant to errors, use it
 with caution.</p>
 </dd>
-<dt><strong>output_name</strong><span class="classifier">str</span></dt><dd><p>Filename for the parquet output. If given, the results will
+<dt><strong>output_file</strong><span class="classifier">str</span></dt><dd><p>Filename for the parquet output. If given, the results will
 be stored at &lt;BENCHMARK&gt;/outputs/&lt;filename&gt;.parquet.</p>
 </dd>
 </dl>

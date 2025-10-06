@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Command line interface (CLI) &#8212; benchopt 1.7.1.dev17 documentation</title>
+    <title>Command line interface (CLI) &#8212; benchopt 1.7.1.dev18 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=9b57f881"></script>
+    <script src="../_static/documentation_options.js?v=d1f1797f"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev17</p>
+    <p class="title logo__title">1.7.1.dev18</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -215,6 +215,7 @@
 <li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="performance_curves.html">Performance curves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -539,23 +540,6 @@ dataset), additional values can be given with the following syntax:</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-benchopt-run-j">
-<span id="cmdoption-benchopt-run-n-jobs"></span><span class="sig-name descname"><span class="pre">-j</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--n-jobs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;int&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-j" title="Link to this definition">#</a></dt>
-<dd><p>Maximal number of workers to run the benchmark in parallel.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Default<span class="colon">:</span></dt>
-<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">1</span></code></p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-benchopt-run-slurm">
-<span class="sig-name descname"><span class="pre">--slurm</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slurm_config.yml&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-slurm" title="Link to this definition">#</a></dt>
-<dd><p>Run the computation using submitit on a SLURM cluster. The YAML file provided to this argument is used to setup the SLURM job. See <a class="reference internal" href="advanced.html#slurm-run"><span class="std std-ref">Running the benchmark on a SLURM cluster</span></a> for a detailed description.</p>
-</dd></dl>
-
-<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-n">
 <span id="cmdoption-benchopt-run-max-runs"></span><span class="sig-name descname"><span class="pre">-n</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--max-runs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;int&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-n" title="Link to this definition">#</a></dt>
 <dd><p>Maximal number of runs for each solver. This corresponds to the number of points in the time/accuracy curve.</p>
@@ -612,6 +596,24 @@ dataset), additional values can be given with the following syntax:</p>
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-html">
 <span id="cmdoption-benchopt-run-no-html"></span><span class="sig-name descname"><span class="pre">--html</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-html</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-benchopt-run-html" title="Link to this definition">#</a></dt>
 <dd><p>If set to True (default), render the results as an HTML page, otherwise create matplotlib figures, saved as PNG.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-run-j">
+<span id="cmdoption-benchopt-run-n-jobs"></span><span class="sig-name descname"><span class="pre">-j</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--n-jobs</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;int&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-j" title="Link to this definition">#</a></dt>
+<dd><p>Maximal number of workers to run the benchmark in parallel.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-run-slurm">
+<span class="sig-name descname"><span class="pre">--slurm</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;slurm_config.yml&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-slurm" title="Link to this definition">#</a></dt>
+<dd><p>(_Deprecated_) Run the computation using submitit on a SLURM cluster. The YAML file provided as an argument is used to setup the SLURM job. See <a class="reference internal" href="advanced.html#slurm-run"><span class="std std-ref">Running the benchmark on a SLURM cluster</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-run-parallel-config">
+<span class="sig-name descname"><span class="pre">--parallel-config</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;parallel_config.yml&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-parallel-config" title="Link to this definition">#</a></dt>
+<dd><p>Run in parallel with the specified backend configuration. The YAML file provided to this argument is used to setup theparallel run. See <a class="reference internal" href="distributed_run.html#parallel-run"><span class="std std-ref">Distributed run with Benchopt</span></a> for a detailed description.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -790,7 +792,7 @@ dataset), additional values can be given with the following syntax:</p>
 <section id="benchopt-publish">
 <h4>publish<a class="headerlink" href="#benchopt-publish" title="Link to this heading">#</a></h4>
 <p>Publish the result from a previously run benchmark.</p>
-<p>See the <span class="xref std std-ref">publish_doc</span> documentation for more info on how to use this command.</p>
+<p>See the <a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html#publish-benchmark"><span class="std std-ref">Publish benchmark results</span></a> documentation for more info on how to use this command.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt<span class="w"> </span>publish<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>BENCHMARK<span class="o">]</span>
 </pre></div>
 </div>
@@ -863,7 +865,7 @@ dataset), additional values can be given with the following syntax:</p>
 </section>
 <section id="benchopt-config">
 <h4>config<a class="headerlink" href="#benchopt-config" title="Link to this heading">#</a></h4>
-<p>Configuration helper for benchopt. The configuration of benchopt is detailed in <span class="xref std std-ref">config_doc</span>.</p>
+<p>Configuration helper for benchopt. The configuration of benchopt is detailed in <a class="reference internal" href="../benchmark_workflow/config_benchopt.html#config-benchopt"><span class="std std-ref">Configure Benchopt</span></a>.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt<span class="w"> </span>config<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>COMMAND<span class="w"> </span><span class="o">[</span>ARGS<span class="o">]</span>...
 </pre></div>
 </div>

@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new &#8212; benchopt 1.7.1.dev17 documentation</title>
+    <title>What’s new &#8212; benchopt 1.7.1.dev18 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=9b57f881"></script>
+    <script src="_static/documentation_options.js?v=d1f1797f"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -150,7 +150,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev17</p>
+    <p class="title logo__title">1.7.1.dev18</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -214,6 +214,7 @@
 <li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/performance_curves.html">Performance curves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="available_benchmarks.html">Available benchmarks</a></li>
@@ -402,6 +403,11 @@ document.write(`
 <code class="docutils literal notranslate"><span class="pre">test_conf.py</span></code>, by defining a function <code class="docutils literal notranslate"><span class="pre">check_TEST_NAME</span></code>, which
 is called before the test with the same arguments.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/801">#801</a>)</p></li>
+<li><p>Add a parallel backend system for <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> to setup distributed
+run with <code class="docutils literal notranslate"><span class="pre">dask</span></code> and <code class="docutils literal notranslate"><span class="pre">submitit</span></code>. See <a class="reference internal" href="user_guide/distributed_run.html#parallel-run"><span class="std std-ref">Distributed run with Benchopt</span></a> for details.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/673">#673</a>).</p></li>
+<li><p>Deprecate the <code class="docutils literal notranslate"><span class="pre">--slurm</span></code> parameter which will be removed in benchopt 1.8.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/673">#673</a>).</p></li>
 </ul>
 </section>
 <section id="api">
@@ -676,7 +682,7 @@ solvers, through the syntax <code class="docutils literal notranslate"><span cla
 documentation</a> for more details on the
 syntax. By <a class="reference external" href="https://tomdlt.github.io">Tom Dupré la Tour</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/362">#362</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">--slurm</span></code> option in <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> to allow running the benchmark on
-a SLURM cluster. See the <a class="reference internal" href="user_guide/advanced.html#slurm-run"><span class="std std-ref">Running the benchmark on a SLURM cluster</span></a> for more details on the config.
+a SLURM cluster. See the <a class="reference internal" href="user_guide/distributed_run.html#slurm-backend"><span class="std std-ref">Running on SLURM with the submitit backend</span></a> for more details on the config.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/407">#407</a>)</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">archive</span></code> to create a <code class="docutils literal notranslate"><span class="pre">tar.gz</span></code> archive with the benchmark’s
 files for sharing with others or as supplementary materials for papers.
