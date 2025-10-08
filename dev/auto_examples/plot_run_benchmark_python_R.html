@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Demo benchmark with R/Python &#8212; benchopt 1.7.1.dev18 documentation</title>
+    <title>Demo benchmark with R/Python &#8212; benchopt 1.7.1.dev19 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=d1f1797f"></script>
+    <script src="../_static/documentation_options.js?v=6a0dfb62"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -149,7 +149,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev18</p>
+    <p class="title logo__title">1.7.1.dev19</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -341,25 +341,12 @@ to download the full example code.</p>
 <div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>Simulated[n_features=5000,n_samples=100,rho=0]
   |--Lasso Regression[fit_intercept=False,reg=0.5]
     |--Python-PGD[use_acceleration=False]: done (timeout)
-Failed to import Solver from /home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py. Please fix the following error to use this file with benchopt:
 Traceback (most recent call last):
-  File &quot;/home/circleci/project/benchopt/utils/dynamic_modules.py&quot;, line 85, in _load_class_from_module
-    module = _get_module_from_file(module_filename, benchmark_dir)
-  File &quot;/home/circleci/project/benchopt/utils/dynamic_modules.py&quot;, line 52, in _get_module_from_file
-    spec.loader.exec_module(module)
-  File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 883, in exec_module
-  File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 241, in _call_with_frames_removed
-  File &quot;/home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py&quot;, line 16, in &lt;module&gt;
-    numpy2ri.activate()
-  File &quot;/home/circleci/miniconda/lib/python3.10/site-packages/rpy2/robjects/numpy2ri.py&quot;, line 267, in activate
-    raise DeprecationWarning(_DEPRECATION_MSG)
-DeprecationWarning:
-The activate and deactivate are deprecated. To set a conversion
-context check the docstring for rpy2.robjects.conversion.Converter.context.
-
-
+  File &quot;/home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py&quot;, line 9, in &lt;module&gt;
+    from rpy2 import robjects
+ModuleNotFoundError: No module named &#39;rpy2&#39;
     |--R-PGD: not installed
-Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-10-06_22h31m39.parquet
+Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-10-08_13h45m32.parquet
 Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/988a8bf9647d385d3613053b8eb8d32e_objective_value_objective_curve.pdf
 Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/988a8bf9647d385d3613053b8eb8d32e_objective_support_size_objective_curve.pdf
 Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/988a8bf9647d385d3613053b8eb8d32e_objective_duality_gap_objective_curve.pdf
@@ -410,7 +397,7 @@ Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_sampl
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
 </div>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 56.874 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (1 minutes 50.611 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-python-r-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/dc84f98e56bc6933a9be8456166d8561/plot_run_benchmark_python_R.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark_python_R.ipynb</span></code></a></p>
