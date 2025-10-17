@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**03:26.673** total execution time for 2 files **from auto_examples**:
+**03:56.239** total execution time for 2 files **from auto_examples**:
 
 .. container::
 
@@ -32,9 +32,9 @@ Computation times
    * - Example
      - Time
      - Mem (MB)
-   * - :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R.py` (``plot_run_benchmark_python_R.py``)
-     - 02:01.195
-     - 0.0
    * - :ref:`sphx_glr_auto_examples_plot_run_benchmark.py` (``plot_run_benchmark.py``)
-     - 01:25.478
+     - 02:06.756
+     - 0.0
+   * - :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R.py` (``plot_run_benchmark_python_R.py``)
+     - 01:49.483
      - 0.0

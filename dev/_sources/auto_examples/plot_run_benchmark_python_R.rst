@@ -105,16 +105,16 @@ Demo benchmark with R/Python
         from rpy2 import robjects
     ModuleNotFoundError: No module named 'rpy2'
         |--R-PGD: not installed                                                                         
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-10-17_08h30m38.parquet
-    Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_value_objective_curve.pdf
-    Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_support_size_objective_curve.pdf
-    Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_duality_gap_objective_curve.pdf
-    Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_value_suboptimality_curve.pdf
-    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_value_relative_suboptimality_curve.pdf
-    Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_value_bar_chart.pdf
-    Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_value_boxplot.pdf
-    Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_support_size_boxplot.pdf
-    Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/7fa9915af4d97d88e05d47f8133345bd_objective_duality_gap_boxplot.pdf
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-10-17_09h50m54.parquet
+    Save objective_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_value_objective_curve.pdf
+    Save objective_curve plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_support_size_objective_curve.pdf
+    Save objective_curve plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_duality_gap_objective_curve.pdf
+    Save suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_value_suboptimality_curve.pdf
+    Save relative_suboptimality_curve plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_value_relative_suboptimality_curve.pdf
+    Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_value_bar_chart.pdf
+    Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_value_boxplot.pdf
+    Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_support_size_boxplot.pdf
+    Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/b899eeb3cb7c332375e75369220a9e3c_objective_duality_gap_boxplot.pdf
 
 
 
@@ -144,7 +144,7 @@ Demo benchmark with R/Python
             f"{BENCHMARK_PATH.resolve()}"
         )
 
-    save_file = run_benchmark(
+    _, save_file = run_benchmark(
         BENCHMARK_PATH,
         solver_names=['Python-PGD[use_acceleration=False]', 'R-PGD'],
         dataset_names=["Simulated[n_features=5000,n_samples=100,rho=0]"],
@@ -164,7 +164,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (2 minutes 1.195 seconds)
+   **Total running time of the script:** (1 minutes 49.483 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:

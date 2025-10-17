@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.run_benchmark &#8212; benchopt 1.7.1.dev22 documentation</title>
+    <title>benchopt.run_benchmark &#8212; benchopt 1.7.1.dev23 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../../_static/documentation_options.js?v=060cc8c6"></script>
+    <script src="../../_static/documentation_options.js?v=bdf04adb"></script>
     <script src="../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev22</p>
+    <p class="title logo__title">1.7.1.dev23</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -398,10 +398,10 @@ be stored at &lt;BENCHMARK&gt;/outputs/&lt;filename&gt;.parquet.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>df</strong><span class="classifier">instance of pandas.DataFrame</span></dt><dd><p>The benchmark results. If multiple metrics were computed, each
-one is stored in a separate column. If the number of metrics computed
-by the objective is not the same for all parameters, the missing data
-is set to <cite>NaN</cite>.</p>
+<dt><strong>exit_code</strong><span class="classifier">int</span></dt><dd><p>Exit code of the benchmark run. 0 if everything went fine,
+1 otherwise.</p>
+</dd>
+<dt><strong>output_file</strong><span class="classifier">Path</span></dt><dd><p>Path to the output file where the results have been saved.</p>
 </dd>
 </dl>
 </dd>
