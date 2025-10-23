@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new &#8212; benchopt 1.7.1.dev25 documentation</title>
+    <title>What’s new &#8212; benchopt 1.7.1.dev26 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=93194a17"></script>
+    <script src="_static/documentation_options.js?v=846dca71"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -150,7 +150,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev25</p>
+    <p class="title logo__title">1.7.1.dev26</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -417,7 +417,9 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <ul class="simple">
 <li><p>Add the possibility of creating custom plots for each benchmark.
 See <a href="#id23"><span class="problematic" id="id24">`custom_plots`_</span></a> for the documentation.
-By <a href="#id25"><span class="problematic" id="id26">`Hippolyte Verninas`_</span></a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/842">#842</a>)</p></li>
+By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/842">#842</a>)</p></li>
+<li><p>Allow to override SLURM config on a per run basis with <code class="docutils literal notranslate"><span class="pre">Solver.parameters</span></code>
+See <a href="#id25"><span class="problematic" id="id26">`slurm_override`_</span></a>. By <a class="reference external" href="https://www.linkedin.com/in/geraud-ilinca">Geraud Ilinca</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/848">#848</a>)</p></li>
 </ul>
 </section>
 <section id="fix">
@@ -464,7 +466,7 @@ running in various environment and debugging. By <a class="reference external" h
 <h2>API<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">Solver</span></code> to allow overriding the
-default SLURM config. By <a class="reference external" href="ihttps://www.linkedin.com/in/plbarbarant/">Pierre-Louis Barbarant</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/805">#805</a>)</p></li>
+default SLURM config. By <a class="reference external" href="https://www.linkedin.com/in/plbarbarant/">Pierre-Louis Barbarant</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/805">#805</a>)</p></li>
 <li><p>Support <code class="docutils literal notranslate"><span class="pre">requirements</span></code> being a dictionary with keys <code class="docutils literal notranslate"><span class="pre">&quot;gpu&quot;</span></code> and
 <code class="docutils literal notranslate"><span class="pre">&quot;cpu&quot;</span></code>, for classes whose install differ on GPU and CPU.
 By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/793">#793</a>)</p></li>

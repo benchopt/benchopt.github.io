@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Distributed run with Benchopt &#8212; benchopt 1.7.1.dev25 documentation</title>
+    <title>Distributed run with Benchopt &#8212; benchopt 1.7.1.dev26 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=93194a17"></script>
+    <script src="../_static/documentation_options.js?v=846dca71"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev25</p>
+    <p class="title logo__title">1.7.1.dev26</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -323,6 +323,9 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-in-parallel-with-joblib">Running the benchmark in parallel with <code class="docutils literal notranslate"><span class="pre">joblib</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-computations-with-dask-or-submitit">Distributed computations with <code class="docutils literal notranslate"><span class="pre">dask</span></code> or <code class="docutils literal notranslate"><span class="pre">submitit</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-slurm-with-the-submitit-backend">Running on SLURM with the submitit backend</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-slurm-parameters-for-one-solver-or-one-run">Overriding the SLURM parameters for one solver or one run</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-computations-on-a-remote-cluster-using-dask">Running computations on a remote Cluster using <code class="docutils literal notranslate"><span class="pre">dask</span></code></a></li>
 </ul>
 </li>
@@ -386,14 +389,15 @@ Hereafter is an example of such config file:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text">./config_parallel.yml</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submitit</span>
-<span class="nt">slurm_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">01:00:00</span><span class="w">        </span><span class="c1"># max runtime 1 hour</span>
-<span class="nt">slurm_gres</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu:1</span><span class="w">           </span><span class="c1"># requires 1 GPU per job</span>
+<span class="nt">slurm_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">01:00:00</span><span class="w">          </span><span class="c1"># max runtime 1 hour</span>
+<span class="nt">slurm_gres</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu:1</span><span class="w">             </span><span class="c1"># requires 1 GPU per job</span>
+<span class="nt">slurm_stderr_to_stdout</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">True</span><span class="w">  </span><span class="c1"># redirect all outputs to a single log file</span>
 <span class="nt">slurm_additional_parameters</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ntasks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                 </span><span class="c1"># Number of tasks per job</span>
-<span class="w">  </span><span class="nt">cpus-per-task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">         </span><span class="c1"># requires 10 CPUs per job</span>
-<span class="w">  </span><span class="nt">qos</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QOS_NAME</span><span class="w">             </span><span class="c1"># Queue used for the jobs</span>
-<span class="w">  </span><span class="nt">distribution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">block:block</span><span class="w"> </span><span class="c1"># Distribution on the node&#39;s architectures</span>
-<span class="w">  </span><span class="nt">account</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ACC@NAME</span><span class="w">         </span><span class="c1"># Account for the jobs</span>
+<span class="w">  </span><span class="nt">ntasks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                   </span><span class="c1"># Number of tasks per job</span>
+<span class="w">  </span><span class="nt">cpus-per-task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">           </span><span class="c1"># requires 10 CPUs per job</span>
+<span class="w">  </span><span class="nt">qos</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QOS_NAME</span><span class="w">               </span><span class="c1"># Queue used for the jobs</span>
+<span class="w">  </span><span class="nt">distribution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">block:block</span><span class="w">   </span><span class="c1"># Distribution on the node&#39;s architectures</span>
+<span class="w">  </span><span class="nt">account</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ACC@NAME</span><span class="w">           </span><span class="c1"># Account for the jobs</span>
 <span class="nt">slurm_setup</span><span class="p">:</span><span class="w">  </span><span class="c1"># sbatch script commands added before the main job</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;#SBATCH</span><span class="nv"> </span><span class="s">-C</span><span class="nv"> </span><span class="s">v100-16g&#39;</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">module purge</span>
@@ -401,12 +405,68 @@ Hereafter is an example of such config file:</p>
 </pre></div>
 </div>
 </div>
+<p>Using this backend, each configuration of <code class="docutils literal notranslate"><span class="pre">(dataset,</span> <span class="pre">objective,</span> <span class="pre">solver)</span></code> with
+unique parameters is launched as a separated job in a job-array on the SLURM
+cluster. The logs of each run can be found in <code class="docutils literal notranslate"><span class="pre">./benchopt_run/</span></code>.</p>
+<p>The parameters defined in this config file should be compatible with
+the <code class="docutils literal notranslate"><span class="pre">submitit</span></code> library, as they are passed to the <code class="docutils literal notranslate"><span class="pre">submitit.AutoExecutor</span></code>
+class. For more information on the available parameters, please refer to
+the <a class="reference external" href="https://github.com/facebookincubator/submitit">submitit documentation</a>.</p>
 <p>Note that by default, no limitation is used on the number of
-simultaneous jobs that are run.</p>
+simultaneous jobs that are run, leaving the cluster to adjust this. The
+<code class="docutils literal notranslate"><span class="pre">slurm_array_parallelism</span></code> parameter can be set to limit the number of
+simultaneous jobs that are run when necessary.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">slurm_time</span></code> is not set in the config file, benchopt uses by default
-the value of <code class="docutils literal notranslate"><span class="pre">--timeout</span></code> multiplied by <code class="docutils literal notranslate"><span class="pre">1.5</span></code> for each job.
-Note that the logs of each benchmark run can be found in <code class="docutils literal notranslate"><span class="pre">./benchopt_run/</span></code>.</p>
+the value of <code class="docutils literal notranslate"><span class="pre">--timeout</span></code> multiplied by <code class="docutils literal notranslate"><span class="pre">1.5</span></code> for each job.</p>
+<p>As we rely on <code class="docutils literal notranslate"><span class="pre">joblib.Memory</span></code> for caching the results, the cache should work
+exactly as if you were running the computation sequentially, as long as you have
+a shared file-system between the nodes used for the computations.</p>
 </section>
+</section>
+<section id="overriding-the-slurm-parameters-for-one-solver-or-one-run">
+<span id="slurm-override"></span><h2>Overriding the SLURM parameters for one solver or one run<a class="headerlink" href="#overriding-the-slurm-parameters-for-one-solver-or-one-run" title="Link to this heading">#</a></h2>
+<p>It is possible to override the SLURM parameters for a specific solver, or varying
+them for different runs of a given solver.</p>
+<p>To specify a specific configuration for one solver, you can use the
+<code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> attribute in the solver class, which specifies different
+SLURM’s job parameters for the solver. If you want to vary some parameters
+per run, you can define them in the <code class="docutils literal notranslate"><span class="pre">parameters</span></code> attribute of the solver.
+Note that for this to work, the parameters defined in the <code class="docutils literal notranslate"><span class="pre">parameters</span></code>
+dictionary should all be prefixed with <code class="docutils literal notranslate"><span class="pre">slurm_</span></code> to be recognized as parameters
+for this backend.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;GPU-based solver that needs GPU partition and specific resources.&quot;&quot;&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;GPU-Solver&#39;</span>
+
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="o">...</span>
+        <span class="s1">&#39;slurm_nodes&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span>  <span class="c1"># Varying number of nodes per run</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Override global SLURM config for this solver</span>
+    <span class="n">slurm_params</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;slurm_partition&#39;</span><span class="p">:</span> <span class="s1">&#39;gpu&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_gres&#39;</span><span class="p">:</span> <span class="s1">&#39;gpu:1&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_time&#39;</span><span class="p">:</span> <span class="s1">&#39;02:00:00&#39;</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_cpus_per_task&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
+        <span class="s1">&#39;slurm_mem&#39;</span><span class="p">:</span> <span class="s1">&#39;16GB&#39;</span><span class="p">,</span>
+    <span class="p">}</span>
+
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;torch&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>As discussed above, the parameters described here should be compatible with the
+<code class="docutils literal notranslate"><span class="pre">submitit</span></code> backend. When the benchmark is run with the <code class="docutils literal notranslate"><span class="pre">submitit</span></code> backend,
+the global SLURM config will be updated with the parameters defined in the
+<code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> attribute of the solver, and then for each run. The final
+configuration used for a given run is thus obtained by merging the global SLURM
+config, the solver-specific parameters, and the run-specific parameters, with
+priority given to the run-specific parameters. Note that in this case, the jobs
+with different SLURM parameters will be launched as one job array per
+configuration.</p>
 <section id="running-computations-on-a-remote-cluster-using-dask">
 <span id="dask-backend"></span><h3>Running computations on a remote Cluster using <code class="docutils literal notranslate"><span class="pre">dask</span></code><a class="headerlink" href="#running-computations-on-a-remote-cluster-using-dask" title="Link to this heading">#</a></h3>
 <p>In the config file passed to <code class="docutils literal notranslate"><span class="pre">--parallel-config</span></code>, you can specify the
@@ -489,6 +549,9 @@ These keys will be passed to create an instance of <a class="reference external"
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-in-parallel-with-joblib">Running the benchmark in parallel with <code class="docutils literal notranslate"><span class="pre">joblib</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-computations-with-dask-or-submitit">Distributed computations with <code class="docutils literal notranslate"><span class="pre">dask</span></code> or <code class="docutils literal notranslate"><span class="pre">submitit</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-slurm-with-the-submitit-backend">Running on SLURM with the submitit backend</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-slurm-parameters-for-one-solver-or-one-run">Overriding the SLURM parameters for one solver or one run</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-computations-on-a-remote-cluster-using-dask">Running computations on a remote Cluster using <code class="docutils literal notranslate"><span class="pre">dask</span></code></a></li>
 </ul>
 </li>

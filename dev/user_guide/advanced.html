@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Advanced usage &#8212; benchopt 1.7.1.dev25 documentation</title>
+    <title>Advanced usage &#8212; benchopt 1.7.1.dev26 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=93194a17"></script>
+    <script src="../_static/documentation_options.js?v=846dca71"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev25</p>
+    <p class="title logo__title">1.7.1.dev26</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -320,8 +320,6 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-on-a-slurm-cluster">Running the benchmark on a SLURM cluster</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-slurm-parameters-for-one-solver">Overriding the SLURM parameters for one solver</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
@@ -346,89 +344,6 @@ document.write(`
 <span id="id1"></span><h1>Advanced usage<a class="headerlink" href="#advanced-usage" title="Link to this heading">#</a></h1>
 <p>This page intends to list some advanced functionality
 to make it easier to use the benchmark.</p>
-<section id="running-the-benchmark-on-a-slurm-cluster">
-<span id="slurm-run"></span><h2>Running the benchmark on a SLURM cluster<a class="headerlink" href="#running-the-benchmark-on-a-slurm-cluster" title="Link to this heading">#</a></h2>
-<p>Benchopt also allows easily running the benchmark in parallel on a SLURM
-cluster. To install the necessary dependencies, please run:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>benchopt<span class="o">[</span>submitit<span class="o">]</span></span>
-<span class="prompt1"></span>
-<span class="prompt1"><span class="c1"># Or for dev install</span></span>
-<span class="prompt1">$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>submitit<span class="o">]</span></span>
-</pre></div></div><p>Note that for some clusters with shared python installation, it is necessary
-to call <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">--user</span></code> to install the packages in the user space and
-not in the system one.</p>
-<p>Using the <code class="docutils literal notranslate"><span class="pre">--slurm</span></code> option for <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, one can pass a config file
-used to setup the SLURM jobs. This file is a YAML file that can contain any key
-to be passed to the <a class="reference external" href="https://github.com/facebookincubator/submitit/blob/main/submitit/slurm/slurm.py#L386"><code class="docutils literal notranslate"><span class="pre">update_parameters</span></code></a> method of <a class="reference external" href="https://github.com/facebookincubator/submitit/blob/main/submitit/slurm/slurm.py#L214"><code class="docutils literal notranslate"><span class="pre">submitit.SlurmExecutor</span></code></a>.
-Hereafter is an example of such config file:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">slurm_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">01:00:00</span><span class="w">        </span><span class="c1"># max runtime 1 hour</span>
-<span class="nt">slurm_gres</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu:1</span><span class="w">           </span><span class="c1"># requires 1 GPU per job</span>
-<span class="nt">slurm_additional_parameters</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">ntasks</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1</span><span class="w">                 </span><span class="c1"># Number of tasks per job</span>
-<span class="w">  </span><span class="nt">cpus-per-task</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">10</span><span class="w">         </span><span class="c1"># requires 10 CPUs per job</span>
-<span class="w">  </span><span class="nt">qos</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">QOS_NAME</span><span class="w">             </span><span class="c1"># Queue used for the jobs</span>
-<span class="w">  </span><span class="nt">distribution</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">block:block</span><span class="w"> </span><span class="c1"># Distribution on the node&#39;s architectures</span>
-<span class="w">  </span><span class="nt">account</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ACC@NAME</span><span class="w">         </span><span class="c1"># Account for the jobs</span>
-<span class="nt">slurm_setup</span><span class="p">:</span><span class="w">  </span><span class="c1"># sbatch script commands added before the main job</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&#39;#SBATCH</span><span class="nv"> </span><span class="s">-C</span><span class="nv"> </span><span class="s">v100-16g&#39;</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">module purge</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">module load cuda/10.1.2 cudnn/7.6.5.32-cuda-10.1 nccl/2.5.6-2-cuda</span>
-</pre></div>
-</div>
-<p>Using such options, each configuration of <code class="docutils literal notranslate"><span class="pre">(dataset,</span> <span class="pre">objective,</span> <span class="pre">solver)</span></code> with
-unique parameters is launched as a separated job in a job-array on the SLURM
-cluster. Note that by default, no limitation is used on the number of
-simultaneous jobs that are run.</p>
-<p>If <code class="docutils literal notranslate"><span class="pre">slurm_time</span></code> is not set in the config file, benchopt uses by default
-the value of <code class="docutils literal notranslate"><span class="pre">--timeout</span></code> multiplied by <code class="docutils literal notranslate"><span class="pre">1.5</span></code> for each job.
-Note that the logs of each benchmark run can be found in <code class="docutils literal notranslate"><span class="pre">./benchopt_run/</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">slurm_array_parallelism</span></code> can be used to limit the number of simultaneous
-jobs that are run. This is useful when the cluster has no limit on the number of
-simultaneous jobs that can be run. By default, this value is not set, leaving it to
-the cluster to adjust this.</p>
-<p>As we rely on <code class="docutils literal notranslate"><span class="pre">joblib.Memory</span></code> for caching the results, the cache should work
-exactly as if you were running the computation sequentially, as long as you have
-a shared file-system between the nodes used for the computations.</p>
-</section>
-<section id="overriding-the-slurm-parameters-for-one-solver">
-<span id="slurm-override"></span><h2>Overriding the SLURM parameters for one solver<a class="headerlink" href="#overriding-the-slurm-parameters-for-one-solver" title="Link to this heading">#</a></h2>
-<p>You can also override the SLURM parameters for a specific solver by
-defining a <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> attribute in the solver class. This allows to
-specify a different SLURM partition, resources, or other parameters that
-are specific to that solver. The parameters defined in the solver class
-will override the global SLURM config defined in the config file:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;GPU-based solver that needs GPU partition and specific resources.&quot;&quot;&quot;</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;GPU-Solver&#39;</span>
-
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="o">...</span><span class="p">}</span>
-
-    <span class="c1"># Override global SLURM config for this solver</span>
-    <span class="n">slurm_params</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;slurm_partition&#39;</span><span class="p">:</span> <span class="s1">&#39;gpu&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;slurm_gres&#39;</span><span class="p">:</span> <span class="s1">&#39;gpu:1&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;slurm_time&#39;</span><span class="p">:</span> <span class="s1">&#39;02:00:00&#39;</span><span class="p">,</span>
-        <span class="s1">&#39;slurm_cpus_per_task&#39;</span><span class="p">:</span> <span class="mi">8</span><span class="p">,</span>
-        <span class="s1">&#39;slurm_mem&#39;</span><span class="p">:</span> <span class="s1">&#39;16GB&#39;</span><span class="p">,</span>
-    <span class="p">}</span>
-
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;torch&#39;</span><span class="p">]</span>
-
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="o">...</span>
-</pre></div>
-</div>
-<p>The parameters defined in the <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> should be compatible with
-the <cite>submitit</cite> library, as they are passed to the <cite>submitit.AutoExecutor</cite>
-class. For more information on the available parameters, please refer to
-the <a class="reference external" href="https://github.com/facebookincubator/submitit">submitit documentation</a>.
-Note that in this case, the jobs with different SLURM parameters will be
-launched as one job array per configuration.</p>
-</section>
 <section id="skipping-a-solver-for-a-given-problem">
 <span id="skipping-solver"></span><h2>Skipping a solver for a given problem<a class="headerlink" href="#skipping-a-solver-for-a-given-problem" title="Link to this heading">#</a></h2>
 <p>Some solvers might not be able to run with all the datasets present
@@ -620,8 +535,6 @@ function on <a class="reference internal" href="API_ref.html#api-ref"><span clas
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-on-a-slurm-cluster">Running the benchmark on a SLURM cluster</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#overriding-the-slurm-parameters-for-one-solver">Overriding the SLURM parameters for one solver</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
