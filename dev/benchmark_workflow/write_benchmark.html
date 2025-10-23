@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Write a benchmark &#8212; benchopt 1.7.1.dev24 documentation</title>
+    <title>Write a benchmark &#8212; benchopt 1.7.1.dev25 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="../_static/documentation_options.js?v=28e5c80a"></script>
+    <script src="../_static/documentation_options.js?v=93194a17"></script>
     <script src="../_static/doctools.js?v=9bcbadda"></script>
     <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.7.1.dev24</p>
+    <p class="title logo__title">1.7.1.dev25</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -332,6 +332,10 @@ document.write(`
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Example</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots">4. Plots</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Example</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -354,9 +358,11 @@ structure. For example</p>
 ├── datasets/
 │   ├── dataset1.py  # some dataset
 │   └── dataset2.py  # some dataset
-└── solvers/
-    ├── solver1.py  # some solver
-    └── solver2.py  # some solver
+├── solvers/
+│   ├── solver1.py  # some solver
+│   └── solver2.py  # some solver
+└── plots/
+    └── custom_plot.py  # (optional) some custom plot
 </pre></div>
 </div>
 <p>Examples of actual benchmarks are available in the
@@ -380,7 +386,7 @@ An objective class should define 4 methods:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_data(**data)</span></code>: allows to specify the data. See the data as a dictionary
 of Python variables without any constraint. In the following example, the data
 contains only one variable <code class="docutils literal notranslate"><span class="pre">X</span></code>. This data is provided by the
-<code class="docutils literal notranslate"><span class="pre">Dataset.get_data()</span></code> method of a <a href="#id6"><span class="problematic" id="id7">dataset_</span></a>.</p></li>
+<code class="docutils literal notranslate"><span class="pre">Dataset.get_data()</span></code> method of a <a href="#id7"><span class="problematic" id="id8">dataset_</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_objective()</span></code>: returns the information that each method will need to
 provide a result. The information is also passed as a dictionary, which will
 serve as input for the <code class="docutils literal notranslate"><span class="pre">Solver.set_objective</span></code> method of the <a class="reference internal" href="#solvers">solvers</a>.</p></li>
@@ -577,6 +583,76 @@ should stop.</p></li>
 </div>
 </section>
 </section>
+<section id="plots">
+<span id="custom-plots"></span><h2>4. Plots<a class="headerlink" href="#plots" title="Link to this heading">#</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This feature is experimental and the API may change in future releases without further notice.</p>
+</div>
+<p>Custom plots can be defined to visualize specific quantities of interest
+during the benchmark. By default, BenchOpt provides some standard plots such as
+the objective curve, box plots and bar plots. However, users can create their own plots
+by defining a class that inherits from <code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BasePlot</span></code>.</p>
+<dl class="simple">
+<dt>A custom plot must define the following attributes:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: A string representing the name of the plot.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: A string indicating the type of plot (“scatter”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dropdown</span></code>: A dictionary specifying the dropdown options for the plot. For each dropdown
+option, provide a list of possible values, or an ellipsis (…) to indicate that the values
+should be determined dynamically based on the benchmark data, such as the list of datasets.</p></li>
+</ul>
+</dd>
+<dt>A custom plot must also implement 2 methods:</dt><dd><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">plot(self,</span> <span class="pre">df,</span> <span class="pre">**kwargs)</span></code>: This method takes a pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code> as input and the keyword
+arguments from the dropdown menu and returns a list of dictionaries,
+each representing a plot trace. Each dictionary should contain the necessary information to create the plot
+(x, y, color, marker, label). Users can also use the self.get_solver_style(solver_name) method to obtain
+consistent styles for the traces.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_metadata(self,</span> <span class="pre">df,</span> <span class="pre">**kwargs)</span></code>: This method takes a pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code> as input and returns a dictionary
+containing metadata for the plot (title, xlabel, and ylabel).</p></li>
+</ul>
+</dd>
+</dl>
+<section id="id6">
+<h3>Example<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Custom plot 1&quot;</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;scatter&quot;</span>
+    <span class="n">dropdown</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>  <span class="c1"># Will fetch the dataset names from the df</span>
+        <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">]</span>
+    <span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dataset_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">)]</span>
+        <span class="k">return</span> <span class="p">[</span>
+            <span class="p">{</span>
+                <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">solver</span><span class="p">)][</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="p">(</span>
+                    <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">solver</span><span class="p">)]</span>
+                    <span class="p">[</span><span class="s2">&quot;objective_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
+                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>  <span class="c1"># possible to use the rgba instead</span>
+                <span class="s2">&quot;marker&quot;</span><span class="p">:</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span>  <span class="c1"># possible to give an int instead</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
+            <span class="p">}</span>
+            <span class="k">for</span> <span class="n">solver</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+        <span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dataset_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">)]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Custom Plot 1</span><span class="se">\n</span><span class="s2">Data: </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="se">\n</span><span class="s2">Color: </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+            <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Custom X-axis&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Custom Y-axis&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -634,6 +710,10 @@ should stop.</p></li>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#solvers">3. Solvers</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">Example</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots">4. Plots</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">Example</a></li>
 </ul>
 </li>
 </ul>
