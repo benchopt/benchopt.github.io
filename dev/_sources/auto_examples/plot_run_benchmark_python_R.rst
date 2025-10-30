@@ -22,7 +22,7 @@
 Demo benchmark with R/Python
 ============================
 
-.. GENERATED FROM PYTHON SOURCE LINES 7-42
+.. GENERATED FROM PYTHON SOURCE LINES 7-41
 
 
 
@@ -32,29 +32,148 @@ Demo benchmark with R/Python
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_001.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0] 
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_001.png
          :class: sphx-glr-multi-img
 
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_002.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0] 
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_002.png
          :class: sphx-glr-multi-img
 
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_003.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0] 
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_003.png
          :class: sphx-glr-multi-img
 
     *
 
       .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_004.png
-         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0] 
          :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_004.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_005.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0] 
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_005.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_006.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0] 
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_006.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_007.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_007.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_008.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_008.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_009.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_009.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_010.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_010.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_011.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_011.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_012.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_012.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_013.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_013.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_014.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_014.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_015.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_015.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_016.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_016.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_017.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_017.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_018.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_018.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_019.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_019.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_020.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_020.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_021.png
+         :alt: Lasso Regression[fit_intercept=False,reg=0.5] Data: Simulated[n_features=5000,n_samples=100,rho=0]
+         :srcset: /auto_examples/images/sphx_glr_plot_run_benchmark_python_R_021.png
          :class: sphx-glr-multi-img
 
 
@@ -70,11 +189,30 @@ Demo benchmark with R/Python
         from rpy2 import robjects
     ModuleNotFoundError: No module named 'rpy2'
         |--R-PGD: not installed                                                                         
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-10-28_16h08m13.parquet
-    Save bar_chart plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/988a8bf9647d385d3613053b8eb8d32e_objective_value_bar_chart.pdf
-    Save boxplot plot of objective_value for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/988a8bf9647d385d3613053b8eb8d32e_objective_value_boxplot.pdf
-    Save boxplot plot of objective_support_size for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/988a8bf9647d385d3613053b8eb8d32e_objective_support_size_boxplot.pdf
-    Save boxplot plot of objective_duality_gap for Simulated[n_features=5000,n_samples=100,rho=0] and Lasso Regression[fit_intercept=False,reg=0.5] as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/988a8bf9647d385d3613053b8eb8d32e_objective_duality_gap_boxplot.pdf
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-10-30_14h30m27.parquet
+    Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Iteration as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size_Iteration as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_duality_gap_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_duality_gap_Iteration as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save bar_chart_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/bar_chart_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save bar_chart_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/bar_chart_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save bar_chart_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_duality_gap as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/bar_chart_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Solver_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Solver_Objective Metric as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Iteration_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Iteration_Objective Metric as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size_Solver_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size_Solver_Objective Metric as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size_Iteration_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size_Iteration_Objective Metric as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_duality_gap_Solver_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_duality_gap_Solver_Objective Metric as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_duality_gap_Iteration_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
+    /home/circleci/project/benchopt/plotting/generate_matplotlib.py:121: RuntimeWarning: More than 20 figures have been opened. Figures created through the pyplot interface (`matplotlib.pyplot.figure`) are retained until explicitly closed and may consume too much memory. (To control this warning, see the rcParam `figure.max_open_warning`). Consider using `matplotlib.pyplot.close()`.
+      fig = plt.figure()
+    Save boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_duality_gap_Iteration_Objective Metric as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/boxplot_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
 
 
 
@@ -90,8 +228,8 @@ Demo benchmark with R/Python
     import matplotlib.pyplot as plt
     from benchopt import run_benchmark
     from benchopt.benchmark import Benchmark
-    from benchopt.plotting import plot_benchmark, PLOT_KINDS
-    from benchopt.plotting.helpers import reset_solver_styles_idx
+    from benchopt.plotting import plot_benchmark
+    from benchopt.plotting.helpers import reset_solver_styles
 
 
     BENCHMARK_PATH = Path().resolve().parent / 'benchmarks' / 'benchmark_lasso'
@@ -113,18 +251,17 @@ Demo benchmark with R/Python
         plot_result=False, show_progress=False
     )
 
+    reset_solver_styles()
 
-    kinds = list(PLOT_KINDS.keys())
-    reset_solver_styles_idx()
     figs = plot_benchmark(
-        save_file, benchmark=Benchmark(BENCHMARK_PATH), kinds=kinds, html=False
+        save_file, benchmark=Benchmark(BENCHMARK_PATH), html=False
     )
     plt.show()
 
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (1 minutes 56.993 seconds)
+   **Total running time of the script:** (1 minutes 56.919 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:

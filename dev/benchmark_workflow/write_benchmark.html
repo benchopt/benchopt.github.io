@@ -596,7 +596,7 @@ by defining a class that inherits from <code class="xref py py-class docutils li
 <dl class="simple">
 <dt>A custom plot must define the following attributes:</dt><dd><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: A string representing the name of the plot.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: A string indicating the type of plot (“scatter”).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">type</span></code>: A string indicating the type of plot (“scatter”, “bar_chart” or “boxplot”).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dropdown</span></code>: A dictionary specifying the dropdown options for the plot. For each dropdown
 option, provide a list of possible values, or an ellipsis (…) to indicate that the values
 should be determined dynamically based on the benchmark data, such as the list of datasets.</p></li>
@@ -608,46 +608,73 @@ arguments from the dropdown menu and returns a list of dictionaries,
 each representing a plot trace. Each dictionary should contain the necessary information to create the plot
 (x, y, color, marker, label). Users can also use the self.get_solver_style(solver_name) method to obtain
 consistent styles for the traces.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get_metadata(self,</span> <span class="pre">df,</span> <span class="pre">**kwargs)</span></code>: This method takes a pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code> as input and returns a dictionary
+<li><p><code class="docutils literal notranslate"><span class="pre">get_metadata(self,</span> <span class="pre">df,</span> <span class="pre">**kwargs)</span></code>: This method takes a pandas DataFrame <code class="docutils literal notranslate"><span class="pre">df</span></code> as input and the keyword
+arguments from the dropdown menu and returns a dictionary
 containing metadata for the plot (title, xlabel, and ylabel).</p></li>
 </ul>
 </dd>
 </dl>
 <section id="id6">
 <h3>Example<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
-
-
-<span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Custom plot 1&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">ObjectiveCurvePlot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;objective_curve&quot;</span>
     <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;scatter&quot;</span>
     <span class="n">dropdown</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>  <span class="c1"># Will fetch the dataset names from the df</span>
-        <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;blue&quot;</span><span class="p">,</span> <span class="s2">&quot;red&quot;</span><span class="p">]</span>
+        <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+        <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+        <span class="s2">&quot;objective_column&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+        <span class="s2">&quot;X_axis&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Time&quot;</span><span class="p">,</span> <span class="s2">&quot;Iteration&quot;</span><span class="p">],</span>
     <span class="p">}</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dataset_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">)]</span>
-        <span class="k">return</span> <span class="p">[</span>
-            <span class="p">{</span>
-                <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">solver</span><span class="p">)][</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="p">(</span>
-                    <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">solver</span><span class="p">)]</span>
-                    <span class="p">[</span><span class="s2">&quot;objective_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()),</span>
-                <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">color</span><span class="p">,</span>  <span class="c1"># possible to use the rgba instead</span>
-                <span class="s2">&quot;marker&quot;</span><span class="p">:</span> <span class="s2">&quot;x&quot;</span><span class="p">,</span>  <span class="c1"># possible to give an int instead</span>
-                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
-            <span class="p">}</span>
-            <span class="k">for</span> <span class="n">solver</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
-        <span class="p">]</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">objective_column</span><span class="p">,</span> <span class="n">X_axis</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;dataset_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;objective_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">objective</span><span class="p">]</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">color</span><span class="p">):</span>
-        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[(</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dataset_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">)]</span>
-        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Custom Plot 1</span><span class="se">\n</span><span class="s2">Data: </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="se">\n</span><span class="s2">Color: </span><span class="si">{</span><span class="n">color</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="n">plots</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">solver</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+            <span class="n">df_filtered</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">solver</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">select_dtypes</span><span class="p">(</span><span class="n">include</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;number&#39;</span><span class="p">])</span>
+                <span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;stop_val&#39;</span><span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">df_filtered_median</span> <span class="o">=</span> <span class="n">df_filtered</span><span class="o">.</span><span class="n">median</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">objective_column</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">df_filtered_median</span><span class="p">:</span>
+                <span class="k">continue</span>
+            <span class="n">y</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">df_filtered_median</span><span class="p">[</span><span class="n">objective_column</span><span class="p">]</span>
+                <span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="n">x</span> <span class="o">=</span> <span class="n">df_filtered_median</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">X_axis</span> <span class="o">==</span> <span class="s2">&quot;Iteration&quot;</span><span class="p">:</span>
+                <span class="n">x</span> <span class="o">=</span> <span class="n">df_filtered_median</span><span class="o">.</span><span class="n">index</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+
+            <span class="n">curve_data</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">x</span><span class="p">,</span>
+                <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">y</span><span class="p">,</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
+                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+            <span class="p">}</span>
+
+            <span class="k">if</span> <span class="n">X_axis</span> <span class="o">==</span> <span class="s2">&quot;Time&quot;</span><span class="p">:</span>
+                <span class="n">curve_data</span><span class="p">[</span><span class="s1">&#39;q1&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">df_filtered</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.1</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="p">)</span>
+                <span class="n">curve_data</span><span class="p">[</span><span class="s1">&#39;q9&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="p">(</span>
+                    <span class="n">df_filtered</span><span class="p">[</span><span class="s2">&quot;time&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">quantile</span><span class="p">(</span><span class="mf">.9</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="p">)</span>
+
+            <span class="n">plots</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">curve_data</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">plots</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">objective_column</span><span class="p">,</span> <span class="n">X_axis</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s2">&quot;dataset_name&quot;</span><span class="p">]</span> <span class="o">==</span> <span class="n">dataset</span><span class="p">]</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;objective_name&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="n">objective</span><span class="p">]</span>
+        <span class="n">title</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">objective</span><span class="si">}</span><span class="se">\n</span><span class="s2">Data: </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2"> &quot;</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
-            <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Custom X-axis&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Custom Y-axis&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="n">X_axis</span><span class="p">,</span>
+            <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Objective Value&quot;</span><span class="p">,</span>
         <span class="p">}</span>
 </pre></div>
 </div>
