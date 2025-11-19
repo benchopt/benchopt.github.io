@@ -345,7 +345,7 @@ document.write(`
 <h1>benchopt.BaseSolver<a class="headerlink" href="#benchopt-basesolver" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="benchopt.BaseSolver">
-<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">BaseSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">BaseSolver</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver" title="Link to this definition">#</a></dt>
 <dd><p>A base class for solver wrappers in Benchopt.</p>
 <p>Solvers that derive from this class should implement three methods:</p>
 <ul class="simple">
@@ -377,7 +377,7 @@ typically used for ML benchmarks.</p></li>
 </ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.get_result">
-<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Link to this definition">#</a></dt>
 <dd><p>Return the parameters computed by the previous run.</p>
 <p>The parameters should be returned as a dictionary.</p>
 <dl class="field-list simple">
@@ -413,7 +413,7 @@ the computations should stop.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.run">
-<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">run</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">stop_val</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.run" title="Link to this definition">#</a></dt>
 <dd><p>Call the solver with the given stop_val.</p>
 <p>This function should not return the parameters which will be
 retrieved by a subsequent call to get_result.</p>
@@ -459,7 +459,7 @@ the solver on an easy to solve problem.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.set_objective">
-<em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_objective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.set_objective" title="Link to this definition">#</a></dt>
+<em class="property"><span class="pre">abstract</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">set_objective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.set_objective" title="Link to this definition">#</a></dt>
 <dd><p>Prepare the objective for the solver.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

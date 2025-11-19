@@ -181,15 +181,28 @@ Demo benchmark with R/Python
 
  .. code-block:: none
 
-    Simulated[n_features=5000,n_samples=100,rho=0]                                                      
-      |--Lasso Regression[fit_intercept=False,reg=0.5]                                                  
-        |--Python-PGD[use_acceleration=False]: done (timeout)                                           
+    Simulated[n_features=5000,n_samples=100,rho=0]
+      |--Lasso Regression[fit_intercept=False,reg=0.5]
+        |--Python-PGD[use_acceleration=False]: done (timeout)
+    Failed to import Solver from /home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py. Please fix the following error to use this file with benchopt:
     Traceback (most recent call last):
-      File "/home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py", line 9, in <module>
-        from rpy2 import robjects
-    ModuleNotFoundError: No module named 'rpy2'
-        |--R-PGD: not installed                                                                         
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-11-05_07h10m42.parquet
+      File "/home/circleci/project/benchopt/utils/dynamic_modules.py", line 97, in _load_class_from_module
+        module = _get_module_from_file(module_filename, benchmark_dir)
+      File "/home/circleci/project/benchopt/utils/dynamic_modules.py", line 64, in _get_module_from_file
+        spec.loader.exec_module(module)
+      File "<frozen importlib._bootstrap_external>", line 883, in exec_module
+      File "<frozen importlib._bootstrap>", line 241, in _call_with_frames_removed
+      File "/home/circleci/project/benchmarks/benchmark_lasso/solvers/r_pgd.py", line 16, in <module>
+        numpy2ri.activate()
+      File "/home/circleci/miniconda/lib/python3.10/site-packages/rpy2/robjects/numpy2ri.py", line 267, in activate
+        raise DeprecationWarning(_DEPRECATION_MSG)
+    DeprecationWarning: 
+    The activate and deactivate are deprecated. To set a conversion
+    context check the docstring for rpy2.robjects.conversion.Converter.context.
+
+
+        |--R-PGD: not installed
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-11-19_15h50m25.parquet
     Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
     Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Iteration as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
     Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
@@ -261,7 +274,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (1 minutes 54.022 seconds)
+   **Total running time of the script:** (2 minutes 12.125 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:
