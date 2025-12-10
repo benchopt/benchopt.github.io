@@ -202,7 +202,7 @@ Demo benchmark with R/Python
 
 
         |--R-PGD: not installed
-    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-11-19_15h50m25.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_lasso/outputs/benchopt_run_2025-12-10_07h55m29.parquet
     Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
     Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_value_Iteration as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
     Save objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.5]_objective_support_size_Time as: /home/circleci/project/benchmarks/benchmark_lasso/outputs/objective_curve_Simulated[n_features=5000,n_samples=100,rho=0]_Lasso Regression[fit_intercept=False,reg=0.pdf
@@ -274,7 +274,7 @@ Demo benchmark with R/Python
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (2 minutes 12.125 seconds)
+   **Total running time of the script:** (2 minutes 7.566 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark_python_R.py:

@@ -475,23 +475,26 @@ document.write(`
     <span class="k">if</span> <span class="ow">not</span> <span class="n">dataset_test_parameters</span><span class="p">:</span>
         <span class="n">dataset_test_parameters</span> <span class="o">=</span> <span class="p">[{}]</span>
     <span class="n">solver_ran_once</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">reasons</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
     <span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">dataset_test_parameters</span><span class="p">:</span>
         <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dataset_config</span><span class="p">)</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
         <span class="n">objective</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-        <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">test_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;solver&#39;</span><span class="p">,</span> <span class="p">{}))</span>
         <span class="n">skip</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">_set_objective</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">skip</span><span class="p">:</span>
+            <span class="n">reasons</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
             <span class="k">continue</span>
         <span class="n">solver_ran_once</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="n">_test_solver_one_objective</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">objective</span><span class="p">)</span>
 
+    <span class="n">reasons</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">reasons</span><span class="p">))</span>
     <span class="k">assert</span> <span class="n">solver_ran_once</span><span class="p">,</span> <span class="p">(</span>
         <span class="s1">&#39;Solver skipped all test configuration. At least one simulated &#39;</span>
         <span class="s1">&#39;dataset and one objective config should be compatible with the &#39;</span>
         <span class="s1">&#39;solver, potentially provided through &quot;Solver.test_config&quot; class &#39;</span>
-        <span class="s1">&#39;attribute or with `Dataset.test_parameters`.&#39;</span>
+        <span class="sa">f</span><span class="s1">&#39;attribute or with `Dataset.test_parameters`. Reasons:</span><span class="se">\n</span><span class="s1">-</span><span class="si">{</span><span class="n">reasons</span><span class="si">}</span><span class="s1">&#39;</span>
     <span class="p">)</span>
 
 

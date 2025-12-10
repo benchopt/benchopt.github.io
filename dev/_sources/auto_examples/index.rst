@@ -26,7 +26,7 @@ Examples Gallery
   .. image:: /auto_examples/images/thumb/sphx_glr_plot_run_benchmark_python_R_thumb.png
     :alt:
 
-  :ref:`sphx_glr_auto_examples_plot_run_benchmark_python_R.py`
+  :doc:`/auto_examples/plot_run_benchmark_python_R`
 
 .. raw:: html
 
@@ -43,7 +43,7 @@ Examples Gallery
   .. image:: /auto_examples/images/thumb/sphx_glr_plot_run_benchmark_thumb.png
     :alt:
 
-  :ref:`sphx_glr_auto_examples_plot_run_benchmark.py`
+  :doc:`/auto_examples/plot_run_benchmark`
 
 .. raw:: html
 
