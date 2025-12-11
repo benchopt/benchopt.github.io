@@ -3325,7 +3325,7 @@ Run benchmark from a script
       warnings.warn(
         |--sklearn[newton-cg]: done                                                                     
         |--Lightning: not installed                                                                     
-    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2025-12-11_05h44m48.parquet
+    Saving result in: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/benchopt_run_2025-12-11_05h57m23.parquet
     Save objective_curve_Simulated[n_features=500,n_samples=200,scaled=True]_L2 Logistic Regression[fit_intercept=False,lmbd=1.0]_objective_Train loss_Time as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/objective_curve_Simulated[n_features=500,n_samples=200,scaled=True]_L2 Logistic Regression[fit_intercept=False,lmbd=1.pdf
     Save objective_curve_Simulated[n_features=500,n_samples=200,scaled=True]_L2 Logistic Regression[fit_intercept=False,lmbd=1.0]_objective_Train loss_Iteration as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/objective_curve_Simulated[n_features=500,n_samples=200,scaled=True]_L2 Logistic Regression[fit_intercept=False,lmbd=1.pdf
     Save objective_curve_Simulated[n_features=500,n_samples=200,scaled=True]_L2 Logistic Regression[fit_intercept=False,lmbd=1.0]_objective_Train error_Time as: /home/circleci/project/benchmarks/benchmark_logreg_l2/outputs/objective_curve_Simulated[n_features=500,n_samples=200,scaled=True]_L2 Logistic Regression[fit_intercept=False,lmbd=1.pdf
@@ -3520,7 +3520,7 @@ Run benchmark from a script
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (2 minutes 33.798 seconds)
+   **Total running time of the script:** (2 minutes 11.838 seconds)
 
 
 .. _sphx_glr_download_auto_examples_plot_run_benchmark.py:
