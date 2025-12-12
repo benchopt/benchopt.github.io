@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=974f4921" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=7799b48c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -51,6 +51,7 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/index';</script>
+    <script src="../_static/benchopt.js?v=8e1f6d87"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -216,6 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -324,7 +326,10 @@ document.write(`
                   
   <section id="examples-gallery">
 <span id="general-examples"></span><h1>Examples Gallery<a class="headerlink" href="#examples-gallery" title="Link to this heading">#</a></h1>
-<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="Demo benchmark with R/Python"><img alt="" src="../_images/sphx_glr_plot_run_benchmark_python_R_thumb.png" />
+<div class="sphx-glr-thumbnails"><div class="sphx-glr-thumbcontainer" tooltip="This Example demonstrates how to run an existing benchmark with benchopt. It uses the benchopt_run helper function to run the benchmark, which runs programmatically the equivalent of the command line interface:"><img alt="" src="../_images/sphx_glr_run_minimal_benchmark_thumb.png" />
+<p><a class="reference internal" href="run_minimal_benchmark.html"><span class="doc">Running an existing benchmark</span></a></p>
+  <div class="sphx-glr-thumbnail-title">Running an existing benchmark</div>
+</div><div class="sphx-glr-thumbcontainer" tooltip="Demo benchmark with R/Python"><img alt="" src="../_images/sphx_glr_plot_run_benchmark_python_R_thumb.png" />
 <p><a class="reference internal" href="plot_run_benchmark_python_R.html"><span class="doc">Demo benchmark with R/Python</span></a></p>
   <div class="sphx-glr-thumbnail-title">Demo benchmark with R/Python</div>
 </div><div class="sphx-glr-thumbcontainer" tooltip="Run benchmark from a script"><img alt="" src="../_images/sphx_glr_plot_run_benchmark_thumb.png" />

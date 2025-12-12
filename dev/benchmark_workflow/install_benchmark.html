@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=974f4921" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=7799b48c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -51,6 +51,7 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/install_benchmark';</script>
+    <script src="../_static/benchopt.js?v=8e1f6d87"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -216,6 +217,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/performance_curves.html">Performance curves</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -348,23 +350,22 @@ to specify and install requirements for the various components of the benchmarks
 <li><p>The requirements that are specific to each <code class="docutils literal notranslate"><span class="pre">Dataset/Solver</span></code> can be
 specified in each class, and they can be installed individually by selecting
 the proper component using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">-d</span> <span class="pre">dataset1</span> <span class="pre">-s</span> <span class="pre">solver1</span></code>.</p></li>
+<li><p>Finally, it is possible to use this command to download necessary files for
+datasets, prior to running the benchmark. This can be done using the
+<code class="docutils literal notranslate"><span class="pre">--download</span></code> option. This is particularly useful when running the benchmark
+on a remote server where internet access is not available during the benchmark
+execution.</p></li>
 </ul>
 <section id="specifying-requirements">
 <span id="specify-requirements"></span><h2>Specifying requirements<a class="headerlink" href="#specifying-requirements" title="Link to this heading">#</a></h2>
 <p>To specify how dependencies should be installed, you can use the <code class="docutils literal notranslate"><span class="pre">install_cmd</span></code> class attribute.
 This attribute accepts two possible values:</p>
-<ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">conda</span></code> (default): Dependencies will be installed using Conda. In this case, you should</p></li>
-</ol>
 <blockquote>
-<div><p>specify the required dependencies in the <code class="docutils literal notranslate"><span class="pre">requirements</span></code> class attribute. Note that
+<div><p>1. <code class="docutils literal notranslate"><span class="pre">conda</span></code> (default): Dependencies will be installed using Conda. In this case, you should
+specify the required dependencies in the <code class="docutils literal notranslate"><span class="pre">requirements</span></code> class attribute. Note that
 dependencies to install with <code class="docutils literal notranslate"><span class="pre">pip</span></code> are also specified with this option.</p>
-</div></blockquote>
-<ol class="arabic simple" start="2">
-<li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code>: This option allows you to provide a custom shell script for installing dependencies.</p></li>
-</ol>
-<blockquote>
-<div><p>When using this value, you need to set the <code class="docutils literal notranslate"><span class="pre">install_script</span></code> class attribute to the path of your shell script.
+<p>2. <code class="docutils literal notranslate"><span class="pre">shell</span></code>: This option allows you to provide a custom shell script for installing dependencies.
+When using this value, you need to set the <code class="docutils literal notranslate"><span class="pre">install_script</span></code> class attribute to the path of your shell script.
 Benchopt will execute this script in the shell and pass the Conda environment directory as an argument.</p>
 </div></blockquote>
 <p>By properly setting these attributes, you ensure that all dependencies are installed

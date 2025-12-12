@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Run benchmark from a script &#8212; benchopt 1.8.dev0 documentation</title>
+    <title>Running an existing benchmark &#8212; benchopt 1.8.dev0 documentation</title>
   
   
   
@@ -50,7 +50,7 @@
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/plot_run_benchmark';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/run_minimal_benchmark';</script>
     <script src="../_static/benchopt.js?v=8e1f6d87"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -308,7 +308,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Run benchmark from a script</h1>
+    <h1>Running an existing benchmark</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -324,59 +324,98 @@ document.write(`
                   
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference internal" href="#sphx-glr-download-auto-examples-plot-run-benchmark-py"><span class="std std-ref">Go to the end</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-run-minimal-benchmark-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code.</p>
 </div>
-<section class="sphx-glr-example-title" id="run-benchmark-from-a-script">
-<span id="sphx-glr-auto-examples-plot-run-benchmark-py"></span><h1>Run benchmark from a script<a class="headerlink" href="#run-benchmark-from-a-script" title="Link to this heading">#</a></h1>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Path</span></a>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.benchmark</span><span class="w"> </span><span class="kn">import</span> <span class="n">Benchmark</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.plotting</span><span class="w"> </span><span class="kn">import</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.plotting.helpers</span><span class="w"> </span><span class="kn">import</span> <span class="n">reset_solver_styles</span>
-
-
-<span class="n">BENCHMARK_PATH</span> <span class="o">=</span> <span class="p">(</span>
-    <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="pathlib.Path" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">Path</span></a><span class="p">()</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="o">.</span><span class="n">parent</span> <span class="o">/</span> <span class="s1">&#39;benchmarks&#39;</span> <span class="o">/</span> <span class="s1">&#39;benchmark_logreg_l2&#39;</span>
-<span class="p">)</span>
-
-<span class="k">try</span><span class="p">:</span>
-
-    <span class="n">save_file</span> <span class="o">=</span> <a href="../user_guide/generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark" class="sphx-glr-backref-module-benchopt sphx-glr-backref-type-py-function"><span class="n">run_benchmark</span></a><span class="p">(</span>
-        <span class="n">BENCHMARK_PATH</span><span class="p">,</span>
-        <span class="n">solver_names</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;sklearn[liblinear]&#39;</span><span class="p">,</span> <span class="s1">&#39;sklearn[newton-cg]&#39;</span><span class="p">,</span> <span class="s1">&#39;lightning&#39;</span><span class="p">],</span>
-        <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;Simulated[n_features=500,n_samples=200]&quot;</span><span class="p">],</span>
-        <span class="n">objective_filters</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;L2 Logistic Regression[lmbd=1.0]&#39;</span><span class="p">],</span>
-        <span class="n">max_runs</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">n_repetitions</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span>
-        <span class="n">plot_result</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">show_progress</span><span class="o">=</span><span class="kc">True</span>
-    <span class="p">)</span>
-
-<span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
-    <span class="k">raise</span> <span class="ne">RuntimeError</span><span class="p">(</span>
-        <span class="s2">&quot;This example can only work when Logreg-l2 benchmark is cloned in a &quot;</span>
-        <span class="s2">&quot;`benchmarks` folder. Please run:</span><span class="se">\n</span><span class="s2">&quot;</span>
-        <span class="s2">&quot;$ git clone https://github.com/benchopt/benchmark_logreg_l2 &quot;</span>
-        <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">BENCHMARK_PATH</span><span class="o">.</span><span class="n">resolve</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="p">)</span>
-
-<span class="n">reset_solver_styles</span><span class="p">()</span>
-
-<span class="n">figs</span> <span class="o">=</span> <a href="../user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark" title="benchopt.plotting.plot_benchmark" class="sphx-glr-backref-module-benchopt-plotting sphx-glr-backref-type-py-function"><span class="n">plot_benchmark</span></a><span class="p">(</span>
-    <span class="n">save_file</span><span class="p">,</span> <span class="n">benchmark</span><span class="o">=</span><span class="n">Benchmark</span><span class="p">(</span><span class="n">BENCHMARK_PATH</span><span class="p">),</span> <span class="n">html</span><span class="o">=</span><span class="kc">False</span>
-<span class="p">)</span>
-<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
+<section class="sphx-glr-example-title" id="running-an-existing-benchmark">
+<span id="sphx-glr-auto-examples-run-minimal-benchmark-py"></span><h1>Running an existing benchmark<a class="headerlink" href="#running-an-existing-benchmark" title="Link to this heading">#</a></h1>
+<p>This Example demonstrates how to run an existing benchmark with benchopt.
+It uses the <cite>benchopt_run</cite> helper function to run the benchmark, which runs
+programmatically the equivalent of the command line interface:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">benchopt_run</span>
 </pre></div>
 </div>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-plot-run-benchmark-py">
+<p>To run the benchmark, just execute:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_run</span><span class="p">(</span><span class="s1">&#39;minimal_benchmark&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+            <pre class="cmd-equiv"> <div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
+</pre></div>
+</pre>
+            <div class="sphx-glr-script-out highlight-none notranslate">
+                <div class="highlight"><pre>simulated
+  |--Quadratic
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2025-12</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-12_21h34m24.parquet</span>
+Processing
+/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2025-12
+-12_21h34m24.parquet
+
+
+</pre></div>
+            </div>
+            <iframe class="benchmark_result" src='html_results/sphx_glr_run_minimal_benchmark_001.html' frameBorder='0'
+                    style="position: relative; width: 100%;"></iframe>
+
+</div>
+<br />
+<br /><p>This runs the benchmark named <code class="docutils literal notranslate"><span class="pre">minimal_benchmark</span></code> located in the
+<code class="docutils literal notranslate"><span class="pre">examples</span></code> folder.</p>
+<p>The parameters <code class="docutils literal notranslate"><span class="pre">n</span></code>  controls the number of point on the curves, while <code class="docutils literal notranslate"><span class="pre">r</span></code>
+controls the number of repetitions for each solver. The repetitions are used
+to compute the median and quartiles of the curves.</p>
+<p>To get a more precise curve, you can increase <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">r</span></code>:</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_run</span><span class="p">(</span><span class="s1">&#39;minimal_benchmark&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+            <pre class="cmd-equiv"> <div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
+</pre></div>
+</pre>
+            <div class="sphx-glr-script-out highlight-none notranslate">
+                <div class="highlight"><pre>simulated
+  |--Quadratic
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2025-12</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-12_21h34m29.parquet</span>
+Processing
+/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2025-12
+-12_21h34m29.parquet
+
+
+</pre></div>
+            </div>
+            <iframe class="benchmark_result" src='html_results/sphx_glr_run_minimal_benchmark_002.html' frameBorder='0'
+                    style="position: relative; width: 100%;"></iframe>
+
+</div>
+<br />
+<br /><p>Here, the display is not ideal because both solvers reach convergence very
+quickly. You can change the display by selecting the scale of the axis in
+the plot configuration panel.
+Go to the <em>Change plot</em> banner at the top of the HTML file, and change the
+scale to <code class="docutils literal notranslate"><span class="pre">loglog</span></code> on the drop down menu.</p>
+<p>Note that for convenience, this can be saved as a view in the configuration
+of the benchmark. See <a class="reference internal" href="../benchmark_workflow/config_benchopt.html#plot-configs"><span class="std std-ref">here</span></a> for more details.
+Here, clicking on <code class="docutils literal notranslate"><span class="pre">Subopt.</span> <span class="pre">(log)</span></code> in the <em>Available plots</em> above the
+figure will take you to a view with the right scale, and looking at
+suboptimality instead of objective value.</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.680 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-minimal-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/cdb26c80ea62f96a318a8bcdbbf34171/plot_run_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">plot_run_benchmark.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/6a65fd6b50c38318be8d3d22e519e51b/run_minimal_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_minimal_benchmark.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/d0a19eddcd9b5cc19e309134ae758ece/plot_run_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">plot_run_benchmark.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/95cd19d514d099dccb635d0bbfe85947/run_minimal_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">run_minimal_benchmark.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-zip docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/b6a0a50a7a6c020b6c5ce18f62b67968/plot_run_benchmark.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">plot_run_benchmark.zip</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/586c9ec48a37fd397fb981a992a54250/run_minimal_benchmark.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">run_minimal_benchmark.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>

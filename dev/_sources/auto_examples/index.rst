@@ -19,6 +19,23 @@ Examples Gallery
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="This Example demonstrates how to run an existing benchmark with benchopt. It uses the benchopt_run helper function to run the benchmark, which runs programmatically the equivalent of the command line interface:">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_run_minimal_benchmark_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/run_minimal_benchmark`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Running an existing benchmark</div>
+    </div>
+
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="Demo benchmark with R/Python">
 
 .. only:: html
@@ -61,6 +78,7 @@ Examples Gallery
 .. toctree::
    :hidden:
 
+   /auto_examples/run_minimal_benchmark
    /auto_examples/plot_run_benchmark_python_R
    /auto_examples/plot_run_benchmark
 
