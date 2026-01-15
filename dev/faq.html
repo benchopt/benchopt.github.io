@@ -200,6 +200,12 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/tests_definition.html">Benchopt Test definition</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
@@ -212,13 +218,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/performance_curves.html">Performance curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="available_benchmarks.html">Available benchmarks</a></li>
@@ -329,6 +328,23 @@ document.write(`
 <span id="faq"></span><h1>Frequently asked questions (FAQ)<a class="headerlink" href="#frequently-asked-questions-faq" title="Link to this heading">#</a></h1>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Can I use benchopt for ML benchmarks (not just optimization)?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Yes! Despite its name, Benchopt supports both <strong>machine learning</strong> and <strong>optimization</strong> benchmarks.
+Most features in benchopt are common to both types of benchmarks.
+The main difference lies in how performance is evaluated:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>Optimization benchmarks</strong>: Track iterative solvers’ convergence
+over time and iterations.</p></li>
+<li><p class="sd-card-text"><strong>ML benchmarks</strong>: Compare estimators/models on prediction tasks
+(accuracy, F1, etc.).</p></li>
+</ul>
+<p class="sd-card-text">Setting <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code> for a solver or for the full
+benchmark allows to only evaluate once to completion.
+See <a class="reference internal" href="user_guide/ml_benchmark.html#ml-benchmark"><span class="std std-ref">Setting up an ML benchmark</span></a> for a complete guide, or use our
+<a class="reference external" href="https://github.com/benchopt/template_benchmark_ml">ML template</a> to get started quickly.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">How to add my solver to an existing benchmark?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Visit the <a class="reference internal" href="tutorials/add_solver.html#add-solver"><span class="std std-ref">Add a solver to an existing benchmark</span></a> tutorial for a step-by-step procedure to add a solver to an existing benchmark.</p>
 </div>
@@ -347,7 +363,7 @@ Benchopt allows several strategies to vary the computational budget, that
 can be set on a per solver basis.
 It is also possible to set various stopping criterions to decide when to
 stop growing the computational budget, to avoid wasting resources.
-Visit the <a class="reference internal" href="user_guide/performance_curves.html#performance-curves"><span class="std std-ref">Performance curves</span></a> page for more details.</p>
+Visit the <span class="xref std std-ref">performance_curves</span> page for more details.</p>
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">

@@ -200,6 +200,12 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tests_definition.html">Benchopt Test definition</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../API_ref.html">API references</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
 <li class="toctree-l3"><a class="reference internal" href="benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
@@ -212,13 +218,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../CLI_ref.html">Command line interface (CLI)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../advanced.html">Advanced usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../performance_curves.html">Performance curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tweak_datasets.html">Tweak a dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../available_benchmarks.html">Available benchmarks</a></li>
@@ -358,26 +357,71 @@ be called on a given problem. <code class="docutils literal notranslate"><span c
 this method should dumps the parameter to compute the objective function
 in a file for command line solvers to reduce the impact of dumping the
 data to the disk in the benchmark.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">n_iter/tolerance)</span></code>: performs the computation for the
+<li><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">n_iter/tolerance/cb)</span></code>: performs the computation for the
 previously given objective function, after a call to <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.
 This method is the one timed in the benchmark and should not perform any
 operation unrelated to the optimization procedure.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_result(self)</span></code>: returns all parameters of interest, as a dict.
 The output is passed to <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.</p></li>
 </ul>
-<p>Note that four <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> can be used to construct the benchmark
-curve:</p>
+<p>Optionaly, the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> can implement the following methods to change its
+behavior:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: call the run method with max_iter number increasing
-logarithmically to get more an more precise points.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'tolerance'</span></code>: call the run method with tolerance decreasing
-logarithmically to get more and more precise points.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: a callable that should be called after each iteration or
-epoch. This callable periodically calls the objective’s <cite>compute</cite>
-and returns False when the solver should stop.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">'run_once'</span></code>: call the run method once to get a single point. This is
-typically used for ML benchmarks.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skip(self,</span> <span class="pre">**objective_parameters)</span></code>: decide if the solver is
+compatible with the given objective. Its inputs are the same as
+<code class="docutils literal notranslate"><span class="pre">set_objective</span></code>, and it should return a tuple <code class="docutils literal notranslate"><span class="pre">(skip,</span> <span class="pre">reason)</span></code> where
+<code class="docutils literal notranslate"><span class="pre">skip</span></code> is a boolean indicating whether the solver should be skipped for
+this configuration, and <code class="docutils literal notranslate"><span class="pre">reason</span></code> is a string used to explain why in the
+CLI output. If <code class="docutils literal notranslate"><span class="pre">skip</span></code> is False, <code class="docutils literal notranslate"><span class="pre">reason</span></code> should be None.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_next(stop_val)</span></code>: Return the next iteration where the result will
+be evaluated. This is only necessary when <cite>sampling_strategy</cite> is set to
+‘iteration’ or ‘tolerance’ and the default logarithmic spacing is not
+desired.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warm_up()</span></code>: User specified warm up step, called once before the runs.
+The time it takes to run this function is not taken into account. The
+function <code class="docutils literal notranslate"><span class="pre">Solver.run_once</span></code> can be used here for solvers that require
+jit compilation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pre_run_hook(stop_val)</span></code>: Hook to run pre-run operations, that are not
+timed in the benchmark. This is mostly necessary to cache stop_val
+dependent computations, for instance in <code class="docutils literal notranslate"><span class="pre">jax</span></code> with different number of
+iterations in a for loop.</p></li>
 </ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">Solver</span></code> class also defines class attributes to specify how the
+benchmark curve should be sampled:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>: defines how the benchmark curve should be sampled.
+It should be one of the following strings: ‘iteration’, ‘tolerance’,
+‘callback’ or ‘run_once’:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'iteration'</span></code>: call the run method with max_iter number increasing</p></li>
+</ul>
+<p>logarithmically to get more an more precise points.
+- <code class="docutils literal notranslate"><span class="pre">'tolerance'</span></code>: call the run method with tolerance decreasing
+logarithmically to get more and more precise points.
+- <code class="docutils literal notranslate"><span class="pre">'callback'</span></code>: a callable that should be called after each iteration</p>
+<blockquote>
+<div><p>or epoch. This callable periodically runs
+<code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code> and returns False when the solver
+should stop.</p>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">'run_once'</span></code>: call the run method once to get a single point. This
+is typically used for ML benchmarks.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code>: an instance of <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> that defines
+when the solver should stop. If not set, a default stopping criterion is
+used depending on the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>.
+See <a class="reference internal" href="../performance_curves.html#stopping-criterion"><span class="std std-ref">When are the solvers stopped?</span></a> for available options.</p></li>
+</ul>
+<p>Note that default values for these attributes can be set at the
+<code class="docutils literal notranslate"><span class="pre">Objective</span></code> level so that all solvers in a benchmark share the same
+default behavior. Typically, for ML benchmarks, all solvers can be run only
+once by setting <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">'run_once'</span></code> in the benchmark’s
+<code class="docutils literal notranslate"><span class="pre">Objective</span></code>. More details on how the curves are sampled can be found in
+the <span class="xref std std-ref">performance_curves</span> user guide.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.get_result">
 <em class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">get_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.get_result" title="Link to this definition">#</a></dt>

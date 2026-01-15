@@ -55,7 +55,7 @@
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Add a custom plot to a benchmark" href="add_custom_plot.html" />
+    <link rel="next" title="API references" href="API_ref.html" />
     <link rel="prev" title="Distributed run with Benchopt" href="distributed_run.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -200,6 +200,12 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Benchopt Test definition</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
@@ -212,13 +218,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="performance_curves.html">Performance curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -330,34 +329,9 @@ document.write(`
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">product_param</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">StoppingCriterion</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SAMPLING_STRATEGIES</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils.dynamic_modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">_get_module_from_file</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">test_benchmark_objective</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">dataset_simu</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that the objective function and the datasets are well defined.&quot;&quot;&quot;</span>
-    <span class="n">objective_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_benchmark_objective</span><span class="p">()</span>
-    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
-
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_simu</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
-    <span class="n">objective</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-
-    <span class="c1"># check that the reported dimension is correct and that the result of</span>
-    <span class="c1"># the objective function is a dictionary containing a scalar value for</span>
-    <span class="c1"># `objective_value`.</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">_get_one_result</span><span class="p">()</span>
-    <span class="n">objective_dict</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-
-    <span class="k">assert</span> <span class="s1">&#39;objective_value&#39;</span> <span class="ow">in</span> <span class="n">objective_dict</span><span class="p">,</span> <span class="p">(</span>
-        <span class="s2">&quot;When the output of objective is a dict, it should at least &quot;</span>
-        <span class="s2">&quot;contain a value associated to `objective_value` which will be &quot;</span>
-        <span class="s2">&quot;used to detect the convergence of the algorithm.&quot;</span>
-    <span class="p">)</span>
-    <span class="k">assert</span> <span class="n">np</span><span class="o">.</span><span class="n">isscalar</span><span class="p">(</span><span class="n">objective_dict</span><span class="p">[</span><span class="s1">&#39;objective_value&#39;</span><span class="p">]),</span> <span class="p">(</span>
-        <span class="s2">&quot;The output of the objective function should be a scalar, or a &quot;</span>
-        <span class="s2">&quot;dict containing a scalar associated to `objective_value`.&quot;</span>
-    <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_dataset_class</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">dataset_class</span><span class="p">):</span>
@@ -399,6 +373,37 @@ document.write(`
     <span class="p">)</span>
 
 
+<span class="k">def</span><span class="w"> </span><span class="nf">test_benchmark_objective</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">objective_class</span><span class="p">):</span>
+    <span class="c1"># check that the result of the objective function is compatible with</span>
+    <span class="c1"># benchopt, does not contain `objective_name` and is not empty.</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+    <span class="n">dataset_class</span><span class="p">,</span> <span class="n">test_params</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">test_params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># get one value for the objective, with the test_dataset</span>
+    <span class="n">objective</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">_get_one_result</span><span class="p">()</span>
+    <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+
+    <span class="c1"># check that the output has proper type and is not empty</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">objective_output</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="p">(</span>
+        <span class="s2">&quot;The output of the objective function should be a list of dicts by &quot;</span>
+        <span class="s2">&quot;design. Please report this issue on benchopt&#39;s GitHub.&quot;</span>
+    <span class="p">)</span>
+    <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">objective_output</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="p">(</span>
+        <span class="s2">&quot;The output of the objective function should be a dict by design. &quot;</span>
+        <span class="s2">&quot;Please report this issue on benchopt&#39;s GitHub.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">assert</span> <span class="s2">&quot;objective_name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">objective_output</span><span class="p">,</span> <span class="p">(</span>
+        <span class="s2">&quot;`name` is a reserved key in the objective output dict. &quot;</span>
+        <span class="s2">&quot;Please remove it from the output of the objective function.&quot;</span>
+    <span class="p">)</span>
+    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">objective_output</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span>
+        <span class="s2">&quot;The output of the objective function should not be an empty dict.&quot;</span>
+    <span class="p">)</span>
+
+
 <span class="k">def</span><span class="w"> </span><span class="nf">test_solver_class</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that all installed solver_class respects the public API&quot;&quot;&quot;</span>
 
@@ -408,10 +413,17 @@ document.write(`
         <span class="s2">&quot;The solver&#39;s name should be a string&quot;</span>
     <span class="p">)</span>
 
-    <span class="c1"># Check that the solver_class uses a valid stopping_strategy</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">&#39;stopping_strategy&#39;</span><span class="p">):</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;stopping_strategy should be in </span><span class="si">{</span><span class="n">SAMPLING_STRATEGIES</span><span class="si">}</span><span class="s2">.&quot;</span>
-        <span class="k">assert</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">stopping_strategy</span> <span class="ow">in</span> <span class="n">SAMPLING_STRATEGIES</span><span class="p">,</span> <span class="n">msg</span>
+    <span class="c1"># Check that the solver_class uses a valid sampling_strategy</span>
+    <span class="k">if</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">sampling_strategy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sampling_strategy should be in </span><span class="si">{</span><span class="n">SAMPLING_STRATEGIES</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="k">assert</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">sampling_strategy</span> <span class="ow">in</span> <span class="n">SAMPLING_STRATEGIES</span><span class="p">,</span> <span class="n">msg</span>
+
+    <span class="c1"># Check that the solver_class uses a valid stopping criterion</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">&#39;stopping_criterion&#39;</span><span class="p">):</span>
+        <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">solver_class</span><span class="o">.</span><span class="n">stopping_criterion</span><span class="p">,</span> <span class="n">StoppingCriterion</span><span class="p">),</span> <span class="p">(</span>  <span class="c1"># noqa E501</span>
+            <span class="s2">&quot;stopping_criterion should be an instance of StoppingCriterion. &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Got &#39;</span><span class="si">{</span><span class="n">solver_class</span><span class="o">.</span><span class="n">stopping_criterion</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+        <span class="p">)</span>
 
     <span class="c1"># Check that the solver_class uses a valid callable to override get_next.</span>
     <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">&#39;get_next&#39;</span><span class="p">):</span>
@@ -448,6 +460,50 @@ document.write(`
     <span class="p">)</span>
 
 
+<span class="k">def</span><span class="w"> </span><span class="nf">test_solver_stopping_criterion</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">):</span>
+    <span class="c1"># Check each solver stopping_criterion is compatible with the objective</span>
+    <span class="n">objective_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_benchmark_objective</span><span class="p">()</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+
+    <span class="n">dataset_class</span><span class="p">,</span> <span class="n">test_params</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">test_params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># Make sure to inherit the objective if the stopping criterion</span>
+    <span class="c1"># is set globally for this benchmark</span>
+    <span class="n">solver_class</span><span class="o">.</span><span class="n">_inherit_stopping_criterion</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+    <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">_stopping_criterion</span>
+
+    <span class="c1"># check that stopping_criterion has the proper type</span>
+    <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stopping_criterion</span><span class="p">,</span> <span class="n">StoppingCriterion</span><span class="p">),</span> <span class="p">(</span>
+        <span class="s2">&quot;The solver&#39;s stopping_criterion should be an instance of &quot;</span>
+        <span class="s2">&quot;StoppingCriterion.&quot;</span>
+    <span class="p">)</span>
+
+    <span class="c1"># Check that if a key_to_monitor is specified, the objective returns it</span>
+    <span class="k">if</span> <span class="n">stopping_criterion</span><span class="o">.</span><span class="n">key_to_monitor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="n">key</span> <span class="o">=</span> <span class="n">stopping_criterion</span><span class="o">.</span><span class="n">key_to_monitor_</span>
+        <span class="k">assert</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;objective_&#39;</span><span class="p">),</span> <span class="p">(</span>
+            <span class="s2">&quot;The solver&#39;s stopping_criterion key_to_monitor should start with &quot;</span>
+            <span class="s2">&quot;&#39;objective_&#39;.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="n">objective</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">_get_one_result</span><span class="p">()</span>
+        <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+        <span class="n">requested_key</span> <span class="o">=</span> <span class="n">stopping_criterion</span><span class="o">.</span><span class="n">key_to_monitor</span>
+        <span class="n">available_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">objective_output</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">requested_key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;objective_&#39;</span><span class="p">):</span>
+            <span class="n">available_keys</span> <span class="o">=</span> <span class="p">[</span>
+                <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;objective_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">available_keys</span>
+            <span class="p">]</span>
+        <span class="k">assert</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">objective_output</span><span class="p">,</span> <span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;The solver&#39;s stopping_criterion monitors </span><span class="si">{</span><span class="n">requested_key</span><span class="si">}</span><span class="s2">, but &quot;</span>
+            <span class="s2">&quot;the objective does not return this key. Available keys are &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">available_keys</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="p">)</span>
+
+
 <span class="k">def</span><span class="w"> </span><span class="nf">test_solver_run</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">):</span>
     <span class="c1"># Check that a solver run with at least one configuration of a simulated</span>
     <span class="c1"># dataset.</span>
@@ -462,24 +518,11 @@ document.write(`
     <span class="n">objective_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_benchmark_objective</span><span class="p">()</span>
     <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">objective_config</span><span class="p">)</span>
 
-    <span class="n">simulated_dataset</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="n">d</span> <span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_datasets</span><span class="p">()</span> <span class="k">if</span> <span class="n">d</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;simulated&#39;</span>
-    <span class="p">]</span>
+    <span class="n">dataset_class</span><span class="p">,</span> <span class="n">test_params</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
 
-    <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">simulated_dataset</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span>
-        <span class="s2">&quot;All benchmark need to implement a simulated dataset for &quot;</span>
-        <span class="s2">&quot;testing purpose. The dataset should have `name=&#39;simulated&#39;.&quot;</span>
-    <span class="p">)</span>
-
-    <span class="n">dataset_class</span> <span class="o">=</span> <span class="n">simulated_dataset</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">dataset_test_parameters</span> <span class="o">=</span> <span class="n">product_param</span><span class="p">(</span><span class="nb">getattr</span><span class="p">(</span>
-        <span class="n">dataset_class</span><span class="p">,</span> <span class="s1">&#39;test_parameters&#39;</span><span class="p">,</span> <span class="p">{}</span>
-    <span class="p">))</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">dataset_test_parameters</span><span class="p">:</span>
-        <span class="n">dataset_test_parameters</span> <span class="o">=</span> <span class="p">[{}]</span>
-    <span class="n">solver_ran_once</span> <span class="o">=</span> <span class="kc">False</span>
     <span class="n">reasons</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">dataset_test_parameters</span><span class="p">:</span>
+    <span class="n">solver_ran_once</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">test_params</span><span class="p">:</span>
         <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dataset_config</span><span class="p">)</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
@@ -600,11 +643,11 @@ document.write(`
       </div>
     </a>
     <a class="right-next"
-       href="add_custom_plot.html"
+       href="API_ref.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Add a custom plot to a benchmark</p>
+        <p class="prev-next-title">API references</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

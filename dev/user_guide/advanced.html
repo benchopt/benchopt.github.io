@@ -55,8 +55,8 @@
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Setting up an ML benchmark" href="ml_benchmark.html" />
-    <link rel="prev" title="Command line interface (CLI)" href="CLI_ref.html" />
+    <link rel="next" title="Add a custom plot to a benchmark" href="add_custom_plot.html" />
+    <link rel="prev" title="Tweak a dataset" href="tweak_datasets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,6 +200,12 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
@@ -212,13 +218,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Advanced usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="performance_curves.html">Performance curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -331,7 +330,6 @@ document.write(`
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-pre-compilation-and-warmup-effects">Caching pre-compilation and warmup effects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
 </ul>
             </nav>
         </div>
@@ -457,40 +455,6 @@ callback (default to 1).</p>
 </pre></div>
 </div>
 </section>
-<section id="run-a-benchmark-using-a-python-script">
-<span id="run-benchmark-with-py-script"></span><h2>Run a benchmark using a Python script<a class="headerlink" href="#run-a-benchmark-using-a-python-script" title="Link to this heading">#</a></h2>
-<p>Another way to run a benchmark is via a Python script.
-Typical use-cases of that are</p>
-<ul class="simple">
-<li><p>Automating the run of several benchmarks</p></li>
-<li><p>Using <code class="docutils literal notranslate"><span class="pre">vscode</span></code> debugger where the python script serves as an entry point to benchopt internals</p></li>
-</ul>
-<p>The following script illustrates running the <a class="reference internal" href="../benchmark_workflow/run_benchmark.html#run-with-config-file"><span class="std std-ref">benchmark Lasso</span></a>.
-It assumes that the python script is located at the same level as the benchmark folder.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">run_benchmark</span>
-
-
-<span class="c1"># run benchmark</span>
-<span class="n">run_benchmark</span><span class="p">(</span>
-    <span class="n">benchmark_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
-    <span class="n">solver_names</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;skglm&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;celer&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;python-pgd[use_acceleration=True]&quot;</span><span class="p">,</span>
-    <span class="p">],</span>
-    <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;leukemia&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;simulated[n_samples=100,n_features=20]&quot;</span>
-    <span class="p">],</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Learn more about the different parameters supported by <code class="docutils literal notranslate"><span class="pre">run_benchmark</span></code>
-function on <a class="reference internal" href="API_ref.html#api-ref"><span class="std std-ref">API references</span></a>.</p>
-</div>
-</section>
 </section>
 
 
@@ -505,20 +469,20 @@ function on <a class="reference internal" href="API_ref.html#api-ref"><span clas
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="CLI_ref.html"
+       href="tweak_datasets.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Command line interface (CLI)</p>
+        <p class="prev-next-title">Tweak a dataset</p>
       </div>
     </a>
     <a class="right-next"
-       href="ml_benchmark.html"
+       href="add_custom_plot.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Setting up an ML benchmark</p>
+        <p class="prev-next-title">Add a custom plot to a benchmark</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -546,7 +510,6 @@ function on <a class="reference internal" href="API_ref.html#api-ref"><span clas
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-pre-compilation-and-warmup-effects">Caching pre-compilation and warmup effects</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
 </ul>
   </nav></div>
 

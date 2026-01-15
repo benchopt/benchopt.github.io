@@ -201,6 +201,12 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/tests_definition.html">Benchopt Test definition</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
 <li class="toctree-l3"><a class="reference internal" href="user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
@@ -213,13 +219,6 @@
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/performance_curves.html">Performance curves</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="available_benchmarks.html">Available benchmarks</a></li>
@@ -342,9 +341,11 @@ document.write(`
 <h1><code class="docutils literal notranslate"><span class="pre">Benchopt</span></code><a class="headerlink" href="#benchopt" title="Link to this heading">#</a></h1>
 <p><em>—Making your ML and optimization benchmarks simple and open—</em></p>
 <p><a class="reference external" href="https://www.python.org/downloads/release/python-3100/"><img alt="Python 3.10+" src="https://img.shields.io/badge/python-3.10%2B-blue" /></a> <a class="reference external" href="https://pypi.org/project/benchopt/"><img alt="PyPI version" src="https://badge.fury.io/py/benchopt.svg" /></a> <a class="reference external" href="https://github.com/benchopt/benchopt/blob/main/LICENSE"><img alt="License" src="https://img.shields.io/badge/License-BSD_3--Clause-blue.svg" /></a></p>
-<p>Benchopt is a benchmarking suite tailored for machine learning workflows.
-It is built for simplicity, transparency, and reproducibility.
-It is implemented in Python but can run algorithms written in many programming languages.</p>
+<p>Benchopt is a benchmarking suite tailored for <strong>machine learning and optimization</strong>.
+It makes it simple to run, publish and replicate benchmarks. The
+command line interface allows running various solvers on benchmark
+problems, providing convergence curves for iterative methods or
+performance comparisons for ML estimators.</p>
 <p>Reproducing an existing benchmark should be as easy as running the following commands:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
@@ -373,17 +374,6 @@ using instruction on the <code class="docutils literal notranslate"><span class=
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-2">
-Bilevel Optimization</label><div class="sd-tab-content docutils">
-<p>A benchmark comparing various algorithms to solve bilevel optimization problems.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/benchopt/benchmark_bilevel.git</span>
-<span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>benchmark_bilevel</span>
-</pre></div></div><p>which will produce an interactive HTML report to visualize the results.</p>
-<iframe class="benchmark_result"
-      src="https://benchopt.github.io/results/benchmark_bilevel_benchmark_bilevel_ijcnn1.html"
-   frameBorder='0' style="position: relative; width: 100%;">
-</iframe></div>
-<input id="sd-tab-item-3" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-3">
 Minimal benchmark</label><div class="sd-tab-content docutils">
 <p>A minimal benchmark comparing various solvers on a toy problem.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>examples/minimal_benchmark</span>
@@ -394,8 +384,15 @@ Minimal benchmark</label><div class="sd-tab-content docutils">
 </iframe></div>
 </div>
 <p>These different tabs illustrate the diversity of benchmarks that can be built
-with benchopt, from deep learning optimization to more classical machine learning tasks.
-There are already many <a class="reference internal" href="available_benchmarks.html#available-benchmarks"><span class="std std-ref">Available benchmarks</span></a> that have been created using benchopt.
+with benchopt, from deep learning optimization to more classical machine
+learning tasks.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p><strong>Want to create a new benchmark with benchopt?</strong> Use our templates to get started:
+<a class="reference external" href="https://github.com/benchopt/template_benchmark_ml">ML benchmarks</a> |
+<a class="reference external" href="https://github.com/benchopt/template_benchmark">Optimization benchmarks</a></p>
+</div>
+<p>There are already many <a class="reference internal" href="available_benchmarks.html#available-benchmarks"><span class="std std-ref">Available benchmarks</span></a> that have been created using benchopt.
 Learn how to run them and how to construct your own with the following pages!</p>
 <div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
 <div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-1 sd-g-xs-1 sd-g-sm-1 sd-g-md-1 sd-g-lg-1 docutils">
@@ -415,7 +412,8 @@ Learn how to run them and how to construct your own with the following pages!</p
 <p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-tools" viewBox="0 0 16 16" aria-hidden="true"><path d="M5.433 2.304A4.492 4.492 0 0 0 3.5 6c0 1.598.832 3.002 2.09 3.802.518.328.929.923.902 1.64v.008l-.164 3.337a.75.75 0 1 1-1.498-.073l.163-3.33c.002-.085-.05-.216-.207-.316A5.996 5.996 0 0 1 2 6a5.993 5.993 0 0 1 2.567-4.92 1.482 1.482 0 0 1 1.673-.04c.462.296.76.827.76 1.423v2.82c0 .082.041.16.11.206l.75.51a.25.25 0 0 0 .28 0l.75-.51A.249.249 0 0 0 9 5.282V2.463c0-.596.298-1.127.76-1.423a1.482 1.482 0 0 1 1.673.04A5.993 5.993 0 0 1 14 6a5.996 5.996 0 0 1-2.786 5.068c-.157.1-.209.23-.207.315l.163 3.33a.752.752 0 0 1-1.094.714.75.75 0 0 1-.404-.64l-.164-3.345c-.027-.717.384-1.312.902-1.64A4.495 4.495 0 0 0 12.5 6a4.492 4.492 0 0 0-1.933-3.696c-.024.017-.067.067-.067.16v2.818a1.75 1.75 0 0 1-.767 1.448l-.75.51a1.75 1.75 0 0 1-1.966 0l-.75-.51A1.75 1.75 0 0 1 5.5 5.282V2.463c0-.092-.043-.142-.067-.159Z"></path></svg> <strong>Benchmark workflow</strong></p>
 </div>
 <div class="sd-card-body docutils">
-<p class="sd-card-text">Write a benchmark from scratch, run it, visualize it, and publish it</p>
+<p class="sd-card-text">Write an ML or optimization benchmark from scratch,
+run it, visualize it, and publish it</p>
 </div>
 <a class="sd-stretched-link sd-hide-link-text reference internal" href="benchmark_workflow/index.html#benchmark-workflow"><span class="std std-ref">Benchmark workflow</span></a></div>
 </div>
@@ -445,6 +443,23 @@ Learn how to run them and how to construct your own with the following pages!</p
 <span id="faq"></span><h2>Frequently asked questions (FAQ)<a class="headerlink" href="#frequently-asked-questions-faq" title="Link to this heading">#</a></h2>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
+<span class="sd-summary-text">Can I use benchopt for ML benchmarks (not just optimization)?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
+<p class="sd-card-text">Yes! Despite its name, Benchopt supports both <strong>machine learning</strong> and <strong>optimization</strong> benchmarks.
+Most features in benchopt are common to both types of benchmarks.
+The main difference lies in how performance is evaluated:</p>
+<ul class="simple">
+<li><p class="sd-card-text"><strong>Optimization benchmarks</strong>: Track iterative solvers’ convergence
+over time and iterations.</p></li>
+<li><p class="sd-card-text"><strong>ML benchmarks</strong>: Compare estimators/models on prediction tasks
+(accuracy, F1, etc.).</p></li>
+</ul>
+<p class="sd-card-text">Setting <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code> for a solver or for the full
+benchmark allows to only evaluate once to completion.
+See <a class="reference internal" href="user_guide/ml_benchmark.html#ml-benchmark"><span class="std std-ref">Setting up an ML benchmark</span></a> for a complete guide, or use our
+<a class="reference external" href="https://github.com/benchopt/template_benchmark_ml">ML template</a> to get started quickly.</p>
+</div>
+</details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header">
 <span class="sd-summary-text">How to add my solver to an existing benchmark?</span><span class="sd-summary-state-marker sd-summary-chevron-right"><svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-right" viewBox="0 0 24 24" aria-hidden="true"><path d="M8.72 18.78a.75.75 0 0 1 0-1.06L14.44 12 8.72 6.28a.751.751 0 0 1 .018-1.042.751.751 0 0 1 1.042-.018l6.25 6.25a.75.75 0 0 1 0 1.06l-6.25 6.25a.75.75 0 0 1-1.06 0Z"></path></svg></span></summary><div class="sd-summary-content sd-card-body docutils">
 <p class="sd-card-text">Visit the <a class="reference internal" href="tutorials/add_solver.html#add-solver"><span class="std std-ref">Add a solver to an existing benchmark</span></a> tutorial for a step-by-step procedure to add a solver to an existing benchmark.</p>
 </div>
@@ -463,7 +478,7 @@ Benchopt allows several strategies to vary the computational budget, that
 can be set on a per solver basis.
 It is also possible to set various stopping criterions to decide when to
 stop growing the computational budget, to avoid wasting resources.
-Visit the <a class="reference internal" href="user_guide/performance_curves.html#performance-curves"><span class="std std-ref">Performance curves</span></a> page for more details.</p>
+Visit the <span class="xref std std-ref">performance_curves</span> page for more details.</p>
 </div>
 </details><details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header">
