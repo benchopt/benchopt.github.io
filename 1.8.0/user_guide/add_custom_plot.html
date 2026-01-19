@@ -1,0 +1,761 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Add a custom plot to a benchmark &#8212; benchopt 1.8.0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=7799b48c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=72d4789a"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/add_custom_plot';</script>
+    <script src="../_static/benchopt.js?v=8e1f6d87"></script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Distributed run with Benchopt" href="distributed_run.html" />
+    <link rel="prev" title="Advanced usage" href="advanced.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
+  
+  
+    <p class="title logo__title">1.8.0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/install_benchmark.html">Install a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Add a custom plot to a benchmark</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-a-custom-plot">Structure of a custom plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-options">Plot Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">Scatter Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart">Bar Chart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">Box Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-plot">Table Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-utilities">Plotting Utilities</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="add-a-custom-plot-to-a-benchmark">
+<span id="add-custom-plot"></span><h1>Add a custom plot to a benchmark<a class="headerlink" href="#add-a-custom-plot-to-a-benchmark" title="Link to this heading">#</a></h1>
+<p>Benchopt provides a set of default plots to visualize the results of a benchmark.
+These plots can be complemented with custom plots, defined in the benchmark,
+to visualize the results in a different way. These plots are defined in the
+<code class="code docutils literal notranslate"><span class="pre">plots</span></code> directory, by adding python files with classes inheriting from
+<code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BasePlot</span></code>. This page details the API to generate custom
+visualizations for your benchmark.</p>
+<section id="structure-of-a-custom-plot">
+<h2>Structure of a custom plot<a class="headerlink" href="#structure-of-a-custom-plot" title="Link to this heading">#</a></h2>
+<p>A custom plot is defined by a class inheriting from <code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BasePlot</span></code> and implementing:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">name</span></code>: The name of the plot title. This will be the name that appears
+in the plot selection menu of the HTML interface, or the name you can use to
+select this plot in config files for your benchmark.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">type</span></code>: The type of the plot, which defines how the output of <cite>plot</cite>
+will be rendered. Supported types are <code class="code docutils literal notranslate"><span class="pre">&quot;scatter&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bar_chart&quot;</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">&quot;boxplot&quot;</span></code> and <code class="code docutils literal notranslate"><span class="pre">&quot;table&quot;</span></code>.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">options</span></code>: A dictionary defining the different options available for the
+plot. Typically, this can be used to have different plots depending on dataset’s
+or objective’s parameters, or to display customization options. The keys in the
+dictionary are the names of the options, associated to a list of their possible
+values. If a key <code class="code docutils literal notranslate"><span class="pre">objective/dataset/solver/objective_column</span></code> is associated
+with the value <code class="code docutils literal notranslate"><span class="pre">...</span></code>, the options are automatically inferred from the
+results DataFrame, as all unique values associated with this key.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">plot(self,</span> <span class="pre">df,</span> <span class="pre">**kwargs)</span></code>: give the data to produce one plot, that is
+rendered with the plotly or matplotlib backend. The method takes the results DataFrame
+and the options values as arguments, and returns the plot data. The output
+depends on the plot’s type, and are detailed below for each of them.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">get_metadata(self,</span> <span class="pre">df,</span> <span class="pre">**kwargs)</span></code>: Gives global information about the plot, such
+as the title and axis labels. The method takes the results DataFrame and the options
+values as arguments, and returns the metadata of the plot, which is specific to each
+plot type.</p></li>
+</ul>
+<p>The <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> method allow to change global properties of
+the resulting visualization, and the <code class="code docutils literal notranslate"><span class="pre">plot</span></code> method outputs the data
+necessary to render it.
+The visualization is rendered using either the <code class="docutils literal notranslate"><span class="pre">plotly</span></code> or <code class="docutils literal notranslate"><span class="pre">matplotly</span></code> backend.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Custom Plot&quot;</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;scatter&quot;</span>  <span class="c1"># or &quot;bar_chart&quot;, &quot;boxplot&quot; or &quot;table&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>         <span class="c1"># Automatic options from DataFrame columns</span>
+        <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
+        <span class="s2">&quot;my_parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="c1"># custom options</span>
+    <span class="p">}</span>
+
+    <span class="c1"># The inputs args of this method correspond to `df` and</span>
+    <span class="c1"># the keys in the `options` dictionary.</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
+        <span class="c1"># ... process df ...</span>
+        <span class="k">return</span> <span class="n">plot_data</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Plot for </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;X Label&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Y Label&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="plot-options">
+<h2>Plot Options<a class="headerlink" href="#plot-options" title="Link to this heading">#</a></h2>
+<p>The <code class="code docutils literal notranslate"><span class="pre">options</span></code> dictionary keys define the arguments passed to
+<code class="code docutils literal notranslate"><span class="pre">plot</span></code> and <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code>. Special keys like
+<code class="code docutils literal notranslate"><span class="pre">dataset</span></code>, <code class="code docutils literal notranslate"><span class="pre">objective</span></code>, <code class="code docutils literal notranslate"><span class="pre">solver</span></code> will automatically
+try to match columns in the dataframe. Using <code class="code docutils literal notranslate"><span class="pre">...</span></code> as a value
+will populate the options with all unique values from the dataframe
+column <code class="code docutils literal notranslate"><span class="pre">{key}_name</span></code> (e.g. <code class="code docutils literal notranslate"><span class="pre">dataset_name</span></code>).</p>
+</section>
+<section id="scatter-plot">
+<h2>Scatter Plot<a class="headerlink" href="#scatter-plot" title="Link to this heading">#</a></h2>
+<p>For a scatter plot, the <code class="code docutils literal notranslate"><span class="pre">plot</span></code> method should return a list of dictionaries, where
+each dictionary represents a trace in the plot. Each dictionary must contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">x</span></code>: A list of x values.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">y</span></code>: A list of y values.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the trace</p></li>
+</ul>
+<p>Optional keys:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code>: The color of the trace.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">marker</span></code>: The marker style of the trace.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">x_low</span></code>, <code class="code docutils literal notranslate"><span class="pre">x_high</span></code>: Lists of values to display uncertainty in the plot.
+They will be used to display shaded area around the plot.</p></li>
+</ul>
+<p>The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">xlabel</span></code>: The label of the x-axis.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ylabel</span></code>: The label of the y-axis.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
+    <span class="c1"># Filter the dataframe</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+        <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+    <span class="p">)</span>
+
+    <span class="n">plot_traces</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">solver</span><span class="p">,</span> <span class="n">df_solver</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;solver_name&#39;</span><span class="p">):</span>
+        <span class="c1"># Compute the median over the repetitions</span>
+        <span class="n">curve</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">df_solver</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;stop_val&quot;</span><span class="p">)[[</span><span class="s2">&quot;time&quot;</span><span class="p">,</span> <span class="s2">&quot;&#39;objective_value&quot;</span><span class="p">]]</span>
+            <span class="o">.</span><span class="n">median</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">plot_traces</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">curve</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">curve</span><span class="p">[</span><span class="s1">&#39;objective_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver</span><span class="p">)</span>
+        <span class="p">})</span>
+    <span class="k">return</span> <span class="n">plot_traces</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Convergence for </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Time [sec]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Objective value&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To help with consistent style accross figures, you can use
+the helper <code class="docutils literal notranslate"><span class="pre">get_style</span></code>, as described in <a class="reference internal" href="#plotting-utilities"><span class="std std-ref">Plotting Utilities</span></a>.</p>
+</div>
+</section>
+<section id="bar-chart">
+<h2>Bar Chart<a class="headerlink" href="#bar-chart" title="Link to this heading">#</a></h2>
+<p>For a bar chart, the <code class="code docutils literal notranslate"><span class="pre">plot</span></code> method should return a list of dictionaries,
+where each dictionary represents a bar. For each bar, the median value will be
+used to determine its height, while the individual values will be displayed as
+scatter points. The dictionary should contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">y</span></code>: The list of values for the bar (the median will be the height of the bar).</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the bar.</p></li>
+</ul>
+<p>Optional keys:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code>: The color of the bar.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">text</span></code>: The text to display on the bar.</p></li>
+</ul>
+<p>The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ylabel</span></code>: The label of the y-axis.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+        <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+    <span class="p">)</span>
+    <span class="n">bars</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">solver</span><span class="p">,</span> <span class="n">df_solver</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;solver_name&#39;</span><span class="p">):</span>
+        <span class="c1"># Select the total runtime for each repetition</span>
+        <span class="n">runtimes</span> <span class="o">=</span> <span class="n">df_solver</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;idx_rep&quot;</span><span class="p">)[</span><span class="s2">&quot;runtime&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+        <span class="n">bars</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">runtimes</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
+            <span class="s2">&quot;text&quot;</span><span class="p">:</span> <span class="s2">&quot;&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver</span><span class="p">)[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+        <span class="p">})</span>
+    <span class="k">return</span> <span class="n">bars</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Average times for </span><span class="si">{</span><span class="n">objective</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Time [sec]&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="box-plot">
+<h2>Box Plot<a class="headerlink" href="#box-plot" title="Link to this heading">#</a></h2>
+<p>For a box plot, the <code class="code docutils literal notranslate"><span class="pre">plot</span></code> method should return a list of dictionaries,
+where each dictionary represents a box. Each dictionary should contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">x</span></code>: The x coordinate.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">y</span></code>: The values of the box for the corresponding x coordinate.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the box.</p></li>
+</ul>
+<p>Optional keys:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code>: The color of the box.</p></li>
+</ul>
+<p>The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">xlabel</span></code>: The label of the x-axis.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ylabel</span></code>: The label of the y-axis.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+        <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+    <span class="p">)</span>
+    <span class="n">plot_data</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">solver</span><span class="p">,</span> <span class="n">df_solver</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;solver_name&#39;</span><span class="p">):</span>
+        <span class="c1"># Example: boxplot for the final objective values</span>
+        <span class="c1"># for each solver</span>
+        <span class="n">final_objective_value</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">df_solver</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;idx_rep&quot;</span><span class="p">)[</span><span class="s1">&#39;objective_value&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">last</span><span class="p">()</span>
+        <span class="p">)</span>
+        <span class="n">plot_data</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">solver</span><span class="p">],</span>
+            <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="p">[</span><span class="n">final_objective_value</span><span class="o">.</span><span class="n">tolist</span><span class="p">()],</span>
+            <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
+            <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver</span><span class="p">)[</span><span class="s1">&#39;color&#39;</span><span class="p">]</span>
+        <span class="p">})</span>
+    <span class="k">return</span> <span class="n">plot_data</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Boxplot for </span><span class="si">{</span><span class="n">objective</span><span class="si">}</span><span class="s2"> on </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Solver&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Objective value&quot;</span><span class="p">,</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="table-plot">
+<h2>Table Plot<a class="headerlink" href="#table-plot" title="Link to this heading">#</a></h2>
+<p>For a table plot, the <code class="code docutils literal notranslate"><span class="pre">plot</span></code> method should return a list of lists,
+where each inner list represents a row in the table.
+The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">columns</span></code>: A list of column names.</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+        <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+    <span class="p">)</span>
+    <span class="n">rows</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">solver</span><span class="p">,</span> <span class="n">df_solver</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">&#39;solver_name&#39;</span><span class="p">):</span>
+        <span class="c1"># Example: table with solver name and mean time</span>
+        <span class="c1"># when using `sampling_strategy = &#39;run_once&#39;`</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">solver</span><span class="p">,</span> <span class="n">df_solver</span><span class="p">[</span><span class="s1">&#39;time&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+    <span class="k">return</span> <span class="n">rows</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Summary for </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Solver&quot;</span><span class="p">,</span> <span class="s2">&quot;Mean Time [sec]&quot;</span><span class="p">],</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="plotting-utilities">
+<span id="id1"></span><h2>Plotting Utilities<a class="headerlink" href="#plotting-utilities" title="Link to this heading">#</a></h2>
+<p>To ensure consistency across plots (e.g., using the same color and marker for a
+given solver), <code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BasePlot</span></code> provides the helper method
+<code class="code docutils literal notranslate"><span class="pre">get_style(label)</span></code>. This method returns a dictionary with <code class="code docutils literal notranslate"><span class="pre">color</span></code>
+and <code class="code docutils literal notranslate"><span class="pre">marker</span></code> keys, which can be directly unpacked into the trace dictionary
+for scatter plots or used to select the color for other plot types. It
+automatically assigns a color from the default color palette based on the hash
+of the label, ensuring that the same solver always gets the same color.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Usage in plot()</span>
+<span class="n">style</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver_name</span><span class="p">)</span>
+<span class="n">trace</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="s2">&quot;color&quot;</span><span class="p">:</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;color&quot;</span><span class="p">],</span>
+    <span class="s2">&quot;marker&quot;</span><span class="p">:</span> <span class="n">style</span><span class="p">[</span><span class="s2">&quot;marker&quot;</span><span class="p">]</span>
+<span class="p">}</span>
+<span class="c1"># Or simply:</span>
+<span class="n">trace</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="c1"># ...</span>
+    <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver_name</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="advanced.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Advanced usage</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="distributed_run.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Distributed run with Benchopt</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#structure-of-a-custom-plot">Structure of a custom plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plot-options">Plot Options</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#scatter-plot">Scatter Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart">Bar Chart</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">Box Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-plot">Table Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-utilities">Plotting Utilities</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+
+<script>
+fetch("../../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = window.location.href.replace(current, select.value);
+    };
+  });
+</script>
+
+
+  <footer class="bd-footer">
+  </footer>
+
+  </body>
+</html>
