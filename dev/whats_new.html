@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new &#8212; benchopt 1.8.dev0 documentation</title>
+    <title>What’s new &#8212; benchopt 1.8.0 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=e4f1b922"></script>
+    <script src="_static/documentation_options.js?v=72d4789a"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.8.dev0</p>
+    <p class="title logo__title">1.8.0</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -321,7 +321,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-8-in-development">Version 1.8 - in development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-8-19-01-2026">Version 1.8 - 19/01/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
@@ -396,8 +396,8 @@ document.write(`
                   
   <section id="what-s-new">
 <span id="whats-new"></span><h1>What’s new<a class="headerlink" href="#what-s-new" title="Link to this heading">#</a></h1>
-<section id="version-1-8-in-development">
-<span id="changes-1-8"></span><h2>Version 1.8 - in development<a class="headerlink" href="#version-1-8-in-development" title="Link to this heading">#</a></h2>
+<section id="version-1-8-19-01-2026">
+<span id="changes-1-8"></span><h2>Version 1.8 - 19/01/2026<a class="headerlink" href="#version-1-8-19-01-2026" title="Link to this heading">#</a></h2>
 </section>
 <section id="cli">
 <h2>CLI<a class="headerlink" href="#cli" title="Link to this heading">#</a></h2>
@@ -409,7 +409,7 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <li><p>Add a parallel backend system for <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> to setup distributed
 run with <code class="docutils literal notranslate"><span class="pre">dask</span></code> and <code class="docutils literal notranslate"><span class="pre">submitit</span></code>. See <a class="reference internal" href="user_guide/distributed_run.html#parallel-run"><span class="std std-ref">Distributed run with Benchopt</span></a> for details.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/673">#673</a>).</p></li>
-<li><p>Deprecate the <code class="docutils literal notranslate"><span class="pre">--slurm</span></code> parameter which will be removed in benchopt 1.8.
+<li><p>Deprecate the <code class="docutils literal notranslate"><span class="pre">--slurm</span></code> parameter which will be removed in benchopt 1.9.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/673">#673</a>).</p></li>
 <li><p>Improved output formatting for benchmark <code class="docutils literal notranslate"><span class="pre">run/install/test</span></code>.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/847">#847</a>).</p></li>
@@ -472,8 +472,10 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 By <a class="reference external" href="https://wassimmazouz.github.io/">Wassim Mazouz</a>, <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/717">#717</a>)</p></li>
 <li><p>Imports in the benchmark are now done without the <code class="docutils literal notranslate"><span class="pre">safe_import_context</span></code>,
 while keeping the possibility to list solvers and datasets even when a
-package is not installed. The helper is deprecated and will be removed in
-benchopt <code class="docutils literal notranslate"><span class="pre">1.8</span></code>. By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a>  and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/788">#788</a>)</p></li>
+package is not installed. The helper should only be used when a class
+attribute that should be accessed without install (<code class="docutils literal notranslate"><span class="pre">name</span></code>, <code class="docutils literal notranslate"><span class="pre">requirements</span></code>)
+is computed dynamically.
+By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a>  and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/788">#788</a>)</p></li>
 </ul>
 </section>
 <section id="id1">
@@ -951,7 +953,7 @@ implementations:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-8-in-development">Version 1.8 - in development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-8-19-01-2026">Version 1.8 - 19/01/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
