@@ -323,8 +323,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-9-in-development">Version 1.9 - In development</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fix">FIX</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fix">FIX</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-8-19-01-2026">Version 1.8 - 19/01/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">API</a></li>
@@ -403,19 +403,22 @@ document.write(`
 <section id="version-1-9-in-development">
 <span id="changes-1-9"></span><h2>Version 1.9 - In development<a class="headerlink" href="#version-1-9-in-development" title="Link to this heading">#</a></h2>
 </section>
-<section id="fix">
-<h2>FIX<a class="headerlink" href="#fix" title="Link to this heading">#</a></h2>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code> now uses the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel by default
-By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/879">#879</a>)</p></li>
-</ul>
-</section>
 <section id="api">
 <h2>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">minimize</span></code> param to the stopping criterions to specify if the criterion
 should be minimized or maximized.
 By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/878">#878</a>)</p></li>
+</ul>
+</section>
+<section id="fix">
+<h2>FIX<a class="headerlink" href="#fix" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">minimize</span></code> option for the default bar-chart, to allow visualising solvers
+which are minimizing or maximizing the objective.
+By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/881">#881</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code> now uses the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel by default
+By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/879">#879</a>)</p></li>
 </ul>
 </section>
 <section id="version-1-8-19-01-2026">
@@ -976,8 +979,8 @@ implementations:</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-9-in-development">Version 1.9 - In development</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fix">FIX</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fix">FIX</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-8-19-01-2026">Version 1.8 - 19/01/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">API</a></li>
