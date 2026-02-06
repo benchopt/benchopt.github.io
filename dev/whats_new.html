@@ -44,8 +44,8 @@
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="_static/documentation_options.js?v=803e6966"></script>
-    <script src="_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=30646c52"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
@@ -201,6 +201,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
@@ -322,62 +323,63 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-9-in-development">Version 1.9 - In development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-8-19-01-2026">Version 1.8 - 19/01/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fix">FIX</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-7-18-09-2025">Version 1.7 - 18/09/2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-change">Major change</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">CLI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">FIX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">CLI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">FIX</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-6-15-07-2024">Version 1.6 - 15/07/2024</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">CLI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">FIX</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">DOC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">FIX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">DOC</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-5-1-22-09-2023">Version 1.5.1 - 22/09/2023</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">FIX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">FIX</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-5-18-09-2023">Version 1.5 - 18/09/2023</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">API</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot">PLOT</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">DOC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">DOC</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internals">Internals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-4-03-07-2023">Version 1.4 - 03/07/2023</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">CLI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">PLOT</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">FIX</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-3-1-01-12-2022">Version 1.3.1 - 01/12/2022</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">PLOT</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">FIX</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-3-1-01-12-2022">Version 1.3.1 - 01/12/2022</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">FIX</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-3-21-11-2022">Version 1.3 - 21/11/2022</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">CLI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">API</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-2-06-05-2022">Version 1.2 - 06/05/2022</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changelog">Changelog</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">CLI</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-1-22-04-2021">Version 1.1 - 22-04-2021</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Changelog</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Changelog</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">CLI</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bug">BUG</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">DOC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">DOC</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-0-2020-09-25">Version 1.0 - 2020-09-25</a><ul class="nav section-nav flex-column">
@@ -400,6 +402,14 @@ document.write(`
 <section id="version-1-9-in-development">
 <span id="changes-1-9"></span><h2>Version 1.9 - In development<a class="headerlink" href="#version-1-9-in-development" title="Link to this heading">#</a></h2>
 </section>
+<section id="api">
+<h2>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">minimize</span></code> param to the stopping criterions to specify if the criterion
+should be minimized or maximized.
+By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/878">#878</a>)</p></li>
+</ul>
+</section>
 <section id="version-1-8-19-01-2026">
 <span id="changes-1-8"></span><h2>Version 1.8 - 19/01/2026<a class="headerlink" href="#version-1-8-19-01-2026" title="Link to this heading">#</a></h2>
 </section>
@@ -419,8 +429,8 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/847">#847</a>).</p></li>
 </ul>
 </section>
-<section id="api">
-<h2>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h2>
+<section id="id1">
+<h2>API<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Allow to set the default <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> and <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code>
 globally for a benchmark in the <code class="docutils literal notranslate"><span class="pre">Objective</span></code>.
@@ -482,8 +492,8 @@ is computed dynamically.
 By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a>  and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/788">#788</a>)</p></li>
 </ul>
 </section>
-<section id="id1">
-<h2>CLI<a class="headerlink" href="#id1" title="Link to this heading">#</a></h2>
+<section id="id2">
+<h2>CLI<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">--no-cache</span></code> option to <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, to disable caching.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/800">#800</a>)</p></li>
@@ -493,8 +503,8 @@ for GPU and CPU. By <a class="reference external" href="https://mathurinm.github
 running in various environment and debugging. By <a class="reference external" href="https://remi.flamary.com/">Rémi Flamary</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/685">#685</a>)</p></li>
 </ul>
 </section>
-<section id="id2">
-<h2>API<a class="headerlink" href="#id2" title="Link to this heading">#</a></h2>
+<section id="id3">
+<h2>API<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">Solver</span></code> to allow overriding the
 default SLURM config. By <a class="reference external" href="https://www.linkedin.com/in/plbarbarant/">Pierre-Louis Barbarant</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/805">#805</a>)</p></li>
@@ -513,8 +523,8 @@ non-aggregated metrics. See <a class="reference internal" href="user_guide/advan
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/778">#778</a>).</p></li>
 </ul>
 </section>
-<section id="id3">
-<h2>FIX<a class="headerlink" href="#id3" title="Link to this heading">#</a></h2>
+<section id="id4">
+<h2>FIX<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Display for boxplot in the <code class="docutils literal notranslate"><span class="pre">result.js</span></code> was broken.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/757">#757</a>)</p></li>
@@ -537,8 +547,8 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 </section>
 <section id="version-1-6-15-07-2024">
 <span id="changes-1-6"></span><h2>Version 1.6 - 15/07/2024<a class="headerlink" href="#version-1-6-15-07-2024" title="Link to this heading">#</a></h2>
-<section id="id4">
-<h3>API<a class="headerlink" href="#id4" title="Link to this heading">#</a></h3>
+<section id="id5">
+<h3>API<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add a <code class="docutils literal notranslate"><span class="pre">save_final_results</span></code> method to Objective. If implemented it is run
 after the last solver iteration, to get desired outputs to be saved to file
@@ -555,8 +565,8 @@ By <a class="reference external" href="https://github.com/Jad-yehya">Jad Yehya</
 By <a class="reference external" href="https://github.com/Melvin-klein">Melvine Nargeot</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/714">#714</a>).</p></li>
 </ul>
 </section>
-<section id="id5">
-<h3>CLI<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<section id="id6">
+<h3>CLI<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">--collect</span></code> option to allow gathering results which are already
 in cache in a single parquet file. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/710">#710</a>)</p></li>
@@ -568,8 +578,8 @@ timeout. By <a class="reference external" href="https://github.com/ceelestin">C�
 now use the <code class="docutils literal notranslate"><span class="pre">yaml</span></code> format. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/699">#699</a>)</p></li>
 </ul>
 </section>
-<section id="id6">
-<h3>FIX<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<section id="id7">
+<h3>FIX<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Disable caching of diverged/errored runs. By <a class="reference external" href="https://www.linkedin.com/in/julie-alberge">Julie Alberge</a> and
 <a class="reference external" href="https://www.linkedin.com/in/virginie-loison/">Virginie Loison</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/735">#735</a>)</p></li>
@@ -577,8 +587,8 @@ now use the <code class="docutils literal notranslate"><span class="pre">yaml</s
 distributed runs. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/713">#713</a>)</p></li>
 </ul>
 </section>
-<section id="id7">
-<h3>DOC<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<section id="id8">
+<h3>DOC<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add documentation for the <code class="docutils literal notranslate"><span class="pre">run_once</span></code> sampling strategy.
 By <a class="reference external" href="https://matdag.github.io">Mathieu Dagréou</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/700">#700</a>).</p></li>
@@ -588,8 +598,8 @@ By <a class="reference external" href="https://matdag.github.io">Mathieu Dagréo
 <section id="version-1-5-1-22-09-2023">
 <span id="changes-1-5-1"></span><h2>Version 1.5.1 - 22/09/2023<a class="headerlink" href="#version-1-5-1-22-09-2023" title="Link to this heading">#</a></h2>
 <p>Bugfix release.</p>
-<section id="id8">
-<h3>FIX<a class="headerlink" href="#id8" title="Link to this heading">#</a></h3>
+<section id="id9">
+<h3>FIX<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Fix benchopt dependency specification to install benchopt in child env
 with extra <code class="docutils literal notranslate"><span class="pre">[test]</span></code>. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/662">#662</a>).</p></li>
@@ -598,8 +608,8 @@ with extra <code class="docutils literal notranslate"><span class="pre">[test]</
 </section>
 <section id="version-1-5-18-09-2023">
 <span id="changes-1-5"></span><h2>Version 1.5 - 18/09/2023<a class="headerlink" href="#version-1-5-18-09-2023" title="Link to this heading">#</a></h2>
-<section id="id9">
-<h3>API<a class="headerlink" href="#id9" title="Link to this heading">#</a></h3>
+<section id="id10">
+<h3>API<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add a <code class="docutils literal notranslate"><span class="pre">Objective.url</span></code> attribute to specify the original repo of the
 benchmark. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/621">#621</a>).</p></li>
@@ -632,8 +642,8 @@ parquet files, by <a class="reference external" href="https://github.com/AmelieV
 and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/552">#552</a>).</p></li>
 </ul>
 </section>
-<section id="id10">
-<h3>DOC<a class="headerlink" href="#id10" title="Link to this heading">#</a></h3>
+<section id="id11">
+<h3>DOC<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Reformatting and enriching the documentation for easy onboarding.
 By <a class="reference external" href="https://github.com/Badr-MOUFAD">Badr Moufad</a> and <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/619">#619</a>, <a class="reference external" href="https://github.com/benchopt/benchopt/pull/629">#629</a>).</p></li>
@@ -652,8 +662,8 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 </section>
 <section id="version-1-4-03-07-2023">
 <span id="changes-1-4"></span><h2>Version 1.4 - 03/07/2023<a class="headerlink" href="#version-1-4-03-07-2023" title="Link to this heading">#</a></h2>
-<section id="id11">
-<h3>CLI<a class="headerlink" href="#id11" title="Link to this heading">#</a></h3>
+<section id="id12">
+<h3>CLI<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add support for minute and hour unit suffix in timeout limit through the syntax
 <code class="docutils literal notranslate"><span class="pre">--timeout</span> <span class="pre">10m</span></code> or <code class="docutils literal notranslate"><span class="pre">--timeout</span> <span class="pre">1h</span></code>.
@@ -665,8 +675,8 @@ should be performed automatically.
 By <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a>, <a class="reference external" href="https://github.com/AmelieVernay">Amélie Vernay</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/552">#552</a>).</p></li>
 </ul>
 </section>
-<section id="id12">
-<h3>API<a class="headerlink" href="#id12" title="Link to this heading">#</a></h3>
+<section id="id13">
+<h3>API<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">get_next</span></code> method of <a class="reference internal" href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver" title="benchopt.BaseSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSolver</span></code></a> is no longer static.
 By <a class="reference external" href="https://github.com/Badr-MOUFAD">Badr Moufad</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/566">#566</a>)</p></li>
@@ -682,8 +692,8 @@ Force implementation of <code class="xref py py-meth docutils literal notranslat
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/569">#569</a>)</p></li>
 </ul>
 </section>
-<section id="id13">
-<h3>PLOT<a class="headerlink" href="#id13" title="Link to this heading">#</a></h3>
+<section id="id14">
+<h3>PLOT<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add a tooltip beside to show description of objective. Description is provided as docstring of
 the <a class="reference internal" href="user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseObjective</span></code></a> class. By <a class="reference external" href="https://github.com/Badr-MOUFAD">Badr Moufad</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/556">#556</a>)</p></li>
@@ -697,8 +707,8 @@ be added in follow up PRs.
 By <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a>, <a class="reference external" href="https://github.com/AmelieVernay">Amélie Vernay</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/552">#552</a>).</p></li>
 </ul>
 </section>
-<section id="id14">
-<h3>FIX<a class="headerlink" href="#id14" title="Link to this heading">#</a></h3>
+<section id="id15">
+<h3>FIX<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Do not fail and raise a warning when <code class="docutils literal notranslate"><span class="pre">safe_import_context</span></code> is not named
 <code class="docutils literal notranslate"><span class="pre">import_ctx</span></code>. By <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/524">#524</a>)</p></li>
@@ -708,8 +718,8 @@ By <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort
 <section id="version-1-3-1-01-12-2022">
 <span id="changes-1-3-1"></span><h2>Version 1.3.1 - 01/12/2022<a class="headerlink" href="#version-1-3-1-01-12-2022" title="Link to this heading">#</a></h2>
 <p>Bug fix release</p>
-<section id="id15">
-<h3>FIX<a class="headerlink" href="#id15" title="Link to this heading">#</a></h3>
+<section id="id16">
+<h3>FIX<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Typo in README and doc</p></li>
 <li><p>Barchart solver color to be the same as the other plots.</p></li>
@@ -720,8 +730,8 @@ By <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort
 </section>
 <section id="version-1-3-21-11-2022">
 <span id="changes-1-3"></span><h2>Version 1.3 - 21/11/2022<a class="headerlink" href="#version-1-3-21-11-2022" title="Link to this heading">#</a></h2>
-<section id="id16">
-<h3>CLI<a class="headerlink" href="#id16" title="Link to this heading">#</a></h3>
+<section id="id17">
+<h3>CLI<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add support for custom parameters in CLI for objectives, datasets, and
 solvers, through the syntax <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">solver_name[parameter=value]</span></code>. See the <a class="reference external" href="https://benchopt.github.io/stable/cli.html">CLI
@@ -739,8 +749,8 @@ By <a class="reference external" href="https://github.com/Melvin-klein">Melvine 
 By <a class="reference external" href="https://github.com/bmalezieux">Benoît Malézieux</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/457">#457</a>).</p></li>
 </ul>
 </section>
-<section id="id17">
-<h3>API<a class="headerlink" href="#id17" title="Link to this heading">#</a></h3>
+<section id="id18">
+<h3>API<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Allow changing tracked metric in <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code>.
 By <a class="reference external" href="https://github.com/AmelieVernay">Amélie Vernay</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/461">#461</a>).</p></li>
@@ -776,8 +786,8 @@ by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <code class="docutils literal notranslate"><span class="pre">joblib</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/265">#265</a>).</p></li>
 </ul>
 </section>
-<section id="id18">
-<h3>API<a class="headerlink" href="#id18" title="Link to this heading">#</a></h3>
+<section id="id19">
+<h3>API<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>When returning a dictionary, <code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> should at least include
 <code class="docutils literal notranslate"><span class="pre">value</span></code> key instead of <code class="docutils literal notranslate"><span class="pre">objective_value</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> and
@@ -794,8 +804,8 @@ testing  should be returned by a dedicated method
 <code class="docutils literal notranslate"><span class="pre">Objective.get_one_solution</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/345">#345</a>).</p></li>
 </ul>
 </section>
-<section id="id19">
-<h3>CLI<a class="headerlink" href="#id19" title="Link to this heading">#</a></h3>
+<section id="id20">
+<h3>CLI<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Replace <code class="docutils literal notranslate"><span class="pre">-p</span></code> flag by <code class="docutils literal notranslate"><span class="pre">-o</span></code> for Objective, by <a class="reference external" href="https://mathurinm.github.io">Mathurin Massias</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/281">#281</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">--config</span></code> option to support passing argument with a <code class="docutils literal notranslate"><span class="pre">yaml</span></code>
@@ -805,8 +815,8 @@ config file, by <a class="reference external" href="https://mathurinm.github.io"
 </section>
 <section id="version-1-1-22-04-2021">
 <span id="changes-1-1"></span><h2>Version 1.1 - 22-04-2021<a class="headerlink" href="#version-1-1-22-04-2021" title="Link to this heading">#</a></h2>
-<section id="id20">
-<h3>Changelog<a class="headerlink" href="#id20" title="Link to this heading">#</a></h3>
+<section id="id21">
+<h3>Changelog<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>New plotting functions with different optimality criteria,
 by <a class="reference external" href="https://ngazagna.github.io">Nidham Gazagnadou</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/96">#96</a>).</p></li>
@@ -824,8 +834,8 @@ the user now must request explicitly the install,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/155">#155</a>).</p></li>
 </ul>
 </section>
-<section id="id21">
-<h3>API<a class="headerlink" href="#id21" title="Link to this heading">#</a></h3>
+<section id="id22">
+<h3>API<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Objective.compute</span></code> can now return a dictionary with multiple outputs to
 monitor several metrics at once, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/84">#84</a>).</p></li>
@@ -840,8 +850,8 @@ API to set criterion per benchmark should be implemented in a future release,
 by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/151">#151</a>)</p></li>
 </ul>
 </section>
-<section id="id22">
-<h3>CLI<a class="headerlink" href="#id22" title="Link to this heading">#</a></h3>
+<section id="id23">
+<h3>CLI<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">--version</span></code> option for <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>, by <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/83">#83</a>).</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">--pdb</span></code> option for <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> to open debugger on error and help
@@ -870,8 +880,8 @@ calling <code class="docutils literal notranslate"><span class="pre">benchopt</s
 <li><p>Fix Lapack issue with R code, by <a class="reference external" href="https://github.com/tanglef">Tanguy Lefort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/97">#97</a>).</p></li>
 </ul>
 </section>
-<section id="id23">
-<h3>DOC<a class="headerlink" href="#id23" title="Link to this heading">#</a></h3>
+<section id="id24">
+<h3>DOC<a class="headerlink" href="#id24" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Improve how-to narrative documentation, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/93">#93</a>).</p></li>
 <li><p>Add what’s new page, by <a class="reference external" href="http://alexandre.gramfort.net">Alexandre Gramfort</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/114">#114</a>).</p></li>
@@ -958,62 +968,63 @@ implementations:</p>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-9-in-development">Version 1.9 - In development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-8-19-01-2026">Version 1.8 - 19/01/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fix">FIX</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-7-18-09-2025">Version 1.7 - 18/09/2025</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#major-change">Major change</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">CLI</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">API</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">FIX</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">CLI</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">API</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">FIX</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-6-15-07-2024">Version 1.6 - 15/07/2024</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">CLI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">FIX</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">DOC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">FIX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">DOC</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-5-1-22-09-2023">Version 1.5.1 - 22/09/2023</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">FIX</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">FIX</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-5-18-09-2023">Version 1.5 - 18/09/2023</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id9">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">API</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#plot">PLOT</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id10">DOC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">DOC</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#internals">Internals</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-4-03-07-2023">Version 1.4 - 03/07/2023</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id11">CLI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">PLOT</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">FIX</a></li>
-</ul>
-</li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-3-1-01-12-2022">Version 1.3.1 - 01/12/2022</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id12">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id13">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id14">PLOT</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id15">FIX</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-3-1-01-12-2022">Version 1.3.1 - 01/12/2022</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">FIX</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-3-21-11-2022">Version 1.3 - 21/11/2022</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id16">CLI</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id17">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">API</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-2-06-05-2022">Version 1.2 - 06/05/2022</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changelog">Changelog</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id18">API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id19">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">CLI</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-1-22-04-2021">Version 1.1 - 22-04-2021</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id20">Changelog</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">API</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">CLI</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id21">Changelog</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id22">API</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">CLI</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#bug">BUG</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id23">DOC</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id24">DOC</a></li>
 </ul>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-0-2020-09-25">Version 1.0 - 2020-09-25</a><ul class="nav section-nav flex-column">

@@ -44,13 +44,13 @@
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=803e6966"></script>
-    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/API_ref';</script>
     <script src="../_static/benchopt.js?v=8e1f6d87"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
@@ -203,6 +203,7 @@
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
@@ -343,7 +344,7 @@ document.write(`
 <a class="reference internal" href="#module-benchopt" title="benchopt"><code class="xref py py-mod docutils literal notranslate"><span class="pre">benchopt</span></code></a>:</p>
 <span class="target" id="module-benchopt"></span><section id="list-of-base-classes">
 <h2>List of base classes:<a class="headerlink" href="#list-of-base-classes" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseObjective</span></code></a>(**parameters)</p></td>
 <td><p>Base class to define an objective function</p></td>
@@ -372,7 +373,7 @@ Refer to <a class="reference internal" href="advanced.html#skipping-solver"><spa
 <p><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.get_next()</span></code>: hook called repeatedly after <code class="docutils literal notranslate"><span class="pre">run</span></code>
 to change the sampling points for a given solver. It is called with the
 previous <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> (i.e. tolerance or number of iterations), and returns
-the value for the next run. Refer to <a class="reference internal" href="performance_curves.html#sampling-strategy"><span class="std std-ref">Advanced usage</span></a>
+the value for the next run. Refer to <a class="reference internal" href="iterative_solvers.html#sampling-strategy"><span class="std std-ref">Advanced usage</span></a>
 for an example.</p>
 <p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.warm_up" title="benchopt.BaseSolver.warm_up"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.warm_up()</span></code></a>: hook called once before the solver runs.
 It is typically used to cache jit compilation of solver while not accounting
@@ -384,7 +385,7 @@ iterations in for jitted <code class="docutils literal notranslate"><span class=
 </section>
 <section id="benchopt-utils">
 <h2>Benchopt utils<a class="headerlink" href="#benchopt-utils" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_benchmark</span></code></a>(benchmark_path[, ...])</p></td>
 <td><p>Run full benchmark.</p></td>
