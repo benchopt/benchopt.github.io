@@ -340,11 +340,8 @@ document.write(`
 <p>In order to make it easy to run a new benchmark, benchopt provides an interface
 to specify and install requirements for the various components of the benchmarks.</p>
 <ul class="simple">
-<li><dl class="simple">
-<dt>By default, calling <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">.</span></code> will install the requirements for the</dt><dd><p>benchmark, including all solvers and datasets.</p>
-</dd>
-</dl>
-</li>
+<li><p>By default, calling <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">.</span></code> will install the requirements for the
+benchmark, including all solvers and datasets, using the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel.</p></li>
 <li><p>The minimum requirements to run the benchmark are specified in
 <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>. They can be installed using the command
 <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">--minimal</span></code>.</p></li>
