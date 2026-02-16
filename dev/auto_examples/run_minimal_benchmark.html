@@ -200,6 +200,7 @@
 <li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
@@ -340,21 +341,25 @@ programmatically the equivalent of the command line interface:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_run</span><span class="p">(</span><span class="s1">&#39;minimal_benchmark&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>No seed was specified. Selected global seed: 0
+</pre></div>
+</div>
 <div class="output_subarea output_html rendered_html output_result">
             <pre class="cmd-equiv"> <div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
 </pre></div>
 </pre>
             <div class="sphx-glr-script-out highlight-none notranslate">
-                <div class="highlight"><pre>simulated
+                <div class="highlight"><pre>No seed was specified. Selected global seed: 0
+simulated
   |--Quadratic
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-02</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-16_13h37m08.parquet</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-16_17h05m11.parquet</span>
 Processing
 /home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-02
--16_13h37m08.parquet
+-16_17h05m11.parquet
 
 
 </pre></div>
@@ -373,21 +378,25 @@ to compute the median and quartiles of the curves.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_run</span><span class="p">(</span><span class="s1">&#39;minimal_benchmark&#39;</span><span class="p">,</span> <span class="n">n</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">r</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
+<div class="sphx-glr-script-out highlight-none notranslate"><div class="highlight"><pre><span></span>No seed was specified. Selected global seed: 0
+</pre></div>
+</div>
 <div class="output_subarea output_html rendered_html output_result">
             <pre class="cmd-equiv"> <div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
 </pre></div>
 </pre>
             <div class="sphx-glr-script-out highlight-none notranslate">
-                <div class="highlight"><pre>simulated
+                <div class="highlight"><pre>No seed was specified. Selected global seed: 0
+simulated
   |--Quadratic
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-02</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-16_13h37m19.parquet</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-16_17h05m21.parquet</span>
 Processing
 /home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-02
--16_13h37m19.parquet
+-16_17h05m21.parquet
 
 
 </pre></div>
@@ -407,7 +416,7 @@ of the benchmark. See <a class="reference internal" href="../benchmark_workflow/
 Here, clicking on <code class="docutils literal notranslate"><span class="pre">Subopt.</span> <span class="pre">(log)</span></code> in the <em>Available plots</em> above the
 figure will take you to a view with the right scale, and looking at
 suboptimality instead of objective value.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 15.545 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 14.225 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-minimal-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/6a65fd6b50c38318be8d3d22e519e51b/run_minimal_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_minimal_benchmark.ipynb</span></code></a></p>

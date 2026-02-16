@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setting up an ML benchmark &#8212; benchopt 1.9.dev0 documentation</title>
+    <title>Controlling randomness in Benchopt &#8212; benchopt 1.9.dev0 documentation</title>
   
   
   
@@ -50,13 +50,13 @@
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/ml_benchmark';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/controlling_randomness';</script>
     <script src="../_static/benchopt.js?v=8e1f6d87"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tweak a dataset" href="tweak_datasets.html" />
-    <link rel="prev" title="User guide" href="index.html" />
+    <link rel="next" title="Evaluating an iterative method" href="iterative_solvers.html" />
+    <link rel="prev" title="Tweak a dataset" href="tweak_datasets.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -200,9 +200,9 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
@@ -314,7 +314,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setting up an ML benchmark</h1>
+    <h1>Controlling randomness in Benchopt</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -324,8 +324,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disabling-performance-curves">Disabling performance curves</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seed-helper">Seed helper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-seeding-is-provided">How seeding is provided</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-call-get-seed">When to call get_seed</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -337,101 +341,94 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="setting-up-an-ml-benchmark">
-<span id="ml-benchmark"></span><h1>Setting up an ML benchmark<a class="headerlink" href="#setting-up-an-ml-benchmark" title="Link to this heading">#</a></h1>
-<p>Benchopt can be used to run benchmarks on machine learning problems. This page
-explains the specificities of setting up a benchmark in this context.</p>
-<p>To easily get started with a new ML benchmark, we recommend using the dedicated
-<code class="docutils literal notranslate"><span class="pre">benchopt</span></code>’s <a class="reference external" href="https://github.com/benchopt/template_benchmark_ml">ML template</a> from github.
-This template provides a simple structure, with the different benchopt’s options set to accommodate ML workflows.</p>
-<section id="disabling-performance-curves">
-<h2>Disabling performance curves<a class="headerlink" href="#disabling-performance-curves" title="Link to this heading">#</a></h2>
-<p>Unlike optimization benchmarks where you track convergence over iterations,
-ML benchmarks typically evaluate each solver once to completion. To disable
-performance curve sampling, set <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code> in your
-<code class="docutils literal notranslate"><span class="pre">Objective</span></code> class:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;run_once&quot;</span>
-
-    <span class="c1"># ...rest of your objective definition</span>
-</pre></div>
-</div>
-<p>With this setting, each solver’s <code class="docutils literal notranslate"><span class="pre">run</span></code> method is called exactly once, and
-the <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> argument can be ignored. This is the recommended setup for
-benchmarks comparing methods where only the final performance matters.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>You can also set <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code> on individual <code class="docutils literal notranslate"><span class="pre">Solver</span></code>
-classes if only some solvers should run once while others need iterative
-evaluation.</p>
-</div>
-<p>Note that when using <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code>
-will be called only once per solver run, and the resulting metrics will be
-stored directly in the benchmark results. It is also possible to different
-evaluation as different lines in the benchmark results by returning multiple
-dictionaries from <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code> as a list. See <a class="reference internal" href="advanced.html#multiple-evaluation"><span class="std std-ref">Producing multiple evaluations at once</span></a>
-for more details.</p>
+  <section id="controlling-randomness-in-benchopt">
+<span id="controlling-randomness"></span><h1>Controlling randomness in Benchopt<a class="headerlink" href="#controlling-randomness-in-benchopt" title="Link to this heading">#</a></h1>
+<p>Benchopt provides a mechanism to control randomness across runs, solvers,
+datasets and repetitions, by producing deterministic and reproducible seeds.
+This page explains how the <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> method works and how to use it inside
+<code class="docutils literal notranslate"><span class="pre">Objective</span></code>, <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">Solver</span></code> classes.</p>
+<section id="seed-helper">
+<h2>Seed helper<a class="headerlink" href="#seed-helper" title="Link to this heading">#</a></h2>
+<p>All benchopt base classes provide a <code class="docutils literal notranslate"><span class="pre">get_seed</span></code>
+method, to derive <strong>a deterministic seed from the chosen experiment axes.</strong></p>
+<p>This function returns an integer seed computed deterministically from the
+benchmark’s global seed and the boolean flags you pass. The seed can then
+be used to seed random number generators (<em>e.g.</em> <code class="docutils literal notranslate"><span class="pre">numpy.random.RandomState</span></code>,
+or <code class="docutils literal notranslate"><span class="pre">torch.manual_seed</span></code>) to obtain deterministic pseudo-random streams.</p>
+<dl class="simple">
+<dt><a href="#id1"><span class="problematic" id="id2">``</span></a>get_seed(use_objective=True, use_dataset=True,</dt><dd><p>use_solver=True, use_repetition=True)``</p>
+</dd>
+</dl>
+<p>Each argument is a flag which corresponds to an axis of the experiment. Setting the
+flag to <code class="docutils literal notranslate"><span class="pre">True</span></code> makes the seed vary when this element changes.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">use_objective</span></code>: seed changes when the objective vary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_dataset</span></code>: seed changes when the dataset vary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_solver</span></code>: seed changes when the solver vary.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">use_repetition</span></code>: seed changes on each the repetition.</p></li>
+</ul>
+<p>The objective, dataset and solver are considered to vary when their name
+or parameters change. This means that if you change the parameters of a
+solver, it will be considered as a different solver and the seed will change if
+<code class="docutils literal notranslate"><span class="pre">use_solver=True</span></code>.</p>
+<p>By toggling these flags, you choose which experimental axes cause randomness
+to change. By default, the generated seed is independent from the combination
+of <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, <code class="docutils literal notranslate"><span class="pre">Solver</span></code> and across repetitions.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p>If you want different randomness per repetition but the same randomness for
+all solvers for a given <code class="docutils literal notranslate"><span class="pre">(dataset,</span> <span class="pre">objective)</span></code> couple, set
+<code class="docutils literal notranslate"><span class="pre">use_solver=False</span></code> and <code class="docutils literal notranslate"><span class="pre">use_repetition=True</span></code>.</p></li>
+<li><p>If you want the same randomness for all repetitions and solvers, set
+<code class="docutils literal notranslate"><span class="pre">use_repetition=False</span></code> and <code class="docutils literal notranslate"><span class="pre">use_solver=False</span></code>.</p></li>
+</ul>
 </section>
-<section id="cross-validation">
-<h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h2>
-<p>In order to evaluate the generalization performance of a method, a common
-practice is to use cross-validation. In this context, the data is split
-several times, and the model is trained on a subset of the data and evaluated
-on another independent subset. This process is repeated several times, and
-the average performance is reported.</p>
-<p>In benchopt, cross-validation is handled as separate runs of the <code class="docutils literal notranslate"><span class="pre">Solver</span></code>,
-where the data is split into folds in <code class="docutils literal notranslate"><span class="pre">Objective.get_objective</span></code>, by calling
-<code class="docutils literal notranslate"><span class="pre">Objective.get_split</span></code>. This method takes in the data to split (typically
-<code class="docutils literal notranslate"><span class="pre">numpy</span></code> arrays or <code class="docutils literal notranslate"><span class="pre">pandas</span></code> dataframes) and returns the split data.
-The way the splits are defined depends on the <code class="docutils literal notranslate"><span class="pre">Objective.cv</span></code> attribute, which
-must be defined by the user. A typical workflow is the following:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="o">...</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span> <span class="o">=</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span>
-        <span class="c1"># Specify a cross-validation splitter as the `cv` attribute.</span>
-        <span class="c1"># This will be automatically used in `self.get_split` to split</span>
-        <span class="c1"># the arrays provided.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cv</span> <span class="o">=</span> <span class="n">GroupKFold</span><span class="p">(</span><span class="n">n_splits</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">seed</span><span class="p">)</span>
+<section id="how-seeding-is-provided">
+<h2>How seeding is provided<a class="headerlink" href="#how-seeding-is-provided" title="Link to this heading">#</a></h2>
+<p>The user may provide a <strong>main seed</strong> to the benchmark via the <code class="docutils literal notranslate"><span class="pre">--seed</span></code> flag.
+By default, this seed is set to 0, to avoid disrupting caching. This means that
+During the benchmark, Benchopt calls <code class="docutils literal notranslate"><span class="pre">set_seed</span></code> to combine the main seed with
+the components selected by the flags (objective, dataset, solver, repetition).
+This produces a unique, reproducible per-run integer seed.
+During the benchmark, Benchopt calls <code class="docutils literal notranslate"><span class="pre">set_seed</span></code> to combine the main seed with
+the components selected by the flags (objective, dataset, solver, repetition).
+This produces a unique, reproducible per-run integer seed.</p>
+</section>
+<section id="when-to-call-get-seed">
+<h2>When to call get_seed<a class="headerlink" href="#when-to-call-get-seed" title="Link to this heading">#</a></h2>
+<p>Call <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> <strong>only during execution</strong> of the benchmark, ie. for Solver
+from <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>, for Dataset from <code class="docutils literal notranslate"><span class="pre">get_data</span></code>, and for Objective from
+and <code class="docutils literal notranslate"><span class="pre">set_data</span></code> and <code class="docutils literal notranslate"><span class="pre">get_objective</span></code>.</p>
+<p>Do <strong>not</strong> call it at import time or during class definition — at that stage,
+the benchmark runner has not yet created the correct runtime context, and the
+seed has not been initialized.</p>
+<section id="examples">
+<h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
+<p>We provide an example for custom <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, however, the same logic applies for
+<code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">Solver</span></code> objects.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-        <span class="c1"># If the cross-validation requires some metadata, it can be</span>
-        <span class="c1"># provided in the `cv_metadata` attribute. This will be passed</span>
-        <span class="c1"># to `self.cv.split` and `self.cv.get_n_splits`.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cv_metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]}</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;example&quot;</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Call `self.get_split` with the arrays to split.</span>
-        <span class="c1"># This method&#39;s default behavior is similar to sklearn&#39;s</span>
-        <span class="c1"># `train_test_split`, splitting the input arrays using</span>
-        <span class="c1"># the indexes returned by `self.cv.split`.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_test</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_test</span> <span class="o">=</span> \
-                <span class="bp">self</span><span class="o">.</span><span class="n">get_split</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y</span><span class="p">)</span>
-        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="n">y</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">)</span>
+        <span class="c1"># Get a deterministic seed that depends on objective, dataset, solver,</span>
+        <span class="c1"># and repetition</span>
+        <span class="n">seed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_seed</span><span class="p">(</span>
+            <span class="n">use_objective</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">use_dataset</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+            <span class="n">use_solver</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span>
+            <span class="n">use_repetition</span><span class="o">=</span><span class="kc">True</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Use the seed to create a random number generator and generate noise.</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">RandomState</span><span class="p">(</span><span class="n">seed</span><span class="p">)</span>
+        <span class="n">noise</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">beta</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="n">aux_noise</span><span class="o">=</span><span class="n">noise</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Note that by default, when <code class="docutils literal notranslate"><span class="pre">Objective</span></code> has a <code class="docutils literal notranslate"><span class="pre">cv</span></code> attribute, the number of
-repetitions is set to <code class="docutils literal notranslate"><span class="pre">cv.get_n_splits()</span></code> instead of <code class="docutils literal notranslate"><span class="pre">1</span></code>.
-When fewer repetitions are requested, only the first splits are evaluated.
-On the contrary, requesting more repetitions than splits will loop over
-the splits, repeating them to get the right number of runs.
-Note that depending on the number of repetitions requested, some folds may be
-overrepresented in the final results.</p>
-<p>The default workflow works for arrays that can be split based on indexing.
-When the objects to split are more complex – typically with deep learning
-datasets– it is also possible to implement a custom <code class="docutils literal notranslate"><span class="pre">split(cv_fold,</span> <span class="pre">*obj)</span></code>
-method in <code class="docutils literal notranslate"><span class="pre">Objective</span></code> to specify how to construct the split data:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="o">...</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">split</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cv_fold</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
-        <span class="c1"># Split all the arrays according to cv_fold and return them.</span>
-        <span class="n">train_index</span><span class="p">,</span> <span class="n">test_index</span> <span class="o">=</span> <span class="n">cv_fold</span>
-        <span class="n">train_dataset</span> <span class="o">=</span> <span class="n">Subset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">train_index</span><span class="p">)</span>
-        <span class="n">test_dataset</span> <span class="o">=</span> <span class="n">Subset</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">test_index</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">train_dataset</span><span class="p">,</span> <span class="n">test_dataset</span><span class="p">,</span> <span class="n">y</span><span class="p">[</span><span class="n">train_index</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="n">test_index</span><span class="p">]</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">cv_fold</span></code> argument correspond to the current iterate from <code class="docutils literal notranslate"><span class="pre">cv.split</span></code>,
-while <code class="docutils literal notranslate"><span class="pre">dataset,</span> <span class="pre">y</span></code> corresponds to objects passed in <code class="docutils literal notranslate"><span class="pre">Objective.get_split</span></code>.</p>
+</section>
 </section>
 </section>
 
@@ -447,20 +444,20 @@ while <code class="docutils literal notranslate"><span class="pre">dataset,</spa
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="tweak_datasets.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">User guide</p>
+        <p class="prev-next-title">Tweak a dataset</p>
       </div>
     </a>
     <a class="right-next"
-       href="tweak_datasets.html"
+       href="iterative_solvers.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tweak a dataset</p>
+        <p class="prev-next-title">Evaluating an iterative method</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -480,8 +477,12 @@ while <code class="docutils literal notranslate"><span class="pre">dataset,</spa
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disabling-performance-curves">Disabling performance curves</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#seed-helper">Seed helper</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#how-seeding-is-provided">How seeding is provided</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-to-call-get-seed">When to call get_seed</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 
