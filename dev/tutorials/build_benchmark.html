@@ -44,13 +44,13 @@
   <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
     <script src="../_static/documentation_options.js?v=803e6966"></script>
-    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
-    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'tutorials/build_benchmark';</script>
     <script src="../_static/benchopt.js?v=8e1f6d87"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
@@ -370,7 +370,7 @@ we should be mindful of the two hyperparameters: the regularization parameter \(
 It is very common in machine learning that we are facing a situation where we want to vary these parameters, and compare the behavior of our algorithm in each scenario.
 Benchopt we can create a benchmark for this problem, here is a screenshot of what we will get at the end of this tutorial.</p>
 <figure class="align-default">
-<a class="reference internal image-reference" href="../_images/screenshot_mytemplate_ridgeloss.png"><img alt="../_images/screenshot_mytemplate_ridgeloss.png" src="../_images/screenshot_mytemplate_ridgeloss.png" width="800" />
+<a class="reference internal image-reference" href="../_images/screenshot_mytemplate_ridgeloss.png"><img alt="../_images/screenshot_mytemplate_ridgeloss.png" src="../_images/screenshot_mytemplate_ridgeloss.png" style="width: 800px;" />
 </a>
 </figure>
 <p>We can now dive into the framework and see how to leverage it to easily create our benchmark!</p>
@@ -414,7 +414,7 @@ In other words, let us use benchopt to read the contents of the template benchma
 <p>To run the template benchmark, simply run the following command in the terminal:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>my_benchmark</span>
 </pre></div></div><figure class="align-default" id="id1">
-<a class="reference internal image-reference" href="../_images/console_template.png"><img alt="../_images/console_template.png" src="../_images/console_template.png" width="600" />
+<a class="reference internal image-reference" href="../_images/console_template.png"><img alt="../_images/console_template.png" src="../_images/console_template.png" style="width: 600px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">A screenshot of the console during the benchopt run command</span><a class="headerlink" href="#id1" title="Link to this image">#</a></p>
@@ -472,7 +472,7 @@ The other files are not very important right now, let us forget about them.</p>
 In particular these three files each define a class inherited from Benchopt.
 The following figure details the methods that must be implemented in each file, and the order in which Benchopt will call these methods:</p>
 <figure class="align-default">
-<a class="reference internal image-reference" href="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg"><img alt="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg" src="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg" width="800" />
+<a class="reference internal image-reference" href="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg"><img alt="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg" src="https://raw.githubusercontent.com/benchopt/communication_materials/main/sharedimages/benchopt_schema_dependency.svg" style="width: 800px;" />
 </a>
 </figure>
 <p>There are two kinds of contents.
@@ -622,7 +622,7 @@ We run the benchopt with the same command as earlier, in the parent directory of
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>my_benchmark</span>
 </pre></div></div><p>Notice how the prompt in the terminal now contains logging for the GD algorithm with each stepsize 0.1, 0.5, 1 and 1.99.</p>
 <figure class="align-default" id="id2">
-<a class="reference internal image-reference" href="../_images/console_ridge.png"><img alt="../_images/console_ridge.png" src="../_images/console_ridge.png" width="600" />
+<a class="reference internal image-reference" href="../_images/console_ridge.png"><img alt="../_images/console_ridge.png" src="../_images/console_ridge.png" style="width: 600px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Screenshot of the console after running the updated benchmark.</span><a class="headerlink" href="#id2" title="Link to this image">#</a></p>
@@ -643,7 +643,7 @@ For instance, select the following plotting options:</p>
 </div></blockquote>
 <p>You should see the following plot (click image to zoom).</p>
 <figure class="align-default" id="id3">
-<a class="reference internal image-reference" href="../_images/screenshot_mytemplate_ridgeloss.png"><img alt="../_images/screenshot_mytemplate_ridgeloss.png" src="../_images/screenshot_mytemplate_ridgeloss.png" width="800" />
+<a class="reference internal image-reference" href="../_images/screenshot_mytemplate_ridgeloss.png"><img alt="../_images/screenshot_mytemplate_ridgeloss.png" src="../_images/screenshot_mytemplate_ridgeloss.png" style="width: 800px;" />
 </a>
 <figcaption>
 <p><span class="caption-text">Screenshot of the results computed by benchopt, shown in the default navigator. Plotting options can be manually changed in the left part of the window.</span><a class="headerlink" href="#id3" title="Link to this image">#</a></p>
