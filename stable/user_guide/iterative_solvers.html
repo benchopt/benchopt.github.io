@@ -1,0 +1,630 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Evaluating an iterative method &#8212; benchopt 1.8.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=7799b48c" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=c928fa87"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/iterative_solvers';</script>
+    <script src="../_static/benchopt.js?v=8e1f6d87"></script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Advanced usage" href="advanced.html" />
+    <link rel="prev" title="Controlling randomness in Benchopt" href="controlling_randomness.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
+  
+  
+    <p class="title logo__title">1.8.1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/install_benchmark.html">Install a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Evaluating an iterative method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Evaluating an iterative method</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-strategies">Sampling strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-once-no-performance-curve">0. Running once (no performance curve)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-iterations-or-tolerance">1. Using iterations or tolerance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-callback">2. Using a callback</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-strategy-to-grow-the-computational-budget-stop-val">3. Changing the strategy to grow the computational budget (<code class="code docutils literal notranslate"><span class="pre">stop_val</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-are-the-solvers-stopped">When are the solvers stopped?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-sampling-strategy-and-stopping-criterion-globally">Setting the sampling strategy and stopping criterion globally</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="evaluating-an-iterative-method">
+<span id="iterative-solvers"></span><h1>Evaluating an iterative method<a class="headerlink" href="#evaluating-an-iterative-method" title="Link to this heading">#</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>For ML benchmarks without iterative evaluation:</strong> If you are benchmarking
+machine learning methods where each solver runs once to completion (e.g.,
+comparing scikit-learn estimators), you can skip performance curves entirely
+by setting <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code> in your <code class="docutils literal notranslate"><span class="pre">Solver</span></code> class.
+See <a class="reference internal" href="ml_benchmark.html#ml-benchmark"><span class="std std-ref">Setting up an ML benchmark</span></a> for more details on setting up ML benchmarks.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>  <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+      <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;run_once&quot;</span>
+
+      <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">_</span><span class="p">):</span>
+          <span class="c1"># Your solver code here</span>
+          <span class="k">pass</span>
+
+<span class="n">Note</span> <span class="n">that</span> <span class="n">this</span> <span class="n">option</span> <span class="n">can</span> <span class="n">also</span> <span class="n">be</span> <span class="nb">set</span> <span class="n">globally</span> <span class="k">for</span> <span class="nb">all</span> <span class="n">solvers</span> <span class="n">by</span> <span class="n">setting</span>
+<span class="n">the</span> <span class="err">``</span><span class="n">Objective</span><span class="o">.</span><span class="n">sampling_strategy</span><span class="err">``</span> <span class="k">class</span><span class="w"> </span><span class="nc">attribute</span> <span class="n">to</span> <span class="err">``</span><span class="s2">&quot;run_once&quot;</span><span class="err">``</span> <span class="ow">in</span>
+<span class="n">your</span> <span class="err">``</span><span class="n">Objective</span><span class="err">``</span> <span class="n">class</span><span class="o">.</span>
+</pre></div>
+</div>
+</div>
+<p>Performance curves are primarily useful for <strong>iterative optimization methods</strong>,
+where you want to track how the objective value evolves as computational budget
+increases (e.g., number of iterations, tolerance, or CPU time).</p>
+<p>The performance of each solver is evaluated for various computational budgets.
+With “<em>performance curves</em>”, we refer to the evolution of the performance as a
+function of the computational budget.</p>
+<p>With benchopt, there are different ways to vary the computational budget
+to sample the performance curve.
+They are chosen by the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> attribute of each solver, or if
+specified, the <code class="docutils literal notranslate"><span class="pre">strategy</span></code> parameter of the <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code> of the
+solver.</p>
+<p>When varying the computational budget, there are often the need to be able to
+stop the solver when it has converged, to avoid wasting resources on already
+converged methods.
+This is handled by the <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code> attribute of each solver, which
+is described in the last section of this document <a class="reference internal" href="#stopping-criterion"><span class="std std-ref">When are the solvers stopped?</span></a>.</p>
+<section id="sampling-strategies">
+<h2>Sampling strategies<a class="headerlink" href="#sampling-strategies" title="Link to this heading">#</a></h2>
+<section id="running-once-no-performance-curve">
+<h3>0. Running once (no performance curve)<a class="headerlink" href="#running-once-no-performance-curve" title="Link to this heading">#</a></h3>
+<p>For benchmarks where solvers run to completion without intermediate evaluation
+(typical in ML benchmarks), use <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code>.
+The solver’s <code class="docutils literal notranslate"><span class="pre">run</span></code> method is called exactly once, and no convergence curve
+is generated. This is ideal for comparing final performance of different methods.</p>
+<p>See <a class="reference internal" href="ml_benchmark.html#ml-benchmark"><span class="std std-ref">Setting up an ML benchmark</span></a> for a complete guide on setting up ML benchmarks.</p>
+</section>
+<section id="using-iterations-or-tolerance">
+<h3>1. Using iterations or tolerance<a class="headerlink" href="#using-iterations-or-tolerance" title="Link to this heading">#</a></h3>
+<p>The first way is to use <code class="docutils literal notranslate"><span class="pre">Solver.sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;iteration&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">Solver.sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;tolerance&quot;</span></code>.
+This is used for black-box solvers, where one can only get the result of the solver for a given number of iterations or for a given numerical tolerance.
+This sampling strategy creates curves by calling <code class="docutils literal notranslate"><span class="pre">Solver.run(stop_val)</span></code> several times with different values for the <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> parameter:</p>
+<ul>
+<li><p>if the solver’s <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;iteration&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> is the number of iterations passed to <code class="docutils literal notranslate"><span class="pre">run</span></code>.
+It increases geometrically by at least 1, starting from 1 with a factor <span class="math notranslate nohighlight">\(\rho=1.5\)</span>.
+Note that the first call uses a number of iterations of 0.
+The value from one call to the other follows:</p>
+<div class="math notranslate nohighlight">
+\[\text{stop\_val} = \max(\text{stop\_val} + 1, \text{int}(\rho * \text{stop\_val}))\]</div>
+</li>
+<li><p>if the solver’s <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> is <code class="docutils literal notranslate"><span class="pre">&quot;tolerance&quot;</span></code>, the <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> parameter corresponds to the numerical tolerance.
+It decreases geometrically by a factor <span class="math notranslate nohighlight">\(\rho=1.5\)</span> between each call to <code class="docutils literal notranslate"><span class="pre">run</span></code>, starting from 1 at the second call.
+Note that the first call uses a tolerance of 1e38.
+The value from one call to the other follows:</p>
+<div class="math notranslate nohighlight">
+\[\text{stop\_val} = \min(1, \max(\text{stop\_val} / \rho, 10^{-15}))\]</div>
+</li>
+</ul>
+<p>In both cases, if the objective curve is flat (i.e., the variation of the objective between two points is numerically 0), the geometric rate <span class="math notranslate nohighlight">\(\rho\)</span> is multiplied by 1.2.</p>
+<p>Note that the solver is restarted from scratch at each call to <code class="docutils literal notranslate"><span class="pre">solver.run</span></code>.
+For more advanced configurations, the evolution of <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> can be controlled on a per solver basis, by implementing a <code class="docutils literal notranslate"><span class="pre">Solver.get_next</span></code> method, which receives the current value for tolerance/number of iterations, and returns the next one.</p>
+<p>Note that the formula to compute the next <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> can be configured on a per-solver basis, as described in: <a class="reference internal" href="#sampling-strategy"><span class="std std-ref">3. Changing the strategy to grow the computational budget (stop_val)</span></a>.</p>
+</section>
+<section id="using-a-callback">
+<h3>2. Using a callback<a class="headerlink" href="#using-a-callback" title="Link to this heading">#</a></h3>
+<p>Restarting the solver from scratch, though inevitable to handle black box solvers, can be costly.</p>
+<p>When a solver exposes the intermediate values of the iterates, it is possible to create the curve in a single solver run, by using <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;callback&quot;</span></code>.
+In that case, the argument passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> will be a callable object, <code class="docutils literal notranslate"><span class="pre">callback</span></code>.
+This callback is created and managed by <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>.
+Like with <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">==</span> <span class="pre">&quot;iteration&quot;</span></code>, the objective is computed after a number of callback’s calls that grows geometrically. If the objective was computed after <span class="math notranslate nohighlight">\(n\)</span> calls, the objective and timing will be computed again when reaching <span class="math notranslate nohighlight">\(\max(n+1, \rho * n)\)</span> calls to the callback.
+The callback makes sure we do not account for objective computation time and also check for convergence every time the objective is computed (as described in the next section).
+It returns <code class="docutils literal notranslate"><span class="pre">False</span></code> when the solver should be stopped. A classical usage pattern is:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">...</span> <span class="c1"># Initialize iterate</span>
+
+    <span class="k">while</span> <span class="n">callback</span><span class="p">():</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># Update iterate</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="changing-the-strategy-to-grow-the-computational-budget-stop-val">
+<span id="sampling-strategy"></span><h3>3. Changing the strategy to grow the computational budget (<code class="code docutils literal notranslate"><span class="pre">stop_val</span></code>)<a class="headerlink" href="#changing-the-strategy-to-grow-the-computational-budget-stop-val" title="Link to this heading">#</a></h3>
+<p>The way benchopt varies the computational budget <code class="code docutils literal notranslate"><span class="pre">stop_val</span></code> can be
+configured on a per-solver basis. This is done by implementing a <code class="docutils literal notranslate"><span class="pre">get_next</span></code>
+method in the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> class. This method takes as input the previous value
+where the objective function has been logged, and outputs the next one. For
+instance, if a solver needs to be evaluated every 10 iterations, we would have</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_val</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">stop_val</span> <span class="o">+</span> <span class="mi">10</span>
+</pre></div>
+</div>
+<p>This example allows to set a linear growth for the solver computational budget, instead of the default geometric growth.</p>
+</section>
+</section>
+<section id="when-are-the-solvers-stopped">
+<span id="stopping-criterion"></span><h2>When are the solvers stopped?<a class="headerlink" href="#when-are-the-solvers-stopped" title="Link to this heading">#</a></h2>
+<p>For each of the sampling strategies above, the solvers continue running (i.e. the callback returns <code class="docutils literal notranslate"><span class="pre">True</span></code>, the number of iterations/tolerance passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> increases/decreases) until the <code class="docutils literal notranslate"><span class="pre">StoppingCriterion.should_stop()</span></code> associated to the solver <code class="docutils literal notranslate"><span class="pre">Solver.stopping_criterion</span></code> returns <code class="docutils literal notranslate"><span class="pre">True</span></code>.</p>
+<p>This method takes into account the maximal number of runs given as <code class="docutils literal notranslate"><span class="pre">--max-runs</span></code>, the timeout given by <code class="docutils literal notranslate"><span class="pre">--timeout</span></code> and also tries to stop the solver if it has converged.
+The convergence of a solver is determined by the <code class="docutils literal notranslate"><span class="pre">StoppingCriterion.check_convergence()</span></code> method, based on the objective curve so far.
+There are four <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> implemented in benchopt:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">SingleRunCriterion(stop_val)</span></code> only calls the solver once with the given stop_val. This criterion is designed for methods that converge to a given value, when one aims to benchmark final performance of multiple solvers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">NoCriterion()</span></code> runs the solver for a fixed number of steps, given by the <code class="docutils literal notranslate"><span class="pre">--max-runs</span></code> argument. This criterion deactivate the checks for convergence.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion(eps,</span> <span class="pre">patience,</span> <span class="pre">key_to_monitor,</span> <span class="pre">minimize)</span></code> considers that the solver has converged when the relative decrease of the objective was less than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>. The <code class="docutils literal notranslate"><span class="pre">key_to_monitor</span></code> is the key of the objective dictionary to monitor. By default, it is set to <code class="docutils literal notranslate"><span class="pre">value</span></code>. The <code class="docutils literal notranslate"><span class="pre">minimize</span></code> parameter indicates whether the monitored key should be minimized (<code class="docutils literal notranslate"><span class="pre">True</span></code>, default) or maximized (<code class="docutils literal notranslate"><span class="pre">False</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion(eps,</span> <span class="pre">patience,</span> <span class="pre">key_to_monitor,</span> <span class="pre">minimize)</span></code> considers that the solver has converged when the objective has not decreased by more than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>. The <code class="docutils literal notranslate"><span class="pre">key_to_monitor</span></code> is the key of the objective dictionary to monitor. By default, it is set to <code class="docutils literal notranslate"><span class="pre">value</span></code>. The <code class="docutils literal notranslate"><span class="pre">minimize</span></code> parameter indicates whether the monitored key should be minimized (<code class="docutils literal notranslate"><span class="pre">True</span></code>, default) or maximized (<code class="docutils literal notranslate"><span class="pre">False</span></code>).</p></li>
+</ul>
+</section>
+<section id="setting-the-sampling-strategy-and-stopping-criterion-globally">
+<h2>Setting the sampling strategy and stopping criterion globally<a class="headerlink" href="#setting-the-sampling-strategy-and-stopping-criterion-globally" title="Link to this heading">#</a></h2>
+<p>Both the sampling strategy and stopping criterion can be set globally for all solvers by setting the corresponding class attributes in your <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;callback&quot;</span>  <span class="c1"># or &quot;iteration&quot;, &quot;tolerance&quot;, &quot;run_once&quot;</span>
+    <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">SufficientProgressCriterion</span><span class="p">(</span>
+        <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">key_to_monitor</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<p>This allows to avoid setting these attributes in each solver when the same strategy and criterion should be used for most solvers.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="controlling_randomness.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Controlling randomness in Benchopt</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="advanced.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Advanced usage</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#sampling-strategies">Sampling strategies</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-once-no-performance-curve">0. Running once (no performance curve)</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-iterations-or-tolerance">1. Using iterations or tolerance</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-callback">2. Using a callback</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#changing-the-strategy-to-grow-the-computational-budget-stop-val">3. Changing the strategy to grow the computational budget (<code class="code docutils literal notranslate"><span class="pre">stop_val</span></code>)</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-are-the-solvers-stopped">When are the solvers stopped?</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-sampling-strategy-and-stopping-criterion-globally">Setting the sampling strategy and stopping criterion globally</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+
+<script>
+fetch("../../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = window.location.href.replace(current, select.value);
+    };
+  });
+</script>
+
+
+  <footer class="bd-footer">
+  </footer>
+
+  </body>
+</html>
