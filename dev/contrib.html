@@ -191,7 +191,6 @@
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -204,6 +203,7 @@
 <li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="user_guide/config_benchopt.html">Configure Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
@@ -327,12 +327,6 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-report-and-feature-request">Bug report and feature request</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-contribution">Code contribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-a-benchmark">Testing a benchmark</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-philosophy">Basic philosophy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-for-solver-run">Test for Solver run</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-configuration">Test configuration</a></li>
-</ul>
-</li>
 </ul>
             </nav>
         </div>
@@ -438,43 +432,6 @@ HTML output by typing, in a shell:</p>
 <span class="prompt1">make<span class="w"> </span>html</span>
 <span class="prompt1">firefox<span class="w"> </span>_build/html/index.html</span>
 </pre></div></div></section>
-<section id="testing-a-benchmark">
-<span id="test-config"></span><h2>Testing a benchmark<a class="headerlink" href="#testing-a-benchmark" title="Link to this heading">#</a></h2>
-<p>To ensure that the benchmark is reproducible and can be run by others, benchopt provides a set of tools to test that the benchmark is properly formatted and that it can be installed and run easily.
-This page describes the various tweaks that can be made to the benchmark tests.</p>
-<section id="basic-philosophy">
-<h3>Basic philosophy<a class="headerlink" href="#basic-philosophy" title="Link to this heading">#</a></h3>
-<p>The test run by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> will make sure that:</p>
-<ol class="arabic simple">
-<li><p>All classes can be retrieved easily from the benchmark, even when some dependencies are missing.</p></li>
-<li><p>The classes which have dependencies can be properly installed in a new environment and can then be imported.</p></li>
-<li><p>The datasets are compatible with the objective API.</p></li>
-<li><p>The solvers can all be run for a few number of iterations.</p></li>
-<li><p>For convex problems, the tests will also check that the solution is optimal for a small enough problem. This test can be deactivated by setting the <code class="docutils literal notranslate"><span class="pre">Objective.is_convex</span></code> flag to <code class="docutils literal notranslate"><span class="pre">False</span></code>.</p></li>
-</ol>
-</section>
-<section id="test-for-solver-run">
-<h3>Test for Solver run<a class="headerlink" href="#test-for-solver-run" title="Link to this heading">#</a></h3>
-<p>To ensure point 4, benchopt needs to load at least one small dataset that is compatible with each solver. This is why each benchmark needs to implement at least a <code class="docutils literal notranslate"><span class="pre">Simulated</span></code> dataset, that will be used for testing purposes. However, some solvers require different datasets and objective settings to be able to run. There are two ways to ensure that a solver can find an appropriate configuration:</p>
-<ul class="simple">
-<li><p>In the simulated dataset, one can add the class attribute <code class="docutils literal notranslate"><span class="pre">test_parameters</span></code>, which stands for a list of parameters that will be tried to test the solver. For each solver, at least one of these configurations should be compatible (not skipped). See benchopt.github.io/how.html#example-of-parametrized-simulated-dataset</p></li>
-<li><p>The solvers can also provide a <code class="docutils literal notranslate"><span class="pre">test_config</span></code> class attribute, which is a dictionary with optional keys <code class="docutils literal notranslate"><span class="pre">dataset,</span> <span class="pre">objective</span></code>. The value of these keys should be a dictionary of parameters for the classes <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, that will be compatible with the given <code class="docutils literal notranslate"><span class="pre">Solver</span></code>.</p></li>
-</ul>
-</section>
-<section id="test-configuration">
-<h3>Test configuration<a class="headerlink" href="#test-configuration" title="Link to this heading">#</a></h3>
-<p>In some cases, some tests should be <code class="docutils literal notranslate"><span class="pre">skip</span></code>, or <code class="docutils literal notranslate"><span class="pre">xfail</span></code> for a given benchmark. You can configure this for benchopt using a <code class="docutils literal notranslate"><span class="pre">test_config.py</span></code> file at the root of the benchmark. Implementing a function named <code class="docutils literal notranslate"><span class="pre">check_TESTNAME</span></code> with the same argument as the original test, you can then call <code class="docutils literal notranslate"><span class="pre">pytest.xfail</span></code> or <code class="docutils literal notranslate"><span class="pre">pytest.skip</span></code> to mark the test appropriately. For instance, to skip install tests for solver <code class="docutils literal notranslate"><span class="pre">XXX</span></code>, you can have the following:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># test_config.py</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
-
-
-<span class="k">def</span><span class="w"> </span><span class="nf">check_test_solver_install</span><span class="p">(</span><span class="n">solver_class</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;xxx&#39;</span><span class="p">:</span>
-        <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s1">&#39;XXX is not easy to install automatically.&#39;</span><span class="p">)</span>
-</pre></div>
-</div>
-</section>
-</section>
 </section>
 
 
@@ -525,12 +482,6 @@ This page describes the various tweaks that can be made to the benchmark tests.<
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bug-report-and-feature-request">Bug report and feature request</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#code-contribution">Code contribution</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#documentation">Documentation</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#testing-a-benchmark">Testing a benchmark</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-philosophy">Basic philosophy</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-for-solver-run">Test for Solver run</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#test-configuration">Test configuration</a></li>
-</ul>
-</li>
 </ul>
   </nav></div>
 

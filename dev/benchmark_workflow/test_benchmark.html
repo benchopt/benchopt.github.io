@@ -55,7 +55,7 @@
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Configure Benchopt" href="config_benchopt.html" />
+    <link rel="next" title="Tutorials" href="../tutorials/index.html" />
     <link rel="prev" title="Write a benchmark" href="write_benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -191,7 +191,6 @@
 <li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Testing a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -204,6 +203,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/config_benchopt.html">Configure Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
@@ -324,8 +324,15 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-or-xfailing-some-tests">Skipping or xfailing some tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-philosophy">Basic philosophy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-configuration-for-tests">Parameters’ configuration for tests</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fallback-with-dataset-test-parameters">Fallback with <code class="docutils literal notranslate"><span class="pre">Dataset.test_parameters</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-or-xfailing-some-tests">Skipping or xfailing some tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -339,8 +346,10 @@ document.write(`
                   
   <section id="testing-a-benchmark">
 <span id="test-benchmark"></span><h1>Testing a benchmark<a class="headerlink" href="#testing-a-benchmark" title="Link to this heading">#</a></h1>
-<p>To help maintaining the benchmark, <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> provides utilities to test that
-it can be run properly.</p>
+<p>To ensure that the benchmark is reproducible and can be run by others,
+<code class="docutils literal notranslate"><span class="pre">benchopt</span></code> provides a set of tools to test that the benchmark is properly
+formatted and that it can be installed and run easily.
+This page describes the various tweaks that can be made to the benchmark tests.</p>
 <p>The tests are based on <code class="docutils literal notranslate"><span class="pre">pytest</span></code>, and can be run with the command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -348,35 +357,103 @@ span.prompt1:before {
 }
 </style><span class="prompt1">benchopt<span class="w"> </span><span class="nb">test</span><span class="w"> </span>.</span>
 </pre></div></div><p>This command will run a series of tests to check that the benchmark’s components
-are compatible with <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> and working as expected.
-The tests include:</p>
+are compatible with <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> and working as expected.</p>
+<section id="basic-philosophy">
+<h2>Basic philosophy<a class="headerlink" href="#basic-philosophy" title="Link to this heading">#</a></h2>
+<p>The test run by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> will make sure that:</p>
 <ul class="simple">
 <li><p>Checking that all datasets have the proper API and can be loaded.</p></li>
-<li><p>Checking that the objective have the proper API and can be computed on the <code class="docutils literal notranslate"><span class="pre">simulated</span></code> dataset.</p></li>
-<li><p>Checking that all solvers have the proper API and can be run on the <code class="docutils literal notranslate"><span class="pre">simulated</span></code> dataset.</p></li>
+<li><p>Checking that the objective have the proper API and can be computed
+with a simple dataset and the result returned by <code class="docutils literal notranslate"><span class="pre">get_one_result</span></code>.</p></li>
+<li><p>Checking that all solvers have the proper API and can be run on a simple
+configuration.</p></li>
 <li><p>Checking that all solvers can be installed in a fresh environment.</p></li>
 </ul>
 <p>The tests that are run can be found in the <a class="reference internal" href="../user_guide/tests_definition.html#tests-definition"><span class="std std-ref">Benchopt Test definition</span></a>.</p>
-<p>By default, if the benchmark has been created using one of our templates (see XXX), the repo contains some github actions that will try to run these tests on each push/pull request, and once a week, to ensure long term maintainability.</p>
+<p>By default, if the benchmark has been created using one of our templates, the
+repo contains some github actions that will try to run these tests on each
+push/pull request, and once a week, to ensure long term maintainability.</p>
 <div class="admonition hint">
 <p class="admonition-title">Hint</p>
 <p>The scheduling of the github action run can be changed in
 <code class="docutils literal notranslate"><span class="pre">.github/workflows/main.yml</span></code>.</p>
 </div>
+</section>
+<section id="parameters-configuration-for-tests">
+<h2>Parameters’ configuration for tests<a class="headerlink" href="#parameters-configuration-for-tests" title="Link to this heading">#</a></h2>
+<p>By default, the benchmark will load a <code class="docutils literal notranslate"><span class="pre">Simulated</span></code> dataset for testing
+purposes. The name of this test dataset can be changed with the
+<code class="docutils literal notranslate"><span class="pre">Objective.test_dataset</span></code> attribute. However, real datasets may be too large
+to be used in tests, and some solvers or objectives may require specific
+settings — for instance a specific regularization level to be fast, or a
+particular data format only possible with a given dataset.
+To handle these cases, <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> provides a <code class="docutils literal notranslate"><span class="pre">test_config</span></code> class attribute
+that can be defined on the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, and <code class="docutils literal notranslate"><span class="pre">Solver</span></code> classes.
+Each class can override the parameters used to instantiate any of the
+component classes during testing:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Dataset.test_config</span></code> directly contains the parameters passed to the
+<code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Objective.test_config</span></code> directly contains the parameters passed to the
+<code class="docutils literal notranslate"><span class="pre">Objective</span></code> class, with an optional <code class="docutils literal notranslate"><span class="pre">dataset</span></code> key whose value is a
+dictionary of parameters that override those of the dataset.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Solver.test_config</span></code> directly contains the parameters passed to the
+<code class="docutils literal notranslate"><span class="pre">Solver</span></code> class, with optional <code class="docutils literal notranslate"><span class="pre">dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">objective</span></code> keys whose
+values are dictionaries of parameters that override those of the dataset
+and objective respectively.</p></li>
+</ul>
+<p>The configurations from the three classes are merged with the following
+priority order, from lowest to highest: <code class="docutils literal notranslate"><span class="pre">Dataset.test_config</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Objective.test_config</span></code>, <code class="docutils literal notranslate"><span class="pre">Solver.test_config</span></code>.</p>
+<p>For instance, to require a specific dataset parameter, a specific objective
+parameter, and a low number of iteration, one can define:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;solver1&quot;</span>
+
+    <span class="n">test_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;max_iter&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">&#39;objective&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;fit_intercept&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;n_samples&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;n_features&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Or to set a dataset <code class="docutils literal notranslate"><span class="pre">my_data</span></code> as the test dataset, with particular
+parameters for the whole benchmark:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my objective&quot;</span>
+    <span class="n">test_dataset</span> <span class="o">=</span> <span class="s2">&quot;my_data&quot;</span>
+    <span class="n">test_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;reg&#39;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<section id="fallback-with-dataset-test-parameters">
+<h3>Fallback with <code class="docutils literal notranslate"><span class="pre">Dataset.test_parameters</span></code><a class="headerlink" href="#fallback-with-dataset-test-parameters" title="Link to this heading">#</a></h3>
+<p>In addition to <code class="docutils literal notranslate"><span class="pre">test_config</span></code>, the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class can expose a
+<code class="docutils literal notranslate"><span class="pre">test_parameters</span></code> class attribute, which is a dictionary of parameters in
+the same format as <code class="docutils literal notranslate"><span class="pre">parameters</span></code> (see <span class="xref std std-ref">parametrized</span>). Unlike
+<code class="docutils literal notranslate"><span class="pre">test_config</span></code>, this is a fallback mechanism only for <code class="docutils literal notranslate"><span class="pre">test_solver_run</span></code>:
+if a solver skips the default test configuration, the parameter combinations
+from <code class="docutils literal notranslate"><span class="pre">test_parameters</span></code> will be tried in turn, and the test will pass as long
+as at least one is compatible with the solver.</p>
 <section id="specifying-options-with-cli-flags">
-<span id="pytest-option"></span><h2>Specifying options with CLI flags<a class="headerlink" href="#specifying-options-with-cli-flags" title="Link to this heading">#</a></h2>
+<span id="pytest-option"></span><h4>Specifying options with CLI flags<a class="headerlink" href="#specifying-options-with-cli-flags" title="Link to this heading">#</a></h4>
 <p>It is possible to pass various options to the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> command,
 to customize how the tests are run, in particular in which environment
 the tests are executed and in which environment the installation tests are run.</p>
 <p>For this command, there are two layers of options that can be specified: the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> command is a wrapper around the <code class="docutils literal notranslate"><span class="pre">pytest</span></code> command,
 and some options can be passed to <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code>, while others are passed to
-the underlying <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. When an option from <code class="docutils literal notranslate"><span class="pre">pytest</span></code> is not recognized, and needs to be passed explicitely to the underlying command, it must be separated from the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> options by a <code class="docutils literal notranslate"><span class="pre">--</span></code>.</p>
+the underlying <code class="docutils literal notranslate"><span class="pre">pytest</span></code>. When an option from <code class="docutils literal notranslate"><span class="pre">pytest</span></code> is not recognized,
+and needs to be passed explicitely to the underlying command, it must be
+separated from the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> options by a <code class="docutils literal notranslate"><span class="pre">--</span></code>.</p>
 <p>First, the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> command accepts a <code class="docutils literal notranslate"><span class="pre">--env-name</span></code> flag to specify
 in which conda environment the tests should be run. If it is not provided, the
 test are run in the current environment. If provided, the environment is created
 if it does not exist yet and is also used for the installation tests.</p>
 <p>Second, extra arguments can be passed to the underlying <code class="docutils literal notranslate"><span class="pre">pytest</span></code> command.
-Classical <code class="docutils literal notranslate"><span class="pre">pytest</span></code> options such as <code class="docutils literal notranslate"><span class="pre">-k</span></code> to only run tests that match a given expression, or <code class="docutils literal notranslate"><span class="pre">-vs</span></code> for  a more verbose output, can be used.
+Classical <code class="docutils literal notranslate"><span class="pre">pytest</span></code> options such as <code class="docutils literal notranslate"><span class="pre">-k</span></code> to only run tests that match a
+given expression, or <code class="docutils literal notranslate"><span class="pre">-vs</span></code> for  a more verbose output, can be used.
 We also provide extra options for the tests that are run in <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">--test-env=TEST_ENV</span></code>: This option is used to specify an environment in
@@ -391,15 +468,19 @@ installation tests even if it already exists.</p></li>
 </ul>
 </section>
 <section id="skipping-or-xfailing-some-tests">
-<h2>Skipping or xfailing some tests<a class="headerlink" href="#skipping-or-xfailing-some-tests" title="Link to this heading">#</a></h2>
+<span id="test-config"></span><h4>Skipping or xfailing some tests<a class="headerlink" href="#skipping-or-xfailing-some-tests" title="Link to this heading">#</a></h4>
 <p>In some cases, certain solvers or datasets may not be easily testable on a
 continuous integration (CI) service. This is typically the case for very large
 datasets, or solvers that require a GPU.
 In this case, the tests can be configured to be skipped or marked as expected
 to fail (xfailed) for the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> command.
 This can be done by modifying the <code class="docutils literal notranslate"><span class="pre">test_config.py</span></code> file, located in the root
-folder of the benchmark, and adding a function that skip specific configurations.</p>
-<p>For instance, in order to skip the test <code class="docutils literal notranslate"><span class="pre">test_solver_install</span></code> for the solver
+folder of the benchmark, and adding a function that skip specific
+configurations.</p>
+<p>Implementing a function named <code class="docutils literal notranslate"><span class="pre">check_TESTNAME</span></code> with the same argument as the
+original test, you can then call <code class="docutils literal notranslate"><span class="pre">pytest.xfail</span></code> or <code class="docutils literal notranslate"><span class="pre">pytest.skip</span></code> to mark
+the test appropriately.
+For instance, in order to skip the test <code class="docutils literal notranslate"><span class="pre">test_solver_install</span></code> for the solver
 <code class="docutils literal notranslate"><span class="pre">solver1</span></code> which is defined in the benchmark, one can add the following
 function to the <code class="docutils literal notranslate"><span class="pre">test_config.py</span></code> file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">check_test_solver_install</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver</span><span class="p">):</span>
@@ -409,6 +490,8 @@ function to the <code class="docutils literal notranslate"><span class="pre">tes
         <span class="n">pytest</span><span class="o">.</span><span class="n">xfail</span><span class="p">(</span><span class="s2">&quot;Known installation error for solver2&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
+</section>
+</section>
 </section>
 </section>
 
@@ -433,11 +516,11 @@ function to the <code class="docutils literal notranslate"><span class="pre">tes
       </div>
     </a>
     <a class="right-next"
-       href="config_benchopt.html"
+       href="../tutorials/index.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Configure Benchopt</p>
+        <p class="prev-next-title">Tutorials</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -457,8 +540,15 @@ function to the <code class="docutils literal notranslate"><span class="pre">tes
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-or-xfailing-some-tests">Skipping or xfailing some tests</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-philosophy">Basic philosophy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-configuration-for-tests">Parameters’ configuration for tests</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fallback-with-dataset-test-parameters">Fallback with <code class="docutils literal notranslate"><span class="pre">Dataset.test_parameters</span></code></a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-or-xfailing-some-tests">Skipping or xfailing some tests</a></li>
+</ul>
+</li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

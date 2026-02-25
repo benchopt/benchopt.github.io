@@ -50,13 +50,13 @@
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/config_benchopt';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/config_benchopt';</script>
     <script src="../_static/benchopt.js?v=8e1f6d87"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Tutorials" href="../tutorials/index.html" />
-    <link rel="prev" title="Testing a benchmark" href="test_benchmark.html" />
+    <link rel="next" title="Advanced usage" href="advanced.html" />
+    <link rel="prev" title="Evaluating an iterative method" href="iterative_solvers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -184,14 +184,13 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
-<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="install_benchmark.html">Install a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="test_benchmark.html">Testing a benchmark</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Configure Benchopt</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/install_benchmark.html">Install a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -199,27 +198,28 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Configure Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -498,20 +498,20 @@ to retrieve the paths:</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="test_benchmark.html"
+       href="iterative_solvers.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Testing a benchmark</p>
+        <p class="prev-next-title">Evaluating an iterative method</p>
       </div>
     </a>
     <a class="right-next"
-       href="../tutorials/index.html"
+       href="advanced.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Tutorials</p>
+        <p class="prev-next-title">Advanced usage</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

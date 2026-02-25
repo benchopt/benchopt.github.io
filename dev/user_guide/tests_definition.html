@@ -191,7 +191,6 @@
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/config_benchopt.html">Configure Benchopt</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -204,6 +203,7 @@
 <li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
@@ -330,10 +330,14 @@ document.write(`
 <span id="tests-definition"></span><h1>Benchopt Test definition<a class="headerlink" href="#benchopt-test-definition" title="Link to this heading">#</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">islice</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">StoppingCriterion</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SAMPLING_STRATEGIES</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils.dynamic_modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">_get_module_from_file</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils.parametrized_name_mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">product_param</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils.parametrized_name_mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_configs</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.runner</span><span class="w"> </span><span class="kn">import</span> <span class="n">_seed_run</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_dataset_class</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">dataset_class</span><span class="p">):</span>
@@ -346,11 +350,10 @@ document.write(`
 
     <span class="c1"># Ensure that the dataset exposes a `get_data` function</span>
     <span class="c1"># that is callable</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
-    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="s1">&#39;get_data&#39;</span><span class="p">),</span> <span class="p">(</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="s1">&#39;get_data&#39;</span><span class="p">),</span> <span class="p">(</span>
         <span class="s2">&quot;All dataset should implement get_data&quot;</span>
     <span class="p">)</span>
-    <span class="k">assert</span> <span class="nb">callable</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_data</span><span class="p">),</span> <span class="p">(</span>
+    <span class="k">assert</span> <span class="nb">callable</span><span class="p">(</span><span class="n">dataset_class</span><span class="o">.</span><span class="n">get_data</span><span class="p">),</span> <span class="p">(</span>
         <span class="s2">&quot;dataset.get_data should be a callable&quot;</span>
     <span class="p">)</span>
 
@@ -363,7 +366,14 @@ document.write(`
     <span class="k">if</span> <span class="ow">not</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">is_installed</span><span class="p">():</span>
         <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">&quot;Dataset is not installed&quot;</span><span class="p">)</span>
 
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
+    <span class="c1"># instanciate dataset taking into account the test_config</span>
+    <span class="n">configs</span> <span class="o">=</span> <span class="n">get_configs</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
+
+    <span class="c1"># ensure classes calling `get_seed` work properly</span>
+    <span class="n">_seed_run</span><span class="p">(</span>
+        <span class="n">objective</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_get_data</span><span class="p">()</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)),</span> <span class="p">(</span>
@@ -378,9 +388,18 @@ document.write(`
 <span class="k">def</span><span class="w"> </span><span class="nf">test_benchmark_objective</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">objective_class</span><span class="p">):</span>
     <span class="c1"># check that the result of the objective function is compatible with</span>
     <span class="c1"># benchopt, does not contain `objective_name` and is not empty.</span>
-    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
-    <span class="n">dataset_class</span><span class="p">,</span> <span class="n">test_params</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">test_params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+    <span class="c1"># instanciate dataset and objective, taking into account the test_config</span>
+    <span class="n">dataset_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
+    <span class="n">configs</span> <span class="o">=</span> <span class="n">get_configs</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="n">objective_class</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
+
+    <span class="c1"># ensure classes calling `get_seed` work properly</span>
+    <span class="n">_seed_run</span><span class="p">(</span>
+        <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+        <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">)</span>
 
     <span class="c1"># get one value for the objective, with the test_dataset</span>
     <span class="n">objective</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
@@ -464,11 +483,13 @@ document.write(`
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_solver_stopping_criterion</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">):</span>
     <span class="c1"># Check each solver stopping_criterion is compatible with the objective</span>
-    <span class="n">objective_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_benchmark_objective</span><span class="p">()</span>
-    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">()</span>
 
-    <span class="n">dataset_class</span><span class="p">,</span> <span class="n">test_params</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">test_params</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="c1"># instanciate dataset and objective, taking into account the test_config</span>
+    <span class="n">objective_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_benchmark_objective</span><span class="p">()</span>
+    <span class="n">dataset_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
+    <span class="n">configs</span> <span class="o">=</span> <span class="n">get_configs</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="n">objective_class</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">)</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
 
     <span class="c1"># Make sure to inherit the objective if the stopping criterion</span>
     <span class="c1"># is set globally for this benchmark</span>
@@ -487,6 +508,12 @@ document.write(`
         <span class="k">assert</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;objective_&#39;</span><span class="p">),</span> <span class="p">(</span>
             <span class="s2">&quot;The solver&#39;s stopping_criterion key_to_monitor should start with &quot;</span>
             <span class="s2">&quot;&#39;objective_&#39;.&quot;</span>
+        <span class="p">)</span>
+
+        <span class="c1"># ensure classes calling `get_seed` work properly</span>
+        <span class="n">_seed_run</span><span class="p">(</span>
+            <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
+            <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
         <span class="p">)</span>
 
         <span class="n">objective</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
@@ -513,37 +540,56 @@ document.write(`
     <span class="k">if</span> <span class="ow">not</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">is_installed</span><span class="p">():</span>
         <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">&quot;Solver is not installed&quot;</span><span class="p">)</span>
 
-    <span class="n">test_config</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s2">&quot;test_config&quot;</span><span class="p">,</span> <span class="p">{})</span>
-    <span class="n">objective_config</span> <span class="o">=</span> <span class="n">test_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;objective&#39;</span><span class="p">,</span> <span class="p">{})</span>
-    <span class="n">dataset_config</span> <span class="o">=</span> <span class="n">test_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="p">{})</span>
-
+    <span class="c1"># instanciate dataset and objective, taking into account the test_config</span>
+    <span class="n">dataset_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
     <span class="n">objective_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_benchmark_objective</span><span class="p">()</span>
-    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">objective_config</span><span class="p">)</span>
+    <span class="n">configs</span> <span class="o">=</span> <span class="n">get_configs</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="n">objective_class</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">)</span>
 
-    <span class="n">dataset_class</span><span class="p">,</span> <span class="n">test_params</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">()</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;solver&#39;</span><span class="p">])</span>
+
+    <span class="c1"># ensure classes calling `get_seed` work properly</span>
+    <span class="n">_seed_run</span><span class="p">(</span>
+        <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">,</span>
+        <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run_solver</span><span class="p">(</span><span class="n">dataset</span><span class="p">):</span>
+        <span class="n">objective</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="n">skip</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">_set_objective</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">skip</span><span class="p">:</span>
+            <span class="n">_test_solver_one_objective</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">objective</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">skip</span><span class="p">,</span> <span class="n">reason</span>
+
+    <span class="c1"># return as soon as one configuration is compatible with the solver</span>
+    <span class="n">skip</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">run_solver</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">skip</span><span class="p">:</span>
+        <span class="k">return</span>
+
+    <span class="c1"># fallback to testing all configurations if the first one is not compatible</span>
+    <span class="n">test_parameters</span> <span class="o">=</span> <span class="n">islice</span><span class="p">(</span><span class="n">product_param</span><span class="p">(</span>
+        <span class="nb">getattr</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="s1">&#39;test_parameters&#39;</span><span class="p">,</span> <span class="p">[{}])</span>
+    <span class="p">),</span> <span class="mi">1</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
 
     <span class="n">reasons</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
-    <span class="n">solver_ran_once</span> <span class="o">=</span> <span class="kc">False</span>
-    <span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">test_params</span><span class="p">:</span>
-        <span class="n">params</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">dataset_config</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">params</span> <span class="ow">in</span> <span class="n">test_parameters</span><span class="p">:</span>
+        <span class="n">params</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">configs</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">],</span> <span class="o">**</span><span class="n">params</span><span class="p">}</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">params</span><span class="p">)</span>
 
-        <span class="n">objective</span><span class="o">.</span><span class="n">set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-        <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">test_config</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;solver&#39;</span><span class="p">,</span> <span class="p">{}))</span>
-        <span class="n">skip</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">_set_objective</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">skip</span><span class="p">:</span>
-            <span class="n">reasons</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
-            <span class="k">continue</span>
-        <span class="n">solver_ran_once</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">_test_solver_one_objective</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">objective</span><span class="p">)</span>
-
-    <span class="n">reasons</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">reasons</span><span class="p">))</span>
-    <span class="k">assert</span> <span class="n">solver_ran_once</span><span class="p">,</span> <span class="p">(</span>
-        <span class="s1">&#39;Solver skipped all test configuration. At least one simulated &#39;</span>
-        <span class="s1">&#39;dataset and one objective config should be compatible with the &#39;</span>
-        <span class="s1">&#39;solver, potentially provided through &quot;Solver.test_config&quot; class &#39;</span>
-        <span class="sa">f</span><span class="s1">&#39;attribute or with `Dataset.test_parameters`. Reasons:</span><span class="se">\n</span><span class="s1">-</span><span class="si">{</span><span class="n">reasons</span><span class="si">}</span><span class="s1">&#39;</span>
-    <span class="p">)</span>
+        <span class="n">skip</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">run_solver</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">skip</span><span class="p">:</span>
+            <span class="c1"># Stop after the first solver that is run</span>
+            <span class="k">break</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">reasons</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">-&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">reasons</span><span class="p">))</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s1">&#39;Solver skipped all test configuration. At least one simulated &#39;</span>
+            <span class="s1">&#39;dataset and one objective config should be compatible with the &#39;</span>
+            <span class="s1">&#39;solver, potentially provided through &quot;Solver.test_config&quot; class &#39;</span>
+            <span class="s1">&#39;attribute or with `Dataset.test_parameters`. Reasons:</span><span class="se">\n</span><span class="s1">&#39;</span>
+            <span class="sa">f</span><span class="s1">&#39;-</span><span class="si">{</span><span class="n">reasons</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_test_solver_one_objective</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">objective</span><span class="p">):</span>

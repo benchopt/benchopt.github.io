@@ -54,12 +54,6 @@ To run the benchmark, just execute:
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    No seed was specified. Selected global seed: 0
-
 
 .. raw:: html
 
@@ -68,17 +62,17 @@ To run the benchmark, just execute:
     </pre></div>
     </pre>
                 <div class="sphx-glr-script-out highlight-none notranslate">
-                    <div class="highlight"><pre>No seed was specified. Selected global seed: 0
-    simulated                                                                     
+                    <div class="highlight"><pre>simulated                                                                     
       |--Quadratic                                                                
+    No seed was specified. Selected global seed: 0
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                    
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                     
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-02</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-16_21h03m39.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-25_23h47m11.parquet</span>
     Processing 
     /home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-02
-    -16_21h03m39.parquet
+    -25_23h47m11.parquet
 
 
     </pre></div>
@@ -112,12 +106,6 @@ To get a more precise curve, you can increase ``n`` and ``r``:
 
 
 
-.. rst-class:: sphx-glr-script-out
-
- .. code-block:: none
-
-    No seed was specified. Selected global seed: 0
-
 
 .. raw:: html
 
@@ -126,17 +114,17 @@ To get a more precise curve, you can increase ``n`` and ``r``:
     </pre></div>
     </pre>
                 <div class="sphx-glr-script-out highlight-none notranslate">
-                    <div class="highlight"><pre>No seed was specified. Selected global seed: 0
-    simulated                                                                     
+                    <div class="highlight"><pre>simulated                                                                     
       |--Quadratic                                                                
+    No seed was specified. Selected global seed: 0
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                     
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                      
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-02</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-16_21h03m50.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-25_23h47m23.parquet</span>
     Processing 
     /home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-02
-    -16_21h03m50.parquet
+    -25_23h47m23.parquet
 
 
     </pre></div>
@@ -165,7 +153,7 @@ suboptimality instead of objective value.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 15.464 seconds)
+   **Total running time of the script:** (0 minutes 15.790 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_minimal_benchmark.py:
