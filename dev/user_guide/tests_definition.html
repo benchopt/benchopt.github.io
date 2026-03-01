@@ -329,6 +329,7 @@ document.write(`
   <section id="benchopt-test-definition">
 <span id="tests-definition"></span><h1>Benchopt Test definition<a class="headerlink" href="#benchopt-test-definition" title="Link to this heading">#</a></h1>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">islice</span>
 
@@ -653,19 +654,15 @@ document.write(`
             <span class="p">)</span>
             <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">(</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">warn_msg</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">check_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="n">check_func</span><span class="p">(</span>
-                <span class="n">benchmark</span><span class="p">,</span>
-                <span class="o">*</span><span class="p">[</span>
-                    <span class="n">request</span><span class="o">.</span><span class="n">getfixturevalue</span><span class="p">(</span><span class="n">f</span><span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">fixturenames</span>
-                    <span class="k">if</span> <span class="n">f</span> <span class="ow">not</span> <span class="ow">in</span> <span class="p">[</span>
-                        <span class="s1">&#39;check_test&#39;</span><span class="p">,</span> <span class="s1">&#39;benchmark&#39;</span><span class="p">,</span> <span class="s1">&#39;request&#39;</span><span class="p">,</span> <span class="s1">&#39;test_env_name&#39;</span>
-                    <span class="p">]</span>
-                <span class="p">]</span>
-            <span class="p">)</span>
-        <span class="k">except</span> <span class="ne">TypeError</span><span class="p">:</span>
-            <span class="c1"># Backward compatibility for benchmarks before benchopt 1.7.1</span>
-            <span class="n">check_func</span><span class="p">(</span><span class="n">request</span><span class="o">.</span><span class="n">getfixturevalue</span><span class="p">(</span><span class="s1">&#39;solver_class&#39;</span><span class="p">))</span>
+        <span class="n">requires</span> <span class="o">=</span> <span class="n">inspect</span><span class="o">.</span><span class="n">signature</span><span class="p">(</span><span class="n">check_func</span><span class="p">)</span><span class="o">.</span><span class="n">parameters</span>
+        <span class="n">check_func</span><span class="p">(</span>
+            <span class="o">**</span><span class="p">{</span>
+                <span class="n">f</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">getfixturevalue</span><span class="p">(</span>
+                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">_class&quot;</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;solver&#39;</span><span class="p">,</span> <span class="s1">&#39;objective&#39;</span><span class="p">]</span>
+                    <span class="k">else</span> <span class="n">f</span>
+                <span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">requires</span>
+            <span class="p">}</span>
+        <span class="p">)</span>
 </pre></div>
 </div>
 </section>
