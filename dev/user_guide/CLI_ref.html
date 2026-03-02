@@ -333,6 +333,7 @@ document.write(`
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-process-results">Process results</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-generate-results">generate-results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-merge">merge</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-plot">plot</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-publish">publish</a></li>
 </ul>
@@ -752,6 +753,40 @@ dataset), additional values can be given with the following syntax:</p>
 </dd></dl>
 
 </section>
+<section id="benchopt-merge">
+<h4>merge<a class="headerlink" href="#benchopt-merge" title="Link to this heading">#</a></h4>
+<p>Merge multiple result files from a benchmark.</p>
+<p class="rubric">Usage</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>benchopt<span class="w"> </span>merge<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span><span class="o">[</span>BENCHMARK<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-merge-f">
+<span id="cmdoption-benchopt-merge-filenames"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--filenames</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filenames&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-merge-f" title="Link to this definition">#</a></dt>
+<dd><p>Specify the files to merge in the benchmark. If it is not specified, take all files in the benchmark output folder.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-merge-overwrite">
+<span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-benchopt-merge-overwrite" title="Link to this definition">#</a></dt>
+<dd><p>If this flag is set, when merging files, consider that they can contain multiple times the same configuration, and only keep the last one. This is useful when merging files from multiple runs where we add new methods but don’t want to lose the results of the already existing methods.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-merge-o">
+<span id="cmdoption-benchopt-merge-output"></span><span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-merge-o" title="Link to this definition">#</a></dt>
+<dd><p>Specify the name of the output file. If not specified, the merged results will be saved in a file named <cite>merged_results.parquet</cite> in the benchmark output folder.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-merge-arg-BENCHMARK">
+<span class="sig-name descname"><span class="pre">BENCHMARK</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-benchopt-merge-arg-BENCHMARK" title="Link to this definition">#</a></dt>
+<dd><p>Optional argument</p>
+</dd></dl>
+
+</section>
 <section id="benchopt-plot">
 <h4>plot<a class="headerlink" href="#benchopt-plot" title="Link to this heading">#</a></h4>
 <p>Plot the result from a previously run benchmark.</p>
@@ -1056,6 +1091,7 @@ dataset), additional values can be given with the following syntax:</p>
 </li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-process-results">Process results</a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-generate-results">generate-results</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-merge">merge</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-plot">plot</a></li>
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-publish">publish</a></li>
 </ul>

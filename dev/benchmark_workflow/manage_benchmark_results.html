@@ -326,6 +326,7 @@ document.write(`
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-benchmark-results-dataframe">Description of the benchmark results DataFrame</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collect-benchmark-results">Collect benchmark results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-results-from-multiple-runs">Merge results from multiple runs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-benchmark-results">Clean benchmark results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-benchmark-results">Publish benchmark results</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-github-token">Obtaining a GitHub token</a></li>
@@ -360,9 +361,9 @@ components used for this line.</p></li>
 objective and solver, displayed in the HTML page.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">file_objective|file_solver|file_dataset</span></code>: The filename of the objective,
 solver, and dataset used for this line.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">p_obj_p</span></code>: the value of the objective’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">p_solver_p</span></code>: the value of the solver’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">p_dateset_p</span></code>: the value of the dataset’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p_obj_{p}</span></code>: the value of the objective’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p_solver_{p}</span></code>: the value of the solver’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">p_dataset_{p}</span></code>: the value of the dataset’s parameter <code class="docutils literal notranslate"><span class="pre">p</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">time</span></code>: the time taken to run the solver until this point of the performance curve.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">stop_val</span></code>: the number of iterations or the tolerance reached by the solver.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">idx_rep</span></code>: If multiple repetitions are run for each solver with <code class="docutils literal notranslate"><span class="pre">--n-rep</span></code>,
@@ -370,11 +371,11 @@ this column contains the repetition number.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>: The sampling strategy used to generate the performance
 curve of this solver. This allow to adapt the plot in the HTML depending on
 each solver.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">objective_k</span></code>: The value associated to the key <code class="docutils literal notranslate"><span class="pre">k</span></code> in the
+<li><p><code class="docutils literal notranslate"><span class="pre">objective_{k}</span></code>: The value associated to the key <code class="docutils literal notranslate"><span class="pre">k</span></code> in the
 <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code> dictionary.</p></li>
 </ul>
 <p>The remaining columns are informations about the system used to run the
-benchmark, with keys <code class="docutils literal notranslate"><span class="pre">{'env_OMP_NUM_THREADS',</span> <span class="pre">'platform',</span> <span class="pre">'platform-architecture',</span> <span class="pre">'platform-release',</span> <span class="pre">'platform-version',</span> <span class="pre">'system-cpus',</span> <span class="pre">'system-processor',</span> <span class="pre">'system-ram</span> <span class="pre">(GB)',</span> <span class="pre">'version-cuda',</span> <span class="pre">'version-numpy',</span> <span class="pre">'version-scipy',</span> <span class="pre">'benchmark-git-tag'}</span></code>.</p>
+benchmark, with keys <code class="docutils literal notranslate"><span class="pre">{'env_OMP_NUM_THREADS',</span> <span class="pre">'platform',</span> <span class="pre">'platform-architecture',</span> <span class="pre">'platform-release',</span> <span class="pre">'platform-version',</span> <span class="pre">'system-cpus',</span> <span class="pre">'system-processor',</span> <span class="pre">'system-ram</span> <span class="pre">(GB)',</span> <span class="pre">'version-cuda',</span> <span class="pre">'version-numpy',</span> <span class="pre">'version-scipy',</span> <span class="pre">'benchmark-git-tag',</span> <span class="pre">'run_date'}</span></code>.</p>
 </section>
 <section id="collect-benchmark-results">
 <span id="collect-results"></span><h2>Collect benchmark results<a class="headerlink" href="#collect-benchmark-results" title="Link to this heading">#</a></h2>
@@ -383,6 +384,23 @@ When the benchmark is run in parallel, the results that have already been
 computed can be collected using the <code class="xref std std-option docutils literal notranslate"><span class="pre">--collect</span></code> option with
 <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>. Adding this option with the same command line will
 produce a parquet file with all the results that have been computed so far.</p>
+</section>
+<section id="merge-results-from-multiple-runs">
+<span id="merge-results"></span><h2>Merge results from multiple runs<a class="headerlink" href="#merge-results-from-multiple-runs" title="Link to this heading">#</a></h2>
+<p>Multiple runs of the same benchmark can be merged together using the
+<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">merge</span></code> command. This allows to collect multiple runs, or to
+aggregate results from different users. By default, the merged results contain
+all lines from the different result files, with no additional processing.</p>
+<p>The resulting file is stored in the benchmark directory with the name
+<code class="docutils literal notranslate"><span class="pre">merged_results.parquet</span></code>. The name can be changed using the <code class="xref std std-option docutils literal notranslate"><span class="pre">--output</span></code> option of the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">merge</span></code> command.</p>
+<p>It is also possible to specify the <code class="docutils literal notranslate"><span class="pre">--overwrite</span></code> option to only keep one line
+per <code class="docutils literal notranslate"><span class="pre">objective_name</span></code>, <code class="docutils literal notranslate"><span class="pre">solver_name</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">idx_repetition</span></code>. In this case, only the line from the most recent run will
+be kept for each evaluation.</p>
+<p>Note that the run date is included in the result file in the <code class="docutils literal notranslate"><span class="pre">run_date</span></code>
+columm. If it is not present in the original result file, benchopt uses
+the file creation date as a proxy for the run date. This allows to easily
+identify the most recent line when using the <code class="docutils literal notranslate"><span class="pre">--overwrite</span></code> option.</p>
 </section>
 <section id="clean-benchmark-results">
 <h2>Clean benchmark results<a class="headerlink" href="#clean-benchmark-results" title="Link to this heading">#</a></h2>
@@ -482,6 +500,7 @@ be found in <a class="reference internal" href="../user_guide/config_benchopt.ht
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#description-of-the-benchmark-results-dataframe">Description of the benchmark results DataFrame</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#collect-benchmark-results">Collect benchmark results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-results-from-multiple-runs">Merge results from multiple runs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-benchmark-results">Clean benchmark results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-benchmark-results">Publish benchmark results</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-github-token">Obtaining a GitHub token</a></li>
