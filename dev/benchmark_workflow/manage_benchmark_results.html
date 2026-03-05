@@ -329,7 +329,14 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-results-from-multiple-runs">Merge results from multiple runs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-benchmark-results">Clean benchmark results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-benchmark-results">Publish benchmark results</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-github-token">Obtaining a GitHub token</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-to-github">Publish to GitHub</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-github-token">Obtaining a GitHub token</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-to-hugging-face">Publish to Hugging Face</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-hugging-face-token">Obtaining a Hugging Face token</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -393,14 +400,14 @@ aggregate results from different users. By default, the merged results contain
 all lines from the different result files, with no additional processing.</p>
 <p>The resulting file is stored in the benchmark directory with the name
 <code class="docutils literal notranslate"><span class="pre">merged_results.parquet</span></code>. The name can be changed using the <code class="xref std std-option docutils literal notranslate"><span class="pre">--output</span></code> option of the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">merge</span></code> command.</p>
-<p>It is also possible to specify the <code class="docutils literal notranslate"><span class="pre">--overwrite</span></code> option to only keep one line
-per <code class="docutils literal notranslate"><span class="pre">objective_name</span></code>, <code class="docutils literal notranslate"><span class="pre">solver_name</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code>, and
-<code class="docutils literal notranslate"><span class="pre">idx_repetition</span></code>. In this case, only the line from the most recent run will
-be kept for each evaluation.</p>
+<p>It is also possible to specify the <code class="docutils literal notranslate"><span class="pre">--keep</span></code> option whether to only keep
+<code class="docutils literal notranslate"><span class="pre">'all'</span></code> lines, or to keep only the <code class="docutils literal notranslate"><span class="pre">'last'</span></code> line per <code class="docutils literal notranslate"><span class="pre">objective_name</span></code>,
+<code class="docutils literal notranslate"><span class="pre">solver_name</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code>, and <code class="docutils literal notranslate"><span class="pre">idx_repetition</span></code>. In this case, only
+the line from the most recent run will be kept for each evaluation.</p>
 <p>Note that the run date is included in the result file in the <code class="docutils literal notranslate"><span class="pre">run_date</span></code>
 columm. If it is not present in the original result file, benchopt uses
 the file creation date as a proxy for the run date. This allows to easily
-identify the most recent line when using the <code class="docutils literal notranslate"><span class="pre">--overwrite</span></code> option.</p>
+identify the most recent line when using the <code class="docutils literal notranslate"><span class="pre">--keep</span> <span class="pre">'last'</span></code> option.</p>
 </section>
 <section id="clean-benchmark-results">
 <h2>Clean benchmark results<a class="headerlink" href="#clean-benchmark-results" title="Link to this heading">#</a></h2>
@@ -410,12 +417,20 @@ identify the most recent line when using the <code class="docutils literal notra
 </section>
 <section id="publish-benchmark-results">
 <span id="publish-benchmark"></span><h2>Publish benchmark results<a class="headerlink" href="#publish-benchmark-results" title="Link to this heading">#</a></h2>
-<p>Benchopt allows you to publish your benchmark results to
-the <a class="reference external" href="https://benchopt.github.io/results/">Benchopt Benchmarks website</a>
-with one command <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">publish</span></code>.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">publish</span></code> command will send your results to GitHub by opening
-a pull-request on the <a class="reference external" href="https://github.com/benchopt/results">Benchopt results repository</a>.
-Once the pull-request is merged it will appear automatically online.</p>
+<p>Benchopt allows you to publish your benchmark results with one command
+<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">publish</span></code>. Results can be published to GitHub (default) or to a
+<a class="reference external" href="https://huggingface.co/">Hugging Face</a> dataset repository, using the
+<code class="docutils literal notranslate"><span class="pre">--hub</span></code> option:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt publish ./benchmark_logreg_l2 --hub github     # default
+$ benchopt publish ./benchmark_logreg_l2 --hub huggingface
+</pre></div>
+</div>
+<section id="publish-to-github">
+<h3>Publish to GitHub<a class="headerlink" href="#publish-to-github" title="Link to this heading">#</a></h3>
+<p>The default behaviour sends results to GitHub by opening a pull-request on
+the <a class="reference external" href="https://github.com/benchopt/results">Benchopt results repository</a>.
+Once the pull-request is merged it will appear automatically on the
+<a class="reference external" href="https://benchopt.github.io/results/">Benchopt Benchmarks website</a>.</p>
 <p>Workflow example:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_logreg_l2
 $ benchopt run ./benchmark_logreg_l2
@@ -437,7 +452,7 @@ secret as it is as powerful as your GitHub password!</p>
 </div>
 <p>Let’s now see how to create your personal GitHub token.</p>
 <section id="obtaining-a-github-token">
-<h3>Obtaining a GitHub token<a class="headerlink" href="#obtaining-a-github-token" title="Link to this heading">#</a></h3>
+<h4>Obtaining a GitHub token<a class="headerlink" href="#obtaining-a-github-token" title="Link to this heading">#</a></h4>
 <p>Visit <a class="github reference external" href="https://github.com/settings/tokens">settings/tokens</a>
 and click on <code class="docutils literal notranslate"><span class="pre">generate</span> <span class="pre">new</span> <span class="pre">token</span></code>.
 Then create a token named benchopt, ticking the <strong>repo</strong> box as shown below:</p>
@@ -449,6 +464,48 @@ Then create a token named benchopt, ticking the <strong>repo</strong> box as sho
 secure location. Note that the token can be stored in a config file for benchopt
 using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">config</span> <span class="pre">set</span> <span class="pre">github_token</span> <span class="pre">&lt;TOKEN&gt;</span></code>. More info on config files can
 be found in <a class="reference internal" href="../user_guide/config_benchopt.html#config-benchopt"><span class="std std-ref">Configure Benchopt</span></a>.</p>
+</section>
+</section>
+<section id="publish-to-hugging-face">
+<h3>Publish to Hugging Face<a class="headerlink" href="#publish-to-hugging-face" title="Link to this heading">#</a></h3>
+<p>Results can also be published to a <a class="reference external" href="https://huggingface.co/">Hugging Face</a>
+dataset repository. This is useful for sharing results privately or with a
+specific team, without going through the Benchopt website.</p>
+<p>When results are published to Hugging Face, they are merged with any existing
+results already in the repository for the same benchmark. This allows multiple
+users to contribute results to the same dataset. The <code class="docutils literal notranslate"><span class="pre">--keep</span></code> option controls
+whether to keep <code class="docutils literal notranslate"><span class="pre">'all'</span></code> lines or only the <code class="docutils literal notranslate"><span class="pre">'last'</span></code> line per unique
+configuration when merging (default: <code class="docutils literal notranslate"><span class="pre">'last'</span></code>).</p>
+<p>Workflow example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ git clone https://github.com/benchopt/benchmark_logreg_l2
+$ benchopt run ./benchmark_logreg_l2
+$ benchopt publish ./benchmark_logreg_l2 --hub huggingface \
+    -t &lt;HF_TOKEN&gt; -R &lt;HF_REPO_ID&gt;
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;HF_REPO_ID&gt;</span></code> is the Hugging Face dataset repository identifier,
+e.g. <code class="docutils literal notranslate"><span class="pre">my-org/benchopt-results</span></code>. The repository is created automatically
+if it does not exist. The HF token and repo can also be stored in a config
+file for benchopt:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt config set hf_token &lt;TOKEN&gt;
+</pre></div>
+</div>
+<p>and in the benchmark config file (<code class="docutils literal notranslate"><span class="pre">benchopt.yml</span></code> in the benchmark directory):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">hf_repo</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-org/benchopt-results</span>
+</pre></div>
+</div>
+<p>More info on config files can be found in <a class="reference internal" href="../user_guide/config_benchopt.html#config-benchopt"><span class="std std-ref">Configure Benchopt</span></a>.</p>
+<section id="obtaining-a-hugging-face-token">
+<h4>Obtaining a Hugging Face token<a class="headerlink" href="#obtaining-a-hugging-face-token" title="Link to this heading">#</a></h4>
+<p>Visit <a class="reference external" href="https://huggingface.co/settings/tokens">https://huggingface.co/settings/tokens</a>
+and click on <code class="docutils literal notranslate"><span class="pre">New</span> <span class="pre">token</span></code>. Create a token with <code class="docutils literal notranslate"><span class="pre">write</span></code> access to allow
+uploading files to a dataset repository.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">huggingface_hub</span></code> package must be installed to use this feature.
+Install it with <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">huggingface_hub</span></code>.</p>
+</div>
+</section>
 </section>
 </section>
 </section>
@@ -503,7 +560,14 @@ be found in <a class="reference internal" href="../user_guide/config_benchopt.ht
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#merge-results-from-multiple-runs">Merge results from multiple runs</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#clean-benchmark-results">Clean benchmark results</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-benchmark-results">Publish benchmark results</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-github-token">Obtaining a GitHub token</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-to-github">Publish to GitHub</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-github-token">Obtaining a GitHub token</a></li>
+</ul>
+</li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#publish-to-hugging-face">Publish to Hugging Face</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-hugging-face-token">Obtaining a Hugging Face token</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>

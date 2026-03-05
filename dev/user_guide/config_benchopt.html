@@ -386,13 +386,14 @@ document.write(`
 <p><strong>Global settings</strong></p>
 <dl class="py data">
 <dt class="sig sig-object py" id="benchopt.config.DEFAULT_GLOBAL_CONFIG">
-<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cache':</span> <span class="pre">None,</span> <span class="pre">'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'default_timeout':</span> <span class="pre">100,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'bash</span> <span class="pre">--norc</span> <span class="pre">--noprofile'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_GLOBAL_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'cache':</span> <span class="pre">None,</span> <span class="pre">'conda_cmd':</span> <span class="pre">'conda',</span> <span class="pre">'data_dir':</span> <span class="pre">'./data/',</span> <span class="pre">'debug':</span> <span class="pre">False,</span> <span class="pre">'default_timeout':</span> <span class="pre">100,</span> <span class="pre">'github_token':</span> <span class="pre">None,</span> <span class="pre">'hf_token':</span> <span class="pre">None,</span> <span class="pre">'raise_install_error':</span> <span class="pre">False,</span> <span class="pre">'shell':</span> <span class="pre">'bash</span> <span class="pre">--norc</span> <span class="pre">--noprofile'}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_GLOBAL_CONFIG" title="Link to this definition">#</a></dt>
 <dd><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">debug</span></code>: If set to true, enable debug logs.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">raise_install_error</span></code>, <em>boolean</em>: If set to true, raise error when
 install fails.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">github_token</span></code>, <em>str</em>: token to publish results on <code class="docutils literal notranslate"><span class="pre">benchopt/results</span></code>
 via github.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hf_token</span></code>, <em>str</em>: token to publish results on Hugging Face.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">conda_cmd</span></code>, <em>str</em>: can be used to give the path to <code class="docutils literal notranslate"><span class="pre">conda</span></code> if it is
 not directly installed on <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>. This can also be used to use <code class="docutils literal notranslate"><span class="pre">mamba</span></code>
 to install benchmarks instead of conda. See <a class="reference internal" href="#config-mamba"><span class="std std-ref">Using mamba to install packages</span></a>.</p></li>
@@ -408,7 +409,7 @@ results in having the cache for benchmark <cite>B1</cite> stored in <cite>${cach
 <p><strong>Benchmark settings</strong></p>
 <dl class="py data">
 <dt class="sig sig-object py" id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
-<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'data_home':</span> <span class="pre">'',</span> <span class="pre">'data_paths':</span> <span class="pre">{},</span> <span class="pre">'plot_configs':</span> <span class="pre">{},</span> <span class="pre">'plots':</span> <span class="pre">None}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><em class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'data_home':</span> <span class="pre">'',</span> <span class="pre">'data_paths':</span> <span class="pre">{},</span> <span class="pre">'hf_repo':</span> <span class="pre">None,</span> <span class="pre">'plot_configs':</span> <span class="pre">{},</span> <span class="pre">'plots':</span> <span class="pre">None}</span></em><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Link to this definition">#</a></dt>
 <dd><ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">plots</span></code>, <em>list</em>: Select the plots to display for the benchmark. Should be
 valid plot kinds. The list can simply be one item by line, with each item
@@ -475,6 +476,11 @@ to retrieve the paths:</p>
 </div>
 <p>If no paths are provided, the default path used is <code class="docutils literal notranslate"><span class="pre">your_benchmark/data</span></code></p>
 </li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hf_repo</span></code>, <em>str</em>: Hugging Face dataset repo id, e.g.
+‘my-org/benchopt-results’, used to publish results files on Hugging Face
+using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">publish</span> <span class="pre">--hub</span> <span class="pre">huggingface</span></code>. If not specified, users can
+still publish on HF using the <code class="docutils literal notranslate"><span class="pre">--repo</span></code> option but this allows to set a
+default repo for the benchmark.</p></li>
 </ul>
 </dd></dl>
 

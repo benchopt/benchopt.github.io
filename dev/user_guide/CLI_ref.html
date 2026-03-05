@@ -763,14 +763,19 @@ dataset), additional values can be given with the following syntax:</p>
 <p class="rubric">Options</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-merge-f">
-<span id="cmdoption-benchopt-merge-filenames"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--filenames</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filenames&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-merge-f" title="Link to this definition">#</a></dt>
+<span id="cmdoption-benchopt-merge-filename"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--filename</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filenames&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-merge-f" title="Link to this definition">#</a></dt>
 <dd><p>Specify the files to merge in the benchmark. If it is not specified, take all files in the benchmark output folder.</p>
 </dd></dl>
 
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-benchopt-merge-overwrite">
-<span class="sig-name descname"><span class="pre">--overwrite</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-benchopt-merge-overwrite" title="Link to this definition">#</a></dt>
-<dd><p>If this flag is set, when merging files, consider that they can contain multiple times the same configuration, and only keep the last one. This is useful when merging files from multiple runs where we add new methods but don’t want to lose the results of the already existing methods.</p>
+<dt class="sig sig-object std" id="cmdoption-benchopt-merge-keep">
+<span class="sig-name descname"><span class="pre">--keep</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;keep&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-merge-keep" title="Link to this definition">#</a></dt>
+<dd><p>When merged files contain multiple times the same configuration, <code class="docutils literal notranslate"><span class="pre">--keep</span></code> controls whether to keep all the lines or only keep the last result per configuration. This is typically useful when merging files from multiple runs where we add new methods but don’t want to duplicate the results of the already existing methods.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>all | last</p>
+</dd>
+</dl>
 </dd></dl>
 
 <dl class="std option">
@@ -854,15 +859,46 @@ dataset), additional values can be given with the following syntax:</p>
 </div>
 <p class="rubric">Options</p>
 <dl class="std option">
-<dt class="sig sig-object std" id="cmdoption-benchopt-publish-t">
-<span id="cmdoption-benchopt-publish-token"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--token</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;token&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-publish-t" title="Link to this definition">#</a></dt>
-<dd><p>Github token to access the result repo.</p>
-</dd></dl>
-
-<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-publish-f">
 <span id="cmdoption-benchopt-publish-filename"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--filename</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;filename&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-publish-f" title="Link to this definition">#</a></dt>
 <dd><p>Specify the file to publish in the benchmark. If it is not specified, take the latest one in the benchmark output folder.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-publish-hub">
+<span class="sig-name descname"><span class="pre">--hub</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;hub&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-publish-hub" title="Link to this definition">#</a></dt>
+<dd><p>Hub to publish the result on. Currently only ‘github’ and ‘huggingface’ are supported.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">'github'</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>github | huggingface</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-publish-t">
+<span id="cmdoption-benchopt-publish-token"></span><span class="sig-name descname"><span class="pre">-t</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--token</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;token&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-publish-t" title="Link to this definition">#</a></dt>
+<dd><p>Github/HF token to access the result repo.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-publish-R">
+<span id="cmdoption-benchopt-publish-repo"></span><span class="sig-name descname"><span class="pre">-R</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--repo</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;repo&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-publish-R" title="Link to this definition">#</a></dt>
+<dd><p>[HF only] HF repo ID to upload the result to.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-publish-keep">
+<span class="sig-name descname"><span class="pre">--keep</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;keep&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-publish-keep" title="Link to this definition">#</a></dt>
+<dd><p>[HF only] Results are merged in a single file for hugging face. This flag controls whether to keep all lines or only the most recent line per unique configuration when merging the new results with the existing ones in the repo.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>all | last</p>
+</dd>
+</dl>
 </dd></dl>
 
 <p class="rubric">Arguments</p>
