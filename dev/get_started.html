@@ -348,9 +348,9 @@ span.prompt1:before {
   content: "$ ";
 }
 </style><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>benchopt</span>
-</pre></div></div><p class="sd-card-text">To gain access to all features, in particular to install the requirements of community benchmarks, we recommend installing benchopt in a dedicated conda environment.</p>
+</pre></div></div><p class="sd-card-text">To gain access to certain features, in particular to install the requirements of community benchmarks, <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> needs to be installed in a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment.</p>
 </div>
-<p class="sd-card-text">The recommended way to use benchopt is within a conda environment to fully benefit from all its features.
+<p class="sd-card-text">The recommended way to use benchopt is within a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment to fully benefit from all its features.
 Hence, start by creating a dedicated conda environment and then activate it.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">conda<span class="w"> </span>create<span class="w"> </span>-n<span class="w"> </span>benchopt<span class="w"> </span>python</span>
 <span class="prompt1">conda<span class="w"> </span>activate<span class="w"> </span>benchopt</span>
@@ -368,6 +368,8 @@ Get the <strong>stable version</strong> via <code class="docutils literal notran
 <span class="prompt1">benchopt<span class="w"> </span>install<span class="w"> </span>template_benchmark_ml</span>
 <span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>template_benchmark_ml</span>
 </pre></div></div><p class="sd-card-text">This will generate a dashboard with the results of the benchmark.</p>
+<p class="sd-card-text">Note that <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code> will only work if <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> is
+installed in a <code class="docutils literal notranslate"><span class="pre">conda</span></code> environment.</p>
 </div>
 <p class="sd-card-text">Let’s get the first steps with benchopt by comparing some solvers of the
 <a class="reference external" href="https://en.wikipedia.org/wiki/Lasso_(statistics)">Lasso problem</a> on the

@@ -69,10 +69,10 @@ To run the benchmark, just execute:
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                     
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-03</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-11_13h34m14.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-11_13h50m46.parquet</span>
        Processing 
     /home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-03
-    -11_13h34m14.parquet
+    -11_13h50m46.parquet
 
 
     </pre></div>
@@ -121,10 +121,10 @@ To get a more precise curve, you can increase ``n`` and ``r``:
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                      
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-03</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-11_13h34m25.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-11_13h50m56.parquet</span>
        Processing 
     /home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-03
-    -11_13h34m25.parquet
+    -11_13h50m56.parquet
 
 
     </pre></div>
@@ -153,7 +153,7 @@ suboptimality instead of objective value.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 13.937 seconds)
+   **Total running time of the script:** (0 minutes 14.371 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_minimal_benchmark.py:
