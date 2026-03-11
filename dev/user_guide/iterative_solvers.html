@@ -36,7 +36,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=7799b48c" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=61c50b6b" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
   <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
@@ -52,7 +52,7 @@
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/iterative_solvers';</script>
-    <script src="../_static/benchopt.js?v=8e1f6d87"></script>
+    <script src="../_static/benchopt.js?v=3507d15b"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -420,12 +420,12 @@ For more advanced configurations, the evolution of <code class="docutils literal
 <p>Note that the formula to compute the next <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> can be configured on a per-solver basis, as described in: <a class="reference internal" href="#sampling-strategy"><span class="std std-ref">3. Changing the strategy to grow the computational budget (stop_val)</span></a>.</p>
 </section>
 <section id="using-a-callback">
-<h3>2. Using a callback<a class="headerlink" href="#using-a-callback" title="Link to this heading">#</a></h3>
+<span id="callback"></span><h3>2. Using a callback<a class="headerlink" href="#using-a-callback" title="Link to this heading">#</a></h3>
 <p>Restarting the solver from scratch, though inevitable to handle black box solvers, can be costly.</p>
 <p>When a solver exposes the intermediate values of the iterates, it is possible to create the curve in a single solver run, by using <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;callback&quot;</span></code>.
 In that case, the argument passed to <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> will be a callable object, <code class="docutils literal notranslate"><span class="pre">callback</span></code>.
 This callback is created and managed by <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>.
-Like with <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">==</span> <span class="pre">&quot;iteration&quot;</span></code>, the objective is computed after a number of callback’s calls that grows geometrically. If the objective was computed after <span class="math notranslate nohighlight">\(n\)</span> calls, the objective and timing will be computed again when reaching <span class="math notranslate nohighlight">\(\max(n+1, \rho * n)\)</span> calls to the callback.
+Like with <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;iteration&quot;</span></code>, the objective is computed after a number of callback’s calls that grows geometrically. If the objective was computed after <span class="math notranslate nohighlight">\(n\)</span> calls, the objective and timing will be computed again when reaching <span class="math notranslate nohighlight">\(\max(n+1, \rho * n)\)</span> calls to the callback.
 The callback makes sure we do not account for objective computation time and also check for convergence every time the objective is computed (as described in the next section).
 It returns <code class="docutils literal notranslate"><span class="pre">False</span></code> when the solver should be stopped. A classical usage pattern is:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">callback</span><span class="p">):</span>
