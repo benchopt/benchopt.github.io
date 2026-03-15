@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>What’s new &#8212; benchopt 1.9.dev0 documentation</title>
+    <title>What’s new &#8212; benchopt 1.9.0 documentation</title>
   
   
   
@@ -43,7 +43,7 @@
 <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
   <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script src="_static/documentation_options.js?v=803e6966"></script>
+    <script src="_static/documentation_options.js?v=8e0e4d76"></script>
     <script src="_static/doctools.js?v=9bcbadda"></script>
     <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
@@ -151,7 +151,7 @@
     <script>document.write(`<img src="_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
   
   
-    <p class="title logo__title">1.9.dev0</p>
+    <p class="title logo__title">1.9.0</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -323,7 +323,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-9-in-development">Version 1.9 - In development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-9-15-03-2026">Version 1.9 - 15/03/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
@@ -406,8 +406,8 @@ document.write(`
                   
   <section id="what-s-new">
 <span id="whats-new"></span><h1>What’s new<a class="headerlink" href="#what-s-new" title="Link to this heading">#</a></h1>
-<section id="version-1-9-in-development">
-<span id="changes-1-9"></span><h2>Version 1.9 - In development<a class="headerlink" href="#version-1-9-in-development" title="Link to this heading">#</a></h2>
+<section id="version-1-9-15-03-2026">
+<span id="changes-1-9"></span><h2>Version 1.9 - 15/03/2026<a class="headerlink" href="#version-1-9-15-03-2026" title="Link to this heading">#</a></h2>
 </section>
 <section id="cli">
 <h2>CLI<a class="headerlink" href="#cli" title="Link to this heading">#</a></h2>
@@ -420,6 +420,10 @@ to <a class="reference external" href="https://huggingface.co/">Hugging Face</a>
 Results are merged with any existing ones in the HF dataset repo.
 See <a class="reference internal" href="benchmark_workflow/manage_benchmark_results.html#publish-benchmark"><span class="std std-ref">Publish benchmark results</span></a> for more details.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a></p></li>
+<li><p>Remove deprecated <code class="docutils literal notranslate"><span class="pre">--slurm</span></code> option in <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>. SLURM runs should
+now be setup with the parallel backend system. See <a class="reference internal" href="user_guide/distributed_run.html#parallel-run"><span class="std std-ref">Distributed run with Benchopt</span></a> for
+more details.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/902">#902</a>, <a class="reference external" href="https://github.com/benchopt/benchopt/pull/673">#673</a>)</p></li>
 </ul>
 </section>
 <section id="api">
@@ -1036,7 +1040,7 @@ implementations:</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-9-in-development">Version 1.9 - In development</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-9-15-03-2026">Version 1.9 - 15/03/2026</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cli">CLI</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#doc">DOC</a></li>
