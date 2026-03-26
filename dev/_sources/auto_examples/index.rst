@@ -19,7 +19,7 @@ Examples Gallery
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This Example demonstrates how to run an existing benchmark with benchopt. It uses the benchopt_run helper function to run the benchmark, which runs programmatically the equivalent of the command line interface:">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates how to run an existing benchmark with benchopt.">
 
 .. only:: html
 
@@ -36,35 +36,35 @@ Examples Gallery
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Demo benchmark with R/Python">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to add an R solver in a simple benchmark using benchopt&#x27;s helpers to call R code from Python.">
 
 .. only:: html
 
-  .. image:: /auto_examples/images/thumb/sphx_glr_plot_run_benchmark_python_R_thumb.png
+  .. image:: /auto_examples/images/thumb/sphx_glr_run_r_solver_thumb.png
     :alt:
 
-  :doc:`/auto_examples/plot_run_benchmark_python_R`
+  :doc:`/auto_examples/run_r_solver`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Demo benchmark with R/Python</div>
+      <div class="sphx-glr-thumbnail-title">Create and run an R solver benchmark</div>
     </div>
 
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="Run benchmark from a script">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to add a Julia solver in a simple benchmark using benchopt&#x27;s helpers to call Julia code from Python.">
 
 .. only:: html
 
-  .. image:: /auto_examples/images/thumb/sphx_glr_plot_run_benchmark_thumb.png
+  .. image:: /auto_examples/images/thumb/sphx_glr_run_julia_solver_thumb.png
     :alt:
 
-  :doc:`/auto_examples/plot_run_benchmark`
+  :doc:`/auto_examples/run_julia_solver`
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Run benchmark from a script</div>
+      <div class="sphx-glr-thumbnail-title">Create and run a Julia solver benchmark</div>
     </div>
 
 
@@ -79,8 +79,8 @@ Examples Gallery
    :hidden:
 
    /auto_examples/run_minimal_benchmark
-   /auto_examples/plot_run_benchmark_python_R
-   /auto_examples/plot_run_benchmark
+   /auto_examples/run_r_solver
+   /auto_examples/run_julia_solver
 
 
 .. only:: html

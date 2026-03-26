@@ -20,16 +20,17 @@
 Running an existing benchmark
 =============================
 
-This Example demonstrates how to run an existing benchmark with benchopt.
-It uses the `benchopt_run` helper function to run the benchmark, which runs
-programmatically the equivalent of the command line interface:
+This example demonstrates how to run an existing benchmark with benchopt.
 
-.. GENERATED FROM PYTHON SOURCE LINES 8-11
+.. GENERATED FROM PYTHON SOURCE LINES 6-12
 
 .. code-block:: Python
 
 
-    from benchopt.helpers.run_examples import benchopt_run
+    # Import example helpers to define the benchmark and
+    # programmatically call the CLI.
+    from benchopt.helpers.run_examples import ExampleBenchmark
+    from benchopt.helpers.run_examples import benchopt_cli
 
 
 
@@ -38,17 +39,32 @@ programmatically the equivalent of the command line interface:
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 12-14
+.. GENERATED FROM PYTHON SOURCE LINES 13-26
 
-To run the benchmark, just execute:
+We will use the minimal benchmark defined in the ``examples`` folder.
+The benchmark objective is a simple minimization task:
 
+.. math::
 
-.. GENERATED FROM PYTHON SOURCE LINES 14-17
+    \min_{\hat{X}} \; \mathrm{MSE}(X, \hat{X})
+
+We define:
+
+- an ``Objective`` that evaluates MSE between ``X`` and ``X_hat``;
+- a ``Dataset`` that generates a random matrix ``X``;
+- a ``Solver`` that minimizes this objective with gradient descent. It is
+  parametrized with parameter ``lr`` for the step size.
+
+.. GENERATED FROM PYTHON SOURCE LINES 26-33
 
 .. code-block:: Python
 
 
-    benchopt_run('minimal_benchmark', n=20, r=2)
+    benchmark = ExampleBenchmark(
+        base="minimal_benchmark", name="minimal_benchmark",
+        ignore=["custom_plot.py", "example_config.yml"]
+    )
+    benchmark
 
 
 
@@ -58,33 +74,199 @@ To run the benchmark, just execute:
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="cmd-equiv"> <div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
+    <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
+                
+                    <div class='sd-tab-set'>
+                        <input checked="checked" id='example-benchmark-910985d80dd340fe862358a6f47d61a0-0' name='example-benchmark-910985d80dd340fe862358a6f47d61a0' type='radio'><label for='example-benchmark-910985d80dd340fe862358a6f47d61a0-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+        <span class="c1"># Name of the Objective function</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Quadratic&#39;</span>
+
+        <span class="c1"># The three methods below define the links between the Dataset,</span>
+        <span class="c1"># the Objective and the Solver.</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data from a Dataset to compute the objective.</span>
+
+    <span class="sd">        The argument are the keys of the dictionary returned by</span>
+    <span class="sd">        ``Dataset.get_data``.</span>
+    <span class="sd">        &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="s2">&quot;Returns a dict passed to ``Solver.set_objective`` method.&quot;</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
+    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value(s) given the output of a solver.</span>
+
+    <span class="sd">        The arguments are the keys in the dictionary returned</span>
+    <span class="sd">        by ``Solver.get_result``.</span>
+    <span class="sd">        &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_hat</span><span class="p">))</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return one solution for which the objective can be evaluated.</span>
+
+    <span class="sd">        This function is mostly used for testing and debugging purposes.</span>
+    <span class="sd">        &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    </pre></div>
+    </div>
+    <input  id='example-benchmark-910985d80dd340fe862358a6f47d61a0-1' name='example-benchmark-910985d80dd340fe862358a6f47d61a0' type='radio'><label for='example-benchmark-910985d80dd340fe862358a6f47d61a0-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+        <span class="c1"># Name of the Dataset, used to select it in the CLI</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;simulated&#39;</span>
+
+        <span class="c1"># ``get_data()`` is the only method a dataset should implement.</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load the data for this Dataset.</span>
+
+    <span class="sd">        Usually, the data are either loaded from disk as arrays or Tensors,</span>
+    <span class="sd">        or a dataset/dataloader object is used to allow the models to load</span>
+    <span class="sd">        the data in more flexible forms (e.g. with mini-batches).</span>
+
+    <span class="sd">        The dictionary&#39;s keys are the kwargs passed to ``Objective.set_data``.</span>
+    <span class="sd">        &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+    </pre></div>
+    </div>
+    <input  id='example-benchmark-910985d80dd340fe862358a6f47d61a0-2' name='example-benchmark-910985d80dd340fe862358a6f47d61a0' type='radio'><label for='example-benchmark-910985d80dd340fe862358a6f47d61a0-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+        <span class="c1"># Name of the Solver, used to select it in the CLI</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gd&#39;</span>
+
+        <span class="c1"># By default, benchopt will evaluate the result of a method after various</span>
+        <span class="c1"># number of iterations. Setting the sampling_strategy controls how this is</span>
+        <span class="c1"># done. Here, we use a callback function that is called at each iteration.</span>
+        <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;callback&#39;</span>
+
+        <span class="c1"># Parameters of the method, that will be tested by the benchmark.</span>
+        <span class="c1"># Each parameter ``param_name`` will be accessible as ``self.param_name``.</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+
+        <span class="c1"># The three methods below define the necessary methods for the Solver, to</span>
+        <span class="c1"># get the info from the Objective, to run the method and to return a</span>
+        <span class="c1"># result that can be evaluated by the Objective.</span>
+        <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the info from a Objective, to run the method.</span>
+
+    <span class="sd">        This method is also typically used to adapt the solver&#39;s parameters to</span>
+    <span class="sd">        the data (e.g. scaling) or to initialize the algorithm.</span>
+
+    <span class="sd">        The kwargs are the keys of the dictionary returned by</span>
+    <span class="sd">        ``Objective.get_objective``.</span>
+    <span class="sd">        &quot;&quot;&quot;</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
+    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the actual method to benchmark.</span>
+
+    <span class="sd">        Here, as we use a &quot;callback&quot;, we need to call it at each iteration to</span>
+    <span class="sd">        evaluate the result as the procedure progresses.</span>
+
+    <span class="sd">        The callback implements a stopping mechanism, based on the number of</span>
+    <span class="sd">        iterations, the time and the evoluation of the performances.</span>
+    <span class="sd">        &quot;&quot;&quot;</span>
+            <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the output of the method to be evaluated in the Objective.</span>
+
+    <span class="sd">        Returns a dict which is passed to ``Objective.evaluate_result`` method.</span>
+    <span class="sd">        &quot;&quot;&quot;</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+    </pre></div>
+    </div>
+    <input  id='example-benchmark-910985d80dd340fe862358a6f47d61a0-3' name='example-benchmark-910985d80dd340fe862358a6f47d61a0' type='radio'><label for='example-benchmark-910985d80dd340fe862358a6f47d61a0-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <span class="nt">plot_configs</span><span class="p">:</span>
+    <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
+    <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
+    <span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
+    <span class="w">  </span><span class="nt">Runtimes</span><span class="p">:</span>
+    <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
+    </pre></div>
+    </div>
+                    </div>
+                </div>"
+            </pre>
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 34-36
+
+To run the benchmark, just execute:
+
+
+.. GENERATED FROM PYTHON SOURCE LINES 36-39
+
+.. code-block:: Python
+
+
+    benchopt_cli(f"run {benchmark.benchmark_dir} -n 20 -r 2")
+
+
+
+
+
+
+.. raw:: html
+
+    <div class="output_subarea output_html rendered_html output_result">
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_c4nx85xo/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
     </pre></div>
     </pre>
+            
                 <div class="sphx-glr-script-out highlight-none notranslate">
-                    <div class="highlight"><pre>simulated                                                                     
+                    <div class="highlight"><pre>Benchopt is running!
+    Benchopt called using profiling
+    Loading objective, datasets and solvers... done.
+    simulated                                                                     
       |--Quadratic                                                                
     No seed was specified. Selected global seed: 0
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                    
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                     
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-03</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-22_21h17m07.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_c4nx85xo/minimal_benchmark/outputs/benchopt_run_2026-03-26_01h0</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">4m56.parquet</span>
+    Rendering benchmark results...
        Processing 
-    /home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-03
-    -22_21h17m07.parquet
+    temp_benchmark_c4nx85xo/minimal_benchmark/outputs/benchopt_run_2026-03-26_01h0
+    4m56.parquet
+    done
+    Writing results to 
+    temp_benchmark_c4nx85xo/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-03-26_01h04m56.html
+    Writing minimal_benchmark index to 
+    temp_benchmark_c4nx85xo/minimal_benchmark/outputs/minimal_benchmark.html
 
 
     </pre></div>
                 </div>
-                <iframe class="benchmark_result" src='html_results/sphx_glr_run_minimal_benchmark_001.html' frameBorder='0'
-                        style="position: relative; width: 100%;"></iframe>
+        
+            
+                <iframe class='benchmark_result' src='html_results/sphx_glr_run_minimal_benchmark_001.html'
+                        frameBorder='0' style='position: relative; width: 100%;'>
+                </iframe>
+        
         
     </div>
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 18-26
+.. GENERATED FROM PYTHON SOURCE LINES 40-48
 
 This runs the benchmark named ``minimal_benchmark`` located in the
 ``examples`` folder.
@@ -95,12 +277,12 @@ to compute the median and quartiles of the curves.
 
 To get a more precise curve, you can increase ``n`` and ``r``:
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-29
+.. GENERATED FROM PYTHON SOURCE LINES 48-51
 
 .. code-block:: Python
 
 
-    benchopt_run('minimal_benchmark', n=30, r=5)
+    benchopt_cli(f"run {benchmark.benchmark_dir} -n 30 -r 5")
 
 
 
@@ -110,33 +292,48 @@ To get a more precise curve, you can increase ``n`` and ``r``:
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="cmd-equiv"> <div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_c4nx85xo/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
     </pre></div>
     </pre>
+            
                 <div class="sphx-glr-script-out highlight-none notranslate">
-                    <div class="highlight"><pre>simulated                                                                     
+                    <div class="highlight"><pre>Benchopt is running!
+    Benchopt called using profiling
+    Loading objective, datasets and solvers... done.
+    simulated                                                                     
       |--Quadratic                                                                
     No seed was specified. Selected global seed: 0
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                     
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                      
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">/home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-03</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">-22_21h17m19.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_c4nx85xo/minimal_benchmark/outputs/benchopt_run_2026-03-26_01h0</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">5m02.parquet</span>
+    Rendering benchmark results...
        Processing 
-    /home/circleci/project/examples/minimal_benchmark/outputs/benchopt_run_2026-03
-    -22_21h17m19.parquet
+    temp_benchmark_c4nx85xo/minimal_benchmark/outputs/benchopt_run_2026-03-26_01h0
+    5m02.parquet
+    done
+    Writing results to 
+    temp_benchmark_c4nx85xo/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-03-26_01h05m02.html
+    Writing minimal_benchmark index to 
+    temp_benchmark_c4nx85xo/minimal_benchmark/outputs/minimal_benchmark.html
 
 
     </pre></div>
                 </div>
-                <iframe class="benchmark_result" src='html_results/sphx_glr_run_minimal_benchmark_002.html' frameBorder='0'
-                        style="position: relative; width: 100%;"></iframe>
+        
+            
+                <iframe class='benchmark_result' src='html_results/sphx_glr_run_minimal_benchmark_002.html'
+                        frameBorder='0' style='position: relative; width: 100%;'>
+                </iframe>
+        
         
     </div>
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 30-41
+.. GENERATED FROM PYTHON SOURCE LINES 52-63
 
 Here, the display is not ideal because both solvers reach convergence very
 quickly. You can change the display by selecting the scale of the axis in
@@ -153,7 +350,7 @@ suboptimality instead of objective value.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 16.098 seconds)
+   **Total running time of the script:** (0 minutes 7.301 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_minimal_benchmark.py:

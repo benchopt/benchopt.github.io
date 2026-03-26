@@ -1,0 +1,754 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Extend an existing benchmark &#8212; benchopt 1.9.1.dev0 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=b70fdc00" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=1df9e2ea"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/extend_benchmark';</script>
+    <script src="../_static/benchopt.js?v=93769e0d"></script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Write a benchmark" href="write_benchmark.html" />
+    <link rel="prev" title="Manage benchmark results" href="manage_benchmark_results.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.9.1.dev0" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.9.1.dev0</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="install_benchmark.html">Install a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Extend an existing benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="test_benchmark.html">Testing a benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/config_benchopt.html">Configure Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Examples Gallery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_minimal_benchmark.html">Running an existing benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_r_solver.html">Create and run an R solver benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Extend an existing benchmark</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-class-attributes">Common class attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-solver">Adding a solver</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-methods">Required methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-features">Optional features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-dataset">Adding a dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-method">Required method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Optional features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-metric">Adding a metric</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="extend-an-existing-benchmark">
+<span id="extend-benchmark"></span><h1>Extend an existing benchmark<a class="headerlink" href="#extend-an-existing-benchmark" title="Link to this heading">#</a></h1>
+<p>This page explains how to contribute to an existing benchmark by adding a new
+solver, a new dataset, or a new evaluation metric.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The examples below are based on <a class="reference internal" href="../get_started.html#get-started"><span class="std std-ref">minimal benchmark</span></a>
+whose objective minimises <span class="math notranslate nohighlight">\(\|X - \hat{X}\|\)</span> over matrices.
+Replace the variable names and logic with whatever the benchmark you are
+working on actually uses.</p>
+</div>
+<section id="common-class-attributes">
+<h2>Common class attributes<a class="headerlink" href="#common-class-attributes" title="Link to this heading">#</a></h2>
+<p>All benchopt concept classes (<a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseObjective</span></code></a>,
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseDataset</span></code></a>, and <a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver" title="benchopt.BaseSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">BaseSolver</span></code></a>) share some
+common class attributes that can be used to select them and specify their
+behavior. These attributes include:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: human-readable identifier used to filter them in the CLI and to
+identify the results in tables and plots.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">parameters</span></code>: dictionary that defines the parameter grid for that class.
+Benchopt runs the cartesian product of the listed values. The selected
+values are available as attributes (e.g., <code class="docutils literal notranslate"><span class="pre">self.lr</span></code>, <code class="docutils literal notranslate"><span class="pre">self.n_samples</span></code>).
+See <a class="reference internal" href="../user_guide/API_ref.html#parametrized"><span class="std std-ref">Parametrizing Objective, Dataset, and Solver</span></a> for advanced formats.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">requirements</span></code>: list of dependencies needed for the class.
+Conda packages are listed as-is (<code class="docutils literal notranslate"><span class="pre">&quot;numpy&quot;</span></code>), PyPI packages are prefixed
+with <code class="docutils literal notranslate"><span class="pre">&quot;pip::&quot;</span></code>, and conda channel packages can be specified with
+<code class="docutils literal notranslate"><span class="pre">&quot;channel::package&quot;</span></code>. See <a class="reference internal" href="install_benchmark.html#specify-requirements"><span class="std std-ref">Specifying requirements</span></a> for more details.</p></li>
+</ul>
+<p>For instance:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-solver&quot;</span>
+        <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="s2">&quot;my_package&quot;</span><span class="p">,</span> <span class="s2">&quot;pip::my_pip_package&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;conda_channel::my_channel_package&quot;</span>
+        <span class="p">]</span>
+</pre></div>
+</div>
+</section>
+<section id="adding-a-solver">
+<span id="add-solver"></span><h2>Adding a solver<a class="headerlink" href="#adding-a-solver" title="Link to this heading">#</a></h2>
+<p>Create a new Python file in the <code class="docutils literal notranslate"><span class="pre">solvers/</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>my_benchmark/
+└──<span class="w"> </span>solvers/
+<span class="w">    </span>└──<span class="w"> </span>my_solver.py<span class="w">   </span>←<span class="w"> </span>new<span class="w"> </span>file
+</pre></div>
+</div>
+<p>The file must define a class named <code class="docutils literal notranslate"><span class="pre">Solver</span></code> that inherits from
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver" title="benchopt.BaseSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code></a>.</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">my_benchmark/solvers/my_solver.py</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-solver&quot;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+</pre></div>
+</div>
+</div>
+<p>The new solver is automatically discovered by benchopt once the file is saved.</p>
+<section id="required-methods">
+<h3>Required methods<a class="headerlink" href="#required-methods" title="Link to this heading">#</a></h3>
+<p><strong>1. set_objective</strong> (<a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.set_objective" title="benchopt.BaseSolver.set_objective"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_objective()</span></code></a>): called
+once before timing starts. It receives the dictionary returned by
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.get_objective" title="benchopt.BaseObjective.get_objective"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_objective()</span></code></a> and should store whatever
+the solver needs, or setup the solver’s internal state which should not be
+timed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Check <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> in the benchmark to see which keys
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.get_objective" title="benchopt.BaseObjective.get_objective"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_objective()</span></code></a> returns. These keys are the
+named arguments passed to <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.</p>
+</div>
+<p><strong>2. run</strong> (<a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.run" title="benchopt.BaseSolver.run"><code class="xref py py-meth docutils literal notranslate"><span class="pre">run()</span></code></a>): the timed part of the
+benchmark. Its signature depends on the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> class attribute:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<colgroup>
+<col style="width: 20.0%" />
+<col style="width: 30.0%" />
+<col style="width: 50.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p><code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code></p></th>
+<th class="head"><p>Signature</p></th>
+<th class="head"><p>Typical use</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;run_once&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">_)</span></code></p></td>
+<td><p>Single run when only a final point is needed.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;callback&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">callback)</span></code></p></td>
+<td><p>User-controlled iteration loop; call <code class="docutils literal notranslate"><span class="pre">callback()</span></code> at each iteration.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;iteration&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">n_iter)</span></code></p></td>
+<td><p>Solvers controlled by a maximum number of iterations.</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;tolerance&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">run(self,</span> <span class="pre">tol)</span></code></p></td>
+<td><p>Solvers controlled by a tolerance target.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>For instance, in the case of an iterative solver evaluated at different numbers
+of iterations with a callback, we would have:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;callback&quot;</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
+    <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Here, the callback is used to both evaluate the result (provided by
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.get_result" title="benchopt.BaseSolver.get_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_result()</span></code></a>) and to check for convergence, without
+accounting for the time needed to do so. See <a class="reference internal" href="../user_guide/iterative_solvers.html#iterative-solvers"><span class="std std-ref">Evaluating an iterative method</span></a> for more
+details on the different sampling strategies.</p>
+<p><strong>3. get_result</strong> (<a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.get_result" title="benchopt.BaseSolver.get_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_result()</span></code></a>): called after
+<code class="docutils literal notranslate"><span class="pre">run</span></code> to retrieve the solution. It must return a dictionary whose keys match
+the arguments of <a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.evaluate_result" title="benchopt.BaseObjective.evaluate_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate_result()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Check the arguments of <a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.evaluate_result" title="benchopt.BaseObjective.evaluate_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate_result()</span></code></a> in
+<code class="docutils literal notranslate"><span class="pre">objective.py</span></code> to see which keys must be returned.</p>
+<p>Also note that <code class="docutils literal notranslate"><span class="pre">self.X_hat</span></code> (or any other required variables) should
+exist at the end of <code class="docutils literal notranslate"><span class="pre">run</span></code>, or before any call to <code class="docutils literal notranslate"><span class="pre">callback()</span></code> if using
+the callback sampling strategy, as it is used to evaluate the solver.</p>
+</div>
+</section>
+<section id="optional-features">
+<h3>Optional features<a class="headerlink" href="#optional-features" title="Link to this heading">#</a></h3>
+<p><strong>skip hook</strong> — if the solver is incompatible with some dataset or objective
+configurations, implement <a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-meth docutils literal notranslate"><span class="pre">skip()</span></code></a> to opt out. It
+receives the same arguments as <a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.set_objective" title="benchopt.BaseSolver.set_objective"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_objective()</span></code></a> and
+should return <code class="docutils literal notranslate"><span class="pre">(True,</span> <span class="pre">reason)</span></code> to skip or <code class="docutils literal notranslate"><span class="pre">(False,</span> <span class="pre">None)</span></code> to proceed:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">X</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">&quot;only 2-D matrices are supported&quot;</span>
+    <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+</pre></div>
+</div>
+<p>Once the file is saved, the solver is automatically discovered by benchopt —
+no registration step is needed.</p>
+</section>
+</section>
+<section id="adding-a-dataset">
+<span id="add-dataset"></span><h2>Adding a dataset<a class="headerlink" href="#adding-a-dataset" title="Link to this heading">#</a></h2>
+<p>Create a new Python file in the <code class="docutils literal notranslate"><span class="pre">datasets/</span></code> directory:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>my_benchmark/
+└──<span class="w"> </span>datasets/
+<span class="w">    </span>└──<span class="w"> </span>my_dataset.py<span class="w">   </span>←<span class="w"> </span>new<span class="w"> </span>file
+</pre></div>
+</div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">my_benchmark/datasets/my_dataset.py</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;n_samples&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+        <span class="s2">&quot;n_features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">100</span><span class="p">],</span>
+    <span class="p">}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-dataset&quot;</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;numpy&quot;</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+<p>Like solvers, the new dataset is automatically discovered by benchopt once the
+file is saved.</p>
+<section id="required-method">
+<h3>Required method<a class="headerlink" href="#required-method" title="Link to this heading">#</a></h3>
+<p><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset.get_data" title="benchopt.BaseDataset.get_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_data()</span></code></a> must be implemented. It returns a
+dictionary whose keys become the keyword arguments passed to
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.set_data" title="benchopt.BaseObjective.set_data"><code class="xref py py-meth docutils literal notranslate"><span class="pre">set_data()</span></code></a>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;data.npy&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id1">
+<h3>Optional features<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<p><strong>Reproducible random data</strong> — for simulated datasets, use
+<code class="xref py py-meth docutils literal notranslate"><span class="pre">get_seed()</span></code> to get a reproducible integer seed
+that changes with the benchmark repetition:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_seed</span><span class="p">())</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">rng</span><span class="o">.</span><span class="n">standard_normal</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">n_samples</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features</span><span class="p">))</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../user_guide/controlling_randomness.html#controlling-randomness"><span class="std std-ref">Controlling randomness in Benchopt</span></a> for more details on how to control the
+randomness in the benchmark, and extra options for <code class="docutils literal notranslate"><span class="pre">get_seed</span></code>.</p>
+</section>
+</section>
+<section id="adding-a-metric">
+<span id="add-metric"></span><h2>Adding a metric<a class="headerlink" href="#adding-a-metric" title="Link to this heading">#</a></h2>
+<p>Metrics are defined in the benchmark’s <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file, in
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.evaluate_result" title="benchopt.BaseObjective.evaluate_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate_result()</span></code></a>. They are not stored in a
+separate file.</p>
+<p><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.evaluate_result" title="benchopt.BaseObjective.evaluate_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate_result()</span></code></a> must return a dictionary where
+every key is recorded as a column in the results:</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">my_benchmark/objective.py</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
+    <span class="n">error</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_hat</span><span class="p">)</span>
+    <span class="n">X_hat_norm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X_hat</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+        <span class="n">value</span><span class="o">=</span><span class="n">error</span><span class="p">,</span>
+        <span class="n">relative_error</span><span class="o">=</span><span class="n">error</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">),</span>
+        <span class="n">X_hat_norm</span><span class="o">=</span><span class="n">X_hat_norm</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<p>All returned keys are prefixed with <code class="docutils literal notranslate"><span class="pre">objective_</span></code> in the results dataframe
+(e.g.  <code class="docutils literal notranslate"><span class="pre">objective_value</span></code>, <code class="docutils literal notranslate"><span class="pre">objective_relative_error</span></code>,
+<code class="docutils literal notranslate"><span class="pre">objective_X_hat_norm</span></code>). For solvers evaluated along their convergence paths,
+the <code class="docutils literal notranslate"><span class="pre">value</span></code> key is used to keep track of the convergence curve. This can be
+tweaked, changing convergence detection and key to monitor in the stopping
+criteria (see <a class="reference internal" href="../user_guide/iterative_solvers.html#iterative-solvers"><span class="std std-ref">Iterative solvers page</span></a> for details).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When <a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.evaluate_result" title="benchopt.BaseObjective.evaluate_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate_result()</span></code></a> returns a list of
+dictionaries, each element is stored as a separate row in the results. This
+is useful to report metrics on several sub-problems or cross-validation
+folds at once. For iterative solvers, the convergence is decided based on
+the last value of the list.</p>
+</div>
+<p>When adding a metric, make sure <a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.get_one_result" title="benchopt.BaseObjective.get_one_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">get_one_result()</span></code></a>
+still returns a dictionary compatible with the updated
+<a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html#benchopt.BaseObjective.evaluate_result" title="benchopt.BaseObjective.evaluate_result"><code class="xref py py-meth docutils literal notranslate"><span class="pre">evaluate_result()</span></code></a> signature, as this method is
+used by <a class="reference internal" href="test_benchmark.html#test-benchmark"><span class="std std-ref">benchopt test</span></a> to validate the benchmark:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">))</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="manage_benchmark_results.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Manage benchmark results</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="write_benchmark.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Write a benchmark</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-class-attributes">Common class attributes</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-solver">Adding a solver</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-methods">Required methods</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-features">Optional features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-dataset">Adding a dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#required-method">Required method</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">Optional features</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#adding-a-metric">Adding a metric</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+<script>
+fetch("../../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = window.location.href.replace(current, select.value);
+    };
+  });
+</script>
+
+
+  <footer class="bd-footer">
+  </footer>
+
+  </body>
+</html>

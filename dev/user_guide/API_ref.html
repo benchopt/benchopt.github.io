@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>API references &#8212; benchopt 1.9.0 documentation</title>
+    <title>API references &#8212; benchopt 1.9.1.dev0 documentation</title>
   
   
   
@@ -16,50 +16,54 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=d2d258e8" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
-    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=61c50b6b" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=b70fdc00" />
   
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
-    <script src="../_static/documentation_options.js?v=8e0e4d76"></script>
-    <script src="../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/documentation_options.js?v=1df9e2ea"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=30646c52"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/API_ref';</script>
-    <script src="../_static/benchopt.js?v=3507d15b"></script>
+    <script src="../_static/benchopt.js?v=93769e0d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="benchopt.BaseObjective" href="generated/benchopt.BaseObjective.html" />
-    <link rel="prev" title="Benchopt Test definition" href="tests_definition.html" />
+    <link rel="prev" title="Advanced usage" href="advanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.9.1.dev0" />
   </head>
   
   
@@ -75,19 +79,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -95,7 +88,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -103,8 +95,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -120,7 +112,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -150,10 +143,10 @@
     
     
     <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
-    <script>document.write(`<img src="../_static/logo_benchopt.png" class="logo__image only-dark" alt="benchopt logo"/>`);</script>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
   
   
-    <p class="title logo__title">1.9.0</p>
+    <p class="title logo__title">1.9.1.dev0</p>
   
 </a></div>
         <div class="sidebar-primary-item">
@@ -164,7 +157,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -190,6 +182,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
 </ul>
@@ -204,11 +197,12 @@
 <li class="toctree-l2"><a class="reference internal" href="tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l2"><a class="reference internal" href="solver_languages.html">Using different programming languages with benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
 <li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">API references</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
 <li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
@@ -223,6 +217,12 @@
 <li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
 </ul>
 </details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Examples Gallery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_minimal_benchmark.html">Running an existing benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_r_solver.html">Create and run an R solver benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
+</ul>
+</details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
@@ -234,9 +234,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -284,25 +289,17 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -326,6 +323,7 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-base-classes">List of base classes:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrizing-objective-dataset-and-solver">Parametrizing Objective, Dataset, and Solver</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-run-hooks">Benchopt run hooks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-utils">Benchopt utils</a></li>
 </ul>
@@ -345,7 +343,7 @@ document.write(`
 <a class="reference internal" href="#module-benchopt" title="benchopt"><code class="xref py py-mod docutils literal notranslate"><span class="pre">benchopt</span></code></a>:</p>
 <span class="target" id="module-benchopt"></span><section id="list-of-base-classes">
 <h2>List of base classes:<a class="headerlink" href="#list-of-base-classes" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-obj docutils literal notranslate"><span class="pre">BaseObjective</span></code></a>(**parameters)</p></td>
 <td><p>Base class to define an objective function</p></td>
@@ -360,33 +358,99 @@ document.write(`
 </table>
 </div>
 </section>
+<section id="parametrizing-objective-dataset-and-solver">
+<span id="parametrized"></span><h2>Parametrizing Objective, Dataset, and Solver<a class="headerlink" href="#parametrizing-objective-dataset-and-solver" title="Link to this heading">#</a></h2>
+<p>Benchmark classes can expose several configurations through a class attribute
+named <code class="docutils literal notranslate"><span class="pre">parameters</span></code>. This applies to the concrete <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">Solver</span></code> classes that inherit from <a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseObjective</span></code></a>,
+<a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a>, and <a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver" title="benchopt.BaseSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code></a>.</p>
+<p>The expected format is a dictionary whose keys are parameter names and whose
+values are lists of candidate values:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;simulated&quot;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;n_samples&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+        <span class="s2">&quot;n_features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">benchopt</span></code> evaluates the cartesian product of these values. In the example
+above, the dataset is instantiated for the four combinations of
+<code class="docutils literal notranslate"><span class="pre">n_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">n_features</span></code>.</p>
+<p>For each instantiated configuration, the selected values are stored as class
+attributes, so they can be accessed as <code class="docutils literal notranslate"><span class="pre">self.n_samples</span></code>, <code class="docutils literal notranslate"><span class="pre">self.n_features</span></code>,
+and so on inside the class methods. They are also included in the displayed
+name of the instance.</p>
+<p>When some parameters should vary together instead of being combined through a
+cartesian product, they can be grouped in a single key with comma-separated
+parameter names. In that case, the corresponding values must be tuples with
+the same arity:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;simulated&quot;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s2">&quot;n_samples, n_features&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">50</span><span class="p">)],</span>
+        <span class="s2">&quot;reg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>This keeps <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">n_features</span></code> paired together, while still
+forming the cartesian product with <code class="docutils literal notranslate"><span class="pre">reg</span></code>.</p>
+<p>Parameters can be overridden directly from the command line when selecting an
+objective, dataset, or solver:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-o<span class="w"> </span>objective<span class="o">[</span><span class="nv">reg</span><span class="o">=</span><span class="m">0</span>.1<span class="o">]</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-d<span class="w"> </span>simulated<span class="o">[</span><span class="nv">n_samples</span><span class="o">=</span><span class="m">100</span>,n_features<span class="o">=[</span><span class="m">20</span>,50<span class="o">]]</span><span class="w"> </span><span class="se">\</span>
+<span class="w">    </span>-s<span class="w"> </span>my-solver<span class="o">[</span><span class="nv">use_acceleration</span><span class="o">=</span>True<span class="o">]</span></span>
+</pre></div></div><p>The values in brackets use Python literal syntax, so booleans, strings,
+numbers, <code class="docutils literal notranslate"><span class="pre">None</span></code>, lists, or tuples can be passed. An override can be:</p>
+<ul class="simple">
+<li><p>a single value, such as <code class="docutils literal notranslate"><span class="pre">reg=0.1</span></code>;</p></li>
+<li><p>a list of values, such as <code class="docutils literal notranslate"><span class="pre">n_features=[20,50]</span></code>;</p></li>
+<li><p>a grouped parameter selection, such as
+<code class="docutils literal notranslate"><span class="pre">'n_samples,</span> <span class="pre">n_features'=[(100,</span> <span class="pre">20),</span> <span class="pre">(1000,</span> <span class="pre">50)]</span></code>.</p></li>
+</ul>
+<p>Only the parameters specified in the selector are replaced. All unspecified
+parameters keep the values defined in the class-level <code class="docutils literal notranslate"><span class="pre">parameters</span></code>
+dictionary. The resulting run configurations are then generated from the
+cartesian product of the remaining values.</p>
+<p>For more complex experiment definitions, the same parameter overrides can be
+expressed in the run configuration file described in
+<a class="reference internal" href="../benchmark_workflow/run_benchmark.html#run-benchmark"><span class="std std-ref">Run a benchmark</span></a>.</p>
+</section>
 <section id="benchopt-run-hooks">
 <span id="benchopt-hooks"></span><h2>Benchopt run hooks<a class="headerlink" href="#benchopt-run-hooks" title="Link to this heading">#</a></h2>
-<p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip" title="benchopt.BaseObjective.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseObjective.skip()</span></code></a>: hook to allow skipping configurations of
+<p><code class="docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code> exposes several hooks that can be implemented to customize the behavior of a solver run:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip" title="benchopt.BaseObjective.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseObjective.skip()</span></code></a>: hook to allow skipping configurations of
 objective. It is executed before <code class="docutils literal notranslate"><span class="pre">set_data</span></code> to skip if the current
 objective is not compatible with the dataset. It takes in the same arguments
-that are passed to <code class="docutils literal notranslate"><span class="pre">set_data</span></code>.</p>
-<p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.skip()</span></code></a>: hook to allow skipping configurations of
+that are passed to <code class="docutils literal notranslate"><span class="pre">set_data</span></code>.</p></li>
+<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.skip()</span></code></a>: hook to allow skipping configurations of
 solver. It is executed right before <code class="docutils literal notranslate"><span class="pre">set_objective</span></code> to skip a solver
 if it is not compatible with objective and/or dataset parameters. It
 takes in the same arguments that are passed to <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.
-Refer to <a class="reference internal" href="advanced.html#skipping-solver"><span class="std std-ref">Advanced usage</span></a> for an example.</p>
-<p><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.get_next()</span></code>: hook called repeatedly after <code class="docutils literal notranslate"><span class="pre">run</span></code>
+Refer to <a class="reference internal" href="advanced.html#skipping-solver"><span class="std std-ref">Advanced usage</span></a> for an example.</p></li>
+<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.get_next()</span></code>: hook called repeatedly after <code class="docutils literal notranslate"><span class="pre">run</span></code>
 to change the sampling points for a given solver. It is called with the
 previous <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> (i.e. tolerance or number of iterations), and returns
 the value for the next run. Refer to <a class="reference internal" href="iterative_solvers.html#sampling-strategy"><span class="std std-ref">Advanced usage</span></a>
-for an example.</p>
-<p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.warm_up" title="benchopt.BaseSolver.warm_up"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.warm_up()</span></code></a>: hook called once before the solver runs.
+for an example.</p></li>
+<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.warm_up" title="benchopt.BaseSolver.warm_up"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.warm_up()</span></code></a>: hook called once before the solver runs.
 It is typically used to cache jit compilation of solver while not accounting
-for the time needed in the timings.</p>
-<p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.pre_run_hook" title="benchopt.BaseSolver.pre_run_hook"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.pre_run_hook()</span></code></a>: hook called before each call to
+for the time needed in the timings.</p></li>
+<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.pre_run_hook" title="benchopt.BaseSolver.pre_run_hook"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.pre_run_hook()</span></code></a>: hook called before each call to
 <code class="docutils literal notranslate"><span class="pre">run</span></code>, with the same argument. Allows to skip certain computation that
 cannot be cached globally, such as precompilation with different number of
-iterations in for jitted <code class="docutils literal notranslate"><span class="pre">jax</span></code> functions.</p>
+iterations in for jitted <code class="docutils literal notranslate"><span class="pre">jax</span></code> functions.</p></li>
+</ul>
 </section>
 <section id="benchopt-utils">
 <h2>Benchopt utils<a class="headerlink" href="#benchopt-utils" title="Link to this heading">#</a></h2>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
 <tbody>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/benchopt.run_benchmark.html#benchopt.run_benchmark" title="benchopt.run_benchmark"><code class="xref py py-obj docutils literal notranslate"><span class="pre">run_benchmark</span></code></a>(benchmark_path[, ...])</p></td>
 <td><p>Run full benchmark.</p></td>
@@ -421,12 +485,12 @@ iterations in for jitted <code class="docutils literal notranslate"><span class=
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="tests_definition.html"
+       href="advanced.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Benchopt Test definition</p>
+        <p class="prev-next-title">Advanced usage</p>
       </div>
     </a>
     <a class="right-next"
@@ -445,16 +509,19 @@ iterations in for jitted <code class="docutils literal notranslate"><span class=
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-base-classes">List of base classes:</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrizing-objective-dataset-and-solver">Parametrizing Objective, Dataset, and Solver</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-run-hooks">Benchopt run hooks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-utils">Benchopt utils</a></li>
 </ul>
@@ -505,8 +572,8 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
 
 
 <script>
