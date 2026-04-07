@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Running an existing benchmark &#8212; benchopt 1.9.1.dev0 documentation</title>
+    <title>Configure views in a benchmark’s visuzalization &#8212; benchopt 1.9.1.dev0 documentation</title>
   
   
   
@@ -53,14 +53,13 @@
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/run_minimal_benchmark';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/run_plot_config';</script>
     <script src="../_static/benchopt.js?v=93769e0d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Create and run an R solver benchmark" href="run_r_solver.html" />
-    <link rel="prev" title="Examples Gallery" href="index.html" />
+    <link rel="next" title="Available benchmarks" href="../available_benchmarks.html" />
+    <link rel="prev" title="Create and run a Julia solver benchmark" href="run_julia_solver.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.1.dev0" />
@@ -218,10 +217,10 @@
 </ul>
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Examples Gallery</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Running an existing benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_minimal_benchmark.html">Running an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="run_r_solver.html">Create and run an R solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Configure views in a benchmark’s visuzalization</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -311,7 +310,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Running an existing benchmark</h1>
+    <h1>Configure views in a benchmark’s visuzalization</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -327,32 +326,24 @@
                   
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference internal" href="#sphx-glr-download-auto-examples-run-minimal-benchmark-py"><span class="std std-ref">Go to the end</span></a>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-run-plot-config-py"><span class="std std-ref">Go to the end</span></a>
 to download the full example code.</p>
 </div>
-<section class="sphx-glr-example-title" id="running-an-existing-benchmark">
-<span id="sphx-glr-auto-examples-run-minimal-benchmark-py"></span><h1>Running an existing benchmark<a class="headerlink" href="#running-an-existing-benchmark" title="Link to this heading">#</a></h1>
-<p>This example demonstrates how to run an existing benchmark with benchopt.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import example helpers to define the benchmark and</span>
-<span class="c1"># programmatically call the CLI.</span>
+<section class="sphx-glr-example-title" id="configure-views-in-a-benchmark-s-visuzalization">
+<span id="sphx-glr-auto-examples-run-plot-config-py"></span><h1>Configure views in a benchmark’s visuzalization<a class="headerlink" href="#configure-views-in-a-benchmark-s-visuzalization" title="Link to this heading">#</a></h1>
+<p>This example shows how to configure views in a benchmark visualization
+with <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> and how to add custom plots to your benchmark.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import example helpers to define benchmarks and run benchopt in this example</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExampleBenchmark</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">benchopt_cli</span>
 </pre></div>
 </div>
-<p>We will use the minimal benchmark defined in the <code class="docutils literal notranslate"><span class="pre">examples</span></code> folder.
-The benchmark objective is a simple minimization task:</p>
-<div class="math notranslate nohighlight">
-\[\min_{\hat{X}} \; \mathrm{MSE}(X, \hat{X})\]</div>
-<p>We define:</p>
-<ul class="simple">
-<li><p>an <code class="docutils literal notranslate"><span class="pre">Objective</span></code> that evaluates MSE between <code class="docutils literal notranslate"><span class="pre">X</span></code> and <code class="docutils literal notranslate"><span class="pre">X_hat</span></code>;</p></li>
-<li><p>a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> that generates a random matrix <code class="docutils literal notranslate"><span class="pre">X</span></code>;</p></li>
-<li><p>a <code class="docutils literal notranslate"><span class="pre">Solver</span></code> that minimizes this objective with gradient descent. It is
-parametrized with parameter <code class="docutils literal notranslate"><span class="pre">lr</span></code> for the step size.</p></li>
-</ul>
+<p>Start with a minimal benchmark, including an objective, one dataset and
+one solver. This benchmark has no <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file specifying plotting
+options.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span> <span class="o">=</span> <span class="n">ExampleBenchmark</span><span class="p">(</span>
     <span class="n">base</span><span class="o">=</span><span class="s2">&quot;minimal_benchmark&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;minimal_benchmark&quot;</span><span class="p">,</span>
-    <span class="n">ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom_plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;example_config.yml&quot;</span><span class="p">]</span>
+    <span class="n">ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom_plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;example_config.yml&quot;</span><span class="p">,</span> <span class="s2">&quot;config.yml&quot;</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="n">benchmark</span>
 </pre></div>
@@ -361,7 +352,7 @@ parametrized with parameter <code class="docutils literal notranslate"><span cla
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
 
                 <div class='sd-tab-set'>
-                    <input checked="checked" id='example-benchmark-508f232404f34cd4b71a987602a48dc0-0' name='example-benchmark-508f232404f34cd4b71a987602a48dc0' type='radio'><label for='example-benchmark-508f232404f34cd4b71a987602a48dc0-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                    <input checked="checked" id='example-benchmark-e851fde4e6914e3e81e1051e1b562485-0' name='example-benchmark-e851fde4e6914e3e81e1051e1b562485' type='radio'><label for='example-benchmark-e851fde4e6914e3e81e1051e1b562485-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -399,7 +390,7 @@ parametrized with parameter <code class="docutils literal notranslate"><span cla
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-508f232404f34cd4b71a987602a48dc0-1' name='example-benchmark-508f232404f34cd4b71a987602a48dc0' type='radio'><label for='example-benchmark-508f232404f34cd4b71a987602a48dc0-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<input  id='example-benchmark-e851fde4e6914e3e81e1051e1b562485-1' name='example-benchmark-e851fde4e6914e3e81e1051e1b562485' type='radio'><label for='example-benchmark-e851fde4e6914e3e81e1051e1b562485-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -421,7 +412,7 @@ parametrized with parameter <code class="docutils literal notranslate"><span cla
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-508f232404f34cd4b71a987602a48dc0-2' name='example-benchmark-508f232404f34cd4b71a987602a48dc0' type='radio'><label for='example-benchmark-508f232404f34cd4b71a987602a48dc0-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-e851fde4e6914e3e81e1051e1b562485-2' name='example-benchmark-e851fde4e6914e3e81e1051e1b562485' type='radio'><label for='example-benchmark-e851fde4e6914e3e81e1051e1b562485-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -473,8 +464,93 @@ parametrized with parameter <code class="docutils literal notranslate"><span cla
         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-508f232404f34cd4b71a987602a48dc0-3' name='example-benchmark-508f232404f34cd4b71a987602a48dc0' type='radio'><label for='example-benchmark-508f232404f34cd4b71a987602a48dc0-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
-<span class="nt">plot_configs</span><span class="p">:</span>
+                </div>
+            </div>"
+        </pre>
+</div>
+<br />
+<br /><p>Run the benchmark to generate results. This will display a first HTML page
+based on benchopt’s default plotting configuration.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 40 -r 2 -s gd[lr=[1e-1,3e-2,1e-2,3e-3]]&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_hi4o2gfs/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">40</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span>gd<span class="o">[</span><span class="nv">lr</span><span class="o">=[</span>1e-1,3e-2,1e-2,3e-3<span class="o">]]</span>
+</pre></div>
+</pre>
+
+            <div class="sphx-glr-script-out highlight-none notranslate">
+                <div class="highlight"><pre>Benchopt is running!
+Benchopt called using profiling
+Loading objective, datasets and solvers... done.
+simulated
+  |--Quadratic
+No seed was specified. Selected global seed: 0
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.1]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.03]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.003]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/benchopt_run_2026-04-07_09h3</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">1m17.parquet</span>
+Rendering benchmark results...
+   Processing
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/benchopt_run_2026-04-07_09h3
+1m17.parquet
+done
+Writing results to
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-04-07_09h31m17.html
+Writing minimal_benchmark index to
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/minimal_benchmark.html
+
+
+</pre></div>
+            </div>
+
+
+            <iframe class='benchmark_result' src='html_results/sphx_glr_run_plot_config_001.html'
+                    frameBorder='0' style='position: relative; width: 100%;'>
+            </iframe>
+
+
+</div>
+<br />
+<br /><p>The default plots are generated from the results, showing the evolution of
+the first key of the objective against time. Options in the <code class="docutils literal notranslate"><span class="pre">Change</span> <span class="pre">plot&gt;</span></code>
+menu or the side bar allow to change this plot, changing the objective key,
+the x-axis or scale, or the type of plot. However, these options are reset
+when reloading the page. The concept of <code class="docutils literal notranslate"><span class="pre">views</span></code> allows to save specific
+configurations of the plot, that can be easily loaded.</p>
+<p>In practice, you can create these interactively from the HTML result using
+the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">as</span> <span class="pre">view</span></code> button once you have a view that is representative of
+your benchmark, then hit the <code class="docutils literal notranslate"><span class="pre">Configs</span></code> button in the Download area and
+save the file as a new <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> in your benchmark. You can also
+directly write the <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file, as shown below.</p>
+<p>Here, we define two simple views in <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>. The first one is a
+log-log evolution plot, showing the objective curve as a function of time,
+while the second one is a bar chart showing the runtime of each solver.
+When defining a view, part of the plotting parameters can be left free.
+They will be kept as they are when activating the view.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">extra_files</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;config.yml&quot;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    plot_configs:</span>
+<span class="s1">      Subopt. (log):</span>
+<span class="s1">        plot_kind: objective_curve</span>
+<span class="s1">        scale: loglog</span>
+<span class="s1">      Runtimes:</span>
+<span class="s1">        plot_kind: bar_chart</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<pre class="code-cell-equiv">            <div class='display_example_benchmark'>
+                <p>We now update the following files:</p><br/>
+                <div class='sd-tab-set'>
+                    <input checked="checked" id='example-benchmark-4bea96150b384ae394ee6c60e55941ed-0' name='example-benchmark-4bea96150b384ae394ee6c60e55941ed' type='radio'><label for='example-benchmark-4bea96150b384ae394ee6c60e55941ed-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
 <span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
@@ -487,119 +563,206 @@ parametrized with parameter <code class="docutils literal notranslate"><span cla
         </pre>
 </div>
 <br />
-<br /><p>To run the benchmark, just execute:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 20 -r 2&quot;</span><span class="p">)</span>
+<br /><p>To re-generate the HTML report from the latest results, call
+<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">plot</span></code>. This will override the existing HTML page, which now has
+two views available in <code class="docutils literal notranslate"><span class="pre">Available</span> <span class="pre">plot</span> <span class="pre">view</span></code> at the top of the page, and
+the first view automatically loaded.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_ga3nqv_2/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_hi4o2gfs/minimal_benchmark
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
-                <div class="highlight"><pre>Benchopt is running!
-Benchopt called using profiling
-Loading objective, datasets and solvers... done.
-simulated
-  |--Quadratic
-No seed was specified. Selected global seed: 0
-<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
-<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_ga3nqv_2/minimal_benchmark/outputs/benchopt_run_2026-04-07_09h2</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">2m57.parquet</span>
-Rendering benchmark results...
+                <div class="highlight"><pre>Rendering benchmark results...
    Processing
-temp_benchmark_ga3nqv_2/minimal_benchmark/outputs/benchopt_run_2026-04-07_09h2
-2m57.parquet
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/benchopt_run_2026-04-07_09h3
+1m17.parquet
 done
 Writing results to
-temp_benchmark_ga3nqv_2/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-un_2026-04-07_09h22m57.html
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-04-07_09h31m17.html
 Writing minimal_benchmark index to
-temp_benchmark_ga3nqv_2/minimal_benchmark/outputs/minimal_benchmark.html
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 </pre></div>
             </div>
 
 
-            <iframe class='benchmark_result' src='html_results/sphx_glr_run_minimal_benchmark_001.html'
+            <iframe class='benchmark_result' src='html_results/sphx_glr_run_plot_config_002.html'
                     frameBorder='0' style='position: relative; width: 100%;'>
             </iframe>
 
 
 </div>
 <br />
-<br /><p>This runs the benchmark named <code class="docutils literal notranslate"><span class="pre">minimal_benchmark</span></code> located in the
-<code class="docutils literal notranslate"><span class="pre">examples</span></code> folder.</p>
-<p>The parameters <code class="docutils literal notranslate"><span class="pre">n</span></code>  controls the number of point on the curves, while <code class="docutils literal notranslate"><span class="pre">r</span></code>
-controls the number of repetitions for each solver. The repetitions are used
-to compute the median and quartiles of the curves.</p>
-<p>To get a more precise curve, you can increase <code class="docutils literal notranslate"><span class="pre">n</span></code> and <code class="docutils literal notranslate"><span class="pre">r</span></code>:</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 30 -r 5&quot;</span><span class="p">)</span>
+<br /><p>In some cases, the default plots are not suitable to visualize the results.
+With <code class="docutils literal notranslate"><span class="pre">benchopt</span></code>. It is possible to define custom plots that integrate
+seamlessly with the HTML interface. Here, we define a custom plot that shows
+the final objective value achieved by each solver against the runtime,
+with colors defined by the value of the learning rate used by the solver.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plots</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;custom_objective_time.py&quot;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    from benchopt import BasePlot</span>
+
+
+<span class="s1">    class Plot(BasePlot):</span>
+<span class="s1">        name = &quot;custom_objective_time&quot;</span>
+<span class="s1">        type = &quot;scatter&quot;</span>
+<span class="s1">        options = </span><span class="si">{}</span>
+
+<span class="s1">        def plot(self, df):</span>
+<span class="s1">            points = []</span>
+<span class="s1">            for solver in df[&#39;solver_name&#39;].unique():</span>
+<span class="s1">                sub_df = df.query(&quot;solver_name == @solver&quot;).sort_values(&#39;time&#39;)</span>
+<span class="s1">                points.append({</span>
+<span class="s1">                    &quot;x&quot;: sub_df[&quot;p_solver_lr&quot;].iloc[-1:].tolist(),</span>
+<span class="s1">                    &quot;y&quot;: sub_df[&quot;objective_value&quot;].iloc[-1:].tolist(),</span>
+<span class="s1">                    &quot;label&quot;: solver,</span>
+<span class="s1">                    **self.get_style(solver),</span>
+<span class="s1">                })</span>
+<span class="s1">            return points</span>
+
+<span class="s1">        def get_metadata(self, df):</span>
+<span class="s1">            return {</span>
+<span class="s1">                &quot;title&quot;: &quot;Objective against learning rate&quot;,</span>
+<span class="s1">                &quot;xlabel&quot;: &quot;learning rate&quot;,</span>
+<span class="s1">                &quot;ylabel&quot;: &quot;objective value&quot;,</span>
+<span class="s1">            }</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+<span class="p">})</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_ga3nqv_2/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
+<pre class="code-cell-equiv">            <div class='display_example_benchmark'>
+                <p>We now update the following files:</p><br/>
+                <div class='sd-tab-set'>
+                    <input checked="checked" id='example-benchmark-438d701633434b27ad210aaa3219a592-0' name='example-benchmark-438d701633434b27ad210aaa3219a592' type='radio'><label for='example-benchmark-438d701633434b27ad210aaa3219a592-0'>plots/custom_objective_time.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;custom_objective_time&quot;</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;scatter&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">solver</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+            <span class="n">sub_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;solver_name == @solver&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+            <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">sub_df</span><span class="p">[</span><span class="s2">&quot;p_solver_lr&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">sub_df</span><span class="p">[</span><span class="s2">&quot;objective_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
+                <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver</span><span class="p">),</span>
+            <span class="p">})</span>
+        <span class="k">return</span> <span class="n">points</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Objective against learning rate&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;learning rate&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;objective value&quot;</span><span class="p">,</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+                </div>
+            </div>"
+        </pre>
+</div>
+<br />
+<br /><p>This custom plot is rendered using a scatter plot, as disclosed in <code class="docutils literal notranslate"><span class="pre">type</span></code>.
+The <code class="docutils literal notranslate"><span class="pre">get_metadata</span></code> method defines global options for the plot, like the
+title and the axis labels, while the <code class="docutils literal notranslate"><span class="pre">plot</span></code> method defines the data to be
+plotted. For a scatter plot, this corresponds to a list of points or curves,
+with their x and y coordinates, labels and colors.
+The <code class="docutils literal notranslate"><span class="pre">options</span></code> attribute is empty here, but it can be used to define
+user-configurable options for the plot, that will be displayed in the HTML.
+More details on the plot API can be found in <a class="reference internal" href="../user_guide/add_custom_plot.html#add-custom-plot"><span class="std std-ref">Add a custom plot to a benchmark</span></a>.</p>
+<p>We can then update <code class="docutils literal notranslate"><span class="pre">plot_configs</span></code> to include one view for the new custom
+plot, and run <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">plot</span></code> again to update the plot.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">extra_files</span><span class="o">=</span><span class="p">{</span>
+    <span class="s2">&quot;config.yml&quot;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    plot_configs:</span>
+<span class="s1">      Sensitivity lr:</span>
+<span class="s1">        plot_kind: custom_objective_time</span>
+<span class="s1">        scale: loglog</span>
+<span class="s1">      Subopt. (log):</span>
+<span class="s1">        plot_kind: objective_curve</span>
+<span class="s1">        scale: loglog</span>
+<span class="s1">      Runtimes:</span>
+<span class="s1">        plot_kind: bar_chart</span>
+<span class="s1">    &#39;&#39;&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<pre class="code-cell-equiv">            <div class='display_example_benchmark'>
+                <p>We now update the following files:</p><br/>
+                <div class='sd-tab-set'>
+                    <input checked="checked" id='example-benchmark-a119450b5dc4457f85a683536771765d-0' name='example-benchmark-a119450b5dc4457f85a683536771765d' type='radio'><label for='example-benchmark-a119450b5dc4457f85a683536771765d-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">Sensitivity lr</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_objective_time</span>
+<span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
+<span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
+<span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
+<span class="w">  </span><span class="nt">Runtimes</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
+</pre></div>
+</div>
+                </div>
+            </div>"
+        </pre>
+</div>
+<br />
+<br /><p>Now running <cite>benchopt plot</cite> again will update the HTML page with the new plot
+option and the new view, showing the sensitivity of the final objective value
+to the selection of the learning rate.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_hi4o2gfs/minimal_benchmark
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
-                <div class="highlight"><pre>Benchopt is running!
-Benchopt called using profiling
-Loading objective, datasets and solvers... done.
-simulated
-  |--Quadratic
-No seed was specified. Selected global seed: 0
-<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
-<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_ga3nqv_2/minimal_benchmark/outputs/benchopt_run_2026-04-07_09h2</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">3m02.parquet</span>
-Rendering benchmark results...
+                <div class="highlight"><pre>Rendering benchmark results...
    Processing
-temp_benchmark_ga3nqv_2/minimal_benchmark/outputs/benchopt_run_2026-04-07_09h2
-3m02.parquet
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/benchopt_run_2026-04-07_09h3
+1m17.parquet
 done
 Writing results to
-temp_benchmark_ga3nqv_2/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-un_2026-04-07_09h23m02.html
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-04-07_09h31m17.html
 Writing minimal_benchmark index to
-temp_benchmark_ga3nqv_2/minimal_benchmark/outputs/minimal_benchmark.html
+temp_benchmark_hi4o2gfs/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 </pre></div>
             </div>
 
 
-            <iframe class='benchmark_result' src='html_results/sphx_glr_run_minimal_benchmark_002.html'
+            <iframe class='benchmark_result' src='html_results/sphx_glr_run_plot_config_003.html'
                     frameBorder='0' style='position: relative; width: 100%;'>
             </iframe>
 
 
 </div>
 <br />
-<br /><p>Here, the display is not ideal because both solvers reach convergence very
-quickly. You can change the display by selecting the scale of the axis in
-the plot configuration panel.
-Go to the <em>Change plot</em> banner at the top of the HTML file, and change the
-scale to <code class="docutils literal notranslate"><span class="pre">loglog</span></code> on the drop down menu.</p>
-<p>Note that for convenience, this can be saved as a view in the configuration
-of the benchmark. See <a class="reference internal" href="../user_guide/config_benchopt.html#plot-configs"><span class="std std-ref">here</span></a> for more details.
-Here, clicking on <code class="docutils literal notranslate"><span class="pre">Subopt.</span> <span class="pre">(log)</span></code> in the <em>Available plots</em> above the
-figure will take you to a view with the right scale, and looking at
-suboptimality instead of objective value.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.143 seconds)</p>
-<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-minimal-benchmark-py">
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.953 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-plot-config-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/6a65fd6b50c38318be8d3d22e519e51b/run_minimal_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_minimal_benchmark.ipynb</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/4fc68104f0a5e065ce8043a01c718059/run_plot_config.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_plot_config.ipynb</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-python docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/95cd19d514d099dccb635d0bbfe85947/run_minimal_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">run_minimal_benchmark.py</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/568789e5dedb6c85b9c0ae7ba91d7f4c/run_plot_config.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">run_plot_config.py</span></code></a></p>
 </div>
 <div class="sphx-glr-download sphx-glr-download-zip docutils container">
-<p><a class="reference download internal" download="" href="../_downloads/586c9ec48a37fd397fb981a992a54250/run_minimal_benchmark.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">run_minimal_benchmark.zip</span></code></a></p>
+<p><a class="reference download internal" download="" href="../_downloads/f86b231e3625f58194d0a9b45d3f39de/run_plot_config.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">run_plot_config.zip</span></code></a></p>
 </div>
 </div>
 <p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
@@ -617,20 +780,20 @@ suboptimality instead of objective value.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="run_julia_solver.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Examples Gallery</p>
+        <p class="prev-next-title">Create and run a Julia solver benchmark</p>
       </div>
     </a>
     <a class="right-next"
-       href="run_r_solver.html"
+       href="../available_benchmarks.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Create and run an R solver benchmark</p>
+        <p class="prev-next-title">Available benchmarks</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

@@ -220,6 +220,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_minimal_benchmark.html">Running an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_r_solver.html">Create and run an R solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -328,6 +329,7 @@
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">inspect</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">warnings</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">islice</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">StoppingCriterion</span>
@@ -421,6 +423,24 @@
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">objective_output</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span>
         <span class="s2">&quot;The output of the objective function should not be an empty dict.&quot;</span>
     <span class="p">)</span>
+
+
+<span class="k">def</span><span class="w"> </span><span class="nf">test_benchmark_config_validity</span><span class="p">(</span><span class="n">benchmark</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check benchmark config.yml only uses valid benchmark options.&quot;&quot;&quot;</span>
+    <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">caught</span><span class="p">:</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;always&quot;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+        <span class="n">benchmark</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;plots&quot;</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="n">caught</span><span class="p">:</span>
+        <span class="n">details</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">caught</span><span class="p">)</span>
+        <span class="n">config_file</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_config_file</span><span class="p">()</span>
+        <span class="n">pytest</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span>
+            <span class="s2">&quot;Invalid benchmark config.yml detected while running &quot;</span>
+            <span class="s2">&quot;benchopt test.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Benchmark config file: </span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="s2">&quot;Please update config.yml to only use valid benchmark options.</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;Reported issue(s):</span><span class="se">\n\n</span><span class="si">{</span><span class="n">details</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_solver_class</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">):</span>

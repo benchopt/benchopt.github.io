@@ -68,6 +68,23 @@ Examples Gallery
     </div>
 
 
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows how to configure views in a benchmark visualization with config.yml and how to add custom plots to your benchmark.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_run_plot_config_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/run_plot_config`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Configure views in a benchmark's visuzalization</div>
+    </div>
+
+
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -81,6 +98,7 @@ Examples Gallery
    /auto_examples/run_minimal_benchmark
    /auto_examples/run_r_solver
    /auto_examples/run_julia_solver
+   /auto_examples/run_plot_config
 
 
 .. only:: html
