@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.utils.profile &#8212; benchopt 1.9.1.dev0 documentation</title>
+    <title>benchopt.results.process.merge &#8212; benchopt 1.9.1.dev0 documentation</title>
   
   
   
@@ -54,13 +54,13 @@
     <script src="../../_static/copybutton.js?v=30646c52"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/generated/benchopt.utils.profile';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/generated/benchopt.results.process.merge';</script>
     <script src="../../_static/benchopt.js?v=93769e0d"></script>
     <link rel="icon" href="../../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="benchopt.results.process.merge" href="benchopt.results.process.merge.html" />
-    <link rel="prev" title="benchopt.datasets.simulated.make_correlated_data" href="benchopt.datasets.simulated.make_correlated_data.html" />
+    <link rel="next" title="Command line interface (CLI)" href="../CLI_ref.html" />
+    <link rel="prev" title="benchopt.utils.profile" href="benchopt.utils.profile.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.1.dev0" />
@@ -211,8 +211,8 @@
 <li class="toctree-l3"><a class="reference internal" href="benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
 <li class="toctree-l3"><a class="reference internal" href="benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l3"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">benchopt.utils.profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">benchopt.results.process.merge</a></li>
 </ul>
 </details></li>
 <li class="toctree-l2"><a class="reference internal" href="../CLI_ref.html">Command line interface (CLI)</a></li>
@@ -314,7 +314,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>benchopt.utils.profile</h1>
+    <h1>benchopt.results.process.merge</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -324,7 +324,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.utils.profile"><code class="docutils literal notranslate"><span class="pre">profile()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.results.process.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -336,18 +336,29 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <br/><section id="benchopt-utils-profile">
-<h1>benchopt.utils.profile<a class="headerlink" href="#benchopt-utils-profile" title="Link to this heading">#</a></h1>
+  <br/><section id="benchopt-results-process-merge">
+<h1>benchopt.results.process.merge<a class="headerlink" href="#benchopt-results-process-merge" title="Link to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="benchopt.utils.profile">
-<span class="sig-prename descclassname"><span class="pre">benchopt.utils.</span></span><span class="sig-name descname"><span class="pre">profile</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">func</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.utils.profile" title="Link to this definition">#</a></dt>
-<dd><p>Decorator to tell line profiler which function to profile.</p>
-<p>Typically, this can be used for the <code class="docutils literal notranslate"><span class="pre">run</span></code> method of a <code class="docutils literal notranslate"><span class="pre">Solver</span></code>.
-Once the method is decorated, you can use <code class="docutils literal notranslate"><span class="pre">--profile</span></code> in
-<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> to get a profiling report.</p>
+<dt class="sig sig-object py" id="benchopt.results.process.merge">
+<span class="sig-prename descclassname"><span class="pre">benchopt.results.process.</span></span><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'last'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.results.process.merge" title="Link to this definition">#</a></dt>
+<dd><p>Merge result files of a benchmark</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>result_filenames: list of str | Path</strong></dt><dd><p>List of parquet files to merge</p>
+</dd>
+<dt><strong>keep: str</strong></dt><dd><p>Must be “last” or “all”. When merged files contain multiple
+times the same configuration, controls whether to keep all
+the lines or only keep the last result per configuration.</p>
+</dd>
+<dt><strong>output: str | Path</strong></dt><dd><p>Path of the new parquet file</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
-<span class="target" id="sphx-glr-backreferences-benchopt-utils-profile"></span></section>
+<span class="target" id="sphx-glr-backreferences-benchopt-results-process-merge"></span></section>
 
 
                 </article>
@@ -361,20 +372,20 @@ Once the method is decorated, you can use <code class="docutils literal notransl
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="benchopt.datasets.simulated.make_correlated_data.html"
+       href="benchopt.utils.profile.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">benchopt.datasets.simulated.make_correlated_data</p>
+        <p class="prev-next-title">benchopt.utils.profile</p>
       </div>
     </a>
     <a class="right-next"
-       href="benchopt.results.process.merge.html"
+       href="../CLI_ref.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">benchopt.results.process.merge</p>
+        <p class="prev-next-title">Command line interface (CLI)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -396,7 +407,7 @@ Once the method is decorated, you can use <code class="docutils literal notransl
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.utils.profile"><code class="docutils literal notranslate"><span class="pre">profile()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.results.process.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
 </ul>
   </nav></div>
 
