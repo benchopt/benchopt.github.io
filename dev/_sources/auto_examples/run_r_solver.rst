@@ -87,7 +87,7 @@ a simulated dataset and a full python solver based on gradient descent.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a-0' name='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a' type='radio'><label for='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <input checked="checked" id='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c-0' name='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c' type='radio'><label for='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -125,7 +125,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a-1' name='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a' type='radio'><label for='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c-1' name='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c' type='radio'><label for='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -147,7 +147,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a-2' name='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a' type='radio'><label for='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c-2' name='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c' type='radio'><label for='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -199,7 +199,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a-3' name='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a' type='radio'><label for='example-benchmark-cbabfee499a94c0c9286c967dd38ab5a-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <input  id='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c-3' name='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c' type='radio'><label for='example-benchmark-b1aeb17fb8e94c5c96c404bde733047c-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
     <span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -247,7 +247,7 @@ The R code is defined in a separate file ``r_pgd.R``, loaded from Python.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-9f40db6e817840e3b1485b9f274868f9-0' name='example-benchmark-9f40db6e817840e3b1485b9f274868f9' type='radio'><label for='example-benchmark-9f40db6e817840e3b1485b9f274868f9-0'>solvers/r_pgd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+                        <input checked="checked" id='example-benchmark-a667dae5fcd9413d85dc1dc201a25e73-0' name='example-benchmark-a667dae5fcd9413d85dc1dc201a25e73' type='radio'><label for='example-benchmark-a667dae5fcd9413d85dc1dc201a25e73-0'>solvers/r_pgd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 
@@ -286,7 +286,7 @@ The R code is defined in a separate file ``r_pgd.R``, loaded from Python.
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-9f40db6e817840e3b1485b9f274868f9-1' name='example-benchmark-9f40db6e817840e3b1485b9f274868f9' type='radio'><label for='example-benchmark-9f40db6e817840e3b1485b9f274868f9-1'>solvers/r_pgd.R</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>##&#39; Functions used in GD algorithm
+    <input  id='example-benchmark-a667dae5fcd9413d85dc1dc201a25e73-1' name='example-benchmark-a667dae5fcd9413d85dc1dc201a25e73' type='radio'><label for='example-benchmark-a667dae5fcd9413d85dc1dc201a25e73-1'>solvers/r_pgd.R</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>##&#39; Functions used in GD algorithm
     ##&#39;
     ##&#39; @title Functions used in GD algorithm
     ##&#39; @author Thomas Moreau
@@ -339,7 +339,7 @@ through conda using the solver requirements.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_zow_kjwk/r_solver<span class="w"> </span>-s<span class="w"> </span>r-pgd
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_oug6mosx/r_solver<span class="w"> </span>-s<span class="w"> </span>r-pgd
     </pre></div>
     </pre>
             
@@ -352,13 +352,13 @@ through conda using the solver requirements.
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> done</span>
     Installing required packages for:
     - R-PGD
-    ...Retrieving notices: - done
+    ...Retrieving notices: - \ done
     Channels:
      - conda-forge
     Platform: linux-64
-    Collecting package metadata (repodata.json): | / - \ | / - \ | / - \ | / - \ |
-    / done
-    Solving environment: \ done
+    Collecting package metadata (repodata.json): / - \ | / - \ | / - \ | / - \ | /
+    - done
+    Solving environment: | done
 
 
     ==&gt; WARNING: A newer version of conda exists. &lt;==
@@ -561,110 +561,97 @@ through conda using the solver requirements.
 
 
 
-    gcc_impl_linux-64-15 | 78.0 MB   | 3          |   4% [A
-    sysroot_linux-64-2.3 | 38.9 MB   | #8         |  18% 
+    gcc_impl_linux-64-15 | 78.0 MB   | 1          |   1% [A
 
-    r-base-4.5.3         | 26.1 MB   | 6          |   7% 
-
-
-    libstdcxx-devel_linu | 19.7 MB   |            |   0% 
+    r-base-4.5.3         | 26.1 MB   | #6         |  16% 
 
 
-
-    gfortran_impl_linux- | 19.1 MB   |            |   0% 
-    gcc_impl_linux-64-15 | 78.0 MB   | #1         |  12% 
-
-    r-base-4.5.3         | 26.1 MB   | ###1       |  31% 
-
-
-    libstdcxx-devel_linu | 19.7 MB   | #8         |  19% 
+    libstdcxx-devel_linu | 19.7 MB   | 3          |   4% 
 
 
 
-    gcc_impl_linux-64-15 | 78.0 MB   | ##4        |  25% 
+    gfortran_impl_linux- | 19.1 MB   | 1          |   1% 
+    gcc_impl_linux-64-15 | 78.0 MB   | #          |  10% 
 
-    r-base-4.5.3         | 26.1 MB   | ######6    |  66% 
-
-
-    libstdcxx-devel_linu | 19.7 MB   | #####1     |  51% 
+    r-base-4.5.3         | 26.1 MB   | #####4     |  54% 
 
 
+    libstdcxx-devel_linu | 19.7 MB   | ####4      |  45% 
 
+
+
+    gfortran_impl_linux- | 19.1 MB   | ####       |  41% 
+    gcc_impl_linux-64-15 | 78.0 MB   | #9         |  20% 
+
+    r-base-4.5.3         | 26.1 MB   | ########7  |  87% 
+
+
+    libstdcxx-devel_linu | 19.7 MB   | #######6   |  77% 
+
+
+
+    gfortran_impl_linux- | 19.1 MB   | ########5  |  86% 
+    gcc_impl_linux-64-15 | 78.0 MB   | ###        |  31% 
     gcc_impl_linux-64-15 | 78.0 MB   | ####1      |  42% 
-
-    r-base-4.5.3         | 26.1 MB   | #########5 |  96% 
-
+    sysroot_linux-64-2.3 | 38.9 MB   | #######1   |  71% 
 
 
-    gfortran_impl_linux- | 19.1 MB   | ######1    |  61% 
-    sysroot_linux-64-2.3 | 38.9 MB   | #######8   |  79% 
-
-
-    libstdcxx-devel_linu | 19.7 MB   | #######2   |  72% 
+    libstdcxx-devel_linu | 19.7 MB   | ########## | 100% 
 
     r-base-4.5.3         | 26.1 MB   | ########## | 100% 
 
 
 
-    gfortran_impl_linux- | 19.1 MB   | ########5  |  86% 
 
+    gxx_impl_linux-64-15 | 14.9 MB   |            |   0% 
 
 
 
     gcc_impl_linux-64-15 | 78.0 MB   | #####4     |  54% 
 
 
-    libstdcxx-devel_linu | 19.7 MB   | ########9  |  89% 
 
 
 
-
-    gxx_impl_linux-64-15 | 14.9 MB   | ####3      |  43% 
-    gcc_impl_linux-64-15 | 78.0 MB   | ######7    |  67% 
-
-
-
-
-    gcc_impl_linux-64-15 | 78.0 MB   | #######8   |  79% 
-
-
-
-    gfortran_impl_linux- | 19.1 MB   | ########## | 100% 
-
-
-
-
-
-    gcc_impl_linux-64-15 | 78.0 MB   | ########9  |  89% 
-
-
-
-
-
-    libsanitizer-15.2.0  | 7.7 MB    | #######3   |  73% 
-
-
-
-
-    gxx_impl_linux-64-15 | 14.9 MB   | ########## | 100% 
-
-
-    libstdcxx-devel_linu | 19.7 MB   | ########## | 100% 
+    libsanitizer-15.2.0  | 7.7 MB    |            |   0% 
 
 
 
 
 
 
-    gcc_impl_linux-64-15 | 78.0 MB   | #########9 | 100% 
+    libopenblas-0.3.32   | 5.7 MB    |            |   0% 
+    sysroot_linux-64-2.3 | 38.9 MB   | ########9  |  89% 
+
+
+
+
+    gxx_impl_linux-64-15 | 14.9 MB   | ###7       |  38% 
+
+
+
+
+
+    libsanitizer-15.2.0  | 7.7 MB    | ######9    |  70% 
 
 
 
 
 
 
+    gcc_impl_linux-64-15 | 78.0 MB   | ######5    |  65% 
 
-    libglib-2.86.4       | 4.2 MB    |            |   0% 
+
+
+
+    gxx_impl_linux-64-15 | 14.9 MB   | #######2   |  73% 
+
+
+
+
+
+
+    gcc_impl_linux-64-15 | 78.0 MB   | #######4   |  75% 
 
 
 
@@ -678,7 +665,7 @@ through conda using the solver requirements.
 
 
 
-    libglib-2.86.4       | 4.2 MB    | #######    |  70% 
+    libglib-2.86.4       | 4.2 MB    |            |   0% 
 
 
 
@@ -687,22 +674,7 @@ through conda using the solver requirements.
 
 
 
-    binutils_impl_linux- | 3.5 MB    |            |   0% 
-
-
-
-
-
-
-    libopenblas-0.3.32   | 5.7 MB    | ########## | 100% 
-
-
-
-
-
-
-    libopenblas-0.3.32   | 5.7 MB    | ########## | 100% 
-    sysroot_linux-64-2.3 | 38.9 MB   | ########## | 100% 
+    gcc_impl_linux-64-15 | 78.0 MB   | ########3  |  83% 
 
 
 
@@ -719,7 +691,29 @@ through conda using the solver requirements.
 
 
 
-    binutils_impl_linux- | 3.5 MB    | #########5 |  95% 
+    binutils_impl_linux- | 3.5 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+    binutils_impl_linux- | 3.5 MB    | ########## | 100% 
+
+
+
+
+
+
+
+    gcc_impl_linux-64-15 | 78.0 MB   | #########2 |  93% 
+
+
+
+
+    gxx_impl_linux-64-15 | 14.9 MB   | ########## | 100% 
 
 
 
@@ -730,6 +724,17 @@ through conda using the solver requirements.
 
 
     gsl-2.7              | 3.2 MB    |            |   0% 
+
+
+
+
+
+
+
+
+
+
+    libgcc-devel_linux-6 | 2.9 MB    |            |   1% 
 
 
 
@@ -752,62 +757,8 @@ through conda using the solver requirements.
 
 
 
-    libgcc-devel_linux-6 | 2.9 MB    |            |   1% 
-
-
-
-
-
-
-
-
-    binutils_impl_linux- | 3.5 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
 
     libgfortran5-15.2.0  | 2.4 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-    libgfortran5-15.2.0  | 2.4 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-    libgcc-devel_linux-6 | 2.9 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-    libgcc-devel_linux-6 | 2.9 MB    | ########## | 100% 
 
 
 
@@ -851,11 +802,59 @@ through conda using the solver requirements.
 
 
 
+    libgcc-devel_linux-6 | 2.9 MB    | ########## | 100% 
 
 
 
 
-    font-ttf-ubuntu-0.83 | 1.5 MB    | 1          |   1% 
+
+
+
+
+
+
+    libgcc-devel_linux-6 | 2.9 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    rpy2-3.6.7           | 1.8 MB    |            |   1% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+    harfbuzz-14.2.0      | 2.2 MB    | ########## | 100% 
 
 
 
@@ -885,7 +884,8 @@ through conda using the solver requirements.
 
 
 
-    rpy2-3.6.7           | 1.8 MB    |            |   1% 
+
+    font-ttf-ubuntu-0.83 | 1.5 MB    | 1          |   1% 
 
 
 
@@ -900,7 +900,9 @@ through conda using the solver requirements.
 
 
 
-    font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
+
+
+    pcre2-10.47          | 1.2 MB    | 1          |   1% 
 
 
 
@@ -913,20 +915,11 @@ through conda using the solver requirements.
 
 
 
-    harfbuzz-14.2.0      | 2.2 MB    | ########## | 100% 
 
 
 
 
-
-
-
-
-
-
-
-
-    harfbuzz-14.2.0      | 2.2 MB    | ########## | 100% 
+    pcre2-10.47          | 1.2 MB    | ########## | 100% 
 
 
 
@@ -956,24 +949,8 @@ through conda using the solver requirements.
 
 
 
-    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    pcre2-10.47          | 1.2 MB    | 1          |   1% 
+    font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
 
 
 
@@ -1011,23 +988,7 @@ through conda using the solver requirements.
 
 
     cairo-1.18.4         | 966 KB    | 1          |   2% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    pcre2-10.47          | 1.2 MB    | ########## | 100% 
+    sysroot_linux-64-2.3 | 38.9 MB   | ########## | 100% 
 
 
 
@@ -1073,6 +1034,8 @@ through conda using the solver requirements.
 
 
 
+
+
     gcc_impl_linux-64-15 | 78.0 MB   | ########## | 100% 
 
 
@@ -1081,25 +1044,19 @@ through conda using the solver requirements.
 
     libsanitizer-15.2.0  | 7.7 MB    | ########## | 100% 
 
-
-
-
-
-
-    libopenblas-0.3.32   | 5.7 MB    | ########## | 100% 
-
     r-base-4.5.3         | 26.1 MB   | ########## | 100% 
 
 
-
-
-
-
-
-    libglib-2.86.4       | 4.2 MB    | ########## | 100% 
-
-
     libstdcxx-devel_linu | 19.7 MB   | ########## | 100% 
+
+
+
+
+
+
+
+
+    binutils_impl_linux- | 3.5 MB    | ########## | 100% 
 
 
 
@@ -1120,7 +1077,23 @@ through conda using the solver requirements.
 
 
 
-    binutils_impl_linux- | 3.5 MB    | ########## | 100% 
+
+
+
+    libgfortran5-15.2.0  | 2.4 MB    | ########## | 100% 
+
+
+
+
+    gxx_impl_linux-64-15 | 14.9 MB   | ########## | 100% 
+
+
+
+
+
+
+
+    libglib-2.86.4       | 4.2 MB    | ########## | 100% 
 
 
 
@@ -1144,24 +1117,7 @@ through conda using the solver requirements.
 
 
 
-
-
-    font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
+    harfbuzz-14.2.0      | 2.2 MB    | ########## | 100% 
 
 
 
@@ -1190,7 +1146,8 @@ through conda using the solver requirements.
 
 
 
-    kernel-headers_linux | 1.3 MB    | ########## | 100% 
+
+    pcre2-10.47          | 1.2 MB    | ########## | 100% 
 
 
 
@@ -1206,7 +1163,66 @@ through conda using the solver requirements.
 
 
 
-    kernel-headers_linux | 1.3 MB    | ########## | 100% 
+
+    pcre2-10.47          | 1.2 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
 
 
 
@@ -1233,68 +1249,6 @@ through conda using the solver requirements.
 
 
 
-    pcre2-10.47          | 1.2 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    pcre2-10.47          | 1.2 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
      ... (more hidden) ...
@@ -1353,6 +1307,38 @@ through conda using the solver requirements.
 
 
     cairo-1.18.4         | 966 KB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    kernel-headers_linux | 1.3 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    kernel-headers_linux | 1.3 MB    | ########## | 100% 
     gcc_impl_linux-64-15 | 78.0 MB   | ########## | 100% 
 
 
@@ -1907,10 +1893,10 @@ through conda using the solver requirements.
 
 
      done
-    Preparing transaction: / - done
-    Verifying transaction: | / - \ | / - \ | / done
-    Executing transaction: \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / -
-    \ done
+    Preparing transaction: - \ done
+    Verifying transaction: / - \ | / - \ | / - done
+    Executing transaction: | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \
+    | done
     #
     # To activate this environment, use
     #
@@ -1922,7 +1908,7 @@ through conda using the solver requirements.
 
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> done</span>
     - Checking installed packages...Failed to import Solver from 
-    temp_benchmark_zow_kjwk/r_solver/solvers/r_pgd.py. Please fix the following 
+    temp_benchmark_oug6mosx/r_solver/solvers/r_pgd.py. Please fix the following 
     error to use this file with benchopt:
     Traceback (most recent call last):
       File &quot;/home/circleci/project/benchopt/utils/dynamic_modules.py&quot;, line 101, 
@@ -1935,7 +1921,7 @@ through conda using the solver requirements.
       File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 999, in exec_module
       File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 488, in _call_with_frames_removed
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_zow_kjwk/r_solver/solvers/r_pg
+    &quot;/home/circleci/project/examples/temp_benchmark_oug6mosx/r_solver/solvers/r_pg
     d.py&quot;, line 8, in &lt;module&gt;
         from benchopt.helpers.r_lang import import_func_from_r_file, converter_ctx
       File &quot;/home/circleci/project/benchopt/helpers/r_lang.py&quot;, line 11, in 
@@ -1945,7 +1931,7 @@ through conda using the solver requirements.
     are installed. If the requirements are missing, add `requirements = [&#x27;r-base&#x27;,
     &#x27;rpy2&#x27;]` to your solver.
 
-    /home/circleci/project/benchopt/benchmark.py:643: UserWarning: Some solvers 
+    /home/circleci/project/benchopt/benchmark.py:657: UserWarning: Some solvers 
     were not successfully installed, and will thus be ignored. Use &#x27;export 
     BENCHOPT_RAISE_INSTALL_ERROR=true&#x27; to stop at any installation failure and 
     print the traceback.
@@ -1982,7 +1968,7 @@ Then, we can run the benchmark and show the comparison.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_zow_kjwk/r_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_oug6mosx/r_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
     </pre></div>
     </pre>
             
@@ -1998,18 +1984,18 @@ Then, we can run the benchmark and show the comparison.
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--R-PGD[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                 
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--R-PGD[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                  
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_zow_kjwk/r_solver/outputs/benchopt_run_2026-04-28_15h40m53.parq</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_oug6mosx/r_solver/outputs/benchopt_run_2026-04-28_22h16m44.parq</span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">uet</span> 
     Rendering benchmark results...
        Processing 
-    temp_benchmark_zow_kjwk/r_solver/outputs/benchopt_run_2026-04-28_15h40m53.parq
+    temp_benchmark_oug6mosx/r_solver/outputs/benchopt_run_2026-04-28_22h16m44.parq
     uet
     done
     Writing results to 
-    temp_benchmark_zow_kjwk/r_solver/outputs/r_solver_benchopt_run_2026-04-28_15h4
-    0m53.html
+    temp_benchmark_oug6mosx/r_solver/outputs/r_solver_benchopt_run_2026-04-28_22h1
+    6m44.html
     Writing r_solver index to 
-    temp_benchmark_zow_kjwk/r_solver/outputs/r_solver.html
+    temp_benchmark_oug6mosx/r_solver/outputs/r_solver.html
 
 
 
@@ -2034,7 +2020,7 @@ convergence profiles, with runtime differences depending on your setup.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (2 minutes 57.270 seconds)
+   **Total running time of the script:** (2 minutes 57.946 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_r_solver.py:

@@ -184,6 +184,7 @@
 <li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
@@ -194,7 +195,6 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
@@ -223,6 +223,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_r_solver.html">Create and run an R solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -324,6 +325,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-datasets">Preparing datasets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-requirements">Specifying requirements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-a-python-version">Specifying a Python version</a></li>
 </ul>
@@ -350,12 +352,46 @@ benchmark, including all solvers and datasets, using the <code class="docutils l
 <li><p>The requirements that are specific to each <code class="docutils literal notranslate"><span class="pre">Dataset/Solver</span></code> can be
 specified in each class, and they can be installed individually by selecting
 the proper component using <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">-d</span> <span class="pre">dataset1</span> <span class="pre">-s</span> <span class="pre">solver1</span></code>.</p></li>
-<li><p>Finally, it is possible to use this command to download necessary files for
-datasets, prior to running the benchmark. This can be done using the
-<code class="docutils literal notranslate"><span class="pre">--download</span></code> option. This is particularly useful when running the benchmark
-on a remote server where internet access is not available during the benchmark
-execution.</p></li>
+<li><p>Finally, it is possible to prepare the datasets prior to running the
+benchmark.  See <a class="reference internal" href="#prepare-datasets"><span class="std std-ref">Preparing datasets</span></a> below for details.</p></li>
 </ul>
+<section id="preparing-datasets">
+<span id="prepare-datasets"></span><h2>Preparing datasets<a class="headerlink" href="#preparing-datasets" title="Link to this heading">#</a></h2>
+<p>Benchopt separates <strong>data preparation</strong> (heavy one-time work: downloads,
+extraction, pre-processing) from <strong>data loading</strong> (fast, per-run work done
+by <code class="docutils literal notranslate"><span class="pre">get_data()</span></code>).</p>
+<p>Preparation is triggered by the dedicated command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt prepare path/to/benchmark
+</pre></div>
+</div>
+<p>Benchopt calls the <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> method of every dataset (see
+<a class="reference internal" href="write_benchmark.html#write-benchmark"><span class="std std-ref">Write a benchmark</span></a> for how to implement it) and caches the result with
+<cite>joblib</cite>, so re-running the command is a no-op when nothing has changed.
+Use <code class="docutils literal notranslate"><span class="pre">--force</span></code> to bypass the cache and re-run preparation unconditionally.</p>
+<p>Preparation can also be triggered right after installing the benchmark
+dependencies with the <code class="docutils literal notranslate"><span class="pre">--prepare</span></code> flag:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt install path/to/benchmark --prepare
+</pre></div>
+</div>
+<p>This is convenient in CI pipelines or when setting up a benchmark on a
+remote server where internet access may not be available at run time.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--download</span></code> option of <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code> is deprecated in
+favour of <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">--prepare</span></code>.</p>
+</div>
+<p>Preparation can also be parallelised across datasets using the same options as
+<a class="reference internal" href="../user_guide/distributed_run.html#parallel-run"><span class="std std-ref">benchopt run</span></a>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Prepare all datasets on 8 local workers</span>
+benchopt<span class="w"> </span>prepare<span class="w"> </span>path/to/benchmark<span class="w"> </span>-j<span class="w"> </span><span class="m">8</span>
+
+<span class="c1"># Prepare using a distributed backend (Dask, SLURM via submitit, …)</span>
+benchopt<span class="w"> </span>prepare<span class="w"> </span>path/to/benchmark<span class="w"> </span>--parallel-config<span class="w"> </span>slurm_config.yml
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="../user_guide/distributed_run.html#parallel-run"><span class="std std-ref">Distributed run with Benchopt</span></a> for how to write a <code class="docutils literal notranslate"><span class="pre">parallel_config.yml</span></code> and for the
+full list of supported backends.</p>
+</section>
 <section id="specifying-requirements">
 <span id="specify-requirements"></span><h2>Specifying requirements<a class="headerlink" href="#specifying-requirements" title="Link to this heading">#</a></h2>
 <p>To specify how dependencies should be installed, you can use the <code class="docutils literal notranslate"><span class="pre">install_cmd</span></code> class attribute.
@@ -456,6 +492,7 @@ env with <code class="docutils literal notranslate"><span class="pre">--recreate
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-datasets">Preparing datasets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-requirements">Specifying requirements</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-a-python-version">Specifying a Python version</a></li>
 </ul>

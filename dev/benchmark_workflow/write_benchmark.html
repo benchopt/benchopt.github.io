@@ -184,6 +184,7 @@
 <li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">Write a benchmark</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
@@ -194,7 +195,6 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
@@ -223,6 +223,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_r_solver.html">Create and run an R solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -324,6 +325,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Write a benchmark</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">1. Objective</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective-example">Objective Example</a></li>
 </ul>
@@ -338,6 +340,17 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots">4. Plots</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-methods">Optional methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation-prepare-and-prepare-cache-ignore">Data preparation: <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> and <code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customisable-data-paths-config-get-data-path">Customisable data paths: <code class="docutils literal notranslate"><span class="pre">config.get_data_path()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
             </nav>
         </div>
     </div>
@@ -597,6 +610,65 @@ by defining a class that inherits from <code class="xref py py-class docutils li
 about creating custom plots can be found in the <a class="reference internal" href="../user_guide/add_custom_plot.html#add-custom-plot"><span class="std std-ref">Add a custom plot to a benchmark</span></a> guide.</p>
 </section>
 </section>
+<section id="optional-methods">
+<h1>Optional methods<a class="headerlink" href="#optional-methods" title="Link to this heading">#</a></h1>
+<p>The following methods are not required but can be defined to extend the
+default behaviour of each component.</p>
+<section id="dataset">
+<span id="dataset-optional-methods"></span><h2>Dataset<a class="headerlink" href="#dataset" title="Link to this heading">#</a></h2>
+<section id="data-preparation-prepare-and-prepare-cache-ignore">
+<span id="dataset-prepare"></span><h3>Data preparation: <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> and <code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code><a class="headerlink" href="#data-preparation-prepare-and-prepare-cache-ignore" title="Link to this heading">#</a></h3>
+<p>For datasets that require heavy one-time work (downloading archives,
+extracting files, pre-processing, …), define a <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> method.
+Benchopt caches its result with <cite>joblib</cite> so it is called at most once per
+unique parameter combination — <code class="docutils literal notranslate"><span class="pre">get_data()</span></code> then handles fast per-run
+loading from the prepared artefacts.</p>
+<p>When a parameter does not affect preparation (e.g. a random seed), list it
+in <code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code> to avoid redundant work:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;my-dataset&#39;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_samples&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
+    <span class="n">prepare_cache_ignore</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;seed&#39;</span><span class="p">,)</span>  <span class="c1"># 2 prepare() calls instead of 6</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">prepare</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># download / extract / pre-process once per n_samples value</span>
+        <span class="o">...</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># fast loading from prepared artefacts</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>Preparation is triggered via <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code>; see
+<a class="reference internal" href="install_benchmark.html#prepare-datasets"><span class="std std-ref">Preparing datasets</span></a> for the CLI details, including how to run preparation
+in parallel with <code class="docutils literal notranslate"><span class="pre">-j</span></code> or <code class="docutils literal notranslate"><span class="pre">--parallel-config</span></code> (same interface as
+<a class="reference internal" href="../user_guide/distributed_run.html#parallel-run"><span class="std std-ref">benchopt run</span></a>).  For a worked example
+showing the caching behaviour and <code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code>, see
+<a class="reference internal" href="../auto_examples/run_benchopt_prepare.html#sphx-glr-auto-examples-run-benchopt-prepare-py"><span class="std std-ref">Preparing datasets with benchopt prepare</span></a>.</p>
+</section>
+<section id="customisable-data-paths-config-get-data-path">
+<span id="dataset-data-paths"></span><h3>Customisable data paths: <code class="docutils literal notranslate"><span class="pre">config.get_data_path()</span></code><a class="headerlink" href="#customisable-data-paths-config-get-data-path" title="Link to this heading">#</a></h3>
+<p>You can let benchmark users point to their own copies of data files by
+calling <code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.config.get_data_path()</span></code> inside <code class="docutils literal notranslate"><span class="pre">get_data()</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">config</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">path</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">get_data_path</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;the_key_name&quot;</span><span class="p">)</span>
+        <span class="o">...</span>
+</pre></div>
+</div>
+<p>The user then sets the path in their benchmark config file:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">data_paths</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">the_key_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">path/to/file.ext</span>
+</pre></div>
+</div>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">path</span></code> will contain <code class="docutils literal notranslate"><span class="pre">{benchmark_dir}/path/to/file.ext</span></code>.
+See <a class="reference internal" href="../user_guide/config_benchopt.html#data-paths"><span class="std std-ref">Customising data file paths</span></a> for the user-facing configuration details.</p>
+</section>
+</section>
+</section>
 
 
                 </article>
@@ -645,6 +717,7 @@ about creating custom plots can be found in the <a class="reference internal" hr
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Write a benchmark</a><ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objective">1. Objective</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#objective-example">Objective Example</a></li>
 </ul>
@@ -659,6 +732,17 @@ about creating custom plots can be found in the <a class="reference internal" hr
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plots">4. Plots</a></li>
 </ul>
+</li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#optional-methods">Optional methods</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dataset">Dataset</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-preparation-prepare-and-prepare-cache-ignore">Data preparation: <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> and <code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#customisable-data-paths-config-get-data-path">Customisable data paths: <code class="docutils literal notranslate"><span class="pre">config.get_data_path()</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
   </nav></div>
 
 </div></div>

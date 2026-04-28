@@ -184,6 +184,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="../../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
@@ -194,7 +195,6 @@
 </details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../solver_languages.html">Using different programming languages with benchopt</a></li>
@@ -223,6 +223,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/run_r_solver.html">Create and run an R solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../auto_examples/run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../available_benchmarks.html">Available benchmarks</a></li>
@@ -326,6 +327,7 @@
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset"><code class="docutils literal notranslate"><span class="pre">BaseDataset</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.get_data"><code class="docutils literal notranslate"><span class="pre">BaseDataset.get_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.prepare"><code class="docutils literal notranslate"><span class="pre">BaseDataset.prepare()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -351,6 +353,11 @@
 and returns a dictionary containing the data. This dictionary is passed
 as arguments of the objective’s method <code class="docutils literal notranslate"><span class="pre">set_data</span></code>.</p></li>
 </ul>
+<p>Optionally, datasets can implement:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">prepare()</span></code>: performs expensive one-time preparation (downloads,
+extraction, preprocessing) that is cached and separated from loading.</p></li>
+</ul>
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseDataset.get_data">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseDataset.get_data" title="Link to this definition">#</a></dt>
@@ -364,6 +371,25 @@ instanciated by calling <code class="docutils literal notranslate"><span class="
 </dl>
 </dd>
 </dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseDataset.prepare">
+<span class="sig-name descname"><span class="pre">prepare</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseDataset.prepare" title="Link to this definition">#</a></dt>
+<dd><p>Prepare the dataset for use (optional).</p>
+<p>This method is called before benchmark runs to perform expensive
+one-time operations such as downloading data, extracting archives,
+or pre-processing. It is cached so that repeated calls with the
+same parameters are no-ops.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>Defaults to a no-op; datasets without a custom <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> fall
+back to calling <code class="docutils literal notranslate"><span class="pre">get_data()</span></code> for backward compatibility.</p></li>
+<li><p>Should be idempotent: calling it multiple times must be safe.</p></li>
+<li><p>Parameters listed in <code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code> do not affect the
+cache key. Use <code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span> <span class="pre">=</span> <span class="pre">&quot;all&quot;</span></code> to ignore every
+parameter.</p></li>
+</ul>
 </dd></dl>
 
 </dd></dl>
@@ -419,6 +445,7 @@ instanciated by calling <code class="docutils literal notranslate"><span class="
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset"><code class="docutils literal notranslate"><span class="pre">BaseDataset</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.get_data"><code class="docutils literal notranslate"><span class="pre">BaseDataset.get_data()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.prepare"><code class="docutils literal notranslate"><span class="pre">BaseDataset.prepare()</span></code></a></li>
 </ul>
 </li>
 </ul>

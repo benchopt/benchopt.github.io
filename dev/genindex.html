@@ -183,6 +183,7 @@
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+
 <li class="toctree-l2"><a class="reference internal" href="benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
@@ -193,7 +194,6 @@
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="user_guide/tweak_datasets.html">Tweak a dataset</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l2"><a class="reference internal" href="user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
@@ -222,6 +222,7 @@
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/run_r_solver.html">Create and run an R solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="auto_examples/run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="available_benchmarks.html">Available benchmarks</a></li>
@@ -388,6 +389,8 @@
       <ul>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-config">benchopt-install command line option</a>
 </li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-config">benchopt-prepare command line option</a>
+</li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-config">benchopt-run command line option</a>
 </li>
       </ul></li>
@@ -398,6 +401,8 @@
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-d">benchopt-info command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-d">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-d">benchopt-prepare command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-d">benchopt-run command line option</a>
 </li>
@@ -414,19 +419,14 @@
 </li>
       </ul></li>
       <li>
-    --download
-
-      <ul>
-        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-download">benchopt-install command line option</a>
-</li>
-      </ul></li>
-      <li>
     --env
 
       <ul>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-e">benchopt-info command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-e">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-e">benchopt-prepare command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-e">benchopt-run command line option</a>
 </li>
@@ -438,6 +438,8 @@
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-env-name">benchopt-info command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-env-name">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-env-name">benchopt-prepare command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-env-name">benchopt-run command line option</a>
 </li>
@@ -462,6 +464,8 @@
 
       <ul>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-f">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-force">benchopt-prepare command line option</a>
 </li>
       </ul></li>
       <li>
@@ -535,6 +539,8 @@
     --n-jobs
 
       <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-j">benchopt-prepare command line option</a>
+</li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-j">benchopt-run command line option</a>
 </li>
       </ul></li>
@@ -606,6 +612,8 @@
     --parallel-config
 
       <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-parallel-config">benchopt-prepare command line option</a>
+</li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-parallel-config">benchopt-run command line option</a>
 </li>
       </ul></li>
@@ -637,6 +645,13 @@
 
       <ul>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-plotly">benchopt-plot command line option</a>
+</li>
+      </ul></li>
+      <li>
+    --prepare
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-prepare">benchopt-install command line option</a>
 </li>
       </ul></li>
       <li>
@@ -760,6 +775,8 @@
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-d">benchopt-install command line option</a>
 </li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-d">benchopt-prepare command line option</a>
+</li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-d">benchopt-run command line option</a>
 </li>
       </ul></li>
@@ -770,6 +787,8 @@
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-info-e">benchopt-info command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-e">benchopt-install command line option</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-e">benchopt-prepare command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-e">benchopt-run command line option</a>
 </li>
@@ -795,6 +814,8 @@
     -j
 
       <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-j">benchopt-prepare command line option</a>
+</li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-j">benchopt-run command line option</a>
 </li>
       </ul></li>
@@ -929,6 +950,8 @@
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-arg-BENCHMARK">benchopt-plot command line option</a>
 </li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-arg-BENCHMARK">benchopt-prepare command line option</a>
+</li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-publish-arg-BENCHMARK">benchopt-publish command line option</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-run-arg-BENCHMARK">benchopt-run command line option</a>
@@ -1055,8 +1078,6 @@
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-d">--dataset</a>
 </li>
-        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-download">--download</a>
-</li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-e">--env</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-env-name">--env-name</a>
@@ -1066,6 +1087,8 @@
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-gpu">--gpu</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-minimal">--minimal</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-prepare">--prepare</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-q">--quiet</a>
 </li>
@@ -1090,8 +1113,6 @@
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-install-arg-BENCHMARK">BENCHMARK</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     benchopt-merge command line option
 
@@ -1109,6 +1130,8 @@
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-merge-arg-BENCHMARK">BENCHMARK</a>
 </li>
       </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li>
     benchopt-plot command line option
 
@@ -1134,6 +1157,33 @@
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-k">-k</a>
 </li>
         <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-plot-arg-BENCHMARK">BENCHMARK</a>
+</li>
+      </ul></li>
+      <li>
+    benchopt-prepare command line option
+
+      <ul>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-config">--config</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-d">--dataset</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-e">--env</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-env-name">--env-name</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-force">--force</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-j">--n-jobs</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-parallel-config">--parallel-config</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-d">-d</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-e">-e</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-j">-j</a>
+</li>
+        <li><a href="user_guide/CLI_ref.html#cmdoption-benchopt-prepare-arg-BENCHMARK">BENCHMARK</a>
 </li>
       </ul></li>
       <li>
@@ -1323,6 +1373,8 @@
       <li><a href="user_guide/generated/benchopt.plotting.plot_benchmark.html#benchopt.plotting.plot_benchmark">plot_benchmark() (in module benchopt.plotting)</a>
 </li>
       <li><a href="user_guide/generated/benchopt.BaseSolver.html#benchopt.BaseSolver.pre_run_hook">pre_run_hook() (benchopt.BaseSolver method)</a>
+</li>
+      <li><a href="user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset.prepare">prepare() (benchopt.BaseDataset method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>

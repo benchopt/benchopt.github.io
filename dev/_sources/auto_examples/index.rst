@@ -89,6 +89,23 @@ Examples Gallery
     </div>
 
 
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="Benchopt separates data preparation (heavy one-time work: downloads, extraction, pre-processing) from data loading (fast, per-run work done by get_data()).">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_run_benchopt_prepare_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/run_benchopt_prepare`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Preparing datasets with benchopt prepare</div>
+    </div>
+
+
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -103,6 +120,7 @@ Examples Gallery
    /auto_examples/run_r_solver
    /auto_examples/run_julia_solver
    /auto_examples/run_plot_config
+   /auto_examples/run_benchopt_prepare
 
 
 .. only:: html
