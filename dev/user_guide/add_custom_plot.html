@@ -424,12 +424,9 @@ each dictionary represents a trace in the plot. Each dictionary must contain:</p
 <li><p><code class="code docutils literal notranslate"><span class="pre">x</span></code>: A list of x values.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">y</span></code>: A list of y values.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the trace</p></li>
-</ul>
-<p>Optional keys:</p>
-<ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code>: The color of the trace.</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">marker</span></code>: The marker style of the trace.</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">x_low</span></code>, <code class="code docutils literal notranslate"><span class="pre">x_high</span></code>: Lists of values to display uncertainty in the plot.
+<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code> (optional): The color of the trace.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">marker</span></code> (optional): The marker style of the trace.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">x_low</span></code>, <code class="code docutils literal notranslate"><span class="pre">x_high</span></code> (optional): Lists of values to display uncertainty in the plot.
 They will be used to display shaded area around the plot.</p></li>
 </ul>
 <p>The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
@@ -482,11 +479,8 @@ scatter points. The dictionary should contain:</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">y</span></code>: The list of values for the bar (the median will be the height of the bar).</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the bar.</p></li>
-</ul>
-<p>Optional keys:</p>
-<ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code>: The color of the bar.</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">text</span></code>: The text to display on the bar.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code> (optional): The color of the bar.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">text</span></code> (optional): The text to display on the bar.</p></li>
 </ul>
 <p>The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
 <ul class="simple">
@@ -525,16 +519,18 @@ where each dictionary represents a box. Each dictionary should contain:</p>
 <li><p><code class="code docutils literal notranslate"><span class="pre">x</span></code>: The x coordinate.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">y</span></code>: The values of the box for the corresponding x coordinate.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the box.</p></li>
-</ul>
-<p>Optional keys:</p>
-<ul class="simple">
-<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code>: The color of the box.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code> (optional): The color of the box.</p></li>
 </ul>
 <p>The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">xlabel</span></code>: The label of the x-axis.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">ylabel</span></code>: The label of the y-axis.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">box_width</span></code> (optional, default=0.6): The width of the boxes, only affects
+the matplotlib backend, not the html page.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">showfliers</span></code> (optional, default=False): Whether to show fliers in the boxplot.
+Fliers are points that are outside the whiskers of the boxplot, which represent
+outliers in the data. This only affects the matplotlib backend, not the html page.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
