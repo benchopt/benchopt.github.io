@@ -97,7 +97,7 @@ We start from the ``minimal_benchmark`` example.  Its dataset only defines
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-8a0dbf4733a845acafbe422e15b270f5-0' name='example-benchmark-8a0dbf4733a845acafbe422e15b270f5' type='radio'><label for='example-benchmark-8a0dbf4733a845acafbe422e15b270f5-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <input checked="checked" id='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1-0' name='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1' type='radio'><label for='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -135,7 +135,7 @@ We start from the ``minimal_benchmark`` example.  Its dataset only defines
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-8a0dbf4733a845acafbe422e15b270f5-1' name='example-benchmark-8a0dbf4733a845acafbe422e15b270f5' type='radio'><label for='example-benchmark-8a0dbf4733a845acafbe422e15b270f5-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1-1' name='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1' type='radio'><label for='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
@@ -150,7 +150,7 @@ We start from the ``minimal_benchmark`` example.  Its dataset only defines
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-8a0dbf4733a845acafbe422e15b270f5-2' name='example-benchmark-8a0dbf4733a845acafbe422e15b270f5' type='radio'><label for='example-benchmark-8a0dbf4733a845acafbe422e15b270f5-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1-2' name='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1' type='radio'><label for='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -202,7 +202,7 @@ We start from the ``minimal_benchmark`` example.  Its dataset only defines
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-8a0dbf4733a845acafbe422e15b270f5-3' name='example-benchmark-8a0dbf4733a845acafbe422e15b270f5' type='radio'><label for='example-benchmark-8a0dbf4733a845acafbe422e15b270f5-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <input  id='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1-3' name='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1' type='radio'><label for='example-benchmark-f3d81cc231e14010b0d10a34ec8377a1-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
     <span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -240,7 +240,7 @@ n_samples=...`` print confirms it runs once for each combination.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_h80u7uf7/prepare_example
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_yth89rov/prepare_example
     </pre></div>
     </pre>
             
@@ -286,7 +286,7 @@ and skips all preparation work.  Each status line now reads
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_h80u7uf7/prepare_example
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_yth89rov/prepare_example
     </pre></div>
     </pre>
             
@@ -370,7 +370,7 @@ and in the right form before ``get_data()`` ever runs.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-bfbff5ad34404e80901170ac3c8498ac-0' name='example-benchmark-bfbff5ad34404e80901170ac3c8498ac' type='radio'><label for='example-benchmark-bfbff5ad34404e80901170ac3c8498ac-0'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+                        <input checked="checked" id='example-benchmark-3226b3b430ce4aeeaa0d8cbc6a40b053-0' name='example-benchmark-3226b3b430ce4aeeaa0d8cbc6a40b053' type='radio'><label for='example-benchmark-3226b3b430ce4aeeaa0d8cbc6a40b053-0'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
@@ -419,7 +419,7 @@ n_samples=...`` print confirms both combinations are executed.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_h80u7uf7/prepare_example
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_yth89rov/prepare_example
     </pre></div>
     </pre>
             
@@ -502,7 +502,7 @@ parameter combinations that differ only in ignored dimensions and runs
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-92bcc68c123740b6bc4d3341cfeff7e1-0' name='example-benchmark-92bcc68c123740b6bc4d3341cfeff7e1' type='radio'><label for='example-benchmark-92bcc68c123740b6bc4d3341cfeff7e1-0'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+                        <input checked="checked" id='example-benchmark-3c9b334a95f1469ca1c75f4da8fe872d-0' name='example-benchmark-3c9b334a95f1469ca1c75f4da8fe872d' type='radio'><label for='example-benchmark-3c9b334a95f1469ca1c75f4da8fe872d-0'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
@@ -551,7 +551,7 @@ prints exactly twice.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_h80u7uf7/prepare_example
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_yth89rov/prepare_example
     </pre></div>
     </pre>
             
@@ -586,7 +586,7 @@ per-parameter processing at all.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 0.043 seconds)
+   **Total running time of the script:** (0 minutes 0.042 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_benchopt_prepare.py:
