@@ -106,6 +106,23 @@ Examples Gallery
     </div>
 
 
+.. raw:: html
+
+    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the image plot type, which allows benchmark authors to display solver outputs as a visual gallery inside the benchopt HTML result page.">
+
+.. only:: html
+
+  .. image:: /auto_examples/images/thumb/sphx_glr_run_image_benchmark_thumb.png
+    :alt:
+
+  :doc:`/auto_examples/run_image_benchmark`
+
+.. raw:: html
+
+      <div class="sphx-glr-thumbnail-title">Image plot type for benchopt</div>
+    </div>
+
+
 .. thumbnail-parent-div-close
 
 .. raw:: html
@@ -121,6 +138,7 @@ Examples Gallery
    /auto_examples/run_julia_solver
    /auto_examples/run_plot_config
    /auto_examples/run_benchopt_prepare
+   /auto_examples/run_image_benchmark
 
 
 .. only:: html

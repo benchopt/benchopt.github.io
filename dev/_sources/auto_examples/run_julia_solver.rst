@@ -87,7 +87,7 @@ a simulated dataset and a full python solver based on gradient descent.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-8935efb4a1a04db4bb3d6037cb694125-0' name='example-benchmark-8935efb4a1a04db4bb3d6037cb694125' type='radio'><label for='example-benchmark-8935efb4a1a04db4bb3d6037cb694125-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <input checked="checked" id='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba-0' name='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba' type='radio'><label for='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -125,7 +125,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-8935efb4a1a04db4bb3d6037cb694125-1' name='example-benchmark-8935efb4a1a04db4bb3d6037cb694125' type='radio'><label for='example-benchmark-8935efb4a1a04db4bb3d6037cb694125-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba-1' name='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba' type='radio'><label for='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -147,7 +147,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-8935efb4a1a04db4bb3d6037cb694125-2' name='example-benchmark-8935efb4a1a04db4bb3d6037cb694125' type='radio'><label for='example-benchmark-8935efb4a1a04db4bb3d6037cb694125-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba-2' name='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba' type='radio'><label for='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -199,7 +199,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-8935efb4a1a04db4bb3d6037cb694125-3' name='example-benchmark-8935efb4a1a04db4bb3d6037cb694125' type='radio'><label for='example-benchmark-8935efb4a1a04db4bb3d6037cb694125-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <input  id='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba-3' name='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba' type='radio'><label for='example-benchmark-b9b68c67c2334b2495d375f8f0a253ba-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
     <span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -248,7 +248,7 @@ and called from the Python solver.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-63bfdf25fbe44ef5b8082e41712671ca-0' name='example-benchmark-63bfdf25fbe44ef5b8082e41712671ca' type='radio'><label for='example-benchmark-63bfdf25fbe44ef5b8082e41712671ca-0'>solvers/julia_gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+                        <input checked="checked" id='example-benchmark-3a093a0f6798404d9dae3c30bc27c400-0' name='example-benchmark-3a093a0f6798404d9dae3c30bc27c400' type='radio'><label for='example-benchmark-3a093a0f6798404d9dae3c30bc27c400-0'>solvers/julia_gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">JuliaSolver</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_jl_interpreter</span>
@@ -285,7 +285,7 @@ and called from the Python solver.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-63bfdf25fbe44ef5b8082e41712671ca-1' name='example-benchmark-63bfdf25fbe44ef5b8082e41712671ca' type='radio'><label for='example-benchmark-63bfdf25fbe44ef5b8082e41712671ca-1'>solvers/julia_gd.jl</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
+    <input  id='example-benchmark-3a093a0f6798404d9dae3c30bc27c400-1' name='example-benchmark-3a093a0f6798404d9dae3c30bc27c400' type='radio'><label for='example-benchmark-3a093a0f6798404d9dae3c30bc27c400-1'>solvers/julia_gd.jl</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
 
 
     <span class="k">function</span><span class="w"> </span><span class="n">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">lr</span><span class="p">,</span><span class="w"> </span><span class="n">n_iter</span><span class="p">)</span>
@@ -340,7 +340,7 @@ available in your environment, this command will use ``conda`` to install it.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_zqa23flc/julia_solver<span class="w"> </span>-s<span class="w"> </span>julia-gd
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_hhm4qpt7/julia_solver<span class="w"> </span>-s<span class="w"> </span>julia-gd
     </pre></div>
     </pre>
             
@@ -358,7 +358,7 @@ available in your environment, this command will use ``conda`` to install it.
      - https://repo.prefix.dev/julia-forge
     Platform: linux-64
     Collecting package metadata (repodata.json): - \ | / - \ | / - \ | / done
-    Solving environment: \ | done
+    Solving environment: \ | / done
 
     julia-1.12.5         | 165.2 MB  |            |   0% 
     perl-5.32.1          | 12.7 MB   |            |   0% 
@@ -396,7 +396,7 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    libgit2-1.9.2        | 1011 KB   |            |   0% 
+    libgit2-1.9.3        | 1014 KB   |            |   0% 
 
 
 
@@ -550,36 +550,47 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-     ... (more hidden) ...
-    perl-5.32.1          | 12.7 MB   | ##         |  21% 
+    julia-1.12.5         | 165.2 MB  | 1          |   1% [A
+    perl-5.32.1          | 12.7 MB   | #1         |  12% 
 
-    git-2.53.0           | 10.9 MB   | ##9        |  29% 
-
-
-    openblas-ilp64-0.3.3 | 5.7 MB    |            |   1% 
+    git-2.53.0           | 10.9 MB   | ####6      |  47% 
 
 
-
-    julia-1.12.5         | 165.2 MB  |            |   1% 
-    julia-1.12.5         | 165.2 MB  | 4          |   5% 
+    openblas-ilp64-0.3.3 | 5.7 MB    | ###        |  31% 
 
 
 
-    libopenblas-ilp64-0. | 5.5 MB    | ########## | 100% 
+    libopenblas-ilp64-0. | 5.5 MB    | ########1  |  82% 
 
 
 
-    libopenblas-ilp64-0. | 5.5 MB    | ########## | 100% 
+    julia-1.12.5         | 165.2 MB  | 5          |   5% 
+    perl-5.32.1          | 12.7 MB   | ######6    |  67% 
 
 
-    openblas-ilp64-0.3.3 | 5.7 MB    | ########## | 100% 
+
+
+    metis-5.1.0          | 3.7 MB    |            |   0% 
 
 
     openblas-ilp64-0.3.3 | 5.7 MB    | ########## | 100% 
 
+
+    julia-1.12.5         | 165.2 MB  | 9          |  10% 
+
     git-2.53.0           | 10.9 MB   | ########## | 100% 
 
     git-2.53.0           | 10.9 MB   | ########## | 100% 
+
+
+
+
+    metis-5.1.0          | 3.7 MB    | ########## | 100% 
+
+
+
+
+    metis-5.1.0          | 3.7 MB    | ########## | 100% 
 
 
 
@@ -590,27 +601,38 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    metis-5.1.0          | 3.7 MB    |            |   0% 
+
+
+    libcholmod-5.3.1     | 1.1 MB    | 1          |   1% 
 
 
 
 
 
 
-    julia-1.12.5         | 165.2 MB  | 8          |   9% 
+
+    libgit2-1.9.3        | 1014 KB   | 1          |   2% 
+
+
+
+
+
+
+
+    libgit2-1.9.3        | 1014 KB   | ########## | 100% 
+
+
+
+
+
+
+    julia-1.12.5         | 165.2 MB  | #3         |  14% 
 
 
 
 
 
     p7zip-16.02          | 2.2 MB    | ########## | 100% 
-
-
-
-
-
-
-    libcholmod-5.3.1     | 1.1 MB    | ########## | 100% 
 
 
 
@@ -627,17 +649,19 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    libgit2-1.9.2        | 1011 KB   | 1          |   2% 
+
+
+    gmp-6.3.0            | 449 KB    | 3          |   4% 
 
 
 
 
-    metis-5.1.0          | 3.7 MB    | ########## | 100% 
 
 
 
 
-    metis-5.1.0          | 3.7 MB    | ########## | 100% 
+
+    gmp-6.3.0            | 449 KB    | ########## | 100% 
 
 
 
@@ -647,15 +671,6 @@ available in your environment, this command will use ``conda`` to install it.
 
 
     mpfr-4.2.2           | 713 KB    | ########## | 100% 
-    julia-1.12.5         | 165.2 MB  | #2         |  13% 
-
-
-
-
-
-
-
-    libgit2-1.9.2        | 1011 KB   | ########## | 100% 
 
 
 
@@ -688,19 +703,10 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    gmp-6.3.0            | 449 KB    | 3          |   4% 
 
 
 
-
-
-
-
-
-
-
-
-    libspqr-4.3.4        | 213 KB    | ########## | 100% 
+    libklu-2.3.5         | 142 KB    | #1         |  11% 
 
 
 
@@ -721,20 +727,9 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    gmp-6.3.0            | 449 KB    | ########## | 100% 
 
 
-
-
-
-
-
-
-
-
-
-
-    libklu-2.3.5         | 142 KB    | #1         |  11% 
+    libspqr-4.3.4        | 213 KB    | ########## | 100% 
 
 
 
@@ -775,21 +770,6 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-
-    libcxsparse-4.4.1    | 118 KB    | #3         |  14% 
-
-
-
-
-
-
-
-
-
-
-
-
-
     arpack-3.9.1         | 127 KB    | ########## | 100% 
 
 
@@ -805,39 +785,55 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
+
+    julia-1.12.5         | 165.2 MB  | #8         |  18% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    libcxsparse-4.4.1    | 118 KB    | #3         |  14% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    libopenlibm4-0.8.1   | 102 KB    | ########## | 100% 
+    perl-5.32.1          | 12.7 MB   | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     libcxsparse-4.4.1    | 118 KB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    libopenlibm4-0.8.1   | 102 KB    | #5         |  16% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    julia-1.12.5         | 165.2 MB  | #7         |  17% 
 
 
 
@@ -889,6 +885,44 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
+
+     ... (more hidden) ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+     ... (more hidden) ...
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     libparu-1.0.0        | 91 KB     | #7         |  18% 
 
 
@@ -907,7 +941,16 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    libparu-1.0.0        | 91 KB     | ########## | 100% 
+    julia-1.12.5         | 165.2 MB  | ##2        |  22% 
+
+
+
+    julia-1.12.5         | 165.2 MB  | ##6        |  26% 
+
+
+
+
+    julia-1.12.5         | 165.2 MB  | ###        |  30% 
 
 
 
@@ -915,6 +958,7 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
+    libgit2-1.9.3        | 1014 KB   | ########## | 100% 
 
 
 
@@ -922,34 +966,7 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-
-
-
-
-     ... (more hidden) ...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-     ... (more hidden) ...
-
-
-
-    julia-1.12.5         | 165.2 MB  | ##8        |  28% 
+    libgit2-1.9.3        | 1014 KB   | ########## | 100% 
 
 
     openblas-ilp64-0.3.3 | 5.7 MB    | ########## | 100% 
@@ -966,104 +983,7 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    julia-1.12.5         | 165.2 MB  | ####       |  41% 
-
-
-
-
-    julia-1.12.5         | 165.2 MB  | ####8      |  48% 
-
-
-
-
-
-
-
-
-    mpfr-4.2.2           | 713 KB    | ########## | 100% 
-
-
-
-
-
-
-
-
-    mpfr-4.2.2           | 713 KB    | ########## | 100% 
-
-
-
-
-
-    p7zip-16.02          | 2.2 MB    | ########## | 100% 
-
-
-
-
-
-    julia-1.12.5         | 165.2 MB  | #####5     |  55% 
-
-
-
-
-
-
-
-    libgit2-1.9.2        | 1011 KB   | ########## | 100% 
-
-
-
-
-
-
-
-    julia-1.12.5         | 165.2 MB  | ######2    |  63% 
-
-
-
-
-
-
-
-
-
-
-
-    libspqr-4.3.4        | 213 KB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-    libspqr-4.3.4        | 213 KB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-    libumfpack-6.3.5     | 424 KB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-    libumfpack-6.3.5     | 424 KB    | ########## | 100% 
+    libcholmod-5.3.1     | 1.1 MB    | ########## | 100% 
 
 
 
@@ -1083,7 +1003,71 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    julia-1.12.5         | 165.2 MB  | ######9    |  70% 
+    julia-1.12.5         | 165.2 MB  | ###3       |  34% 
+
+
+
+
+
+
+
+
+    mpfr-4.2.2           | 713 KB    | ########## | 100% 
+
+
+
+
+
+
+
+
+    mpfr-4.2.2           | 713 KB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+    libumfpack-6.3.5     | 424 KB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+    julia-1.12.5         | 165.2 MB  | ###7       |  37% 
+
+
+
+
+
+
+
+
+
+
+
+    libspqr-4.3.4        | 213 KB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+    libspqr-4.3.4        | 213 KB    | ########## | 100% 
 
 
 
@@ -1138,6 +1122,50 @@ available in your environment, this command will use ``conda`` to install it.
 
 
     arpack-3.9.1         | 127 KB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    libopenlibm4-0.8.1   | 102 KB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    julia-1.12.5         | 165.2 MB  | ####3      |  44% 
+
+
+
+
+
+    p7zip-16.02          | 2.2 MB    | ########## | 100% 
+
+
+
+
+
+    p7zip-16.02          | 2.2 MB    | ########## | 100% 
 
 
 
@@ -1167,39 +1195,7 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    julia-1.12.5         | 165.2 MB  | #######6   |  77% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    libopenlibm4-0.8.1   | 102 KB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    libopenlibm4-0.8.1   | 102 KB    | ########## | 100% 
+    libcxsparse-4.4.1    | 118 KB    | ########## | 100% 
 
 
 
@@ -1233,43 +1229,7 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    zlib-1.3.2           | 94 KB     | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    libparu-1.0.0        | 91 KB     | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    julia-1.12.5         | 165.2 MB  | ########4  |  84% 
+    julia-1.12.5         | 165.2 MB  | ####6      |  47% 
 
 
 
@@ -1307,9 +1267,45 @@ available in your environment, this command will use ``conda`` to install it.
 
 
 
-    julia-1.12.5         | 165.2 MB  | #########8 |  99% [A
+     ... (more hidden) ...
 
-    git-2.53.0           | 10.9 MB   | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    libparu-1.0.0        | 91 KB     | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    julia-1.12.5         | 165.2 MB  | ######9    |  69% 
+
+    julia-1.12.5         | 165.2 MB  | ########9  |  90% 
     julia-1.12.5         | 165.2 MB  | ########## | 100% 
 
 
@@ -1592,18 +1588,18 @@ available in your environment, this command will use ``conda`` to install it.
 
 
      done
-    Preparing transaction: - \ done
-    Verifying transaction: / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ |
-    / - \ done
+    Preparing transaction: \ | done
+    Verifying transaction: - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | /
+    - \ | / - \ done
     Executing transaction: / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ |
-    / - done
-    Installing pip dependencies: | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ |
-    / - \ | / - Ran pip subprocess with arguments:
+    / - \ | / - \ | / done
+    Installing pip dependencies: \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \
+    | / - \ | / - \ | / - Ran pip subprocess with arguments:
     [&#x27;/home/circleci/miniconda/envs/benchopt-docs/bin/python&#x27;, &#x27;-m&#x27;, &#x27;pip&#x27;, 
-    &#x27;install&#x27;, &#x27;-U&#x27;, &#x27;-r&#x27;, &#x27;/tmp/condaenv.9_zywe77.requirements.txt&#x27;, 
+    &#x27;install&#x27;, &#x27;-U&#x27;, &#x27;-r&#x27;, &#x27;/tmp/condaenv.htmpsxek.requirements.txt&#x27;, 
     &#x27;--exists-action=b&#x27;]
     Pip subprocess output:
-    Collecting julia (from -r /tmp/condaenv.9_zywe77.requirements.txt (line 1))
+    Collecting julia (from -r /tmp/condaenv.htmpsxek.requirements.txt (line 1))
       Downloading julia-0.6.2-py2.py3-none-any.whl.metadata (2.4 kB)
     Downloading julia-0.6.2-py2.py3-none-any.whl (68 kB)
     Installing collected packages: julia
@@ -1621,7 +1617,7 @@ available in your environment, this command will use ``conda`` to install it.
 
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> done</span>
     - Checking installed packages...Failed to import Solver from 
-    temp_benchmark_zqa23flc/julia_solver/solvers/julia_gd.py. Please fix the 
+    temp_benchmark_hhm4qpt7/julia_solver/solvers/julia_gd.py. Please fix the 
     following error to use this file with benchopt:
     Traceback (most recent call last):
       File &quot;/home/circleci/project/benchopt/utils/dynamic_modules.py&quot;, line 101, 
@@ -1634,7 +1630,7 @@ available in your environment, this command will use ``conda`` to install it.
       File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 999, in exec_module
       File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 488, in _call_with_frames_removed
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_zqa23flc/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_hhm4qpt7/julia_solver/solvers/
     julia_gd.py&quot;, line 3, in &lt;module&gt;
         from benchopt.helpers.julia import JuliaSolver
       File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 8, in &lt;module&gt;
@@ -1678,7 +1674,7 @@ Then, we can run the benchmark and show the comparison.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_zqa23flc/julia_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_hhm4qpt7/julia_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
     </pre></div>
     </pre>
             
@@ -1699,18 +1695,18 @@ Then, we can run the benchmark and show the comparison.
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                              
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                               
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_zqa23flc/julia_solver/outputs/benchopt_run_2026-05-03_16h12m40.</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_hhm4qpt7/julia_solver/outputs/benchopt_run_2026-05-05_09h47m16.</span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">parquet</span>
     Rendering benchmark results...
        Processing 
-    temp_benchmark_zqa23flc/julia_solver/outputs/benchopt_run_2026-05-03_16h12m40.
+    temp_benchmark_hhm4qpt7/julia_solver/outputs/benchopt_run_2026-05-05_09h47m16.
     parquet
     done
     Writing results to 
-    temp_benchmark_zqa23flc/julia_solver/outputs/julia_solver_benchopt_run_2026-05
-    -03_16h12m40.html
+    temp_benchmark_hhm4qpt7/julia_solver/outputs/julia_solver_benchopt_run_2026-05
+    -05_09h47m16.html
     Writing julia_solver index to 
-    temp_benchmark_zqa23flc/julia_solver/outputs/julia_solver.html
+    temp_benchmark_hhm4qpt7/julia_solver/outputs/julia_solver.html
 
 
 
@@ -1736,7 +1732,7 @@ other, hinting to a loading time for the solver.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (4 minutes 49.472 seconds)
+   **Total running time of the script:** (5 minutes 54.768 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_julia_solver.py:

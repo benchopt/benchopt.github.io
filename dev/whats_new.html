@@ -223,6 +223,7 @@
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="auto_examples/run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="auto_examples/run_image_benchmark.html">Image plot type for benchopt</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="available_benchmarks.html">Available benchmarks</a></li>
@@ -443,6 +444,14 @@ be ignored for caching by specifying them in <code class="docutils literal notra
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/912">#912</a>)</p></li>
 <li><p>Add an API function for merging benchmark result files, similar to
 the <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">merge</span></code> command. By <a class="reference external" href="https://damienlesens.github.io/">Damien Lesens</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/916">#916</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">'image'</span></code> plot type to display images and per-iteration frame
+animations (as animated GIFs) in the HTML result page. Return a list of
+dicts with <code class="docutils literal notranslate"><span class="pre">&quot;image&quot;</span></code> (a NumPy array or a list of arrays) and an optional
+<code class="docutils literal notranslate"><span class="pre">&quot;label&quot;</span></code> key from <code class="xref py py-meth docutils literal notranslate"><span class="pre">BasePlot.plot()</span></code>.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/923">#923</a>)</p></li>
+<li><p>Non-primitive objective values (NumPy arrays, etc.) can now be serialized
+into the parquet result file using <code class="docutils literal notranslate"><span class="pre">safetensors</span></code> and safe pickler.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/923">#923</a>)</p></li>
 </ul>
 </section>
 <section id="doc">

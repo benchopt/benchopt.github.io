@@ -67,7 +67,7 @@ options.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-1357eab4d7cd4829936e0710efea7d69-0' name='example-benchmark-1357eab4d7cd4829936e0710efea7d69' type='radio'><label for='example-benchmark-1357eab4d7cd4829936e0710efea7d69-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <input checked="checked" id='example-benchmark-1f83e56092994182bbd235c63f8569b1-0' name='example-benchmark-1f83e56092994182bbd235c63f8569b1' type='radio'><label for='example-benchmark-1f83e56092994182bbd235c63f8569b1-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -105,7 +105,7 @@ options.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-1357eab4d7cd4829936e0710efea7d69-1' name='example-benchmark-1357eab4d7cd4829936e0710efea7d69' type='radio'><label for='example-benchmark-1357eab4d7cd4829936e0710efea7d69-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-1f83e56092994182bbd235c63f8569b1-1' name='example-benchmark-1f83e56092994182bbd235c63f8569b1' type='radio'><label for='example-benchmark-1f83e56092994182bbd235c63f8569b1-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -127,7 +127,7 @@ options.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-1357eab4d7cd4829936e0710efea7d69-2' name='example-benchmark-1357eab4d7cd4829936e0710efea7d69' type='radio'><label for='example-benchmark-1357eab4d7cd4829936e0710efea7d69-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-1f83e56092994182bbd235c63f8569b1-2' name='example-benchmark-1f83e56092994182bbd235c63f8569b1' type='radio'><label for='example-benchmark-1f83e56092994182bbd235c63f8569b1-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -208,7 +208,7 @@ based on benchopt's default plotting configuration.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_f1be8hov/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">40</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span>gd<span class="o">[</span><span class="nv">lr</span><span class="o">=[</span>1e-1,3e-2,1e-2,3e-3<span class="o">]]</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_c7e8jppx/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">40</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span>gd<span class="o">[</span><span class="nv">lr</span><span class="o">=[</span>1e-1,3e-2,1e-2,3e-3<span class="o">]]</span>
     </pre></div>
     </pre>
             
@@ -224,18 +224,18 @@ based on benchopt's default plotting configuration.
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                      
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.003]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                     
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_f1be8hov/minimal_benchmark/outputs/benchopt_run_2026-05-03_16h1</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">2m46.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_c7e8jppx/minimal_benchmark/outputs/benchopt_run_2026-05-05_09h4</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">7m24.parquet</span>
     Rendering benchmark results...
        Processing 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/benchopt_run_2026-05-03_16h1
-    2m46.parquet
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/benchopt_run_2026-05-05_09h4
+    7m24.parquet
     done
     Writing results to 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-    un_2026-05-03_16h12m46.html
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-05-05_09h47m24.html
     Writing minimal_benchmark index to 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/minimal_benchmark.html
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -300,7 +300,7 @@ They will be kept as they are when activating the view.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-9ea3fa1d95d64b44813682ef77e871b8-0' name='example-benchmark-9ea3fa1d95d64b44813682ef77e871b8' type='radio'><label for='example-benchmark-9ea3fa1d95d64b44813682ef77e871b8-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+                        <input checked="checked" id='example-benchmark-fb110a7292a44bc1aa944344aa7c55d5-0' name='example-benchmark-fb110a7292a44bc1aa944344aa7c55d5' type='radio'><label for='example-benchmark-fb110a7292a44bc1aa944344aa7c55d5-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
     <span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
@@ -337,21 +337,21 @@ the first view automatically loaded.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_f1be8hov/minimal_benchmark
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_c7e8jppx/minimal_benchmark
     </pre></div>
     </pre>
             
                 <div class="sphx-glr-script-out highlight-none notranslate">
                     <div class="highlight"><pre>Rendering benchmark results...
        Processing 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/benchopt_run_2026-05-03_16h1
-    2m46.parquet
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/benchopt_run_2026-05-05_09h4
+    7m24.parquet
     done
     Writing results to 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-    un_2026-05-03_16h12m46.html
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-05-05_09h47m24.html
     Writing minimal_benchmark index to 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/minimal_benchmark.html
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -423,7 +423,7 @@ with colors defined by the value of the learning rate used by the solver.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-491ef7630c7a49b4ae94ae2ff08e4e02-0' name='example-benchmark-491ef7630c7a49b4ae94ae2ff08e4e02' type='radio'><label for='example-benchmark-491ef7630c7a49b4ae94ae2ff08e4e02-0'>plots/custom_objective_time.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
+                        <input checked="checked" id='example-benchmark-52b8e35061004890884d1be1ea31f6c6-0' name='example-benchmark-52b8e35061004890884d1be1ea31f6c6' type='radio'><label for='example-benchmark-52b8e35061004890884d1be1ea31f6c6-0'>plots/custom_objective_time.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
 
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
@@ -502,7 +502,7 @@ plot, and run ``benchopt plot`` again to update the plot.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-2e788551414c4db0b6c640d9358c825d-0' name='example-benchmark-2e788551414c4db0b6c640d9358c825d' type='radio'><label for='example-benchmark-2e788551414c4db0b6c640d9358c825d-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+                        <input checked="checked" id='example-benchmark-1beca95d8e0d4025b216f9caed28ed07-0' name='example-benchmark-1beca95d8e0d4025b216f9caed28ed07' type='radio'><label for='example-benchmark-1beca95d8e0d4025b216f9caed28ed07-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Sensitivity lr</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_objective_time</span>
     <span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
@@ -540,21 +540,21 @@ to the selection of the learning rate.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_f1be8hov/minimal_benchmark
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_c7e8jppx/minimal_benchmark
     </pre></div>
     </pre>
             
                 <div class="sphx-glr-script-out highlight-none notranslate">
                     <div class="highlight"><pre>Rendering benchmark results...
        Processing 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/benchopt_run_2026-05-03_16h1
-    2m46.parquet
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/benchopt_run_2026-05-05_09h4
+    7m24.parquet
     done
     Writing results to 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-    un_2026-05-03_16h12m46.html
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-05-05_09h47m24.html
     Writing minimal_benchmark index to 
-    temp_benchmark_f1be8hov/minimal_benchmark/outputs/minimal_benchmark.html
+    temp_benchmark_c7e8jppx/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -574,7 +574,7 @@ to the selection of the learning rate.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 6.540 seconds)
+   **Total running time of the script:** (0 minutes 8.295 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_plot_config.py:

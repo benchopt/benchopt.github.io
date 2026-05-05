@@ -224,6 +224,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_image_benchmark.html">Image plot type for benchopt</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -331,6 +332,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart">Bar Chart</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">Box Plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-plot">Table Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-plot">Image Plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-utilities">Plotting Utilities</a></li>
 </ul>
             </nav>
@@ -360,7 +362,7 @@ in the plot selection menu of the HTML interface, or the name you can use to
 select this plot in config files for your benchmark.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">type</span></code>: The type of the plot, which defines how the output of <cite>plot</cite>
 will be rendered. Supported types are <code class="code docutils literal notranslate"><span class="pre">&quot;scatter&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;bar_chart&quot;</span></code>,
-<code class="code docutils literal notranslate"><span class="pre">&quot;boxplot&quot;</span></code> and <code class="code docutils literal notranslate"><span class="pre">&quot;table&quot;</span></code>.</p></li>
+<code class="code docutils literal notranslate"><span class="pre">&quot;boxplot&quot;</span></code>, <code class="code docutils literal notranslate"><span class="pre">&quot;table&quot;</span></code> and <code class="code docutils literal notranslate"><span class="pre">&quot;image&quot;</span></code>.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">options</span></code>: A dictionary defining the different options available for the
 plot. Typically, this can be used to have different plots depending on dataset’s
 or objective’s parameters, or to display customization options. The keys in the
@@ -385,7 +387,7 @@ The visualization is rendered using either the <code class="docutils literal not
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;My Custom Plot&quot;</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;scatter&quot;</span>  <span class="c1"># or &quot;bar_chart&quot;, &quot;boxplot&quot; or &quot;table&quot;</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;scatter&quot;</span>  <span class="c1"># or &quot;bar_chart&quot;, &quot;boxplot&quot;, &quot;table&quot; or &quot;image&quot;</span>
     <span class="n">options</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>         <span class="c1"># Automatic options from DataFrame columns</span>
         <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
@@ -588,6 +590,36 @@ The metadata dictionary returned by <code class="code docutils literal notransla
 </pre></div>
 </div>
 </section>
+<section id="image-plot">
+<h2>Image Plot<a class="headerlink" href="#image-plot" title="Link to this heading">#</a></h2>
+<p>For an image plot, the <code class="code docutils literal notranslate"><span class="pre">plot</span></code> method should return a list of dictionaries,
+where each dictionary represents one image card displayed in a grid.
+Each dictionary must contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">image</span></code>: Either an image-compatible array (rendered as a PNG)
+or a list of image-compatible arrays (rendered as an animated GIF showing
+per-iteration progress). A pre-computed base64 data URI or URL are also
+accepted. If set to <code class="docutils literal notranslate"><span class="pre">None</span></code>, this will create an empty image, which can
+be used for alignment purposes.</p></li>
+</ul>
+<p>Optional keys:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: Text displayed below the image card.</p></li>
+</ul>
+<p>Arrays are expected to have values in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code> and are converted automatically
+using Pillow, so no manual encoding is needed.</p>
+<p>The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
+<ul class="simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title displayed above the grid.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">ncols</span></code>: Number of columns in the grid (default: min(n_images, 3)).</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the HTML result page, animated GIFs are rendered when a list of arrays
+is provided. In the matplotlib backend, each image card is shown as a
+static subplot using the last frame for animated sequences.</p>
+</div>
+</section>
 <section id="plotting-utilities">
 <span id="id1"></span><h2>Plotting Utilities<a class="headerlink" href="#plotting-utilities" title="Link to this heading">#</a></h2>
 <p>To ensure consistency across plots (e.g., using the same color and marker for a
@@ -667,6 +699,7 @@ of the label, ensuring that the same solver always gets the same color.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bar-chart">Bar Chart</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#box-plot">Box Plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-plot">Table Plot</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-plot">Image Plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-utilities">Plotting Utilities</a></li>
 </ul>
   </nav></div>
