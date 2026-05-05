@@ -39,7 +39,7 @@ This example demonstrates how to run an existing benchmark with benchopt.
 
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 13-26
+.. GENERATED FROM PYTHON SOURCE LINES 14-27
 
 We will use the minimal benchmark defined in the ``examples`` folder.
 The benchmark objective is a simple minimization task:
@@ -55,7 +55,7 @@ We define:
 - a ``Solver`` that minimizes this objective with gradient descent. It is
   parametrized with parameter ``lr`` for the step size.
 
-.. GENERATED FROM PYTHON SOURCE LINES 26-33
+.. GENERATED FROM PYTHON SOURCE LINES 27-34
 
 .. code-block:: Python
 
@@ -77,7 +77,8 @@ We define:
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <input checked="checked" id='example-benchmark-109fa1a3841541b2843b1077909422e6-0' name='example-benchmark-109fa1a3841541b2843b1077909422e6' type='radio'><label for='example-benchmark-109fa1a3841541b2843b1077909422e6-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-d8b96f50d34444a993244d4537368b8c-0' name='example-benchmark-d8b96f50d34444a993244d4537368b8c' type='radio'><label for='example-benchmark-d8b96f50d34444a993244d4537368b8c-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -115,7 +116,7 @@ We define:
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-109fa1a3841541b2843b1077909422e6-1' name='example-benchmark-109fa1a3841541b2843b1077909422e6' type='radio'><label for='example-benchmark-109fa1a3841541b2843b1077909422e6-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-d8b96f50d34444a993244d4537368b8c-1' name='example-benchmark-d8b96f50d34444a993244d4537368b8c' type='radio'><label for='example-benchmark-d8b96f50d34444a993244d4537368b8c-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -137,7 +138,7 @@ We define:
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-109fa1a3841541b2843b1077909422e6-2' name='example-benchmark-109fa1a3841541b2843b1077909422e6' type='radio'><label for='example-benchmark-109fa1a3841541b2843b1077909422e6-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-d8b96f50d34444a993244d4537368b8c-2' name='example-benchmark-d8b96f50d34444a993244d4537368b8c' type='radio'><label for='example-benchmark-d8b96f50d34444a993244d4537368b8c-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -189,7 +190,7 @@ We define:
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-109fa1a3841541b2843b1077909422e6-3' name='example-benchmark-109fa1a3841541b2843b1077909422e6' type='radio'><label for='example-benchmark-109fa1a3841541b2843b1077909422e6-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <input  id='example-benchmark-d8b96f50d34444a993244d4537368b8c-3' name='example-benchmark-d8b96f50d34444a993244d4537368b8c' type='radio'><label for='example-benchmark-d8b96f50d34444a993244d4537368b8c-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
     <span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -205,12 +206,12 @@ We define:
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 34-36
+.. GENERATED FROM PYTHON SOURCE LINES 35-37
 
 To run the benchmark, just execute:
 
 
-.. GENERATED FROM PYTHON SOURCE LINES 36-39
+.. GENERATED FROM PYTHON SOURCE LINES 37-40
 
 .. code-block:: Python
 
@@ -225,7 +226,7 @@ To run the benchmark, just execute:
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_o_j5jq_3/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_49d_43xg/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
     </pre></div>
     </pre>
             
@@ -239,18 +240,18 @@ To run the benchmark, just execute:
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                    
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                     
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_o_j5jq_3/minimal_benchmark/outputs/benchopt_run_2026-05-05_10h3</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">5m47.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_49d_43xg/minimal_benchmark/outputs/benchopt_run_2026-05-05_12h3</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">9m41.parquet</span>
     Rendering benchmark results...
        Processing 
-    temp_benchmark_o_j5jq_3/minimal_benchmark/outputs/benchopt_run_2026-05-05_10h3
-    5m47.parquet
+    temp_benchmark_49d_43xg/minimal_benchmark/outputs/benchopt_run_2026-05-05_12h3
+    9m41.parquet
     done
     Writing results to 
-    temp_benchmark_o_j5jq_3/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-    un_2026-05-05_10h35m47.html
+    temp_benchmark_49d_43xg/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-05-05_12h39m41.html
     Writing minimal_benchmark index to 
-    temp_benchmark_o_j5jq_3/minimal_benchmark/outputs/minimal_benchmark.html
+    temp_benchmark_49d_43xg/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -267,7 +268,7 @@ To run the benchmark, just execute:
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 40-48
+.. GENERATED FROM PYTHON SOURCE LINES 41-49
 
 This runs the benchmark named ``minimal_benchmark`` located in the
 ``examples`` folder.
@@ -278,7 +279,7 @@ to compute the median and quartiles of the curves.
 
 To get a more precise curve, you can increase ``n`` and ``r``:
 
-.. GENERATED FROM PYTHON SOURCE LINES 48-51
+.. GENERATED FROM PYTHON SOURCE LINES 49-52
 
 .. code-block:: Python
 
@@ -293,7 +294,7 @@ To get a more precise curve, you can increase ``n`` and ``r``:
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_o_j5jq_3/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_49d_43xg/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
     </pre></div>
     </pre>
             
@@ -307,18 +308,18 @@ To get a more precise curve, you can increase ``n`` and ``r``:
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                     
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                      
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_o_j5jq_3/minimal_benchmark/outputs/benchopt_run_2026-05-05_10h3</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">5m54.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_49d_43xg/minimal_benchmark/outputs/benchopt_run_2026-05-05_12h3</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">9m48.parquet</span>
     Rendering benchmark results...
        Processing 
-    temp_benchmark_o_j5jq_3/minimal_benchmark/outputs/benchopt_run_2026-05-05_10h3
-    5m54.parquet
+    temp_benchmark_49d_43xg/minimal_benchmark/outputs/benchopt_run_2026-05-05_12h3
+    9m48.parquet
     done
     Writing results to 
-    temp_benchmark_o_j5jq_3/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-    un_2026-05-05_10h35m54.html
+    temp_benchmark_49d_43xg/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-05-05_12h39m48.html
     Writing minimal_benchmark index to 
-    temp_benchmark_o_j5jq_3/minimal_benchmark/outputs/minimal_benchmark.html
+    temp_benchmark_49d_43xg/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -335,7 +336,7 @@ To get a more precise curve, you can increase ``n`` and ``r``:
     <br />
     <br />
 
-.. GENERATED FROM PYTHON SOURCE LINES 52-63
+.. GENERATED FROM PYTHON SOURCE LINES 53-67
 
 Here, the display is not ideal because both solvers reach convergence very
 quickly. You can change the display by selecting the scale of the axis in
@@ -349,10 +350,75 @@ Here, clicking on ``Subopt. (log)`` in the *Available plots* above the
 figure will take you to a view with the right scale, and looking at
 suboptimality instead of objective value.
 
+Once the benchmark has be run, you can also generate pdf figures using the
+``benchopt plot`` command with ``--no-html`` option:
+
+.. GENERATED FROM PYTHON SOURCE LINES 67-72
+
+.. code-block:: Python
+
+
+    benchopt_cli(
+        f"plot {benchmark.benchmark_dir} -k objective_curve --no-html"
+    )
+
+
+
+
+.. rst-class:: sphx-glr-horizontal
+
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_run_minimal_benchmark_003.png
+         :alt: Quadratic Data: simulated 
+         :srcset: /auto_examples/images/sphx_glr_run_minimal_benchmark_003.png
+         :class: sphx-glr-multi-img
+
+    *
+
+      .. image-sg:: /auto_examples/images/sphx_glr_run_minimal_benchmark_004.png
+         :alt: Quadratic Data: simulated 
+         :srcset: /auto_examples/images/sphx_glr_run_minimal_benchmark_004.png
+         :class: sphx-glr-multi-img
+
+
+
+.. raw:: html
+
+    <div class="output_subarea output_html rendered_html output_result">
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_49d_43xg/minimal_benchmark<span class="w"> </span>-k<span class="w"> </span>objective_curve<span class="w"> </span>--no-html
+    </pre></div>
+    </pre>
+            
+                <div class="sphx-glr-script-out highlight-none notranslate">
+                    <div class="highlight"><pre>Save objective_curve_simulated_Quadratic_objective_value_Time as: 
+    temp_benchmark_49d_43xg/minimal_benchmark/outputs/objective_curve_simulated_Qu
+    adratic_objective_value_Time.pdf
+    Save objective_curve_simulated_Quadratic_objective_value_Iteration as: 
+    temp_benchmark_49d_43xg/minimal_benchmark/outputs/objective_curve_simulated_Qu
+    adratic_objective_value_Iteration.pdf
+
+
+
+    </pre></div>
+                </div>
+        
+            
+        
+    </div>
+    <br />
+    <br />
+
+.. GENERATED FROM PYTHON SOURCE LINES 73-75
+
+See :ref:`here <add_custom_plot>` for more details on how to customize
+the plots and define your own visualization.
+
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 9.377 seconds)
+   **Total running time of the script:** (0 minutes 10.659 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_minimal_benchmark.py:
