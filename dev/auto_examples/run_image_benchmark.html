@@ -506,7 +506,7 @@ filter and a total variation denoising method.</p></li>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
 
                 <div class='sd-tab-set'>
-                    <input checked="checked" id='example-benchmark-88536e393dce440ea63ac0bff76fe6d2-0' name='example-benchmark-88536e393dce440ea63ac0bff76fe6d2' type='radio'><label for='example-benchmark-88536e393dce440ea63ac0bff76fe6d2-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>
+                    <input checked="checked" id='example-benchmark-38da7e2cc77847b287e373da6cdd63de-0' name='example-benchmark-38da7e2cc77847b287e373da6cdd63de' type='radio'><label for='example-benchmark-38da7e2cc77847b287e373da6cdd63de-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -533,7 +533,7 @@ filter and a total variation denoising method.</p></li>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-88536e393dce440ea63ac0bff76fe6d2-1' name='example-benchmark-88536e393dce440ea63ac0bff76fe6d2' type='radio'><label for='example-benchmark-88536e393dce440ea63ac0bff76fe6d2-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<input  id='example-benchmark-38da7e2cc77847b287e373da6cdd63de-1' name='example-benchmark-38da7e2cc77847b287e373da6cdd63de' type='radio'><label for='example-benchmark-38da7e2cc77847b287e373da6cdd63de-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
@@ -550,7 +550,7 @@ filter and a total variation denoising method.</p></li>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_true</span><span class="o">=</span><span class="n">X_true</span><span class="p">,</span> <span class="n">X_noisy</span><span class="o">=</span><span class="n">X_noisy</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-88536e393dce440ea63ac0bff76fe6d2-2' name='example-benchmark-88536e393dce440ea63ac0bff76fe6d2' type='radio'><label for='example-benchmark-88536e393dce440ea63ac0bff76fe6d2-2'>solvers/tv_denoise.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-38da7e2cc77847b287e373da6cdd63de-2' name='example-benchmark-38da7e2cc77847b287e373da6cdd63de' type='radio'><label for='example-benchmark-38da7e2cc77847b287e373da6cdd63de-2'>solvers/tv_denoise.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SufficientProgressCriterion</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -597,7 +597,7 @@ filter and a total variation denoising method.</p></li>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-88536e393dce440ea63ac0bff76fe6d2-3' name='example-benchmark-88536e393dce440ea63ac0bff76fe6d2' type='radio'><label for='example-benchmark-88536e393dce440ea63ac0bff76fe6d2-3'>solvers/median_filter.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-38da7e2cc77847b287e373da6cdd63de-3' name='example-benchmark-38da7e2cc77847b287e373da6cdd63de' type='radio'><label for='example-benchmark-38da7e2cc77847b287e373da6cdd63de-3'>solvers/median_filter.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SufficientProgressCriterion</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
@@ -716,7 +716,7 @@ reference and noisy images.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <input checked="checked" id='example-benchmark-5938e458914546579ac9c2af5c4620e2-0' name='example-benchmark-5938e458914546579ac9c2af5c4620e2' type='radio'><label for='example-benchmark-5938e458914546579ac9c2af5c4620e2-0'>plots/reconstruction.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+                    <input checked="checked" id='example-benchmark-90bf5378bb3d42e18ab93837064d7288-0' name='example-benchmark-90bf5378bb3d42e18ab93837064d7288' type='radio'><label for='example-benchmark-90bf5378bb3d42e18ab93837064d7288-0'>plots/reconstruction.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
@@ -766,7 +766,7 @@ reference and noisy images.</p>
         <span class="p">}</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-5938e458914546579ac9c2af5c4620e2-1' name='example-benchmark-5938e458914546579ac9c2af5c4620e2' type='radio'><label for='example-benchmark-5938e458914546579ac9c2af5c4620e2-1'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
+<input  id='example-benchmark-90bf5378bb3d42e18ab93837064d7288-1' name='example-benchmark-90bf5378bb3d42e18ab93837064d7288' type='radio'><label for='example-benchmark-90bf5378bb3d42e18ab93837064d7288-1'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reconstruction</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
@@ -790,7 +790,7 @@ to keep the runtime short.</p>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_k6bufmhm/image_denoising<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_1r7dko86/image_denoising<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </pre>
 
@@ -812,12 +812,12 @@ simulated[n=128,noise_std=0.3,random_state=42]
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.1]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.5]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_k6bufmhm/image_denoising/outputs/benchopt_run_2026-05-05_09h47m</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">32.parquet</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_1r7dko86/image_denoising/outputs/benchopt_run_2026-05-05_10h45m</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">44.parquet</span>
 Rendering benchmark results...
    Processing
-temp_benchmark_k6bufmhm/image_denoising/outputs/benchopt_run_2026-05-05_09h47m
-32.parquetTraceback (most recent call last):
+temp_benchmark_1r7dko86/image_denoising/outputs/benchopt_run_2026-05-05_10h45m
+44.parquetTraceback (most recent call last):
   File &quot;/home/circleci/project/benchopt/plotting/helpers.py&quot;, line 61, in
 update_plot_data_style
     raise ValueError(
@@ -830,10 +830,10 @@ ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
 
 done
 Writing results to
-temp_benchmark_k6bufmhm/image_denoising/outputs/image_denoising_benchopt_run_2
-026-05-05_09h47m32.html
+temp_benchmark_1r7dko86/image_denoising/outputs/image_denoising_benchopt_run_2
+026-05-05_10h45m44.html
 Writing image_denoising index to
-temp_benchmark_k6bufmhm/image_denoising/outputs/image_denoising.html
+temp_benchmark_1r7dko86/image_denoising/outputs/image_denoising.html
 
 
 
@@ -867,7 +867,7 @@ option, generating a pdf file in the output directory of the benchmark.</p>
 <li><img src="../_images/sphx_glr_run_image_benchmark_003.png" srcset="../_images/sphx_glr_run_image_benchmark_003.png" alt="Image Denoising — Data: simulated[n=128,noise_std=0.3,random_state=42], Reference, Noisy input MSE=0.0906, Invalid MSE=0.0906, median_filter[size=3] MSE=0.1137, median_filter[size=5] MSE=0.2336, tv_denoise[lam=0.1] MSE=0.1584, tv_denoise[lam=0.5] MSE=1.0867" class = "sphx-glr-multi-img"/></li>
 </ul>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_k6bufmhm/image_denoising<span class="w"> </span>--no-html<span class="w"> </span>--kind<span class="w"> </span>reconstruction
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_1r7dko86/image_denoising<span class="w"> </span>--no-html<span class="w"> </span>--kind<span class="w"> </span>reconstruction
 </pre></div>
 </pre>
 
@@ -885,7 +885,7 @@ ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
 
 Save reconstruction_simulated[n=32,noise_std=0.3,random_state=42]_Image
 Denoising as:
-temp_benchmark_k6bufmhm/image_denoising/outputs/reconstruction_simulated[n=32,
+temp_benchmark_1r7dko86/image_denoising/outputs/reconstruction_simulated[n=32,
 noise_std=0.pdf
 
 
@@ -900,7 +900,7 @@ ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
 
 Save reconstruction_simulated[n=128,noise_std=0.3,random_state=42]_Image
 Denoising as:
-temp_benchmark_k6bufmhm/image_denoising/outputs/reconstruction_simulated[n=128
+temp_benchmark_1r7dko86/image_denoising/outputs/reconstruction_simulated[n=128
 ,noise_std=0.pdf
 
 
@@ -912,7 +912,7 @@ temp_benchmark_k6bufmhm/image_denoising/outputs/reconstruction_simulated[n=128
 
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 8.889 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 9.774 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-image-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/b511b0d69a70bb7c4f71d647e013a0ca/run_image_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_image_benchmark.ipynb</span></code></a></p>
