@@ -436,6 +436,8 @@ They will be used to display shaded area around the plot.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">xlabel</span></code>: The label of the x-axis.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">ylabel</span></code>: The label of the y-axis.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">grid</span></code> (optional, default=True): Whether to show grid lines in the plot.
+This only affects the matplotlib backend, not the html page.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
     <span class="c1"># Filter the dataframe</span>
@@ -488,6 +490,8 @@ scatter points. The dictionary should contain:</p>
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">ylabel</span></code>: The label of the y-axis.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">grid</span></code> (optional, default=True): Whether to show grid lines on the y-axis in the plot.
+This only affects the matplotlib backend, not the html page.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
@@ -528,6 +532,8 @@ where each dictionary represents a box. Each dictionary should contain:</p>
 <li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">xlabel</span></code>: The label of the x-axis.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">ylabel</span></code>: The label of the y-axis.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">grid</span></code> (optional, default=True): Whether to show grid lines on the y-axis in the plot.
+This only affects the matplotlib backend, not the html page.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">box_width</span></code> (optional, default=0.6): The width of the boxes, only affects
 the matplotlib backend, not the html page.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">showfliers</span></code> (optional, default=False): Whether to show fliers in the boxplot.

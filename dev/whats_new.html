@@ -452,6 +452,8 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <li><p>Non-primitive objective values (NumPy arrays, etc.) can now be serialized
 into the parquet result file using <code class="docutils literal notranslate"><span class="pre">safetensors</span></code> and safe pickler.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/923">#923</a>)</p></li>
+<li><p>New metadata plot options to control the display when using the matplotlib backend.
+By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/920">#920</a> &amp; <a class="reference external" href="https://github.com/benchopt/benchopt/pull/928">#928</a>)</p></li>
 </ul>
 </section>
 <section id="doc">
@@ -474,6 +476,8 @@ the example gallery. By <a class="reference external" href="https://tommoral.git
 Also fix median computation for objective curve, to ensure the same
 number of points for all solvers even when one stops earlier.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/904">#904</a>)</p></li>
+<li><p>Fix boxplot displays when encountering NaN values, and improved the matplotlib
+backend to display the boxplots. By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/921">#921</a> &amp; <a class="reference external" href="https://github.com/benchopt/benchopt/pull/913">#913</a>)</p></li>
 <li><p>When passing un-supported extension to <code class="docutils literal notranslate"><span class="pre">--output</span></code>, benchopt now fallback
 to parquet and raise a warning instead of an error. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/926">#926</a>)</p></li>
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">save_last_result</span></code> behavior when using cache results.
