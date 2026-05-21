@@ -428,8 +428,11 @@ each dictionary represents a trace in the plot. Each dictionary must contain:</p
 <li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the trace</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code> (optional): The color of the trace.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">marker</span></code> (optional): The marker style of the trace.</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">x_low</span></code>, <code class="code docutils literal notranslate"><span class="pre">x_high</span></code> (optional): Lists of values to display uncertainty in the plot.
+<li><p><code class="code docutils literal notranslate"><span class="pre">y_low</span></code>, <code class="code docutils literal notranslate"><span class="pre">y_high</span></code> (optional): Lists of values to display uncertainty in the plot.
 They will be used to display shaded area around the plot.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">x_low</span></code>, <code class="code docutils literal notranslate"><span class="pre">x_high</span></code> (optional): Lists of values to display uncertainty in the plot.
+They will be used to display shaded area around the plot. You can use either y_low/y_high or
+x_low/x_high, but not both.</p></li>
 </ul>
 <p>The metadata dictionary returned by <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> should contain:</p>
 <ul class="simple">
@@ -438,6 +441,8 @@ They will be used to display shaded area around the plot.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">ylabel</span></code>: The label of the y-axis.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">grid</span></code> (optional, default=True): Whether to show grid lines in the plot.
 This only affects the matplotlib backend, not the html page.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">scale</span></code> (optional, default=”loglog”): The scale of the axes in the matplotlib backend,
+can be either “linear”, “semilog-x”, “semilog-y” or “loglog”.</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
     <span class="c1"># Filter the dataframe</span>
