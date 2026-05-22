@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Run a benchmark &#8212; benchopt 1.9.1.dev0 documentation</title>
+    <title>Install and run a benchmark &#8212; benchopt 1.9.1.dev0 documentation</title>
   
   
   
@@ -55,12 +55,12 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/run_benchmark';</script>
-    <script src="../_static/benchopt.js?v=93769e0d"></script>
+    <script src="../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Visualize a benchmark" href="visualize_benchmark.html" />
-    <link rel="prev" title="Install a benchmark" href="install_benchmark.html" />
+    <link rel="next" title="Manage and Visualize benchmark results" href="manage_benchmark_results.html" />
+    <link rel="prev" title="Write a benchmark" href="write_benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.1.dev0" />
@@ -178,44 +178,48 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="install_benchmark.html">Install a benchmark</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Run a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage benchmark results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
-
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Install and run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="manage_benchmark_results.html">Manage and Visualize benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/config_benchopt.html">Configure Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/authoring.html">Creating benchmarks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/class_customization.html">Benchmark class configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/ml_benchmark.html">Cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/running.html">Running &amp; scaling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/config_benchopt.html">Configure Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/testing.html">Testing &amp; advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/reference.html">Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Examples Gallery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -316,7 +320,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Run a benchmark</h1>
+    <h1>Install and run a benchmark</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -326,9 +330,15 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-configuration-file">Using a configuration file</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-a-benchmark">Installing a benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-datasets">Preparing datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-benchmark">Running a benchmark</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-configuration-file">Using a configuration file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-solver-runs">Caching solver runs</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -340,26 +350,69 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="run-a-benchmark">
-<span id="run-benchmark"></span><h1>Run a benchmark<a class="headerlink" href="#run-a-benchmark" title="Link to this heading">#</a></h1>
-<p>Let’s use the Lasso benchmark to illustrate ways of running a benchmark.</p>
-<div class="admonition hint">
-<p class="admonition-title">Hint</p>
-<p>Head to <a class="reference internal" href="../get_started.html#get-started"><span class="std std-ref">Get started</span></a> to first install benchopt
-and setup the Lasso benchmark.</p>
+  <section id="install-and-run-a-benchmark">
+<span id="install-benchmark"></span><span id="run-benchmark"></span><h1>Install and run a benchmark<a class="headerlink" href="#install-and-run-a-benchmark" title="Link to this heading">#</a></h1>
+<section id="installing-a-benchmark">
+<h2>Installing a benchmark<a class="headerlink" href="#installing-a-benchmark" title="Link to this heading">#</a></h2>
+<p>Benchopt provides <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code> to set up all dependencies in a
+dedicated conda environment:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">.</span></code> installs requirements for all solvers and datasets
+using the <code class="docutils literal notranslate"><span class="pre">conda-forge</span></code> channel.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">.</span> <span class="pre">--minimal</span></code> installs only the minimum requirements
+declared in <code class="docutils literal notranslate"><span class="pre">objective.py</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">.</span> <span class="pre">-d</span> <span class="pre">dataset1</span> <span class="pre">-s</span> <span class="pre">solver1</span></code> installs only the requirements
+for selected components.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span> <span class="pre">.</span> <span class="pre">--prepare</span></code> also runs <a class="reference internal" href="#prepare-datasets"><span class="std std-ref">dataset preparation</span></a> after installing — convenient for CI or remote servers
+without internet access at run time.</p></li>
+</ul>
+<p>See <a class="reference internal" href="../user_guide/class_customization.html#managing-dependencies"><span class="std std-ref">Managing dependencies</span></a> for how to declare requirements and control
+the Python version when writing a benchmark.</p>
+</section>
+<section id="preparing-datasets">
+<span id="prepare-datasets"></span><h2>Preparing datasets<a class="headerlink" href="#preparing-datasets" title="Link to this heading">#</a></h2>
+<p>Benchopt separates <strong>data preparation</strong> (heavy one-time work: downloads,
+extraction, pre-processing) from <strong>data loading</strong> (fast, per-run work done
+by <code class="docutils literal notranslate"><span class="pre">get_data()</span></code>).</p>
+<p>Preparation is triggered by the dedicated command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt prepare path/to/benchmark
+</pre></div>
 </div>
-<p>With the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI)</span></a>, there are two ways to run a benchmark: passing options with flags in the CLI, or with a configuration file.</p>
-<section id="specifying-options-with-cli-flags">
-<h2>Specifying options with CLI flags<a class="headerlink" href="#specifying-options-with-cli-flags" title="Link to this heading">#</a></h2>
-<p>It is possible to specify the solvers as well as the datasets
-to include in the benchmark run by using flags after <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">.</span></code>.</p>
-<p>For instance, the following command runs the benchmark with solvers
-<code class="docutils literal notranslate"><span class="pre">skglm</span></code> and <code class="docutils literal notranslate"><span class="pre">celer</span></code>, on datasets <code class="docutils literal notranslate"><span class="pre">leukemia</span></code> and <code class="docutils literal notranslate"><span class="pre">simulated</span></code>.</p>
+<p>Benchopt calls the <a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset.prepare" title="benchopt.BaseDataset.prepare"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare()</span></code></a> method of every
+dataset and caches the result with <cite>joblib</cite>, so re-running the command is a
+no-op when nothing has changed. Use <code class="docutils literal notranslate"><span class="pre">--force</span></code> to bypass the cache and re-run
+preparation unconditionally.</p>
+<p>Preparation can also be parallelised across datasets using the same options as
+<a class="reference internal" href="../user_guide/distributed_run.html#parallel-run"><span class="std std-ref">benchopt run</span></a>.</p>
+</section>
+<section id="running-a-benchmark">
+<h2>Running a benchmark<a class="headerlink" href="#running-a-benchmark" title="Link to this heading">#</a></h2>
+<p>Once installed, run the benchmark with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">.</span></code>.
+With the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI)</span></a>, there are two ways to run a benchmark: passing options with flags in the CLI, or with a configuration file.</p>
+<p>Each <code class="docutils literal notranslate"><span class="pre">solver/dataset</span></code> define in the benchmark repository is automatically
+detected and included in the run. To list all available solvers and datasets, use <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">info</span> <span class="pre">.</span></code>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span>skglm<span class="w"> </span>-s<span class="w"> </span>celer<span class="w"> </span>-d<span class="w"> </span>leukemia<span class="w"> </span>-d<span class="w"> </span>simulated</span>
+</style><span class="prompt1">benchopt<span class="w"> </span>info<span class="w"> </span>.</span>
+</pre></div></div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Info regarding the benchmark &#39;my_bench&#39;</span>
+<span class="go">----------</span>
+<span class="gp"># </span>DATASETS
+<span class="go">dataset1, dataset2, dataset3, ...</span>
+<span class="go">----------</span>
+<span class="gp"># </span>SOLVERS
+<span class="go">solver1, solver2, solver3, ...</span>
+<span class="go">----------</span>
+</pre></div>
+</div>
+<section id="specifying-options-with-cli-flags">
+<h3>Specifying options with CLI flags<a class="headerlink" href="#specifying-options-with-cli-flags" title="Link to this heading">#</a></h3>
+<p>It is possible to select which solvers as well as the datasets
+to include in the benchmark run by using flags after <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">.</span></code>.</p>
+<p>For instance, the following command runs the benchmark with solvers
+<code class="docutils literal notranslate"><span class="pre">solver1</span></code> and <code class="docutils literal notranslate"><span class="pre">solver2</span></code>, on datasets <code class="docutils literal notranslate"><span class="pre">dataset1</span></code> and <code class="docutils literal notranslate"><span class="pre">dataset3</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span>solver1<span class="w"> </span>-s<span class="w"> </span>solver2<span class="w"> </span>-d<span class="w"> </span>dataset1<span class="w"> </span>-d<span class="w"> </span>dataset3</span>
 </pre></div></div><p>The <code class="docutils literal notranslate"><span class="pre">-s</span></code> flag is to specify a solver whereas <code class="docutils literal notranslate"><span class="pre">-d</span></code> specifies a dataset.
 To include multiple datasets/solvers, use multiple <code class="docutils literal notranslate"><span class="pre">-d</span></code>/<code class="docutils literal notranslate"><span class="pre">-s</span></code> flags, as in the above snippet.</p>
 <div class="admonition note">
@@ -368,18 +421,19 @@ To include multiple datasets/solvers, use multiple <code class="docutils literal
 The list of flags is available through <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">--help</span></code> or in the <a class="reference internal" href="../user_guide/CLI_ref.html#cli-ref"><span class="std std-ref">Command line interface (CLI)</span></a> page.</p>
 </div>
 <p>In addition, it is possible to specify the parameters of solvers and datasets by wrapping them in square brackets in comma separated format.</p>
-<p>The following snippet runs the <code class="docutils literal notranslate"><span class="pre">Python-PGD</span></code> solver with its acceleration parameter set to <code class="docutils literal notranslate"><span class="pre">True</span></code>, on the <code class="docutils literal notranslate"><span class="pre">simulated</span></code> dataset.
+<p>The following snippet runs the <code class="docutils literal notranslate"><span class="pre">solver1</span></code> solver with its <code class="docutils literal notranslate"><span class="pre">p1</span></code> parameter set
+to <code class="docutils literal notranslate"><span class="pre">1</span></code>, on the <code class="docutils literal notranslate"><span class="pre">dataset1</span></code> dataset.
 This dataset has parameters <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">n_features</span></code> that we set to <code class="docutils literal notranslate"><span class="pre">100</span></code> and <code class="docutils literal notranslate"><span class="pre">20</span></code> respectively.</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-0">
 shell</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span>Python-PGD<span class="o">[</span><span class="nv">use_acceleration</span><span class="o">=</span>True<span class="o">]</span><span class="w"> </span>-d<span class="w"> </span>simulated<span class="o">[</span><span class="nv">n_samples</span><span class="o">=</span><span class="m">100</span>,n_features<span class="o">=</span><span class="m">20</span><span class="o">]</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span>solver1<span class="o">[</span><span class="nv">p1</span><span class="o">=</span><span class="m">1</span><span class="o">]</span><span class="w"> </span>-d<span class="w"> </span>dataset1<span class="o">[</span><span class="nv">n_samples</span><span class="o">=</span><span class="m">100</span>,n_features<span class="o">=</span><span class="m">20</span><span class="o">]</span></span>
 </pre></div></div></div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-1">
 zsh</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;Python-PGD[use_acceleration=True]&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;simulated[n_samples=100,n_features=20]&quot;</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;solver1[p1=1]&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;dataset1[n_samples=100,n_features=20]&quot;</span></span>
 </pre></div></div></div>
 </div>
 <div class="admonition note">
@@ -388,34 +442,29 @@ zsh</label><div class="sd-tab-content docutils">
 </div>
 </section>
 <section id="using-a-configuration-file">
-<span id="run-with-config-file"></span><h2>Using a configuration file<a class="headerlink" href="#using-a-configuration-file" title="Link to this heading">#</a></h2>
+<span id="run-with-config-file"></span><h3>Using a configuration file<a class="headerlink" href="#using-a-configuration-file" title="Link to this heading">#</a></h3>
 <p>When using a complex configuration, it is more handy to specify it through a configuration file.
 Using a YAML file and the <code class="docutils literal notranslate"><span class="pre">--config</span></code> flag, it is possible to describe all details of the benchmark run and execute instead</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>--config<span class="w"> </span>./example_config.yml</span>
 </pre></div></div><p>Here is the content of configuration file <code class="docutils literal notranslate"><span class="pre">example_config.yml</span></code> if we were to run the two previous examples into a single one.</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">solver</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">skglm</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">celer</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">python-pgd[use_acceleration=True]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">solver1</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">solver2</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">solver3[p1=1]</span>
 
 <span class="nt">dataset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">leukemia</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">simulated[n_samples=100,n_features=10]</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">simulated</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset1[n_samples=100,n_features=10]</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset1</span><span class="p">:</span>
 <span class="w">        </span><span class="nt">n_samples</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">100</span>
 <span class="w">        </span><span class="nt">n_features</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">20</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">30</span><span class="p p-Indicator">]</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">simulated</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">dataset1</span><span class="p">:</span>
 <span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">n_samples, n_features</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[[</span><span class="nv">200</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">20</span><span class="p p-Indicator">],</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">150</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">30</span><span class="p p-Indicator">]]</span>
 </pre></div>
 </div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A third, less frequent, option to run a benchmark is using a Python script.
-Check it out on <a class="reference internal" href="#run-benchmark-with-py-script"><span class="std std-ref">advanced usage</span></a>.</p>
-</div>
 </section>
 <section id="run-a-benchmark-using-a-python-script">
-<span id="run-benchmark-with-py-script"></span><h2>Run a benchmark using a Python script<a class="headerlink" href="#run-a-benchmark-using-a-python-script" title="Link to this heading">#</a></h2>
+<span id="run-benchmark-with-py-script"></span><h3>Run a benchmark using a Python script<a class="headerlink" href="#run-a-benchmark-using-a-python-script" title="Link to this heading">#</a></h3>
 <p>Another way to run a benchmark is via a Python script.
 Typical use-cases of that are</p>
 <ul class="simple">
@@ -431,13 +480,13 @@ It assumes that the python script is located at the same level as the benchmark 
 <span class="n">run_benchmark</span><span class="p">(</span>
     <span class="n">benchmark_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
     <span class="n">solver_names</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;skglm&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;celer&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;python-pgd[use_acceleration=True]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;solver1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;solver2&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;solver3[p1=1]&quot;</span><span class="p">,</span>
     <span class="p">],</span>
     <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;leukemia&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;simulated[n_samples=100,n_features=20]&quot;</span>
+        <span class="s2">&quot;dataset3&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;dataset1[n_samples=100,n_features=20]&quot;</span>
     <span class="p">],</span>
 <span class="p">)</span>
 </pre></div>
@@ -447,6 +496,27 @@ It assumes that the python script is located at the same level as the benchmark 
 <p>Learn more about the different parameters supported by <code class="docutils literal notranslate"><span class="pre">run_benchmark</span></code>
 function on <a class="reference internal" href="../user_guide/API_ref.html#api-ref"><span class="std std-ref">API references</span></a>.</p>
 </div>
+</section>
+<section id="caching-solver-runs">
+<span id="run-caching"></span><h3>Caching solver runs<a class="headerlink" href="#caching-solver-runs" title="Link to this heading">#</a></h3>
+<p>Each solver/dataset/objective combination is cached on disk (via joblib,
+in the <code class="docutils literal notranslate"><span class="pre">__cache__/</span></code> folder of the benchmark) so that re-running
+<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> skips any combination whose result is already stored.
+The cache is <strong>invalidated automatically</strong> when the source code of the
+solver, objective, or dataset changes.
+The default cache location (<code class="docutils literal notranslate"><span class="pre">__cache__/</span></code> inside the benchmark folder) can be
+changed by setting the <code class="docutils literal notranslate"><span class="pre">cache</span></code> key in the global benchopt config file —
+see <a class="reference internal" href="../user_guide/config_benchopt.html#benchopt-config-settings"><span class="std std-ref">Benchopt config settings</span></a>.</p>
+<p>Useful flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">SOLVER_NAME</span></code> (<code class="docutils literal notranslate"><span class="pre">--force-solver</span></code>) — re-run a specific solver even if
+its result is cached, e.g. <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span> <span class="pre">.</span> <span class="pre">-f</span> <span class="pre">skglm</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no-cache</span></code> — disable caching entirely; every combination is always run
+from scratch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--collect</span></code> — skip all computation and only collect results that are
+already in the cache into a result file.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -462,20 +532,20 @@ function on <a class="reference internal" href="../user_guide/API_ref.html#api-r
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="install_benchmark.html"
+       href="write_benchmark.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Install a benchmark</p>
+        <p class="prev-next-title">Write a benchmark</p>
       </div>
     </a>
     <a class="right-next"
-       href="visualize_benchmark.html"
+       href="manage_benchmark_results.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Visualize a benchmark</p>
+        <p class="prev-next-title">Manage and Visualize benchmark results</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -497,9 +567,15 @@ function on <a class="reference internal" href="../user_guide/API_ref.html#api-r
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-configuration-file">Using a configuration file</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-a-benchmark">Installing a benchmark</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-datasets">Preparing datasets</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-benchmark">Running a benchmark</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-configuration-file">Using a configuration file</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-solver-runs">Caching solver runs</a></li>
+</ul>
+</li>
 </ul>
   </nav></div>
 

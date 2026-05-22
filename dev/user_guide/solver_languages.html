@@ -55,11 +55,11 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/solver_languages';</script>
-    <script src="../_static/benchopt.js?v=93769e0d"></script>
+    <script src="../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Configure Benchopt" href="config_benchopt.html" />
+    <link rel="next" title="Running &amp; scaling" href="running.html" />
     <link rel="prev" title="Evaluating an iterative method" href="iterative_solvers.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -178,44 +178,48 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/install_benchmark.html">Install a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Install and run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage and Visualize benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Using different programming languages with benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="authoring.html">Creating benchmarks</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="class_customization.html">Benchmark class configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml_benchmark.html">Cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Using different programming languages with benchopt</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="running.html">Running &amp; scaling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="testing.html">Testing &amp; advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="reference.html">Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Examples Gallery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -407,7 +411,7 @@ Here is an example:</p>
 </pre></div>
 </div>
 <p>If your Python solver requires some packages, benchopt allows you to list
-its requirements. See <a class="reference internal" href="../benchmark_workflow/install_benchmark.html#specify-requirements"><span class="std std-ref">Specifying requirements</span></a> for more details on how to
+its requirements. See <a class="reference internal" href="class_customization.html#specify-requirements"><span class="std std-ref">Specifying requirements</span></a> for more details on how to
 specify the requirements for benchopt classes.</p>
 </section>
 <section id="r-solver">
@@ -416,7 +420,70 @@ specify the requirements for benchopt classes.</p>
 A <code class="docutils literal notranslate"><span class="pre">.R</span></code> file that contains the solver and a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file that knows how to
 call the R solver using <a class="reference external" href="https://pypi.org/project/rpy2/">Rpy2</a>. Only the
 extensions should differ between the two files. Here is the Python file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="c1"># Import helpers from rpy2 and benchopt.helpers.r_lang</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.r_lang</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_func_from_r_file</span><span class="p">,</span> <span class="n">converter_ctx</span>
+
+<span class="c1"># Import R function defined in r_pgd.R so they can be retrieved as python</span>
+<span class="c1"># functions using `func = robjects.r[&#39;FUNC_NAME&#39;]`</span>
+<span class="n">R_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.R&#39;</span><span class="p">))</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;R-PGD&quot;</span>
+
+    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;rpy2&#39;</span><span class="p">]</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
+        <span class="n">robjects</span> <span class="o">=</span> <span class="n">import_func_from_r_file</span><span class="p">(</span><span class="n">R_FILE</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_gd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;gradient_descent&#39;</span><span class="p">]</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+        <span class="k">with</span> <span class="n">converter_ctx</span><span class="p">():</span>
+            <span class="n">coefs</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">r_gd</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span> <span class="n">n_iter</span><span class="o">=</span><span class="n">n_iter</span>
+            <span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+</pre></div>
+</div>
 <p>It uses the R code in:</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">##&#39; Functions used in GD algorithm</span>
+<span class="c1">##&#39;</span>
+<span class="c1">##&#39; @title Functions used in GD algorithm</span>
+<span class="c1">##&#39; @author Thomas Moreau</span>
+<span class="c1">##&#39; @export</span>
+
+
+<span class="c1"># Main algorithm</span>
+<span class="n">gradient_descent</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="kr">function</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">lr</span><span class="p">,</span><span class="w"> </span><span class="n">n_iter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1"># --------- Initialize parameter ---------</span>
+<span class="w">    </span><span class="n">p</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="nf">ncol</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+<span class="w">    </span><span class="n">parameters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">X</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0</span>
+
+<span class="w">    </span><span class="c1"># --------- Run GD for n_iter iterations ---------</span>
+<span class="w">    </span><span class="kr">for</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="kr">in</span><span class="w"> </span><span class="m">1</span><span class="o">:</span><span class="n">n_iter</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="c1"># Compute the gradient</span>
+<span class="w">        </span><span class="n">grad</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="p">(</span><span class="n">parameters</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">X</span><span class="p">)</span>
+<span class="w">        </span><span class="c1"># # Update the parameters</span>
+<span class="w">        </span><span class="n">parameters</span><span class="w"> </span><span class="o">&lt;-</span><span class="w"> </span><span class="n">parameters</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">lr</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">grad</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kr">return</span><span class="p">(</span><span class="n">parameters</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="julia-solver">
 <span id="julia-solvers"></span><h2>Julia solver<a class="headerlink" href="#julia-solver" title="Link to this heading">#</a></h2>
@@ -522,11 +589,11 @@ that uses a <code class="docutils literal notranslate"><span class="pre">'shell'
       </div>
     </a>
     <a class="right-next"
-       href="config_benchopt.html"
+       href="running.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Configure Benchopt</p>
+        <p class="prev-next-title">Running &amp; scaling</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

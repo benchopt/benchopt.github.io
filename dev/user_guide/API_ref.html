@@ -56,12 +56,12 @@
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/API_ref';</script>
-    <script src="../_static/benchopt.js?v=93769e0d"></script>
+    <script src="../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="benchopt.BaseObjective" href="generated/benchopt.BaseObjective.html" />
-    <link rel="prev" title="Advanced usage" href="advanced.html" />
+    <link rel="prev" title="Reference" href="reference.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.1.dev0" />
@@ -179,44 +179,48 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/install_benchmark.html">Install a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Install and run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage and Visualize benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solver_languages.html">Using different programming languages with benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
-<li class="toctree-l2 current active has-children"><a class="current reference internal" href="#">API references</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="authoring.html">Creating benchmarks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="class_customization.html">Benchmark class configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ml_benchmark.html">Cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solver_languages.html">Using different programming languages with benchopt</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="running.html">Running &amp; scaling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="testing.html">Testing &amp; advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="reference.html">Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3 current active has-children"><a class="current reference internal" href="#">API references</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Examples Gallery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -328,8 +332,6 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-base-classes">List of base classes:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrizing-objective-dataset-and-solver">Parametrizing Objective, Dataset, and Solver</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-run-hooks">Benchopt run hooks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-utils">Benchopt utils</a></li>
 </ul>
             </nav>
@@ -362,96 +364,8 @@
 </tbody>
 </table>
 </div>
-</section>
-<section id="parametrizing-objective-dataset-and-solver">
-<span id="parametrized"></span><h2>Parametrizing Objective, Dataset, and Solver<a class="headerlink" href="#parametrizing-objective-dataset-and-solver" title="Link to this heading">#</a></h2>
-<p>Benchmark classes can expose several configurations through a class attribute
-named <code class="docutils literal notranslate"><span class="pre">parameters</span></code>. This applies to the concrete <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>,
-and <code class="docutils literal notranslate"><span class="pre">Solver</span></code> classes that inherit from <a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective" title="benchopt.BaseObjective"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseObjective</span></code></a>,
-<a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset" title="benchopt.BaseDataset"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseDataset</span></code></a>, and <a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver" title="benchopt.BaseSolver"><code class="xref py py-class docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code></a>.</p>
-<p>The expected format is a dictionary whose keys are parameter names and whose
-values are lists of candidate values:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;simulated&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;n_samples&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
-        <span class="s2">&quot;n_features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">benchopt</span></code> evaluates the cartesian product of these values. In the example
-above, the dataset is instantiated for the four combinations of
-<code class="docutils literal notranslate"><span class="pre">n_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">n_features</span></code>.</p>
-<p>For each instantiated configuration, the selected values are stored as class
-attributes, so they can be accessed as <code class="docutils literal notranslate"><span class="pre">self.n_samples</span></code>, <code class="docutils literal notranslate"><span class="pre">self.n_features</span></code>,
-and so on inside the class methods. They are also included in the displayed
-name of the instance.</p>
-<p>When some parameters should vary together instead of being combined through a
-cartesian product, they can be grouped in a single key with comma-separated
-parameter names. In that case, the corresponding values must be tuples with
-the same arity:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;simulated&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;n_samples, n_features&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">50</span><span class="p">)],</span>
-        <span class="s2">&quot;reg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
-    <span class="p">}</span>
-</pre></div>
-</div>
-<p>This keeps <code class="docutils literal notranslate"><span class="pre">n_samples</span></code> and <code class="docutils literal notranslate"><span class="pre">n_features</span></code> paired together, while still
-forming the cartesian product with <code class="docutils literal notranslate"><span class="pre">reg</span></code>.</p>
-<p>Parameters can be overridden directly from the command line when selecting an
-objective, dataset, or solver:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-o<span class="w"> </span>objective<span class="o">[</span><span class="nv">reg</span><span class="o">=</span><span class="m">0</span>.1<span class="o">]</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-d<span class="w"> </span>simulated<span class="o">[</span><span class="nv">n_samples</span><span class="o">=</span><span class="m">100</span>,n_features<span class="o">=[</span><span class="m">20</span>,50<span class="o">]]</span><span class="w"> </span><span class="se">\</span>
-<span class="w">    </span>-s<span class="w"> </span>my-solver<span class="o">[</span><span class="nv">use_acceleration</span><span class="o">=</span>True<span class="o">]</span></span>
-</pre></div></div><p>The values in brackets use Python literal syntax, so booleans, strings,
-numbers, <code class="docutils literal notranslate"><span class="pre">None</span></code>, lists, or tuples can be passed. An override can be:</p>
-<ul class="simple">
-<li><p>a single value, such as <code class="docutils literal notranslate"><span class="pre">reg=0.1</span></code>;</p></li>
-<li><p>a list of values, such as <code class="docutils literal notranslate"><span class="pre">n_features=[20,50]</span></code>;</p></li>
-<li><p>a grouped parameter selection, such as
-<code class="docutils literal notranslate"><span class="pre">'n_samples,</span> <span class="pre">n_features'=[(100,</span> <span class="pre">20),</span> <span class="pre">(1000,</span> <span class="pre">50)]</span></code>.</p></li>
-</ul>
-<p>Only the parameters specified in the selector are replaced. All unspecified
-parameters keep the values defined in the class-level <code class="docutils literal notranslate"><span class="pre">parameters</span></code>
-dictionary. The resulting run configurations are then generated from the
-cartesian product of the remaining values.</p>
-<p>For more complex experiment definitions, the same parameter overrides can be
-expressed in the run configuration file described in
-<a class="reference internal" href="../benchmark_workflow/run_benchmark.html#run-benchmark"><span class="std std-ref">Run a benchmark</span></a>.</p>
-</section>
-<section id="benchopt-run-hooks">
-<span id="benchopt-hooks"></span><h2>Benchopt run hooks<a class="headerlink" href="#benchopt-run-hooks" title="Link to this heading">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">benchopt.BaseSolver</span></code> exposes several hooks that can be implemented to customize the behavior of a solver run:</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip" title="benchopt.BaseObjective.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseObjective.skip()</span></code></a>: hook to allow skipping configurations of
-objective. It is executed before <code class="docutils literal notranslate"><span class="pre">set_data</span></code> to skip if the current
-objective is not compatible with the dataset. It takes in the same arguments
-that are passed to <code class="docutils literal notranslate"><span class="pre">set_data</span></code>.</p></li>
-<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.skip()</span></code></a>: hook to allow skipping configurations of
-solver. It is executed right before <code class="docutils literal notranslate"><span class="pre">set_objective</span></code> to skip a solver
-if it is not compatible with objective and/or dataset parameters. It
-takes in the same arguments that are passed to <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.
-Refer to <a class="reference internal" href="advanced.html#skipping-solver"><span class="std std-ref">Advanced usage</span></a> for an example.</p></li>
-<li><p><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.get_next()</span></code>: hook called repeatedly after <code class="docutils literal notranslate"><span class="pre">run</span></code>
-to change the sampling points for a given solver. It is called with the
-previous <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> (i.e. tolerance or number of iterations), and returns
-the value for the next run. Refer to <a class="reference internal" href="iterative_solvers.html#sampling-strategy"><span class="std std-ref">Advanced usage</span></a>
-for an example.</p></li>
-<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.warm_up" title="benchopt.BaseSolver.warm_up"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.warm_up()</span></code></a>: hook called once before the solver runs.
-It is typically used to cache jit compilation of solver while not accounting
-for the time needed in the timings.</p></li>
-<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.pre_run_hook" title="benchopt.BaseSolver.pre_run_hook"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.pre_run_hook()</span></code></a>: hook called before each call to
-<code class="docutils literal notranslate"><span class="pre">run</span></code>, with the same argument. Allows to skip certain computation that
-cannot be cached globally, such as precompilation with different number of
-iterations in for jitted <code class="docutils literal notranslate"><span class="pre">jax</span></code> functions.</p></li>
-</ul>
+<p>See <a class="reference internal" href="class_customization.html#class-customization"><span class="std std-ref">Benchmark class configuration</span></a> for common configuration options: parameters,
+dependencies, and lifecycle hooks.</p>
 </section>
 <section id="benchopt-utils">
 <h2>Benchopt utils<a class="headerlink" href="#benchopt-utils" title="Link to this heading">#</a></h2>
@@ -493,12 +407,12 @@ iterations in for jitted <code class="docutils literal notranslate"><span class=
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="advanced.html"
+       href="reference.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Advanced usage</p>
+        <p class="prev-next-title">Reference</p>
       </div>
     </a>
     <a class="right-next"
@@ -529,8 +443,6 @@ iterations in for jitted <code class="docutils literal notranslate"><span class=
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-of-base-classes">List of base classes:</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrizing-objective-dataset-and-solver">Parametrizing Objective, Dataset, and Solver</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-run-hooks">Benchopt run hooks</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt-utils">Benchopt utils</a></li>
 </ul>
   </nav></div>

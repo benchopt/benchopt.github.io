@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Setting up an ML benchmark &#8212; benchopt 1.9.1.dev0 documentation</title>
+    <title>Cross-validation &#8212; benchopt 1.9.1.dev0 documentation</title>
   
   
   
@@ -55,12 +55,12 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/ml_benchmark';</script>
-    <script src="../_static/benchopt.js?v=93769e0d"></script>
+    <script src="../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Controlling randomness in Benchopt" href="controlling_randomness.html" />
-    <link rel="prev" title="User guide" href="index.html" />
+    <link rel="next" title="Evaluating an iterative method" href="iterative_solvers.html" />
+    <link rel="prev" title="Controlling randomness in Benchopt" href="controlling_randomness.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.1.dev0" />
@@ -178,44 +178,48 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/install_benchmark.html">Install a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Run a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage benchmark results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Install and run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage and Visualize benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solver_languages.html">Using different programming languages with benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l2 current active has-children"><a class="reference internal" href="authoring.html">Creating benchmarks</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="class_customization.html">Benchmark class configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="solver_languages.html">Using different programming languages with benchopt</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="running.html">Running &amp; scaling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="testing.html">Testing &amp; advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="reference.html">Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Examples Gallery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -303,9 +307,7 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="fa-solid fa-list"></span>
-</button>
+
 </div></div>
       
     </div>
@@ -316,20 +318,11 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Setting up an ML benchmark</h1>
+    <h1>Cross-validation</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
-            <div>
-                <h2> Contents </h2>
-            </div>
-            <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disabling-performance-curves">Disabling performance curves</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
-</ul>
-            </nav>
         </div>
     </div>
 </div>
@@ -339,48 +332,17 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="setting-up-an-ml-benchmark">
-<span id="ml-benchmark"></span><h1>Setting up an ML benchmark<a class="headerlink" href="#setting-up-an-ml-benchmark" title="Link to this heading">#</a></h1>
-<p>Benchopt can be used to run benchmarks on machine learning problems. This page
-explains the specificities of setting up a benchmark in this context.</p>
-<p>To easily get started with a new ML benchmark, we recommend using the dedicated
-<code class="docutils literal notranslate"><span class="pre">benchopt</span></code>’s <a class="reference external" href="https://github.com/benchopt/template_benchmark_ml">ML template</a> from github.
-This template provides a simple structure, with the different benchopt’s options set to accommodate ML workflows.</p>
-<section id="disabling-performance-curves">
-<h2>Disabling performance curves<a class="headerlink" href="#disabling-performance-curves" title="Link to this heading">#</a></h2>
-<p>Unlike optimization benchmarks where you track convergence over iterations,
-ML benchmarks typically evaluate each solver once to completion. To disable
-performance curve sampling, set <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code> in your
-<code class="docutils literal notranslate"><span class="pre">Objective</span></code> class:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;run_once&quot;</span>
-
-    <span class="c1"># ...rest of your objective definition</span>
-</pre></div>
-</div>
-<p>With this setting, each solver’s <code class="docutils literal notranslate"><span class="pre">run</span></code> method is called exactly once, and
-the <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> argument can be ignored. This is the recommended setup for
-benchmarks comparing methods where only the final performance matters.</p>
+  <section id="cross-validation">
+<span id="cross-val"></span><h1>Cross-validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h1>
+<p>When comparing ML methods, a common evaluation protocol is cross-validation:
+data is split into folds, each method is trained on a subset and evaluated on
+a held-out subset, and results are aggregated across folds.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>You can also set <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code> on individual <code class="docutils literal notranslate"><span class="pre">Solver</span></code>
-classes if only some solvers should run once while others need iterative
-evaluation.</p>
+<p>For the basic ML benchmark setup (<code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code>,
+train/test split) see the <a class="reference internal" href="../get_started.html#get-started"><span class="std std-ref">Get started</span></a> examples and
+<a class="reference internal" href="../benchmark_workflow/write_benchmark.html#write-benchmark"><span class="std std-ref">Write a benchmark</span></a>.</p>
 </div>
-<p>Note that when using <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code>
-will be called only once per solver run, and the resulting metrics will be
-stored directly in the benchmark results. It is also possible to different
-evaluation as different lines in the benchmark results by returning multiple
-dictionaries from <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code> as a list. See <a class="reference internal" href="advanced.html#multiple-evaluation"><span class="std std-ref">Producing multiple evaluations at once</span></a>
-for more details.</p>
-</section>
-<section id="cross-validation">
-<span id="id1"></span><h2>Cross-validation<a class="headerlink" href="#cross-validation" title="Link to this heading">#</a></h2>
-<p>In order to evaluate the generalization performance of a method, a common
-practice is to use cross-validation. In this context, the data is split
-several times, and the model is trained on a subset of the data and evaluated
-on another independent subset. This process is repeated several times, and
-the average performance is reported.</p>
 <p>In benchopt, cross-validation is handled as separate runs of the <code class="docutils literal notranslate"><span class="pre">Solver</span></code>,
 where the data is split into folds in <code class="docutils literal notranslate"><span class="pre">Objective.get_objective</span></code>, by calling
 <code class="docutils literal notranslate"><span class="pre">Objective.get_split</span></code>. This method takes in the data to split (typically
@@ -435,7 +397,6 @@ method in <code class="docutils literal notranslate"><span class="pre">Objective
 <p>The <code class="docutils literal notranslate"><span class="pre">cv_fold</span></code> argument correspond to the current iterate from <code class="docutils literal notranslate"><span class="pre">cv.split</span></code>,
 while <code class="docutils literal notranslate"><span class="pre">dataset,</span> <span class="pre">y</span></code> corresponds to objects passed in <code class="docutils literal notranslate"><span class="pre">Objective.get_split</span></code>.</p>
 </section>
-</section>
 
 
                 </article>
@@ -449,20 +410,20 @@ while <code class="docutils literal notranslate"><span class="pre">dataset,</spa
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="index.html"
+       href="controlling_randomness.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">User guide</p>
+        <p class="prev-next-title">Controlling randomness in Benchopt</p>
       </div>
     </a>
     <a class="right-next"
-       href="controlling_randomness.html"
+       href="iterative_solvers.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Controlling randomness in Benchopt</p>
+        <p class="prev-next-title">Evaluating an iterative method</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -472,24 +433,6 @@ while <code class="docutils literal notranslate"><span class="pre">dataset,</spa
             </div>
             
             
-              
-                <dialog id="pst-secondary-sidebar-modal"></dialog>
-                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
-
-
-  <div class="sidebar-secondary-item"><div
-    id="pst-page-navigation-heading-2"
-    class="page-toc tocsection onthispage">
-    <i class="fa-solid fa-list"></i> Contents
-  </div>
-  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#disabling-performance-curves">Disabling performance curves</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#cross-validation">Cross-validation</a></li>
-</ul>
-  </nav></div>
-
-</div></div>
               
             
           </div>

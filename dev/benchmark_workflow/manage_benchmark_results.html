@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Manage benchmark results &#8212; benchopt 1.9.1.dev0 documentation</title>
+    <title>Manage and Visualize benchmark results &#8212; benchopt 1.9.1.dev0 documentation</title>
   
   
   
@@ -55,12 +55,12 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'benchmark_workflow/manage_benchmark_results';</script>
-    <script src="../_static/benchopt.js?v=93769e0d"></script>
+    <script src="../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Extend an existing benchmark" href="extend_benchmark.html" />
-    <link rel="prev" title="Visualize a benchmark" href="visualize_benchmark.html" />
+    <link rel="next" title="Testing a benchmark" href="test_benchmark.html" />
+    <link rel="prev" title="Install and run a benchmark" href="run_benchmark.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.1.dev0" />
@@ -178,44 +178,48 @@
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
 <li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Benchmark workflow</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="install_benchmark.html">Install a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Run a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="visualize_benchmark.html">Visualize a benchmark</a></li>
-<li class="toctree-l2 current active"><a class="current reference internal" href="#">Manage benchmark results</a></li>
-<li class="toctree-l2"><a class="reference internal" href="extend_benchmark.html">Extend an existing benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="write_benchmark.html">Write a benchmark</a></li>
-
+<li class="toctree-l2"><a class="reference internal" href="run_benchmark.html">Install and run a benchmark</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Manage and Visualize benchmark results</a></li>
 <li class="toctree-l2"><a class="reference internal" href="test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 has-children"><a class="reference internal" href="../tutorials/index.html">Tutorials</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/build_benchmark.html">Understanding and building a simple benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../tutorials/add_solver.html">Add a solver to an existing benchmark</a></li>
-</ul>
-</details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/ml_benchmark.html">Setting up an ML benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/config_benchopt.html">Configure Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
-<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/authoring.html">Creating benchmarks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/class_customization.html">Benchmark class configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/ml_benchmark.html">Cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/running.html">Running &amp; scaling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/config_benchopt.html">Configure Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/testing.html">Testing &amp; advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/reference.html">Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../auto_examples/index.html">Examples Gallery</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
@@ -316,7 +320,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Manage benchmark results</h1>
+    <h1>Manage and Visualize benchmark results</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -341,6 +345,14 @@
 </li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-results">Plotting results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-walkthrough">Dashboard walkthrough</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-header">Part 1: Header</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-figure">Part 2: Figure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-legend">Part 3: Legend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-sidebar">Part 4: Sidebar</a></li>
+</ul>
+</li>
 </ul>
             </nav>
         </div>
@@ -352,8 +364,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="manage-benchmark-results">
-<span id="manage-results"></span><h1>Manage benchmark results<a class="headerlink" href="#manage-benchmark-results" title="Link to this heading">#</a></h1>
+  <section id="manage-and-visualize-benchmark-results">
+<span id="manage-results"></span><h1>Manage and Visualize benchmark results<a class="headerlink" href="#manage-and-visualize-benchmark-results" title="Link to this heading">#</a></h1>
 <section id="description-of-the-benchmark-results-dataframe">
 <span id="benchmark-results"></span><h2>Description of the benchmark results DataFrame<a class="headerlink" href="#description-of-the-benchmark-results-dataframe" title="Link to this heading">#</a></h2>
 <p>Once the benchmark is run, the results are stored as a <code class="docutils literal notranslate"><span class="pre">pd.DataFrame</span></code> in a
@@ -510,6 +522,101 @@ Install it with <code class="docutils literal notranslate"><span class="pre">pip
 </section>
 </section>
 </section>
+<section id="plotting-results">
+<span id="plot-benchmark"></span><h2>Plotting results<a class="headerlink" href="#plotting-results" title="Link to this heading">#</a></h2>
+<p>The HTML dashboard is opened automatically after <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>. It can
+also be regenerated at any time from a <code class="docutils literal notranslate"><span class="pre">.parquet</span></code> file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt plot path/to/benchmark
+</pre></div>
+</div>
+<p>By default, benchopt displays the most recent result file. A specific file
+can be passed directly:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ benchopt plot path/to/benchopt_run_&lt;date&gt;_&lt;time&gt;.parquet
+</pre></div>
+</div>
+<p>Custom plot classes (see <a class="reference internal" href="../user_guide/add_custom_plot.html#add-custom-plot"><span class="std std-ref">Add a custom plot to a benchmark</span></a>) are also applied.</p>
+</section>
+<section id="dashboard-walkthrough">
+<span id="visualize-benchmark"></span><h2>Dashboard walkthrough<a class="headerlink" href="#dashboard-walkthrough" title="Link to this heading">#</a></h2>
+<p>By default, the results are displayed in an HTML dashboard. Let’s explore the
+dashboard features.</p>
+<figure class="align-center">
+<img alt="Dashboard of the Lasso benchmark results" src="../_images/annotated_benchmark_dashboard.png" />
+</figure>
+<section id="part-1-header">
+<h3>Part 1: Header<a class="headerlink" href="#part-1-header" title="Link to this heading">#</a></h3>
+<p>Part 1 contains the benchmark metadata: the benchmark title and the
+specifications of the machine used to run it.
+On the right hand side is a <kbd class="kbd docutils literal notranslate">Download</kbd> button to download the results
+of the benchmark as <code class="docutils literal notranslate"><span class="pre">.parquet</span></code> file.</p>
+</section>
+<section id="part-2-figure">
+<h3>Part 2: Figure<a class="headerlink" href="#part-2-figure" title="Link to this heading">#</a></h3>
+<p>Part 2 is the main figure that plots the tracked metrics throughout the
+benchmark run. Its title shows the objective and the dataset names and
+their corresponding parameters that produced the plot.</p>
+<p>Hovering over the figure will make a modebar appear in the right side.
+This can be used to interact with the figure, e.g. zoom in and out on
+particular regions of the plot.</p>
+</section>
+<section id="part-3-legend">
+<h3>Part 3: Legend<a class="headerlink" href="#part-3-legend" title="Link to this heading">#</a></h3>
+<p>The legend maps every curve to a solver.</p>
+<p>Clicking on a legend item hides/shows its corresponding curve.
+Similarly, double-clicking on a legend item hides/shows all other curves.
+Finally, hovering over a legend item shows a tooltip with details about
+the solver.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The displayed details about the solver are the content of the solver’s
+docstring, if present.</p>
+</div>
+</section>
+<section id="part-4-sidebar">
+<h3>Part 4: Sidebar<a class="headerlink" href="#part-4-sidebar" title="Link to this heading">#</a></h3>
+<p>The first two dropdown menus, <strong>Data</strong> and <strong>Objective</strong>, enable to select
+a benchmark setup. The <strong>Data</strong> dropdown contains all the datasets included
+in the benchmark as well as their parameters. The same applies to the
+<strong>Objective</strong> dropdown.</p>
+<p>The <strong>Objective column</strong> exposes all the tracked metrics along the benchmark
+run. These metrics correspond to the quantities returned by
+<code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result</span></code>.</p>
+<p>Hovering over the question mark shows a tooltip with details about the
+objective — the content of the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> docstring.</p>
+<p>The <strong>Chart type</strong> dropdown allows applying transformations to the plotted
+metric, such as suboptimality <code class="docutils literal notranslate"><span class="pre">metric</span> <span class="pre">-</span> <span class="pre">min(metric)</span></code> or relative
+suboptimality <code class="docutils literal notranslate"><span class="pre">(metric</span> <span class="pre">-</span> <span class="pre">min(metric))</span> <span class="pre">/</span> <span class="pre">(metric[0]</span> <span class="pre">-</span> <span class="pre">min(metric))</span></code>. It
+also allows to show bar charts or boxplots.</p>
+<div class="pst-scrollable-table-container"><table class="table table-center">
+<tbody>
+<tr class="row-odd"><td><a class="reference internal image-reference" href="../_images/barchart.png"><img alt="Bar Chart" src="../_images/barchart.png" style="width: 49%;" />
+</a>
+<a class="reference internal image-reference" href="../_images/boxplot.png"><img alt="Boxplot" src="../_images/boxplot.png" style="width: 49%;" />
+</a>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For suboptimality plots, <code class="docutils literal notranslate"><span class="pre">min(metric)</span></code> is evaluated across all solvers
+and iterations. If no solver converged, it does not represent the minimal
+value reachable.</p>
+</div>
+<p>Use <strong>Scale</strong> to set <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> axis scale to linear or logarithmic.</p>
+<p>Use <strong>X-axis</strong> to change the quantity plotted on the x-axis and therefore
+plot the metric as a function of time, iteration or tolerance.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The availability of <em>Iteration</em> and <em>Tolerance</em> in the dropdown menu
+depends on the <a class="reference internal" href="../user_guide/iterative_solvers.html#sampling-strategy"><span class="std std-ref">sampling strategy</span></a> used for
+the solvers. Their interpretation is solver-dependent.</p>
+</div>
+<p>Finally, <strong>Quantiles</strong> is a toggler to show/hide <code class="docutils literal notranslate"><span class="pre">95th</span> <span class="pre">-</span> <span class="pre">5th</span></code> quantiles
+when the benchmark was run with several repetitions.</p>
+</section>
+</section>
 </section>
 
 
@@ -524,20 +631,20 @@ Install it with <code class="docutils literal notranslate"><span class="pre">pip
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="visualize_benchmark.html"
+       href="run_benchmark.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Visualize a benchmark</p>
+        <p class="prev-next-title">Install and run a benchmark</p>
       </div>
     </a>
     <a class="right-next"
-       href="extend_benchmark.html"
+       href="test_benchmark.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Extend an existing benchmark</p>
+        <p class="prev-next-title">Testing a benchmark</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -572,6 +679,14 @@ Install it with <code class="docutils literal notranslate"><span class="pre">pip
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#obtaining-a-hugging-face-token">Obtaining a Hugging Face token</a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-results">Plotting results</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#dashboard-walkthrough">Dashboard walkthrough</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-1-header">Part 1: Header</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-2-figure">Part 2: Figure</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-3-legend">Part 3: Legend</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#part-4-sidebar">Part 4: Sidebar</a></li>
 </ul>
 </li>
 </ul>
