@@ -1,0 +1,1076 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Image plot type for benchopt &#8212; benchopt 1.9.1 documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/style.css?v=b70fdc00" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../_static/documentation_options.js?v=35f2cf6b"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/sg-tags.js?v=d80f6fa4"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=30646c52"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/run_image_benchmark';</script>
+    <script src="../_static/benchopt.js?v=2bf30a8d"></script>
+    <link rel="icon" href="../_static/logo_benchopt.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Available benchmarks" href="../available_benchmarks.html" />
+    <link rel="prev" title="Preparing datasets with benchopt prepare" href="run_benchopt_prepare.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  <meta name="docsearch:version" content="1.9.1" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo_benchopt.png" class="logo__image only-light" alt="benchopt logo"/>
+    <img src="../_static/logo_benchopt.png" class="logo__image only-dark pst-js-only" alt="benchopt logo"/>
+  
+  
+    <p class="title logo__title">1.9.1</p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../index.html">
+                    Benchopt
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../get_started.html">Get started</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../benchmark_workflow/index.html">Benchmark workflow</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/write_benchmark.html">Write a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/run_benchmark.html">Install and run a benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/manage_benchmark_results.html">Manage and Visualize benchmark results</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../user_guide/index.html">User guide</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/authoring.html">Creating benchmarks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/class_customization.html">Benchmark class configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/add_custom_plot.html">Add a custom plot to a benchmark</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/ml_benchmark.html">Cross-validation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/iterative_solvers.html">Evaluating an iterative method</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/solver_languages.html">Using different programming languages with benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/running.html">Running &amp; scaling</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/config_benchopt.html">Configure Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/distributed_run.html">Distributed run with Benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/testing.html">Testing &amp; advanced</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/tests_definition.html">Benchopt Test definition</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/advanced.html">Advanced usage</a></li>
+</ul>
+</details></li>
+<li class="toctree-l2 has-children"><a class="reference internal" href="../user_guide/reference.html">Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l3 has-children"><a class="reference internal" href="../user_guide/API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.safe_import_context.html">benchopt.safe_import_context</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+</ul>
+</details></li>
+<li class="toctree-l3"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
+</ul>
+</details></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">Examples Gallery</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="run_minimal_benchmark.html">Running an existing benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_r_solver.html">Create and run an R solver benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Image plot type for benchopt</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contrib.html">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../whats_new.html">What’s new</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/benchopt/benchopt" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Source repository"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Image plot type for benchopt</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-components">Benchmark components</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-image-plot-type">The <code class="docutils literal notranslate"><span class="pre">image</span></code> plot type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">Run the benchmark</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <div class="sphx-glr-download-link-note admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#sphx-glr-download-auto-examples-run-image-benchmark-py"><span class="std std-ref">Go to the end</span></a>
+to download the full example code.</p>
+</div>
+<section class="sphx-glr-example-title" id="image-plot-type-for-benchopt">
+<span id="sphx-glr-auto-examples-run-image-benchmark-py"></span><h1>Image plot type for benchopt<a class="headerlink" href="#image-plot-type-for-benchopt" title="Link to this heading">#</a></h1>
+<p>This example demonstrates the <code class="docutils literal notranslate"><span class="pre">image</span></code> plot type, which allows
+benchmark authors to display solver outputs as a visual gallery inside
+the benchopt HTML result page.</p>
+<p>The benchmark solves a toy 2-D signal denoising problem.
+We use the iterative methods to solve the problem and store intermediate
+results for each solvers. We then define a custom plot that reads those
+intermediate results and renders an animated GIF showing the solver iterating,
+as well as the initial noisy image and the reference image for comparison.</p>
+<p>First, we import example helpers to define the benchmark and run it in this
+example.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExampleBenchmark</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">benchopt_cli</span>
+</pre></div>
+</div>
+<section id="benchmark-components">
+<h2>Benchmark components<a class="headerlink" href="#benchmark-components" title="Link to this heading">#</a></h2>
+<p>We define each component (objective, dataset, solvers, custom plot) of the
+benchmarkas:</p>
+<ul class="simple">
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> simulates a noisy checkerboard image.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Objective</span></code> evaluate results by computing the MSE, and storing the
+intermediate reconstructions.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">Solver</span></code> implement two simple iterative denoising methods: a median
+filter and a total variation denoising method.</p></li>
+</ul>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">OBJECTIVE</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    from benchopt import BaseObjective</span>
+<span class="s2">    import numpy as np</span>
+
+<span class="s2">    class Objective(BaseObjective):</span>
+<span class="s2">        name = &quot;Image Denoising&quot;</span>
+
+<span class="s2">        def set_data(self, X_true, X_noisy):</span>
+<span class="s2">            self.X_true = X_true</span>
+<span class="s2">            self.X_noisy = X_noisy</span>
+
+<span class="s2">        def get_objective(self):</span>
+<span class="s2">            return dict(X_noisy=self.X_noisy)</span>
+
+<span class="s2">        def evaluate_result(self, X_hat):</span>
+<span class="s2">            return dict(</span>
+<span class="s2">                mse=float(np.mean((self.X_true - X_hat) ** 2)),</span>
+<span class="s2">                frame=X_hat,</span>
+<span class="s2">            )</span>
+
+<span class="s2">        def save_final_results(self, X_hat):</span>
+<span class="s2">            return dict(reference=self.X_true, noisy=self.X_noisy)</span>
+
+<span class="s2">        def get_one_result(self):</span>
+<span class="s2">            return dict(X_hat=self.X_noisy)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">DATASET</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    from benchopt import BaseDataset</span>
+<span class="s2">    import numpy as np</span>
+
+<span class="s2">    class Dataset(BaseDataset):</span>
+<span class="s2">        name = &quot;simulated&quot;</span>
+<span class="s2">        parameters = {&quot;n&quot;: [32, 128], &quot;noise_std&quot;: [0.3], &quot;random_state&quot;: [42]}</span>
+
+<span class="s2">        def get_data(self):</span>
+<span class="s2">            rng = np.random.default_rng(self.random_state)</span>
+<span class="s2">            coords = np.arange(self.n)</span>
+<span class="s2">            X_true = (</span>
+<span class="s2">                (coords[:, None] // 4 + coords[None, :] // 4) % 2</span>
+<span class="s2">            ).astype(float)</span>
+<span class="s2">            X_noisy = X_true + rng.normal(0, self.noise_std, X_true.shape)</span>
+<span class="s2">            return dict(X_true=X_true, X_noisy=X_noisy)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_MEDIAN</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    from benchopt import BaseSolver</span>
+<span class="s2">    from benchopt.stopping_criterion import SufficientProgressCriterion</span>
+
+<span class="s2">    class Solver(BaseSolver):</span>
+<span class="s2">        name = &quot;median_filter&quot;</span>
+<span class="s2">        parameters = {&quot;size&quot;: [3, 5]}</span>
+
+<span class="s2">        stopping_criterion = SufficientProgressCriterion(</span>
+<span class="s2">            key_to_monitor = &quot;mse&quot;, strategy=&quot;callback&quot;</span>
+<span class="s2">        )</span>
+
+<span class="s2">        def set_objective(self, X_noisy):</span>
+<span class="s2">            self.X_noisy = X_noisy</span>
+
+<span class="s2">        def run(self, cb):</span>
+<span class="s2">            from scipy.ndimage import median_filter</span>
+<span class="s2">            self.X_hat = self.X_noisy.copy()</span>
+<span class="s2">            while cb():</span>
+<span class="s2">                self.X_hat = median_filter(self.X_hat, size=self.size)</span>
+
+<span class="s2">        def get_result(self):</span>
+<span class="s2">            return dict(X_hat=self.X_hat)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_TV</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    from benchopt import BaseSolver</span>
+<span class="s2">    from benchopt.stopping_criterion import SufficientProgressCriterion</span>
+<span class="s2">    import numpy as np</span>
+
+<span class="s2">    class Solver(BaseSolver):</span>
+<span class="s2">        name = &quot;tv_denoise&quot;</span>
+<span class="s2">        parameters = {&quot;lam&quot;: [0.1, 0.5]}</span>
+
+<span class="s2">        stopping_criterion = SufficientProgressCriterion(</span>
+<span class="s2">            key_to_monitor = &quot;mse&quot;, strategy=&quot;callback&quot;</span>
+<span class="s2">        )</span>
+
+<span class="s2">        def set_objective(self, X_noisy):</span>
+<span class="s2">            self.X_noisy = X_noisy</span>
+
+<span class="s2">        def run(self, cb):</span>
+<span class="s2">            n = self.X_noisy.shape[0]</span>
+<span class="s2">            p = np.zeros((n, n, 2))</span>
+<span class="s2">            self.X_hat = self.X_noisy.copy()</span>
+<span class="s2">            tau = 0.24</span>
+<span class="s2">            while cb():</span>
+<span class="s2">                div_p = np.zeros_like(self.X_hat)</span>
+<span class="s2">                div_p[:-1, :] += p[:-1, :, 0]</span>
+<span class="s2">                div_p[1:, :]  -= p[:-1, :, 0]</span>
+<span class="s2">                div_p[:, :-1] += p[:, :-1, 1]</span>
+<span class="s2">                div_p[:, 1:]  -= p[:, :-1, 1]</span>
+<span class="s2">                X_upd = self.X_noisy + self.lam * div_p</span>
+<span class="s2">                grad = np.zeros((n, n, 2))</span>
+<span class="s2">                grad[:-1, :, 0] = X_upd[1:, :] - X_upd[:-1, :]</span>
+<span class="s2">                grad[:, :-1, 1] = X_upd[:, 1:] - X_upd[:, :-1]</span>
+<span class="s2">                p_new = p - tau * grad</span>
+<span class="s2">                norms = np.maximum(</span>
+<span class="s2">                    1.0,</span>
+<span class="s2">                    np.sqrt((p_new ** 2).sum(axis=2, keepdims=True))</span>
+<span class="s2">                )</span>
+<span class="s2">                p = p_new / norms</span>
+<span class="s2">                div_p = np.zeros_like(self.X_hat)</span>
+<span class="s2">                div_p[:-1, :] += p[:-1, :, 0]</span>
+<span class="s2">                div_p[1:, :]  -= p[:-1, :, 0]</span>
+<span class="s2">                div_p[:, :-1] += p[:, :-1, 1]</span>
+<span class="s2">                div_p[:, 1:]  -= p[:, :-1, 1]</span>
+<span class="s2">                self.X_hat = self.X_noisy + self.lam * div_p</span>
+
+<span class="s2">        def get_result(self):</span>
+<span class="s2">            return dict(X_hat=self.X_hat)</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">benchmark</span> <span class="o">=</span> <span class="n">ExampleBenchmark</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;image_denoising&quot;</span><span class="p">,</span>
+    <span class="n">objective</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">OBJECTIVE</span></a><span class="p">,</span>
+    <span class="n">datasets</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;simulated.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">DATASET</span></a><span class="p">},</span>
+    <span class="n">solvers</span><span class="o">=</span><span class="p">{</span>
+        <span class="s2">&quot;tv_denoise.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_TV</span></a><span class="p">,</span>
+        <span class="s2">&quot;median_filter.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_MEDIAN</span></a><span class="p">,</span>
+    <span class="p">}</span>
+<span class="p">)</span>
+<span class="n">benchmark</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<pre class="code-cell-equiv">            <div class='display_example_benchmark'>
+
+                <div class='sd-tab-set'>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23-0' name='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23' type='radio'><label for='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+    <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+    <span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Image Denoising&quot;</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_true</span><span class="p">,</span> <span class="n">X_noisy</span><span class="p">):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_true</span> <span class="o">=</span> <span class="n">X_true</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span> <span class="o">=</span> <span class="n">X_noisy</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_noisy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span>
+                <span class="n">mse</span><span class="o">=</span><span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="bp">self</span><span class="o">.</span><span class="n">X_true</span> <span class="o">-</span> <span class="n">X_hat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)),</span>
+                <span class="n">frame</span><span class="o">=</span><span class="n">X_hat</span><span class="p">,</span>
+            <span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">save_final_results</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">reference</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_true</span><span class="p">,</span> <span class="n">noisy</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="p">)</span>
+
+        <span class="k">def</span><span class="w"> </span><span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="p">)</span>
+</pre></div>
+</div>
+<input  id='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23-1' name='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23' type='radio'><label for='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;simulated&quot;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span> <span class="s2">&quot;noise_std&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">],</span> <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">42</span><span class="p">]}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+        <span class="n">coords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">X_true</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="p">(</span><span class="n">coords</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">//</span> <span class="mi">4</span> <span class="o">+</span> <span class="n">coords</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">//</span> <span class="mi">4</span><span class="p">)</span> <span class="o">%</span> <span class="mi">2</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="nb">float</span><span class="p">)</span>
+        <span class="n">X_noisy</span> <span class="o">=</span> <span class="n">X_true</span> <span class="o">+</span> <span class="n">rng</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">noise_std</span><span class="p">,</span> <span class="n">X_true</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_true</span><span class="o">=</span><span class="n">X_true</span><span class="p">,</span> <span class="n">X_noisy</span><span class="o">=</span><span class="n">X_noisy</span><span class="p">)</span>
+</pre></div>
+</div>
+<input  id='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23-2' name='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23' type='radio'><label for='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23-2'>solvers/tv_denoise.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SufficientProgressCriterion</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;tv_denoise&quot;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lam&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]}</span>
+
+    <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">SufficientProgressCriterion</span><span class="p">(</span>
+        <span class="n">key_to_monitor</span> <span class="o">=</span> <span class="s2">&quot;mse&quot;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;callback&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_noisy</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span> <span class="o">=</span> <span class="n">X_noisy</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="n">tau</span> <span class="o">=</span> <span class="mf">0.24</span>
+        <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
+            <span class="n">div_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
+            <span class="n">div_p</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="n">p</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">div_p</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span>  <span class="o">-=</span> <span class="n">p</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">div_p</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">p</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">div_p</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>  <span class="o">-=</span> <span class="n">p</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">X_upd</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lam</span> <span class="o">*</span> <span class="n">div_p</span>
+            <span class="n">grad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
+            <span class="n">grad</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_upd</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span> <span class="o">-</span> <span class="n">X_upd</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span>
+            <span class="n">grad</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">X_upd</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span> <span class="o">-</span> <span class="n">X_upd</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+            <span class="n">p_new</span> <span class="o">=</span> <span class="n">p</span> <span class="o">-</span> <span class="n">tau</span> <span class="o">*</span> <span class="n">grad</span>
+            <span class="n">norms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span>
+                <span class="mf">1.0</span><span class="p">,</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">p_new</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">keepdims</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
+            <span class="p">)</span>
+            <span class="n">p</span> <span class="o">=</span> <span class="n">p_new</span> <span class="o">/</span> <span class="n">norms</span>
+            <span class="n">div_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
+            <span class="n">div_p</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:]</span> <span class="o">+=</span> <span class="n">p</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">div_p</span><span class="p">[</span><span class="mi">1</span><span class="p">:,</span> <span class="p">:]</span>  <span class="o">-=</span> <span class="n">p</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span>
+            <span class="n">div_p</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+=</span> <span class="n">p</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="n">div_p</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">:]</span>  <span class="o">-=</span> <span class="n">p</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">lam</span> <span class="o">*</span> <span class="n">div_p</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+<input  id='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23-3' name='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23' type='radio'><label for='example-benchmark-f0b7ae337b2d48e2a52e6015b7ed1d23-3'>solvers/median_filter.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SufficientProgressCriterion</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;median_filter&quot;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]}</span>
+
+    <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">SufficientProgressCriterion</span><span class="p">(</span>
+        <span class="n">key_to_monitor</span> <span class="o">=</span> <span class="s2">&quot;mse&quot;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;callback&quot;</span>
+    <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_noisy</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span> <span class="o">=</span> <span class="n">X_noisy</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
+        <span class="kn">from</span><span class="w"> </span><span class="nn">scipy.ndimage</span><span class="w"> </span><span class="kn">import</span> <span class="n">median_filter</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+        <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">median_filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">size</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
+</pre></div>
+</div>
+                </div>
+            </div>"
+        </pre>
+</div>
+<br />
+<br /></section>
+<section id="the-image-plot-type">
+<h2>The <code class="docutils literal notranslate"><span class="pre">image</span></code> plot type<a class="headerlink" href="#the-image-plot-type" title="Link to this heading">#</a></h2>
+<p>A custom <code class="xref py py-class docutils literal notranslate"><span class="pre">BasePlot</span></code> subclass with <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">=</span> <span class="pre">&quot;image&quot;</span></code> must
+return from <code class="docutils literal notranslate"><span class="pre">plot()</span></code> a list of dicts, each with at least:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;image&quot;</span></code> — a 2D/3D NumPy array or a list of arrays (animated GIF);</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;label&quot;</span></code> — text displayed below the image card.</p></li>
+</ul>
+<p>Note that if image type is not compatible with Pillow (not an array or list
+of arrays),</p>
+<p><code class="docutils literal notranslate"><span class="pre">get_metadata()</span></code> may return <code class="docutils literal notranslate"><span class="pre">&quot;ncols&quot;</span></code> to control the grid layout.</p>
+<p>Here, <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code> stores <code class="docutils literal notranslate"><span class="pre">frame=X_hat</span></code> alongside the scalar
+<code class="docutils literal notranslate"><span class="pre">mse</span></code>. The plot collects all per-iteration frames from the
+<code class="docutils literal notranslate"><span class="pre">objective_frame</span></code> column and passes the list to the <code class="docutils literal notranslate"><span class="pre">&quot;image&quot;</span></code> key;
+benchopt plotting API converts this list of arrays to an animated GIF
+automatically.</p>
+<p><code class="docutils literal notranslate"><span class="pre">save_final_results</span></code> stores the reference and noisy images only once;
+so the plot reads them from the <code class="docutils literal notranslate"><span class="pre">final_results</span></code> column to retrieve the
+reference and noisy images.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CONFIG</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">plots:</span>
+<span class="s2">- reconstruction</span>
+<span class="s2">- objective_curve</span>
+<span class="s2">- bar_chart</span>
+<span class="s2">- boxplot</span>
+<span class="s2">- table</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">PLOT</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">    import numpy as np</span>
+<span class="s2">    from benchopt import BasePlot</span>
+
+<span class="s2">    class Plot(BasePlot):</span>
+<span class="s2">        name = &quot;reconstruction&quot;</span>
+<span class="s2">        type = &quot;image&quot;</span>
+<span class="s2">        options = {&quot;dataset&quot;: ..., &quot;objective&quot;: ...}</span>
+
+<span class="s2">        def plot(self, df, dataset, objective):</span>
+<span class="s2">            df = df.query(</span>
+<span class="s2">                &quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+<span class="s2">            )</span>
+<span class="s2">            # Get reference and noisy from final_results (only stored once)</span>
+<span class="s2">            final = df[&quot;final_results&quot;].dropna().iloc[0]</span>
+<span class="s2">            ref = final[&quot;reference&quot;]</span>
+<span class="s2">            noisy = final[&quot;noisy&quot;]</span>
+<span class="s2">            mse_noisy = float(np.mean((ref - noisy) ** 2))</span>
+<span class="s2">            images = [</span>
+<span class="s2">                {&quot;image&quot;: ref, &quot;label&quot;: &quot;Reference&quot;},</span>
+<span class="s2">                {&quot;image&quot;: noisy,</span>
+<span class="s2">                 &quot;label&quot;: f&quot;Noisy input</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{mse_noisy:.4f}</span><span class="s2">&quot;},</span>
+<span class="s2">                # Image should be a 2D array. If incompatible, it will appear</span>
+<span class="s2">                # with a message in the plot.</span>
+<span class="s2">                {&quot;image&quot;: &quot;skdjf&quot;,  # noisy,</span>
+<span class="s2">                 &quot;label&quot;: f&quot;Invalid</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{mse_noisy:.4f}</span><span class="s2">&quot;},</span>
+<span class="s2">                # Returning None insert an empty slot for alignment</span>
+<span class="s2">                {&quot;image&quot;: None},</span>
+<span class="s2">            ]</span>
+<span class="s2">            for solver_name, sdf in df.groupby(&quot;solver_name&quot;):</span>
+<span class="s2">                frames = (</span>
+<span class="s2">                    sdf.sort_values(&quot;stop_val&quot;)[&quot;objective_frame&quot;].tolist()</span>
+<span class="s2">                )</span>
+<span class="s2">                last_mse = sdf.loc[sdf[&quot;stop_val&quot;].idxmax(), &quot;objective_mse&quot;]</span>
+<span class="s2">                images.append({</span>
+<span class="s2">                    &quot;image&quot;: frames,  # list of arrays → animated GIF</span>
+<span class="s2">                    &quot;label&quot;: f&quot;</span><span class="si">{solver_name}</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{last_mse:.4f}</span><span class="s2">&quot;,</span>
+<span class="s2">                })</span>
+<span class="s2">            return images</span>
+
+<span class="s2">        def get_metadata(self, df, dataset, objective):</span>
+<span class="s2">            n = len(df.query(</span>
+<span class="s2">                &quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+<span class="s2">            )[&quot;solver_name&quot;].unique())</span>
+<span class="s2">            return {</span>
+<span class="s2">                &quot;title&quot;: f&quot;</span><span class="si">{objective}</span><span class="s2"> — Data: </span><span class="si">{dataset}</span><span class="s2">&quot;,</span>
+<span class="s2">                &quot;ncols&quot;: min(n + 2, 4),  # +2 for reference and noisy input</span>
+<span class="s2">            }</span>
+<span class="s2">&quot;&quot;&quot;</span>
+
+<span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
+    <span class="n">plots</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;reconstruction.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">PLOT</span></a><span class="p">},</span>
+    <span class="n">extra_files</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;config.yml&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CONFIG</span></a><span class="p">},</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+<pre class="code-cell-equiv">            <div class='display_example_benchmark'>
+                <p>We now update the following files:</p><br/>
+                <div class='sd-tab-set'>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,UEsDBBQAAAAIAEcIvFwWYfEwCQEAALYCAAAMAAAAb2JqZWN0aXZlLnB5jZI/b4MwEMV3PsUpk4loho6VWKounbp2Qxc4J678B9kHUr59bQchTKu0t2D5fvfu+YkKYknvDJzJ9lc3MigzOs/wioE+zl/Us5qpStjSsJMZb4AB7Fjl+15jCLCyopisXzKTyqIhaOHwbvBC8EbWqaDs5VCtxEASAnE3IKMIpGUDnx37idI34beNXKrEnO5IVL4ffgPybCbyqdx4iRvd6j5N7LZ44slbGFTPYlFot8J1qUcz6gmZOk9h0rw+5Ir8QLhopDKBWqkdsrDjyRBaIbbPfVoU4XiE57pufsxLH/NuM1Q2d3YDztRJZVEvhsM/HXuS5ONfQ+3GVwN/5pPztkU8DwOPLnZy31BLAwQUAAAACABHCLxc9jAlHiEBAAAKAgAAFQAAAGRhdGFzZXRzL3NpbXVsYXRlZC5weU2QMWvDMBCFd/+Kw1CQiVBSJ0MxZCmdOxdCMKolJwbrJKTzEEr/e6VISX2DBJ/eu3en0VsD3xqHq3UEk3HWE7zLoD8kxZOqgnAx7gYyALqqGmYZAhQFW6mbroJYKI2GI9RhMsssSav6jp308YG0D/Hxp8a6g9O+5fDavp051GinoPtAKvGd2CfmJSprIoxdEj6059/q3kzpES6aehWTWdDzWLJTebzEBHQi20XUymWmPvK7VKzbNk/bYK1XITvjqHjRWY3/kq+e/JJ2Y0+UimXrqePwaVGfYbuFA2xKx1NiHLqMG3iB9uluhAx0c5qNs5W0DkrfcYtJJXKTthJovZEz23HIkz2+jBeZCFfpVit5TYtHUNNALCuO+eKPhGO5mz9QSwMEFAAAAAgARwi8XLK2/EMKAgAA6wUAABUAAABzb2x2ZXJzL3R2X2Rlbm9pc2UucHnlVMtu2zAQvOsrCJ9oR1Yto70I0CX5gQLpIYBhCLS8slmLj5KUU7fov3dFSpbsKM0HlNBBS87Mzi4flVGC7ECWR6Ud4UIr48gjs/Cs6jOYqBqvJ9Yprbk8FKXhDgxXsqc8N1XFSw7SfTXqYMDapx4SdRDZCH0hzBKpo6ismbUkJKFDvnkWERySCSA5mblzsQepuIWZn9fM4ArKWlz9PauZmGVks0rSmKySL9s/kUdNuMz/ZZB6VjtOcCmcKoSS3CnTOhCYOkZFwxwcLvmsZHW9Y+Up+JmHhHuoiAVXqN13KB0/A7VQVzF5KVrvl64obw3nk24a5bu/QcU0suOWuxGtLWBMTeyRadistleERoTUyS8wylIqY4Lfej6/T3xk7l6qVPpCB6BjDSJWyfrzder1yGtAQ3TkyBvm52Kct6j5KZQeMs3fojfZEvcq25KHnPQB7t12AplmHkiWHyJb4DLtNX0Qk/QdZDpoTiNfikbv75pEHkKIB44sgtYN52DY/oMN6GGjUvwBwGR9qcsu7Ho0Qb06vlK7ipZD2LbihqoLCa9I0Ihqd3fhxW4gUhlhQwGC/eSiEfRmvR1psorfTCLB/jCO0pBkscCaE4t0VLH5OsYbBXrPhc2/mQbu2nEbtScpqHwKfv6Ds/burZw6cNdH4oBPDT5gTe18A0a30oBrjER86aiXzUcd+gtQSwMEFAAAAAgARwi8XHCnLBkyAQAAewIAABgAAABzb2x2ZXJzL21lZGlhbl9maWx0ZXIucHl9UL1qwzAQ3v0UwpMMwUvpEvDSvkAhS6AUI8tn5xpZEtI5xS19914Up3baUk3S3fenrwtuEA1YfXCeBA7eBRIPKsLOmROErFvvy0jOe7R9rQMSBHT2StmNXYcawdJTcH2AGB+vkCzTRsUoLopyES+2meBj1QCiEvkALSpbd2iYl6eVV4GX/IwM+MgjvkO+Fc93G3H/8pklyB+Rqv/SyMQ6nyNMNbl6cBbJhZQgQr5hxaAI+qnKtTKmUfp4CVNcDFvoRASqXfMKmvAEMoLpNmJfW4dxmj+VovG8nMcsP98WlTDamaubFS1VHjX6qbQtDqqHa8k3Df20OShik7VnqZ2fZPENfDugAfaSK7NfAjcecllxL9x+lQbn26qNntvgjkdDCb9SD0BjsKJFTTKpVItg8QVQSwMEFAAAAAgARwi8XNh1z6XfAgAAFwcAABcAAABwbG90cy9yZWNvbnN0cnVjdGlvbi5webVUy2obMRTd+ysuymYmmQ7FZGUIlJI2eNFQ0qVrjOy5YyvVSKqkSWKMoat+QOkX5kt6pbHnkTQ0mwoGRtI9R+c+RWW09aDqymyBO1BmVFpdwRLVaqONB9EYvOcOP0vtR6OV5M5B+E+Oh+lkBLQUrxAugFlcaeW8rVdeaMXind+aeCcqvsbmiNjp2tHpjhXcE5dnE8jzPAOml7dI6DtsTvajiCiwBBMedijLDIrwNcAMWsRBTLQvibwo8+812m3SHod1fHHRiL6Ad4cD4KroyLrrTlHLk7Z/J3BFSIslWoobRg6lhdtCDGYpFJcLi66W3kGildyC89oivUTmHU80jJpnbABi87yw2iiepLmQejV7O29B9CxBovmMtRpYZ9AoaU3itnddOXLzaCI194kyeYVcJUmgftPgUzg9hXHaaY2ZDNmbDQK7O6R4EnRRJiVfoqQdu2mV7bMXEPGh4WVHULLrKFIoU/uv6tOXDxe7VvokPy/3T4lPYBqIwW10LQsqaeAwvgRuLd/mMC2JaqUrw71YSsxAeLgXUgI3Brl9wnQv/IbgFToXKIUCv8FYjPkLzjD3rbgtWRbQ/3Bsqu64FMUrnbpBX1sl1BqutQpSHNpQtoCV8VRYpAlKbYEo16pC5V8QGNA98q4gAthpeYc2ln8GrgixCp20tro2y23Ceves13ERbukwFMaw48IiotzROFmQvzU6ovHahA1LZ13PLyIDlbzXUjifpAOe4Y6GkV9QxOi5QB5aw4XuaYnnuSgeKv6QpP2xEiC9Fgirqec8ZF8Vye6Z9jZujX8xr0Ee6LIpKQePP39RHsjOU2dfTT8+5+hyvutFcH/I/NGZJvHDvO/TXsOHAjgI7ibjmqZZhZ6HQfbaCakobhJV8h+H5GxQK/O8VoKeStJn/gxDzrzwEptQtbR7ePzxGy5JxAR2By1PA8WoqaUjYCVUouAMxhmcpzFdZ+NY23+b03GqtDz7P1BLAwQUAAAACABHCLxc+meYTUEAAABHAAAACgAAAGNvbmZpZy55bWwryMkvKbbi0lUoSk3OzysuKSpNLsnMzwMK5CdlpQLZZanxyaVFZalAkaTEovjkjMSiEhA7v6IAqBXIKklMykkFAFBLAQIUAxQAAAAIAEcIvFwWYfEwCQEAALYCAAAMAAAAAAAAAAAAAACAAQAAAABvYmplY3RpdmUucHlQSwECFAMUAAAACABHCLxc9jAlHiEBAAAKAgAAFQAAAAAAAAAAAAAAgAEzAQAAZGF0YXNldHMvc2ltdWxhdGVkLnB5UEsBAhQDFAAAAAgARwi8XLK2/EMKAgAA6wUAABUAAAAAAAAAAAAAAIABhwIAAHNvbHZlcnMvdHZfZGVub2lzZS5weVBLAQIUAxQAAAAIAEcIvFxwpywZMgEAAHsCAAAYAAAAAAAAAAAAAACAAcQEAABzb2x2ZXJzL21lZGlhbl9maWx0ZXIucHlQSwECFAMUAAAACABHCLxc2HXPpd8CAAAXBwAAFwAAAAAAAAAAAAAAgAEsBgAAcGxvdHMvcmVjb25zdHJ1Y3Rpb24ucHlQSwECFAMUAAAACABHCLxc+meYTUEAAABHAAAACgAAAAAAAAAAAAAAgAFACQAAY29uZmlnLnltbFBLBQYAAAAABgAGAIMBAACpCQAAAAA=';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-40fd8aab7802438a9ac48852511efc44-0' name='example-benchmark-40fd8aab7802438a9ac48852511efc44' type='radio'><label for='example-benchmark-40fd8aab7802438a9ac48852511efc44-0'>plots/reconstruction.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;reconstruction&quot;</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;image&quot;</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">}</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">):</span>
+        <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+            <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+        <span class="p">)</span>
+        <span class="c1"># Get reference and noisy from final_results (only stored once)</span>
+        <span class="n">final</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;final_results&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="s2">&quot;reference&quot;</span><span class="p">]</span>
+        <span class="n">noisy</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="s2">&quot;noisy&quot;</span><span class="p">]</span>
+        <span class="n">mse_noisy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">ref</span> <span class="o">-</span> <span class="n">noisy</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+        <span class="n">images</span> <span class="o">=</span> <span class="p">[</span>
+            <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">ref</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Reference&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">noisy</span><span class="p">,</span>
+             <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Noisy input</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">mse_noisy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+            <span class="c1"># Image should be a 2D array. If incompatible, it will appear</span>
+            <span class="c1"># with a message in the plot.</span>
+            <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;skdjf&quot;</span><span class="p">,</span>  <span class="c1"># noisy,</span>
+             <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Invalid</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">mse_noisy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+            <span class="c1"># Returning None insert an empty slot for alignment</span>
+            <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+        <span class="p">]</span>
+        <span class="k">for</span> <span class="n">solver_name</span><span class="p">,</span> <span class="n">sdf</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;solver_name&quot;</span><span class="p">):</span>
+            <span class="n">frames</span> <span class="o">=</span> <span class="p">(</span>
+                <span class="n">sdf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;stop_val&quot;</span><span class="p">)[</span><span class="s2">&quot;objective_frame&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+            <span class="p">)</span>
+            <span class="n">last_mse</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sdf</span><span class="p">[</span><span class="s2">&quot;stop_val&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(),</span> <span class="s2">&quot;objective_mse&quot;</span><span class="p">]</span>
+            <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+                <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">frames</span><span class="p">,</span>  <span class="c1"># list of arrays → animated GIF</span>
+                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">solver_name</span><span class="si">}</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">last_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="p">})</span>
+        <span class="k">return</span> <span class="n">images</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">):</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
+            <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+        <span class="p">)[</span><span class="s2">&quot;solver_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+        <span class="k">return</span> <span class="p">{</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">objective</span><span class="si">}</span><span class="s2"> — Data: </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;ncols&quot;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># +2 for reference and noisy input</span>
+        <span class="p">}</span>
+</pre></div>
+</div>
+<input  id='example-benchmark-40fd8aab7802438a9ac48852511efc44-1' name='example-benchmark-40fd8aab7802438a9ac48852511efc44' type='radio'><label for='example-benchmark-40fd8aab7802438a9ac48852511efc44-1'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reconstruction</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boxplot</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table</span>
+</pre></div>
+</div>
+                </div>
+            </div>"
+        </pre>
+</div>
+<br />
+<br /></section>
+<section id="run-the-benchmark">
+<h2>Run the benchmark<a class="headerlink" href="#run-the-benchmark" title="Link to this heading">#</a></h2>
+<p>We run the benchmark using <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> CLI with a small <code class="docutils literal notranslate"><span class="pre">-n</span></code> and <code class="docutils literal notranslate"><span class="pre">-r</span></code>
+to keep the runtime short.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 5 -r 1&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<div class="output_subarea output_html rendered_html output_result">
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_1dues76g/image_denoising<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
+</pre></div>
+</pre>
+
+            <div class="sphx-glr-script-out highlight-none notranslate">
+                <div class="highlight"><pre>Benchopt is running!
+Benchopt called using profiling
+Loading objective, datasets and solvers... done.
+simulated[n=32,noise_std=0.3,random_state=42]
+  |--Image Denoising
+No seed was specified. Selected global seed: 0
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--median_filter[size=3]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--median_filter[size=5]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.1]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.5]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+simulated[n=128,noise_std=0.3,random_state=42]
+  |--Image Denoising
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--median_filter[size=3]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--median_filter[size=5]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.1]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.5]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_1dues76g/image_denoising/outputs/benchopt_run_2026-05-28_01h02m</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">19.parquet</span>
+Rendering benchmark results...
+   Processing
+temp_benchmark_1dues76g/image_denoising/outputs/benchopt_run_2026-05-28_01h02m
+19.parquetTraceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/plotting/helpers.py&quot;, line 61, in
+update_plot_data_style
+    raise ValueError(
+ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/plotting/helpers.py&quot;, line 61, in
+update_plot_data_style
+    raise ValueError(
+ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
+
+done
+Writing results to
+temp_benchmark_1dues76g/image_denoising/outputs/image_denoising_benchopt_run_2
+026-05-28_01h02m19.html
+Writing image_denoising index to
+temp_benchmark_1dues76g/image_denoising/outputs/image_denoising.html
+
+
+
+</pre></div>
+            </div>
+
+
+            <iframe class='benchmark_result' src='html_results/sphx_glr_run_image_benchmark_001.html'
+                    frameBorder='0' style='position: relative; width: 100%;'>
+            </iframe>
+
+
+</div>
+<br />
+<br /><p>In the resulting HTML page, the selected <strong>reconstruction</strong> in the
+<em>Chart type</em> dropdown shows the image grid. Each card shows an animated GIF
+of the solver iterating toward its final denoised image, alongside its final
+MSE.</p>
+<p>Reference and noisy images are shown as static images for comparison.
+All arrays are embedded as base64-encoded data URIs directly in the HTML
+file, so the page is fully self-contained.</p>
+<p>Note that you can also generate the plot as a static image with <code class="docutils literal notranslate"><span class="pre">--no-html</span></code>
+option, generating a pdf file in the output directory of the benchmark.</p>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span>
+    <span class="sa">f</span><span class="s2">&quot;plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> --no-html --kind reconstruction&quot;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+<ul class="sphx-glr-horizontal">
+<li><img src="../_images/sphx_glr_run_image_benchmark_002.png" srcset="../_images/sphx_glr_run_image_benchmark_002.png" alt="Image Denoising — Data: simulated[n=32,noise_std=0.3,random_state=42], Reference, Noisy input MSE=0.0871, Invalid MSE=0.0871, median_filter[size=3] MSE=0.1040, median_filter[size=5] MSE=0.2102, tv_denoise[lam=0.1] MSE=0.1481, tv_denoise[lam=0.5] MSE=0.9618" class = "sphx-glr-multi-img"/></li>
+<li><img src="../_images/sphx_glr_run_image_benchmark_003.png" srcset="../_images/sphx_glr_run_image_benchmark_003.png" alt="Image Denoising — Data: simulated[n=128,noise_std=0.3,random_state=42], Reference, Noisy input MSE=0.0906, Invalid MSE=0.0906, median_filter[size=3] MSE=0.1137, median_filter[size=5] MSE=0.2336, tv_denoise[lam=0.1] MSE=0.1584, tv_denoise[lam=0.5] MSE=1.0867" class = "sphx-glr-multi-img"/></li>
+</ul>
+<div class="output_subarea output_html rendered_html output_result">
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_1dues76g/image_denoising<span class="w"> </span>--no-html<span class="w"> </span>--kind<span class="w"> </span>reconstruction
+</pre></div>
+</pre>
+
+            <div class="sphx-glr-script-out highlight-none notranslate">
+                <div class="highlight"><pre>
+
+Error rendering image &#x27;Invalid&#x27;:
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/plotting/generate_matplotlib.py&quot;, line
+237, in get_plot_image
+    raise ValueError(f&quot;Incompatible image data: {type(image)}&quot;)
+ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
+------------------------------
+
+Save reconstruction_simulated[n=32,noise_std=0.3,random_state=42]_Image
+Denoising as:
+temp_benchmark_1dues76g/image_denoising/outputs/reconstruction_simulated[n=32,
+noise_std=0.pdf
+
+
+Error rendering image &#x27;Invalid&#x27;:
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/plotting/generate_matplotlib.py&quot;, line
+237, in get_plot_image
+    raise ValueError(f&quot;Incompatible image data: {type(image)}&quot;)
+ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
+------------------------------
+
+Save reconstruction_simulated[n=128,noise_std=0.3,random_state=42]_Image
+Denoising as:
+temp_benchmark_1dues76g/image_denoising/outputs/reconstruction_simulated[n=128
+,noise_std=0.pdf
+
+
+
+</pre></div>
+            </div>
+
+
+
+</div>
+<br />
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.751 seconds)</p>
+<div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-image-benchmark-py">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/b511b0d69a70bb7c4f71d647e013a0ca/run_image_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_image_benchmark.ipynb</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/f9041b2060cd1c02dd63b43f5c1f76af/run_image_benchmark.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">run_image_benchmark.py</span></code></a></p>
+</div>
+<div class="sphx-glr-download sphx-glr-download-zip docutils container">
+<p><a class="reference download internal" download="" href="../_downloads/07232872b5d31f0ae68b02eaca45baf2/run_image_benchmark.zip"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">zipped:</span> <span class="pre">run_image_benchmark.zip</span></code></a></p>
+</div>
+</div>
+<p class="sphx-glr-signature"><a class="reference external" href="https://sphinx-gallery.github.io">Gallery generated by Sphinx-Gallery</a></p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="run_benchopt_prepare.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../available_benchmarks.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Available benchmarks</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchmark-components">Benchmark components</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#the-image-plot-type">The <code class="docutils literal notranslate"><span class="pre">image</span></code> plot type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#run-the-benchmark">Run the benchmark</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Benchopt contributors
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2020-2026.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+
+<script>
+fetch("../../versions.json")
+  .then(response => response.json())
+  .then(data => {
+    const select = document.createElement("select");
+    select.id = "version-select";
+    const header_buttons = document.getElementsByClassName("article-header-buttons")[0];
+    header_buttons.insertBefore(select, header_buttons.firstChild);
+    const current = window.location.pathname.split('/')[1];  // e.g. "dev" or "v1.2"
+
+    // Stable and dev first
+    ["stable", "dev"].forEach(name => {
+      const opt = document.createElement("option");
+      opt.value = name;
+      opt.text = name;
+      if (current === name) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    // Then all versions
+    data.versions.forEach(v => {
+      const opt = document.createElement("option");
+      opt.value = v;
+      opt.text = v;
+      if (current === v) opt.selected = true;
+      select.appendChild(opt);
+    });
+
+    select.onchange = function() {
+      window.location.href = window.location.href.replace(current, select.value);
+    };
+  });
+</script>
+
+
+  <footer class="bd-footer">
+  </footer>
+
+  </body>
+</html>
