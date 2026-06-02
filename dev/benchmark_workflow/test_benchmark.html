@@ -331,6 +331,7 @@
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-philosophy">Basic philosophy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tests-reference">Tests reference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-configuration-for-tests">Parameters’ configuration for tests</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fallback-with-dataset-test-parameters">Fallback with <code class="docutils literal notranslate"><span class="pre">Dataset.test_parameters</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
@@ -368,14 +369,14 @@ are compatible with <code class="docutils literal notranslate"><span class="pre"
 <h2>Basic philosophy<a class="headerlink" href="#basic-philosophy" title="Link to this heading">#</a></h2>
 <p>The test run by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> will make sure that:</p>
 <ul class="simple">
-<li><p>Checking that all datasets have the proper API and can be loaded.</p></li>
-<li><p>Checking that the objective have the proper API and can be computed
+<li><p>all datasets have a valid API and can be loaded.</p></li>
+<li><p>the objective has a valid API and can be computed
 with a simple dataset and the result returned by <code class="docutils literal notranslate"><span class="pre">get_one_result</span></code>.</p></li>
-<li><p>Checking that all solvers have the proper API and can be run on a simple
+<li><p>all solvers have a valid API and can be run on a simple
 configuration.</p></li>
-<li><p>Checking that all solvers can be installed in a fresh environment.</p></li>
+<li><p>all solvers can be installed in a fresh environment.</p></li>
+<li><p>the benchmark’s <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> is valid.</p></li>
 </ul>
-<p>The tests that are run can be found in the <a class="reference internal" href="../user_guide/tests_definition.html#tests-definition"><span class="std std-ref">Benchopt Test definition</span></a>.</p>
 <p>By default, if the benchmark has been created using one of our templates, the
 repo contains some github actions that will try to run these tests on each
 push/pull request, and once a week, to ensure long term maintainability.</p>
@@ -385,29 +386,68 @@ push/pull request, and once a week, to ensure long term maintainability.</p>
 <code class="docutils literal notranslate"><span class="pre">.github/workflows/main.yml</span></code>.</p>
 </div>
 </section>
+<section id="tests-reference">
+<h2>Tests reference<a class="headerlink" href="#tests-reference" title="Link to this heading">#</a></h2>
+<p>The full set of pytest checks run by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> (parametrized over
+the benchmark’s datasets and solvers where applicable) is:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">test_dataset_class[&lt;dataset&gt;]</span></code> — the dataset class exposes the
+expected public API (<code class="docutils literal notranslate"><span class="pre">name</span></code>, callable <code class="docutils literal notranslate"><span class="pre">get_data</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_dataset_get_data[&lt;dataset&gt;]</span></code> — each installed dataset’s
+<code class="docutils literal notranslate"><span class="pre">get_data</span></code> returns a dictionary, as expected by the objective.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_benchmark_objective[&lt;test_dataset&gt;]</span></code> — the objective instantiates
+on the resolved test dataset and the output of <code class="docutils literal notranslate"><span class="pre">Objective.__call__</span></code>
+on <code class="docutils literal notranslate"><span class="pre">get_one_result</span></code> has the expected schema.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_benchmark_config_validity</span></code> — the benchmark’s <code class="docutils literal notranslate"><span class="pre">config.yml</span></code>
+only uses valid options.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_solver_class[&lt;solver&gt;]</span></code> — the solver class exposes the
+expected public API (<code class="docutils literal notranslate"><span class="pre">name</span></code>, optional <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>,
+<code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code>, or <code class="docutils literal notranslate"><span class="pre">get_next</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_solver_install_api[&lt;solver&gt;]</span></code> — the solver declares a known
+install command (<code class="docutils literal notranslate"><span class="pre">None</span></code>, <code class="docutils literal notranslate"><span class="pre">'conda'</span></code> or <code class="docutils literal notranslate"><span class="pre">'shell'</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_solver_install[&lt;solver&gt;]</span></code> — the solver installs cleanly in a
+fresh conda environment (skipped under <code class="docutils literal notranslate"><span class="pre">--skip-install</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_solver_stopping_criterion[&lt;solver&gt;-&lt;test_dataset&gt;]</span></code> — the solver’s
+<code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code> is compatible with the objective (only useful for
+iterative evaluation benchmark).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_solver_run[&lt;solver&gt;-&lt;test_dataset&gt;]</span></code> — the solver runs on at least
+one configuration of the resolved test datasets.</p></li>
+</ul>
+<p>The full definition of the tests that are run can be found in the
+<a class="reference internal" href="../user_guide/tests_definition.html#tests-definition"><span class="std std-ref">Benchopt Test definition</span></a>.</p>
+<p>Note that several of these tests are parametrized over the benchmark’s datasets
+and solvers, and that the test parameters used for all components, as well as
+the <code class="docutils literal notranslate"><span class="pre">test_dataset(s)</span></code> used for testing the objective and solver runs can be
+configured (see below).</p>
+</section>
 <section id="parameters-configuration-for-tests">
 <h2>Parameters’ configuration for tests<a class="headerlink" href="#parameters-configuration-for-tests" title="Link to this heading">#</a></h2>
-<p>By default, the benchmark will load a <code class="docutils literal notranslate"><span class="pre">Simulated</span></code> dataset for testing
-purposes. The name of this test dataset can be changed with the
-<code class="docutils literal notranslate"><span class="pre">Objective.test_dataset</span></code> attribute. However, real datasets may be too large
-to be used in tests, and some solvers or objectives may require specific
-settings — for instance a specific regularization level to be fast, or a
-particular data format only possible with a given dataset.
-To handle these cases, <code class="docutils literal notranslate"><span class="pre">benchopt</span></code> provides a <code class="docutils literal notranslate"><span class="pre">test_config</span></code> class attribute
-that can be defined on the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, and <code class="docutils literal notranslate"><span class="pre">Solver</span></code> classes.
-Each class can override the parameters used to instantiate any of the
-component classes during testing:</p>
+<p>The test bed used for <code class="docutils literal notranslate"><span class="pre">test_solver_run</span></code> and <code class="docutils literal notranslate"><span class="pre">test_benchmark_objective</span></code>
+is controlled by a <code class="docutils literal notranslate"><span class="pre">test_config</span></code> class attribute that can be defined on
+the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, and <code class="docutils literal notranslate"><span class="pre">Solver</span></code> classes. Each class can
+override the parameters used to instantiate any of the component classes
+during testing, and the <code class="docutils literal notranslate"><span class="pre">dataset</span></code> entry of <code class="docutils literal notranslate"><span class="pre">test_config</span></code> can select
+which dataset class is used:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">Dataset.test_config</span></code> directly contains the parameters passed to the
 <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Objective.test_config</span></code> directly contains the parameters passed to the
 <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class, with an optional <code class="docutils literal notranslate"><span class="pre">dataset</span></code> key whose value is a
-dictionary of parameters that override those of the dataset.</p></li>
+dictionary of parameters that override those of the dataset. A special
+<code class="docutils literal notranslate"><span class="pre">name</span></code> entry inside that <code class="docutils literal notranslate"><span class="pre">dataset</span></code> dictionary selects which dataset
+class is used for testing — and it may be a list of names, in which case
+<code class="docutils literal notranslate"><span class="pre">test_benchmark_objective</span></code> is run once per name (useful for objectives
+whose code path differs across datasets, e.g. forecasting vs.
+classification).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Solver.test_config</span></code> directly contains the parameters passed to the
 <code class="docutils literal notranslate"><span class="pre">Solver</span></code> class, with optional <code class="docutils literal notranslate"><span class="pre">dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">objective</span></code> keys whose
 values are dictionaries of parameters that override those of the dataset
-and objective respectively.</p></li>
+and objective respectively. A <code class="docutils literal notranslate"><span class="pre">name</span></code> parameter in <code class="docutils literal notranslate"><span class="pre">dataset</span></code> behaves
+similarly to the one in  <code class="docutils literal notranslate"><span class="pre">Objective.test_config</span></code>.</p></li>
 </ul>
+<p>If none of these is set, the benchmark falls back to <code class="docutils literal notranslate"><span class="pre">Objective.test_dataset_name</span></code>,
+which in turn default to <code class="docutils literal notranslate"><span class="pre">Simulated</span></code>. Configuring such <code class="docutils literal notranslate"><span class="pre">test_dataset</span></code> is
+necessary to allow testing the benchmark automatically.</p>
 <p>The configurations from the three classes are merged with the following
 priority order, from lowest to highest: <code class="docutils literal notranslate"><span class="pre">Dataset.test_config</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Objective.test_config</span></code>, <code class="docutils literal notranslate"><span class="pre">Solver.test_config</span></code>.</p>
@@ -427,13 +467,24 @@ parameter, and a low number of iteration, one can define:</p>
 parameters for the whole benchmark:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
     <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my objective&quot;</span>
-    <span class="n">test_dataset</span> <span class="o">=</span> <span class="s2">&quot;my_data&quot;</span>
     <span class="n">test_config</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s1">&#39;reg&#39;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
-        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;my_data&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
     <span class="p">}</span>
 </pre></div>
 </div>
+<p>For a multi-task benchmark, a solver that only supports a subset of the
+datasets can declare which one(s) to test against:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;classifier1&quot;</span>
+
+    <span class="n">test_config</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;data1&#39;</span><span class="p">},</span>  <span class="c1"># or [&#39;data_a&#39;, &#39;data_b&#39;]</span>
+    <span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that configuring an empty list of test datasets raises a
+<code class="docutils literal notranslate"><span class="pre">ValueError</span></code> at collection time.</p>
 <section id="fallback-with-dataset-test-parameters">
 <h3>Fallback with <code class="docutils literal notranslate"><span class="pre">Dataset.test_parameters</span></code><a class="headerlink" href="#fallback-with-dataset-test-parameters" title="Link to this heading">#</a></h3>
 <p>In addition to <code class="docutils literal notranslate"><span class="pre">test_config</span></code>, the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class can expose a
@@ -549,6 +600,7 @@ function to the <code class="docutils literal notranslate"><span class="pre">tes
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basic-philosophy">Basic philosophy</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#tests-reference">Tests reference</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parameters-configuration-for-tests">Parameters’ configuration for tests</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fallback-with-dataset-test-parameters">Fallback with <code class="docutils literal notranslate"><span class="pre">Dataset.test_parameters</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
