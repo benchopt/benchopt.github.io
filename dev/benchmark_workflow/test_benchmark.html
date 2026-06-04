@@ -393,6 +393,8 @@ the benchmark’s datasets and solvers where applicable) is:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">test_dataset_class[&lt;dataset&gt;]</span></code> — the dataset class exposes the
 expected public API (<code class="docutils literal notranslate"><span class="pre">name</span></code>, callable <code class="docutils literal notranslate"><span class="pre">get_data</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">test_dataset_install[&lt;dataset&gt;]</span></code> — the dataset installs cleanly in a
+fresh conda environment (skipped under <code class="docutils literal notranslate"><span class="pre">--skip-install</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_dataset_get_data[&lt;dataset&gt;]</span></code> — each installed dataset’s
 <code class="docutils literal notranslate"><span class="pre">get_data</span></code> returns a dictionary, as expected by the objective.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">test_benchmark_objective[&lt;test_dataset&gt;]</span></code> — the objective instantiates

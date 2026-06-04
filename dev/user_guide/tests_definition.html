@@ -364,6 +364,20 @@
     <span class="p">)</span>
 
 
+<span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">requires_install</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">test_dataset_install</span><span class="p">(</span><span class="n">test_env_name</span><span class="p">,</span> <span class="n">benchmark</span><span class="p">,</span> <span class="n">dataset_class</span><span class="p">):</span>
+
+    <span class="c1"># Make sure that the current benchmark is correctly set</span>
+    <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.benchmark</span><span class="w"> </span><span class="kn">import</span> <span class="n">Benchmark</span>
+    <span class="n">benchmark</span> <span class="o">=</span> <span class="n">Benchmark</span><span class="p">(</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="p">)</span>
+
+    <span class="c1"># assert that install works when forced to reinstalls</span>
+    <span class="n">dataset_class</span><span class="o">.</span><span class="n">install</span><span class="p">(</span><span class="n">env_name</span><span class="o">=</span><span class="n">test_env_name</span><span class="p">)</span>
+    <span class="n">dataset_class</span><span class="o">.</span><span class="n">is_installed</span><span class="p">(</span>
+        <span class="n">env_name</span><span class="o">=</span><span class="n">test_env_name</span><span class="p">,</span> <span class="n">raise_on_not_installed</span><span class="o">=</span><span class="kc">True</span>
+    <span class="p">)</span>
+
+
 <span class="k">def</span><span class="w"> </span><span class="nf">test_dataset_get_data</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">dataset_class</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that all installed dataset_class.get_data return the right result</span>
 <span class="sd">    &quot;&quot;&quot;</span>
