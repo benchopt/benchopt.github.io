@@ -373,7 +373,9 @@ or objective’s parameters, or to display customization options. The keys in th
 dictionary are the names of the options, associated to a list of their possible
 values. If a key <code class="code docutils literal notranslate"><span class="pre">objective/dataset/solver/objective_column</span></code> is associated
 with the value <code class="code docutils literal notranslate"><span class="pre">...</span></code>, the options are automatically inferred from the
-results DataFrame, as all unique values associated with this key.</p></li>
+results DataFrame, as all unique values associated with this key. A value can
+also be a callable taking the results DataFrame as input and returning the list
+of possible values for the option.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">plot(self,</span> <span class="pre">df,</span> <span class="pre">**kwargs)</span></code>: give the data to produce one plot, that is
 rendered with the plotly or matplotlib backend. The method takes the results DataFrame
 and the options values as arguments, and returns the plot data. The output
@@ -396,15 +398,17 @@ The visualization is rendered using either the <code class="docutils literal not
         <span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>         <span class="c1"># Automatic options from DataFrame columns</span>
         <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span>
         <span class="s2">&quot;my_parameter&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="c1"># custom options</span>
+        <span class="c1"># options computed from the results DataFrame</span>
+        <span class="s2">&quot;solver&quot;</span><span class="p">:</span> <span class="k">lambda</span> <span class="n">df</span><span class="p">:</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;solver_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
     <span class="p">}</span>
 
     <span class="c1"># The inputs args of this method correspond to `df` and</span>
     <span class="c1"># the keys in the `options` dictionary.</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">,</span> <span class="n">solver</span><span class="p">):</span>
         <span class="c1"># ... process df ...</span>
         <span class="k">return</span> <span class="n">plot_data</span>
 
-    <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">,</span> <span class="n">solver</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
             <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Plot for </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
             <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;X Label&quot;</span><span class="p">,</span>
@@ -448,7 +452,7 @@ This only affects the matplotlib backend, not the html page.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">scale</span></code> (optional, default=”loglog”): The scale of the axes in the matplotlib backend,
 can be either “linear”, “semilog-x”, “semilog-y” or “loglog”.</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">,</span> <span class="n">solver</span><span class="p">):</span>
     <span class="c1"># Filter the dataframe</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
         <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
@@ -469,7 +473,7 @@ can be either “linear”, “semilog-x”, “semilog-y” or “loglog”.</p
         <span class="p">})</span>
     <span class="k">return</span> <span class="n">plot_traces</span>
 
-<span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">my_parameter</span><span class="p">,</span> <span class="n">solver</span><span class="p">):</span>
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Convergence for </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;Time [sec]&quot;</span><span class="p">,</span>
