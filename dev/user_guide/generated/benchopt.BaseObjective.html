@@ -391,6 +391,11 @@ In particular, it should have the following class attributes:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: a name for the benchmark, that will be used to display results.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">url</span></code>: the url of the original benchmark repository.</p></li>
+</ul>
+<p>Some extra configurations can be set through optional class attributes for
+various cases:</p>
+<p><strong>Installation:</strong></p>
+<ul class="simple">
 <li><dl class="simple">
 <dt><code class="docutils literal notranslate"><span class="pre">requirements</span></code>: the minimal requirements to be able to run the</dt><dd><p>benchmark.</p>
 </dd>
@@ -398,12 +403,21 @@ In particular, it should have the following class attributes:</p>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">min_benchopt_version</span></code>: the minimal version of benchopt required to run
 this benchmark.</p></li>
-</ul>
-<p>Some extra configurations can be set through optional class attributes:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">test_dataset_name</span></code>: the name of the dataset to use for testing.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code>: the default stopping criterion to use for
+<li><p><code class="docutils literal notranslate"><span class="pre">python_version</span></code>: a specific version of Python required to run
 this benchmark.</p></li>
+</ul>
+<p><strong>Tests:</strong>
+- <code class="docutils literal notranslate"><span class="pre">test_dataset_name</span></code>: the name of the dataset to use for testing.
+- <code class="docutils literal notranslate"><span class="pre">test_config</span></code>: a configuration for the objective and potential datasets</p>
+<blockquote>
+<div><p>to use for testing.</p>
+</div></blockquote>
+<p><strong>Iterative solvers customization:</strong>
+- <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code>: the default stopping criterion to use for</p>
+<blockquote>
+<div><p>this benchmark.</p>
+</div></blockquote>
+<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>: the default sampling strategy to use for this
 benchmark.</p></li>
 </ul>
