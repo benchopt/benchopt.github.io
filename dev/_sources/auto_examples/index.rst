@@ -108,7 +108,7 @@ Examples Gallery
 
 .. raw:: html
 
-    <div class="sphx-glr-thumbcontainer" tooltip="This example demonstrates the image plot type, which allows benchmark authors to display solver outputs as a visual gallery inside the benchopt HTML result page.">
+    <div class="sphx-glr-thumbcontainer" tooltip="This example shows two complementary ways to work with images in a benchmark:">
 
 .. only:: html
 
@@ -119,7 +119,7 @@ Examples Gallery
 
 .. raw:: html
 
-      <div class="sphx-glr-thumbnail-title">Image plot type for benchopt</div>
+      <div class="sphx-glr-thumbnail-title">Generating and displaying images in a benchmark</div>
     </div>
 
 

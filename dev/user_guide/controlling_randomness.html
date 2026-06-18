@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Controlling randomness in Benchopt &#8212; benchopt 1.9.2dev0 documentation</title>
+    <title>Reproducibility helpers: seeding and run artifacts &#8212; benchopt 1.9.2dev0 documentation</title>
   
   
   
@@ -188,7 +188,7 @@
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="authoring.html">Creating benchmarks</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="class_customization.html">Benchmark class configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l3 current active"><a class="current reference internal" href="#">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l3 current active"><a class="current reference internal" href="#">Reproducibility helpers: seeding and run artifacts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ml_benchmark.html">Cross-validation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l3"><a class="reference internal" href="solver_languages.html">Using different programming languages with benchopt</a></li>
@@ -228,7 +228,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_image_benchmark.html">Image plot type for benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_image_benchmark.html">Generating and displaying images in a benchmark</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -320,7 +320,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Controlling randomness in Benchopt</h1>
+    <h1>Reproducibility helpers: seeding and run artifacts</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -336,6 +336,7 @@
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-run-artifacts">Saving run artifacts</a></li>
 </ul>
             </nav>
         </div>
@@ -347,8 +348,8 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="controlling-randomness-in-benchopt">
-<span id="controlling-randomness"></span><h1>Controlling randomness in Benchopt<a class="headerlink" href="#controlling-randomness-in-benchopt" title="Link to this heading">#</a></h1>
+  <section id="reproducibility-helpers-seeding-and-run-artifacts">
+<span id="controlling-randomness"></span><h1>Reproducibility helpers: seeding and run artifacts<a class="headerlink" href="#reproducibility-helpers-seeding-and-run-artifacts" title="Link to this heading">#</a></h1>
 <p>Benchopt provides a mechanism to control randomness across runs, solvers,
 datasets and repetitions, by producing deterministic and reproducible seeds.
 This page explains how the <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> method works and how to use it inside
@@ -436,6 +437,28 @@ seed has not been initialized.</p>
 </div>
 </section>
 </section>
+<section id="saving-run-artifacts">
+<span id="run-artifacts"></span><h2>Saving run artifacts<a class="headerlink" href="#saving-run-artifacts" title="Link to this heading">#</a></h2>
+<p>All benchopt base classes also provide a <code class="docutils literal notranslate"><span class="pre">get_run_output_path</span></code> method that
+returns a directory <strong>unique to the current run</strong> (dataset x objective x solver
+x repetition). Use it to save per-run artifacts such as intermediate models,
+diagnostic plots, or convergence logs.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-solver&quot;</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
+        <span class="c1"># … training loop …</span>
+        <span class="n">output_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_run_output_path</span><span class="p">()</span>
+        <span class="n">np</span><span class="o">.</span><span class="n">save</span><span class="p">(</span><span class="n">output_dir</span> <span class="o">/</span> <span class="s2">&quot;weights.npy&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">weights</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The directory is created automatically on first call and lives under
+<code class="docutils literal notranslate"><span class="pre">&lt;benchmark&gt;/outputs/&lt;run_name&gt;/&lt;dataset&gt;/&lt;objective&gt;/&lt;solver&gt;/rep_&lt;k&gt;/</span></code>.</p>
+<p>Like <code class="docutils literal notranslate"><span class="pre">get_seed</span></code>, this method is available on <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>, <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">Solver</span></code>, and must be called during execution (not at import time or class
+definition). It raises <code class="docutils literal notranslate"><span class="pre">RuntimeError</span></code> when called outside of a
+<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> invocation (e.g. during <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code>).</p>
+</section>
 </section>
 
 
@@ -491,6 +514,7 @@ seed has not been initialized.</p>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#examples">Examples</a></li>
 </ul>
 </li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-run-artifacts">Saving run artifacts</a></li>
 </ul>
   </nav></div>
 

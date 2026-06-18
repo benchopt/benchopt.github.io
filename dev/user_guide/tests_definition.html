@@ -188,7 +188,7 @@
 <li class="toctree-l2 has-children"><a class="reference internal" href="authoring.html">Creating benchmarks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="class_customization.html">Benchmark class configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l3"><a class="reference internal" href="controlling_randomness.html">Controlling randomness in Benchopt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="controlling_randomness.html">Reproducibility helpers: seeding and run artifacts</a></li>
 <li class="toctree-l3"><a class="reference internal" href="ml_benchmark.html">Cross-validation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
 <li class="toctree-l3"><a class="reference internal" href="solver_languages.html">Using different programming languages with benchopt</a></li>
@@ -228,7 +228,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_julia_solver.html">Create and run a Julia solver benchmark</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_plot_config.html">Configure views in a benchmark’s visuzalization</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_benchopt_prepare.html">Preparing datasets with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code></a></li>
-<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_image_benchmark.html">Image plot type for benchopt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../auto_examples/run_image_benchmark.html">Generating and displaying images in a benchmark</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../available_benchmarks.html">Available benchmarks</a></li>
@@ -343,7 +343,7 @@
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SAMPLING_STRATEGIES</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils.dynamic_modules</span><span class="w"> </span><span class="kn">import</span> <span class="n">_get_module_from_file</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils.parametrized_name_mixin</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_configs</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt._generate_runs</span><span class="w"> </span><span class="kn">import</span> <span class="n">_seed_run</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.utils.run_context</span><span class="w"> </span><span class="kn">import</span> <span class="n">RunContext</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_dataset_class</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">dataset_class</span><span class="p">):</span>
@@ -391,8 +391,8 @@
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
 
     <span class="c1"># ensure classes calling `get_seed` work properly</span>
-    <span class="n">_seed_run</span><span class="p">(</span>
-        <span class="n">objective</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
+        <span class="kc">None</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
     <span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_get_data</span><span class="p">()</span>
@@ -417,9 +417,8 @@
     <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
 
     <span class="c1"># ensure classes calling `get_seed` work properly</span>
-    <span class="n">_seed_run</span><span class="p">(</span>
-        <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-        <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+    <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
+        <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
     <span class="p">)</span>
 
     <span class="c1"># get one value for the objective, with the test_dataset</span>
@@ -555,9 +554,8 @@
 
         <span class="c1"># ensure classes calling `get_seed` work properly</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
-        <span class="n">_seed_run</span><span class="p">(</span>
-            <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
+        <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
+            <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
         <span class="p">)</span>
 
         <span class="n">objective</span><span class="o">.</span><span class="n">_set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
@@ -595,9 +593,8 @@
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
         <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
         <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;solver&#39;</span><span class="p">])</span>
-        <span class="n">_seed_run</span><span class="p">(</span>
-            <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">,</span>
-            <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
+        <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
+            <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
         <span class="p">)</span>
         <span class="n">objective</span><span class="o">.</span><span class="n">_set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
         <span class="n">skip</span><span class="p">,</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">_set_objective</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
