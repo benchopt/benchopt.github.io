@@ -401,6 +401,17 @@ specific names to ignore (e.g. a random seed):</p>
 </pre></div>
 </div>
 </li>
+<li><p>The benchmark <code class="docutils literal notranslate"><span class="pre">--seed</span></code> is part of the prepare cache key, so
+preparing with a different seed re-runs preparation. Pass the same
+<code class="docutils literal notranslate"><span class="pre">--seed</span></code> to <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code> and <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> so the
+prepared data matches the run. If preparation does not depend on the
+seed, it can be ignored adding <code class="docutils literal notranslate"><span class="pre">base_seed</span></code> in
+<code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code> (included in <code class="docutils literal notranslate"><span class="pre">&quot;all&quot;</span></code>).</p></li>
+<li><p>At preparation time only the dataset is known, so <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> (in
+<code class="docutils literal notranslate"><span class="pre">prepare</span></code> or in the <code class="docutils literal notranslate"><span class="pre">get_data</span></code> it triggers) may only be called
+with <code class="docutils literal notranslate"><span class="pre">use_dataset=True</span></code>. Requesting the objective, solver or
+repetition seed raises a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>, as they are not yet defined.
+See <a class="reference internal" href="../controlling_randomness.html#controlling-randomness"><span class="std std-ref">Reproducibility helpers: seeding and run artifacts</span></a>.</p></li>
 </ul>
 </dd></dl>
 

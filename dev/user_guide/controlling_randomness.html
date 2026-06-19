@@ -409,6 +409,15 @@ and <code class="docutils literal notranslate"><span class="pre">set_data</span>
 <p>Do <strong>not</strong> call it at import time or during class definition — at that stage,
 the benchmark runner has not yet created the correct runtime context, and the
 seed has not been initialized.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">get_data</span></code> is called by <a class="reference internal" href="../benchmark_workflow/run_benchmark.html#prepare-datasets"><span class="std std-ref">benchopt prepare</span></a>,
+only the dataset is known. A <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> may therefore only call
+<code class="docutils literal notranslate"><span class="pre">get_seed(use_dataset=True)</span></code> from <code class="docutils literal notranslate"><span class="pre">get_data</span></code>; requesting the objective,
+solver or repetition seed raises an error, since these are not defined at
+preparation time. Use the same <code class="docutils literal notranslate"><span class="pre">--seed</span></code> for <code class="docutils literal notranslate"><span class="pre">prepare</span></code> and <code class="docutils literal notranslate"><span class="pre">run</span></code> so the
+prepared data matches the run.</p>
+</div>
 <section id="examples">
 <h3>Examples<a class="headerlink" href="#examples" title="Link to this heading">#</a></h3>
 <p>We provide an example for custom <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, however, the same logic applies for

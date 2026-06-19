@@ -381,7 +381,9 @@ by <code class="docutils literal notranslate"><span class="pre">get_data()</span
 <p>Benchopt calls the <a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset.prepare" title="benchopt.BaseDataset.prepare"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare()</span></code></a> method of every
 dataset and caches the result with <cite>joblib</cite>, so re-running the command is a
 no-op when nothing has changed. Use <code class="docutils literal notranslate"><span class="pre">--force</span></code> to bypass the cache and re-run
-preparation unconditionally.</p>
+preparation unconditionally. Note that for datasets that rely on
+<a class="reference internal" href="../user_guide/controlling_randomness.html#controlling-randomness"><span class="std std-ref">seeding</span></a>, the same <code class="docutils literal notranslate"><span class="pre">--seed</span></code> must be passed to
+<code class="docutils literal notranslate"><span class="pre">prepare</span></code> and <code class="docutils literal notranslate"><span class="pre">run</span></code> so the prepared data matches the run.</p>
 <p>Preparation can also be parallelised across datasets using the same options as
 <a class="reference internal" href="../user_guide/distributed_run.html#parallel-run"><span class="std std-ref">benchopt run</span></a>.</p>
 </section>

@@ -464,6 +464,12 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <section id="fix">
 <h3>FIX<a class="headerlink" href="#fix" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Fix <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> failing during <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code> when a dataset’s
+<code class="docutils literal notranslate"><span class="pre">get_data</span></code> uses it. <code class="docutils literal notranslate"><span class="pre">prepare</span></code> now sets up a seeding context and accepts a
+<code class="docutils literal notranslate"><span class="pre">--seed</span></code> option that is part of the preparation cache. Datasets whose
+preparation does not depend on the seed can drop it from the cache key with
+<code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span> <span class="pre">=</span> <span class="pre">('base_seed',)</span></code>.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/962">#962</a>)</p></li>
 <li><p>Fix single dataset benchmark test_dataset_names detection for test env
 creation. By <a class="reference external" href="https://tommoral.github.io">Thomas moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/951">#951</a>)</p></li>
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">--profile</span></code> parsing that was resulting in always activated profile.

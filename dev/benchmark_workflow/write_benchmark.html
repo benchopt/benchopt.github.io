@@ -553,7 +553,8 @@ Infrastructure</label><div class="sd-tab-content docutils">
 <h3>Optional features<a class="headerlink" href="#optional-features" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference internal" href="../user_guide/generated/benchopt.BaseDataset.html#benchopt.BaseDataset.prepare" title="benchopt.BaseDataset.prepare"><code class="xref py py-func docutils literal notranslate"><span class="pre">prepare()</span></code></a>: expensive one-time setup (downloads,
-extraction, preprocessing), cached by joblib.
+extraction, preprocessing), cached by joblib. Default to <code class="docutils literal notranslate"><span class="pre">get_data()</span></code> if
+not implemented.
 See <a class="reference internal" href="run_benchmark.html#prepare-datasets"><span class="std std-ref">Preparing datasets</span></a> for details and usage.</p></li>
 <li><p><strong>Custom data paths</strong>: expose configurable file paths to benchmark users via
 <code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.config.get_data_path()</span></code>. See <a class="reference internal" href="../user_guide/config_benchopt.html#data-paths"><span class="std std-ref">Customising data file paths</span></a> for

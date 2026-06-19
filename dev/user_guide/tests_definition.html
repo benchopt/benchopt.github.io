@@ -390,9 +390,10 @@
     <span class="n">config</span> <span class="o">=</span> <span class="n">get_configs</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
 
-    <span class="c1"># ensure classes calling `get_seed` work properly</span>
+    <span class="c1"># ensure classes calling `get_seed` work properly. Use placeholder</span>
+    <span class="c1"># objective/solver names to mimic known dimension at runtime.</span>
     <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-        <span class="kc">None</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+        <span class="s2">&quot;dummy&quot;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;dummy&quot;</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
     <span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_get_data</span><span class="p">()</span>
@@ -416,9 +417,10 @@
     <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
     <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
 
-    <span class="c1"># ensure classes calling `get_seed` work properly</span>
+    <span class="c1"># ensure classes calling `get_seed` work properly. Use a placeholder</span>
+    <span class="c1"># solver name so all methods can use any seed dimension.</span>
     <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-        <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;dummy&quot;</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
     <span class="p">)</span>
 
     <span class="c1"># get one value for the objective, with the test_dataset</span>
@@ -552,10 +554,11 @@
             <span class="s2">&quot;&#39;objective_&#39;.&quot;</span>
         <span class="p">)</span>
 
-        <span class="c1"># ensure classes calling `get_seed` work properly</span>
+        <span class="c1"># ensure classes calling `get_seed` work properly.</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
         <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-            <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
+            <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+            <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
         <span class="p">)</span>
 
         <span class="n">objective</span><span class="o">.</span><span class="n">_set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
