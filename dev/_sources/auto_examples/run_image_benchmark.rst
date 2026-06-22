@@ -231,8 +231,8 @@ benchmark:
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad-0' name='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad' type='radio'><label for='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-a2034573c9d848af9823f474c39fdb7e-0' name='example-benchmark-a2034573c9d848af9823f474c39fdb7e' type='radio'><label for='example-benchmark-a2034573c9d848af9823f474c39fdb7e-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
         <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -274,7 +274,7 @@ benchmark:
                 <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad-1' name='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad' type='radio'><label for='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-a2034573c9d848af9823f474c39fdb7e-1' name='example-benchmark-a2034573c9d848af9823f474c39fdb7e' type='radio'><label for='example-benchmark-a2034573c9d848af9823f474c39fdb7e-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
@@ -291,7 +291,7 @@ benchmark:
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_true</span><span class="o">=</span><span class="n">X_true</span><span class="p">,</span> <span class="n">X_noisy</span><span class="o">=</span><span class="n">X_noisy</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad-2' name='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad' type='radio'><label for='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad-2'>solvers/tv_denoise.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-a2034573c9d848af9823f474c39fdb7e-2' name='example-benchmark-a2034573c9d848af9823f474c39fdb7e' type='radio'><label for='example-benchmark-a2034573c9d848af9823f474c39fdb7e-2'>solvers/tv_denoise.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SufficientProgressCriterion</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -338,7 +338,7 @@ benchmark:
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad-3' name='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad' type='radio'><label for='example-benchmark-235bdf67af744e9aa4ecd8fc32dc48ad-3'>solvers/median_filter.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-a2034573c9d848af9823f474c39fdb7e-3' name='example-benchmark-a2034573c9d848af9823f474c39fdb7e' type='radio'><label for='example-benchmark-a2034573c9d848af9823f474c39fdb7e-3'>solvers/median_filter.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SufficientProgressCriterion</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
@@ -395,7 +395,7 @@ disk under ``<benchmark>/outputs/<run_name>/``.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_i4j6yjxj/image_denoising<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_wh8xfjis/image_denoising<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
     </pre></div>
     </pre>
             
@@ -416,18 +416,18 @@ disk under ``<benchmark>/outputs/<run_name>/``.
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.1]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                              
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.5]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                              
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_i4j6yjxj/image_denoising/outputs/benchopt_run_2026-06-19_15h13m</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">24.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_wh8xfjis/image_denoising/outputs/benchopt_run_2026-06-22_07h26m</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">38.parquet</span>
     Rendering benchmark results...
        Processing 
-    temp_benchmark_i4j6yjxj/image_denoising/outputs/benchopt_run_2026-06-19_15h13m
-    24.parquet
+    temp_benchmark_wh8xfjis/image_denoising/outputs/benchopt_run_2026-06-22_07h26m
+    38.parquet
     done
     Writing results to 
-    temp_benchmark_i4j6yjxj/image_denoising/outputs/image_denoising_benchopt_run_2
-    026-06-19_15h13m24.html
+    temp_benchmark_wh8xfjis/image_denoising/outputs/image_denoising_benchopt_run_2
+    026-06-22_07h26m38.html
     Writing image_denoising index to 
-    temp_benchmark_i4j6yjxj/image_denoising/outputs/image_denoising.html
+    temp_benchmark_wh8xfjis/image_denoising/outputs/image_denoising.html
 
 
 
@@ -604,8 +604,8 @@ reference and noisy images.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-d27cb01e2da24d0e89021eb7263a50fa-0' name='example-benchmark-d27cb01e2da24d0e89021eb7263a50fa' type='radio'><label for='example-benchmark-d27cb01e2da24d0e89021eb7263a50fa-0'>plots/reconstruction.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-c6272a924daf43e993191cfa7f295a88-0' name='example-benchmark-c6272a924daf43e993191cfa7f295a88' type='radio'><label for='example-benchmark-c6272a924daf43e993191cfa7f295a88-0'>plots/reconstruction.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
@@ -654,7 +654,7 @@ reference and noisy images.
             <span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-d27cb01e2da24d0e89021eb7263a50fa-1' name='example-benchmark-d27cb01e2da24d0e89021eb7263a50fa' type='radio'><label for='example-benchmark-d27cb01e2da24d0e89021eb7263a50fa-1'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
+    <input  id='example-benchmark-c6272a924daf43e993191cfa7f295a88-1' name='example-benchmark-c6272a924daf43e993191cfa7f295a88' type='radio'><label for='example-benchmark-c6272a924daf43e993191cfa7f295a88-1'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
     <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reconstruction</span>
     <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
     <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
@@ -695,15 +695,15 @@ results and generates the HTML report with the ``image`` plot type.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_i4j6yjxj/image_denoising
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_wh8xfjis/image_denoising
     </pre></div>
     </pre>
             
                 <div class="sphx-glr-script-out highlight-none notranslate">
                     <div class="highlight"><pre>Rendering benchmark results...
        Processing 
-    temp_benchmark_i4j6yjxj/image_denoising/outputs/benchopt_run_2026-06-19_15h13m
-    24.parquetTraceback (most recent call last):
+    temp_benchmark_wh8xfjis/image_denoising/outputs/benchopt_run_2026-06-22_07h26m
+    38.parquetTraceback (most recent call last):
       File &quot;/home/circleci/project/benchopt/plotting/helpers.py&quot;, line 61, in 
     update_plot_data_style
         raise ValueError(
@@ -716,10 +716,10 @@ results and generates the HTML report with the ``image`` plot type.
 
     done
     Writing results to 
-    temp_benchmark_i4j6yjxj/image_denoising/outputs/image_denoising_benchopt_run_2
-    026-06-19_15h13m24.html
+    temp_benchmark_wh8xfjis/image_denoising/outputs/image_denoising_benchopt_run_2
+    026-06-22_07h26m38.html
     Writing image_denoising index to 
-    temp_benchmark_i4j6yjxj/image_denoising/outputs/image_denoising.html
+    temp_benchmark_wh8xfjis/image_denoising/outputs/image_denoising.html
 
 
 
@@ -783,7 +783,7 @@ option, generating a pdf file in the output directory of the benchmark.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_i4j6yjxj/image_denoising<span class="w"> </span>--no-html<span class="w"> </span>--kind<span class="w"> </span>reconstruction
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_wh8xfjis/image_denoising<span class="w"> </span>--no-html<span class="w"> </span>--kind<span class="w"> </span>reconstruction
     </pre></div>
     </pre>
             
@@ -801,7 +801,7 @@ option, generating a pdf file in the output directory of the benchmark.
 
     Save reconstruction_simulated[n=32,noise_std=0.3,random_state=42]_Image 
     Denoising as: 
-    temp_benchmark_i4j6yjxj/image_denoising/outputs/reconstruction_simulated[n=32,
+    temp_benchmark_wh8xfjis/image_denoising/outputs/reconstruction_simulated[n=32,
     noise_std=0.pdf
 
 
@@ -816,7 +816,7 @@ option, generating a pdf file in the output directory of the benchmark.
 
     Save reconstruction_simulated[n=128,noise_std=0.3,random_state=42]_Image 
     Denoising as: 
-    temp_benchmark_i4j6yjxj/image_denoising/outputs/reconstruction_simulated[n=128
+    temp_benchmark_wh8xfjis/image_denoising/outputs/reconstruction_simulated[n=128
     ,noise_std=0.pdf
 
 
@@ -833,7 +833,7 @@ option, generating a pdf file in the output directory of the benchmark.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 6.768 seconds)
+   **Total running time of the script:** (0 minutes 6.585 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_image_benchmark.py:

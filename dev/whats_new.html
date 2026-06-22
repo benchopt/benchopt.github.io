@@ -329,7 +329,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-10-0-in-development">Version 1.10.0 – In development</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-10-0-in-development">Version 1.10.0 – in development</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tst">TST</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fix">FIX</a></li>
@@ -434,13 +434,17 @@
   <section id="what-s-new">
 <span id="whats-new"></span><h1>What’s new<a class="headerlink" href="#what-s-new" title="Link to this heading">#</a></h1>
 <section id="version-1-10-0-in-development">
-<span id="dev"></span><h2>Version 1.10.0 – In development<a class="headerlink" href="#version-1-10-0-in-development" title="Link to this heading">#</a></h2>
+<span id="dev"></span><h2>Version 1.10.0 – in development<a class="headerlink" href="#version-1-10-0-in-development" title="Link to this heading">#</a></h2>
 <section id="api">
 <h3>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Custom plot <code class="docutils literal notranslate"><span class="pre">options</span></code> values can now be a callable taking the results
 DataFrame as input and returning the list of possible values for the option.
 By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/952">#952</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">param=all</span></code> shorthand to sweep every valid value of a parameter,
+e.g. <code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">&quot;Foo[x=all]&quot;</span></code>. The valid values are declared per class through
+the <code class="docutils literal notranslate"><span class="pre">get_all_parameter_values</span></code> classmethod, and are also listed
+by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">info</span> <span class="pre">-v</span></code>. By <a class="reference external" href="https://eddardd.github.io/">Eduardo Montesuma</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/941">#941</a>)</p></li>
 <li><p>Add <code class="docutils literal notranslate"><span class="pre">get_run_output_path</span></code> method to all benchmark components (<code class="docutils literal notranslate"><span class="pre">Dataset</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, <code class="docutils literal notranslate"><span class="pre">Solver</span></code>). It returns a directory unique to the current
 (dataset/objective/solver/repetition) run, to save per-run artifacts such as
@@ -1183,7 +1187,7 @@ implementations:</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-10-0-in-development">Version 1.10.0 – In development</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-1-10-0-in-development">Version 1.10.0 – in development</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#api">API</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#tst">TST</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#fix">FIX</a></li>

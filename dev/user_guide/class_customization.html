@@ -330,7 +330,10 @@
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrization">Parametrization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrization">Parametrization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-the-full-set-of-valid-values">Declaring the full set of valid values</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-dependencies">Managing dependencies</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-requirements">Specifying requirements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-a-python-version">Specifying a Python version</a></li>
@@ -416,6 +419,45 @@ cartesian product of the remaining values.</p>
 <p>For more complex experiment definitions, the same parameter overrides can be
 expressed in the run configuration file described in
 <a class="reference internal" href="../benchmark_workflow/run_benchmark.html#run-benchmark"><span class="std std-ref">Run a benchmark</span></a>.</p>
+<section id="declaring-the-full-set-of-valid-values">
+<span id="parameter-choices"></span><h3>Declaring the full set of valid values<a class="headerlink" href="#declaring-the-full-set-of-valid-values" title="Link to this heading">#</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">parameters</span></code> dictionary defines the <em>default sweep grid</em>: the
+combinations that run when no override is passed. It is deliberately kept
+small so that <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> stays fast by default. This is distinct from
+the <em>full set of valid values</em> a parameter can take, which may be much larger
+– for instance, a dataset class that wraps a collection of named
+sub-datasets through a single parameter.</p>
+<p>To declare this full set, override the optional classmethod
+<code class="docutils literal notranslate"><span class="pre">get_all_parameter_values</span></code>. It returns the list of valid values for a given
+parameter, or <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default) when the parameter has no enumerable
+choice set:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;GiftEval&quot;</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dataset_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;m4_weekly&quot;</span><span class="p">]}</span>  <span class="c1"># small default grid</span>
+
+    <span class="nd">@classmethod</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_all_parameter_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;m4_weekly&quot;</span><span class="p">,</span> <span class="s2">&quot;m4_daily&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>  <span class="c1"># all valid values</span>
+</pre></div>
+</div>
+<p>Once declared, the choices enable two things:</p>
+<ul>
+<li><p><strong>Sweeping all values</strong> with the <code class="docutils literal notranslate"><span class="pre">=all</span></code> shorthand on the command line:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;GiftEval[dataset_name=all]&quot;</span></span>
+</pre></div></div><p>This expands <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code> to every value returned by
+<code class="docutils literal notranslate"><span class="pre">get_all_parameter_values</span></code>. Explicit values can be mixed in, e.g.
+<code class="docutils literal notranslate"><span class="pre">dataset_name=[m4_weekly,</span> <span class="pre">all]</span></code>; they are merged and de-duplicated.
+Using <code class="docutils literal notranslate"><span class="pre">=all</span></code> on a parameter whose class does not override the hook
+emits a warning and keeps <code class="docutils literal notranslate"><span class="pre">'all'</span></code> as a literal value. Implementing
+<code class="docutils literal notranslate"><span class="pre">get_all_parameter_values</span></code> to return the valid values enables the
+expansion; implementing it as a no-op that returns <code class="docutils literal notranslate"><span class="pre">'all'</span></code> for that
+parameter silences the warning and keeps <code class="docutils literal notranslate"><span class="pre">'all'</span></code> as a literal value.</p>
+</li>
+<li><p><strong>Discovering the values</strong> through <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">info</span> <span class="pre">-v</span></code>, which lists them
+(with a total count) alongside the default grid.</p></li>
+</ul>
+</section>
 </section>
 <section id="managing-dependencies">
 <span id="id1"></span><h2>Managing dependencies<a class="headerlink" href="#managing-dependencies" title="Link to this heading">#</a></h2>
@@ -562,7 +604,10 @@ for an example.</p></li>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrization">Parametrization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#parametrization">Parametrization</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-the-full-set-of-valid-values">Declaring the full set of valid values</a></li>
+</ul>
+</li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#managing-dependencies">Managing dependencies</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-requirements">Specifying requirements</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-a-python-version">Specifying a Python version</a></li>
