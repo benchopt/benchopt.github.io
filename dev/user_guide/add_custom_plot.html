@@ -589,7 +589,15 @@ The metadata dictionary returned by <code class="code docutils literal notransla
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">title</span></code>: The title of the plot.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">columns</span></code>: A list of column names.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">default_order_column</span></code> (optional, default=0): The column to sort the rows on by
+default in the html report, given as a column name or a 0-based column index.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">default_order_ascending</span></code> (optional, default=True): Whether the default
+ordering is in increasing order.</p></li>
 </ul>
+<p>In the html report, each column header can be clicked to sort on that column,
+and the arrow next to it can be toggled to switch between increasing and
+decreasing order. A search bar allows filtering the rows, and each column can
+be shown or hidden with the checkboxes below the table.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
         <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
@@ -605,6 +613,8 @@ The metadata dictionary returned by <code class="code docutils literal notransla
     <span class="k">return</span> <span class="p">{</span>
         <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Summary for </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
         <span class="s2">&quot;columns&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;Solver&quot;</span><span class="p">,</span> <span class="s2">&quot;Mean Time [sec]&quot;</span><span class="p">],</span>
+        <span class="s2">&quot;default_order_column&quot;</span><span class="p">:</span> <span class="s2">&quot;Mean Time [sec]&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;default_order_ascending&quot;</span><span class="p">:</span> <span class="kc">True</span><span class="p">,</span>
     <span class="p">}</span>
 </pre></div>
 </div>

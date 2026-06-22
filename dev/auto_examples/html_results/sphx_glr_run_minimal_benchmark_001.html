@@ -9,6 +9,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300&display=swap" rel="stylesheet">
+        <!-- Used to render the table plots -->
+        <link href="https://cdn.jsdelivr.net/npm/gridjs@6.2.0/dist/theme/mermaid.min.css" rel="stylesheet">
 
         <title>Result on Quadratic</title>
 
@@ -2286,7 +2288,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                             <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportConfigs()">Download config</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportHTML()">Download HTML</a>
-                            <a href="benchopt_run_2026-06-22_07h20m56.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                            <a href="benchopt_run_2026-06-22_09h44m20.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
                         </div>
                     </div>
                 </nav>
@@ -2555,7 +2557,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                         </span>
 
                         <span>
-                            <a href="benchopt_run_2026-06-22_07h20m56.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <a href="benchopt_run_2026-06-22_09h44m20.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                 </svg>
@@ -2626,7 +2628,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                                             <li> <b>CPU</b>: 2 </li>
                                             <li> <b>RAM (GB)</b>: 4 </li>
                                             <li> <b>platform</b>: Linux6.17.0-1013-aws-x86_64 </li>
-                                            <li> <b>processor</b>: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz </li>
+                                            <li> <b>processor</b>: Intel(R) Xeon(R) Platinum 8223CL CPU @ 3.00GHz </li>
                                             
                                             <li> <b>numpy</b>: 2.5.0 </li>
                                             
@@ -2648,6 +2650,8 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
         <textarea id="config_export" class="hidden"></textarea>
 
         <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
+        <!-- Used to render the table plots -->
+        <script src="https://cdn.jsdelivr.net/npm/gridjs@6.2.0/dist/gridjs.umd.js"></script>
         <!-- Used for the brand animation -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
         <!-- Define the brand animation -->
@@ -2691,7 +2695,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
         </script>
         <!-- Manage plot -->
         <script>
-            window._plots = {"objective_curve": {"objective_curve_simulated_Quadratic_objective_value_Time": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [2.074499207083136e-06, 1.7711499822326005e-05, 2.4017499526962638e-05, 2.9655999242095277e-05, 3.515299886203138e-05, 4.38839988419204e-05, 5.415449777501635e-05, 6.846449923614273e-05, 8.564050131099066e-05, 0.00010874599956878228, 0.0001448024986530072, 0.00019386049734748667, 0.00026443499336892273, 0.0003794149915847811, 0.000557366503016965, 0.0008171820054485579, 0.0011964065170104732, 0.0017171965082525276, 0.002513008501409786, 0.0037165884878049837, 0.005500424991623731], "y": [5.829276077425757, 5.8234468013483305, 5.817623354546982, 5.811805731192435, 5.805993925461243, 5.794387743604245, 5.777021957742276, 5.753948508940743, 5.719511012122037, 5.668240835690388, 5.589399216329685, 5.473188206060351, 5.306039973495239, 5.0623068248434615, 4.719898288403199, 4.249216934575181, 3.6279061459888347, 2.862046943974044, 2.0064348988782763, 1.1771459087933207, 0.5292433260504033], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "x_low": [1.9955990865128114e-06, 1.577620023454074e-05, 2.19130000914447e-05, 2.7593800041358918e-05, 3.312500011816155e-05, 4.1825999869615774e-05, 5.2135799342067914e-05, 6.541500079038087e-05, 8.229520244640298e-05, 0.0001052731997333467, 0.0001423439975042129, 0.00019115599498036316, 0.00026149199256906284, 0.00037020199379185216, 0.0005535004031116842, 0.0007972518036694964, 0.0011729042187653249, 0.0016931578058574815, 0.002478482394508319, 0.0036763377756869886, 0.00546981657971628], "x_high": [2.1533993276534603e-06, 1.964679941011127e-05, 2.6121998962480576e-05, 3.1718198442831635e-05, 3.7180997605901214e-05, 4.594199781422503e-05, 5.617319620796479e-05, 7.151399768190458e-05, 8.898580017557833e-05, 0.00011221879940421786, 0.0001472609998018015, 0.00019656499971461018, 0.00026737799416878263, 0.00038862798937771, 0.0005612326029222458, 0.0008371122072276194, 0.0012199088152556215, 0.0017412352106475737, 0.0025475346083112527, 0.003756839199922979, 0.005531033403531183]}, {"x": [1.57550039148191e-06, 1.2231999789946713e-05, 1.8906500372395385e-05, 2.462900101818377e-05, 3.0209000215108972e-05, 4.022899975097971e-05, 5.208950005908264e-05, 6.418349767045584e-05, 8.08589966254658e-05, 0.00010388949522166513, 0.0001383124972562655, 0.00018933699993795017, 0.0002608504983072635, 0.0003800214935836266, 0.0005372074938350124, 0.000784118990850402, 0.0011603299808484735, 0.0016839569634612417, 0.002473439960340329, 0.0036672194519269397, 0.005476914981954906], "y": [5.829276077425757, 5.770983316651499, 5.713273483484984, 5.6561407486501345, 5.599579341163633, 5.488147712274476, 5.325144237072212, 5.115312306806061, 4.815964994844545, 4.399467086067955, 3.822018609436474, 3.094794980920975, 2.2663287929179474, 1.4131135555574605, 0.6992632176949365, 0.2434087112974367, 0.04973897868570794, 0.004594497114048335, 0.0001296379232546642, 6.113512243983257e-07, 1.9898163472079466e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "x_low": [1.5722005628049374e-06, 1.2079599764547311e-05, 1.8397999883745798e-05, 2.4147800650098362e-05, 2.9732599796261638e-05, 3.9851599649409766e-05, 5.1080599951092155e-05, 6.3098997270572e-05, 7.980899572430644e-05, 0.00010276599386997987, 0.0001372051949147135, 0.00018925959557236638, 0.00026078300434164705, 0.00037297599155863284, 0.0005302297919115518, 0.0007819751914212248, 0.001146309777686838, 0.001675267758764676, 0.002468225951088243, 0.003659022545980406, 0.005475959183604573], "x_high": [1.5788002201588824e-06, 1.2384399815346114e-05, 1.9415000861044972e-05, 2.511020138626918e-05, 3.06854006339563e-05, 4.0606399852549655e-05, 5.309840016707312e-05, 6.526799807033967e-05, 8.190899752662517e-05, 0.00010501299657335039, 0.00013941979959781748, 0.00018941440430353396, 0.0002609179922728799, 0.0003870669956086203, 0.0005441851957584731, 0.0007862627902795793, 0.001174350184010109, 0.0016926461681578075, 0.002478653969592415, 0.0036754163578734734, 0.005477870780305238]}]}, "objective_curve_simulated_Quadratic_objective_value_Iteration": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [5.829276077425757, 5.8234468013483305, 5.817623354546982, 5.811805731192435, 5.805993925461243, 5.794387743604245, 5.777021957742276, 5.753948508940743, 5.719511012122037, 5.668240835690388, 5.589399216329685, 5.473188206060351, 5.306039973495239, 5.0623068248434615, 4.719898288403199, 4.249216934575181, 3.6279061459888347, 2.862046943974044, 2.0064348988782763, 1.1771459087933207, 0.5292433260504033], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0}, {"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [5.829276077425757, 5.770983316651499, 5.713273483484984, 5.6561407486501345, 5.599579341163633, 5.488147712274476, 5.325144237072212, 5.115312306806061, 4.815964994844545, 4.399467086067955, 3.822018609436474, 3.094794980920975, 2.2663287929179474, 1.4131135555574605, 0.6992632176949365, 0.2434087112974367, 0.04973897868570794, 0.004594497114048335, 0.0001296379232546642, 6.113512243983257e-07, 1.9898163472079466e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1}]}}, "bar_chart": {"bar_chart_simulated_Quadratic_objective_value_True": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.005449410971777979, 0.005551439011469483], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [0.005475321984704351, 0.00547850797920546], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "bar_chart_simulated_Quadratic_objective_value_False": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [2.2059994080336764e-06, 1.9429990061325952e-06], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [1.570000677020289e-06, 1.5810001059435308e-06], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "boxplot": {"boxplot_simulated_Quadratic_objective_value_Solver_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.005449410971777979, 0.005551439011469483]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[0.005475321984704351, 0.00547850797920546]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Solver_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.5292433260504033, 0.5292433260504033]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[1.9898163472079466e-10, 1.9898163472079466e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[2.2059994080336764e-06, 1.9429990061325952e-06], [2.093699913530145e-05, 1.448600050935056e-05], [2.75249985861592e-05, 2.0510000467766076e-05], [3.309299790998921e-05, 2.6219000574201345e-05], [3.85329967684811e-05, 3.1773000955581665e-05], [4.731399712909479e-05, 4.045400055474602e-05], [5.751899516326375e-05, 5.079000038676895e-05], [7.354699664574582e-05, 6.338200182653964e-05], [9.121599941863678e-05, 8.006500320334453e-05], [0.00011453399929450825, 0.00010295799984305631], [0.0001489000005676644, 0.00014070499673835002], [0.0001983680012926925, 0.00018935299340228084], [0.0002693399947020225, 0.00025952999203582294], [0.00039476998790632933, 0.00036405999526323285], [0.0005509230031748302, 0.0005638100028590998], [0.0007839650024834555, 0.0008503990084136603], [0.001157236019935226, 0.0012355770140857203], [0.001677132004260784, 0.0017572610122442711], [0.002455464989907341, 0.0025705520129122306], [0.003649503967608325, 0.0037836730080016423], [0.005449410971777979, 0.005551439011469483]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[1.570000677020289e-06, 1.5810001059435308e-06], [1.1977999747614376e-05, 1.2485999832279049e-05], [1.8058999557979405e-05, 1.9754001186811365e-05], [2.3827000404708087e-05, 2.5431001631659456e-05], [2.9414999517030083e-05, 3.100300091318786e-05], [4.0857999920262955e-05, 3.9599999581696466e-05], [5.377100023906678e-05, 5.04079998790985e-05], [6.59909983369289e-05, 6.237599700398277e-05], [8.260899812739808e-05, 7.910899512353353e-05], [0.0001057619974744739, 0.00010201699296885636], [0.00014015800115885213, 0.00013646699335367884], [0.00018946600721392315, 0.0001892079926619772], [0.0002607380083645694, 0.00026096298824995756], [0.0003917639969586162, 0.00036827899020863697], [0.0005488369970407803, 0.0005255779906292446], [0.0007805459918017732, 0.0007876919898990309], [0.0011836969861178659, 0.001136962975579081], [0.0016984389712888515, 0.001669474955633632], [0.002482129975760472, 0.002464749944920186], [0.003680880961837829, 0.0036535579420160502], [0.005475321984704351, 0.00547850797920546]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[5.829276077425757, 5.829276077425757], [5.8234468013483305, 5.8234468013483305], [5.817623354546982, 5.817623354546982], [5.811805731192435, 5.811805731192435], [5.805993925461243, 5.805993925461243], [5.794387743604245, 5.794387743604245], [5.777021957742276, 5.777021957742276], [5.753948508940743, 5.753948508940743], [5.719511012122037, 5.719511012122037], [5.668240835690388, 5.668240835690388], [5.589399216329685, 5.589399216329685], [5.473188206060351, 5.473188206060351], [5.306039973495239, 5.306039973495239], [5.0623068248434615, 5.0623068248434615], [4.719898288403199, 4.719898288403199], [4.249216934575181, 4.249216934575181], [3.6279061459888347, 3.6279061459888347], [2.862046943974044, 2.862046943974044], [2.0064348988782763, 2.0064348988782763], [1.1771459087933207, 1.1771459087933207], [0.5292433260504033, 0.5292433260504033]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[5.829276077425757, 5.829276077425757], [5.770983316651499, 5.770983316651499], [5.713273483484984, 5.713273483484984], [5.6561407486501345, 5.6561407486501345], [5.599579341163633, 5.599579341163633], [5.488147712274476, 5.488147712274476], [5.325144237072212, 5.325144237072212], [5.115312306806061, 5.115312306806061], [4.815964994844545, 4.815964994844545], [4.399467086067955, 4.399467086067955], [3.822018609436474, 3.822018609436474], [3.094794980920975, 3.094794980920975], [2.2663287929179474, 2.2663287929179474], [1.4131135555574605, 1.4131135555574605], [0.6992632176949365, 0.6992632176949365], [0.2434087112974367, 0.2434087112974367], [0.04973897868570794, 0.04973897868570794], [0.004594497114048335, 0.004594497114048335], [0.0001296379232546642, 0.0001296379232546642], [6.113512243983257e-07, 6.113512243983257e-07], [1.9898163472079466e-10, 1.9898163472079466e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "table": {"table_simulated_Quadratic": {"title": "Quadratic<br />Data: simulated", "columns": ["solver", "value", "time (s)"], "type": "table", "data": [["gd[lr=0.001]", 0.5292433260504033, 0.005500424991623731], ["gd[lr=0.01]", 1.9898163472079466e-10, 0.005476914981954906]]}}};
+            window._plots = {"objective_curve": {"objective_curve_simulated_Quadratic_objective_value_Time": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [2.4660002964083105e-06, 1.9853499907185324e-05, 2.883749948523473e-05, 3.50469995282765e-05, 4.071849934916827e-05, 5.0311499762756284e-05, 6.486400025096373e-05, 7.721049996689544e-05, 9.344550062451162e-05, 0.00011661600137813366, 0.0001494440016358567, 0.00019757700101763476, 0.0002801959994940262, 0.0003853984994748316, 0.0005382379972616036, 0.0007653289972040511, 0.0011228394960198784, 0.0016556509940528485, 0.0024083264952423633, 0.0035890829994968954, 0.005768136497863452], "y": [3.415445387469372, 3.4120299420819027, 3.408617912139821, 3.405209294227681, 3.4018040849334534, 3.3950038785676715, 3.3848290485486, 3.371310027792766, 3.3511326699007746, 3.321092835574461, 3.2748985497644387, 3.206809072833569, 3.1088748435475417, 2.9660685589799183, 2.765447136888775, 2.4896690749909656, 2.1256353529855896, 1.676908916936, 1.1755951733302787, 0.6897044351932711, 0.3100902501097603], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "x_low": [2.09460013138596e-06, 1.5867999900365247e-05, 2.3238599351316224e-05, 2.9225199432403316e-05, 3.4758399488055146e-05, 4.459979973034933e-05, 5.6510800459363966e-05, 6.84748005369329e-05, 8.433960156253306e-05, 0.00010670880274119555, 0.0001392776046486688, 0.00018681120382098016, 0.00026055620255647225, 0.0003654914027720224, 0.0005224670003372012, 0.0007461157987563638, 0.0011089869964052922, 0.0016329271980794146, 0.0023813346033421112, 0.0035315388042363336, 0.005419590806559427], "x_high": [2.837400461430661e-06, 2.38389999140054e-05, 3.443639961915323e-05, 4.086879962414969e-05, 4.667859921028139e-05, 5.602319979516324e-05, 7.321720004256349e-05, 8.594619939685799e-05, 0.00010255139968649019, 0.00012652320001507177, 0.0001596103986230446, 0.00020834279821428935, 0.0002998357964315801, 0.00040530559617764085, 0.000554008994186006, 0.0007845421956517385, 0.0011366919956344646, 0.0016783747900262825, 0.0024353183871426154, 0.003646627194757457, 0.006116682189167477]}, {"x": [1.9649996829684824e-06, 1.6991999473248143e-05, 2.4556999505875865e-05, 3.046849951715558e-05, 3.7711999993916834e-05, 4.8676999995223014e-05, 5.936299976383452e-05, 7.165749912019237e-05, 9.213399926011334e-05, 0.00012116349944335525, 0.00015374399890788482, 0.0002010619996326568, 0.00027373800048735575, 0.00037764799844808294, 0.0005405615015661169, 0.000795992999428563, 0.0011447030010458548, 0.001681691006069741, 0.002647211002113181, 0.004241287006607308, 0.007000921006238059], "y": [3.415445387469372, 3.381290933594679, 3.347478024258732, 3.314003244016144, 3.2808632115759826, 3.215574033665621, 3.1200682692917185, 2.99712513040923, 2.8217338155511738, 2.57770250831382, 2.2393682606617236, 1.813278887867965, 1.3278702397088893, 0.827960815578758, 0.40970702018248734, 0.14261619268474063, 0.02914268651426863, 0.002691973028467021, 7.595647231965981e-05, 3.581982892460002e-07, 1.1658456981228202e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "x_low": [1.9457998860161752e-06, 1.5244199130393098e-05, 2.2045399055059535e-05, 2.7924199275730644e-05, 3.553759979695315e-05, 4.5370400039246304e-05, 5.580259949056199e-05, 6.804939839639701e-05, 8.579799832659773e-05, 0.0001180677987576928, 0.00015023939886305016, 0.00019689559921971523, 0.0002718084004300181, 0.0003746647991647478, 0.0005301056015014182, 0.0007829742004105356, 0.001125948204571614, 0.0016585664083322627, 0.0025506404070256396, 0.00421925859482144, 0.006692838395065337], "x_high": [1.9841994799207895e-06, 1.8739799816103187e-05, 2.7068599956692195e-05, 3.3012799758580516e-05, 3.988640019088052e-05, 5.198359995119972e-05, 6.292340003710706e-05, 7.526559984398773e-05, 9.847000019362895e-05, 0.0001242592001290177, 0.00015724859895271948, 0.00020522840004559838, 0.0002756676005446934, 0.0003806311977314181, 0.0005510174016308156, 0.0008090117984465905, 0.0011634577975200954, 0.0017048156038072192, 0.0027437815972007227, 0.004263315418393176, 0.007309003617410781]}]}, "objective_curve_simulated_Quadratic_objective_value_Iteration": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [3.415445387469372, 3.4120299420819027, 3.408617912139821, 3.405209294227681, 3.4018040849334534, 3.3950038785676715, 3.3848290485486, 3.371310027792766, 3.3511326699007746, 3.321092835574461, 3.2748985497644387, 3.206809072833569, 3.1088748435475417, 2.9660685589799183, 2.765447136888775, 2.4896690749909656, 2.1256353529855896, 1.676908916936, 1.1755951733302787, 0.6897044351932711, 0.3100902501097603], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0}, {"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [3.415445387469372, 3.381290933594679, 3.347478024258732, 3.314003244016144, 3.2808632115759826, 3.215574033665621, 3.1200682692917185, 2.99712513040923, 2.8217338155511738, 2.57770250831382, 2.2393682606617236, 1.813278887867965, 1.3278702397088893, 0.827960815578758, 0.40970702018248734, 0.14261619268474063, 0.02914268651426863, 0.002691973028467021, 7.595647231965981e-05, 3.581982892460002e-07, 1.1658456981228202e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1}]}}, "bar_chart": {"bar_chart_simulated_Quadratic_objective_value_True": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.006349045983370161, 0.005187227012356743], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [0.007514392024859262, 0.006487449987616856], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "bar_chart_simulated_Quadratic_objective_value_False": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [3.085000571445562e-06, 1.8470000213710591e-06], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [1.996999344555661e-06, 1.9330000213813037e-06], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "boxplot": {"boxplot_simulated_Quadratic_objective_value_Solver_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.006349045983370161, 0.005187227012356743]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[0.007514392024859262, 0.006487449987616856]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Solver_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.3100902501097603, 0.3100902501097603]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[1.1658456981228202e-10, 1.1658456981228202e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.085000571445562e-06, 1.8470000213710591e-06], [2.6495999918552116e-05, 1.3210999895818532e-05], [3.816899970843224e-05, 1.950599926203722e-05], [4.4749999688065145e-05, 2.5343999368487857e-05], [5.065199911769014e-05, 3.07849995806464e-05], [5.983099981676787e-05, 4.07919997087447e-05], [7.878599990363e-05, 5.0942000598297454e-05], [9.176999901683303e-05, 6.265100091695786e-05], [0.00010862199906114256, 7.826900218788069e-05], [0.00013312799910636386, 0.00010010400364990346], [0.0001663879966145032, 0.00013250000665721018], [0.00021551999634539243, 0.00017963400568987709], [0.00031292899438994937, 0.000247463004598103], [0.00041857699397951365, 0.0003522200049701496], [0.0005645229921356076, 0.0005119530023875996], [0.0007973509946168633, 0.0007333069997912389], [0.001145926995377522, 0.0010997519966622349], [0.001693523987341905, 0.001617778000763792], [0.0024533129817427834, 0.002363340008741943], [0.0036849899915978312, 0.0034931760073959595], [0.006349045983370161, 0.005187227012356743]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[1.996999344555661e-06, 1.9330000213813037e-06], [1.407899890182307e-05, 1.9905000044673216e-05], [2.0370998754515313e-05, 2.8743000257236417e-05], [2.6227999114780687e-05, 3.470899991953047e-05], [3.408799966564402e-05, 4.133600032218965e-05], [4.316600006859517e-05, 5.418799992185086e-05], [5.34289993083803e-05, 6.529700021928875e-05], [6.564399791386677e-05, 7.767100032651797e-05], [8.1573997704254e-05, 0.00010269400081597269], [0.0001160039983005845, 0.000126323000586126], [0.00014790299883316038, 0.00015958499898260925], [0.00019411799894442083, 0.00020800600032089278], [0.00027052200039179297, 0.0002769540005829185], [0.0003726759996425244, 0.0003826199972536415], [0.0005231350014582858, 0.000557988001673948], [0.0007742950010651839, 0.0008176909977919422], [0.0011134450069221202, 0.0011759609951695893], [0.0016431500098406104, 0.0017202320022988715], [0.0024862600103006116, 0.0028081619939257507], [0.004278001026250422, 0.004204572986964195], [0.007514392024859262, 0.006487449987616856]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.415445387469372, 3.415445387469372], [3.4120299420819027, 3.4120299420819027], [3.408617912139821, 3.408617912139821], [3.405209294227681, 3.405209294227681], [3.4018040849334534, 3.4018040849334534], [3.3950038785676715, 3.3950038785676715], [3.3848290485486, 3.3848290485486], [3.371310027792766, 3.371310027792766], [3.3511326699007746, 3.3511326699007746], [3.321092835574461, 3.321092835574461], [3.2748985497644387, 3.2748985497644387], [3.206809072833569, 3.206809072833569], [3.1088748435475417, 3.1088748435475417], [2.9660685589799183, 2.9660685589799183], [2.765447136888775, 2.765447136888775], [2.4896690749909656, 2.4896690749909656], [2.1256353529855896, 2.1256353529855896], [1.676908916936, 1.676908916936], [1.1755951733302787, 1.1755951733302787], [0.6897044351932711, 0.6897044351932711], [0.3100902501097603, 0.3100902501097603]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.415445387469372, 3.415445387469372], [3.381290933594679, 3.381290933594679], [3.347478024258732, 3.347478024258732], [3.314003244016144, 3.314003244016144], [3.2808632115759826, 3.2808632115759826], [3.215574033665621, 3.215574033665621], [3.1200682692917185, 3.1200682692917185], [2.99712513040923, 2.99712513040923], [2.8217338155511738, 2.8217338155511738], [2.57770250831382, 2.57770250831382], [2.2393682606617236, 2.2393682606617236], [1.813278887867965, 1.813278887867965], [1.3278702397088893, 1.3278702397088893], [0.827960815578758, 0.827960815578758], [0.40970702018248734, 0.40970702018248734], [0.14261619268474063, 0.14261619268474063], [0.02914268651426863, 0.02914268651426863], [0.002691973028467021, 0.002691973028467021], [7.595647231965981e-05, 7.595647231965981e-05], [3.581982892460002e-07, 3.581982892460002e-07], [1.1658456981228202e-10, 1.1658456981228202e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "table": {"table_simulated_Quadratic": {"title": "Quadratic<br />Data: simulated", "columns": ["solver", "value", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [["gd[lr=0.001]", 0.3100902501097603, 0.005768136497863452], ["gd[lr=0.01]", 1.1658456981228202e-10, 0.007000921006238059]]}}};
             window.metadata = {"plot_configs": {"Subopt. (log)": {"plot_kind": "objective_curve", "scale": "loglog"}, "Runtimes": {"plot_kind": "bar_chart"}}, "solvers_description": {"gd[lr=0.001]": "", "gd[lr=0.01]": ""}, "obj_description": ""};
 
             window.addEventListener("load", () => {
@@ -3404,10 +3408,14 @@ const setState = (partialState) => {
 
   if  (isChart('table')) {
     renderTable();
-  } else if (isChart('image')) {
-    renderImages();
   } else {
-    renderPlot();
+    // Pending table-view settings only apply to tables; drop them otherwise.
+    tablePendingView = null;
+    if (isChart('image')) {
+      renderImages();
+    } else {
+      renderPlot();
+    }
   }
 
 };
@@ -3751,7 +3759,14 @@ const setConfig = (config_item) => {
     if ("plot_kind" in config) {
       kind = config["plot_kind"];
     }
+    // Table settings are applied by renderTable, not through the state.
+    tablePendingView = ('table_order' in config || 'table_hidden_columns' in config)
+      ? {order: config.table_order ?? null, hidden: config.table_hidden_columns ?? []}
+      : null;
     for(let key in config){
+      if (key === 'table_order' || key === 'table_hidden_columns') {
+        continue;
+      }
       const value = config[key];
       if (key in config_mapping) {
         if (config_mapping[key] !== '') {
@@ -3797,6 +3812,15 @@ const saveView = () => {
   }
   for (let option of DEFAULT_CONFIG_OPTIONS) {
     config[option] = state()[option];
+  }
+
+  // Persist the table order and hidden columns when viewing a table.
+  if (isChart('table')) {
+    const order = getTableOrder();
+    if (order) {
+      config.table_order = order;
+    }
+    config.table_hidden_columns = [...tableHiddenColumns];
   }
 
   let noViewAvailableElement = document.getElementById('no_view_available');
@@ -3860,6 +3884,9 @@ const exportConfigs = () => {
       var value = config[key];
       if (key === 'xlim' || key === 'ylim')
         value = "[" + value + "]";
+      else if (value !== null && typeof value === 'object')
+        // Arrays/objects (e.g. table_order, hidden columns): JSON is valid YAML.
+        value = JSON.stringify(value);
       config_yaml += "    " + key + ": " + value + "\n";
     }
   }
@@ -4388,6 +4415,26 @@ const renderImages = () => {
 // Global state for precision
 let tableFloatPrecision = 4;
 
+// Grid.js instance for the table plot, keyed by the table identity so that
+// switching to another table rebuilds the grid (and resets its sorting),
+// while re-rendering the same table (e.g. on precision change) keeps the
+// user's current sorting.
+let tableGrid = null;
+let tableGridKey = null;
+
+// Columns of the current table hidden through the column toggles.
+let tableHiddenColumns = new Set();
+
+// Table settings (order + hidden columns) coming from a saved view, applied
+// once by the next renderTable build then cleared. Kept out of window._state
+// so they don't leak onto other tables shown via the dropdowns.
+let tablePendingView = null;
+
+// Order ({column, ascending}) the current table was built with, used as the
+// fallback when Grid.js reports a neutral sort (e.g. right after loading a
+// view), so re-saving the view keeps that order.
+let tableAppliedOrder = null;
+
 const valueToFixed = (value) => {
   if (typeof value === 'number' && !Number.isInteger(value)) {
     return value.toFixed(tableFloatPrecision);
@@ -4395,65 +4442,189 @@ const valueToFixed = (value) => {
   return value;
 }
 
+/**
+ * Compare two cell values, handling both numbers and strings.
+ *
+ * The result must be -1/0/1, not a difference: Grid.js combines comparator
+ * results with a bitwise OR, which truncates fractional values to 0 and
+ * would make all close numbers compare as equal.
+ */
+const compareCells = (a, b) => {
+  if (typeof a === 'number' && typeof b === 'number') {
+    return a > b ? 1 : a < b ? -1 : 0;
+  }
+  return String(a).localeCompare(String(b));
+}
+
+const sortRows = (plotData, column, ascending) =>
+  [...plotData.data].sort((a, b) => {
+    const cmp = compareCells(a[column], b[column]);
+    return ascending ? cmp : -cmp;
+  });
+
+/**
+ * Sort the rows for the initial display. A saved view `order`
+ * ({column: <name>, ascending: <bool>}) takes precedence; otherwise the
+ * `default_order_column` (a column name or index) and `default_order_ascending`
+ * metadata keys are used, defaulting to the first column ascending. Grid.js
+ * then handles the interactive sorting from this initial order.
+ */
+const orderTableData = (plotData, order) => {
+  let column = 0;
+  const orderColumn = plotData.default_order_column;
+  if (typeof orderColumn === 'string') {
+    const idx = plotData.columns.indexOf(orderColumn);
+    column = idx >= 0 ? idx : 0;
+  } else if (typeof orderColumn === 'number') {
+    column = orderColumn;
+  }
+  let ascending = plotData.default_order_ascending !== false;
+
+  if (order && order.column != null) {
+    const idx = plotData.columns.indexOf(order.column);
+    if (idx >= 0) {
+      column = idx;
+      ascending = order.ascending !== false;
+    }
+  }
+
+  tableAppliedOrder = {column: plotData.columns[column], ascending};
+  return sortRows(plotData, column, ascending);
+}
+
+/**
+ * Read the current sort (column name + direction) from the Grid.js header, or
+ * null when no column is sorted. Grid.js tags the active sort button with
+ * `gridjs-sort-asc` / `gridjs-sort-desc`.
+ */
+const getTableOrder = () => {
+  for (const th of document.querySelectorAll('#table_container .gridjs-th')) {
+    const btn = th.querySelector('.gridjs-sort');
+    if (!btn) continue;
+    const name = th.querySelector('.gridjs-th-content')?.textContent.trim();
+    if (btn.classList.contains('gridjs-sort-asc')) {
+      return {column: name, ascending: true};
+    }
+    if (btn.classList.contains('gridjs-sort-desc')) {
+      return {column: name, ascending: false};
+    }
+  }
+  // Grid.js reports a neutral sort: fall back to the order the table was built
+  // with (default or restored from a view).
+  return tableAppliedOrder;
+}
+
 function renderTable() {
 
-  // Show and purge the container
   let table_container = document.getElementById('table_container');
   show(table_container);
-  table_container.innerHTML = "";
 
   const plotData = getPlotData();
   if (!plotData || !plotData.columns || !plotData.data) {
-    table_container.innerHTML = `<div >No data available</div>`;
+    table_container.innerHTML = "<div>No data available</div>";
+    tableGrid = null;
+    tableGridKey = null;
     return;
   }
 
-  const { columns, data: rows } = plotData;
+  const gridKey = [state().plot_kind, ...plotData.columns].join('|');
+  if (tableGrid && tableGridKey === gridKey && !tablePendingView) {
+    // Same table: refresh in place (e.g. after a precision change), keeping
+    // the current sorting. The formatters read the global precision.
+    document.getElementById('table-precision-label').innerText =
+      `Float Precision: ${tableFloatPrecision}`;
+    tableGrid.forceRender();
+    return;
+  }
 
-  // Card Wrapper
+  table_container.innerHTML = "";
+
+  // Restore the hidden columns / order from a saved view when one is being
+  // loaded, otherwise start fresh with the table's default order.
+  tableHiddenColumns = new Set();
+  if (tablePendingView && Array.isArray(tablePendingView.hidden)) {
+    const valid = tablePendingView.hidden.filter(c => plotData.columns.includes(c));
+    // Never hide every column.
+    if (valid.length < plotData.columns.length) {
+      valid.forEach(c => tableHiddenColumns.add(c));
+    }
+  }
+  const orderedData = orderTableData(plotData, tablePendingView && tablePendingView.order);
+  tablePendingView = null;
+
+  // Grid.js table with sortable columns and a search bar
   const card = document.createElement("div");
-  card.className = "w-full bg-white overflow-hidden border border-gray-200 mx-auto";
+  card.className = "w-full bg-white overflow-hidden mx-auto";
 
-  // Table Element
-  const table = document.createElement("table");
-  table.className = "w-full border-collapse text-left";
+  const buildColumns = () => plotData.columns.map(name => ({
+    name,
+    hidden: tableHiddenColumns.has(name),
+    sort: { compare: compareCells },
+    formatter: (value) => valueToFixed(value),
+  }));
 
-  // Header
-  const thead = document.createElement("thead");
-  thead.className = "bg-gray-50";
-  const trHead = document.createElement("tr");
-
-  columns.forEach(headerText => {
-    const th = document.createElement("th");
-    th.innerText = headerText;
-    th.className = "px-4 py-4 text-xs font-bold uppercase tracking-wider border-b border-gray-200";
-    trHead.appendChild(th);
+  tableGrid = new gridjs.Grid({
+    columns: buildColumns(),
+    data: orderedData,
+    sort: true,
+    search: true,
   });
-  thead.appendChild(trHead);
-  table.appendChild(thead);
+  tableGrid.render(card);
+  tableGridKey = gridKey;
 
-  // Body
-  const tbody = document.createElement("tbody");
+  // Pill-shaped toggles to show/hide each column
+  const columnsContainer = document.createElement("div");
+  columnsContainer.className = "flex items-center flex-wrap px-4 pt-4";
 
-  rows.forEach((rowData, index) => {
-    const tr = document.createElement("tr");
-    tr.className = "bg-white transition-colors duration-150 ease-in-out hover:bg-gray-50";
+  const columnsLabel = document.createElement("span");
+  columnsLabel.innerText = "Columns:";
+  columnsLabel.className = "mr-4 text-sm font-medium text-gray-700";
+  columnsContainer.appendChild(columnsLabel);
 
-    tr.onmouseenter = () => tr.style.backgroundColor = "#f9fafb";
-    tr.onmouseleave = () => tr.style.backgroundColor = "#fff";
+  const setPillStyle = (pill, visible, name) => {
+    const base = "inline-flex items-center px-3 py-1 mr-4 mt-1 rounded-full " +
+      "text-sm font-medium cursor-pointer transition-all border ";
+    if (visible) {
+      pill.className = base +
+        "border-transparent bg-blue-600 text-white hover:bg-blue-700";
+      pill.innerText = `✓ ${name}`;
+    } else {
+      pill.className = base +
+        "border-gray-300 bg-white text-gray-500 hover:bg-gray-100";
+      pill.innerText = name;
+    }
+  };
 
-    rowData.forEach(cellValue => {
-      const td = document.createElement("td");
-      td.innerHTML = valueToFixed(cellValue);
+  plotData.columns.forEach(name => {
+    const label = document.createElement("label");
+    const visible = !tableHiddenColumns.has(name);
 
-      let cellClasses = "px-4 py-4 text-sm text-gray-700";
-      if (index !== rows.length - 1) {
-        cellClasses += " border-b border-gray-100";
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = visible;
+    checkbox.className = "sr-only";
+
+    const pill = document.createElement("span");
+    setPillStyle(pill, visible, name);
+    pill.title = "Show/hide column";
+
+    checkbox.onchange = () => {
+      if (checkbox.checked) {
+        tableHiddenColumns.delete(name);
+      } else if (tableHiddenColumns.size === plotData.columns.length - 1) {
+        // Keep at least one column visible
+        checkbox.checked = true;
+        return;
+      } else {
+        tableHiddenColumns.add(name);
       }
-      td.className = cellClasses;
-      tr.appendChild(td);
-    });
-    tbody.appendChild(tr);
+      setPillStyle(pill, checkbox.checked, name);
+      tableGrid.updateConfig({ columns: buildColumns() }).forceRender();
+    };
+
+    label.appendChild(checkbox);
+    label.appendChild(pill);
+    columnsContainer.appendChild(label);
   });
 
   // Footer with Precision Controls & Export
@@ -4477,6 +4648,7 @@ function renderTable() {
   const btnDec = createPrecBtn("-");
   const btnInc = createPrecBtn("+");
   const labelPrec = document.createElement("span");
+  labelPrec.id = "table-precision-label";
   labelPrec.innerText = `Float Precision: ${tableFloatPrecision}`;
   labelPrec.className = "mx-2 px-4";
 
@@ -4506,12 +4678,11 @@ function renderTable() {
     exportTable();
   });
 
-  table.appendChild(tbody);
-  card.appendChild(table);
   table_container.appendChild(card);
 
   footer.appendChild(precisionContainer);
   footer.appendChild(exportButton);
+  footerWrapper.appendChild(columnsContainer);
   footerWrapper.appendChild(footer);
   table_container.appendChild(footerWrapper);
 }
@@ -4522,23 +4693,32 @@ async function exportTable() {
   const defaultText = button.innerHTML;
   button.innerHTML = "Copying";
 
-  const plotData = getPlotData();
+  // Export the table as displayed in the Grid.js table, so that the LaTeX
+  // output matches the current sorting, search filter, visible columns and
+  // float precision.
+  const displayedColumns = Array.from(
+    document.querySelectorAll('#table_container .gridjs-th-content'),
+    el => el.textContent.trim()
+  );
+  const displayedRows = Array.from(
+    document.querySelectorAll('#table_container .gridjs-table tbody tr')
+  ).map(tr => Array.from(tr.querySelectorAll('td'), td => td.innerText));
 
   let value = "\\begin{tabular}{l";
-  value += "c".repeat(plotData.columns.length);
+  value += "c".repeat(displayedColumns.length);
   value += "}\n";
   value += "\\hline\n";
 
-  value += plotData.columns[0].replace('_', '\\_');
-  plotData.columns.slice(1).forEach(metric => value += ` & ${metric.replace('_', '\\_')}`);
+  value += displayedColumns[0].replace('_', '\\_');
+  displayedColumns.slice(1).forEach(metric => value += ` & ${metric.replace('_', '\\_')}`);
 
   value += " \\\\\n";
   value += "\\hline\n";
 
-  plotData.data.forEach(rowData => {
-    value += valueToFixed(rowData[0]).toString().replace('_', '\\_');
+  displayedRows.forEach(rowData => {
+    value += rowData[0].replace('_', '\\_');
     rowData.slice(1).forEach(cell => {
-      value += ` & ${valueToFixed(cell).toString().replace('_', '\\_')}`;
+      value += ` & ${cell.replace('_', '\\_')}`;
     });
     value += " \\\\\n";
   });
