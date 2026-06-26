@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>User guide &#8212; benchopt 1.9.2dev0 documentation</title>
+    <title>AI agent skills &#8212; benchopt 1.9.2dev0 documentation</title>
   
   
   
@@ -54,13 +54,13 @@
     <script src="../_static/copybutton.js?v=30646c52"></script>
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/index';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/agent_skills';</script>
     <script src="../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Creating benchmarks" href="authoring.html" />
-    <link rel="prev" title="Testing a benchmark" href="../benchmark_workflow/test_benchmark.html" />
+    <link rel="next" title="Reference" href="reference.html" />
+    <link rel="prev" title="Advanced usage" href="advanced.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.2dev0" />
@@ -184,7 +184,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../benchmark_workflow/test_benchmark.html">Testing a benchmark</a></li>
 </ul>
 </details></li>
-<li class="toctree-l1 current active has-children"><a class="current reference internal" href="#">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="index.html">User guide</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l2 has-children"><a class="reference internal" href="authoring.html">Creating benchmarks</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3"><a class="reference internal" href="class_customization.html">Benchmark class configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
@@ -204,7 +204,7 @@
 <li class="toctree-l3"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
 </ul>
 </details></li>
-<li class="toctree-l2"><a class="reference internal" href="agent_skills.html">AI agent skills</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">AI agent skills</a></li>
 <li class="toctree-l2 has-children"><a class="reference internal" href="reference.html">Reference</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l3 has-children"><a class="reference internal" href="API_ref.html">API references</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
@@ -308,7 +308,9 @@
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
 </button>
-
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
 </div></div>
       
     </div>
@@ -319,11 +321,21 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>User guide</h1>
+    <h1>AI agent skills</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
             
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-skills">Installing the skills</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idempotent-updates">Idempotent updates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-vs-repo-specific-skills">Shared vs. repo-specific skills</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
@@ -333,42 +345,66 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="user-guide">
-<span id="id1"></span><h1>User guide<a class="headerlink" href="#user-guide" title="Link to this heading">#</a></h1>
-<div class="toctree-wrapper compound">
+  <section id="ai-agent-skills">
+<span id="agent-skills"></span><h1>AI agent skills<a class="headerlink" href="#ai-agent-skills" title="Link to this heading">#</a></h1>
+<p>Benchopt ships a small library of <strong>agent skills</strong> — short, structured
+documents that teach an AI coding agent how to work with benchopt (authoring a
+benchmark, adding a solver or dataset, running benchmarks). They follow the
+<a class="reference external" href="https://agentskills.io">Agent Skills open standard</a> (<code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code> files) and
+are read by most coding agents: Codex, Gemini CLI, GitHub Copilot / VS Code,
+Cursor, and others.</p>
+<p>Because the skills ship inside the benchopt package, they always match your
+installed version: <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">benchopt</span></code> followed by <code class="docutils literal notranslate"><span class="pre">benchopt</span>
+<span class="pre">sync-skills</span></code> keeps them up to date.</p>
+<section id="installing-the-skills">
+<h2>Installing the skills<a class="headerlink" href="#installing-the-skills" title="Link to this heading">#</a></h2>
+<p>Run <code class="docutils literal notranslate"><span class="pre">sync-skills</span></code> from a benchmark repository to install the shared skills
+into it:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">benchopt<span class="w"> </span>sync-skills</span>
+</pre></div></div><p>This writes the skills into <code class="docutils literal notranslate"><span class="pre">.agents/skills/</span></code> (the cross-harness standard
+location) and mirrors them under <code class="docutils literal notranslate"><span class="pre">.claude/skills/</span></code> for Claude Code, which
+does not yet read <code class="docutils literal notranslate"><span class="pre">.agents/skills/</span></code> natively. The mirror uses symlinks where
+available and falls back to copies otherwise (e.g. Windows without developer
+mode).</p>
+<p>To install the skills once for your whole machine instead, use <code class="docutils literal notranslate"><span class="pre">--global</span></code>,
+which targets <code class="docutils literal notranslate"><span class="pre">~/.agents/skills/</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>sync-skills<span class="w"> </span>--global</span>
+</pre></div></div><p>Useful options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--dry-run</span></code>: show what would change without writing anything.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--no-claude</span></code>: skip the <code class="docutils literal notranslate"><span class="pre">.claude/skills</span></code> mirror.</p></li>
+</ul>
+</section>
+<section id="idempotent-updates">
+<h2>Idempotent updates<a class="headerlink" href="#idempotent-updates" title="Link to this heading">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">sync-skills</span></code> records what it installed in a manifest
+(<code class="docutils literal notranslate"><span class="pre">.agents/skills/.benchopt-skills-manifest.json</span></code>). Re-running it is safe: it
+refreshes the shared skills and removes any that were deleted upstream, so no
+orphans are left behind. Only benchopt’s own skills (named with the
+<code class="docutils literal notranslate"><span class="pre">benchopt-</span></code> prefix) are ever written or removed.</p>
+</section>
+<section id="shared-vs-repo-specific-skills">
+<h2>Shared vs. repo-specific skills<a class="headerlink" href="#shared-vs-repo-specific-skills" title="Link to this heading">#</a></h2>
+<p>A benchmark can keep its own skills next to the synced ones. The convention:</p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="authoring.html">Creating benchmarks</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="class_customization.html">Benchmark class configuration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="add_custom_plot.html">Add a custom plot to a benchmark</a></li>
-<li class="toctree-l2"><a class="reference internal" href="controlling_randomness.html">Reproducibility helpers: seeding and run artifacts</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ml_benchmark.html">Cross-validation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="iterative_solvers.html">Evaluating an iterative method</a></li>
-<li class="toctree-l2"><a class="reference internal" href="solver_languages.html">Using different programming languages with benchopt</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="running.html">Running &amp; scaling</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="config_benchopt.html">Configure Benchopt</a></li>
-<li class="toctree-l2"><a class="reference internal" href="distributed_run.html">Distributed run with Benchopt</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="testing.html">Testing &amp; advanced</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="tests_definition.html">Benchopt Test definition</a></li>
-<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="agent_skills.html">AI agent skills</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="agent_skills.html#installing-the-skills">Installing the skills</a></li>
-<li class="toctree-l2"><a class="reference internal" href="agent_skills.html#idempotent-updates">Idempotent updates</a></li>
-<li class="toctree-l2"><a class="reference internal" href="agent_skills.html#shared-vs-repo-specific-skills">Shared vs. repo-specific skills</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="reference.html">Reference</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="API_ref.html">API references</a></li>
-<li class="toctree-l2"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
-</ul>
-</li>
-</ul>
+<li><p><strong>Shared skills</strong> (<code class="docutils literal notranslate"><span class="pre">benchopt-*</span></code>) come from <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">sync-skills</span></code> and are
+managed by benchopt. Do <strong>not</strong> edit them inside a benchmark repo — fix them
+upstream in benchopt and release. They are typically gitignored:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">agents</span><span class="o">/</span><span class="n">skills</span><span class="o">/</span><span class="n">benchopt</span><span class="o">-*</span>
+<span class="o">.</span><span class="n">claude</span><span class="o">/</span><span class="n">skills</span><span class="o">/</span><span class="n">benchopt</span><span class="o">-*</span>
+</pre></div>
 </div>
+</li>
+<li><p><strong>Repo-specific skills</strong> use any other name, live in <code class="docutils literal notranslate"><span class="pre">.agents/skills/</span></code>, and
+are committed to the benchmark repo. <code class="docutils literal notranslate"><span class="pre">sync-skills</span></code> never touches them.</p></li>
+</ul>
+<p>After upgrading benchopt, re-run <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">sync-skills</span></code> to pick up the
+matching skills.</p>
+</section>
 </section>
 
 
@@ -383,20 +419,20 @@
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../benchmark_workflow/test_benchmark.html"
+       href="advanced.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Testing a benchmark</p>
+        <p class="prev-next-title">Advanced usage</p>
       </div>
     </a>
     <a class="right-next"
-       href="authoring.html"
+       href="reference.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Creating benchmarks</p>
+        <p class="prev-next-title">Reference</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -406,6 +442,25 @@
             </div>
             
             
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#installing-the-skills">Installing the skills</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#idempotent-updates">Idempotent updates</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shared-vs-repo-specific-skills">Shared vs. repo-specific skills</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
               
             
           </div>
