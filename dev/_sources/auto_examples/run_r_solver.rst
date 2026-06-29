@@ -87,8 +87,8 @@ a simulated dataset and a full python solver based on gradient descent.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='r_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-89934269474f41a8938f98f66e46ed1b-0' name='example-benchmark-89934269474f41a8938f98f66e46ed1b' type='radio'><label for='example-benchmark-89934269474f41a8938f98f66e46ed1b-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='r_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-725f5820e14f4530bfb061eddbc1de30-0' name='example-benchmark-725f5820e14f4530bfb061eddbc1de30' type='radio'><label for='example-benchmark-725f5820e14f4530bfb061eddbc1de30-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -126,7 +126,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-89934269474f41a8938f98f66e46ed1b-1' name='example-benchmark-89934269474f41a8938f98f66e46ed1b' type='radio'><label for='example-benchmark-89934269474f41a8938f98f66e46ed1b-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-725f5820e14f4530bfb061eddbc1de30-1' name='example-benchmark-725f5820e14f4530bfb061eddbc1de30' type='radio'><label for='example-benchmark-725f5820e14f4530bfb061eddbc1de30-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -148,7 +148,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-89934269474f41a8938f98f66e46ed1b-2' name='example-benchmark-89934269474f41a8938f98f66e46ed1b' type='radio'><label for='example-benchmark-89934269474f41a8938f98f66e46ed1b-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-725f5820e14f4530bfb061eddbc1de30-2' name='example-benchmark-725f5820e14f4530bfb061eddbc1de30' type='radio'><label for='example-benchmark-725f5820e14f4530bfb061eddbc1de30-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -200,7 +200,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-89934269474f41a8938f98f66e46ed1b-3' name='example-benchmark-89934269474f41a8938f98f66e46ed1b' type='radio'><label for='example-benchmark-89934269474f41a8938f98f66e46ed1b-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <input  id='example-benchmark-725f5820e14f4530bfb061eddbc1de30-3' name='example-benchmark-725f5820e14f4530bfb061eddbc1de30' type='radio'><label for='example-benchmark-725f5820e14f4530bfb061eddbc1de30-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
     <span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -248,8 +248,8 @@ The R code is defined in a separate file ``r_pgd.R``, loaded from Python.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,UEsDBBQAAAAIAKNx2lxqsDm90wEAAEgEAAAMAAAAb2JqZWN0aXZlLnB5hZMxb9swEIV3/YqDM8QCEgFdC3hpM7do08GbRUkniY1EEuTRhv59jxRNW0GCaiKJe7z3vhN7q2doULWjNgRyNtoSfBMOfzZ/sSV5xiIdKj+bBYQDZYqiaCfhHOSi/UZSfi2Avwf4IWYE3QONeKuF3iteaBWLVCg5wOMvLzorSLaPRRL/YRGNFhFmpFF3jn1O+gId9lJhvHOS6i0c0wVRxZMXQeyEntId28ZCdfHkVU9ntFWs4duABaeOhXuHU/8Ex+Q/fLvd7hUpqkIF9IGXuLYB0tDq2Xha/ehrq6rIN4QYwg5+RkW8WAvfcHFXMJ2MNIRdwCJ5q7CDZsn6uk7NqiHZrOvq3l9eB/fVkWEeixwtaLKrmO8+3O/Yz3GgYAIMz5Sbc6i6Tozcvb6u0yiqW9PVctTvj4fVQnnrj2cxeUF4suj8RFfCp1HQlvL3jzBCULPtEgberRPWnrgwwBPg0iA/hO22tKX6jHZWN8steAC3ev4M933y6POgTMV/pJiGSmk779M8nlPc8t1U1AbKlsY6GOCakNEHx9BrC5dRtuM7Rq1Q/AQy6W6DQ7r83IDXs3Y0LeDDmMN9hI6kGuLL6LDxwxB2xlujHbr/547JDl/K4h9QSwMEFAAAAAgAo3HaXIDL5BluAQAAjgIAABUAAABkYXRhc2V0cy9zaW11bGF0ZWQucHlNUcFu2zAMvesriOwQG8i8dccCvbS9DCi2Swf0VisWHauRREOUl/nvS6meGsGwLPrx8b2nMZKHI4ZhojmB9TPFBPea8VEneSeltlpY/LyCZgizUmpwmhk2THOFb28VyPoCv7RHoBHShP9xB1gYDSQCRoeDjJMnFMTD08/SF3LXHezZ+sXphGavNr6+P2F6NcLUtH0PlksfBbeCxzSRAQ3mYw7wRIsz2Y1DjyF1hcPgCJVDFIyb1rx2u90TaVM4838YKcrBVo+dqtg/vGjn1sMnWEcEtHKM4IRFPI45VmP5nBPTMeqVQRifMTBFPlQuqVXZ3/Je+iPQ8a0ExDUyGUmXMtKTQce5lsGVqqqRSD2JotHhP3t0mL14hga7UwcXkQneBvv1qNMwIbdXzp4zhR2SpaDjumc448rFXSY/X3Q8Mcxy8x+S+v53kWn/YsdbsH3fXYdavyOmJYbC3rzchbmLOhjyZQvNzfcD/Ghb9Q5QSwMEFAAAAAgAo3HaXPVmySw4AwAAdwcAAA0AAABzb2x2ZXJzL2dkLnB5fVVNj9s2EL3rVwzcg72FI6DtLcBeEqRogaItsjksUAT2SBpJrClSIKk1nCD/vTMURcvxosJiwY/hfLz3Ztw6O0BFpu7tGEANo3UB3qGnJ6tfyBXpxEzDeAH0YMaiKGqN3sNssbsaP7wtgL8f4E8cCGwLoadktYfJUwPBgidNNUfiPxMN3v/xe3xm5NEjbLtmWyQ/7y7QUIuTDvtrjmelNdAL6gkDRQ+OPJtIQISBQm8bwDaQgxd0yk4+eeMaKj5kM8WXGJQ1voQnCkGZLjryOIyaNwcf+J66C9TWBGe1h96e2UR5UIu7xhoq4TdytIczSX0cvkatK6xP0E6mlgj8CLlUH28YAd4Q1v01hTK6u4/MSCzOMh5/o2OQ+KVf0J3L3c9RIjIVY0I+cKjqEk0icAO6U5m8fJD44+IKjse4Pgj+x2N2gnVN3qtKk9B+PDJvbbm2nN2N15Qe4etWu+1b+OcnevPLHvj/z5+/Lbl/6oUsR0vOnoNoBpUJVmbm0ZCERHfJJq11NyIKNnnrKMQLZVoLrWhYdn9V/7K21AuJJbjJrDACNFF/jsLkDGBylLQT8avRSOWLtjKC2e1cMmfMKg4HuxzvBJs9PCf9y7fZbJ7uUsT/TbAs8utPIrSUNq9QewvhMioRxCV3EjY4ziF8hGfr12wkqOQTkwYDwo7KrgTPblhqDyDgWs5PBcUnX2YSUHfWqdAPN/kQnM7oOs7FzWYnumQRNipKXYib0Y3Q5dfH4xXAbo3boqEEWF5HqT2znp6/OzoIS488g8ov5Kw/aHWi3fNDkWlhRBMZdXXLxseENdZhQr2Ay+Wv2iPbz03Nss99vVl6cROb3dBMgZzKKLvr6jX8r80q9i270dmamsnFVcd3nvx3uOeJwpNY00AmMAnggx1HGVsD1T0a5QeekCjCsHOdedhlZ9eht48WQfG8jU3Ri+at5CiZJ1JHctx9A5paUnqNpnOveDjU1W6F9B1Xq82beaMd/Ai7+/M1jyKTGaloeEvlr5LWLHw7hXEKt8NwJnXVxel3ZtXF2dvHKFcBVDQsFQmJ0kc+NdlavIvLlBoPy6VzX4MnDZqv21glj8Vryd+K/wBQSwMEFAAAAAgAo3HaXP+2ELr3AQAA0wMAABAAAABzb2x2ZXJzL3JfcGdkLnB5dVJLa9wwEL7rVwzpQTbsGpreAntI26QE2hC2FBaWRdHaY1tFlt2RvI0p+e8d2ftMqQ4Wnhl/r3FJbQOdDrU1WzBN11KAJ34VooydLbq8brtwaH3UHr+3dockxL7k+qYbQHtwnRDv4GGq1mg7JA8jCnXDNWhXHOGyfTsjZbWrLrneNA/U06XK3uUqzitSpbE4g7x1rCcgqTy8nElYQpwNpnVQYGkcFmAckOqqIluCbyHUOECuHTMDYSCDO55hJ90Q6tYx0gHAQ+8NS3mOBVgAtdufmAeWuJb3Px4/qcfbb3dy8yyW6v7h6x1P+EBJzDFRo0ql0uy3CbXyfVmal0RmS5mmQojcau9hijQ5pZveCODjdIMMdrWcP335fCXGmnE+aGtV3hTckuy+0HLsEP7qDWGDLnhurSXNt4woZyDjBuRmnPK66SybUSxRB6yGiGI4Ph2dyomk08TUIW5wAX+kJXkD6/c4/zADfl5vXqcxzhU8BjXFYXaYeLTlDFZ7/SMfV7IVw6yOpUN8XPzPVpMpyPQShVRVvEm/Il0YNqwK9DnfbPKojHq31+NUNHgmKu7i8sdJzrrx5C2WUeCROLlon5zNptvSgWYxXRfjqfj3Q1XrwASuy7TXRHpIRs70ZKDiaAl9b8Po40wh/649Od7MiMLLOUG+/gVQSwMEFAAAAAgAo3HaXGrODf8AAQAADwIAAA8AAABzb2x2ZXJzL3JfcGdkLlKNUMFqwzAMvfsrHvjQZLSwXccOhZWNHnoZG+RWTKI2BscOjgxlo/8+O2mahF0msAzS03t6knKFt2BL1s52CB1V0BbvOyhzdl5z3QgpV+lhy5oN/QONrQpcO4/P2jWqw8F5UmHo0KV1noUQEgcVZ6fBs1eVJsvHiroy/njZ4HTTyoo1jF/DHjWTz/EjEENiMwb2VrNWRn8TWuVVQxE3tXt4mxht6UxW5ENhBHapU+ABj+IP8UfoDZ6inUEdKanhAkuBhMl0usjT83LTgfTVNW1gAteE0e29nQppjWy2VVwqn81LfLWVuhFMsDti6WfBY3x0lyR68LXPnjh4O9PLxfUXUEsDBBQAAAAIAKNx2lxM37qleAAAAJ8AAAAKAAAAY29uZmlnLnltbGWLSw7CMAxE9zmFJTawKfscAw4QOYnbmsZxlU8lbk8oS6TZzJs3l6QYKcJcVEA4s2BynnJYBct2D5pnXqa3JLMnbe7XqzUAz+51bxNcky63LwA4lY1ztKD+RaHxQS70ctA514CJLAx/ZJBHz42F6t/ZY3FhxdLMB1BLAQIUAxQAAAAIAKNx2lxqsDm90wEAAEgEAAAMAAAAAAAAAAAAAACAAQAAAABvYmplY3RpdmUucHlQSwECFAMUAAAACACjcdpcgMvkGW4BAACOAgAAFQAAAAAAAAAAAAAAgAH9AQAAZGF0YXNldHMvc2ltdWxhdGVkLnB5UEsBAhQDFAAAAAgAo3HaXPVmySw4AwAAdwcAAA0AAAAAAAAAAAAAAIABngMAAHNvbHZlcnMvZ2QucHlQSwECFAMUAAAACACjcdpc/7YQuvcBAADTAwAAEAAAAAAAAAAAAAAAgAEBBwAAc29sdmVycy9yX3BnZC5weVBLAQIUAxQAAAAIAKNx2lxqzg3/AAEAAA8CAAAPAAAAAAAAAAAAAACAASYJAABzb2x2ZXJzL3JfcGdkLlJQSwECFAMUAAAACACjcdpcTN+6pXgAAACfAAAACgAAAAAAAAAAAAAAgAFTCgAAY29uZmlnLnltbFBLBQYAAAAABgAGAGsBAADzCgAAAAA=';a.download='r_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-ee28784972174b94b0013acb3da908c3-0' name='example-benchmark-ee28784972174b94b0013acb3da908c3' type='radio'><label for='example-benchmark-ee28784972174b94b0013acb3da908c3-0'>solvers/r_pgd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='r_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-3f3e366455a44b6b87702c6168f43d34-0' name='example-benchmark-3f3e366455a44b6b87702c6168f43d34' type='radio'><label for='example-benchmark-3f3e366455a44b6b87702c6168f43d34-0'>solvers/r_pgd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 
@@ -288,7 +288,7 @@ The R code is defined in a separate file ``r_pgd.R``, loaded from Python.
             <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-ee28784972174b94b0013acb3da908c3-1' name='example-benchmark-ee28784972174b94b0013acb3da908c3' type='radio'><label for='example-benchmark-ee28784972174b94b0013acb3da908c3-1'>solvers/r_pgd.R</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>##&#39; Functions used in GD algorithm
+    <input  id='example-benchmark-3f3e366455a44b6b87702c6168f43d34-1' name='example-benchmark-3f3e366455a44b6b87702c6168f43d34' type='radio'><label for='example-benchmark-3f3e366455a44b6b87702c6168f43d34-1'>solvers/r_pgd.R</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>##&#39; Functions used in GD algorithm
     ##&#39;
     ##&#39; @title Functions used in GD algorithm
     ##&#39; @author Thomas Moreau
@@ -341,7 +341,7 @@ through conda using the solver requirements.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_bhd3srxa/r_solver<span class="w"> </span>-s<span class="w"> </span>r-pgd
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_hsui2pgy/r_solver<span class="w"> </span>-s<span class="w"> </span>r-pgd
     </pre></div>
     </pre>
             
@@ -358,8 +358,9 @@ through conda using the solver requirements.
     Channels:
      - conda-forge
     Platform: linux-64
-    Collecting package metadata (repodata.json): | / - \ | / - \ | / - done
-    Solving environment: | done
+    Collecting package metadata (repodata.json): | / - \ | / - \ | / - \ | / - \ 
+    done
+    Solving environment: / done
 
     gcc_impl_linux-64-15 | 77.4 MB   |            |   0% 
     sysroot_linux-64-2.3 | 40.1 MB   |            |   0% 
@@ -551,57 +552,85 @@ through conda using the solver requirements.
 
 
 
-    gcc_impl_linux-64-15 | 77.4 MB   | 4          |   4% [A
-    sysroot_linux-64-2.3 | 40.1 MB   | 7          |   7% 
+     ... (more hidden) ...
+    gcc_impl_linux-64-15 | 77.4 MB   | 1          |   2% 
 
-    r-base-4.5.3         | 26.1 MB   | #1         |  12% 
-
-
-    libstdcxx-devel_linu | 19.8 MB   | #2         |  12% 
+    r-base-4.5.3         | 26.1 MB   | 6          |   7% 
 
 
-
-    gcc_impl_linux-64-15 | 77.4 MB   | #2         |  12% 
-    sysroot_linux-64-2.3 | 40.1 MB   | ##1        |  21% 
-
-    r-base-4.5.3         | 26.1 MB   | ###4       |  35% 
-
-
-    libstdcxx-devel_linu | 19.8 MB   | ###8       |  39% 
+    libstdcxx-devel_linu | 19.8 MB   | 6          |   6% 
 
 
 
-    gcc_impl_linux-64-15 | 77.4 MB   | ##         |  20% 
-    sysroot_linux-64-2.3 | 40.1 MB   | ###6       |  36% 
+    gcc_impl_linux-64-15 | 77.4 MB   | 5          |   6% 
+    sysroot_linux-64-2.3 | 40.1 MB   | #          |  11% 
 
-    r-base-4.5.3         | 26.1 MB   | #####9     |  59% 
-
-
-    libstdcxx-devel_linu | 19.8 MB   | ######8    |  68% 
+    r-base-4.5.3         | 26.1 MB   | #7         |  18% 
 
 
-
-    gcc_impl_linux-64-15 | 77.4 MB   | ##8        |  29% 
-    sysroot_linux-64-2.3 | 40.1 MB   | #####3     |  54% 
-
-    gcc_impl_linux-64-15 | 77.4 MB   | ###9       |  39% 
-    sysroot_linux-64-2.3 | 40.1 MB   | ######8    |  68% 
+    libstdcxx-devel_linu | 19.8 MB   | ##         |  21% 
 
 
-    libstdcxx-devel_linu | 19.8 MB   | ########## | 100% 
+
+    gcc_impl_linux-64-15 | 77.4 MB   | 9          |  10% 
+    sysroot_linux-64-2.3 | 40.1 MB   | #7         |  18% 
+
+    r-base-4.5.3         | 26.1 MB   | ###        |  30% 
 
 
-    gcc_impl_linux-64-15 | 77.4 MB   | #####      |  50% 
+    libstdcxx-devel_linu | 19.8 MB   | ###6       |  36% 
+
+
+
+    gfortran_impl_linux- | 19.1 MB   | ###3       |  33% 
+
+    gcc_impl_linux-64-15 | 77.4 MB   | #3         |  14% 
+    sysroot_linux-64-2.3 | 40.1 MB   | ##5        |  26% 
+
+
+    libstdcxx-devel_linu | 19.8 MB   | #####1     |  52% 
+
+
+
+    gfortran_impl_linux- | 19.1 MB   | #####      |  51% 
+
+    gcc_impl_linux-64-15 | 77.4 MB   | #8         |  18% 
+    sysroot_linux-64-2.3 | 40.1 MB   | ###3       |  34% 
+
+
+    libstdcxx-devel_linu | 19.8 MB   | #######    |  71% 
+
+
+
+    gfortran_impl_linux- | 19.1 MB   | ######8    |  69% 
+
+    r-base-4.5.3         | 26.1 MB   | ######8    |  69% 
+    gcc_impl_linux-64-15 | 77.4 MB   | ##2        |  23% 
+
+
+    libstdcxx-devel_linu | 19.8 MB   | ########8  |  89% 
+
+
+
+    gfortran_impl_linux- | 19.1 MB   | ########5  |  85% 
+
+    r-base-4.5.3         | 26.1 MB   | ########4  |  84% 
+    gcc_impl_linux-64-15 | 77.4 MB   | ##7        |  28% 
+    gcc_impl_linux-64-15 | 77.4 MB   | ###3       |  33% 
+    gcc_impl_linux-64-15 | 77.4 MB   | ###9       |  40% 
+
+
+    gcc_impl_linux-64-15 | 77.4 MB   | ####5      |  45% 
+    sysroot_linux-64-2.3 | 40.1 MB   | #########6 |  96% 
+
+
+
+    gfortran_impl_linux- | 19.1 MB   | ########## | 100% 
 
 
 
 
     gxx_impl_linux-64-15 | 15.6 MB   |            |   0% 
-
-
-
-    gfortran_impl_linux- | 19.1 MB   | ########## | 100% 
-    sysroot_linux-64-2.3 | 40.1 MB   | ########3  |  83% 
 
 
 
@@ -612,49 +641,111 @@ through conda using the solver requirements.
 
 
 
-    gxx_impl_linux-64-15 | 15.6 MB   | ###4       |  35% 
-    sysroot_linux-64-2.3 | 40.1 MB   | #########7 |  97% 
+    gcc_impl_linux-64-15 | 77.4 MB   | #####      |  51% 
 
 
 
 
 
-    gcc_impl_linux-64-15 | 77.4 MB   | #####9     |  60% 
+    libsanitizer-15.2.0  | 7.6 MB    | ###2       |  32% 
 
 
 
 
-    gcc_impl_linux-64-15 | 77.4 MB   | ######8    |  69% 
+    gcc_impl_linux-64-15 | 77.4 MB   | #####5     |  56% 
+
+
+
+
+
+    libsanitizer-15.2.0  | 7.6 MB    | #######9   |  79% 
+
+    r-base-4.5.3         | 26.1 MB   | ########## | 100% 
 
     r-base-4.5.3         | 26.1 MB   | ########## | 100% 
 
 
 
 
-
-    libsanitizer-15.2.0  | 7.6 MB    | ########## | 100% 
-
-
-
-
-
-
-    libopenblas-0.3.33   | 5.7 MB    |            |   0% 
+    gxx_impl_linux-64-15 | 15.6 MB   | #####5     |  56% 
 
 
 
 
 
 
-
-    gcc_impl_linux-64-15 | 77.4 MB   | #######7   |  78% 
-
+    gcc_impl_linux-64-15 | 77.4 MB   | ######     |  60% 
 
 
 
 
+    gxx_impl_linux-64-15 | 15.6 MB   | #######5   |  75% 
 
-    gcc_impl_linux-64-15 | 77.4 MB   | ########5  |  86% 
+
+
+
+
+
+    libopenblas-0.3.33   | 5.7 MB    | #####      |  50% 
+
+
+
+
+
+
+    gcc_impl_linux-64-15 | 77.4 MB   | ######4    |  65% 
+
+
+
+
+    gxx_impl_linux-64-15 | 15.6 MB   | #########2 |  93% 
+
+
+
+
+
+    gcc_impl_linux-64-15 | 77.4 MB   | ######8    |  69% 
+
+
+
+
+
+
+
+    libglib-2.88.2       | 4.5 MB    |            |   0% 
+
+
+
+
+
+
+
+    libglib-2.88.2       | 4.5 MB    | #####8     |  59% 
+
+
+
+
+
+
+    libopenblas-0.3.33   | 5.7 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+    gcc_impl_linux-64-15 | 77.4 MB   | #######2   |  73% 
+
+
+
+
+
+
+
+
+    gcc_impl_linux-64-15 | 77.4 MB   | #######6   |  76% 
 
 
 
@@ -670,23 +761,7 @@ through conda using the solver requirements.
 
 
 
-    libglib-2.88.2       | 4.5 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-    binutils_impl_linux- | 3.5 MB    |            |   0% 
-
-
-
-
-
-
-    gcc_impl_linux-64-15 | 77.4 MB   | #########3 |  93% 
+    gcc_impl_linux-64-15 | 77.4 MB   | ########   |  80% 
 
 
 
@@ -701,36 +776,6 @@ through conda using the solver requirements.
 
 
 
-    gxx_impl_linux-64-15 | 15.6 MB   | ########## | 100% 
-
-
-
-
-    gxx_impl_linux-64-15 | 15.6 MB   | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-    libgcc-devel_linux-6 | 3.0 MB    |            |   1% 
-
-
-
-
-
-
-
-
-    binutils_impl_linux- | 3.5 MB    | ########## | 100% 
-
-
-
-
 
 
 
@@ -746,8 +791,45 @@ through conda using the solver requirements.
 
 
 
+    gcc_impl_linux-64-15 | 77.4 MB   | ########3  |  84% 
 
-    libgfortran5-15.2.0  | 2.4 MB    |            |   1% 
+
+
+
+
+
+
+
+
+    gsl-2.7              | 3.2 MB    | #######1   |  71% 
+
+
+
+
+
+
+
+
+
+
+    libgcc-devel_linux-6 | 3.0 MB    | ######7    |  68% 
+
+
+
+
+    gxx_impl_linux-64-15 | 15.6 MB   | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+    gcc_impl_linux-64-15 | 77.4 MB   | ########7  |  88% 
 
 
 
@@ -767,29 +849,8 @@ through conda using the solver requirements.
 
 
 
-    gsl-2.7              | 3.2 MB    | ########## | 100% 
 
-
-
-
-
-
-
-
-
-
-    libgcc-devel_linux-6 | 3.0 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-    libgcc-devel_linux-6 | 3.0 MB    | ########## | 100% 
+    gcc_impl_linux-64-15 | 77.4 MB   | #########  |  91% 
 
 
 
@@ -803,18 +864,6 @@ through conda using the solver requirements.
 
 
     harfbuzz-14.2.1      | 2.3 MB    |            |   1% 
-
-
-
-
-
-
-
-
-
-
-
-    libgfortran5-15.2.0  | 2.4 MB    | ########## | 100% 
 
 
 
@@ -840,10 +889,34 @@ through conda using the solver requirements.
 
 
 
+    libgfortran5-15.2.0  | 2.4 MB    | ########## | 100% 
 
 
 
-    font-ttf-ubuntu-0.83 | 1.5 MB    | 1          |   1% 
+
+
+
+
+
+
+
+
+    libgfortran5-15.2.0  | 2.4 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    gcc_impl_linux-64-15 | 77.4 MB   | #########4 |  94% 
 
 
 
@@ -871,6 +944,46 @@ through conda using the solver requirements.
 
 
 
+    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+    harfbuzz-14.2.1      | 2.3 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+    harfbuzz-14.2.1      | 2.3 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
 
@@ -885,7 +998,9 @@ through conda using the solver requirements.
 
 
 
-    harfbuzz-14.2.1      | 2.3 MB    | ########## | 100% 
+
+
+    gcc_impl_linux-64-15 | 77.4 MB   | #########8 |  98% 
 
 
 
@@ -937,23 +1052,8 @@ through conda using the solver requirements.
 
 
     pcre2-10.47          | 1.2 MB    | 1          |   1% 
+    sysroot_linux-64-2.3 | 40.1 MB   | ########## | 100% 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    krb5-1.22.2          | 1.3 MB    | ########## | 100% 
 
 
 
@@ -971,7 +1071,7 @@ through conda using the solver requirements.
 
 
 
-    pcre2-10.47          | 1.2 MB    | ########## | 100% 
+     ... (more hidden) ...
 
 
 
@@ -1005,9 +1105,24 @@ through conda using the solver requirements.
 
 
 
+    pcre2-10.47          | 1.2 MB    | ########## | 100% 
 
-     ... (more hidden) ...
-    sysroot_linux-64-2.3 | 40.1 MB   | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    krb5-1.22.2          | 1.3 MB    | ########## | 100% 
 
 
 
@@ -1043,8 +1158,7 @@ through conda using the solver requirements.
 
 
 
-
-    libglib-2.88.2       | 4.5 MB    | ########## | 100% 
+    libopenblas-0.3.33   | 5.7 MB    | ########## | 100% 
 
 
     libstdcxx-devel_linu | 19.8 MB   | ########## | 100% 
@@ -1056,7 +1170,8 @@ through conda using the solver requirements.
 
 
 
-    libopenblas-0.3.33   | 5.7 MB    | ########## | 100% 
+
+    libglib-2.88.2       | 4.5 MB    | ########## | 100% 
 
 
 
@@ -1066,11 +1181,6 @@ through conda using the solver requirements.
 
 
     binutils_impl_linux- | 3.5 MB    | ########## | 100% 
-
-
-
-
-    gxx_impl_linux-64-15 | 15.6 MB   | ########## | 100% 
 
 
 
@@ -1086,14 +1196,7 @@ through conda using the solver requirements.
 
 
 
-
-
-
-
-
-
-
-    libgfortran5-15.2.0  | 2.4 MB    | ########## | 100% 
+    gxx_impl_linux-64-15 | 15.6 MB   | ########## | 100% 
 
 
 
@@ -1106,6 +1209,19 @@ through conda using the solver requirements.
 
 
     libgfortran5-15.2.0  | 2.4 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+    harfbuzz-14.2.1      | 2.3 MB    | ########## | 100% 
 
 
 
@@ -1134,47 +1250,6 @@ through conda using the solver requirements.
 
 
 
-
-    font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-    harfbuzz-14.2.1      | 2.3 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-    harfbuzz-14.2.1      | 2.3 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
     rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
 
 
@@ -1189,7 +1264,25 @@ through conda using the solver requirements.
 
 
 
-    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
+
+
+    kernel-headers_linux | 1.5 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    kernel-headers_linux | 1.5 MB    | ########## | 100% 
 
 
 
@@ -1260,38 +1353,6 @@ through conda using the solver requirements.
 
 
     krb5-1.22.2          | 1.3 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    kernel-headers_linux | 1.5 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    kernel-headers_linux | 1.5 MB    | ########## | 100% 
 
 
 
@@ -1918,10 +1979,10 @@ through conda using the solver requirements.
 
 
      done
-    Preparing transaction: - \ | done
-    Verifying transaction: - \ | / - \ | / - \ | done
-    Executing transaction: - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | /
-    - done
+    Preparing transaction: \ | / done
+    Verifying transaction: \ | / - \ | / - \ | / - \ | / - \ | / - done
+    Executing transaction: | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \
+    | / - \ | / - \ done
     #
     # To activate this environment, use
     #
@@ -1933,7 +1994,7 @@ through conda using the solver requirements.
 
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold"> done</span>
     - Checking installed packages...Failed to import Solver from 
-    temp_benchmark_bhd3srxa/r_solver/solvers/r_pgd.py. Please fix the following 
+    temp_benchmark_hsui2pgy/r_solver/solvers/r_pgd.py. Please fix the following 
     error to use this file with benchopt:
     Traceback (most recent call last):
       File &quot;/home/circleci/project/benchopt/utils/dynamic_modules.py&quot;, line 116, 
@@ -1946,7 +2007,7 @@ through conda using the solver requirements.
       File &quot;&lt;frozen importlib._bootstrap_external&gt;&quot;, line 999, in exec_module
       File &quot;&lt;frozen importlib._bootstrap&gt;&quot;, line 488, in _call_with_frames_removed
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_bhd3srxa/r_solver/solvers/r_pg
+    &quot;/home/circleci/project/examples/temp_benchmark_hsui2pgy/r_solver/solvers/r_pg
     d.py&quot;, line 8, in &lt;module&gt;
         from benchopt.helpers.r_lang import import_func_from_r_file, converter_ctx
       File &quot;/home/circleci/project/benchopt/helpers/r_lang.py&quot;, line 11, in 
@@ -1993,7 +2054,7 @@ Then, we can run the benchmark and show the comparison.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_bhd3srxa/r_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_hsui2pgy/r_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
     </pre></div>
     </pre>
             
@@ -2008,18 +2069,18 @@ Then, we can run the benchmark and show the comparison.
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--R-PGD[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                 
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--R-PGD[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                  
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_bhd3srxa/r_solver/outputs/benchopt_run_2026-06-26_14h13m25.parq</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_hsui2pgy/r_solver/outputs/benchopt_run_2026-06-29_13h44m16.parq</span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">uet</span> 
     Rendering benchmark results...
        Processing 
-    temp_benchmark_bhd3srxa/r_solver/outputs/benchopt_run_2026-06-26_14h13m25.parq
+    temp_benchmark_hsui2pgy/r_solver/outputs/benchopt_run_2026-06-29_13h44m16.parq
     uet
     done
     Writing results to 
-    temp_benchmark_bhd3srxa/r_solver/outputs/r_solver_benchopt_run_2026-06-26_14h1
-    3m25.html
+    temp_benchmark_hsui2pgy/r_solver/outputs/r_solver_benchopt_run_2026-06-29_13h4
+    4m16.html
     Writing r_solver index to 
-    temp_benchmark_bhd3srxa/r_solver/outputs/r_solver.html
+    temp_benchmark_hsui2pgy/r_solver/outputs/r_solver.html
 
 
 
@@ -2044,7 +2105,7 @@ convergence profiles, with runtime differences depending on your setup.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (1 minutes 53.496 seconds)
+   **Total running time of the script:** (2 minutes 28.707 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_r_solver.py:
