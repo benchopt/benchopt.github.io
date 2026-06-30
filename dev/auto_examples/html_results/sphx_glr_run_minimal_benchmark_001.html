@@ -679,6 +679,10 @@ video {
   height: 100vh;
 }
 
+.min-h-screen {
+  min-height: 100vh;
+}
+
 .h-16 {
   height: 4rem;
 }
@@ -1786,9 +1790,23 @@ input:checked+.slider:before {
   transform: translateX(-30px);
 }
 
+.js-plotly-plot .xtick text,
+.js-plotly-plot .ytick text {
+  font-size: 12px !important;
+}
+
 /*----------------------------------------*/
 /***** Custom legend *****/
 /*----------------------------------------*/
+
+/* Grow the legend to fill the space below the figure so its background runs to
+   the bottom of the page, and stay sticky so resizing/scrolling keeps it put. */
+#legend_container {
+  flex: 1 1 auto;
+  position: sticky;
+  bottom: 0;
+  z-index: 8;
+}
 
 #plot_legend {
   display: flex;
@@ -1984,52 +2002,132 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
     display: none;
 }
 
-/* Fixed aspect ratio for plot containers on mobile devices for better readability */
-/* plot_with_legend_container is used for scatter plots and is always present */
-
-/* Mobile portrait: Use taller aspect ratio to fill vertical space */
-@media (max-width: 767px) and (orientation: portrait) {
-  #plot_with_legend_container {
-    aspect-ratio: 3 / 4; /* Taller aspect ratio for portrait */
-    min-height: 400px;
-    max-height: 70vh;
-  }
-
-  #plot_container.js-plotly-plot {
-    aspect-ratio: 3 / 4;
-    min-height: 400px;
-    max-height: 70vh;
-  }
+/* Plot containers: fixed default size, freely resizable by dragging an
+   edge/corner or typing a size. Same behavior on phones and desktop -- a fixed
+   default plays better with drag-resize than the old per-orientation aspect
+   ratios (which fight the explicit width/height a drag sets). */
+#plot_with_legend_container,
+#plot_container.js-plotly-plot {
+  aspect-ratio: auto;
+  min-height: 200px;
+  max-height: none;
+  height: 600px; /* default height, freely resizable down to min-height */
+  /* flex:none so dragged/typed sizes stick instead of being stretched by the
+     flex layout; position:relative anchors the edge resize handles; max-width
+     keeps the figure (and its right handle) clear of the scrollbar. */
+  flex: none;
+  position: relative;
+  max-width: calc(100% - 1rem);
 }
 
-/* Mobile landscape: Use wider aspect ratio */
-@media (max-width: 767px) and (orientation: landscape) {
-  #plot_with_legend_container {
-    aspect-ratio: 4 / 3;
-    min-height: 300px;
-    max-height: 80vh; /* Use most of screen height in landscape */
-  }
+/* Drag handles on the right, bottom, and bottom-right corner of the figure. */
+.resize-handle {
+  position: absolute;
+  z-index: 5;
+  background: transparent;
+  transition: background 0.15s;
+  touch-action: none; /* so a touch-drag resizes instead of scrolling the page */
+}
+/* Fatter edge handles on touch devices -- 8px is too thin for a fingertip. */
+@media (pointer: coarse) {
+  .resize-handle-x { width: 16px; }
+  .resize-handle-y { height: 16px; }
+}
+.resize-handle:hover {
+  background: rgba(59, 130, 246, 0.35);
+}
+/* Hovering the diagonal corner highlights both edge handles too. */
+:has(> .resize-handle-xy:hover) > .resize-handle-x,
+:has(> .resize-handle-xy:hover) > .resize-handle-y {
+  background: rgba(59, 130, 246, 0.35);
+}
+.resize-handle-x {
+  top: 0;
+  right: 0;
+  width: 8px;
+  height: 100%;
+  cursor: ew-resize;
+}
+.resize-handle-y {
+  left: 0;
+  bottom: 0;
+  height: 8px;
+  width: 100%;
+  cursor: ns-resize;
+}
+/* Centered grip lines so the edges read as draggable. */
+.resize-handle-x::after,
+.resize-handle-y::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(59, 130, 246, 0.7);
+  border-radius: 2px;
+}
+.resize-handle-x::after { width: 2px; height: 30px; }
+.resize-handle-y::after { width: 30px; height: 2px; }
 
-  #plot_container.js-plotly-plot {
-    aspect-ratio: 4 / 3;
-    min-height: 300px;
-    max-height: 80vh;
-  }
+/* Diagonal corner handle, resizes both dimensions at once. */
+.resize-handle-xy {
+  right: 0;
+  bottom: 0;
+  width: 16px;
+  height: 16px;
+  z-index: 6; /* above the edge handles it overlaps */
+  background: transparent;
+  cursor: nwse-resize;
+}
+.resize-handle-xy:hover { background: transparent; }
+.resize-handle-xy::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg,
+    transparent 0 46%,
+    rgba(59, 130, 246, 0.7) 46% 54%,
+    transparent 54% 70%,
+    rgba(59, 130, 246, 0.7) 70% 78%,
+    transparent 78%);
 }
 
-/* Desktop: Remove aspect ratio constraints for flexibility */
-@media (min-width: 768px) {
-  #plot_with_legend_container {
-    aspect-ratio: auto;
-    min-height: 600px;
-    max-height: none;
-  }
-
-  #plot_container.js-plotly-plot {
-    aspect-ratio: auto;
-    min-height: 0;
-    max-height: none;
-  }
+/* Compact size readout, tucked into the figure's bottom-right corner (left of
+   the diagonal handle). Stays out of the way until you hover the figure or
+   drag a handle. JS appends it into the current figure div. */
+#figsize_controls {
+  position: absolute;
+  bottom: 0.5rem;
+  right: 1.5rem;
+  z-index: 7;
+  gap: 0.25rem;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+  background: rgba(255, 255, 255, 0.85);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.375rem;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.08);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+#plot_container:hover > #figsize_controls,
+#plot_with_legend_container:hover > #figsize_controls,
+#plot_container.resizing > #figsize_controls,
+#plot_with_legend_container.resizing > #figsize_controls {
+  opacity: 1;
+  pointer-events: auto;
+}
+#figsize_controls input {
+  width: 4rem;
+  padding: 0.05rem 0.3rem;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+}
+#figsize_controls .unit {
+  color: #9ca3af;
 }
         </style>
     </head>
@@ -2246,7 +2344,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                 </div>
             </div>
             <!-- Right column on big screen and main column on mobile -->
-            <div class="w-full flex flex-col overflow-scroll">
+            <div class="w-full flex flex-col overflow-scroll min-h-screen">
                 <!-- Main menu -->
                 <nav class="bg-blue-600">
                     <div class="px-4">
@@ -2288,7 +2386,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                             <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportConfigs()">Download config</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportHTML()">Download HTML</a>
-                            <a href="benchopt_run_2026-06-30_09h35m26.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                            <a href="benchopt_run_2026-06-30_15h02m35.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
                         </div>
                     </div>
                 </nav>
@@ -2557,7 +2655,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                         </span>
 
                         <span>
-                            <a href="benchopt_run_2026-06-30_09h35m26.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <a href="benchopt_run_2026-06-30_15h02m35.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                 </svg>
@@ -2588,6 +2686,14 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <!-- Figure size overlay: tucked into the figure corner, revealed on hover (or while dragging, on touch). JS anchors it to the current figure. -->
+                <div id="figsize_controls" class="hidden items-center" title="Figure size (px)">
+                    <input id="figsize_width" type="number" min="200" step="10" onchange="setFigSize()" title="Width (px)">
+                    <span>×</span>
+                    <input id="figsize_height" type="number" min="200" step="10" onchange="setFigSize()" title="Height (px)">
+                    <span class="unit">px</span>
                 </div>
 
                 <!-- Plot -->
@@ -2628,7 +2734,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                                             <li> <b>CPU</b>: 2 </li>
                                             <li> <b>RAM (GB)</b>: 4 </li>
                                             <li> <b>platform</b>: Linux6.17.0-1013-aws-x86_64 </li>
-                                            <li> <b>processor</b>: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz </li>
+                                            <li> <b>processor</b>: Intel(R) Xeon(R) Platinum 8223CL CPU @ 3.00GHz </li>
                                             
                                             <li> <b>numpy</b>: 2.5.0 </li>
                                             
@@ -2695,7 +2801,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
         </script>
         <!-- Manage plot -->
         <script>
-            window._plots = {"objective_curve": {"objective_curve_simulated_Quadratic_objective_value_Time": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [2.736500164246536e-06, 3.682550004668883e-05, 4.323300004216435e-05, 4.9177499931829516e-05, 5.472049997479189e-05, 6.287500013968383e-05, 7.391450026261737e-05, 8.543400031157944e-05, 0.00010123850051968475, 0.00014913000063643267, 0.0001816070002860215, 0.0002283555002122739, 0.0002948769999875367, 0.00042293649948987877, 0.0005757124995398044, 0.000797899998133289, 0.0011379389959529362, 0.0016416159942309605, 0.0023980989926712937, 0.0035314684939748986, 0.005221608495276087], "y": [4.483852166028163, 4.479368313862135, 4.474888945548273, 4.470414056602725, 4.465943642546122, 4.457016221204673, 4.443658539132706, 4.425910549157219, 4.399421386068665, 4.359984603766322, 4.299339995233769, 4.209951024254961, 4.081381377753362, 3.8939029684278337, 3.630523907736268, 3.268477989883152, 2.7905686083103696, 2.201473256466425, 1.5433404333292084, 0.9054551822162082, 0.4070915157127025], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "x_low": [2.5616001039452386e-06, 2.2524199994222727e-05, 2.8645800011872782e-05, 3.42473999808135e-05, 3.969619992858497e-05, 4.7593600083928325e-05, 5.9357000191084806e-05, 7.06836003701028e-05, 8.634620016891858e-05, 0.00011847300056615495, 0.00015063080072650337, 0.00019708140025613828, 0.0002639823991557932, 0.0004084023983523366, 0.0005639323987452372, 0.0007848235971323447, 0.0011301635956442624, 0.001628433396399487, 0.002383567594097258, 0.003516322396171745, 0.005202436396666598], "x_high": [2.911400224547833e-06, 5.112680009915494e-05, 5.782020007245592e-05, 6.410759988284553e-05, 6.97448000209988e-05, 7.815640019543936e-05, 8.847200033414992e-05, 0.00010018440025305608, 0.00011613080087045092, 0.0001797870007067104, 0.00021258319984553966, 0.00025962960016840954, 0.00032577160081928016, 0.0004374706006274209, 0.0005874926003343716, 0.0008109763991342334, 0.00114571439626161, 0.001654798592062434, 0.0024126303912453293, 0.0035466145917780524, 0.005240780593885575]}, {"x": [1.740000016070553e-06, 1.2247000086063053e-05, 1.7931500224221963e-05, 2.327850029359979e-05, 2.8612000278371852e-05, 3.6438000279304106e-05, 4.6343000349224894e-05, 5.7670500382300816e-05, 7.490800044251955e-05, 9.822899983191746e-05, 0.00013047150036982202, 0.00017680250039120438, 0.00024436250032522366, 0.00034386200172775716, 0.0004999869997845963, 0.0007266060015354014, 0.0010577340015061054, 0.0015634650058018451, 0.002316560508461407, 0.003434590012602712, 0.005128768506438064], "y": [4.483852166028163, 4.439013644367882, 4.394623507924203, 4.350677272844961, 4.307170500116512, 4.221457807164192, 4.096076288833609, 3.9346745397091727, 3.704417973489703, 3.38404971067124, 2.9398790163477124, 2.3805019687356435, 1.743249613174039, 1.0869604034482745, 0.5378700290808445, 0.18722885361489186, 0.03825899208644726, 0.003534065905098563, 9.971689027218975e-05, 4.7024853017367514e-07, 1.5305481265440297e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "x_low": [1.6668001080688556e-06, 1.1995600016234675e-05, 1.766180021149921e-05, 2.30154003475036e-05, 2.8406800265656783e-05, 3.624960036177072e-05, 4.632620011761901e-05, 5.758560018875869e-05, 7.35922004423628e-05, 9.777479917829623e-05, 0.0001301321995924809, 0.00017657840016909175, 0.0002442182003505877, 0.000343817002067226, 0.0004941573984069692, 0.0007233545996314205, 0.0010566744002971974, 0.0015582816065943916, 0.0023078008081938604, 0.003425261810571101, 0.005122458007281239], "x_high": [1.8131999240722506e-06, 1.2498400155891432e-05, 1.8201200236944715e-05, 2.354160023969598e-05, 2.881720029108692e-05, 3.662640019683749e-05, 4.6359800580830776e-05, 5.775540057584294e-05, 7.62238004426763e-05, 9.86832004855387e-05, 0.00013081080114716315, 0.000177026600613317, 0.0002445068002998596, 0.0003439070013882883, 0.0005058166011622234, 0.0007298574034393824, 0.0010587936027150135, 0.0015686484050092986, 0.002325320208728954, 0.0034439182146343227, 0.005135079005594889]}]}, "objective_curve_simulated_Quadratic_objective_value_Iteration": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [4.483852166028163, 4.479368313862135, 4.474888945548273, 4.470414056602725, 4.465943642546122, 4.457016221204673, 4.443658539132706, 4.425910549157219, 4.399421386068665, 4.359984603766322, 4.299339995233769, 4.209951024254961, 4.081381377753362, 3.8939029684278337, 3.630523907736268, 3.268477989883152, 2.7905686083103696, 2.201473256466425, 1.5433404333292084, 0.9054551822162082, 0.4070915157127025], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0}, {"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [4.483852166028163, 4.439013644367882, 4.394623507924203, 4.350677272844961, 4.307170500116512, 4.221457807164192, 4.096076288833609, 3.9346745397091727, 3.704417973489703, 3.38404971067124, 2.9398790163477124, 2.3805019687356435, 1.743249613174039, 1.0869604034482745, 0.5378700290808445, 0.18722885361489186, 0.03825899208644726, 0.003534065905098563, 9.971689027218975e-05, 4.7024853017367514e-07, 1.5305481265440297e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1}]}}, "bar_chart": {"bar_chart_simulated_Quadratic_objective_value_True": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.005253561992958566, 0.005189654997593607], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [0.005139286005032773, 0.005118251007843355], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "bar_chart_simulated_Quadratic_objective_value_False": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [3.028000264748698e-06, 2.4450000637443736e-06], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [1.618000169401057e-06, 1.8619998627400491e-06], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "boxplot": {"boxplot_simulated_Quadratic_objective_value_Solver_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.005253561992958566, 0.005189654997593607]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[0.005139286005032773, 0.005118251007843355]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Solver_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.4070915157127025, 0.4070915157127025]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[1.5305481265440297e-10, 1.5305481265440297e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.028000264748698e-06, 2.4450000637443736e-06], [6.066100013413234e-05, 1.2989999959245324e-05], [6.75450000926503e-05, 1.89209999916784e-05], [7.406099985018955e-05, 2.4294000013469486e-05], [7.976100005180342e-05, 2.9679999897780363e-05], [8.834400023260969e-05, 3.740600004675798e-05], [9.81770003818383e-05, 4.9652000143396435e-05], [0.00011001800021404051, 6.0850000409118365e-05], [0.00012605900110429502, 7.641799993507448e-05], [0.0002002250007535622, 9.803500051930314e-05], [0.00023323399955188506, 0.00012998000102015794], [0.0002804790001391666, 0.00017623200028538122], [0.00034636800137377577, 0.00024338599860129762], [0.0004471600013857824, 0.00039871299759397516], [0.0005953460008640832, 0.0005560789982155256], [0.0008196939998015296, 0.0007761059964650485], [0.0011508979964673927, 0.0011249799954384798], [0.00166358699061675, 0.001619644997845171], [0.0024223179902946868, 0.0023738799950479006], [0.003556711990313488, 0.003506224997636309], [0.005253561992958566, 0.005189654997593607]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[1.618000169401057e-06, 1.8619998627400491e-06], [1.2666000202443684e-05, 1.1827999969682423e-05], [1.838100024542655e-05, 1.7482000203017378e-05], [2.3717000203760108e-05, 2.2840000383439474e-05], [2.895400029956363e-05, 2.8270000257180072e-05], [3.675200014185975e-05, 3.612400041674846e-05], [4.6314999963215087e-05, 4.63710007352347e-05], [5.7529000059730606e-05, 5.7812000704871025e-05], [7.271500044225832e-05, 7.710100044278079e-05], [9.747199874254875e-05, 9.898600092128618e-05], [0.0001299059990742535, 0.00013103700166539056], [0.0001764290000210167, 0.00017717600076139206], [0.0002441220003674971, 0.00024460300028295023], [0.0003439370011619758, 0.00034378700229353854], [0.0004902709974885511, 0.0005097030020806415], [0.0007211869983621, 0.0007320250047087029], [0.0010559679994912585, 0.0010595000035209523], [0.0015721040044809342, 0.001554826007122756], [0.002331160008907318, 0.002301961008015496], [0.00345013701598873, 0.0034190430092166935], [0.005139286005032773, 0.005118251007843355]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[4.483852166028163, 4.483852166028163], [4.479368313862135, 4.479368313862135], [4.474888945548273, 4.474888945548273], [4.470414056602725, 4.470414056602725], [4.465943642546122, 4.465943642546122], [4.457016221204673, 4.457016221204673], [4.443658539132706, 4.443658539132706], [4.425910549157219, 4.425910549157219], [4.399421386068665, 4.399421386068665], [4.359984603766322, 4.359984603766322], [4.299339995233769, 4.299339995233769], [4.209951024254961, 4.209951024254961], [4.081381377753362, 4.081381377753362], [3.8939029684278337, 3.8939029684278337], [3.630523907736268, 3.630523907736268], [3.268477989883152, 3.268477989883152], [2.7905686083103696, 2.7905686083103696], [2.201473256466425, 2.201473256466425], [1.5433404333292084, 1.5433404333292084], [0.9054551822162082, 0.9054551822162082], [0.4070915157127025, 0.4070915157127025]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[4.483852166028163, 4.483852166028163], [4.439013644367882, 4.439013644367882], [4.394623507924203, 4.394623507924203], [4.350677272844961, 4.350677272844961], [4.307170500116512, 4.307170500116512], [4.221457807164192, 4.221457807164192], [4.096076288833609, 4.096076288833609], [3.9346745397091727, 3.9346745397091727], [3.704417973489703, 3.704417973489703], [3.38404971067124, 3.38404971067124], [2.9398790163477124, 2.9398790163477124], [2.3805019687356435, 2.3805019687356435], [1.743249613174039, 1.743249613174039], [1.0869604034482745, 1.0869604034482745], [0.5378700290808445, 0.5378700290808445], [0.18722885361489186, 0.18722885361489186], [0.03825899208644726, 0.03825899208644726], [0.003534065905098563, 0.003534065905098563], [9.971689027218975e-05, 9.971689027218975e-05], [4.7024853017367514e-07, 4.7024853017367514e-07], [1.5305481265440297e-10, 1.5305481265440297e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "table": {"table_simulated_Quadratic": {"title": "Quadratic<br />Data: simulated", "columns": ["solver", "value", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [["gd[lr=0.001]", 0.4070915157127025, 0.005221608495276087], ["gd[lr=0.01]", 1.5305481265440297e-10, 0.005128768506438064]]}}};
+            window._plots = {"objective_curve": {"objective_curve_simulated_Quadratic_objective_value_Time": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [2.0825002593483077e-06, 1.624750029805e-05, 2.3421500372933224e-05, 2.90790003418806e-05, 3.537450015755894e-05, 4.4041000364813954e-05, 5.421050059339905e-05, 6.642800053668907e-05, 8.23850007236615e-05, 0.00010490900126569613, 0.00013803950105284457, 0.00018764050105346541, 0.00025777750170163927, 0.0003591320021314459, 0.0005078140052319213, 0.0007545825037595932, 0.0010917465026523132, 0.0016088055033378623, 0.0023533860030511278, 0.003478443008134491, 0.005174714006216163], "y": [4.928918227380747, 4.923989309153366, 4.919065319844212, 4.914146254524368, 4.909232108269843, 4.899418553285412, 4.884734990981797, 4.86522533989376, 4.836106869002938, 4.79275560140496, 4.726091423969947, 4.62782972575376, 4.486498287814991, 4.280410817767222, 3.990888816397804, 3.592906309932668, 3.067559760883319, 2.419990949545604, 1.6965320245222049, 0.9953304405339282, 0.4474993192707763], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "x_low": [1.902200256154174e-06, 1.3552600285038352e-05, 1.9940600486734185e-05, 2.5585800449334785e-05, 3.2443800319015284e-05, 4.112680062462459e-05, 5.133080076120677e-05, 6.340040035865969e-05, 7.92680005361035e-05, 0.00010173440114158439, 0.0001346654011285864, 0.00018376120142420404, 0.0002540794022024784, 0.00035530700288290975, 0.0005032612053582852, 0.0007340976033447077, 0.0010677870036488457, 0.0015797058060343261, 0.0023169174050963193, 0.003441980407387746, 0.005136652405326458], "x_high": [2.2628002625424417e-06, 1.8942400311061645e-05, 2.6902400259132263e-05, 3.257220023442642e-05, 3.83051999961026e-05, 4.6955200105003314e-05, 5.709020042559132e-05, 6.945560071471845e-05, 8.550200091121951e-05, 0.00010808360138980788, 0.00014141360097710275, 0.0001915198006827268, 0.00026147560120080013, 0.0003629570013799821, 0.0005123668051055574, 0.0007750674041744788, 0.0011157060016557807, 0.0016379052006413985, 0.0023898546010059363, 0.003514905608881236, 0.005212775607105868]}, {"x": [1.438499793948722e-06, 1.133549972109904e-05, 1.8295999780093553e-05, 2.381999956924119e-05, 2.9220999522294733e-05, 3.7455499750649324e-05, 4.7852999614406144e-05, 6.155049959488679e-05, 7.738599947515468e-05, 9.948349929800315e-05, 0.00015760950032017718, 0.00020523300077002204, 0.00027388250100557343, 0.00038372500125660736, 0.0005386575010106753, 0.0007677875000808854, 0.0011099815012585168, 0.0016127849996792065, 0.0023769819958943117, 0.003506291498979408, 0.005200270986051692], "y": [4.928918227380747, 4.879629045106939, 4.830832754655869, 4.78252442710931, 4.734699182838218, 4.640478669099737, 4.502651812148806, 4.325229365169412, 4.07211758891329, 3.7199496512537897, 3.2316906832381505, 2.6167900076889303, 1.9162841403085609, 1.1948518253096394, 0.591258875657083, 0.20581314349877336, 0.04205657021541534, 0.003884856416182188, 0.00010961476423504836, 5.16925283483349e-07, 1.682474213868613e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "x_low": [1.4141997780825478e-06, 1.1280599755991716e-05, 1.7608399684831965e-05, 2.3161199442256476e-05, 2.8553199354064417e-05, 3.678619959828211e-05, 4.734539952551131e-05, 6.096339993746369e-05, 7.68687998970563e-05, 9.916519938997226e-05, 0.00014233740002964624, 0.00018948960041598184, 0.00025740440050867617, 0.0003714483994372131, 0.0005223498004852445, 0.000746436199551681, 0.0010951708012726159, 0.001594345199464442, 0.0023497533957197447, 0.0034889793991169427, 0.005175730388418742], "x_high": [1.4627998098148963e-06, 1.1390399686206365e-05, 1.898359987535514e-05, 2.4478799696225904e-05, 2.9888799690525048e-05, 3.8124799903016535e-05, 4.836059970330098e-05, 6.213759925230989e-05, 7.790319905325305e-05, 9.980179920603405e-05, 0.00017288160061070811, 0.00022097640112406225, 0.0002903606015024707, 0.0003960016030760016, 0.0005549652015361062, 0.0007891388006100897, 0.0011247922012444177, 0.001631224799893971, 0.0024042105960688787, 0.0035236035988418734, 0.005224811583684641]}]}, "objective_curve_simulated_Quadratic_objective_value_Iteration": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [4.928918227380747, 4.923989309153366, 4.919065319844212, 4.914146254524368, 4.909232108269843, 4.899418553285412, 4.884734990981797, 4.86522533989376, 4.836106869002938, 4.79275560140496, 4.726091423969947, 4.62782972575376, 4.486498287814991, 4.280410817767222, 3.990888816397804, 3.592906309932668, 3.067559760883319, 2.419990949545604, 1.6965320245222049, 0.9953304405339282, 0.4474993192707763], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0}, {"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [4.928918227380747, 4.879629045106939, 4.830832754655869, 4.78252442710931, 4.734699182838218, 4.640478669099737, 4.502651812148806, 4.325229365169412, 4.07211758891329, 3.7199496512537897, 3.2316906832381505, 2.6167900076889303, 1.9162841403085609, 1.1948518253096394, 0.591258875657083, 0.20581314349877336, 0.04205657021541534, 0.003884856416182188, 0.00010961476423504836, 5.16925283483349e-07, 1.682474213868613e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1}]}}, "bar_chart": {"bar_chart_simulated_Quadratic_objective_value_True": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.005238150007699005, 0.005111278004733322], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [0.005241171982106607, 0.005159369989996776], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "bar_chart_simulated_Quadratic_objective_value_False": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [2.383000264671864e-06, 1.7820002540247515e-06], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [1.3979997675050981e-06, 1.478999820392346e-06], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "boxplot": {"boxplot_simulated_Quadratic_objective_value_Solver_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.005238150007699005, 0.005111278004733322]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[0.005241171982106607, 0.005159369989996776]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Solver_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.4474993192707763, 0.4474993192707763]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[1.682474213868613e-10, 1.682474213868613e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[2.383000264671864e-06, 1.7820002540247515e-06], [2.073900031973608e-05, 1.175600027636392e-05], [2.9223000183264958e-05, 1.762000056260149e-05], [3.4901000162790297e-05, 2.3257000520970905e-05], [4.025899988846504e-05, 3.049000042665284e-05], [4.889799993179622e-05, 3.9184000797831686e-05], [5.90100003137195e-05, 4.941100087307859e-05], [7.147400083340472e-05, 6.138200023997342e-05], [8.758000103625818e-05, 7.719000041106483e-05], [0.00011020000147254905, 9.961800105884322e-05], [0.00014366300092660822, 0.00013241600117908092], [0.0001941060004355677, 0.00018117500167136313], [0.0002639410008669074, 0.0002516140025363711], [0.00036550700087900623, 0.0003527570033838856], [0.0005154020050213148, 0.0005002260054425278], [0.000788724004451069, 0.0007204410030681174], [0.0011316790009914257, 0.0010518140043132007], [0.001657304998843756, 0.0015603060078319686], [0.0024141669996424753, 0.0022926050064597803], [0.003539214009379066, 0.003417672006889916], [0.005238150007699005, 0.005111278004733322]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[1.3979997675050981e-06, 1.478999820392346e-06], [1.1426999662944581e-05, 1.12439997792535e-05], [1.9441999938862864e-05, 1.714999962132424e-05], [2.4917999780882383e-05, 2.2721999357599998e-05], [3.033399980267859e-05, 2.8107999241910875e-05], [3.857100000459468e-05, 3.633999949670397e-05], [4.86989997625642e-05, 4.700699946624809e-05], [6.0572000165848294e-05, 6.252899902392528e-05], [7.652400017832406e-05, 7.82479987719853e-05], [9.8952999451285e-05, 0.00010001399914472131], [0.00018306300080439541, 0.00013215599983595894], [0.00023147200136008905, 0.00017899400017995504], [0.0003013460018337355, 0.00024641900017741136], [0.00040418600428893114, 0.00036326399822428357], [0.0005658370018863934, 0.0005114780001349573], [0.0008033730009628925, 0.0007322019991988782], [0.0011346660012350185, 0.0010852970012820151], [0.0016435180000371474, 0.0015820519993212656], [0.0024223629961852566, 0.0023316009956033668], [0.0035351449987501837, 0.0034774379992086324], [0.005241171982106607, 0.005159369989996776]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[4.928918227380747, 4.928918227380747], [4.923989309153366, 4.923989309153366], [4.919065319844212, 4.919065319844212], [4.914146254524368, 4.914146254524368], [4.909232108269843, 4.909232108269843], [4.899418553285412, 4.899418553285412], [4.884734990981797, 4.884734990981797], [4.86522533989376, 4.86522533989376], [4.836106869002938, 4.836106869002938], [4.79275560140496, 4.79275560140496], [4.726091423969947, 4.726091423969947], [4.62782972575376, 4.62782972575376], [4.486498287814991, 4.486498287814991], [4.280410817767222, 4.280410817767222], [3.990888816397804, 3.990888816397804], [3.592906309932668, 3.592906309932668], [3.067559760883319, 3.067559760883319], [2.419990949545604, 2.419990949545604], [1.6965320245222049, 1.6965320245222049], [0.9953304405339282, 0.9953304405339282], [0.4474993192707763, 0.4474993192707763]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[4.928918227380747, 4.928918227380747], [4.879629045106939, 4.879629045106939], [4.830832754655869, 4.830832754655869], [4.78252442710931, 4.78252442710931], [4.734699182838218, 4.734699182838218], [4.640478669099737, 4.640478669099737], [4.502651812148806, 4.502651812148806], [4.325229365169412, 4.325229365169412], [4.07211758891329, 4.07211758891329], [3.7199496512537897, 3.7199496512537897], [3.2316906832381505, 3.2316906832381505], [2.6167900076889303, 2.6167900076889303], [1.9162841403085609, 1.9162841403085609], [1.1948518253096394, 1.1948518253096394], [0.591258875657083, 0.591258875657083], [0.20581314349877336, 0.20581314349877336], [0.04205657021541534, 0.04205657021541534], [0.003884856416182188, 0.003884856416182188], [0.00010961476423504836, 0.00010961476423504836], [5.16925283483349e-07, 5.16925283483349e-07], [1.682474213868613e-10, 1.682474213868613e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "table": {"table_simulated_Quadratic": {"title": "Quadratic<br />Data: simulated", "columns": ["solver", "value", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [["gd[lr=0.001]", 0.4474993192707763, 0.005174714006216163], ["gd[lr=0.01]", 1.682474213868613e-10, 0.005200270986051692]]}}};
             window.metadata = {"plot_configs": {"Subopt. (log)": {"plot_kind": "objective_curve", "scale": "loglog"}, "Runtimes": {"plot_kind": "bar_chart"}}, "solvers_description": {"gd[lr=0.001]": "", "gd[lr=0.01]": ""}, "obj_description": ""};
 
             window.addEventListener("load", () => {
@@ -3406,6 +3512,9 @@ const setState = (partialState) => {
     hide(container);
   });
 
+  // Hide the size controls; renderPlot re-shows them for plot charts.
+  hide(document.getElementById('figsize_controls'));
+
   if  (isChart('table')) {
     renderTable();
   } else {
@@ -3471,6 +3580,9 @@ const renderPlot = () => {
 
   let div = plot_container;
   if (isChart('scatter')) {
+    plot_container.classList.remove('js-plotly-plot');
+    plot_container.style.width = '';
+    plot_container.style.height = '';
     show(plot_with_legend_container);
     div = plot_with_legend_container;
     renderLegend();
@@ -3480,6 +3592,96 @@ const renderPlot = () => {
   const data = getChartData();
   const layout = getLayout();
   Plotly.react(div, data, layout);
+
+  // Enable drag/typed resizing of this figure (works on touch too).
+  const controls = document.getElementById('figsize_controls');
+  controls.style.display = 'flex';
+  div.appendChild(controls);  // anchor the size overlay to the current figure
+  addResizeHandles(div);
+  resizeFig(div);
+};
+
+/*
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ * FIGURE RESIZING
+ *
+ * Resize the current Plotly figure by dragging its edges/corner or by typing
+ * a width/height into the overlay tucked in the figure's corner. resizeFig
+ * refits Plotly to the box and keeps the overlay inputs in sync.
+ * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ */
+
+// The div Plotly draws into for the current chart (scatter keeps its legend
+// separate, so its plot lives in plot_with_legend_container).
+const getPlotDiv = () => document.getElementById(
+  isChart('scatter') ? 'plot_with_legend_container' : 'plot_container'
+);
+
+const applyLogDtick = (div) => {
+  const fl = div._fullLayout;
+  if (!fl) return;
+  const update = {};
+  ['xaxis', 'yaxis'].forEach(name => {
+    const ax = fl[name];
+    if (!ax || ax.type !== 'log' || !ax.range || !ax._length) return;
+    const decades = Math.abs(ax.range[1] - ax.range[0]);
+    const dtick = Math.max(1, Math.ceil(decades / Math.max(2, ax._length / 60)));
+    if (ax.dtick !== dtick) update[name + '.dtick'] = dtick;
+  });
+  if (Object.keys(update).length) Plotly.relayout(div, update);
+};
+
+// Refit Plotly to the figure box and reflect the actual size in the inputs.
+const resizeFig = (div) => {
+  Plotly.Plots.resize(div).then(() => applyLogDtick(div));
+  document.getElementById('figsize_width').value = Math.round(div.offsetWidth);
+  document.getElementById('figsize_height').value = Math.round(div.offsetHeight);
+};
+
+const setFigSize = () => {
+  const div = getPlotDiv();
+  const w = parseInt(document.getElementById('figsize_width').value, 10);
+  const h = parseInt(document.getElementById('figsize_height').value, 10);
+  if (w > 0) div.style.width = `${w}px`;
+  if (h > 0) div.style.height = `${h}px`;
+  resizeFig(div);
+};
+
+// (Re)create the drag handles on the right ('x') and bottom ('y') edges.
+// Plotly.purge leaves these children in place, so clear any stale ones first.
+const addResizeHandles = (div) => {
+  // Clear from plot_container (the common ancestor) so handles left on the
+  // other chart type's div are removed too, not just those inside `div`.
+  document.getElementById('plot_container')
+    .querySelectorAll('.resize-handle').forEach(h => h.remove());
+  ['x', 'y', 'xy'].forEach(axis => div.appendChild(makeResizeHandle(div, axis)));
+};
+
+const makeResizeHandle = (div, axis) => {
+  const handle = document.createElement('div');
+  handle.className = `resize-handle resize-handle-${axis}`;
+  handle.addEventListener('pointerdown', (e) => {
+    e.preventDefault();
+    handle.setPointerCapture(e.pointerId);
+    div.classList.add('resizing');  // keep the size overlay visible while dragging
+    const startX = e.clientX, startY = e.clientY;
+    const startW = div.offsetWidth, startH = div.offsetHeight;
+    const onMove = (ev) => {
+      if (axis !== 'y')
+        div.style.width = `${Math.max(200, startW + ev.clientX - startX)}px`;
+      if (axis !== 'x')
+        div.style.height = `${Math.max(200, startH + ev.clientY - startY)}px`;
+      resizeFig(div);
+    };
+    const onUp = () => {
+      div.classList.remove('resizing');
+      handle.removeEventListener('pointermove', onMove);
+      handle.removeEventListener('pointerup', onUp);
+    };
+    handle.addEventListener('pointermove', onMove);
+    handle.addEventListener('pointerup', onUp);
+  });
+  return handle;
 };
 
 /**
@@ -4130,6 +4332,9 @@ const MPL_AXIS = {
   gridwidth: 0.5,
   zeroline: false,
   automargin: true,
+  exponentformat: 'power',
+  minexponent: 2,
+  minor: { ticks: 'outside', ticklen: 4, tickcolor: 'black', showgrid: false },
 };
 const MPL_LAYOUT = {
   plot_bgcolor: 'white',
@@ -4148,7 +4353,6 @@ const getBarChartLayout = () => {
       ...MPL_AXIS,
       type: getScale().yaxis,
       title: data["ylabel"],
-      tickformat: '~g',
     },
     xaxis: {
       ...MPL_AXIS,
@@ -4195,7 +4399,6 @@ const getBoxplotChartLayout = () => {
       ...MPL_AXIS,
       type: getScale().yaxis,
       title: plot_info["ylabel"],
-      tickformat: '~g',
     },
     xaxis: {
       ...MPL_AXIS,
@@ -4238,14 +4441,12 @@ const getScatterChartLayout = () => {
       ...MPL_AXIS,
       type: getScale().xaxis,
       title: customData.xlabel,
-      tickformat: '~g',
       tickangle: 0,
     },
     yaxis: {
       ...MPL_AXIS,
       type: getScale().yaxis,
       title: customData.ylabel,
-      tickformat: '~g',
     },
     title: `${customData.title}`,
     ...MPL_LAYOUT,
@@ -4955,6 +5156,14 @@ document.getElementById('btn-main-menu').addEventListener('click', () => {
   }
 
   elmt.style.display = 'block';
+});
+
+// Refit the current figure to its container when the window is resized so it
+// keeps the right dimensions. Debounced to avoid refitting on every event.
+let resizeTimer;
+window.addEventListener('resize', () => {
+  clearTimeout(resizeTimer);
+  resizeTimer = setTimeout(() => resizeFig(getPlotDiv()), 150);
 });
 
         </script>
