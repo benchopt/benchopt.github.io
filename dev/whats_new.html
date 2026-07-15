@@ -444,7 +444,10 @@
 <li><p>Ship agent skills (<code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code>, <a class="reference external" href="https://agentskills.io">Agent Skills</a>
 standard) as package data and add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">sync-skills</span></code> to install them
 into a project’s <code class="docutils literal notranslate"><span class="pre">.agents/skills/</span></code> (or globally with <code class="docutils literal notranslate"><span class="pre">--global</span></code>), with a
-<code class="docutils literal notranslate"><span class="pre">.claude/skills/</span></code> mirror for Claude Code. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/959">#959</a>)</p></li>
+<code class="docutils literal notranslate"><span class="pre">.claude/skills/</span></code> mirror for Claude Code. The skills are consolidated into a
+single <code class="docutils literal notranslate"><span class="pre">using-benchopt</span></code> skill (router <code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code> plus task sub-files and
+asset templates) and <code class="docutils literal notranslate"><span class="pre">sync-skills</span></code> stamps the installed version and
+retargets doc links. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/959">#959</a>, <a class="reference external" href="https://github.com/benchopt/benchopt/pull/980">#980</a>)</p></li>
 </ul>
 </section>
 <section id="plot">
