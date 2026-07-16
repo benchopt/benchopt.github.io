@@ -411,8 +411,11 @@ via github.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">conda_cmd</span></code>, <em>str</em>: can be used to give the path to <code class="docutils literal notranslate"><span class="pre">conda</span></code> if it is
 not directly installed on <code class="docutils literal notranslate"><span class="pre">$PATH</span></code>. This can also be used to use <code class="docutils literal notranslate"><span class="pre">mamba</span></code>
 to install benchmarks instead of conda. See <a class="reference internal" href="#config-mamba"><span class="std std-ref">Using mamba to install packages</span></a>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code>, <em>str</em>: can be used to specify the shell to use. Default to
-<cite>SHELL</cite> from env if it exists and <code class="docutils literal notranslate"><span class="pre">'bash'</span></code> otherwise.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code>, <em>str</em>: can be used to specify the shell to use. On POSIX systems
+it defaults to the <code class="docutils literal notranslate"><span class="pre">SHELL</span></code> env var if it exists and
+<code class="docutils literal notranslate"><span class="pre">'bash</span> <span class="pre">--norc</span> <span class="pre">--noprofile'</span></code> otherwise. On Windows it defaults to
+<code class="docutils literal notranslate"><span class="pre">'cmd</span> <span class="pre">/c'</span></code>. The <code class="docutils literal notranslate"><span class="pre">SHELL</span></code> env var is ignored as it is an less reliable
+default (running conda with it often fails).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">cache</span></code>, <em>str</em>: can be used to specify where the cache for the benchmarks
 should be stored. By default, the cache files are stored in the benchmark
 directory, under the folder __cache__. Setting this configuration would

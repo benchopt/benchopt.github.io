@@ -496,6 +496,11 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <section id="fix">
 <h3>FIX<a class="headerlink" href="#fix" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Fix shell handling on Windows so <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code>/<code class="docutils literal notranslate"><span class="pre">test</span></code> work with a
+bash-like shell (e.g. GitHub <code class="docutils literal notranslate"><span class="pre">shell:</span> <span class="pre">bash</span></code> runners).
+On Windows the <code class="docutils literal notranslate"><span class="pre">SHELL</span></code> env var is now ignored, use <code class="docutils literal notranslate"><span class="pre">BENCHOPT_SHELL</span></code>
+to override it. Underlying shell errors are also better reported,
+instead of being swallowed. By <a class="reference external" href="https://jolars.co">Johan Larsson</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/974">#974</a>)</p></li>
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">sync-skills</span></code> symlink with global install for Claude.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/969">#969</a>)</p></li>
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> failing during <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code> when a dataset’s
