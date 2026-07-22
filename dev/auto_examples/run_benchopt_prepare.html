@@ -27,11 +27,11 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -41,10 +41,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=b70fdc00" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
     <script src="../_static/documentation_options.js?v=f27f240d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
@@ -55,6 +55,7 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/run_benchopt_prepare';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -64,20 +65,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.2dev0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -103,7 +110,51 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
     </header>
   
 
@@ -298,11 +349,18 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -330,7 +388,7 @@
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-case-get-data-as-fallback">Simple case: <code class="docutils literal notranslate"><span class="pre">get_data()</span></code> as fallback</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-prepare-method">Custom <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-cache-ignore-reducing-redundant-preparation-work"><code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code>: reducing redundant preparation work</a></li>
@@ -400,8 +458,8 @@ introduced.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
 
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='prepare_example.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d-0' name='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d' type='radio'><label for='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='prepare_example.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-e8e521e5adb14be78ebb571d81c28c45-0' name='example-benchmark-e8e521e5adb14be78ebb571d81c28c45' type='radio'><label for='example-benchmark-e8e521e5adb14be78ebb571d81c28c45-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -439,7 +497,7 @@ introduced.</p>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d-1' name='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d' type='radio'><label for='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<input  id='example-benchmark-e8e521e5adb14be78ebb571d81c28c45-1' name='example-benchmark-e8e521e5adb14be78ebb571d81c28c45' type='radio'><label for='example-benchmark-e8e521e5adb14be78ebb571d81c28c45-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
@@ -454,7 +512,7 @@ introduced.</p>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d-2' name='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d' type='radio'><label for='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-e8e521e5adb14be78ebb571d81c28c45-2' name='example-benchmark-e8e521e5adb14be78ebb571d81c28c45' type='radio'><label for='example-benchmark-e8e521e5adb14be78ebb571d81c28c45-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -506,7 +564,7 @@ introduced.</p>
         <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d-3' name='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d' type='radio'><label for='example-benchmark-0c2b8df8b8d440e2ab440b6007a70d2d-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+<input  id='example-benchmark-e8e521e5adb14be78ebb571d81c28c45-3' name='example-benchmark-e8e521e5adb14be78ebb571d81c28c45' type='radio'><label for='example-benchmark-e8e521e5adb14be78ebb571d81c28c45-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
 <span class="nt">plot_configs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -528,7 +586,7 @@ parameter combination.  Because <code class="docutils literal notranslate"><span
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_kh3yezaj/prepare_example
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark__hqif1bm/prepare_example
 </pre></div>
 </pre>
 
@@ -560,7 +618,7 @@ and skips all preparation work.  Each status line now reads
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_kh3yezaj/prepare_example
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark__hqif1bm/prepare_example
 </pre></div>
 </pre>
 
@@ -626,8 +684,8 @@ and in the right form before <code class="docutils literal notranslate"><span cl
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='prepare_example.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-08762606025c424b83df56c5f70fab6a-0' name='example-benchmark-08762606025c424b83df56c5f70fab6a' type='radio'><label for='example-benchmark-08762606025c424b83df56c5f70fab6a-0'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='prepare_example.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-1813ee40580346f285ce1069adb4afc4-0' name='example-benchmark-1813ee40580346f285ce1069adb4afc4' type='radio'><label for='example-benchmark-1813ee40580346f285ce1069adb4afc4-0'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
@@ -659,7 +717,7 @@ combination (here <code class="docutils literal notranslate"><span class="pre">n
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_kh3yezaj/prepare_example
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark__hqif1bm/prepare_example
 </pre></div>
 </pre>
 
@@ -728,8 +786,8 @@ runs at most once per dataset class regardless of parameterization.</p></li>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='prepare_example.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-8d570712169543d2b2a6024fa42c5d9f-0' name='example-benchmark-8d570712169543d2b2a6024fa42c5d9f' type='radio'><label for='example-benchmark-8d570712169543d2b2a6024fa42c5d9f-0'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='prepare_example.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-d8d18df9abec438d9a310e4b873c11ef-0' name='example-benchmark-d8d18df9abec438d9a310e4b873c11ef' type='radio'><label for='example-benchmark-d8d18df9abec438d9a310e4b873c11ef-0'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
@@ -762,7 +820,7 @@ prints exactly twice.</p>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark_kh3yezaj/prepare_example
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>prepare<span class="w"> </span>temp_benchmark__hqif1bm/prepare_example
 </pre></div>
 </pre>
 
@@ -791,7 +849,7 @@ Summary: 2/2 datasets ready.
 <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> at most once per dataset class, regardless of any parameter
 values.  Use this when the dataset is a fixed external file that requires no
 per-parameter processing at all.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.041 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 0.066 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-benchopt-prepare-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/e9e6e2829a07856c6c06a5dd2e64178b/run_benchopt_prepare.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_benchopt_prepare.ipynb</span></code></a></p>
@@ -853,7 +911,7 @@ per-parameter processing at all.</p>
     <i class="fa-solid fa-list"></i> Contents
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
-    <ul class="visible nav section-nav flex-column">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#simple-case-get-data-as-fallback">Simple case: <code class="docutils literal notranslate"><span class="pre">get_data()</span></code> as fallback</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#custom-prepare-method">Custom <code class="docutils literal notranslate"><span class="pre">prepare()</span></code> method</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#prepare-cache-ignore-reducing-redundant-preparation-work"><code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code>: reducing redundant preparation work</a></li>
@@ -905,8 +963,8 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
 
 <script>

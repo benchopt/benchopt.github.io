@@ -27,11 +27,11 @@
   </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=3c74b3bc" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
@@ -41,10 +41,10 @@
     <link rel="stylesheet" type="text/css" href="../_static/style.css?v=b70fdc00" />
   
   <!-- So that users can add custom icons -->
-  <script src="../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
     <script src="../_static/documentation_options.js?v=f27f240d"></script>
     <script src="../_static/doctools.js?v=fd6eb6e6"></script>
@@ -55,6 +55,7 @@
     <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'auto_examples/run_plot_config';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
@@ -64,20 +65,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.2dev0" />
+  
+    
+    <script src="../_static/searchtools.js"></script>
+    <script src="../_static/language_data.js"></script>
+    <script src="../searchindex.js"></script>
+  
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
+  
+  
+  
   
   <dialog id="pst-search-dialog">
     
@@ -103,7 +110,47 @@
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
     </header>
   
 
@@ -298,11 +345,18 @@
 
 
 
-<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
-  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
-  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
-  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
-</button>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
 <button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
@@ -361,8 +415,8 @@ options.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
 
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-11ae7475b7cc4b4097da525713e44093-0' name='example-benchmark-11ae7475b7cc4b4097da525713e44093' type='radio'><label for='example-benchmark-11ae7475b7cc4b4097da525713e44093-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5-0' name='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5' type='radio'><label for='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -400,7 +454,7 @@ options.</p>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-11ae7475b7cc4b4097da525713e44093-1' name='example-benchmark-11ae7475b7cc4b4097da525713e44093' type='radio'><label for='example-benchmark-11ae7475b7cc4b4097da525713e44093-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<input  id='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5-1' name='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5' type='radio'><label for='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -422,7 +476,7 @@ options.</p>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-11ae7475b7cc4b4097da525713e44093-2' name='example-benchmark-11ae7475b7cc4b4097da525713e44093' type='radio'><label for='example-benchmark-11ae7475b7cc4b4097da525713e44093-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5-2' name='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5' type='radio'><label for='example-benchmark-b67ea892c5934bd889ceba4d2d42dab5-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -487,7 +541,7 @@ based on benchopt’s default plotting configuration.</p>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_60zfhuz_/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">40</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span>gd<span class="o">[</span><span class="nv">lr</span><span class="o">=[</span>1e-1,3e-2,1e-2,3e-3<span class="o">]]</span>
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_o2bvtp0x/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">40</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span>gd<span class="o">[</span><span class="nv">lr</span><span class="o">=[</span>1e-1,3e-2,1e-2,3e-3<span class="o">]]</span>
 </pre></div>
 </pre>
 
@@ -502,18 +556,18 @@ No seed was specified. Selected global seed: 0
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.003]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_60zfhuz_/minimal_benchmark/outputs/benchopt_run_2026-07-18_08h0</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">4m27.parquet</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/benchopt_run_2026-07-22_13h4</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">1m16.parquet</span>
 Rendering benchmark results...
    Processing
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/benchopt_run_2026-07-18_08h0
-4m27.parquet
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/benchopt_run_2026-07-22_13h4
+1m16.parquet
 done
 Writing results to
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-un_2026-07-18_08h04m27.html
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-07-22_13h41m16.html
 Writing minimal_benchmark index to
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/minimal_benchmark.html
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -560,8 +614,8 @@ They will be kept as they are when activating the view.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,UEsDBBQAAAAIAI9A8lxqsDm90wEAAEgEAAAMAAAAb2JqZWN0aXZlLnB5hZMxb9swEIV3/YqDM8QCEgFdC3hpM7do08GbRUkniY1EEuTRhv59jxRNW0GCaiKJe7z3vhN7q2doULWjNgRyNtoSfBMOfzZ/sSV5xiIdKj+bBYQDZYqiaCfhHOSi/UZSfi2Avwf4IWYE3QONeKuF3iteaBWLVCg5wOMvLzorSLaPRRL/YRGNFhFmpFF3jn1O+gId9lJhvHOS6i0c0wVRxZMXQeyEntId28ZCdfHkVU9ntFWs4duABaeOhXuHU/8Ex+Q/fLvd7hUpqkIF9IGXuLYB0tDq2Xha/ehrq6rIN4QYwg5+RkW8WAvfcHFXMJ2MNIRdwCJ5q7CDZsn6uk7NqiHZrOvq3l9eB/fVkWEeixwtaLKrmO8+3O/Yz3GgYAIMz5Sbc6i6Tozcvb6u0yiqW9PVctTvj4fVQnnrj2cxeUF4suj8RFfCp1HQlvL3jzBCULPtEgberRPWnrgwwBPg0iA/hO22tKX6jHZWN8steAC3ev4M933y6POgTMV/pJiGSmk779M8nlPc8t1U1AbKlsY6GOCakNEHx9BrC5dRtuM7Rq1Q/AQy6W6DQ7r83IDXs3Y0LeDDmMN9hI6kGuLL6LDxwxB2xlujHbr/547JDl/K4h9QSwMEFAAAAAgAj0DyXIDL5BluAQAAjgIAABUAAABkYXRhc2V0cy9zaW11bGF0ZWQucHlNUcFu2zAMvesriOwQG8i8dccCvbS9DCi2Swf0VisWHauRREOUl/nvS6meGsGwLPrx8b2nMZKHI4ZhojmB9TPFBPea8VEneSeltlpY/LyCZgizUmpwmhk2THOFb28VyPoCv7RHoBHShP9xB1gYDSQCRoeDjJMnFMTD08/SF3LXHezZ+sXphGavNr6+P2F6NcLUtH0PlksfBbeCxzSRAQ3mYw7wRIsz2Y1DjyF1hcPgCJVDFIyb1rx2u90TaVM4838YKcrBVo+dqtg/vGjn1sMnWEcEtHKM4IRFPI45VmP5nBPTMeqVQRifMTBFPlQuqVXZ3/Je+iPQ8a0ExDUyGUmXMtKTQce5lsGVqqqRSD2JotHhP3t0mL14hga7UwcXkQneBvv1qNMwIbdXzp4zhR2SpaDjumc448rFXSY/X3Q8Mcxy8x+S+v53kWn/YsdbsH3fXYdavyOmJYbC3rzchbmLOhjyZQvNzfcD/Ghb9Q5QSwMEFAAAAAgAj0DyXPVmySw4AwAAdwcAAA0AAABzb2x2ZXJzL2dkLnB5fVVNj9s2EL3rVwzcg72FI6DtLcBeEqRogaItsjksUAT2SBpJrClSIKk1nCD/vTMURcvxosJiwY/hfLz3Ztw6O0BFpu7tGEANo3UB3qGnJ6tfyBXpxEzDeAH0YMaiKGqN3sNssbsaP7wtgL8f4E8cCGwLoadktYfJUwPBgidNNUfiPxMN3v/xe3xm5NEjbLtmWyQ/7y7QUIuTDvtrjmelNdAL6gkDRQ+OPJtIQISBQm8bwDaQgxd0yk4+eeMaKj5kM8WXGJQ1voQnCkGZLjryOIyaNwcf+J66C9TWBGe1h96e2UR5UIu7xhoq4TdytIczSX0cvkatK6xP0E6mlgj8CLlUH28YAd4Q1v01hTK6u4/MSCzOMh5/o2OQ+KVf0J3L3c9RIjIVY0I+cKjqEk0icAO6U5m8fJD44+IKjse4Pgj+x2N2gnVN3qtKk9B+PDJvbbm2nN2N15Qe4etWu+1b+OcnevPLHvj/z5+/Lbl/6oUsR0vOnoNoBpUJVmbm0ZCERHfJJq11NyIKNnnrKMQLZVoLrWhYdn9V/7K21AuJJbjJrDACNFF/jsLkDGBylLQT8avRSOWLtjKC2e1cMmfMKg4HuxzvBJs9PCf9y7fZbJ7uUsT/TbAs8utPIrSUNq9QewvhMioRxCV3EjY4ziF8hGfr12wkqOQTkwYDwo7KrgTPblhqDyDgWs5PBcUnX2YSUHfWqdAPN/kQnM7oOs7FzWYnumQRNipKXYib0Y3Q5dfH4xXAbo3boqEEWF5HqT2znp6/OzoIS488g8ov5Kw/aHWi3fNDkWlhRBMZdXXLxseENdZhQr2Ay+Wv2iPbz03Nss99vVl6cROb3dBMgZzKKLvr6jX8r80q9i270dmamsnFVcd3nvx3uOeJwpNY00AmMAnggx1HGVsD1T0a5QeekCjCsHOdedhlZ9eht48WQfG8jU3Ri+at5CiZJ1JHctx9A5paUnqNpnOveDjU1W6F9B1Xq82beaMd/Ai7+/M1jyKTGaloeEvlr5LWLHw7hXEKt8NwJnXVxel3ZtXF2dvHKFcBVDQsFQmJ0kc+NdlavIvLlBoPy6VzX4MnDZqv21glj8Vryd+K/wBQSwMEFAAAAAgAj0DyXMDYjRRaAAAAdAAAAAoAAABjb25maWcueW1sZYvBEYAgDAT/VpGnfiyAMrQABmJEFAkDgfpFv87ca283BRaNHHfvihoA1mo5yQxjYDe9ACC9yuXjpoDtSSi+kcaaG313QRNIQff7OllqFH9T+cXWZI2HyfIAUEsBAhQDFAAAAAgAj0DyXGqwOb3TAQAASAQAAAwAAAAAAAAAAAAAAIABAAAAAG9iamVjdGl2ZS5weVBLAQIUAxQAAAAIAI9A8lyAy+QZbgEAAI4CAAAVAAAAAAAAAAAAAACAAf0BAABkYXRhc2V0cy9zaW11bGF0ZWQucHlQSwECFAMUAAAACACPQPJc9WbJLDgDAAB3BwAADQAAAAAAAAAAAAAAgAGeAwAAc29sdmVycy9nZC5weVBLAQIUAxQAAAAIAI9A8lzA2I0UWgAAAHQAAAAKAAAAAAAAAAAAAACAAQEHAABjb25maWcueW1sUEsFBgAAAAAEAAQA8AAAAIMHAAAAAA==';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-2039db74f9824c158b9f967325dbb124-0' name='example-benchmark-2039db74f9824c158b9f967325dbb124' type='radio'><label for='example-benchmark-2039db74f9824c158b9f967325dbb124-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-43c57772131c4e8abfcc29c3b95369fd-0' name='example-benchmark-43c57772131c4e8abfcc29c3b95369fd' type='radio'><label for='example-benchmark-43c57772131c4e8abfcc29c3b95369fd-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
 <span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
@@ -582,21 +636,21 @@ the first view automatically loaded.</p>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_60zfhuz_/minimal_benchmark
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_o2bvtp0x/minimal_benchmark
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
                 <div class="highlight"><pre>Rendering benchmark results...
    Processing
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/benchopt_run_2026-07-18_08h0
-4m27.parquet
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/benchopt_run_2026-07-22_13h4
+1m16.parquet
 done
 Writing results to
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-un_2026-07-18_08h04m27.html
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-07-22_13h41m16.html
 Writing minimal_benchmark index to
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/minimal_benchmark.html
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -652,8 +706,8 @@ with colors defined by the value of the learning rate used by the solver.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-bdf11a01a8ce4e71806267594b511a97-0' name='example-benchmark-bdf11a01a8ce4e71806267594b511a97' type='radio'><label for='example-benchmark-bdf11a01a8ce4e71806267594b511a97-0'>plots/custom_objective_time.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-3bd2296510f843d8b232054d59632aab-0' name='example-benchmark-3bd2296510f843d8b232054d59632aab' type='radio'><label for='example-benchmark-3bd2296510f843d8b232054d59632aab-0'>plots/custom_objective_time.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
@@ -715,8 +769,8 @@ plot, and run <code class="docutils literal notranslate"><span class="pre">bench
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-d755de1601ec43e2961871cf63368ed7-0' name='example-benchmark-d755de1601ec43e2961871cf63368ed7' type='radio'><label for='example-benchmark-d755de1601ec43e2961871cf63368ed7-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,UEsDBBQAAAAIACtt9lxqsDm90wEAAEgEAAAMAAAAb2JqZWN0aXZlLnB5hZMxb9swEIV3/YqDM8QCEgFdC3hpM7do08GbRUkniY1EEuTRhv59jxRNW0GCaiKJe7z3vhN7q2doULWjNgRyNtoSfBMOfzZ/sSV5xiIdKj+bBYQDZYqiaCfhHOSi/UZSfi2Avwf4IWYE3QONeKuF3iteaBWLVCg5wOMvLzorSLaPRRL/YRGNFhFmpFF3jn1O+gId9lJhvHOS6i0c0wVRxZMXQeyEntId28ZCdfHkVU9ntFWs4duABaeOhXuHU/8Ex+Q/fLvd7hUpqkIF9IGXuLYB0tDq2Xha/ehrq6rIN4QYwg5+RkW8WAvfcHFXMJ2MNIRdwCJ5q7CDZsn6uk7NqiHZrOvq3l9eB/fVkWEeixwtaLKrmO8+3O/Yz3GgYAIMz5Sbc6i6Tozcvb6u0yiqW9PVctTvj4fVQnnrj2cxeUF4suj8RFfCp1HQlvL3jzBCULPtEgberRPWnrgwwBPg0iA/hO22tKX6jHZWN8steAC3ev4M933y6POgTMV/pJiGSmk779M8nlPc8t1U1AbKlsY6GOCakNEHx9BrC5dRtuM7Rq1Q/AQy6W6DQ7r83IDXs3Y0LeDDmMN9hI6kGuLL6LDxwxB2xlujHbr/547JDl/K4h9QSwMEFAAAAAgAK232XIDL5BluAQAAjgIAABUAAABkYXRhc2V0cy9zaW11bGF0ZWQucHlNUcFu2zAMvesriOwQG8i8dccCvbS9DCi2Swf0VisWHauRREOUl/nvS6meGsGwLPrx8b2nMZKHI4ZhojmB9TPFBPea8VEneSeltlpY/LyCZgizUmpwmhk2THOFb28VyPoCv7RHoBHShP9xB1gYDSQCRoeDjJMnFMTD08/SF3LXHezZ+sXphGavNr6+P2F6NcLUtH0PlksfBbeCxzSRAQ3mYw7wRIsz2Y1DjyF1hcPgCJVDFIyb1rx2u90TaVM4838YKcrBVo+dqtg/vGjn1sMnWEcEtHKM4IRFPI45VmP5nBPTMeqVQRifMTBFPlQuqVXZ3/Je+iPQ8a0ExDUyGUmXMtKTQce5lsGVqqqRSD2JotHhP3t0mL14hga7UwcXkQneBvv1qNMwIbdXzp4zhR2SpaDjumc448rFXSY/X3Q8Mcxy8x+S+v53kWn/YsdbsH3fXYdavyOmJYbC3rzchbmLOhjyZQvNzfcD/Ghb9Q5QSwMEFAAAAAgAK232XPVmySw4AwAAdwcAAA0AAABzb2x2ZXJzL2dkLnB5fVVNj9s2EL3rVwzcg72FI6DtLcBeEqRogaItsjksUAT2SBpJrClSIKk1nCD/vTMURcvxosJiwY/hfLz3Ztw6O0BFpu7tGEANo3UB3qGnJ6tfyBXpxEzDeAH0YMaiKGqN3sNssbsaP7wtgL8f4E8cCGwLoadktYfJUwPBgidNNUfiPxMN3v/xe3xm5NEjbLtmWyQ/7y7QUIuTDvtrjmelNdAL6gkDRQ+OPJtIQISBQm8bwDaQgxd0yk4+eeMaKj5kM8WXGJQ1voQnCkGZLjryOIyaNwcf+J66C9TWBGe1h96e2UR5UIu7xhoq4TdytIczSX0cvkatK6xP0E6mlgj8CLlUH28YAd4Q1v01hTK6u4/MSCzOMh5/o2OQ+KVf0J3L3c9RIjIVY0I+cKjqEk0icAO6U5m8fJD44+IKjse4Pgj+x2N2gnVN3qtKk9B+PDJvbbm2nN2N15Qe4etWu+1b+OcnevPLHvj/z5+/Lbl/6oUsR0vOnoNoBpUJVmbm0ZCERHfJJq11NyIKNnnrKMQLZVoLrWhYdn9V/7K21AuJJbjJrDACNFF/jsLkDGBylLQT8avRSOWLtjKC2e1cMmfMKg4HuxzvBJs9PCf9y7fZbJ7uUsT/TbAs8utPIrSUNq9QewvhMioRxCV3EjY4ziF8hGfr12wkqOQTkwYDwo7KrgTPblhqDyDgWs5PBcUnX2YSUHfWqdAPN/kQnM7oOs7FzWYnumQRNipKXYib0Y3Q5dfH4xXAbo3boqEEWF5HqT2znp6/OzoIS488g8ov5Kw/aHWi3fNDkWlhRBMZdXXLxseENdZhQr2Ay+Wv2iPbz03Nss99vVl6cROb3dBMgZzKKLvr6jX8r80q9i270dmamsnFVcd3nvx3uOeJwpNY00AmMAnggx1HGVsD1T0a5QeekCjCsHOdedhlZ9eht48WQfG8jU3Ri+at5CiZJ1JHctx9A5paUnqNpnOveDjU1W6F9B1Xq82beaMd/Ai7+/M1jyKTGaloeEvlr5LWLHw7hXEKt8NwJnXVxel3ZtXF2dvHKFcBVDQsFQmJ0kc+NdlavIvLlBoPy6VzX4MnDZqv21glj8Vryd+K/wBQSwMEFAAAAAgAK232XEVaNGtWAQAA+wIAAB4AAABwbG90cy9jdXN0b21fb2JqZWN0aXZlX3RpbWUucHmNUUFugzAQvPOKlS9AlCL1GilS1Q+0d4SQgSV1ZWzXXqKgKH+vDSSEpqq6t13PzsyOW6s7qFDVH9oQiM5oS/DKHb5LTVEU1ZI7B6FJrtN0F4EvxTuEPbC6d6S7UlefWJM4YkmiQzZCaDAjxNWcCO009DpCK+fn50s0ThpswQQFh7LdQtPOCqGMFooCOC9us1ZbcFoe0YJQHp7HU1cGS3GR9Up89ZjcsYRyfVU2rWdq2sw/2yFhd2uw38PL1LM0cz6F8shljy6Jwz1xuuKaXGXcGFRNcl69hWIntpsFc2bKWUdaVmRC6jp/et4VGWkpHCXp9nF9uFtfgh0N/ZdC8gploBm1HwGbTUg7OyCVjgaJyQT8QXVZ7rZIvVXz6cvHBYIOiTec+G8fOK+tM2IkSKJ3x96u1wE/cKEcgURulVAHsJyQre2w0/Us9idsuMFu6cGU3gK8fANQSwMEFAAAAAgAK232XBp9OHtyAAAAvQAAAAoAAABjb25maWcueW1sbcwxDsIwDEDRnVN4hIUD5BjlAFHiusWQxlHsVOrtSVgYiuTF1vcrScyj5IVXdReAB2Vl453tgFTHBaCM5s15doBNTTYv8UXYK/LGG30jxZDIQZK1z4BalGJ3uPb1dnJ+ALa6/xemloeup+cYqsdnqPYBUEsBAhQDFAAAAAgAK232XGqwOb3TAQAASAQAAAwAAAAAAAAAAAAAAIABAAAAAG9iamVjdGl2ZS5weVBLAQIUAxQAAAAIACtt9lyAy+QZbgEAAI4CAAAVAAAAAAAAAAAAAACAAf0BAABkYXRhc2V0cy9zaW11bGF0ZWQucHlQSwECFAMUAAAACAArbfZc9WbJLDgDAAB3BwAADQAAAAAAAAAAAAAAgAGeAwAAc29sdmVycy9nZC5weVBLAQIUAxQAAAAIACtt9lxFWjRrVgEAAPsCAAAeAAAAAAAAAAAAAACAAQEHAABwbG90cy9jdXN0b21fb2JqZWN0aXZlX3RpbWUucHlQSwECFAMUAAAACAArbfZcGn04e3IAAAC9AAAACgAAAAAAAAAAAAAAgAGTCAAAY29uZmlnLnltbFBLBQYAAAAABQAFADwBAAAtCQAAAAA=';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-b2014ade434c40d89000cf881e0542d9-0' name='example-benchmark-b2014ade434c40d89000cf881e0542d9' type='radio'><label for='example-benchmark-b2014ade434c40d89000cf881e0542d9-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">Sensitivity lr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_objective_time</span>
 <span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
@@ -739,21 +793,21 @@ to the selection of the learning rate.</p>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_60zfhuz_/minimal_benchmark
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_o2bvtp0x/minimal_benchmark
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
                 <div class="highlight"><pre>Rendering benchmark results...
    Processing
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/benchopt_run_2026-07-18_08h0
-4m27.parquet
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/benchopt_run_2026-07-22_13h4
+1m16.parquet
 done
 Writing results to
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-un_2026-07-18_08h04m27.html
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-07-22_13h41m16.html
 Writing minimal_benchmark index to
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/minimal_benchmark.html
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -776,13 +830,13 @@ option:</p>
 </pre></div>
 </div>
 <img src="../_images/sphx_glr_run_plot_config_004.png" srcset="../_images/sphx_glr_run_plot_config_004.png" alt="Objective against learning rate" class = "sphx-glr-single-img"/><div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_60zfhuz_/minimal_benchmark<span class="w"> </span>-k<span class="w"> </span>custom_objective_time<span class="w"> </span>--no-html
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_o2bvtp0x/minimal_benchmark<span class="w"> </span>-k<span class="w"> </span>custom_objective_time<span class="w"> </span>--no-html
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
                 <div class="highlight"><pre>Save custom_objective_time as:
-temp_benchmark_60zfhuz_/minimal_benchmark/outputs/custom_objective_time.pdf
+temp_benchmark_o2bvtp0x/minimal_benchmark/outputs/custom_objective_time.pdf
 
 
 
@@ -793,7 +847,7 @@ temp_benchmark_60zfhuz_/minimal_benchmark/outputs/custom_objective_time.pdf
 
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.985 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 7.363 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-plot-config-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4fc68104f0a5e065ce8043a01c718059/run_plot_config.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_plot_config.ipynb</span></code></a></p>
@@ -887,8 +941,8 @@ By Benchopt contributors
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script defer src="../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
-<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
 
 <script>
