@@ -580,6 +580,10 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <li><p>Fix error reporting when <code class="docutils literal notranslate"><span class="pre">Solver.set_objective</span></code> fails, which was
 preventing the run to finish normally.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/949">#949</a>)</p></li>
+<li><p>Detect the requirements installed by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code> in the current
+environment, by reloading the classes instead of relying on the import
+outcome cached when collecting the benchmark.
+By <a class="reference external" href="https://felix.divo.link">Felix Divo</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/978">#978</a>)</p></li>
 </ul>
 </section>
 </section>
