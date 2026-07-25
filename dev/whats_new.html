@@ -524,6 +524,12 @@ hide/show any columns. By <a class="reference external" href="https://www.linked
 <section id="api">
 <h3>API<a class="headerlink" href="#api" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Cache hits are now detected on the main process before dispatching, so no
+parallel job (loky, dask or SLURM/submitit) is launched for a
+<code class="docutils literal notranslate"><span class="pre">(dataset,</span> <span class="pre">objective,</span> <span class="pre">solver)</span></code> run whose result is already cached. Such
+runs are reported as <code class="docutils literal notranslate"><span class="pre">done</span> <span class="pre">(cached)</span></code>. The same skip and <code class="docutils literal notranslate"><span class="pre">done</span> <span class="pre">(cached)</span></code>
+reporting also apply to dataset preparation.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/976">#976</a>)</p></li>
 <li><p>Custom plot <code class="docutils literal notranslate"><span class="pre">options</span></code> values can now be a callable taking the results
 DataFrame as input and returning the list of possible values for the option.
 By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/952">#952</a>)</p></li>
