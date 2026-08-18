@@ -87,120 +87,120 @@ a simulated dataset and a full python solver based on gradient descent.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,UEsDBBQAAAAIAA9JC11qsDm90wEAAEgEAAAMAAAAb2JqZWN0aXZlLnB5hZMxb9swEIV3/YqDM8QCEgFdC3hpM7do08GbRUkniY1EEuTRhv59jxRNW0GCaiKJe7z3vhN7q2doULWjNgRyNtoSfBMOfzZ/sSV5xiIdKj+bBYQDZYqiaCfhHOSi/UZSfi2Avwf4IWYE3QONeKuF3iteaBWLVCg5wOMvLzorSLaPRRL/YRGNFhFmpFF3jn1O+gId9lJhvHOS6i0c0wVRxZMXQeyEntId28ZCdfHkVU9ntFWs4duABaeOhXuHU/8Ex+Q/fLvd7hUpqkIF9IGXuLYB0tDq2Xha/ehrq6rIN4QYwg5+RkW8WAvfcHFXMJ2MNIRdwCJ5q7CDZsn6uk7NqiHZrOvq3l9eB/fVkWEeixwtaLKrmO8+3O/Yz3GgYAIMz5Sbc6i6Tozcvb6u0yiqW9PVctTvj4fVQnnrj2cxeUF4suj8RFfCp1HQlvL3jzBCULPtEgberRPWnrgwwBPg0iA/hO22tKX6jHZWN8steAC3ev4M933y6POgTMV/pJiGSmk779M8nlPc8t1U1AbKlsY6GOCakNEHx9BrC5dRtuM7Rq1Q/AQy6W6DQ7r83IDXs3Y0LeDDmMN9hI6kGuLL6LDxwxB2xlujHbr/547JDl/K4h9QSwMEFAAAAAgAD0kLXYDL5BluAQAAjgIAABUAAABkYXRhc2V0cy9zaW11bGF0ZWQucHlNUcFu2zAMvesriOwQG8i8dccCvbS9DCi2Swf0VisWHauRREOUl/nvS6meGsGwLPrx8b2nMZKHI4ZhojmB9TPFBPea8VEneSeltlpY/LyCZgizUmpwmhk2THOFb28VyPoCv7RHoBHShP9xB1gYDSQCRoeDjJMnFMTD08/SF3LXHezZ+sXphGavNr6+P2F6NcLUtH0PlksfBbeCxzSRAQ3mYw7wRIsz2Y1DjyF1hcPgCJVDFIyb1rx2u90TaVM4838YKcrBVo+dqtg/vGjn1sMnWEcEtHKM4IRFPI45VmP5nBPTMeqVQRifMTBFPlQuqVXZ3/Je+iPQ8a0ExDUyGUmXMtKTQce5lsGVqqqRSD2JotHhP3t0mL14hga7UwcXkQneBvv1qNMwIbdXzp4zhR2SpaDjumc448rFXSY/X3Q8Mcxy8x+S+v53kWn/YsdbsH3fXYdavyOmJYbC3rzchbmLOhjyZQvNzfcD/Ghb9Q5QSwMEFAAAAAgAD0kLXfVmySw4AwAAdwcAAA0AAABzb2x2ZXJzL2dkLnB5fVVNj9s2EL3rVwzcg72FI6DtLcBeEqRogaItsjksUAT2SBpJrClSIKk1nCD/vTMURcvxosJiwY/hfLz3Ztw6O0BFpu7tGEANo3UB3qGnJ6tfyBXpxEzDeAH0YMaiKGqN3sNssbsaP7wtgL8f4E8cCGwLoadktYfJUwPBgidNNUfiPxMN3v/xe3xm5NEjbLtmWyQ/7y7QUIuTDvtrjmelNdAL6gkDRQ+OPJtIQISBQm8bwDaQgxd0yk4+eeMaKj5kM8WXGJQ1voQnCkGZLjryOIyaNwcf+J66C9TWBGe1h96e2UR5UIu7xhoq4TdytIczSX0cvkatK6xP0E6mlgj8CLlUH28YAd4Q1v01hTK6u4/MSCzOMh5/o2OQ+KVf0J3L3c9RIjIVY0I+cKjqEk0icAO6U5m8fJD44+IKjse4Pgj+x2N2gnVN3qtKk9B+PDJvbbm2nN2N15Qe4etWu+1b+OcnevPLHvj/z5+/Lbl/6oUsR0vOnoNoBpUJVmbm0ZCERHfJJq11NyIKNnnrKMQLZVoLrWhYdn9V/7K21AuJJbjJrDACNFF/jsLkDGBylLQT8avRSOWLtjKC2e1cMmfMKg4HuxzvBJs9PCf9y7fZbJ7uUsT/TbAs8utPIrSUNq9QewvhMioRxCV3EjY4ziF8hGfr12wkqOQTkwYDwo7KrgTPblhqDyDgWs5PBcUnX2YSUHfWqdAPN/kQnM7oOs7FzWYnumQRNipKXYib0Y3Q5dfH4xXAbo3boqEEWF5HqT2znp6/OzoIS488g8ov5Kw/aHWi3fNDkWlhRBMZdXXLxseENdZhQr2Ay+Wv2iPbz03Nss99vVl6cROb3dBMgZzKKLvr6jX8r80q9i270dmamsnFVcd3nvx3uOeJwpNY00AmMAnggx1HGVsD1T0a5QeekCjCsHOdedhlZ9eht48WQfG8jU3Ri+at5CiZJ1JHctx9A5paUnqNpnOveDjU1W6F9B1Xq82beaMd/Ai7+/M1jyKTGaloeEvlr5LWLHw7hXEKt8NwJnXVxel3ZtXF2dvHKFcBVDQsFQmJ0kc+NdlavIvLlBoPy6VzX4MnDZqv21glj8Vryd+K/wBQSwMEFAAAAAgAD0kLXUzfuqV4AAAAnwAAAAoAAABjb25maWcueW1sZYtLDsIwDET3OYUlNrAp+xwDDhA5iduaxnGVTyVuTyhLpNnMmzeXpBgpwlxUQDizYHKeclgFy3YPmmdeprcksydt7terNQDP7nVvE1yTLrcvADiVjXO0oP5FofFBLvRy0DnXgIksDH9kkEfPjYXq39ljcWHF0swHUEsBAhQDFAAAAAgAD0kLXWqwOb3TAQAASAQAAAwAAAAAAAAAAAAAAIABAAAAAG9iamVjdGl2ZS5weVBLAQIUAxQAAAAIAA9JC12Ay+QZbgEAAI4CAAAVAAAAAAAAAAAAAACAAf0BAABkYXRhc2V0cy9zaW11bGF0ZWQucHlQSwECFAMUAAAACAAPSQtd9WbJLDgDAAB3BwAADQAAAAAAAAAAAAAAgAGeAwAAc29sdmVycy9nZC5weVBLAQIUAxQAAAAIAA9JC11M37qleAAAAJ8AAAAKAAAAAAAAAAAAAACAAQEHAABjb25maWcueW1sUEsFBgAAAAAEAAQA8AAAAKEHAAAAAA==';a.download='r_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-3c141c2718af4bcca85790131ef3b719-0' name='example-benchmark-3c141c2718af4bcca85790131ef3b719' type='radio'><label for='example-benchmark-3c141c2718af4bcca85790131ef3b719-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='r_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58-0' name='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58' type='radio'><label for='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
         <span class="c1"># Name of the Objective function</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Quadratic&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">'Quadratic'</span>
 
         <span class="c1"># The three methods below define the links between the Dataset,</span>
         <span class="c1"># the Objective and the Solver.</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data from a Dataset to compute the objective.</span>
+    <span class="w">        </span><span class="sd">"""Set the data from a Dataset to compute the objective.</span>
 
     <span class="sd">        The argument are the keys of the dictionary returned by</span>
     <span class="sd">        ``Dataset.get_data``.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="s2">&quot;Returns a dict passed to ``Solver.set_objective`` method.&quot;</span>
+            <span class="s2">"Returns a dict passed to ``Solver.set_objective`` method."</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value(s) given the output of a solver.</span>
+    <span class="w">        </span><span class="sd">"""Compute the objective value(s) given the output of a solver.</span>
 
     <span class="sd">        The arguments are the keys in the dictionary returned</span>
     <span class="sd">        by ``Solver.get_result``.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_hat</span><span class="p">))</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return one solution for which the objective can be evaluated.</span>
+    <span class="w">        </span><span class="sd">"""Return one solution for which the objective can be evaluated.</span>
 
     <span class="sd">        This function is mostly used for testing and debugging purposes.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-3c141c2718af4bcca85790131ef3b719-1' name='example-benchmark-3c141c2718af4bcca85790131ef3b719' type='radio'><label for='example-benchmark-3c141c2718af4bcca85790131ef3b719-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58-1' name='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58' type='radio'><label for='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
         <span class="c1"># Name of the Dataset, used to select it in the CLI</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;simulated&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">'simulated'</span>
 
         <span class="c1"># ``get_data()`` is the only method a dataset should implement.</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load the data for this Dataset.</span>
+    <span class="w">        </span><span class="sd">"""Load the data for this Dataset.</span>
 
     <span class="sd">        Usually, the data are either loaded from disk as arrays or Tensors,</span>
     <span class="sd">        or a dataset/dataloader object is used to allow the models to load</span>
     <span class="sd">        the data in more flexible forms (e.g. with mini-batches).</span>
 
-    <span class="sd">        The dictionary&#39;s keys are the kwargs passed to ``Objective.set_data``.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        The dictionary's keys are the kwargs passed to ``Objective.set_data``.</span>
+    <span class="sd">        """</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-3c141c2718af4bcca85790131ef3b719-2' name='example-benchmark-3c141c2718af4bcca85790131ef3b719' type='radio'><label for='example-benchmark-3c141c2718af4bcca85790131ef3b719-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58-2' name='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58' type='radio'><label for='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
         <span class="c1"># Name of the Solver, used to select it in the CLI</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gd&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">'gd'</span>
 
         <span class="c1"># By default, benchopt will evaluate the result of a method after various</span>
         <span class="c1"># number of iterations. Setting the sampling_strategy controls how this is</span>
         <span class="c1"># done. Here, we use a callback function that is called at each iteration.</span>
-        <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;callback&#39;</span>
+        <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">'callback'</span>
 
         <span class="c1"># Parameters of the method, that will be tested by the benchmark.</span>
         <span class="c1"># Each parameter ``param_name`` will be accessible as ``self.param_name``.</span>
-        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'lr'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
 
         <span class="c1"># The three methods below define the necessary methods for the Solver, to</span>
         <span class="c1"># get the info from the Objective, to run the method and to return a</span>
         <span class="c1"># result that can be evaluated by the Objective.</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the info from a Objective, to run the method.</span>
+    <span class="w">        </span><span class="sd">"""Set the info from a Objective, to run the method.</span>
 
-    <span class="sd">        This method is also typically used to adapt the solver&#39;s parameters to</span>
+    <span class="sd">        This method is also typically used to adapt the solver's parameters to</span>
     <span class="sd">        the data (e.g. scaling) or to initialize the algorithm.</span>
 
     <span class="sd">        The kwargs are the keys of the dictionary returned by</span>
     <span class="sd">        ``Objective.get_objective``.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the actual method to benchmark.</span>
+    <span class="w">        </span><span class="sd">"""Run the actual method to benchmark.</span>
 
-    <span class="sd">        Here, as we use a &quot;callback&quot;, we need to call it at each iteration to</span>
+    <span class="sd">        Here, as we use a "callback", we need to call it at each iteration to</span>
     <span class="sd">        evaluate the result as the procedure progresses.</span>
 
     <span class="sd">        The callback implements a stopping mechanism, based on the number of</span>
     <span class="sd">        iterations, the time and the evoluation of the performances.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the output of the method to be evaluated in the Objective.</span>
+    <span class="w">        </span><span class="sd">"""Format the output of the method to be evaluated in the Objective.</span>
 
     <span class="sd">        Returns a dict which is passed to ``Objective.evaluate_result`` method.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+    <span class="sd">        """</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-3c141c2718af4bcca85790131ef3b719-3' name='example-benchmark-3c141c2718af4bcca85790131ef3b719' type='radio'><label for='example-benchmark-3c141c2718af4bcca85790131ef3b719-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <input  id='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58-3' name='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58' type='radio'><label for='example-benchmark-f318223ef5ab4e2ead4cf4da4f491f58-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
     <span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -248,8 +248,8 @@ The R code is defined in a separate file ``r_pgd.R``, loaded from Python.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='r_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-fb3b95e8b6ff4c9dbfc4837935ce2118-0' name='example-benchmark-fb3b95e8b6ff4c9dbfc4837935ce2118' type='radio'><label for='example-benchmark-fb3b95e8b6ff4c9dbfc4837935ce2118-0'>solvers/r_pgd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='r_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-7c24486c3bea402eb61dd08e9d63c599-0' name='example-benchmark-7c24486c3bea402eb61dd08e9d63c599' type='radio'><label for='example-benchmark-7c24486c3bea402eb61dd08e9d63c599-0'>solvers/r_pgd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 
@@ -259,23 +259,23 @@ The R code is defined in a separate file ``r_pgd.R``, loaded from Python.
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.r_lang</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_func_from_r_file</span><span class="p">,</span> <span class="n">converter_ctx</span>
 
     <span class="c1"># Import R function defined in r_pgd.R so they can be retrieved as python</span>
-    <span class="c1"># functions using `func = robjects.r[&#39;FUNC_NAME&#39;]`</span>
-    <span class="n">R_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.R&#39;</span><span class="p">))</span>
+    <span class="c1"># functions using `func = robjects.r['FUNC_NAME']`</span>
+    <span class="n">R_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">'.R'</span><span class="p">))</span>
 
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;R-PGD&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">"R-PGD"</span>
 
-        <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
-        <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;rpy2&#39;</span><span class="p">]</span>
-        <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+        <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">'conda'</span>
+        <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'r-base'</span><span class="p">,</span> <span class="s1">'rpy2'</span><span class="p">]</span>
+        <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">'iteration'</span>
 
-        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'lr'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
             <span class="n">robjects</span> <span class="o">=</span> <span class="n">import_func_from_r_file</span><span class="p">(</span><span class="n">R_FILE</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">r_gd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;gradient_descent&#39;</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">r_gd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">'gradient_descent'</span><span class="p">]</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
             <span class="k">with</span> <span class="n">converter_ctx</span><span class="p">():</span>
@@ -285,14 +285,14 @@ The R code is defined in a separate file ``r_pgd.R``, loaded from Python.
                 <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-fb3b95e8b6ff4c9dbfc4837935ce2118-1' name='example-benchmark-fb3b95e8b6ff4c9dbfc4837935ce2118' type='radio'><label for='example-benchmark-fb3b95e8b6ff4c9dbfc4837935ce2118-1'>solvers/r_pgd.R</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>##&#39; Functions used in GD algorithm
-    ##&#39;
-    ##&#39; @title Functions used in GD algorithm
-    ##&#39; @author Thomas Moreau
-    ##&#39; @export
+    <input  id='example-benchmark-7c24486c3bea402eb61dd08e9d63c599-1' name='example-benchmark-7c24486c3bea402eb61dd08e9d63c599' type='radio'><label for='example-benchmark-7c24486c3bea402eb61dd08e9d63c599-1'>solvers/r_pgd.R</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>##' Functions used in GD algorithm
+    ##'
+    ##' @title Functions used in GD algorithm
+    ##' @author Thomas Moreau
+    ##' @export
 
 
     # Main algorithm
@@ -341,7 +341,7 @@ through conda using the solver requirements.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_aaeia_iv/r_solver<span class="w"> </span>-s<span class="w"> </span>r-pgd
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_z243xpse/r_solver<span class="w"> </span>-s<span class="w"> </span>r-pgd
     </pre></div>
     </pre>
             
@@ -358,8 +358,8 @@ through conda using the solver requirements.
     Channels:
      - conda-forge
     Platform: linux-64
-    Collecting package metadata (repodata.json): | / - \ | / - \ | / - \ done
-    Solving environment: / done
+    Collecting package metadata (repodata.json): | / - \ | / - \ | / done
+    Solving environment: \ done
 
     gcc_impl_linux-64-16 | 81.2 MB   |            |   0% 
     sysroot_linux-64-2.3 | 40.1 MB   |            |   0% 
@@ -514,7 +514,7 @@ through conda using the solver requirements.
 
 
 
-    libharfbuzz-14.3.0   | 1.3 MB    |            |   0% 
+    libharfbuzz-14.3.1   | 1.3 MB    |            |   0% 
 
 
 
@@ -551,66 +551,53 @@ through conda using the solver requirements.
 
 
 
-    gcc_impl_linux-64-16 | 81.2 MB   | 3          |   4% [A
-    sysroot_linux-64-2.3 | 40.1 MB   | 6          |   6% 
+    gcc_impl_linux-64-16 | 81.2 MB   | 3          |   3% [A
+    sysroot_linux-64-2.3 | 40.1 MB   | 8          |   8% 
 
-    r-base-4.5.3         | 26.1 MB   | 6          |   7% 
-
-
-    libstdcxx-devel_linu | 21.5 MB   | 9          |   9% 
+    r-base-4.5.3         | 26.1 MB   | #1         |  11% 
 
 
-
-    gcc_impl_linux-64-16 | 81.2 MB   | 9          |   9% 
-    sysroot_linux-64-2.3 | 40.1 MB   | #8         |  19% 
-
-    r-base-4.5.3         | 26.1 MB   | ##5        |  25% 
-
-
-    libstdcxx-devel_linu | 21.5 MB   | ###2       |  32% 
+    libstdcxx-devel_linu | 21.5 MB   | #          |  10% 
 
 
 
-    gcc_impl_linux-64-16 | 81.2 MB   | #5         |  15% 
-    sysroot_linux-64-2.3 | 40.1 MB   | ###        |  30% 
+    gcc_impl_linux-64-16 | 81.2 MB   | #          |  10% 
+    sysroot_linux-64-2.3 | 40.1 MB   | ##2        |  23% 
 
-    r-base-4.5.3         | 26.1 MB   | ####2      |  43% 
-
-
-    libstdcxx-devel_linu | 21.5 MB   | #####3     |  54% 
+    r-base-4.5.3         | 26.1 MB   | ###3       |  33% 
 
 
-
-    gfortran_impl_linux- | 20.1 MB   | #####2     |  53% 
+    libstdcxx-devel_linu | 21.5 MB   | ###7       |  38% 
 
 
 
-    gfortran_impl_linux- | 20.1 MB   | #######1   |  72% 
+    gcc_impl_linux-64-16 | 81.2 MB   | #6         |  17% 
+    sysroot_linux-64-2.3 | 40.1 MB   | ###7       |  38% 
 
-    r-base-4.5.3         | 26.1 MB   | #####8     |  58% 
-
-
-    gcc_impl_linux-64-16 | 81.2 MB   | ##         |  21% 
-    sysroot_linux-64-2.3 | 40.1 MB   | ####       |  41% 
+    r-base-4.5.3         | 26.1 MB   | #####4     |  55% 
 
 
-
-    gfortran_impl_linux- | 20.1 MB   | #########2 |  92% 
-
-    r-base-4.5.3         | 26.1 MB   | #######4   |  74% 
-
-
-    gcc_impl_linux-64-16 | 81.2 MB   | ##5        |  26% 
-    sysroot_linux-64-2.3 | 40.1 MB   | #####      |  51% 
-
-    gcc_impl_linux-64-16 | 81.2 MB   | ###2       |  32% 
-    gcc_impl_linux-64-16 | 81.2 MB   | ###9       |  39% 
-    gcc_impl_linux-64-16 | 81.2 MB   | ####7      |  48% 
-    sysroot_linux-64-2.3 | 40.1 MB   | #########7 |  98% 
+    libstdcxx-devel_linu | 21.5 MB   | ######2    |  62% 
 
 
 
-    gfortran_impl_linux- | 20.1 MB   | ########## | 100% 
+    gcc_impl_linux-64-16 | 81.2 MB   | ##3        |  24% 
+    sysroot_linux-64-2.3 | 40.1 MB   | #####3     |  54% 
+
+    r-base-4.5.3         | 26.1 MB   | #######9   |  80% 
+
+
+    libstdcxx-devel_linu | 21.5 MB   | #########3 |  94% 
+
+
+
+    gfortran_impl_linux- | 20.1 MB   | #########6 |  97% 
+    gcc_impl_linux-64-16 | 81.2 MB   | ###2       |  33% 
+    gcc_impl_linux-64-16 | 81.2 MB   | ####2      |  43% 
+
+
+
+    gcc_impl_linux-64-16 | 81.2 MB   | #####5     |  55% 
 
 
     libstdcxx-devel_linu | 21.5 MB   | ########## | 100% 
@@ -624,49 +611,39 @@ through conda using the solver requirements.
 
 
 
-    gcc_impl_linux-64-16 | 81.2 MB   | #####7     |  57% 
+    libsanitizer-16.1.0  | 7.4 MB    |            |   0% 
 
 
 
 
-    gxx_impl_linux-64-16 | 15.9 MB   | ##3        |  23% 
+    gxx_impl_linux-64-16 | 15.9 MB   | ###3       |  33% 
 
 
 
 
 
-    gcc_impl_linux-64-16 | 81.2 MB   | ######4    |  65% 
-
-
-
-
-    gxx_impl_linux-64-16 | 15.9 MB   | #####1     |  51% 
+    gcc_impl_linux-64-16 | 81.2 MB   | ######4    |  64% 
 
     r-base-4.5.3         | 26.1 MB   | ########## | 100% 
 
 
 
 
-
-
-    libopenblas-0.3.34   | 5.7 MB    |            |   0% 
-
-
-
-
-    gcc_impl_linux-64-16 | 81.2 MB   | #######1   |  72% 
+    gxx_impl_linux-64-16 | 15.9 MB   | ######8    |  69% 
 
 
 
 
 
 
-    libopenblas-0.3.34   | 5.7 MB    | #####4     |  54% 
+    gcc_impl_linux-64-16 | 81.2 MB   | #######3   |  73% 
 
 
 
 
-    gxx_impl_linux-64-16 | 15.9 MB   | #########8 |  98% 
+
+
+    libopenblas-0.3.34   | 5.7 MB    | #########3 |  94% 
 
 
 
@@ -678,30 +655,9 @@ through conda using the solver requirements.
 
 
 
-    libsanitizer-16.1.0  | 7.4 MB    | ########## | 100% 
 
 
-
-
-
-
-
-    gcc_impl_linux-64-16 | 81.2 MB   | #######8   |  78% 
-
-
-
-
-
-
-
-    gcc_impl_linux-64-16 | 81.2 MB   | ########3  |  84% 
-
-
-
-
-
-
-    libopenblas-0.3.34   | 5.7 MB    | ########## | 100% 
+    gcc_impl_linux-64-16 | 81.2 MB   | ########1  |  81% 
 
 
 
@@ -717,7 +673,7 @@ through conda using the solver requirements.
 
 
 
-    binutils_impl_linux- | 3.5 MB    |            |   0% 
+    gcc_impl_linux-64-16 | 81.2 MB   | ########8  |  89% 
 
 
 
@@ -725,7 +681,15 @@ through conda using the solver requirements.
 
 
 
-    gcc_impl_linux-64-16 | 81.2 MB   | ########9  |  89% 
+    libglib-2.88.3       | 4.5 MB    | ########## | 100% 
+
+
+
+
+
+
+
+    libglib-2.88.3       | 4.5 MB    | ########## | 100% 
 
 
 
@@ -744,16 +708,16 @@ through conda using the solver requirements.
 
 
 
-    gcc_impl_linux-64-16 | 81.2 MB   | #########4 |  94% 
-
-
-
-
-
-
-
-
     binutils_impl_linux- | 3.5 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+    gcc_impl_linux-64-16 | 81.2 MB   | #########5 |  96% 
 
 
 
@@ -770,6 +734,23 @@ through conda using the solver requirements.
 
 
     gxx_impl_linux-64-16 | 15.9 MB   | ########## | 100% 
+
+
+
+
+    gxx_impl_linux-64-16 | 15.9 MB   | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+    libgfortran5-16.1.0  | 2.4 MB    |            |   1% 
 
 
 
@@ -803,53 +784,7 @@ through conda using the solver requirements.
 
 
     rpy2-3.6.7           | 1.8 MB    |            |   1% 
-
-
-
-
-
-
-
-
-
-
-
-    gcc_impl_linux-64-16 | 81.2 MB   | #########9 |  99% 
-
-
-
-
-
-
-
-
-
-
-
-
-    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-    libgcc-devel_linux-6 | 3.0 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-    libgcc-devel_linux-6 | 3.0 MB    | ########## | 100% 
+    sysroot_linux-64-2.3 | 40.1 MB   | ########## | 100% 
 
 
 
@@ -875,11 +810,44 @@ through conda using the solver requirements.
 
 
 
+    libgfortran5-16.1.0  | 2.4 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+    libgcc-devel_linux-6 | 3.0 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+    libgcc-devel_linux-6 | 3.0 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
 
 
 
     kernel-headers_linux | 1.5 MB    | 1          |   1% 
-    sysroot_linux-64-2.3 | 40.1 MB   | ########## | 100% 
 
 
 
@@ -891,19 +859,8 @@ through conda using the solver requirements.
 
 
 
-    libgfortran5-16.1.0  | 2.4 MB    | ########## | 100% 
 
-
-
-
-
-
-
-
-
-
-
-    libgfortran5-16.1.0  | 2.4 MB    | ########## | 100% 
+    rpy2-3.6.7           | 1.8 MB    | ########## | 100% 
 
 
 
@@ -933,23 +890,6 @@ through conda using the solver requirements.
 
 
 
-
-
-
-    libharfbuzz-14.3.0   | 1.3 MB    | 1          |   1% 
-
-
-
-
-
-
-
-
-
-
-
-
-
     font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
 
 
@@ -965,22 +905,9 @@ through conda using the solver requirements.
 
 
 
-    kernel-headers_linux | 1.5 MB    | ########## | 100% 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    kernel-headers_linux | 1.5 MB    | ########## | 100% 
+    libharfbuzz-14.3.1   | 1.3 MB    | 1          |   1% 
 
 
 
@@ -999,6 +926,37 @@ through conda using the solver requirements.
 
 
     pcre2-10.47          | 1.2 MB    | 1          |   1% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    kernel-headers_linux | 1.5 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    krb5-1.22.2          | 1.3 MB    | ########## | 100% 
 
 
 
@@ -1033,24 +991,8 @@ through conda using the solver requirements.
 
 
 
-    krb5-1.22.2          | 1.3 MB    | ########## | 100% 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    libharfbuzz-14.3.0   | 1.3 MB    | ########## | 100% 
+    libharfbuzz-14.3.1   | 1.3 MB    | ########## | 100% 
 
 
 
@@ -1142,6 +1084,30 @@ through conda using the solver requirements.
 
 
 
+
+    libgfortran5-16.1.0  | 2.4 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+    libgfortran5-16.1.0  | 2.4 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
     libgcc-devel_linux-6 | 3.0 MB    | ########## | 100% 
 
 
@@ -1180,18 +1146,6 @@ through conda using the solver requirements.
 
 
 
-    libgfortran5-16.1.0  | 2.4 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
 
 
     font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
@@ -1209,6 +1163,133 @@ through conda using the solver requirements.
 
 
     font-ttf-ubuntu-0.83 | 1.5 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+    gsl-2.7              | 3.2 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    krb5-1.22.2          | 1.3 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    krb5-1.22.2          | 1.3 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    libharfbuzz-14.3.1   | 1.3 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    libharfbuzz-14.3.1   | 1.3 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    pcre2-10.47          | 1.2 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    pcre2-10.47          | 1.2 MB    | ########## | 100% 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    kernel-headers_linux | 1.5 MB    | ########## | 100% 
 
 
 
@@ -1239,82 +1320,6 @@ through conda using the solver requirements.
 
 
 
-    krb5-1.22.2          | 1.3 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    krb5-1.22.2          | 1.3 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-    gsl-2.7              | 3.2 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    libharfbuzz-14.3.0   | 1.3 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    libharfbuzz-14.3.0   | 1.3 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -1338,42 +1343,6 @@ through conda using the solver requirements.
 
 
      ... (more hidden) ...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    pcre2-10.47          | 1.2 MB    | ########## | 100% 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    pcre2-10.47          | 1.2 MB    | ########## | 100% 
     gcc_impl_linux-64-16 | 81.2 MB   | ########## | 100% 
 
 
@@ -1997,11 +1966,72 @@ through conda using the solver requirements.
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
      done
-    Preparing transaction: \ | / done
-    Verifying transaction: \ | / - \ | / - \ | / - done
-    Executing transaction: | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \
-    | / done
+    Preparing transaction: / - done
+    Verifying transaction: | / - \ | / - \ | / - \ | / - \ | / - \ done
+    Executing transaction: / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | done
     #
     # To activate this environment, use
     #
@@ -2044,7 +2074,7 @@ Then, we can run the benchmark and show the comparison.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_aaeia_iv/r_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_z243xpse/r_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
     </pre></div>
     </pre>
             
@@ -2059,18 +2089,18 @@ Then, we can run the benchmark and show the comparison.
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--R-PGD[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                 
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--R-PGD[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                  
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_aaeia_iv/r_solver/outputs/benchopt_run_2026-08-11_09h08m50.parq</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_z243xpse/r_solver/outputs/benchopt_run_2026-08-18_18h11m57.parq</span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">uet</span> 
     Rendering benchmark results...
        Processing 
-    temp_benchmark_aaeia_iv/r_solver/outputs/benchopt_run_2026-08-11_09h08m50.parq
+    temp_benchmark_z243xpse/r_solver/outputs/benchopt_run_2026-08-18_18h11m57.parq
     uet
     done
     Writing results to 
-    temp_benchmark_aaeia_iv/r_solver/outputs/r_solver_benchopt_run_2026-08-11_09h0
-    8m50.html
+    temp_benchmark_z243xpse/r_solver/outputs/r_solver_benchopt_run_2026-08-18_18h1
+    1m57.html
     Writing r_solver index to 
-    temp_benchmark_aaeia_iv/r_solver/outputs/r_solver.html
+    temp_benchmark_z243xpse/r_solver/outputs/r_solver.html
 
 
 
@@ -2095,7 +2125,7 @@ convergence profiles, with runtime differences depending on your setup.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (1 minutes 58.642 seconds)
+   **Total running time of the script:** (1 minutes 34.682 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_r_solver.py:

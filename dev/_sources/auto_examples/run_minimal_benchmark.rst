@@ -77,120 +77,120 @@ We define:
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-60e5e65fd4014bd0be9f168337a908fa-0' name='example-benchmark-60e5e65fd4014bd0be9f168337a908fa' type='radio'><label for='example-benchmark-60e5e65fd4014bd0be9f168337a908fa-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-2d07d5b98d334e72a3ce9d652505167c-0' name='example-benchmark-2d07d5b98d334e72a3ce9d652505167c' type='radio'><label for='example-benchmark-2d07d5b98d334e72a3ce9d652505167c-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
         <span class="c1"># Name of the Objective function</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Quadratic&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">'Quadratic'</span>
 
         <span class="c1"># The three methods below define the links between the Dataset,</span>
         <span class="c1"># the Objective and the Solver.</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data from a Dataset to compute the objective.</span>
+    <span class="w">        </span><span class="sd">"""Set the data from a Dataset to compute the objective.</span>
 
     <span class="sd">        The argument are the keys of the dictionary returned by</span>
     <span class="sd">        ``Dataset.get_data``.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-            <span class="s2">&quot;Returns a dict passed to ``Solver.set_objective`` method.&quot;</span>
+            <span class="s2">"Returns a dict passed to ``Solver.set_objective`` method."</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value(s) given the output of a solver.</span>
+    <span class="w">        </span><span class="sd">"""Compute the objective value(s) given the output of a solver.</span>
 
     <span class="sd">        The arguments are the keys in the dictionary returned</span>
     <span class="sd">        by ``Solver.get_result``.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_hat</span><span class="p">))</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Return one solution for which the objective can be evaluated.</span>
+    <span class="w">        </span><span class="sd">"""Return one solution for which the objective can be evaluated.</span>
 
     <span class="sd">        This function is mostly used for testing and debugging purposes.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-60e5e65fd4014bd0be9f168337a908fa-1' name='example-benchmark-60e5e65fd4014bd0be9f168337a908fa' type='radio'><label for='example-benchmark-60e5e65fd4014bd0be9f168337a908fa-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-2d07d5b98d334e72a3ce9d652505167c-1' name='example-benchmark-2d07d5b98d334e72a3ce9d652505167c' type='radio'><label for='example-benchmark-2d07d5b98d334e72a3ce9d652505167c-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
         <span class="c1"># Name of the Dataset, used to select it in the CLI</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;simulated&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">'simulated'</span>
 
         <span class="c1"># ``get_data()`` is the only method a dataset should implement.</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Load the data for this Dataset.</span>
+    <span class="w">        </span><span class="sd">"""Load the data for this Dataset.</span>
 
     <span class="sd">        Usually, the data are either loaded from disk as arrays or Tensors,</span>
     <span class="sd">        or a dataset/dataloader object is used to allow the models to load</span>
     <span class="sd">        the data in more flexible forms (e.g. with mini-batches).</span>
 
-    <span class="sd">        The dictionary&#39;s keys are the kwargs passed to ``Objective.set_data``.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        The dictionary's keys are the kwargs passed to ``Objective.set_data``.</span>
+    <span class="sd">        """</span>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-60e5e65fd4014bd0be9f168337a908fa-2' name='example-benchmark-60e5e65fd4014bd0be9f168337a908fa' type='radio'><label for='example-benchmark-60e5e65fd4014bd0be9f168337a908fa-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-2d07d5b98d334e72a3ce9d652505167c-2' name='example-benchmark-2d07d5b98d334e72a3ce9d652505167c' type='radio'><label for='example-benchmark-2d07d5b98d334e72a3ce9d652505167c-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
         <span class="c1"># Name of the Solver, used to select it in the CLI</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gd&#39;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s1">'gd'</span>
 
         <span class="c1"># By default, benchopt will evaluate the result of a method after various</span>
         <span class="c1"># number of iterations. Setting the sampling_strategy controls how this is</span>
         <span class="c1"># done. Here, we use a callback function that is called at each iteration.</span>
-        <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;callback&#39;</span>
+        <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">'callback'</span>
 
         <span class="c1"># Parameters of the method, that will be tested by the benchmark.</span>
         <span class="c1"># Each parameter ``param_name`` will be accessible as ``self.param_name``.</span>
-        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+        <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'lr'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
 
         <span class="c1"># The three methods below define the necessary methods for the Solver, to</span>
         <span class="c1"># get the info from the Objective, to run the method and to return a</span>
         <span class="c1"># result that can be evaluated by the Objective.</span>
         <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the info from a Objective, to run the method.</span>
+    <span class="w">        </span><span class="sd">"""Set the info from a Objective, to run the method.</span>
 
-    <span class="sd">        This method is also typically used to adapt the solver&#39;s parameters to</span>
+    <span class="sd">        This method is also typically used to adapt the solver's parameters to</span>
     <span class="sd">        the data (e.g. scaling) or to initialize the algorithm.</span>
 
     <span class="sd">        The kwargs are the keys of the dictionary returned by</span>
     <span class="sd">        ``Objective.get_objective``.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the actual method to benchmark.</span>
+    <span class="w">        </span><span class="sd">"""Run the actual method to benchmark.</span>
 
-    <span class="sd">        Here, as we use a &quot;callback&quot;, we need to call it at each iteration to</span>
+    <span class="sd">        Here, as we use a "callback", we need to call it at each iteration to</span>
     <span class="sd">        evaluate the result as the procedure progresses.</span>
 
     <span class="sd">        The callback implements a stopping mechanism, based on the number of</span>
     <span class="sd">        iterations, the time and the evoluation of the performances.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
+    <span class="sd">        """</span>
             <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the output of the method to be evaluated in the Objective.</span>
+    <span class="w">        </span><span class="sd">"""Format the output of the method to be evaluated in the Objective.</span>
 
     <span class="sd">        Returns a dict which is passed to ``Objective.evaluate_result`` method.</span>
-    <span class="sd">        &quot;&quot;&quot;</span>
-            <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+    <span class="sd">        """</span>
+            <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-60e5e65fd4014bd0be9f168337a908fa-3' name='example-benchmark-60e5e65fd4014bd0be9f168337a908fa' type='radio'><label for='example-benchmark-60e5e65fd4014bd0be9f168337a908fa-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <input  id='example-benchmark-2d07d5b98d334e72a3ce9d652505167c-3' name='example-benchmark-2d07d5b98d334e72a3ce9d652505167c' type='radio'><label for='example-benchmark-2d07d5b98d334e72a3ce9d652505167c-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
     <span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -226,7 +226,7 @@ To run the benchmark, just execute:
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_8fee0ohs/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_1i0h5o5r/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span>
     </pre></div>
     </pre>
             
@@ -239,18 +239,18 @@ To run the benchmark, just execute:
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                    
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>                                     
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_8fee0ohs/minimal_benchmark/outputs/benchopt_run_2026-08-11_09h0</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">8m19.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/benchopt_run_2026-08-18_18h1</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">1m31.parquet</span>
     Rendering benchmark results...
        Processing 
-    temp_benchmark_8fee0ohs/minimal_benchmark/outputs/benchopt_run_2026-08-11_09h0
-    8m19.parquet
+    temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/benchopt_run_2026-08-18_18h1
+    1m31.parquet
     done
     Writing results to 
-    temp_benchmark_8fee0ohs/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-    un_2026-08-11_09h08m19.html
+    temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-08-18_18h11m31.html
     Writing minimal_benchmark index to 
-    temp_benchmark_8fee0ohs/minimal_benchmark/outputs/minimal_benchmark.html
+    temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -293,7 +293,7 @@ To get a more precise curve, you can increase ``n`` and ``r``:
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_8fee0ohs/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_1i0h5o5r/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">30</span><span class="w"> </span>-r<span class="w"> </span><span class="m">5</span>
     </pre></div>
     </pre>
             
@@ -306,18 +306,18 @@ To get a more precise curve, you can increase ``n`` and ``r``:
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                     
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>                                                      
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_8fee0ohs/minimal_benchmark/outputs/benchopt_run_2026-08-11_09h0</span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">8m22.parquet</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/benchopt_run_2026-08-18_18h1</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">1m33.parquet</span>
     Rendering benchmark results...
        Processing 
-    temp_benchmark_8fee0ohs/minimal_benchmark/outputs/benchopt_run_2026-08-11_09h0
-    8m22.parquet
+    temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/benchopt_run_2026-08-18_18h1
+    1m33.parquet
     done
     Writing results to 
-    temp_benchmark_8fee0ohs/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-    un_2026-08-11_09h08m22.html
+    temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+    un_2026-08-18_18h11m33.html
     Writing minimal_benchmark index to 
-    temp_benchmark_8fee0ohs/minimal_benchmark/outputs/minimal_benchmark.html
+    temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -385,16 +385,16 @@ Once the benchmark has be run, you can also generate pdf figures using the
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_8fee0ohs/minimal_benchmark<span class="w"> </span>-k<span class="w"> </span>objective_curve<span class="w"> </span>--no-html
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_1i0h5o5r/minimal_benchmark<span class="w"> </span>-k<span class="w"> </span>objective_curve<span class="w"> </span>--no-html
     </pre></div>
     </pre>
             
                 <div class="sphx-glr-script-out highlight-none notranslate">
                     <div class="highlight"><pre>Save objective_curve_simulated_Quadratic_objective_value_Time as: 
-    temp_benchmark_8fee0ohs/minimal_benchmark/outputs/objective_curve_simulated_Qu
+    temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/objective_curve_simulated_Qu
     adratic_objective_value_Time.pdf
     Save objective_curve_simulated_Quadratic_objective_value_Iteration as: 
-    temp_benchmark_8fee0ohs/minimal_benchmark/outputs/objective_curve_simulated_Qu
+    temp_benchmark_1i0h5o5r/minimal_benchmark/outputs/objective_curve_simulated_Qu
     adratic_objective_value_Iteration.pdf
 
 
@@ -416,7 +416,7 @@ the plots and define your own visualization.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (0 minutes 10.565 seconds)
+   **Total running time of the script:** (0 minutes 8.936 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_minimal_benchmark.py:

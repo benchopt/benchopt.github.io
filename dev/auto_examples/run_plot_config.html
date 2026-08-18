@@ -262,7 +262,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
@@ -405,8 +406,8 @@ with <code class="docutils literal notranslate"><span class="pre">config.yml</sp
 one solver. This benchmark has no <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file specifying plotting
 options.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span> <span class="o">=</span> <span class="n">ExampleBenchmark</span><span class="p">(</span>
-    <span class="n">base</span><span class="o">=</span><span class="s2">&quot;minimal_benchmark&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;minimal_benchmark&quot;</span><span class="p">,</span>
-    <span class="n">ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom_plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;example_config.yml&quot;</span><span class="p">,</span> <span class="s2">&quot;config.yml&quot;</span><span class="p">]</span>
+    <span class="n">base</span><span class="o">=</span><span class="s2">"minimal_benchmark"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"minimal_benchmark"</span><span class="p">,</span>
+    <span class="n">ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">"custom_plot.py"</span><span class="p">,</span> <span class="s2">"example_config.yml"</span><span class="p">,</span> <span class="s2">"config.yml"</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="n">benchmark</span>
 </pre></div>
@@ -415,117 +416,117 @@ options.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
 
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce-0' name='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce' type='radio'><label for='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26-0' name='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26' type='radio'><label for='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
     <span class="c1"># Name of the Objective function</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Quadratic&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">'Quadratic'</span>
 
     <span class="c1"># The three methods below define the links between the Dataset,</span>
     <span class="c1"># the Objective and the Solver.</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data from a Dataset to compute the objective.</span>
+<span class="w">        </span><span class="sd">"""Set the data from a Dataset to compute the objective.</span>
 
 <span class="sd">        The argument are the keys of the dictionary returned by</span>
 <span class="sd">        ``Dataset.get_data``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s2">&quot;Returns a dict passed to ``Solver.set_objective`` method.&quot;</span>
+        <span class="s2">"Returns a dict passed to ``Solver.set_objective`` method."</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value(s) given the output of a solver.</span>
+<span class="w">        </span><span class="sd">"""Compute the objective value(s) given the output of a solver.</span>
 
 <span class="sd">        The arguments are the keys in the dictionary returned</span>
 <span class="sd">        by ``Solver.get_result``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_hat</span><span class="p">))</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return one solution for which the objective can be evaluated.</span>
+<span class="w">        </span><span class="sd">"""Return one solution for which the objective can be evaluated.</span>
 
 <span class="sd">        This function is mostly used for testing and debugging purposes.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce-1' name='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce' type='radio'><label for='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<input  id='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26-1' name='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26' type='radio'><label for='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
     <span class="c1"># Name of the Dataset, used to select it in the CLI</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;simulated&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">'simulated'</span>
 
     <span class="c1"># ``get_data()`` is the only method a dataset should implement.</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load the data for this Dataset.</span>
+<span class="w">        </span><span class="sd">"""Load the data for this Dataset.</span>
 
 <span class="sd">        Usually, the data are either loaded from disk as arrays or Tensors,</span>
 <span class="sd">        or a dataset/dataloader object is used to allow the models to load</span>
 <span class="sd">        the data in more flexible forms (e.g. with mini-batches).</span>
 
-<span class="sd">        The dictionary&#39;s keys are the kwargs passed to ``Objective.set_data``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        The dictionary's keys are the kwargs passed to ``Objective.set_data``.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce-2' name='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce' type='radio'><label for='example-benchmark-370d4b08eaa54c82aefbe5f8332a70ce-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26-2' name='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26' type='radio'><label for='example-benchmark-a70cfd37b69f452f95b41b38a5de2b26-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="c1"># Name of the Solver, used to select it in the CLI</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gd&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">'gd'</span>
 
     <span class="c1"># By default, benchopt will evaluate the result of a method after various</span>
     <span class="c1"># number of iterations. Setting the sampling_strategy controls how this is</span>
     <span class="c1"># done. Here, we use a callback function that is called at each iteration.</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;callback&#39;</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">'callback'</span>
 
     <span class="c1"># Parameters of the method, that will be tested by the benchmark.</span>
     <span class="c1"># Each parameter ``param_name`` will be accessible as ``self.param_name``.</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'lr'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
 
     <span class="c1"># The three methods below define the necessary methods for the Solver, to</span>
     <span class="c1"># get the info from the Objective, to run the method and to return a</span>
     <span class="c1"># result that can be evaluated by the Objective.</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the info from a Objective, to run the method.</span>
+<span class="w">        </span><span class="sd">"""Set the info from a Objective, to run the method.</span>
 
-<span class="sd">        This method is also typically used to adapt the solver&#39;s parameters to</span>
+<span class="sd">        This method is also typically used to adapt the solver's parameters to</span>
 <span class="sd">        the data (e.g. scaling) or to initialize the algorithm.</span>
 
 <span class="sd">        The kwargs are the keys of the dictionary returned by</span>
 <span class="sd">        ``Objective.get_objective``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the actual method to benchmark.</span>
+<span class="w">        </span><span class="sd">"""Run the actual method to benchmark.</span>
 
-<span class="sd">        Here, as we use a &quot;callback&quot;, we need to call it at each iteration to</span>
+<span class="sd">        Here, as we use a "callback", we need to call it at each iteration to</span>
 <span class="sd">        evaluate the result as the procedure progresses.</span>
 
 <span class="sd">        The callback implements a stopping mechanism, based on the number of</span>
 <span class="sd">        iterations, the time and the evoluation of the performances.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the output of the method to be evaluated in the Objective.</span>
+<span class="w">        </span><span class="sd">"""Format the output of the method to be evaluated in the Objective.</span>
 
 <span class="sd">        Returns a dict which is passed to ``Objective.evaluate_result`` method.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
 </pre></div>
 </div>
                 </div>
@@ -536,12 +537,12 @@ options.</p>
 <br /><p>Run the benchmark to generate results. This will display a first HTML page
 based on benchopt’s default plotting configuration.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 40 -r 2 -s gd[lr=[1e-1,3e-2,1e-2,3e-3]]&quot;</span>
+    <span class="sa">f</span><span class="s2">"run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 40 -r 2 -s gd[lr=[1e-1,3e-2,1e-2,3e-3]]"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_jomv8krl/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">40</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span>gd<span class="o">[</span><span class="nv">lr</span><span class="o">=[</span>1e-1,3e-2,1e-2,3e-3<span class="o">]]</span>
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_qafjjxv_/minimal_benchmark<span class="w"> </span>-n<span class="w"> </span><span class="m">40</span><span class="w"> </span>-r<span class="w"> </span><span class="m">2</span><span class="w"> </span>-s<span class="w"> </span>gd<span class="o">[</span><span class="nv">lr</span><span class="o">=[</span>1e-1,3e-2,1e-2,3e-3<span class="o">]]</span>
 </pre></div>
 </pre>
 
@@ -556,18 +557,18 @@ No seed was specified. Selected global seed: 0
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.003]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_jomv8krl/minimal_benchmark/outputs/benchopt_run_2026-08-11_09h1</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">5m48.parquet</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_qafjjxv_/minimal_benchmark/outputs/benchopt_run_2026-08-18_18h1</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">6m55.parquet</span>
 Rendering benchmark results...
    Processing
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/benchopt_run_2026-08-11_09h1
-5m48.parquet
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/benchopt_run_2026-08-18_18h1
+6m55.parquet
 done
 Writing results to
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-un_2026-08-11_09h15m48.html
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-08-18_18h16m55.html
 Writing minimal_benchmark index to
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/minimal_benchmark.html
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -599,14 +600,14 @@ while the second one is a bar chart showing the runtime of each solver.
 When defining a view, part of the plotting parameters can be left free.
 They will be kept as they are when activating the view.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">extra_files</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;config.yml&quot;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+    <span class="s2">"config.yml"</span><span class="p">:</span> <span class="s1">'''</span>
 <span class="s1">    plot_configs:</span>
 <span class="s1">      Subopt. (log):</span>
 <span class="s1">        plot_kind: objective_curve</span>
 <span class="s1">        scale: loglog</span>
 <span class="s1">      Runtimes:</span>
 <span class="s1">        plot_kind: bar_chart</span>
-<span class="s1">    &#39;&#39;&#39;</span>
+<span class="s1">    '''</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -614,8 +615,8 @@ They will be kept as they are when activating the view.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-07c74f958397465ea3a85fe6881e16a6-0' name='example-benchmark-07c74f958397465ea3a85fe6881e16a6' type='radio'><label for='example-benchmark-07c74f958397465ea3a85fe6881e16a6-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-7c305617259f40829e040fb866f83c85-0' name='example-benchmark-7c305617259f40829e040fb866f83c85' type='radio'><label for='example-benchmark-7c305617259f40829e040fb866f83c85-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
 <span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
@@ -632,25 +633,25 @@ They will be kept as they are when activating the view.</p>
 <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">plot</span></code>. This will override the existing HTML page, which now has
 two views available in <code class="docutils literal notranslate"><span class="pre">Available</span> <span class="pre">plot</span> <span class="pre">view</span></code> at the top of the page, and
 the first view automatically loaded.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">"plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_jomv8krl/minimal_benchmark
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_qafjjxv_/minimal_benchmark
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
                 <div class="highlight"><pre>Rendering benchmark results...
    Processing
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/benchopt_run_2026-08-11_09h1
-5m48.parquet
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/benchopt_run_2026-08-18_18h1
+6m55.parquet
 done
 Writing results to
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-un_2026-08-11_09h15m48.html
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-08-18_18h16m55.html
 Writing minimal_benchmark index to
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/minimal_benchmark.html
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -671,34 +672,34 @@ seamlessly with the HTML interface. Here, we define a custom plot that shows
 the final objective value achieved by each solver against the runtime,
 with colors defined by the value of the learning rate used by the solver.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">plots</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;custom_objective_time.py&quot;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+    <span class="s2">"custom_objective_time.py"</span><span class="p">:</span> <span class="s1">'''</span>
 <span class="s1">    from benchopt import BasePlot</span>
 
 
 <span class="s1">    class Plot(BasePlot):</span>
-<span class="s1">        name = &quot;custom_objective_time&quot;</span>
-<span class="s1">        type = &quot;scatter&quot;</span>
+<span class="s1">        name = "custom_objective_time"</span>
+<span class="s1">        type = "scatter"</span>
 <span class="s1">        options = </span><span class="si">{}</span>
 
 <span class="s1">        def plot(self, df):</span>
 <span class="s1">            points = []</span>
-<span class="s1">            for solver in df[&#39;solver_name&#39;].unique():</span>
-<span class="s1">                sub_df = df.query(&quot;solver_name == @solver&quot;).sort_values(&#39;time&#39;)</span>
+<span class="s1">            for solver in df['solver_name'].unique():</span>
+<span class="s1">                sub_df = df.query("solver_name == @solver").sort_values('time')</span>
 <span class="s1">                points.append({</span>
-<span class="s1">                    &quot;x&quot;: sub_df[&quot;p_solver_lr&quot;].iloc[-1:].tolist(),</span>
-<span class="s1">                    &quot;y&quot;: sub_df[&quot;objective_value&quot;].iloc[-1:].tolist(),</span>
-<span class="s1">                    &quot;label&quot;: solver,</span>
+<span class="s1">                    "x": sub_df["p_solver_lr"].iloc[-1:].tolist(),</span>
+<span class="s1">                    "y": sub_df["objective_value"].iloc[-1:].tolist(),</span>
+<span class="s1">                    "label": solver,</span>
 <span class="s1">                    **self.get_style(solver),</span>
 <span class="s1">                })</span>
 <span class="s1">            return points</span>
 
 <span class="s1">        def get_metadata(self, df):</span>
 <span class="s1">            return {</span>
-<span class="s1">                &quot;title&quot;: &quot;Objective against learning rate&quot;,</span>
-<span class="s1">                &quot;xlabel&quot;: &quot;learning rate&quot;,</span>
-<span class="s1">                &quot;ylabel&quot;: &quot;objective value&quot;,</span>
+<span class="s1">                "title": "Objective against learning rate",</span>
+<span class="s1">                "xlabel": "learning rate",</span>
+<span class="s1">                "ylabel": "objective value",</span>
 <span class="s1">            }</span>
-<span class="s1">    &#39;&#39;&#39;</span>
+<span class="s1">    '''</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -706,32 +707,32 @@ with colors defined by the value of the learning rate used by the solver.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-85410cfed243402eb72b06f712d81e46-0' name='example-benchmark-85410cfed243402eb72b06f712d81e46' type='radio'><label for='example-benchmark-85410cfed243402eb72b06f712d81e46-0'>plots/custom_objective_time.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-cd3d9fecd58e4ae28bd3b9f9d75c4ce5-0' name='example-benchmark-cd3d9fecd58e4ae28bd3b9f9d75c4ce5' type='radio'><label for='example-benchmark-cd3d9fecd58e4ae28bd3b9f9d75c4ce5-0'>plots/custom_objective_time.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;custom_objective_time&quot;</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;scatter&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"custom_objective_time"</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">"scatter"</span>
     <span class="n">options</span> <span class="o">=</span> <span class="p">{}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
         <span class="n">points</span> <span class="o">=</span> <span class="p">[]</span>
-        <span class="k">for</span> <span class="n">solver</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;solver_name&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
-            <span class="n">sub_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;solver_name == @solver&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">&#39;time&#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">solver</span> <span class="ow">in</span> <span class="n">df</span><span class="p">[</span><span class="s1">'solver_name'</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">():</span>
+            <span class="n">sub_df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">"solver_name == @solver"</span><span class="p">)</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s1">'time'</span><span class="p">)</span>
             <span class="n">points</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                <span class="s2">&quot;x&quot;</span><span class="p">:</span> <span class="n">sub_df</span><span class="p">[</span><span class="s2">&quot;p_solver_lr&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="s2">&quot;y&quot;</span><span class="p">:</span> <span class="n">sub_df</span><span class="p">[</span><span class="s2">&quot;objective_value&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
-                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
+                <span class="s2">"x"</span><span class="p">:</span> <span class="n">sub_df</span><span class="p">[</span><span class="s2">"p_solver_lr"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="s2">"y"</span><span class="p">:</span> <span class="n">sub_df</span><span class="p">[</span><span class="s2">"objective_value"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">:]</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span>
+                <span class="s2">"label"</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
                 <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver</span><span class="p">),</span>
             <span class="p">})</span>
         <span class="k">return</span> <span class="n">points</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">):</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Objective against learning rate&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;xlabel&quot;</span><span class="p">:</span> <span class="s2">&quot;learning rate&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;ylabel&quot;</span><span class="p">:</span> <span class="s2">&quot;objective value&quot;</span><span class="p">,</span>
+            <span class="s2">"title"</span><span class="p">:</span> <span class="s2">"Objective against learning rate"</span><span class="p">,</span>
+            <span class="s2">"xlabel"</span><span class="p">:</span> <span class="s2">"learning rate"</span><span class="p">,</span>
+            <span class="s2">"ylabel"</span><span class="p">:</span> <span class="s2">"objective value"</span><span class="p">,</span>
         <span class="p">}</span>
 </pre></div>
 </div>
@@ -751,7 +752,7 @@ More details on the plot API can be found in <a class="reference internal" href=
 <p>We can then update <code class="docutils literal notranslate"><span class="pre">plot_configs</span></code> to include one view for the new custom
 plot, and run <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">plot</span></code> again to update the plot.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">extra_files</span><span class="o">=</span><span class="p">{</span>
-    <span class="s2">&quot;config.yml&quot;</span><span class="p">:</span> <span class="s1">&#39;&#39;&#39;</span>
+    <span class="s2">"config.yml"</span><span class="p">:</span> <span class="s1">'''</span>
 <span class="s1">    plot_configs:</span>
 <span class="s1">      Sensitivity lr:</span>
 <span class="s1">        plot_kind: custom_objective_time</span>
@@ -761,7 +762,7 @@ plot, and run <code class="docutils literal notranslate"><span class="pre">bench
 <span class="s1">        scale: loglog</span>
 <span class="s1">      Runtimes:</span>
 <span class="s1">        plot_kind: bar_chart</span>
-<span class="s1">    &#39;&#39;&#39;</span>
+<span class="s1">    '''</span>
 <span class="p">})</span>
 </pre></div>
 </div>
@@ -769,8 +770,8 @@ plot, and run <code class="docutils literal notranslate"><span class="pre">bench
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-6e39f00e0fdd4c2bac2298c8af06712e-0' name='example-benchmark-6e39f00e0fdd4c2bac2298c8af06712e' type='radio'><label for='example-benchmark-6e39f00e0fdd4c2bac2298c8af06712e-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='minimal_benchmark.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-65bdc6a0c40c469c94f391964dcd87eb-0' name='example-benchmark-65bdc6a0c40c469c94f391964dcd87eb' type='radio'><label for='example-benchmark-65bdc6a0c40c469c94f391964dcd87eb-0'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plot_configs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">Sensitivity lr</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">custom_objective_time</span>
 <span class="w">    </span><span class="nt">scale</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">loglog</span>
@@ -789,25 +790,25 @@ plot, and run <code class="docutils literal notranslate"><span class="pre">bench
 <br /><p>Now running <cite>benchopt plot</cite> again will update the HTML page with the new plot
 option and the new view, showing the sensitivity of the final objective value
 to the selection of the learning rate.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">"plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_jomv8krl/minimal_benchmark
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_qafjjxv_/minimal_benchmark
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
                 <div class="highlight"><pre>Rendering benchmark results...
    Processing
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/benchopt_run_2026-08-11_09h1
-5m48.parquet
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/benchopt_run_2026-08-18_18h1
+6m55.parquet
 done
 Writing results to
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
-un_2026-08-11_09h15m48.html
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/minimal_benchmark_benchopt_r
+un_2026-08-18_18h16m55.html
 Writing minimal_benchmark index to
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/minimal_benchmark.html
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/minimal_benchmark.html
 
 
 
@@ -825,18 +826,18 @@ temp_benchmark_jomv8krl/minimal_benchmark/outputs/minimal_benchmark.html
 <br /><p>Note that you can also generate custom plot as pdf using the <code class="docutils literal notranslate"><span class="pre">--no-html</span></code>
 option:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -k custom_objective_time --no-html&quot;</span>
+    <span class="sa">f</span><span class="s2">"plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -k custom_objective_time --no-html"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <img src="../_images/sphx_glr_run_plot_config_004.png" srcset="../_images/sphx_glr_run_plot_config_004.png" alt="Objective against learning rate" class = "sphx-glr-single-img"/><div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_jomv8krl/minimal_benchmark<span class="w"> </span>-k<span class="w"> </span>custom_objective_time<span class="w"> </span>--no-html
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_qafjjxv_/minimal_benchmark<span class="w"> </span>-k<span class="w"> </span>custom_objective_time<span class="w"> </span>--no-html
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
                 <div class="highlight"><pre>Save custom_objective_time as:
-temp_benchmark_jomv8krl/minimal_benchmark/outputs/custom_objective_time.pdf
+temp_benchmark_qafjjxv_/minimal_benchmark/outputs/custom_objective_time.pdf
 
 
 
@@ -847,7 +848,7 @@ temp_benchmark_jomv8krl/minimal_benchmark/outputs/custom_objective_time.pdf
 
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 6.110 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 4.525 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-plot-config-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4fc68104f0a5e065ce8043a01c718059/run_plot_config.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_plot_config.ipynb</span></code></a></p>

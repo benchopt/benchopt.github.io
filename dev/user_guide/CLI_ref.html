@@ -61,7 +61,7 @@
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Examples Gallery" href="../auto_examples/index.html" />
-    <link rel="prev" title="benchopt.results.process.merge" href="generated/benchopt.results.process.merge.html" />
+    <link rel="prev" title="benchopt.results.result_processing.describe_results" href="generated/benchopt.results.result_processing.describe_results.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.2dev0" />
@@ -266,7 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3 current active"><a class="current reference internal" href="#">Command line interface (CLI)</a></li>
@@ -451,7 +452,7 @@ For example using BASH shell you need to run:</p>
 span.prompt1:before {
   content: "$ ";
 }
-</style><span class="prompt1"><span class="nb">eval</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span><span class="nv">_BENCHOPT_COMPLETE</span><span class="o">=</span>bash_source<span class="w"> </span>benchopt<span class="k">)</span><span class="s2">&quot;</span></span>
+</style><span class="prompt1"><span class="nb">eval</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span><span class="nv">_BENCHOPT_COMPLETE</span><span class="o">=</span>bash_source<span class="w"> </span>benchopt<span class="k">)</span><span class="s2">"</span></span>
 </pre></div></div><p>The <cite>benchopt</cite> command also comes with tab completion for the solver name
 and the dataset name.</p>
 <div class="admonition-optional-parameters-syntax admonition">
@@ -465,7 +466,7 @@ dataset), additional values can be given with the following syntax:</p>
 <span class="c1"># For objects with only one parameter, the name can be omitted:</span>
 --solver<span class="w"> </span>solver_name<span class="o">[</span>True,<span class="w"> </span>False<span class="o">]</span>
 <span class="c1"># For more advanced selections over multiple parameters, use:</span>
---solver<span class="w"> </span>solver_name<span class="o">[</span><span class="s2">&quot;param_1,param_2&quot;</span><span class="o">=[(</span>True,<span class="w"> </span><span class="m">100</span><span class="o">)</span>,<span class="w"> </span><span class="o">(</span>False,<span class="w"> </span><span class="m">1000</span><span class="o">)]]</span>
+--solver<span class="w"> </span>solver_name<span class="o">[</span><span class="s2">"param_1,param_2"</span><span class="o">=[(</span>True,<span class="w"> </span><span class="m">100</span><span class="o">)</span>,<span class="w"> </span><span class="o">(</span>False,<span class="w"> </span><span class="m">1000</span><span class="o">)]]</span>
 </pre></div>
 </div>
 </div>
@@ -1164,6 +1165,12 @@ dataset), additional values can be given with the following syntax:</p>
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-info-f">
+<span id="cmdoption-benchopt-info-filename"></span><span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--filename</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;result_file&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-info-f" title="Link to this definition">#</a></dt>
+<dd><p>Summarize &lt;result_file&gt; (number of configs, objective columns, repetitions, …) instead of listing benchmark solvers/datasets. If not an existing path, it is resolved relative to the benchmark’s output folder, as for <cite>benchopt plot -f</cite>. To summarize multiple files, use multiple <cite>-f</cite> options. To summarize every result file, use <cite>-f ‘all’</cite>. By default (no <cite>-f</cite>), a short summary of the available result files is printed instead.</p>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-info-e">
 <span id="cmdoption-benchopt-info-env"></span><span class="sig-name descname"><span class="pre">-e</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--env</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-benchopt-info-e" title="Link to this definition">#</a></dt>
 <dd><p>Additional checks for requirement availability in the dedicated conda environment for the benchmark named ‘benchopt_&lt;BENCHMARK&gt;’.</p>
@@ -1245,12 +1252,12 @@ dataset), additional values can be given with the following syntax:</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="generated/benchopt.results.process.merge.html"
+       href="generated/benchopt.results.result_processing.describe_results.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">benchopt.results.process.merge</p>
+        <p class="prev-next-title">benchopt.results.result_processing.describe_results</p>
       </div>
     </a>
     <a class="right-next"

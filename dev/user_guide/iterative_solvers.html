@@ -267,7 +267,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
@@ -420,7 +421,7 @@ comparing scikit-learn estimators), you can skip performance curves entirely
 by setting <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;run_once&quot;</span></code> in your <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class.
 See <a class="reference internal" href="../benchmark_workflow/write_benchmark.html#write-benchmark"><span class="std std-ref">Write a benchmark</span></a> for more details on setting up ML benchmarks.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;run_once&quot;</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">"run_once"</span>
 </pre></div>
 </div>
 </div>
@@ -492,7 +493,7 @@ It returns <code class="docutils literal notranslate"><span class="pre">False</s
         <span class="bp">self</span><span class="o">.</span><span class="n">x</span> <span class="o">=</span> <span class="o">...</span>  <span class="c1"># Update iterate</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-    <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;x&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s1">'x'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">x</span><span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -529,9 +530,9 @@ There are four <code class="docutils literal notranslate"><span class="pre">Stop
 <h2>Setting the sampling strategy and stopping criterion globally<a class="headerlink" href="#setting-the-sampling-strategy-and-stopping-criterion-globally" title="Link to this heading">#</a></h2>
 <p>Both the sampling strategy and stopping criterion can be set globally for all solvers by setting the corresponding class attributes in your <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;callback&quot;</span>  <span class="c1"># or &quot;iteration&quot;, &quot;tolerance&quot;, &quot;run_once&quot;</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">"callback"</span>  <span class="c1"># or "iteration", "tolerance", "run_once"</span>
     <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">SufficientProgressCriterion</span><span class="p">(</span>
-        <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">key_to_monitor</span><span class="o">=</span><span class="s2">&quot;value&quot;</span><span class="p">,</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">True</span>
+        <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">key_to_monitor</span><span class="o">=</span><span class="s2">"value"</span><span class="p">,</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
 </pre></div>
 </div>

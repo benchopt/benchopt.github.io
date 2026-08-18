@@ -266,7 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
@@ -445,12 +446,12 @@ combination (see <a class="reference internal" href="../user_guide/controlling_r
 <li><p>The <code class="docutils literal notranslate"><span class="pre">Solver</span></code> implement two simple iterative denoising methods: a median
 filter and a total variation denoising method.</p></li>
 </ul>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">OBJECTIVE</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">OBJECTIVE</span></a> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    from benchopt import BaseObjective</span>
 <span class="s2">    import numpy as np</span>
 
 <span class="s2">    class Objective(BaseObjective):</span>
-<span class="s2">        name = &quot;Image Denoising&quot;</span>
+<span class="s2">        name = "Image Denoising"</span>
 
 <span class="s2">        def set_data(self, X_true, X_noisy):</span>
 <span class="s2">            self.X_true = X_true</span>
@@ -469,8 +470,8 @@ filter and a total variation denoising method.</p></li>
 <span class="s2">            import matplotlib.pyplot as plt</span>
 <span class="s2">            out_dir = self.get_run_output_path()</span>
 <span class="s2">            plt.imsave(</span>
-<span class="s2">                out_dir / f&quot;frame_</span><span class="si">{self.n_eval_:03d}</span><span class="s2">.png&quot;,</span>
-<span class="s2">                X_hat, cmap=&quot;gray&quot;, vmin=0, vmax=1,</span>
+<span class="s2">                out_dir / f"frame_</span><span class="si">{self.n_eval_:03d}</span><span class="s2">.png",</span>
+<span class="s2">                X_hat, cmap="gray", vmin=0, vmax=1,</span>
 <span class="s2">            )</span>
 
 <span class="s2">            # Return a dict of metrics (MSE) and the current frame</span>
@@ -485,15 +486,15 @@ filter and a total variation denoising method.</p></li>
 
 <span class="s2">        def get_one_result(self):</span>
 <span class="s2">            return dict(X_hat=self.X_noisy)</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">DATASET</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">DATASET</span></a> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    from benchopt import BaseDataset</span>
 <span class="s2">    import numpy as np</span>
 
 <span class="s2">    class Dataset(BaseDataset):</span>
-<span class="s2">        name = &quot;simulated&quot;</span>
-<span class="s2">        parameters = {&quot;n&quot;: [32, 128], &quot;noise_std&quot;: [0.3], &quot;random_state&quot;: [42]}</span>
+<span class="s2">        name = "simulated"</span>
+<span class="s2">        parameters = {"n": [32, 128], "noise_std": [0.3], "random_state": [42]}</span>
 
 <span class="s2">        def get_data(self):</span>
 <span class="s2">            rng = np.random.default_rng(self.random_state)</span>
@@ -503,18 +504,18 @@ filter and a total variation denoising method.</p></li>
 <span class="s2">            ).astype(float)</span>
 <span class="s2">            X_noisy = X_true + rng.normal(0, self.noise_std, X_true.shape)</span>
 <span class="s2">            return dict(X_true=X_true, X_noisy=X_noisy)</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_MEDIAN</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_MEDIAN</span></a> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    from benchopt import BaseSolver</span>
 <span class="s2">    from benchopt.stopping_criterion import SufficientProgressCriterion</span>
 
 <span class="s2">    class Solver(BaseSolver):</span>
-<span class="s2">        name = &quot;median_filter&quot;</span>
-<span class="s2">        parameters = {&quot;size&quot;: [3, 5]}</span>
+<span class="s2">        name = "median_filter"</span>
+<span class="s2">        parameters = {"size": [3, 5]}</span>
 
 <span class="s2">        stopping_criterion = SufficientProgressCriterion(</span>
-<span class="s2">            key_to_monitor = &quot;mse&quot;, strategy=&quot;callback&quot;</span>
+<span class="s2">            key_to_monitor = "mse", strategy="callback"</span>
 <span class="s2">        )</span>
 
 <span class="s2">        def set_objective(self, X_noisy):</span>
@@ -528,19 +529,19 @@ filter and a total variation denoising method.</p></li>
 
 <span class="s2">        def get_result(self):</span>
 <span class="s2">            return dict(X_hat=self.X_hat)</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_TV</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_TV</span></a> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    from benchopt import BaseSolver</span>
 <span class="s2">    from benchopt.stopping_criterion import SufficientProgressCriterion</span>
 <span class="s2">    import numpy as np</span>
 
 <span class="s2">    class Solver(BaseSolver):</span>
-<span class="s2">        name = &quot;tv_denoise&quot;</span>
-<span class="s2">        parameters = {&quot;lam&quot;: [0.1, 0.5]}</span>
+<span class="s2">        name = "tv_denoise"</span>
+<span class="s2">        parameters = {"lam": [0.1, 0.5]}</span>
 
 <span class="s2">        stopping_criterion = SufficientProgressCriterion(</span>
-<span class="s2">            key_to_monitor = &quot;mse&quot;, strategy=&quot;callback&quot;</span>
+<span class="s2">            key_to_monitor = "mse", strategy="callback"</span>
 <span class="s2">        )</span>
 
 <span class="s2">        def set_objective(self, X_noisy):</span>
@@ -576,15 +577,15 @@ filter and a total variation denoising method.</p></li>
 
 <span class="s2">        def get_result(self):</span>
 <span class="s2">            return dict(X_hat=self.X_hat)</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
 <span class="n">benchmark</span> <span class="o">=</span> <span class="n">ExampleBenchmark</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;image_denoising&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"image_denoising"</span><span class="p">,</span>
     <span class="n">objective</span><span class="o">=</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">OBJECTIVE</span></a><span class="p">,</span>
-    <span class="n">datasets</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;simulated.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">DATASET</span></a><span class="p">},</span>
+    <span class="n">datasets</span><span class="o">=</span><span class="p">{</span><span class="s2">"simulated.py"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">DATASET</span></a><span class="p">},</span>
     <span class="n">solvers</span><span class="o">=</span><span class="p">{</span>
-        <span class="s2">&quot;tv_denoise.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_TV</span></a><span class="p">,</span>
-        <span class="s2">&quot;median_filter.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_MEDIAN</span></a><span class="p">,</span>
+        <span class="s2">"tv_denoise.py"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_TV</span></a><span class="p">,</span>
+        <span class="s2">"median_filter.py"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">SOLVER_MEDIAN</span></a><span class="p">,</span>
     <span class="p">}</span>
 <span class="p">)</span>
 <span class="n">benchmark</span>
@@ -594,13 +595,13 @@ filter and a total variation denoising method.</p></li>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
 
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-1331174801f94e589e77afefb66a2643-0' name='example-benchmark-1331174801f94e589e77afefb66a2643' type='radio'><label for='example-benchmark-1331174801f94e589e77afefb66a2643-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-1761bde5bc03492fbe7e376818cb03b6-0' name='example-benchmark-1761bde5bc03492fbe7e376818cb03b6' type='radio'><label for='example-benchmark-1761bde5bc03492fbe7e376818cb03b6-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
     <span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-        <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Image Denoising&quot;</span>
+        <span class="n">name</span> <span class="o">=</span> <span class="s2">"Image Denoising"</span>
 
         <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_true</span><span class="p">,</span> <span class="n">X_noisy</span><span class="p">):</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X_true</span> <span class="o">=</span> <span class="n">X_true</span>
@@ -619,8 +620,8 @@ filter and a total variation denoising method.</p></li>
             <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
             <span class="n">out_dir</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_run_output_path</span><span class="p">()</span>
             <span class="n">plt</span><span class="o">.</span><span class="n">imsave</span><span class="p">(</span>
-                <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">&quot;frame_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_eval_</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span>
-                <span class="n">X_hat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+                <span class="n">out_dir</span> <span class="o">/</span> <span class="sa">f</span><span class="s2">"frame_</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">n_eval_</span><span class="si">:</span><span class="s2">03d</span><span class="si">}</span><span class="s2">.png"</span><span class="p">,</span>
+                <span class="n">X_hat</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
             <span class="p">)</span>
 
             <span class="c1"># Return a dict of metrics (MSE) and the current frame</span>
@@ -637,12 +638,12 @@ filter and a total variation denoising method.</p></li>
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_noisy</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-1331174801f94e589e77afefb66a2643-1' name='example-benchmark-1331174801f94e589e77afefb66a2643' type='radio'><label for='example-benchmark-1331174801f94e589e77afefb66a2643-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<input  id='example-benchmark-1761bde5bc03492fbe7e376818cb03b6-1' name='example-benchmark-1761bde5bc03492fbe7e376818cb03b6' type='radio'><label for='example-benchmark-1761bde5bc03492fbe7e376818cb03b6-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;simulated&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;n&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span> <span class="s2">&quot;noise_std&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">],</span> <span class="s2">&quot;random_state&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">42</span><span class="p">]}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"simulated"</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"n"</span><span class="p">:</span> <span class="p">[</span><span class="mi">32</span><span class="p">,</span> <span class="mi">128</span><span class="p">],</span> <span class="s2">"noise_std"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.3</span><span class="p">],</span> <span class="s2">"random_state"</span><span class="p">:</span> <span class="p">[</span><span class="mi">42</span><span class="p">]}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">rng</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
@@ -654,16 +655,16 @@ filter and a total variation denoising method.</p></li>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_true</span><span class="o">=</span><span class="n">X_true</span><span class="p">,</span> <span class="n">X_noisy</span><span class="o">=</span><span class="n">X_noisy</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-1331174801f94e589e77afefb66a2643-2' name='example-benchmark-1331174801f94e589e77afefb66a2643' type='radio'><label for='example-benchmark-1331174801f94e589e77afefb66a2643-2'>solvers/tv_denoise.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-1761bde5bc03492fbe7e376818cb03b6-2' name='example-benchmark-1761bde5bc03492fbe7e376818cb03b6' type='radio'><label for='example-benchmark-1761bde5bc03492fbe7e376818cb03b6-2'>solvers/tv_denoise.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SufficientProgressCriterion</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;tv_denoise&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lam&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"tv_denoise"</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"lam"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">]}</span>
 
     <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">SufficientProgressCriterion</span><span class="p">(</span>
-        <span class="n">key_to_monitor</span> <span class="o">=</span> <span class="s2">&quot;mse&quot;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;callback&quot;</span>
+        <span class="n">key_to_monitor</span> <span class="o">=</span> <span class="s2">"mse"</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s2">"callback"</span>
     <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_noisy</span><span class="p">):</span>
@@ -701,15 +702,15 @@ filter and a total variation denoising method.</p></li>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-1331174801f94e589e77afefb66a2643-3' name='example-benchmark-1331174801f94e589e77afefb66a2643' type='radio'><label for='example-benchmark-1331174801f94e589e77afefb66a2643-3'>solvers/median_filter.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-1761bde5bc03492fbe7e376818cb03b6-3' name='example-benchmark-1761bde5bc03492fbe7e376818cb03b6' type='radio'><label for='example-benchmark-1761bde5bc03492fbe7e376818cb03b6-3'>solvers/median_filter.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">SufficientProgressCriterion</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;median_filter&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;size&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"median_filter"</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"size"</span><span class="p">:</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">]}</span>
 
     <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">SufficientProgressCriterion</span><span class="p">(</span>
-        <span class="n">key_to_monitor</span> <span class="o">=</span> <span class="s2">&quot;mse&quot;</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s2">&quot;callback&quot;</span>
+        <span class="n">key_to_monitor</span> <span class="o">=</span> <span class="s2">"mse"</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="s2">"callback"</span>
     <span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_noisy</span><span class="p">):</span>
@@ -737,12 +738,12 @@ filter and a total variation denoising method.</p></li>
 <code class="docutils literal notranslate"><span class="pre">get_run_output_path()</span></code>, each solver’s intermediate frames are saved to
 disk under <code class="docutils literal notranslate"><span class="pre">&lt;benchmark&gt;/outputs/&lt;run_name&gt;/</span></code>.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 5 -r 1&quot;</span>
+    <span class="sa">f</span><span class="s2">"run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 5 -r 1"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark__1cr47s9/image_denoising<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_kjmd0jqe/image_denoising<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span><span class="w"> </span>-r<span class="w"> </span><span class="m">1</span>
 </pre></div>
 </pre>
 
@@ -763,18 +764,18 @@ simulated[n=128,noise_std=0.3,random_state=42]
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.1]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--tv_denoise[lam=0.5]:</span> <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">done</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark__1cr47s9/image_denoising/outputs/benchopt_run_2026-08-11_09h15m</span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">54.parquet</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_kjmd0jqe/image_denoising/outputs/benchopt_run_2026-08-18_18h17m</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">00.parquet</span>
 Rendering benchmark results...
    Processing
-temp_benchmark__1cr47s9/image_denoising/outputs/benchopt_run_2026-08-11_09h15m
-54.parquet
+temp_benchmark_kjmd0jqe/image_denoising/outputs/benchopt_run_2026-08-18_18h17m
+00.parquet
 done
 Writing results to
-temp_benchmark__1cr47s9/image_denoising/outputs/image_denoising_benchopt_run_2
-026-08-11_09h15m54.html
+temp_benchmark_kjmd0jqe/image_denoising/outputs/image_denoising_benchopt_run_2
+026-08-18_18h17m00.html
 Writing image_denoising index to
-temp_benchmark__1cr47s9/image_denoising/outputs/image_denoising.html
+temp_benchmark_kjmd0jqe/image_denoising/outputs/image_denoising.html
 
 
 
@@ -797,17 +798,17 @@ read back with any standard tool.  Here we display a few of them directly:</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">png_files</span></a> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span>
-    <span class="p">(</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span> <span class="o">/</span> <span class="s2">&quot;outputs&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;**/*.png&quot;</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span> <span class="o">/</span> <span class="s2">"outputs"</span><span class="p">)</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">"**/*.png"</span><span class="p">)</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">png_files</span></a><span class="p">)</span><span class="si">}</span><span class="s2"> PNG frames saved across all runs.&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">png_files</span></a><span class="p">)</span><span class="si">}</span><span class="s2"> PNG frames saved across all runs."</span><span class="p">)</span>
 
 <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sample</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">png_files</span></a><span class="p">[:</span><span class="mi">4</span><span class="p">]</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.html#matplotlib.figure.Figure" title="matplotlib.figure.Figure" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">fig</span></a><span class="p">,</span> <a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a> <span class="o">=</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.subplots.html#matplotlib.pyplot.subplots" title="matplotlib.pyplot.subplots" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">subplots</span></a><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sample</span></a><span class="p">),</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="nb">len</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sample</span></a><span class="p">),</span> <span class="mi">3</span><span class="p">))</span>
 <span class="k">for</span> <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes" title="matplotlib.axes.Axes" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">ax</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p</span></a> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><a href="https://numpy.org/devdocs/reference/generated/numpy.ndarray.html#numpy.ndarray" title="numpy.ndarray" class="sphx-glr-backref-module-numpy sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">axes</span></a><span class="p">,</span> <a href="https://docs.python.org/3/library/stdtypes.html#list" title="builtins.list" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sample</span></a><span class="p">):</span>
-    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.imshow.html#matplotlib.axes.Axes.imshow" title="matplotlib.axes.Axes.imshow" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">imshow</span></a><span class="p">(</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imread.html#matplotlib.pyplot.imread" title="matplotlib.pyplot.imread" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">imread</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p</span></a><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;gray&quot;</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html#matplotlib.axes.Axes.set_title" title="matplotlib.axes.Axes.set_title" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span></a><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.parent" title="pathlib.PurePath.parent" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-attribute"><span class="n">p</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span></a><span class="si">}</span><span class="se">\n</span><span class="si">{</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.name" title="pathlib.PurePath.name" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-attribute"><span class="n">p</span><span class="o">.</span><span class="n">name</span></a><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
-    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.axis.html#matplotlib.axes.Axes.axis" title="matplotlib.axes.Axes.axis" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">axis</span></a><span class="p">(</span><span class="s2">&quot;off&quot;</span><span class="p">)</span>
-<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.suptitle.html#matplotlib.figure.Figure.suptitle" title="matplotlib.figure.Figure.suptitle" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span></a><span class="p">(</span><span class="s2">&quot;Frames saved via get_run_output_path() — accessed manually&quot;</span><span class="p">)</span>
+    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.imshow.html#matplotlib.axes.Axes.imshow" title="matplotlib.axes.Axes.imshow" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">imshow</span></a><span class="p">(</span><a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.imread.html#matplotlib.pyplot.imread" title="matplotlib.pyplot.imread" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">imread</span></a><span class="p">(</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">p</span></a><span class="p">),</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">"gray"</span><span class="p">,</span> <span class="n">vmin</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">vmax</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.set_title.html#matplotlib.axes.Axes.set_title" title="matplotlib.axes.Axes.set_title" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">set_title</span></a><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.parent" title="pathlib.PurePath.parent" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-attribute"><span class="n">p</span><span class="o">.</span><span class="n">parent</span><span class="o">.</span><span class="n">name</span></a><span class="si">}</span><span class="se">\n</span><span class="si">{</span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.name" title="pathlib.PurePath.name" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-attribute"><span class="n">p</span><span class="o">.</span><span class="n">name</span></a><span class="si">}</span><span class="s2">"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">7</span><span class="p">)</span>
+    <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.axis.html#matplotlib.axes.Axes.axis" title="matplotlib.axes.Axes.axis" class="sphx-glr-backref-module-matplotlib-axes sphx-glr-backref-type-py-method"><span class="n">ax</span><span class="o">.</span><span class="n">axis</span></a><span class="p">(</span><span class="s2">"off"</span><span class="p">)</span>
+<a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.figure.Figure.suptitle.html#matplotlib.figure.Figure.suptitle" title="matplotlib.figure.Figure.suptitle" class="sphx-glr-backref-module-matplotlib-figure sphx-glr-backref-type-py-method"><span class="n">fig</span><span class="o">.</span><span class="n">suptitle</span></a><span class="p">(</span><span class="s2">"Frames saved via get_run_output_path() — accessed manually"</span><span class="p">)</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.tight_layout.html#matplotlib.pyplot.tight_layout" title="matplotlib.pyplot.tight_layout" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span></a><span class="p">()</span>
 <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.show.html#matplotlib.pyplot.show" title="matplotlib.pyplot.show" class="sphx-glr-backref-module-matplotlib-pyplot sphx-glr-backref-type-py-function"><span class="n">plt</span><span class="o">.</span><span class="n">show</span></a><span class="p">()</span>
 </pre></div>
@@ -838,68 +839,68 @@ automatically.</p>
 <p><code class="docutils literal notranslate"><span class="pre">save_final_results</span></code> stores the reference and noisy images only once;
 so the plot reads them from the <code class="docutils literal notranslate"><span class="pre">final_results</span></code> column to retrieve the
 reference and noisy images.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CONFIG</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CONFIG</span></a> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">plots:</span>
 <span class="s2">- reconstruction</span>
 <span class="s2">- objective_curve</span>
 <span class="s2">- bar_chart</span>
 <span class="s2">- boxplot</span>
 <span class="s2">- table</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">PLOT</span></a> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">PLOT</span></a> <span class="o">=</span> <span class="s2">"""</span>
 <span class="s2">    import numpy as np</span>
 <span class="s2">    from benchopt import BasePlot</span>
 
 <span class="s2">    class Plot(BasePlot):</span>
-<span class="s2">        name = &quot;reconstruction&quot;</span>
-<span class="s2">        type = &quot;image&quot;</span>
-<span class="s2">        options = {&quot;dataset&quot;: ..., &quot;objective&quot;: ...}</span>
+<span class="s2">        name = "reconstruction"</span>
+<span class="s2">        type = "image"</span>
+<span class="s2">        options = {"dataset": ..., "objective": ...}</span>
 
 <span class="s2">        def plot(self, df, dataset, objective):</span>
 <span class="s2">            df = df.query(</span>
-<span class="s2">                &quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+<span class="s2">                "dataset_name == @dataset and objective_name == @objective"</span>
 <span class="s2">            )</span>
 <span class="s2">            # Get reference and noisy from final_results (only stored once)</span>
-<span class="s2">            final = df[&quot;final_results&quot;].dropna().iloc[0]</span>
-<span class="s2">            ref = final[&quot;reference&quot;]</span>
-<span class="s2">            noisy = final[&quot;noisy&quot;]</span>
+<span class="s2">            final = df["final_results"].dropna().iloc[0]</span>
+<span class="s2">            ref = final["reference"]</span>
+<span class="s2">            noisy = final["noisy"]</span>
 <span class="s2">            mse_noisy = float(np.mean((ref - noisy) ** 2))</span>
 <span class="s2">            images = [</span>
-<span class="s2">                {&quot;image&quot;: ref, &quot;label&quot;: &quot;Reference&quot;},</span>
-<span class="s2">                {&quot;image&quot;: noisy,</span>
-<span class="s2">                 &quot;label&quot;: f&quot;Noisy input</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{mse_noisy:.4f}</span><span class="s2">&quot;},</span>
+<span class="s2">                {"image": ref, "label": "Reference"},</span>
+<span class="s2">                {"image": noisy,</span>
+<span class="s2">                 "label": f"Noisy input</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{mse_noisy:.4f}</span><span class="s2">"},</span>
 <span class="s2">                # Image should be a 2D array. If incompatible, it will appear</span>
 <span class="s2">                # with a message in the plot.</span>
-<span class="s2">                {&quot;image&quot;: &quot;skdjf&quot;,  # noisy,</span>
-<span class="s2">                 &quot;label&quot;: f&quot;Invalid</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{mse_noisy:.4f}</span><span class="s2">&quot;},</span>
+<span class="s2">                {"image": "skdjf",  # noisy,</span>
+<span class="s2">                 "label": f"Invalid</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{mse_noisy:.4f}</span><span class="s2">"},</span>
 <span class="s2">                # Returning None insert an empty slot for alignment</span>
-<span class="s2">                {&quot;image&quot;: None},</span>
+<span class="s2">                {"image": None},</span>
 <span class="s2">            ]</span>
-<span class="s2">            for solver_name, sdf in df.groupby(&quot;solver_name&quot;):</span>
+<span class="s2">            for solver_name, sdf in df.groupby("solver_name"):</span>
 <span class="s2">                frames = (</span>
-<span class="s2">                    sdf.sort_values(&quot;stop_val&quot;)[&quot;objective_frame&quot;].tolist()</span>
+<span class="s2">                    sdf.sort_values("stop_val")["objective_frame"].tolist()</span>
 <span class="s2">                )</span>
-<span class="s2">                last_mse = sdf.loc[sdf[&quot;stop_val&quot;].idxmax(), &quot;objective_mse&quot;]</span>
+<span class="s2">                last_mse = sdf.loc[sdf["stop_val"].idxmax(), "objective_mse"]</span>
 <span class="s2">                images.append({</span>
-<span class="s2">                    &quot;image&quot;: frames,  # list of arrays → animated GIF</span>
-<span class="s2">                    &quot;label&quot;: f&quot;</span><span class="si">{solver_name}</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{last_mse:.4f}</span><span class="s2">&quot;,</span>
+<span class="s2">                    "image": frames,  # list of arrays → animated GIF</span>
+<span class="s2">                    "label": f"</span><span class="si">{solver_name}</span><span class="se">\\</span><span class="s2">nMSE=</span><span class="si">{last_mse:.4f}</span><span class="s2">",</span>
 <span class="s2">                })</span>
 <span class="s2">            return images</span>
 
 <span class="s2">        def get_metadata(self, df, dataset, objective):</span>
 <span class="s2">            n = len(df.query(</span>
-<span class="s2">                &quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
-<span class="s2">            )[&quot;solver_name&quot;].unique())</span>
+<span class="s2">                "dataset_name == @dataset and objective_name == @objective"</span>
+<span class="s2">            )["solver_name"].unique())</span>
 <span class="s2">            return {</span>
-<span class="s2">                &quot;title&quot;: f&quot;</span><span class="si">{objective}</span><span class="s2"> — Data: </span><span class="si">{dataset}</span><span class="s2">&quot;,</span>
-<span class="s2">                &quot;ncols&quot;: min(n + 2, 4),  # +2 for reference and noisy input</span>
+<span class="s2">                "title": f"</span><span class="si">{objective}</span><span class="s2"> — Data: </span><span class="si">{dataset}</span><span class="s2">",</span>
+<span class="s2">                "ncols": min(n + 2, 4),  # +2 for reference and noisy input</span>
 <span class="s2">            }</span>
-<span class="s2">&quot;&quot;&quot;</span>
+<span class="s2">"""</span>
 
 <span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-    <span class="n">plots</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;reconstruction.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">PLOT</span></a><span class="p">},</span>
-    <span class="n">extra_files</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;config.yml&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CONFIG</span></a><span class="p">},</span>
+    <span class="n">plots</span><span class="o">=</span><span class="p">{</span><span class="s2">"reconstruction.py"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">PLOT</span></a><span class="p">},</span>
+    <span class="n">extra_files</span><span class="o">=</span><span class="p">{</span><span class="s2">"config.yml"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">CONFIG</span></a><span class="p">},</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -907,57 +908,57 @@ reference and noisy images.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-b4252cacefcd4fb4b7708820adc5d3b9-0' name='example-benchmark-b4252cacefcd4fb4b7708820adc5d3b9' type='radio'><label for='example-benchmark-b4252cacefcd4fb4b7708820adc5d3b9-0'>plots/reconstruction.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='image_denoising.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-d4fb81d8cd91489fa997943524c538eb-0' name='example-benchmark-d4fb81d8cd91489fa997943524c538eb' type='radio'><label for='example-benchmark-d4fb81d8cd91489fa997943524c538eb-0'>plots/reconstruction.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BasePlot</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Plot</span><span class="p">(</span><span class="n">BasePlot</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;reconstruction&quot;</span>
-    <span class="nb">type</span> <span class="o">=</span> <span class="s2">&quot;image&quot;</span>
-    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dataset&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">&quot;objective&quot;</span><span class="p">:</span> <span class="o">...</span><span class="p">}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"reconstruction"</span>
+    <span class="nb">type</span> <span class="o">=</span> <span class="s2">"image"</span>
+    <span class="n">options</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"dataset"</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">"objective"</span><span class="p">:</span> <span class="o">...</span><span class="p">}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">):</span>
         <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-            <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
+            <span class="s2">"dataset_name == @dataset and objective_name == @objective"</span>
         <span class="p">)</span>
         <span class="c1"># Get reference and noisy from final_results (only stored once)</span>
-        <span class="n">final</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">&quot;final_results&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-        <span class="n">ref</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="s2">&quot;reference&quot;</span><span class="p">]</span>
-        <span class="n">noisy</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="s2">&quot;noisy&quot;</span><span class="p">]</span>
+        <span class="n">final</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s2">"final_results"</span><span class="p">]</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">ref</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="s2">"reference"</span><span class="p">]</span>
+        <span class="n">noisy</span> <span class="o">=</span> <span class="n">final</span><span class="p">[</span><span class="s2">"noisy"</span><span class="p">]</span>
         <span class="n">mse_noisy</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">ref</span> <span class="o">-</span> <span class="n">noisy</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
         <span class="n">images</span> <span class="o">=</span> <span class="p">[</span>
-            <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">ref</span><span class="p">,</span> <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="s2">&quot;Reference&quot;</span><span class="p">},</span>
-            <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">noisy</span><span class="p">,</span>
-             <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Noisy input</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">mse_noisy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"image"</span><span class="p">:</span> <span class="n">ref</span><span class="p">,</span> <span class="s2">"label"</span><span class="p">:</span> <span class="s2">"Reference"</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"image"</span><span class="p">:</span> <span class="n">noisy</span><span class="p">,</span>
+             <span class="s2">"label"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Noisy input</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">mse_noisy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span>
             <span class="c1"># Image should be a 2D array. If incompatible, it will appear</span>
             <span class="c1"># with a message in the plot.</span>
-            <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="s2">&quot;skdjf&quot;</span><span class="p">,</span>  <span class="c1"># noisy,</span>
-             <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;Invalid</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">mse_noisy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"image"</span><span class="p">:</span> <span class="s2">"skdjf"</span><span class="p">,</span>  <span class="c1"># noisy,</span>
+             <span class="s2">"label"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"Invalid</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">mse_noisy</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">},</span>
             <span class="c1"># Returning None insert an empty slot for alignment</span>
-            <span class="p">{</span><span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
+            <span class="p">{</span><span class="s2">"image"</span><span class="p">:</span> <span class="kc">None</span><span class="p">},</span>
         <span class="p">]</span>
-        <span class="k">for</span> <span class="n">solver_name</span><span class="p">,</span> <span class="n">sdf</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">&quot;solver_name&quot;</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">solver_name</span><span class="p">,</span> <span class="n">sdf</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s2">"solver_name"</span><span class="p">):</span>
             <span class="n">frames</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="n">sdf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">&quot;stop_val&quot;</span><span class="p">)[</span><span class="s2">&quot;objective_frame&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+                <span class="n">sdf</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="s2">"stop_val"</span><span class="p">)[</span><span class="s2">"objective_frame"</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
             <span class="p">)</span>
-            <span class="n">last_mse</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sdf</span><span class="p">[</span><span class="s2">&quot;stop_val&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(),</span> <span class="s2">&quot;objective_mse&quot;</span><span class="p">]</span>
+            <span class="n">last_mse</span> <span class="o">=</span> <span class="n">sdf</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">sdf</span><span class="p">[</span><span class="s2">"stop_val"</span><span class="p">]</span><span class="o">.</span><span class="n">idxmax</span><span class="p">(),</span> <span class="s2">"objective_mse"</span><span class="p">]</span>
             <span class="n">images</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
-                <span class="s2">&quot;image&quot;</span><span class="p">:</span> <span class="n">frames</span><span class="p">,</span>  <span class="c1"># list of arrays → animated GIF</span>
-                <span class="s2">&quot;label&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">solver_name</span><span class="si">}</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">last_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
+                <span class="s2">"image"</span><span class="p">:</span> <span class="n">frames</span><span class="p">,</span>  <span class="c1"># list of arrays → animated GIF</span>
+                <span class="s2">"label"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">solver_name</span><span class="si">}</span><span class="se">\n</span><span class="s2">MSE=</span><span class="si">{</span><span class="n">last_mse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
             <span class="p">})</span>
         <span class="k">return</span> <span class="n">images</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">):</span>
         <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
-            <span class="s2">&quot;dataset_name == @dataset and objective_name == @objective&quot;</span>
-        <span class="p">)[</span><span class="s2">&quot;solver_name&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
+            <span class="s2">"dataset_name == @dataset and objective_name == @objective"</span>
+        <span class="p">)[</span><span class="s2">"solver_name"</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">())</span>
         <span class="k">return</span> <span class="p">{</span>
-            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">objective</span><span class="si">}</span><span class="s2"> — Data: </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-            <span class="s2">&quot;ncols&quot;</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># +2 for reference and noisy input</span>
+            <span class="s2">"title"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">objective</span><span class="si">}</span><span class="s2"> — Data: </span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">"</span><span class="p">,</span>
+            <span class="s2">"ncols"</span><span class="p">:</span> <span class="nb">min</span><span class="p">(</span><span class="n">n</span> <span class="o">+</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">),</span>  <span class="c1"># +2 for reference and noisy input</span>
         <span class="p">}</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-b4252cacefcd4fb4b7708820adc5d3b9-1' name='example-benchmark-b4252cacefcd4fb4b7708820adc5d3b9' type='radio'><label for='example-benchmark-b4252cacefcd4fb4b7708820adc5d3b9-1'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
+<input  id='example-benchmark-d4fb81d8cd91489fa997943524c538eb-1' name='example-benchmark-d4fb81d8cd91489fa997943524c538eb' type='radio'><label for='example-benchmark-d4fb81d8cd91489fa997943524c538eb-1'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="nt">plots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">reconstruction</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
@@ -976,20 +977,20 @@ reference and noisy images.</p>
 <p>The benchmark was already run above; <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">plot</span></code> reads the cached
 results and generates the HTML report with the <code class="docutils literal notranslate"><span class="pre">image</span></code> plot type.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="sa">f</span><span class="s2">"plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2">"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark__1cr47s9/image_denoising
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_kjmd0jqe/image_denoising
 </pre></div>
 </pre>
 
             <div class="sphx-glr-script-out highlight-none notranslate">
                 <div class="highlight"><pre>Rendering benchmark results...
    Processing
-temp_benchmark__1cr47s9/image_denoising/outputs/benchopt_run_2026-08-11_09h15m
-54.parquetTraceback (most recent call last):
+temp_benchmark_kjmd0jqe/image_denoising/outputs/benchopt_run_2026-08-18_18h17m
+00.parquetTraceback (most recent call last):
   File &quot;/home/circleci/project/benchopt/plotting/helpers.py&quot;, line 61, in
 update_plot_data_style
     raise ValueError(
@@ -1002,10 +1003,10 @@ ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
 
 done
 Writing results to
-temp_benchmark__1cr47s9/image_denoising/outputs/image_denoising_benchopt_run_2
-026-08-11_09h15m54.html
+temp_benchmark_kjmd0jqe/image_denoising/outputs/image_denoising_benchopt_run_2
+026-08-18_18h17m00.html
 Writing image_denoising index to
-temp_benchmark__1cr47s9/image_denoising/outputs/image_denoising.html
+temp_benchmark_kjmd0jqe/image_denoising/outputs/image_denoising.html
 
 
 
@@ -1030,7 +1031,7 @@ file, so the page is fully self-contained.</p>
 <p>Note that you can also generate the plot as a static image with <code class="docutils literal notranslate"><span class="pre">--no-html</span></code>
 option, generating a pdf file in the output directory of the benchmark.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span>
-    <span class="sa">f</span><span class="s2">&quot;plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> --no-html --kind reconstruction&quot;</span>
+    <span class="sa">f</span><span class="s2">"plot </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> --no-html --kind reconstruction"</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -1039,7 +1040,7 @@ option, generating a pdf file in the output directory of the benchmark.</p>
 <li><img src="../_images/sphx_glr_run_image_benchmark_005.png" srcset="../_images/sphx_glr_run_image_benchmark_005.png" alt="Image Denoising — Data: simulated[n=128,noise_std=0.3,random_state=42], Reference, Noisy input MSE=0.0906, Invalid MSE=0.0906, median_filter[size=3] MSE=0.1137, median_filter[size=5] MSE=0.2336, tv_denoise[lam=0.1] MSE=0.1584, tv_denoise[lam=0.5] MSE=1.0867" class = "sphx-glr-multi-img"/></li>
 </ul>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark__1cr47s9/image_denoising<span class="w"> </span>--no-html<span class="w"> </span>--kind<span class="w"> </span>reconstruction
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>plot<span class="w"> </span>temp_benchmark_kjmd0jqe/image_denoising<span class="w"> </span>--no-html<span class="w"> </span>--kind<span class="w"> </span>reconstruction
 </pre></div>
 </pre>
 
@@ -1057,7 +1058,7 @@ ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
 
 Save reconstruction_simulated[n=32,noise_std=0.3,random_state=42]_Image
 Denoising as:
-temp_benchmark__1cr47s9/image_denoising/outputs/reconstruction_simulated[n=32,
+temp_benchmark_kjmd0jqe/image_denoising/outputs/reconstruction_simulated[n=32,
 noise_std=0.pdf
 
 
@@ -1072,7 +1073,7 @@ ValueError: Incompatible image data: &lt;class &#x27;str&#x27;&gt;
 
 Save reconstruction_simulated[n=128,noise_std=0.3,random_state=42]_Image
 Denoising as:
-temp_benchmark__1cr47s9/image_denoising/outputs/reconstruction_simulated[n=128
+temp_benchmark_kjmd0jqe/image_denoising/outputs/reconstruction_simulated[n=128
 ,noise_std=0.pdf
 
 
@@ -1084,7 +1085,7 @@ temp_benchmark__1cr47s9/image_denoising/outputs/reconstruction_simulated[n=128
 
 </div>
 <br />
-<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 8.380 seconds)</p>
+<br /><p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (0 minutes 5.982 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-image-benchmark-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/b511b0d69a70bb7c4f71d647e013a0ca/run_image_benchmark.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_image_benchmark.ipynb</span></code></a></p>

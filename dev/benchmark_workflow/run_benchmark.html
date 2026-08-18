@@ -266,7 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
@@ -457,7 +458,7 @@ span.prompt1:before {
   content: "$ ";
 }
 </style><span class="prompt1">benchopt<span class="w"> </span>info<span class="w"> </span>.</span>
-</pre></div></div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Info regarding the benchmark &#39;my_bench&#39;</span>
+</pre></div></div><div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Info regarding the benchmark 'my_bench'</span>
 <span class="go">----------</span>
 <span class="gp"># </span>DATASETS
 <span class="go">dataset1, dataset2, dataset3, ...</span>
@@ -494,7 +495,7 @@ shell</label><div class="sd-tab-content docutils">
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-1">
 zsh</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span><span class="s2">&quot;solver1[p1=1]&quot;</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;dataset1[n_samples=100,n_features=20]&quot;</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span><span class="s2">"solver1[p1=1]"</span><span class="w"> </span>-d<span class="w"> </span><span class="s2">"dataset1[n_samples=100,n_features=20]"</span></span>
 </pre></div></div></div>
 </div>
 <div class="admonition note">
@@ -539,15 +540,15 @@ It assumes that the python script is located at the same level as the benchmark 
 
 <span class="c1"># run benchmark</span>
 <span class="n">run_benchmark</span><span class="p">(</span>
-    <span class="n">benchmark_path</span><span class="o">=</span><span class="s1">&#39;.&#39;</span><span class="p">,</span>
+    <span class="n">benchmark_path</span><span class="o">=</span><span class="s1">'.'</span><span class="p">,</span>
     <span class="n">solver_names</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;solver1&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;solver2&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;solver3[p1=1]&quot;</span><span class="p">,</span>
+        <span class="s2">"solver1"</span><span class="p">,</span>
+        <span class="s2">"solver2"</span><span class="p">,</span>
+        <span class="s2">"solver3[p1=1]"</span><span class="p">,</span>
     <span class="p">],</span>
     <span class="n">dataset_names</span><span class="o">=</span><span class="p">[</span>
-        <span class="s2">&quot;dataset3&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;dataset1[n_samples=100,n_features=20]&quot;</span>
+        <span class="s2">"dataset3"</span><span class="p">,</span>
+        <span class="s2">"dataset1[n_samples=100,n_features=20]"</span>
     <span class="p">],</span>
 <span class="p">)</span>
 </pre></div>

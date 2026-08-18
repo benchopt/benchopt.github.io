@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.results.process.merge &#8212; benchopt 1.9.2dev0 documentation</title>
+    <title>benchopt.results.result_processing.merge &#8212; benchopt 1.9.2dev0 documentation</title>
   
   
   
@@ -54,13 +54,13 @@
     <script src="../../_static/copybutton.js?v=30646c52"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/generated/benchopt.results.process.merge';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/generated/benchopt.results.result_processing.merge';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Command line interface (CLI)" href="../CLI_ref.html" />
+    <link rel="next" title="benchopt.results.result_processing.describe_results" href="benchopt.results.result_processing.describe_results.html" />
     <link rel="prev" title="benchopt.utils.profile" href="benchopt.utils.profile.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -266,7 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4 current active"><a class="current reference internal" href="#">benchopt.results.process.merge</a></li>
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="../CLI_ref.html">Command line interface (CLI)</a></li>
@@ -379,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>benchopt.results.process.merge</h1>
+    <h1>benchopt.results.result_processing.merge</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -389,7 +390,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.results.process.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.results.result_processing.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -401,11 +402,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <br/><section id="benchopt-results-process-merge">
-<h1>benchopt.results.process.merge<a class="headerlink" href="#benchopt-results-process-merge" title="Link to this heading">#</a></h1>
+  <br/><section id="benchopt-results-result-processing-merge">
+<h1>benchopt.results.result_processing.merge<a class="headerlink" href="#benchopt-results-result-processing-merge" title="Link to this heading">#</a></h1>
 <dl class="py function">
-<dt class="sig sig-object py" id="benchopt.results.process.merge">
-<span class="sig-prename descclassname"><span class="pre">benchopt.results.process.</span></span><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'last'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.results.process.merge" title="Link to this definition">#</a></dt>
+<dt class="sig sig-object py" id="benchopt.results.result_processing.merge">
+<span class="sig-prename descclassname"><span class="pre">benchopt.results.result_processing.</span></span><span class="sig-name descname"><span class="pre">merge</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">result_filenames</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">keep</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'last'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">output</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.results.result_processing.merge" title="Link to this definition">#</a></dt>
 <dd><p>Merge result files of a benchmark</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -423,7 +424,7 @@ the lines or only keep the last result per configuration.</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="sphx-glr-backreferences-benchopt-results-process-merge"></span></section>
+<span class="target" id="sphx-glr-backreferences-benchopt-results-result-processing-merge"></span></section>
 
 
                 </article>
@@ -446,11 +447,11 @@ the lines or only keep the last result per configuration.</p>
       </div>
     </a>
     <a class="right-next"
-       href="../CLI_ref.html"
+       href="benchopt.results.result_processing.describe_results.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Command line interface (CLI)</p>
+        <p class="prev-next-title">benchopt.results.result_processing.describe_results</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -472,7 +473,7 @@ the lines or only keep the last result per configuration.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.results.process.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.results.result_processing.merge"><code class="docutils literal notranslate"><span class="pre">merge()</span></code></a></li>
 </ul>
   </nav></div>
 

@@ -266,7 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
@@ -423,50 +424,50 @@ Here is an example:</p>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="c1"># Name of the Solver, used to select it in the CLI</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gd&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">'gd'</span>
 
     <span class="c1"># By default, benchopt will evaluate the result of a method after various</span>
     <span class="c1"># number of iterations. Setting the sampling_strategy controls how this is</span>
     <span class="c1"># done. Here, we use a callback function that is called at each iteration.</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;callback&#39;</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">'callback'</span>
 
     <span class="c1"># Parameters of the method, that will be tested by the benchmark.</span>
     <span class="c1"># Each parameter ``param_name`` will be accessible as ``self.param_name``.</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'lr'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
 
     <span class="c1"># The three methods below define the necessary methods for the Solver, to</span>
     <span class="c1"># get the info from the Objective, to run the method and to return a</span>
     <span class="c1"># result that can be evaluated by the Objective.</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the info from a Objective, to run the method.</span>
+<span class="w">        </span><span class="sd">"""Set the info from a Objective, to run the method.</span>
 
-<span class="sd">        This method is also typically used to adapt the solver&#39;s parameters to</span>
+<span class="sd">        This method is also typically used to adapt the solver's parameters to</span>
 <span class="sd">        the data (e.g. scaling) or to initialize the algorithm.</span>
 
 <span class="sd">        The kwargs are the keys of the dictionary returned by</span>
 <span class="sd">        ``Objective.get_objective``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the actual method to benchmark.</span>
+<span class="w">        </span><span class="sd">"""Run the actual method to benchmark.</span>
 
-<span class="sd">        Here, as we use a &quot;callback&quot;, we need to call it at each iteration to</span>
+<span class="sd">        Here, as we use a "callback", we need to call it at each iteration to</span>
 <span class="sd">        evaluate the result as the procedure progresses.</span>
 
 <span class="sd">        The callback implements a stopping mechanism, based on the number of</span>
 <span class="sd">        iterations, the time and the evoluation of the performances.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the output of the method to be evaluated in the Objective.</span>
+<span class="w">        </span><span class="sd">"""Format the output of the method to be evaluated in the Objective.</span>
 
 <span class="sd">        Returns a dict which is passed to ``Objective.evaluate_result`` method.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>If your Python solver requires some packages, benchopt allows you to list
@@ -489,23 +490,23 @@ extensions should differ between the two files. Here is the Python file:</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.r_lang</span><span class="w"> </span><span class="kn">import</span> <span class="n">import_func_from_r_file</span><span class="p">,</span> <span class="n">converter_ctx</span>
 
 <span class="c1"># Import R function defined in r_pgd.R so they can be retrieved as python</span>
-<span class="c1"># functions using `func = robjects.r[&#39;FUNC_NAME&#39;]`</span>
-<span class="n">R_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.R&#39;</span><span class="p">))</span>
+<span class="c1"># functions using `func = robjects.r['FUNC_NAME']`</span>
+<span class="n">R_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">'.R'</span><span class="p">))</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;R-PGD&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"R-PGD"</span>
 
-    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>
-    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;r-base&#39;</span><span class="p">,</span> <span class="s1">&#39;rpy2&#39;</span><span class="p">]</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;iteration&#39;</span>
+    <span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">'conda'</span>
+    <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'r-base'</span><span class="p">,</span> <span class="s1">'rpy2'</span><span class="p">]</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">'iteration'</span>
 
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'lr'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
         <span class="n">robjects</span> <span class="o">=</span> <span class="n">import_func_from_r_file</span><span class="p">(</span><span class="n">R_FILE</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">r_gd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">&#39;gradient_descent&#39;</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">r_gd</span> <span class="o">=</span> <span class="n">robjects</span><span class="o">.</span><span class="n">r</span><span class="p">[</span><span class="s1">'gradient_descent'</span><span class="p">]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">n_iter</span><span class="p">):</span>
         <span class="k">with</span> <span class="n">converter_ctx</span><span class="p">():</span>
@@ -515,15 +516,15 @@ extensions should differ between the two files. Here is the Python file:</p>
             <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">asarray</span><span class="p">(</span><span class="n">coefs</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
 </pre></div>
 </div>
 <p>It uses the R code in:</p>
-<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">##&#39; Functions used in GD algorithm</span>
-<span class="c1">##&#39;</span>
-<span class="c1">##&#39; @title Functions used in GD algorithm</span>
-<span class="c1">##&#39; @author Thomas Moreau</span>
-<span class="c1">##&#39; @export</span>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1">##' Functions used in GD algorithm</span>
+<span class="c1">##'</span>
+<span class="c1">##' @title Functions used in GD algorithm</span>
+<span class="c1">##' @author Thomas Moreau</span>
+<span class="c1">##' @export</span>
 
 
 <span class="c1"># Main algorithm</span>
@@ -557,16 +558,16 @@ Here is the Python file:</p>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_jl_interpreter</span>
 
 
-<span class="n">JULIA_SOLVER_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.jl&#39;</span><span class="p">))</span>
+<span class="n">JULIA_SOLVER_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">'.jl'</span><span class="p">))</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">JuliaSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Julia-GD&quot;</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;iteration&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"Julia-GD"</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">"iteration"</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"lr"</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
     <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;https://repo.prefix.dev/julia-forge::julia&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;pip::julia&quot;</span><span class="p">,</span>
+        <span class="s2">"https://repo.prefix.dev/julia-forge::julia"</span><span class="p">,</span>
+        <span class="s2">"pip::julia"</span><span class="p">,</span>
     <span class="p">]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
@@ -575,7 +576,7 @@ Here is the Python file:</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">julia_gd</span> <span class="o">=</span> <span class="n">jl</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">JULIA_SOLVER_FILE</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">warm_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Make sure we don&#39;t account for the Julia loading time in the</span>
+        <span class="c1"># Make sure we don't account for the Julia loading time in the</span>
         <span class="c1"># first iteration of the benchmark.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">julia_gd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 

@@ -266,7 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="../CLI_ref.html">Command line interface (CLI)</a></li>
@@ -455,8 +456,8 @@ cache key. Use <code class="docutils literal notranslate"><span class="pre">prep
 once per dataset class regardless of parameterization, or list
 specific names to ignore (e.g. a random seed):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;n_samples&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s1">&#39;seed&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
-    <span class="n">prepare_cache_ignore</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;seed&#39;</span><span class="p">,)</span>  <span class="c1"># 2 calls instead of 6</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'n_samples'</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span> <span class="s1">'seed'</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">]}</span>
+    <span class="n">prepare_cache_ignore</span> <span class="o">=</span> <span class="p">(</span><span class="s1">'seed'</span><span class="p">,)</span>  <span class="c1"># 2 calls instead of 6</span>
 </pre></div>
 </div>
 </li>

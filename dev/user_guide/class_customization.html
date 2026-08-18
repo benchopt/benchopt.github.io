@@ -266,7 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
@@ -425,10 +426,10 @@ and <code class="docutils literal notranslate"><span class="pre">Solver</span></
 <p>The expected format is a dictionary whose keys are parameter names and whose
 values are lists of candidate values:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;simulated&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"simulated"</span>
     <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;n_samples&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
-        <span class="s2">&quot;n_features&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+        <span class="s2">"n_samples"</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">1000</span><span class="p">],</span>
+        <span class="s2">"n_features"</span><span class="p">:</span> <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -444,10 +445,10 @@ cartesian product, they can be grouped in a single key with comma-separated
 parameter names. In that case, the corresponding values must be tuples with
 the same arity:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;simulated&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"simulated"</span>
     <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s2">&quot;n_samples, n_features&quot;</span><span class="p">:</span> <span class="p">[(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">50</span><span class="p">)],</span>
-        <span class="s2">&quot;reg&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
+        <span class="s2">"n_samples, n_features"</span><span class="p">:</span> <span class="p">[(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">20</span><span class="p">),</span> <span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">50</span><span class="p">)],</span>
+        <span class="s2">"reg"</span><span class="p">:</span> <span class="p">[</span><span class="mf">0.1</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -491,19 +492,19 @@ sub-datasets through a single parameter.</p>
 parameter, or <code class="docutils literal notranslate"><span class="pre">None</span></code> (the default) when the parameter has no enumerable
 choice set:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;GiftEval&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;dataset_name&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;m4_weekly&quot;</span><span class="p">]}</span>  <span class="c1"># small default grid</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"GiftEval"</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"dataset_name"</span><span class="p">:</span> <span class="p">[</span><span class="s2">"m4_weekly"</span><span class="p">]}</span>  <span class="c1"># small default grid</span>
 
     <span class="nd">@classmethod</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_all_parameter_values</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">name</span><span class="p">):</span>
-        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;dataset_name&quot;</span><span class="p">:</span>
-            <span class="k">return</span> <span class="p">[</span><span class="s2">&quot;m4_weekly&quot;</span><span class="p">,</span> <span class="s2">&quot;m4_daily&quot;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>  <span class="c1"># all valid values</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s2">"dataset_name"</span><span class="p">:</span>
+            <span class="k">return</span> <span class="p">[</span><span class="s2">"m4_weekly"</span><span class="p">,</span> <span class="s2">"m4_daily"</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>  <span class="c1"># all valid values</span>
 </pre></div>
 </div>
 <p>Once declared, the choices enable two things:</p>
 <ul>
 <li><p><strong>Sweeping all values</strong> with the <code class="docutils literal notranslate"><span class="pre">=all</span></code> shorthand on the command line:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-d<span class="w"> </span><span class="s2">&quot;GiftEval[dataset_name=all]&quot;</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-d<span class="w"> </span><span class="s2">"GiftEval[dataset_name=all]"</span></span>
 </pre></div></div><p>This expands <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code> to every value returned by
 <code class="docutils literal notranslate"><span class="pre">get_all_parameter_values</span></code>. Explicit values can be mixed in, e.g.
 <code class="docutils literal notranslate"><span class="pre">dataset_name=[m4_weekly,</span> <span class="pre">all]</span></code>; they are merged and de-duplicated.
@@ -538,14 +539,14 @@ Benchopt will execute this script in the shell and pass the Conda environment di
 <p>By properly setting these attributes, you ensure that all dependencies are installed
 correctly. This will help users to run your benchmarks without any issues.</p>
 <p>Examples:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pkg&#39;</span><span class="p">]</span>  <span class="c1"># conda package `pkg`</span>
-<span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;chan::pkg&#39;</span><span class="p">]</span>  <span class="c1"># package `pkg` in conda channel `chan`</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pkg'</span><span class="p">]</span>  <span class="c1"># conda package `pkg`</span>
+<span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'chan::pkg'</span><span class="p">]</span>  <span class="c1"># package `pkg` in conda channel `chan`</span>
 </pre></div>
 </div>
 <p>One might also need to install pip packages. This can be done by using the
 channel <cite>pip</cite> and the <cite>conda</cite> installer. The syntax is the following:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">&#39;conda&#39;</span>  <span class="c1"># optional</span>
-<span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;pip::pkg&#39;</span><span class="p">]</span>  <span class="c1"># pip package `pkg`</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">install_cmd</span> <span class="o">=</span> <span class="s1">'conda'</span>  <span class="c1"># optional</span>
+<span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pip::pkg'</span><span class="p">]</span>  <span class="c1"># pip package `pkg`</span>
 </pre></div>
 </div>
 </section>
@@ -556,9 +557,9 @@ If a benchmark requires a specific Python version, it can be declared via
 the <code class="docutils literal notranslate"><span class="pre">python_version</span></code> class attribute on the <code class="docutils literal notranslate"><span class="pre">Objective</span></code>.
 Both an exact minor version and a PEP-440 specifier are accepted:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my-benchmark&quot;</span>
-    <span class="n">python_version</span> <span class="o">=</span> <span class="s2">&quot;3.11&quot;</span>    <span class="c1"># exact: conda env will use Python 3.11.x</span>
-    <span class="c1"># python_version = &quot;&gt;=3.11&quot;  # specifier: any Python &gt;= 3.11 is accepted</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"my-benchmark"</span>
+    <span class="n">python_version</span> <span class="o">=</span> <span class="s2">"3.11"</span>    <span class="c1"># exact: conda env will use Python 3.11.x</span>
+    <span class="c1"># python_version = "&gt;=3.11"  # specifier: any Python &gt;= 3.11 is accepted</span>
     <span class="o">...</span>
 </pre></div>
 </div>

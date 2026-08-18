@@ -262,7 +262,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
@@ -402,20 +403,20 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_dataset_class</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">dataset_class</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that all dataset_class respects the public API&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Check that all dataset_class respects the public API"""</span>
 
     <span class="c1"># Check that the dataset_class exposes a name</span>
-    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="s2">&quot;All dataset should expose a name&quot;</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">),</span> <span class="s2">"All dataset should expose a name"</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="p">(</span>
-        <span class="s2">&quot;The dataset&#39;s name should be a string&quot;</span><span class="p">)</span>
+        <span class="s2">"The dataset's name should be a string"</span><span class="p">)</span>
 
     <span class="c1"># Ensure that the dataset exposes a `get_data` function</span>
     <span class="c1"># that is callable</span>
-    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="s1">&#39;get_data&#39;</span><span class="p">),</span> <span class="p">(</span>
-        <span class="s2">&quot;All dataset should implement get_data&quot;</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="s1">'get_data'</span><span class="p">),</span> <span class="p">(</span>
+        <span class="s2">"All dataset should implement get_data"</span>
     <span class="p">)</span>
     <span class="k">assert</span> <span class="nb">callable</span><span class="p">(</span><span class="n">dataset_class</span><span class="o">.</span><span class="n">get_data</span><span class="p">),</span> <span class="p">(</span>
-        <span class="s2">&quot;dataset.get_data should be a callable&quot;</span>
+        <span class="s2">"dataset.get_data should be a callable"</span>
     <span class="p">)</span>
 
 
@@ -434,30 +435,30 @@
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_dataset_get_data</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">dataset_class</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that all installed dataset_class.get_data return the right result</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Check that all installed dataset_class.get_data return the right result</span>
+<span class="sd">    """</span>
 
     <span class="c1"># skip the test if the dataset is not installed</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">is_installed</span><span class="p">():</span>
-        <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">&quot;Dataset is not installed&quot;</span><span class="p">)</span>
+        <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">"Dataset is not installed"</span><span class="p">)</span>
 
     <span class="c1"># instanciate dataset taking into account the test_config</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">get_configs</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">])</span>
 
     <span class="c1"># ensure classes calling `get_seed` work properly. Use placeholder</span>
     <span class="c1"># objective/solver names to mimic known dimension at runtime.</span>
     <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-        <span class="s2">&quot;dummy&quot;</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;dummy&quot;</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+        <span class="s2">"dummy"</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="s2">"dummy"</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
     <span class="p">)</span>
 
     <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">_get_data</span><span class="p">()</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)),</span> <span class="p">(</span>
-        <span class="s2">&quot;Output of get_data should be a 2-tuple or a dict.&quot;</span>
+        <span class="s2">"Output of get_data should be a 2-tuple or a dict."</span>
     <span class="p">)</span>
 
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="p">(</span>
-        <span class="sa">f</span><span class="s2">&quot;The returned data from get_data should be a dict. Got </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="sa">f</span><span class="s2">"The returned data from get_data should be a dict. Got </span><span class="si">{</span><span class="n">data</span><span class="si">}</span><span class="s2">."</span>
     <span class="p">)</span>
 
 
@@ -469,13 +470,13 @@
     <span class="n">objective_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_benchmark_objective</span><span class="p">()</span>
     <span class="n">dataset_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_dataset</span><span class="p">(</span><span class="n">name</span><span class="o">=</span><span class="n">test_dataset_name</span><span class="p">)</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">get_configs</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="n">objective_class</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
-    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">])</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'objective'</span><span class="p">])</span>
 
     <span class="c1"># ensure classes calling `get_seed` work properly. Use a placeholder</span>
     <span class="c1"># solver name so all methods can use any seed dimension.</span>
     <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-        <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="s2">&quot;dummy&quot;</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+        <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="s2">"dummy"</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
     <span class="p">)</span>
 
     <span class="c1"># get one value for the objective, with the test_dataset</span>
@@ -483,73 +484,73 @@
     <span class="n">result</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">_get_one_result</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span>
-            <span class="s2">&quot;Objective needs to implement get_one_result to be tested.&quot;</span>
+            <span class="s2">"Objective needs to implement get_one_result to be tested."</span>
         <span class="p">)</span>
     <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
     <span class="c1"># check that the output has proper type and is not empty</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">objective_output</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="p">(</span>
-        <span class="s2">&quot;The output of the objective function should be a list of dicts by &quot;</span>
-        <span class="s2">&quot;design. Please report this issue on benchopt&#39;s GitHub.&quot;</span>
+        <span class="s2">"The output of the objective function should be a list of dicts by "</span>
+        <span class="s2">"design. Please report this issue on benchopt's GitHub."</span>
     <span class="p">)</span>
     <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective_output</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">objective_output</span><span class="p">,</span> <span class="nb">dict</span><span class="p">),</span> <span class="p">(</span>
-        <span class="s2">&quot;The output of the objective function should be a dict by design. &quot;</span>
-        <span class="s2">&quot;Please report this issue on benchopt&#39;s GitHub.&quot;</span>
+        <span class="s2">"The output of the objective function should be a dict by design. "</span>
+        <span class="s2">"Please report this issue on benchopt's GitHub."</span>
     <span class="p">)</span>
-    <span class="k">assert</span> <span class="s2">&quot;objective_name&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">objective_output</span><span class="p">,</span> <span class="p">(</span>
-        <span class="s2">&quot;`name` is a reserved key in the objective output dict. &quot;</span>
-        <span class="s2">&quot;Please remove it from the output of the objective function.&quot;</span>
+    <span class="k">assert</span> <span class="s2">"objective_name"</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">objective_output</span><span class="p">,</span> <span class="p">(</span>
+        <span class="s2">"`name` is a reserved key in the objective output dict. "</span>
+        <span class="s2">"Please remove it from the output of the objective function."</span>
     <span class="p">)</span>
     <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">objective_output</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">,</span> <span class="p">(</span>
-        <span class="s2">&quot;The output of the objective function should not be an empty dict.&quot;</span>
+        <span class="s2">"The output of the objective function should not be an empty dict."</span>
     <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_benchmark_config_validity</span><span class="p">(</span><span class="n">benchmark</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check benchmark config.yml only uses valid benchmark options.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Check benchmark config.yml only uses valid benchmark options."""</span>
     <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span><span class="n">catch_warnings</span><span class="p">(</span><span class="n">record</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="k">as</span> <span class="n">caught</span><span class="p">:</span>
-        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">&quot;always&quot;</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
-        <span class="n">benchmark</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">&quot;plots&quot;</span><span class="p">)</span>
+        <span class="n">warnings</span><span class="o">.</span><span class="n">simplefilter</span><span class="p">(</span><span class="s2">"always"</span><span class="p">,</span> <span class="ne">UserWarning</span><span class="p">)</span>
+        <span class="n">benchmark</span><span class="o">.</span><span class="n">get_setting</span><span class="p">(</span><span class="s2">"plots"</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="n">caught</span><span class="p">:</span>
-        <span class="n">details</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">caught</span><span class="p">)</span>
+        <span class="n">details</span> <span class="o">=</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">w</span><span class="o">.</span><span class="n">message</span><span class="si">}</span><span class="s2">"</span> <span class="k">for</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">caught</span><span class="p">)</span>
         <span class="n">config_file</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_config_file</span><span class="p">()</span>
         <span class="n">pytest</span><span class="o">.</span><span class="n">fail</span><span class="p">(</span>
-            <span class="s2">&quot;Invalid benchmark config.yml detected while running &quot;</span>
-            <span class="s2">&quot;benchopt test.</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;Benchmark config file: </span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="s2">&quot;Please update config.yml to only use valid benchmark options.</span><span class="se">\n</span><span class="s2">&quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;Reported issue(s):</span><span class="se">\n\n</span><span class="si">{</span><span class="n">details</span><span class="si">}</span><span class="s2">&quot;</span>
+            <span class="s2">"Invalid benchmark config.yml detected while running "</span>
+            <span class="s2">"benchopt test.</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="sa">f</span><span class="s2">"Benchmark config file: </span><span class="si">{</span><span class="n">config_file</span><span class="si">}</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="s2">"Please update config.yml to only use valid benchmark options.</span><span class="se">\n</span><span class="s2">"</span>
+            <span class="sa">f</span><span class="s2">"Reported issue(s):</span><span class="se">\n\n</span><span class="si">{</span><span class="n">details</span><span class="si">}</span><span class="s2">"</span>
         <span class="p">)</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">test_solver_class</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;Check that all installed solver_class respects the public API&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">"""Check that all installed solver_class respects the public API"""</span>
 
     <span class="c1"># Check that the solver_class exposes a name</span>
-    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">&#39;name&#39;</span><span class="p">),</span> <span class="s2">&quot;All solver should expose a name&quot;</span>
+    <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">),</span> <span class="s2">"All solver should expose a name"</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="p">(</span>
-        <span class="s2">&quot;The solver&#39;s name should be a string&quot;</span>
+        <span class="s2">"The solver's name should be a string"</span>
     <span class="p">)</span>
 
     <span class="c1"># Check that the solver_class uses a valid sampling_strategy</span>
     <span class="k">if</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">sampling_strategy</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;sampling_strategy should be in </span><span class="si">{</span><span class="n">SAMPLING_STRATEGIES</span><span class="si">}</span><span class="s2">.&quot;</span>
+        <span class="n">msg</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"sampling_strategy should be in </span><span class="si">{</span><span class="n">SAMPLING_STRATEGIES</span><span class="si">}</span><span class="s2">."</span>
         <span class="k">assert</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">sampling_strategy</span> <span class="ow">in</span> <span class="n">SAMPLING_STRATEGIES</span><span class="p">,</span> <span class="n">msg</span>
 
     <span class="c1"># Check that the solver_class uses a valid stopping criterion</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">&#39;stopping_criterion&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">'stopping_criterion'</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">solver_class</span><span class="o">.</span><span class="n">stopping_criterion</span><span class="p">,</span> <span class="n">StoppingCriterion</span><span class="p">),</span> <span class="p">(</span>  <span class="c1"># noqa E501</span>
-            <span class="s2">&quot;stopping_criterion should be an instance of StoppingCriterion. &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;Got &#39;</span><span class="si">{</span><span class="n">solver_class</span><span class="o">.</span><span class="n">stopping_criterion</span><span class="si">}</span><span class="s2">&#39;&quot;</span>
+            <span class="s2">"stopping_criterion should be an instance of StoppingCriterion. "</span>
+            <span class="sa">f</span><span class="s2">"Got '</span><span class="si">{</span><span class="n">solver_class</span><span class="o">.</span><span class="n">stopping_criterion</span><span class="si">}</span><span class="s2">'"</span>
         <span class="p">)</span>
 
     <span class="c1"># Check that the solver_class uses a valid callable to override get_next.</span>
-    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">&#39;get_next&#39;</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">'get_next'</span><span class="p">):</span>
         <span class="k">assert</span> <span class="nb">callable</span><span class="p">(</span><span class="n">solver_class</span><span class="o">.</span><span class="n">get_next</span><span class="p">),</span> <span class="p">(</span>
-            <span class="s2">&quot;`get_next` for class Solver in &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">solver_class</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">&#39; should be a callable.&quot;</span>
+            <span class="s2">"`get_next` for class Solver in "</span>
+            <span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">solver_class</span><span class="o">.</span><span class="vm">__module__</span><span class="si">}</span><span class="s2">' should be a callable."</span>
         <span class="p">)</span>
         <span class="c1"># Make sure the signature is def get_next(self, int). Create instance</span>
         <span class="c1"># of `solver_class` then call `get_next` since it is a class method</span>
@@ -559,11 +560,11 @@
 <span class="k">def</span><span class="w"> </span><span class="nf">test_solver_install_api</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">):</span>
 
     <span class="c1"># Check that the solver_class exposes a known install cmd</span>
-    <span class="k">assert</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">install_cmd</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s1">&#39;conda&#39;</span><span class="p">,</span> <span class="s1">&#39;shell&#39;</span><span class="p">]</span>
+    <span class="k">assert</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">install_cmd</span> <span class="ow">in</span> <span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="s1">'conda'</span><span class="p">,</span> <span class="s1">'shell'</span><span class="p">]</span>
 
     <span class="c1"># Check that the solver_class exposes a known install cmd</span>
-    <span class="k">if</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">install_cmd</span> <span class="o">==</span> <span class="s1">&#39;shell&#39;</span><span class="p">:</span>
-        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">&#39;install_script&#39;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">install_cmd</span> <span class="o">==</span> <span class="s1">'shell'</span><span class="p">:</span>
+        <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">'install_script'</span><span class="p">)</span>
 
 
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">mark</span><span class="o">.</span><span class="n">requires_install</span>
@@ -588,7 +589,7 @@
     <span class="n">objective_class</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_benchmark_objective</span><span class="p">()</span>
     <span class="n">config</span> <span class="o">=</span> <span class="n">get_configs</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="n">objective_class</span><span class="p">,</span> <span class="n">solver_class</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
+    <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'objective'</span><span class="p">])</span>
 
     <span class="c1"># Make sure to inherit the objective if the stopping criterion</span>
     <span class="c1"># is set globally for this benchmark</span>
@@ -597,20 +598,20 @@
 
     <span class="c1"># check that stopping_criterion has the proper type</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stopping_criterion</span><span class="p">,</span> <span class="n">StoppingCriterion</span><span class="p">),</span> <span class="p">(</span>
-        <span class="s2">&quot;The solver&#39;s stopping_criterion should be an instance of &quot;</span>
-        <span class="s2">&quot;StoppingCriterion.&quot;</span>
+        <span class="s2">"The solver's stopping_criterion should be an instance of "</span>
+        <span class="s2">"StoppingCriterion."</span>
     <span class="p">)</span>
 
     <span class="c1"># Check that if a key_to_monitor is specified, the objective returns it</span>
     <span class="k">if</span> <span class="n">stopping_criterion</span><span class="o">.</span><span class="n">key_to_monitor</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
         <span class="n">key</span> <span class="o">=</span> <span class="n">stopping_criterion</span><span class="o">.</span><span class="n">key_to_monitor_</span>
-        <span class="k">assert</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;objective_&#39;</span><span class="p">),</span> <span class="p">(</span>
-            <span class="s2">&quot;The solver&#39;s stopping_criterion key_to_monitor should start with &quot;</span>
-            <span class="s2">&quot;&#39;objective_&#39;.&quot;</span>
+        <span class="k">assert</span> <span class="n">key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'objective_'</span><span class="p">),</span> <span class="p">(</span>
+            <span class="s2">"The solver's stopping_criterion key_to_monitor should start with "</span>
+            <span class="s2">"'objective_'."</span>
         <span class="p">)</span>
 
         <span class="c1"># ensure classes calling `get_seed` work properly.</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">])</span>
         <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
             <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
             <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
@@ -624,14 +625,14 @@
 
         <span class="n">requested_key</span> <span class="o">=</span> <span class="n">stopping_criterion</span><span class="o">.</span><span class="n">key_to_monitor</span>
         <span class="n">available_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">objective_output</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">requested_key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;objective_&#39;</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">requested_key</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">'objective_'</span><span class="p">):</span>
             <span class="n">available_keys</span> <span class="o">=</span> <span class="p">[</span>
-                <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">&#39;objective_&#39;</span><span class="p">,</span> <span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">available_keys</span>
+                <span class="n">k</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s1">'objective_'</span><span class="p">,</span> <span class="s1">''</span><span class="p">)</span> <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="n">available_keys</span>
             <span class="p">]</span>
         <span class="k">assert</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">objective_output</span><span class="p">,</span> <span class="p">(</span>
-            <span class="sa">f</span><span class="s2">&quot;The solver&#39;s stopping_criterion monitors </span><span class="si">{</span><span class="n">requested_key</span><span class="si">}</span><span class="s2">, but &quot;</span>
-            <span class="s2">&quot;the objective does not return this key. Available keys are &quot;</span>
-            <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">available_keys</span><span class="si">}</span><span class="s2">.&quot;</span>
+            <span class="sa">f</span><span class="s2">"The solver's stopping_criterion monitors </span><span class="si">{</span><span class="n">requested_key</span><span class="si">}</span><span class="s2">, but "</span>
+            <span class="s2">"the objective does not return this key. Available keys are "</span>
+            <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">available_keys</span><span class="si">}</span><span class="s2">."</span>
         <span class="p">)</span>
 
 
@@ -648,9 +649,9 @@
 
     <span class="n">reasons</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">config</span> <span class="ow">in</span> <span class="n">configs</span><span class="p">:</span>
-        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">])</span>
-        <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;objective&#39;</span><span class="p">])</span>
-        <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">&#39;solver&#39;</span><span class="p">])</span>
+        <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">])</span>
+        <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'objective'</span><span class="p">])</span>
+        <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'solver'</span><span class="p">])</span>
         <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
             <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
         <span class="p">)</span>
@@ -664,15 +665,15 @@
     <span class="n">reasons</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">reasons</span><span class="p">))</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reasons</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
         <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="n">reasons</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-    <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">&quot;No compatible config: &quot;</span> <span class="o">+</span> <span class="s2">&quot;; &quot;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reasons</span><span class="p">))</span>
+    <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">"No compatible config: "</span> <span class="o">+</span> <span class="s2">"; "</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">reasons</span><span class="p">))</span>
 
 
 <span class="k">def</span><span class="w"> </span><span class="nf">_test_solver_one_objective</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">objective</span><span class="p">):</span>
     <span class="c1"># Test a solver runs with a given objective and give proper result.</span>
 
-    <span class="n">is_convex</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="s2">&quot;is_convex&quot;</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
+    <span class="n">is_convex</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="s2">"is_convex"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">_solver_strategy</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;iteration&#39;</span><span class="p">,</span> <span class="s1">&#39;callback&#39;</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">_solver_strategy</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'iteration'</span><span class="p">,</span> <span class="s1">'callback'</span><span class="p">]:</span>
         <span class="n">stop_val</span> <span class="o">=</span> <span class="mi">5000</span> <span class="k">if</span> <span class="n">is_convex</span> <span class="k">else</span> <span class="mi">2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">stop_val</span> <span class="o">=</span> <span class="mf">1e-10</span> <span class="k">if</span> <span class="n">is_convex</span> <span class="k">else</span> <span class="mf">1e-2</span>
@@ -688,10 +689,10 @@
             <span class="ow">and</span> <span class="nb">isinstance</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">values</span><span class="p">())[</span><span class="mi">0</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">)):</span>
         <span class="n">key</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">result</span><span class="o">.</span><span class="n">keys</span><span class="p">())[</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">arr</span> <span class="o">=</span> <span class="n">result</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
-        <span class="n">val_star</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="s1">&#39;objective_value&#39;</span><span class="p">]</span>
+        <span class="n">val_star</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="s1">'objective_value'</span><span class="p">]</span>
         <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">100</span><span class="p">):</span>
             <span class="n">eps</span> <span class="o">=</span> <span class="mf">1e-5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="o">*</span><span class="n">arr</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-            <span class="n">val_eps</span> <span class="o">=</span> <span class="n">objective</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">arr</span> <span class="o">+</span> <span class="n">eps</span><span class="p">})[</span><span class="s1">&#39;objective_value&#39;</span><span class="p">]</span>
+            <span class="n">val_eps</span> <span class="o">=</span> <span class="n">objective</span><span class="p">({</span><span class="n">key</span><span class="p">:</span> <span class="n">arr</span> <span class="o">+</span> <span class="n">eps</span><span class="p">})[</span><span class="s1">'objective_value'</span><span class="p">]</span>
 
             <span class="n">diff</span> <span class="o">=</span> <span class="n">val_eps</span> <span class="o">-</span> <span class="n">val_star</span>
             <span class="k">assert</span> <span class="n">diff</span> <span class="o">&gt;=</span> <span class="mi">0</span>
@@ -705,26 +706,26 @@
 <span class="nd">@pytest</span><span class="o">.</span><span class="n">fixture</span><span class="p">(</span><span class="n">autouse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">check_test</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
 
-    <span class="k">if</span> <span class="s1">&#39;benchmark&#39;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">fixturenames</span><span class="p">:</span>
+    <span class="k">if</span> <span class="s1">'benchmark'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">request</span><span class="o">.</span><span class="n">fixturenames</span><span class="p">:</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-            <span class="s1">&#39;`check_test` fixture should only be used in tests parametrized &#39;</span>
-            <span class="s1">&#39;with `benchmark` fixture&#39;</span>
+            <span class="s1">'`check_test` fixture should only be used in tests parametrized '</span>
+            <span class="s1">'with `benchmark` fixture'</span>
         <span class="p">)</span>
 
-    <span class="n">benchmark</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">getfixturevalue</span><span class="p">(</span><span class="s1">&#39;benchmark&#39;</span><span class="p">)</span>
+    <span class="n">benchmark</span> <span class="o">=</span> <span class="n">request</span><span class="o">.</span><span class="n">getfixturevalue</span><span class="p">(</span><span class="s1">'benchmark'</span><span class="p">)</span>
     <span class="n">test_config_file</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_config_file</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">test_config_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
     <span class="n">test_config_module</span> <span class="o">=</span> <span class="n">_get_module_from_file</span><span class="p">(</span><span class="n">test_config_file</span><span class="p">)</span>
-    <span class="n">check_func_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;check_</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="n">check_func_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"check_</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">check_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">test_config_module</span><span class="p">,</span> <span class="n">check_func_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">check_func</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;test_solver_run&quot;</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">check_func</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"test_solver_run"</span><span class="p">:</span>
         <span class="c1"># Backward compatibility for benchmarks before benchopt 1.7.1</span>
-        <span class="n">check_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">test_config_module</span><span class="p">,</span> <span class="s2">&quot;check_test_solver&quot;</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+        <span class="n">check_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">test_config_module</span><span class="p">,</span> <span class="s2">"check_test_solver"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
         <span class="k">if</span> <span class="n">check_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
             <span class="n">warn_msg</span> <span class="o">=</span> <span class="p">(</span>
-                <span class="s2">&quot;The function `check_test_solver` is deprecated since &quot;</span>
-                <span class="s2">&quot;benchopt 1.7.1. Please rename it to `check_test_solver_run`.&quot;</span>
+                <span class="s2">"The function `check_test_solver` is deprecated since "</span>
+                <span class="s2">"benchopt 1.7.1. Please rename it to `check_test_solver_run`."</span>
             <span class="p">)</span>
             <span class="n">pytest</span><span class="o">.</span><span class="n">warns</span><span class="p">(</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">match</span><span class="o">=</span><span class="n">warn_msg</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">check_func</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
@@ -732,7 +733,7 @@
         <span class="n">check_func</span><span class="p">(</span>
             <span class="o">**</span><span class="p">{</span>
                 <span class="n">f</span><span class="p">:</span> <span class="n">request</span><span class="o">.</span><span class="n">getfixturevalue</span><span class="p">(</span>
-                    <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">_class&quot;</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">&#39;dataset&#39;</span><span class="p">,</span> <span class="s1">&#39;solver&#39;</span><span class="p">,</span> <span class="s1">&#39;objective&#39;</span><span class="p">]</span>
+                    <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">_class"</span> <span class="k">if</span> <span class="n">f</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'dataset'</span><span class="p">,</span> <span class="s1">'solver'</span><span class="p">,</span> <span class="s1">'objective'</span><span class="p">]</span>
                     <span class="k">else</span> <span class="n">f</span>
                 <span class="p">)</span> <span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">requires</span>
             <span class="p">}</span>

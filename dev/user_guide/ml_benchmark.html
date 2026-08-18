@@ -262,7 +262,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="CLI_ref.html">Command line interface (CLI)</a></li>
@@ -416,11 +417,11 @@ must be defined by the user. A typical workflow is the following:</p>
         <span class="c1"># If the cross-validation requires some metadata, it can be</span>
         <span class="c1"># provided in the `cv_metadata` attribute. This will be passed</span>
         <span class="c1"># to `self.cv.split` and `self.cv.get_n_splits`.</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">cv_metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;groups&quot;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]}</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cv_metadata</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"groups"</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">]}</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="c1"># Call `self.get_split` with the arrays to split.</span>
-        <span class="c1"># This method&#39;s default behavior is similar to sklearn&#39;s</span>
+        <span class="c1"># This method's default behavior is similar to sklearn's</span>
         <span class="c1"># `train_test_split`, splitting the input arrays using</span>
         <span class="c1"># the indexes returned by `self.cv.split`.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_test</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_train</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">y_test</span> <span class="o">=</span> \

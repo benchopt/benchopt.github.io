@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>benchopt.BaseObjective &#8212; benchopt 1.9.2dev0 documentation</title>
+    <title>benchopt.results.result_processing.describe_results &#8212; benchopt 1.9.2dev0 documentation</title>
   
   
   
@@ -54,14 +54,14 @@
     <script src="../../_static/copybutton.js?v=30646c52"></script>
     <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
     <script src="../../_static/design-tabs.js?v=f930bc37"></script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/generated/benchopt.BaseObjective';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/generated/benchopt.results.result_processing.describe_results';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="../../_static/benchopt.js?v=2bf30a8d"></script>
     <link rel="icon" href="../../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="benchopt.BaseDataset" href="benchopt.BaseDataset.html" />
-    <link rel="prev" title="API references" href="../API_ref.html" />
+    <link rel="next" title="Command line interface (CLI)" href="../CLI_ref.html" />
+    <link rel="prev" title="benchopt.results.result_processing.merge" href="benchopt.results.result_processing.merge.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   <meta name="docsearch:version" content="1.9.2dev0" />
@@ -258,7 +258,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../agent_skills.html">AI agent skills</a></li>
 <li class="toctree-l2 current active has-children"><a class="reference internal" href="../reference.html">Reference</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
 <li class="toctree-l3 current active has-children"><a class="reference internal" href="../API_ref.html">API references</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
-<li class="toctree-l4 current active"><a class="current reference internal" href="#">benchopt.BaseObjective</a></li>
+<li class="toctree-l4"><a class="reference internal" href="benchopt.BaseObjective.html">benchopt.BaseObjective</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.BaseDataset.html">benchopt.BaseDataset</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.BaseSolver.html">benchopt.BaseSolver</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.run_benchmark.html">benchopt.run_benchmark</a></li>
@@ -267,7 +267,7 @@
 <li class="toctree-l4"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
+<li class="toctree-l4 current active"><a class="current reference internal" href="#">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="../CLI_ref.html">Command line interface (CLI)</a></li>
@@ -380,7 +380,7 @@
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>benchopt.BaseObjective</h1>
+    <h1>benchopt.results.result_processing.describe_results</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -390,16 +390,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective"><code class="docutils literal notranslate"><span class="pre">BaseObjective</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.evaluate_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.evaluate_result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.save_final_results"><code class="docutils literal notranslate"><span class="pre">BaseObjective.save_final_results()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.set_data"><code class="docutils literal notranslate"><span class="pre">BaseObjective.set_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.skip"><code class="docutils literal notranslate"><span class="pre">BaseObjective.skip()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.results.result_processing.describe_results"><code class="docutils literal notranslate"><span class="pre">describe_results()</span></code></a></li>
 </ul>
             </nav>
         </div>
@@ -411,222 +402,34 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section id="benchopt-baseobjective">
-<h1>benchopt.BaseObjective<a class="headerlink" href="#benchopt-baseobjective" title="Link to this heading">#</a></h1>
-<dl class="py class">
-<dt class="sig sig-object py" id="benchopt.BaseObjective">
-<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">benchopt.</span></span><span class="sig-name descname"><span class="pre">BaseObjective</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">parameters</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective" title="Link to this definition">#</a></dt>
-<dd><p>Base class to define an objective function</p>
-<p>Objectives that derive from this class needs to implement three methods:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">set_data(**data)</span></code>: stores the info from a given dataset to be able to
-compute the objective value on these data.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">get_objective()</span></code>: exports the data from the dataset and the parameters
-from the objective function as a dictionary that will be passed as
-parameters of the solver’s <cite>set_objective</cite> method in order to specify the
-objective function of the benchmark.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">evaluate_result(**result)</span></code>: evaluate the metrics on the results of a
-solver. Its arguments should correspond to the key of the dictionary
-returned by <cite>Solver.get_result</cite> and it can return a scalar value,
-a dictionary or a list of dictionaries.
-If it returns a dictionary, it should at least contain a key
-<cite>value</cite> associated to a scalar value which will be used to
-detect convergence. With a dictionary, multiple metric values can be
-stored at once instead of running each separately. With a list of
-dictionaries, these metrics can be computed on different objects.</p></li>
-</ul>
-<p>Optionally, the <cite>Objective</cite> can implement the following methods to change
-its behavior:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">get_one_result()</span></code>: return one dummy result compatible with
-<code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code>. Used by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> to validate metric
-computation. If not implemented, <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> works normally but
-the test-time metric validation step is silently skipped.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">save_final_results(**result)</span></code>: persist artefacts (trained models,
-arrays, …) from the final solver run as a <code class="docutils literal notranslate"><span class="pre">.pkl</span></code> file alongside the
-parquet results.</p></li>
-</ul>
-<p>This class is also used to specify information about the benchmark.
-In particular, it should have the following class attributes:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: a name for the benchmark, that will be used to display results.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">url</span></code>: the url of the original benchmark repository.</p></li>
-</ul>
-<p>Some extra configurations can be set through optional class attributes for
-various cases:</p>
-<p><strong>Installation:</strong></p>
-<ul class="simple">
-<li><dl class="simple">
-<dt><code class="docutils literal notranslate"><span class="pre">requirements</span></code>: the minimal requirements to be able to run the</dt><dd><p>benchmark.</p>
-</dd>
-</dl>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">min_benchopt_version</span></code>: the minimal version of benchopt required to run
-this benchmark.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">python_version</span></code>: a specific version of Python required to run
-this benchmark.</p></li>
-</ul>
-<p><strong>Tests:</strong>
-- <code class="docutils literal notranslate"><span class="pre">test_dataset_name</span></code>: the name of the dataset to use for testing.
-- <code class="docutils literal notranslate"><span class="pre">test_config</span></code>: a configuration for the objective and potential datasets</p>
-<blockquote>
-<div><p>to use for testing.</p>
-</div></blockquote>
-<p><strong>Iterative solvers customization:</strong>
-- <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code>: the default stopping criterion to use for</p>
-<blockquote>
-<div><p>this benchmark.</p>
-</div></blockquote>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>: the default sampling strategy to use for this
-benchmark.</p></li>
-</ul>
-<dl class="py method">
-<dt class="sig sig-object py" id="benchopt.BaseObjective.evaluate_result">
-<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">evaluate_result</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">solver_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.evaluate_result" title="Link to this definition">#</a></dt>
-<dd><p>Compute the objective value given the output of a solver.</p>
-<p>The arguments are the keys in the result dictionary returned
-by <code class="docutils literal notranslate"><span class="pre">Solver.get_result</span></code>.</p>
+  <br/><section id="benchopt-results-result-processing-describe-results">
+<h1>benchopt.results.result_processing.describe_results<a class="headerlink" href="#benchopt-results-result-processing-describe-results" title="Link to this heading">#</a></h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="benchopt.results.result_processing.describe_results">
+<span class="sig-prename descclassname"><span class="pre">benchopt.results.result_processing.</span></span><span class="sig-name descname"><span class="pre">describe_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">source</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.results.result_processing.describe_results" title="Link to this definition">#</a></dt>
+<dd><p>Compute summary statistics for a benchopt result table.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>solver_result</strong><span class="classifier">dict</span></dt><dd><p>All values needed to compute the objective metrics. This dictionary
-is retrieved by calling <code class="docutils literal notranslate"><span class="pre">solver_result</span> <span class="pre">=</span> <span class="pre">Solver.get_result()</span></code>.</p>
+<dt><strong>source: str | Path | pd.DataFrame</strong></dt><dd><p>Either a path to a result file (read with <cite>read_results</cite>) or an
+already-loaded results DataFrame (e.g. from <cite>read_results</cite>).</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>objective_value</strong><span class="classifier">float or dict {str: float} or list of dict</span></dt><dd><p>The value(s) of the objective function. If a dictionary is
-returned, it should at least contain a key <cite>value</cite> associated to a
-scalar value which will be used to detect convergence. With a
-dictionary, multiple metric values can be stored at once instead
-of running each separately.</p>
+<dt>summary: dict</dt><dd><p><code class="docutils literal notranslate"><span class="pre">n_rows</span></code>, <code class="docutils literal notranslate"><span class="pre">n_configs</span></code> (unique objective x solver x dataset
+triplets), <code class="docutils literal notranslate"><span class="pre">n_repetitions</span></code>, <code class="docutils literal notranslate"><span class="pre">objectives</span></code>, <code class="docutils literal notranslate"><span class="pre">solvers</span></code>,
+<code class="docutils literal notranslate"><span class="pre">datasets</span></code>, <code class="docutils literal notranslate"><span class="pre">objective_columns</span></code> (the <code class="docutils literal notranslate"><span class="pre">objective_&lt;name&gt;</span></code> metric
+columns, e.g. <code class="docutils literal notranslate"><span class="pre">objective_value</span></code>, <code class="docutils literal notranslate"><span class="pre">objective_train_loss</span></code>) and
+<code class="docutils literal notranslate"><span class="pre">run_dates</span></code>.</p>
 </dd>
 </dl>
 </dd>
 </dl>
 </dd></dl>
 
-<dl class="py method">
-<dt class="sig sig-object py" id="benchopt.BaseObjective.get_objective">
-<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_objective</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_objective" title="Link to this definition">#</a></dt>
-<dd><p>Return the objective parameters for the solver.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt>objective_dict: dict</dt><dd><p>Parameters of the objective that will be given to the solver when
-calling <code class="docutils literal notranslate"><span class="pre">Solver.set_objective(**objective_dict)</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="benchopt.BaseObjective.get_one_result">
-<span class="sig-name descname"><span class="pre">get_one_result</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_one_result" title="Link to this definition">#</a></dt>
-<dd><p>Return one result for which the objective can be evaluated.</p>
-<p>This method is used by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> to check that the benchmark
-components are compatible without running the full benchmark.
-It should return a dictionary whose keys match the keyword arguments
-of <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result()</span></code>.</p>
-<p>This method is <strong>optional</strong>: <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> works normally without
-it, but <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> will skip the objective validation step when
-it is not implemented.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Returns<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>result</strong><span class="classifier">dict</span></dt><dd><p>A dummy result compatible with <code class="docutils literal notranslate"><span class="pre">Objective.evaluate_result()</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="benchopt.BaseObjective.get_split">
-<span class="sig-name descname"><span class="pre">get_split</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">arrays</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_split" title="Link to this definition">#</a></dt>
-<dd><p>Return the split of the data according to the cv attribute.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>arrays: list of array-like</strong></dt><dd><p>The data to split. It should be indexable with the output of the
-<code class="docutils literal notranslate"><span class="pre">cv.split</span></code> iterator, or compatible with <code class="docutils literal notranslate"><span class="pre">Objective.split</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="benchopt.BaseObjective.save_final_results">
-<span class="sig-name descname"><span class="pre">save_final_results</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">solver_result</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.save_final_results" title="Link to this definition">#</a></dt>
-<dd><p>Optionally save artefacts from the final solver run.</p>
-<p>Called once after the last benchmark run for each solver
-configuration. Use this to persist heavy objects (trained models,
-arrays, …) that are too large to include in the main results file.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>**solver_result</strong><span class="classifier">dict</span></dt><dd><p>The dictionary returned by <code class="docutils literal notranslate"><span class="pre">Solver.get_result()</span></code> for the final
-run. Keys match the keyword arguments of <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code>.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt>dict</dt><dd><p>Objects to save. Serialised with pickle and stored alongside the
-parquet results file; the path is recorded in the results.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="benchopt.BaseObjective.set_data">
-<span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">set_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.set_data" title="Link to this definition">#</a></dt>
-<dd><p>Store the info on a dataset to be able to compute the objective.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>**data: dict</strong></dt><dd><p>Extra parameters of the objective. This dictionary is retrieved
-by calling <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">Dataset.get_data()</span></code>.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="benchopt.BaseObjective.skip">
-<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.skip" title="Link to this definition">#</a></dt>
-<dd><p>Used to decide if the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> is compatible with the data.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><strong>**data: dict</strong></dt><dd><p>Extra parameters of the objective. This dictionary is retrieved
-by calling <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">Dataset.get_data()</span></code>.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
-<dt><strong>skip</strong><span class="classifier">bool</span></dt><dd><p>Whether this objective should be skipped or not for this data
-(accessible in the objective attributes).</p>
-</dd>
-<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason why it should be skipped for display purposes.
-If skip is False, the reason should be None.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-</dd></dl>
-
-</dd></dl>
-
-<span class="target" id="sphx-glr-backreferences-benchopt-baseobjective"></span></section>
+<span class="target" id="sphx-glr-backreferences-benchopt-results-result-processing-describe-results"></span></section>
 
 
                 </article>
@@ -640,20 +443,20 @@ If skip is False, the reason should be None.</p>
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="../API_ref.html"
+       href="benchopt.results.result_processing.merge.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">API references</p>
+        <p class="prev-next-title">benchopt.results.result_processing.merge</p>
       </div>
     </a>
     <a class="right-next"
-       href="benchopt.BaseDataset.html"
+       href="../CLI_ref.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">benchopt.BaseDataset</p>
+        <p class="prev-next-title">Command line interface (CLI)</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -675,16 +478,7 @@ If skip is False, the reason should be None.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective"><code class="docutils literal notranslate"><span class="pre">BaseObjective</span></code></a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.evaluate_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.evaluate_result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_objective"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_objective()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_one_result"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_one_result()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.get_split"><code class="docutils literal notranslate"><span class="pre">BaseObjective.get_split()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.save_final_results"><code class="docutils literal notranslate"><span class="pre">BaseObjective.save_final_results()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.set_data"><code class="docutils literal notranslate"><span class="pre">BaseObjective.set_data()</span></code></a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseObjective.skip"><code class="docutils literal notranslate"><span class="pre">BaseObjective.skip()</span></code></a></li>
-</ul>
-</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.results.result_processing.describe_results"><code class="docutils literal notranslate"><span class="pre">describe_results()</span></code></a></li>
 </ul>
   </nav></div>
 

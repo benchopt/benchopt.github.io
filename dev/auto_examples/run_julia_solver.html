@@ -263,7 +263,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
@@ -423,8 +424,8 @@ benchopt’s helpers to call Julia code from Python.</p>
 <code class="docutils literal notranslate"><span class="pre">examples/minimal_benchmark</span></code>. It contains an <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file,
 a simulated dataset and a full python solver based on gradient descent.</p>
 <div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span> <span class="o">=</span> <span class="n">ExampleBenchmark</span><span class="p">(</span>
-    <span class="n">base</span><span class="o">=</span><span class="s2">&quot;minimal_benchmark&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;julia_solver&quot;</span><span class="p">,</span>
-    <span class="n">ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;custom_plot.py&quot;</span><span class="p">,</span> <span class="s2">&quot;example_config.yml&quot;</span><span class="p">]</span>
+    <span class="n">base</span><span class="o">=</span><span class="s2">"minimal_benchmark"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"julia_solver"</span><span class="p">,</span>
+    <span class="n">ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">"custom_plot.py"</span><span class="p">,</span> <span class="s2">"example_config.yml"</span><span class="p">]</span>
 <span class="p">)</span>
 <span class="n">benchmark</span>
 </pre></div>
@@ -433,120 +434,120 @@ a simulated dataset and a full python solver based on gradient descent.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
 
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b-0' name='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b' type='radio'><label for='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-31aa2a859d804788add58ac73969f36a-0' name='example-benchmark-31aa2a859d804788add58ac73969f36a' type='radio'><label for='example-benchmark-31aa2a859d804788add58ac73969f36a-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
     <span class="c1"># Name of the Objective function</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;Quadratic&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">'Quadratic'</span>
 
     <span class="c1"># The three methods below define the links between the Dataset,</span>
     <span class="c1"># the Objective and the Solver.</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the data from a Dataset to compute the objective.</span>
+<span class="w">        </span><span class="sd">"""Set the data from a Dataset to compute the objective.</span>
 
 <span class="sd">        The argument are the keys of the dictionary returned by</span>
 <span class="sd">        ``Dataset.get_data``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="s2">&quot;Returns a dict passed to ``Solver.set_objective`` method.&quot;</span>
+        <span class="s2">"Returns a dict passed to ``Solver.set_objective`` method."</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">evaluate_result</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X_hat</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Compute the objective value(s) given the output of a solver.</span>
+<span class="w">        </span><span class="sd">"""Compute the objective value(s) given the output of a solver.</span>
 
 <span class="sd">        The arguments are the keys in the dictionary returned</span>
 <span class="sd">        by ``Solver.get_result``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">value</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">-</span> <span class="n">X_hat</span><span class="p">))</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_one_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Return one solution for which the objective can be evaluated.</span>
+<span class="w">        </span><span class="sd">"""Return one solution for which the objective can be evaluated.</span>
 
 <span class="sd">        This function is mostly used for testing and debugging purposes.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b-1' name='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b' type='radio'><label for='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<input  id='example-benchmark-31aa2a859d804788add58ac73969f36a-1' name='example-benchmark-31aa2a859d804788add58ac73969f36a' type='radio'><label for='example-benchmark-31aa2a859d804788add58ac73969f36a-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
     <span class="c1"># Name of the Dataset, used to select it in the CLI</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;simulated&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">'simulated'</span>
 
     <span class="c1"># ``get_data()`` is the only method a dataset should implement.</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">get_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Load the data for this Dataset.</span>
+<span class="w">        </span><span class="sd">"""Load the data for this Dataset.</span>
 
 <span class="sd">        Usually, the data are either loaded from disk as arrays or Tensors,</span>
 <span class="sd">        or a dataset/dataloader object is used to allow the models to load</span>
 <span class="sd">        the data in more flexible forms (e.g. with mini-batches).</span>
 
-<span class="sd">        The dictionary&#39;s keys are the kwargs passed to ``Objective.set_data``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        The dictionary's keys are the kwargs passed to ``Objective.set_data``.</span>
+<span class="sd">        """</span>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b-2' name='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b' type='radio'><label for='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-31aa2a859d804788add58ac73969f36a-2' name='example-benchmark-31aa2a859d804788add58ac73969f36a' type='radio'><label for='example-benchmark-31aa2a859d804788add58ac73969f36a-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="c1"># Name of the Solver, used to select it in the CLI</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s1">&#39;gd&#39;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s1">'gd'</span>
 
     <span class="c1"># By default, benchopt will evaluate the result of a method after various</span>
     <span class="c1"># number of iterations. Setting the sampling_strategy controls how this is</span>
     <span class="c1"># done. Here, we use a callback function that is called at each iteration.</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">&#39;callback&#39;</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s1">'callback'</span>
 
     <span class="c1"># Parameters of the method, that will be tested by the benchmark.</span>
     <span class="c1"># Each parameter ``param_name`` will be accessible as ``self.param_name``.</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;lr&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s1">'lr'</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
 
     <span class="c1"># The three methods below define the necessary methods for the Solver, to</span>
     <span class="c1"># get the info from the Objective, to run the method and to return a</span>
     <span class="c1"># result that can be evaluated by the Objective.</span>
     <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Set the info from a Objective, to run the method.</span>
+<span class="w">        </span><span class="sd">"""Set the info from a Objective, to run the method.</span>
 
-<span class="sd">        This method is also typically used to adapt the solver&#39;s parameters to</span>
+<span class="sd">        This method is also typically used to adapt the solver's parameters to</span>
 <span class="sd">        the data (e.g. scaling) or to initialize the algorithm.</span>
 
 <span class="sd">        The kwargs are the keys of the dictionary returned by</span>
 <span class="sd">        ``Objective.get_objective``.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X</span> <span class="o">=</span> <span class="n">X</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cb</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Run the actual method to benchmark.</span>
+<span class="w">        </span><span class="sd">"""Run the actual method to benchmark.</span>
 
-<span class="sd">        Here, as we use a &quot;callback&quot;, we need to call it at each iteration to</span>
+<span class="sd">        Here, as we use a "callback", we need to call it at each iteration to</span>
 <span class="sd">        evaluate the result as the procedure progresses.</span>
 
 <span class="sd">        The callback implements a stopping mechanism, based on the number of</span>
 <span class="sd">        iterations, the time and the evoluation of the performances.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+<span class="sd">        """</span>
         <span class="k">while</span> <span class="n">cb</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">get_result</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-<span class="w">        </span><span class="sd">&quot;&quot;&quot;Format the output of the method to be evaluated in the Objective.</span>
+<span class="w">        </span><span class="sd">"""Format the output of the method to be evaluated in the Objective.</span>
 
 <span class="sd">        Returns a dict which is passed to ``Objective.evaluate_result`` method.</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">{</span><span class="s1">&#39;X_hat&#39;</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
+<span class="sd">        """</span>
+        <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b-3' name='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b' type='radio'><label for='example-benchmark-e47eb2ea75bd42c7a6ff655222525e9b-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+<input  id='example-benchmark-31aa2a859d804788add58ac73969f36a-3' name='example-benchmark-31aa2a859d804788add58ac73969f36a' type='radio'><label for='example-benchmark-31aa2a859d804788add58ac73969f36a-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
 <span class="nt">plot_configs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -566,12 +567,12 @@ on the <code class="docutils literal notranslate"><span class="pre">JuliaSolver<
 from Python, and to define the dependencies of the solver.
 The Julia code is defined in a separate file <code class="docutils literal notranslate"><span class="pre">julia_gd.jl</span></code>, that is loaded
 and called from the Python solver.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EXAMPLES_ROOT</span></a> <span class="o">/</span> <span class="s2">&quot;language_solvers&quot;</span> <span class="o">/</span> <span class="s2">&quot;julia_gd.py&quot;</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_PY</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.read_text" title="pathlib.Path.read_text" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">JULIA_SOLVER</span><span class="o">.</span><span class="n">read_text</span></a><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_JL</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.with_suffix" title="pathlib.PurePath.with_suffix" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">JULIA_SOLVER</span><span class="o">.</span><span class="n">with_suffix</span></a><span class="p">(</span><span class="s2">&quot;.jl&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EXAMPLES_ROOT</span></a> <span class="o">/</span> <span class="s2">"language_solvers"</span> <span class="o">/</span> <span class="s2">"julia_gd.py"</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_PY</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.read_text" title="pathlib.Path.read_text" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">JULIA_SOLVER</span><span class="o">.</span><span class="n">read_text</span></a><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
+<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_JL</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.with_suffix" title="pathlib.PurePath.with_suffix" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">JULIA_SOLVER</span><span class="o">.</span><span class="n">with_suffix</span></a><span class="p">(</span><span class="s2">".jl"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
 
 <span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-    <span class="n">solvers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;julia_gd.py&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_PY</span></a><span class="p">,</span> <span class="s2">&quot;julia_gd.jl&quot;</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_JL</span></a><span class="p">},</span>
+    <span class="n">solvers</span><span class="o">=</span><span class="p">{</span><span class="s2">"julia_gd.py"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_PY</span></a><span class="p">,</span> <span class="s2">"julia_gd.jl"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_JL</span></a><span class="p">},</span>
 <span class="p">)</span>
 </pre></div>
 </div>
@@ -579,23 +580,23 @@ and called from the Python solver.</p>
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-29bbf948a45647a6be1d5abd4374362d-0' name='example-benchmark-29bbf948a45647a6be1d5abd4374362d' type='radio'><label for='example-benchmark-29bbf948a45647a6be1d5abd4374362d-0'>solvers/julia_gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-6b5b16c108974455a0219d31a011bb9a-0' name='example-benchmark-6b5b16c108974455a0219d31a011bb9a' type='radio'><label for='example-benchmark-6b5b16c108974455a0219d31a011bb9a-0'>solvers/julia_gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">JuliaSolver</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_jl_interpreter</span>
 
 
-<span class="n">JULIA_SOLVER_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">&#39;.jl&#39;</span><span class="p">))</span>
+<span class="n">JULIA_SOLVER_FILE</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="vm">__file__</span><span class="p">)</span><span class="o">.</span><span class="n">with_suffix</span><span class="p">(</span><span class="s1">'.jl'</span><span class="p">))</span>
 
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">JuliaSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Julia-GD&quot;</span>
-    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">&quot;iteration&quot;</span>
-    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;lr&quot;</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"Julia-GD"</span>
+    <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">"iteration"</span>
+    <span class="n">parameters</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"lr"</span><span class="p">:</span> <span class="p">[</span><span class="mf">1e-3</span><span class="p">,</span> <span class="mf">1e-2</span><span class="p">]}</span>
     <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span>
-        <span class="s2">&quot;https://repo.prefix.dev/julia-forge::julia&quot;</span><span class="p">,</span>
-        <span class="s2">&quot;pip::julia&quot;</span><span class="p">,</span>
+        <span class="s2">"https://repo.prefix.dev/julia-forge::julia"</span><span class="p">,</span>
+        <span class="s2">"pip::julia"</span><span class="p">,</span>
     <span class="p">]</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
@@ -604,7 +605,7 @@ and called from the Python solver.</p>
         <span class="bp">self</span><span class="o">.</span><span class="n">julia_gd</span> <span class="o">=</span> <span class="n">jl</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="n">JULIA_SOLVER_FILE</span><span class="p">)</span>
 
     <span class="k">def</span><span class="w"> </span><span class="nf">warm_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="c1"># Make sure we don&#39;t account for the Julia loading time in the</span>
+        <span class="c1"># Make sure we don't account for the Julia loading time in the</span>
         <span class="c1"># first iteration of the benchmark.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">julia_gd</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">lr</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
 
@@ -617,7 +618,7 @@ and called from the Python solver.</p>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-29bbf948a45647a6be1d5abd4374362d-1' name='example-benchmark-29bbf948a45647a6be1d5abd4374362d' type='radio'><label for='example-benchmark-29bbf948a45647a6be1d5abd4374362d-1'>solvers/julia_gd.jl</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
+<input  id='example-benchmark-6b5b16c108974455a0219d31a011bb9a-1' name='example-benchmark-6b5b16c108974455a0219d31a011bb9a' type='radio'><label for='example-benchmark-6b5b16c108974455a0219d31a011bb9a-1'>solvers/julia_gd.jl</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
 
 
 <span class="k">function</span><span class="w"> </span><span class="n">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">lr</span><span class="p">,</span><span class="w"> </span><span class="n">n_iter</span><span class="p">)</span>
@@ -648,11 +649,11 @@ number of iterations to be able to report the curve of the convergence.</p>
 do this with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code>, using with the <code class="docutils literal notranslate"><span class="pre">-s</span></code> option which allow
 to select only this solver if multiple solvers are present. If Julia is not
 available in your environment, this command will use <code class="docutils literal notranslate"><span class="pre">conda</span></code> to install it.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;install </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -s julia-gd&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">"install </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -s julia-gd"</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_bmyeq6t_/julia_solver<span class="w"> </span>-s<span class="w"> </span>julia-gd
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_saa_f3ip/julia_solver<span class="w"> </span>-s<span class="w"> </span>julia-gd
 </pre></div>
 </pre>
 
@@ -669,10 +670,10 @@ Installing required packages for:
  - conda-forge
  - https://repo.prefix.dev/julia-forge
 Platform: linux-64
-Collecting package metadata (repodata.json): - \ | / - \ | / - \ | / - \ done
-Solving environment: / - \ done
+Collecting package metadata (repodata.json): - \ | / - \ | / - \ | / done
+Solving environment: \ | done
 
-julia-1.12.6         | 168.1 MB  |            |   0%
+julia-1.12.7         | 168.5 MB  |            |   0%
 perl-5.32.1          | 12.7 MB   |            |   0%
 
 git-2.55.0           | 11.1 MB   |            |   0%
@@ -727,7 +728,7 @@ mpfr-4.2.2           | 713 KB    |            |   0%
 
 
 
-gmp-6.3.0            | 449 KB    |            |   0%
+gmp-6.3.0            | 482 KB    |            |   0%
 
 
 
@@ -862,39 +863,22 @@ libparu-1.0.0        | 91 KB     |            |   0%
 
 
 
-julia-1.12.6         | 168.1 MB  |            |   1% [A
-perl-5.32.1          | 12.7 MB   | #7         |  17%
+julia-1.12.7         | 168.5 MB  | 2          |   3% [A
+perl-5.32.1          | 12.7 MB   | ##5        |  26%
 
-git-2.55.0           | 11.1 MB   | #4         |  15%
-
-
-openblas-ilp64-0.3.3 | 5.6 MB    | ###        |  31%
+git-2.55.0           | 11.1 MB   | ##8        |  29%
 
 
-
-julia-1.12.6         | 168.1 MB  | 3          |   3%
-perl-5.32.1          | 12.7 MB   | ####4      |  45%
-
-git-2.55.0           | 11.1 MB   | #####4     |  54%
-
-
-openblas-ilp64-0.3.3 | 5.6 MB    | #########6 |  97%
+openblas-ilp64-0.3.3 | 5.6 MB    | #####2     |  52%
 
 
 
-libopenblas-ilp64-0. | 5.6 MB    | ########## | 100%
+libopenblas-ilp64-0. | 5.6 MB    | ######1    |  61%
 
 
 
-julia-1.12.6         | 168.1 MB  | 6          |   7%
-perl-5.32.1          | 12.7 MB   | ########5  |  85%
-
-git-2.55.0           | 11.1 MB   | #########8 |  99%
-
-
-
-
-metis-5.1.0          | 3.7 MB    |            |   0%
+julia-1.12.7         | 168.5 MB  | 7          |   7%
+perl-5.32.1          | 12.7 MB   | ########3  |  83%
 
 
 openblas-ilp64-0.3.3 | 5.6 MB    | ########## | 100%
@@ -902,19 +886,13 @@ openblas-ilp64-0.3.3 | 5.6 MB    | ########## | 100%
 
 
 
-
-p7zip-16.02          | 2.2 MB    |            |   1%
-
-
-
-
-julia-1.12.6         | 168.1 MB  | 8          |   9%
+metis-5.1.0          | 3.7 MB    |            |   0%
 
 
 
 
 
-p7zip-16.02          | 2.2 MB    | ########## | 100%
+julia-1.12.7         | 168.5 MB  | #1         |  12%
 
 
 
@@ -925,9 +903,7 @@ p7zip-16.02          | 2.2 MB    | ########## | 100%
 
 
 
-
-
-julia-1.12.6         | 168.1 MB  | #1         |  11%
+metis-5.1.0          | 3.7 MB    | ########## | 100%
 
 
 
@@ -939,7 +915,7 @@ metis-5.1.0          | 3.7 MB    | ########## | 100%
 
 
 
-libcholmod-5.3.1     | 1.1 MB    | ########## | 100%
+libcholmod-5.3.1     | 1.1 MB    | 1          |   1%
 
 
 
@@ -954,18 +930,7 @@ libgit2-1.9.6        | 1022 KB   | 1          |   2%
 
 
 
-
-
-mpfr-4.2.2           | 713 KB    | 2          |   2%
-
-
-
-
-
-
-
-
-julia-1.12.6         | 168.1 MB  | #3         |  14%
+libcholmod-5.3.1     | 1.1 MB    | ########## | 100%
 
 
 
@@ -975,17 +940,28 @@ julia-1.12.6         | 168.1 MB  | #3         |  14%
 
 libgit2-1.9.6        | 1022 KB   | ########## | 100%
 
-
-
-
-
-
-
-
-
-gmp-6.3.0            | 449 KB    | 3          |   4%
+git-2.55.0           | 11.1 MB   | ########## | 100%
 
 git-2.55.0           | 11.1 MB   | ########## | 100%
+
+
+
+
+
+
+
+
+julia-1.12.7         | 168.5 MB  | #5         |  16%
+
+
+
+
+
+
+
+
+
+gmp-6.3.0            | 482 KB    | 3          |   3%
 
 
 
@@ -1005,8 +981,41 @@ libumfpack-6.3.5     | 424 KB    | 3          |   4%
 
 
 
+mpfr-4.2.2           | 713 KB    | ########## | 100%
 
-gmp-6.3.0            | 449 KB    | ########## | 100%
+
+
+
+
+
+
+
+
+gmp-6.3.0            | 482 KB    | ########## | 100%
+
+
+
+
+
+
+
+
+
+
+libumfpack-6.3.5     | 424 KB    | ########## | 100%
+
+
+
+
+
+
+
+
+
+
+
+
+libklu-2.3.5         | 142 KB    | #1         |  11%
 
 
 
@@ -1031,18 +1040,7 @@ libspqr-4.3.4        | 213 KB    | 7          |   8%
 
 
 
-libklu-2.3.5         | 142 KB    | #1         |  11%
-
-
-
-
-
-
-
-
-
-
-libumfpack-6.3.5     | 424 KB    | ########## | 100%
+libklu-2.3.5         | 142 KB    | ########## | 100%
 
 
 
@@ -1055,19 +1053,6 @@ libumfpack-6.3.5     | 424 KB    | ########## | 100%
 
 
 libspqr-4.3.4        | 213 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-libklu-2.3.5         | 142 KB    | ########## | 100%
 
 
 
@@ -1126,23 +1111,23 @@ libcxsparse-4.4.1    | 118 KB    | #3         |  14%
 
 
 
+libcxsparse-4.4.1    | 118 KB    | ########## | 100%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 libopenlibm4-0.8.1   | 102 KB    | #5         |  16%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libcxsparse-4.4.1    | 118 KB    | ########## | 100%
 
 
 
@@ -1175,7 +1160,9 @@ libopenlibm4-0.8.1   | 102 KB    | ########## | 100%
 
 
 
-zlib-1.3.2           | 94 KB     | #7         |  17%
+
+
+ ... (more hidden) ...
 
 
 
@@ -1210,7 +1197,7 @@ libparu-1.0.0        | 91 KB     | #7         |  18%
 
 
 
-zlib-1.3.2           | 94 KB     | ########## | 100%
+zlib-1.3.2           | 94 KB     | #7         |  17%
 
 
 
@@ -1264,18 +1251,16 @@ libparu-1.0.0        | 91 KB     | ########## | 100%
 
 
 
-
-
-julia-1.12.6         | 168.1 MB  | ##4        |  25% [A
+julia-1.12.7         | 168.5 MB  | ##5        |  25%
 
 
 
-julia-1.12.6         | 168.1 MB  | ###5       |  35%
+julia-1.12.7         | 168.5 MB  | ####2      |  43%
 
 
 
 
-julia-1.12.6         | 168.1 MB  | ####       |  40%
+metis-5.1.0          | 3.7 MB    | ########## | 100%
 
 
 openblas-ilp64-0.3.3 | 5.6 MB    | ########## | 100%
@@ -1292,7 +1277,35 @@ libcholmod-5.3.1     | 1.1 MB    | ########## | 100%
 
 
 
-julia-1.12.6         | 168.1 MB  | ####6      |  46%
+julia-1.12.7         | 168.5 MB  | ####9      |  50%
+
+
+
+
+
+p7zip-16.02          | 2.2 MB    | ########## | 100%
+
+
+
+
+
+p7zip-16.02          | 2.2 MB    | ########## | 100%
+
+
+
+
+
+
+
+libgit2-1.9.6        | 1022 KB   | ########## | 100%
+
+
+
+
+
+
+
+julia-1.12.7         | 168.5 MB  | #####6     |  56%
 
 
 
@@ -1316,7 +1329,11 @@ mpfr-4.2.2           | 713 KB    | ########## | 100%
 
 
 
-julia-1.12.6         | 168.1 MB  | #####1     |  51%
+
+
+
+
+gmp-6.3.0            | 482 KB    | ########## | 100%
 
 
 
@@ -1326,57 +1343,7 @@ julia-1.12.6         | 168.1 MB  | #####1     |  51%
 
 
 
-gmp-6.3.0            | 449 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-gmp-6.3.0            | 449 KB    | ########## | 100%
-
-
-
-
-
-
-
-libgit2-1.9.6        | 1022 KB   | ########## | 100%
-
-
-
-
-
-
-
-libgit2-1.9.6        | 1022 KB   | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-libspqr-4.3.4        | 213 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-libspqr-4.3.4        | 213 KB    | ########## | 100%
+gmp-6.3.0            | 482 KB    | ########## | 100%
 
 
 
@@ -1424,7 +1391,31 @@ libklu-2.3.5         | 142 KB    | ########## | 100%
 
 
 
-julia-1.12.6         | 168.1 MB  | #####5     |  56%
+libklu-2.3.5         | 142 KB    | ########## | 100%
+
+
+
+
+
+
+
+
+
+
+
+libspqr-4.3.4        | 213 KB    | ########## | 100%
+
+
+
+
+
+
+
+
+
+
+
+libspqr-4.3.4        | 213 KB    | ########## | 100%
 
 
 
@@ -1452,7 +1443,7 @@ arpack-3.9.1         | 127 KB    | ########## | 100%
 
 
 
-arpack-3.9.1         | 127 KB    | ########## | 100%
+julia-1.12.7         | 168.5 MB  | ######2    |  63%
 
 
 
@@ -1482,7 +1473,7 @@ libcxsparse-4.4.1    | 118 KB    | ########## | 100%
 
 
 
-julia-1.12.6         | 168.1 MB  | #####9     |  60%
+libcxsparse-4.4.1    | 118 KB    | ########## | 100%
 
 
 
@@ -1515,76 +1506,6 @@ libopenlibm4-0.8.1   | 102 KB    | ########## | 100%
 
 
 libopenlibm4-0.8.1   | 102 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-zlib-1.3.2           | 94 KB     | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-zlib-1.3.2           | 94 KB     | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libparu-1.0.0        | 91 KB     | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-julia-1.12.6         | 168.1 MB  | ######4    |  64%
 
 
 
@@ -1622,10 +1543,80 @@ julia-1.12.6         | 168.1 MB  | ######4    |  64%
 
 
 
-julia-1.12.6         | 168.1 MB  | #########5 |  96% [A
+ ... (more hidden) ...
 
-julia-1.12.6         | 168.1 MB  | ########## | 100%
-julia-1.12.6         | 168.1 MB  | ########## | 100%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+libparu-1.0.0        | 91 KB     | ########## | 100%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+julia-1.12.7         | 168.5 MB  | ######9    |  69%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+zlib-1.3.2           | 94 KB     | ########## | 100%
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+julia-1.12.7         | 168.5 MB  | #########4 |  95%
+
+git-2.55.0           | 11.1 MB   | ########## | 100%
+julia-1.12.7         | 168.5 MB  | ########## | 100%
 
 
 
@@ -1921,18 +1912,17 @@ julia-1.12.6         | 168.1 MB  | ########## | 100%
 
 
  done
-Preparing transaction: / - done
-Verifying transaction: | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \
-| / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / done
-Executing transaction: \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / -
-\ done
-Installing pip dependencies: / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | /
-- \ | / - Ran pip subprocess with arguments:
+Preparing transaction: - \ done
+Verifying transaction: / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ |
+/ - done
+Executing transaction: | / - \ | / - \ | / - \ | / - \ | / - \ | done
+Installing pip dependencies: - \ | / - \ | / - \ | / - \ | / - \ | / - \ Ran
+pip subprocess with arguments:
 [&#x27;/home/circleci/miniconda/envs/benchopt-docs/bin/python&#x27;, &#x27;-m&#x27;, &#x27;pip&#x27;,
-&#x27;install&#x27;, &#x27;-U&#x27;, &#x27;-r&#x27;, &#x27;/tmp/condaenv._l8p7bbx.requirements.txt&#x27;,
+&#x27;install&#x27;, &#x27;-U&#x27;, &#x27;-r&#x27;, &#x27;/tmp/condaenv.zrtxmswn.requirements.txt&#x27;,
 &#x27;--exists-action=b&#x27;]
 Pip subprocess output:
-Collecting julia (from -r /tmp/condaenv._l8p7bbx.requirements.txt (line 1))
+Collecting julia (from -r /tmp/condaenv.zrtxmswn.requirements.txt (line 1))
   Downloading julia-0.6.2-py2.py3-none-any.whl.metadata (2.4 kB)
 Downloading julia-0.6.2-py2.py3-none-any.whl (68 kB)
 Installing collected packages: julia
@@ -1961,11 +1951,11 @@ done
 </div>
 <br />
 <br /><p>Then, we can run the benchmark and show the comparison.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 20 -r 4&quot;</span><span class="p">)</span>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">"run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 20 -r 4"</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_bmyeq6t_/julia_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_saa_f3ip/julia_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
 </pre></div>
 </pre>
 
@@ -2020,18 +2010,18 @@ Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
   warnings.warn(
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_bmyeq6t_/julia_solver/outputs/benchopt_run_2026-08-11_09h10m59.</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_saa_f3ip/julia_solver/outputs/benchopt_run_2026-08-18_18h13m37.</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">parquet</span>
 Rendering benchmark results...
    Processing
-temp_benchmark_bmyeq6t_/julia_solver/outputs/benchopt_run_2026-08-11_09h10m59.
+temp_benchmark_saa_f3ip/julia_solver/outputs/benchopt_run_2026-08-18_18h13m37.
 parquet
 done
 Writing results to
-temp_benchmark_bmyeq6t_/julia_solver/outputs/julia_solver_benchopt_run_2026-08
--11_09h10m59.html
+temp_benchmark_saa_f3ip/julia_solver/outputs/julia_solver_benchopt_run_2026-08
+-18_18h13m37.html
 Writing julia_solver index to
-temp_benchmark_bmyeq6t_/julia_solver/outputs/julia_solver.html
+temp_benchmark_saa_f3ip/julia_solver/outputs/julia_solver.html
 
 
 
@@ -2049,7 +2039,7 @@ temp_benchmark_bmyeq6t_/julia_solver/outputs/julia_solver.html
 <br /><p>Here, you see that the Julia solver is faster than the Python one.
 You also notice that the first iteration seems to take much longer than the
 other, hinting to a loading time for the solver.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (5 minutes 18.556 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (3 minutes 40.052 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-julia-solver-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/29629f8c22f6cb2460d350b639bd96ab/run_julia_solver.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_julia_solver.ipynb</span></code></a></p>

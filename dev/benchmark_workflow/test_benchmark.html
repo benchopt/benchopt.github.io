@@ -266,7 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.process.merge.html">benchopt.results.process.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
 </details></li>
 <li class="toctree-l3"><a class="reference internal" href="../user_guide/CLI_ref.html">Command line interface (CLI)</a></li>
@@ -515,32 +516,32 @@ priority order, from lowest to highest: <code class="docutils literal notranslat
 <p>For instance, to require a specific dataset parameter, a specific objective
 parameter, and a low number of iteration, one can define:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;solver1&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"solver1"</span>
 
     <span class="n">test_config</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;max_iter&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
-        <span class="s1">&#39;objective&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;fit_intercept&#39;</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
-        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;n_samples&#39;</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">&#39;n_features&#39;</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
+        <span class="s1">'max_iter'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+        <span class="s1">'objective'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'fit_intercept'</span><span class="p">:</span> <span class="kc">False</span><span class="p">},</span>
+        <span class="s1">'dataset'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'n_samples'</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span> <span class="s1">'n_features'</span><span class="p">:</span> <span class="mi">10</span><span class="p">},</span>
     <span class="p">}</span>
 </pre></div>
 </div>
 <p>Or to set a dataset <code class="docutils literal notranslate"><span class="pre">my_data</span></code> as the test dataset, with particular
 parameters for the whole benchmark:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;my objective&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"my objective"</span>
     <span class="n">test_config</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;reg&#39;</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
-        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;my_data&#39;</span><span class="p">,</span> <span class="s1">&#39;debug&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
+        <span class="s1">'reg'</span><span class="p">:</span> <span class="mf">0.9</span><span class="p">,</span>
+        <span class="s1">'dataset'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'my_data'</span><span class="p">,</span> <span class="s1">'debug'</span><span class="p">:</span> <span class="kc">True</span><span class="p">},</span>
     <span class="p">}</span>
 </pre></div>
 </div>
 <p>For a multi-task benchmark, a solver that only supports a subset of the
 datasets can declare which one(s) to test against:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
-    <span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;classifier1&quot;</span>
+    <span class="n">name</span> <span class="o">=</span> <span class="s2">"classifier1"</span>
 
     <span class="n">test_config</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;dataset&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;data1&#39;</span><span class="p">},</span>  <span class="c1"># or [&#39;data_a&#39;, &#39;data_b&#39;]</span>
+        <span class="s1">'dataset'</span><span class="p">:</span> <span class="p">{</span><span class="s1">'name'</span><span class="p">:</span> <span class="s1">'data1'</span><span class="p">},</span>  <span class="c1"># or ['data_a', 'data_b']</span>
     <span class="p">}</span>
 </pre></div>
 </div>
@@ -602,10 +603,10 @@ For instance, in order to skip the test <code class="docutils literal notranslat
 <code class="docutils literal notranslate"><span class="pre">solver1</span></code> which is defined in the benchmark, one can add the following
 function to the <code class="docutils literal notranslate"><span class="pre">test_config.py</span></code> file:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">check_test_solver_install</span><span class="p">(</span><span class="n">benchmark</span><span class="p">,</span> <span class="n">solver</span><span class="p">):</span>
-    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;solver1&quot;</span><span class="p">:</span>
-        <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">&quot;Skipping test_solver_install for solver1&quot;</span><span class="p">)</span>
-    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">&quot;solver2&quot;</span><span class="p">:</span>
-        <span class="n">pytest</span><span class="o">.</span><span class="n">xfail</span><span class="p">(</span><span class="s2">&quot;Known installation error for solver2&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"solver1"</span><span class="p">:</span>
+        <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span><span class="s2">"Skipping test_solver_install for solver1"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="s2">"solver2"</span><span class="p">:</span>
+        <span class="n">pytest</span><span class="o">.</span><span class="n">xfail</span><span class="p">(</span><span class="s2">"Known installation error for solver2"</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
