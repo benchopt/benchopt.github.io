@@ -6,7 +6,7 @@
 
 Computation times
 =================
-**05:34.219** total execution time for 6 files **from auto_examples**:
+**10:16.821** total execution time for 6 files **from auto_examples**:
 
 .. container::
 
@@ -33,20 +33,20 @@ Computation times
      - Time
      - Mem (MB)
    * - :ref:`sphx_glr_auto_examples_run_julia_solver.py` (``run_julia_solver.py``)
-     - 03:40.052
+     - 06:17.526
      - 0.0
    * - :ref:`sphx_glr_auto_examples_run_r_solver.py` (``run_r_solver.py``)
-     - 01:34.682
+     - 03:10.711
      - 0.0
    * - :ref:`sphx_glr_auto_examples_run_minimal_benchmark.py` (``run_minimal_benchmark.py``)
-     - 00:08.936
+     - 00:24.443
      - 0.0
    * - :ref:`sphx_glr_auto_examples_run_image_benchmark.py` (``run_image_benchmark.py``)
-     - 00:05.982
+     - 00:13.498
      - 0.0
    * - :ref:`sphx_glr_auto_examples_run_plot_config.py` (``run_plot_config.py``)
-     - 00:04.525
+     - 00:10.583
      - 0.0
    * - :ref:`sphx_glr_auto_examples_run_benchopt_prepare.py` (``run_benchopt_prepare.py``)
-     - 00:00.041
+     - 00:00.059
      - 0.0

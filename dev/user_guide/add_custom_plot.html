@@ -654,6 +654,9 @@ default in the html report, given as a column name or a 0-based column index.</p
 <li><p><code class="code docutils literal notranslate"><span class="pre">default_order_ascending</span></code> (optional, default=True): Whether the default
 ordering is in increasing order.</p></li>
 </ul>
+<p>String cells can carry simple formatting with <code class="code docutils literal notranslate"><span class="pre">**bold**</span></code>,
+<code class="code docutils literal notranslate"><span class="pre">*italic*</span></code> and <code class="code docutils literal notranslate"><span class="pre">__underlined__</span></code> markers. A literal marker is
+escaped with a backslash, as in <code class="code docutils literal notranslate"><span class="pre">r&quot;a</span> <span class="pre">*</span> <span class="pre">b&quot;</span></code>.</p>
 <p>In the html report, each column header can be clicked to sort on that column,
 and the arrow next to it can be toggled to switch between increasing and
 decreasing order. A search bar allows filtering the rows, and each column can
@@ -666,7 +669,7 @@ be shown or hidden with the checkboxes below the table.</p>
     <span class="k">for</span> <span class="n">solver</span><span class="p">,</span> <span class="n">df_solver</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'solver_name'</span><span class="p">):</span>
         <span class="c1"># Example: table with solver name and mean time</span>
         <span class="c1"># when using `sampling_strategy = 'run_once'`</span>
-        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">solver</span><span class="p">,</span> <span class="n">df_solver</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
+        <span class="n">rows</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="sa">f</span><span class="s2">"**</span><span class="si">{</span><span class="n">solver</span><span class="si">}</span><span class="s2">**"</span><span class="p">,</span> <span class="n">df_solver</span><span class="p">[</span><span class="s1">'time'</span><span class="p">]</span><span class="o">.</span><span class="n">mean</span><span class="p">()])</span>
     <span class="k">return</span> <span class="n">rows</span>
 
 <span class="k">def</span><span class="w"> </span><span class="nf">get_metadata</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
