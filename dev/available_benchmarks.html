@@ -396,7 +396,7 @@
 <p>Some benchmarks are briefly described in the list below. For a complete
 list of benchmarks, see GitHub repositories of the form <a class="reference external" href="https://github.com/orgs/benchopt/repositories?q=benchmark_&amp;type=all&amp;language=&amp;sort=stargazers/">benchopt/benchmark_*</a>.</p>
 </div>
-<p><strong>Notation:</strong>  In what follows, <span class="math notranslate nohighlight">\(n\)</span> (or <code class="docutils literal notranslate"><span class="pre">n_samples</span></code>) stands for the number of samples and <span class="math notranslate nohighlight">\(p`\)</span> (or <code class="docutils literal notranslate"><span class="pre">n_features</span></code>) stands for the number of features.</p>
+<p><strong>Notation:</strong>  In what follows, <span class="math notranslate nohighlight">\(n\)</span> (or <code class="docutils literal notranslate"><span class="pre">n_samples</span></code>) stands for the number of samples and <span class="math notranslate nohighlight">\(p\)</span> (or <code class="docutils literal notranslate"><span class="pre">n_features</span></code>) stands for the number of features.</p>
 <div class="math notranslate nohighlight">
 \[y \in \mathbb{R}^n, X = [x_1^\top, \dots, x_n^\top]^\top \in \mathbb{R}^{n \times p}\]</div>
 <ul class="simple">
@@ -428,7 +428,7 @@ list of benchmarks, see GitHub repositories of the form <a class="reference exte
 <li><p><a class="reference external" href="https://github.com/benchopt/benchmark_huber_l2">L2-regularized Huber regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_huber_l2/actions"><img alt="Build Status HuberL2" src="https://github.com/benchopt/benchmark_huber_l2/actions/workflows/main.yml/badge.svg" /></a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\min_{w, \sigma} {\sum_{i=1}^n \left(\sigma + H_{\epsilon}\left(\frac{X_{i}w - y_{i}}{\sigma}\right)\sigma\right) + \lambda {\|w\|_2}^2}\]</div>
+\[\min_{w, \sigma} {\sum_{i=1}^n \left(\sigma + H_{\epsilon}\left(\frac{X_{i}w - y_{i}}{\sigma}\right)\sigma\right) + \lambda \|w\|_2^2}\]</div>
 <p>where</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}H_{\epsilon}(z) = \begin{cases}
@@ -439,7 +439,7 @@ list of benchmarks, see GitHub repositories of the form <a class="reference exte
 <li><p><a class="reference external" href="https://github.com/benchopt/benchmark_quantile_regression">L1-regularized quantile regression</a>: <a class="reference external" href="https://github.com/benchopt/benchmark_quantile_regression/actions"><img alt="Build Status QuantileRegL1" src="https://github.com/benchopt/benchmark_quantile_regression/actions/workflows/main.yml/badge.svg" /></a></p></li>
 </ul>
 <div class="math notranslate nohighlight">
-\[\min_{w} \frac{1}{n} \sum_{i=1}^{n} PB_q(y_i - X_i w) + \lambda ||w||_1.\]</div>
+\[\min_{w} \frac{1}{n} \sum_{i=1}^{n} PB_q(y_i - X_i w) + \lambda ||w||_1\]</div>
 <p>where <span class="math notranslate nohighlight">\(PB_q\)</span> is the pinball loss:</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}PB_q(t) = q \max(t, 0) + (1 - q) \max(-t, 0) =
