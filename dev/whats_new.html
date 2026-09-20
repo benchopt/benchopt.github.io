@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -509,6 +509,10 @@ every cached run once.</p>
 summarize result file(s) instead of listing benchmark solvers/datasets;
 plain <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">info</span></code> now also lists available result files.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/990">#990</a>)</p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">raise_on_error</span></code> config setting (<code class="docutils literal notranslate"><span class="pre">BENCHOPT_RAISE_ON_ERROR</span></code>) that
+re-raises the first solver/dataset/objective error to make a run fail fast,
+without turning on the extra logging of <code class="docutils literal notranslate"><span class="pre">BENCHOPT_DEBUG</span></code>.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1005">#1005</a>)</p></li>
 <li><p>Ship agent skills (<code class="docutils literal notranslate"><span class="pre">SKILL.md</span></code>, <a class="reference external" href="https://agentskills.io">Agent Skills</a>
 standard) as package data and add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">sync-skills</span></code> to install them
 into a project’s <code class="docutils literal notranslate"><span class="pre">.agents/skills/</span></code> (or globally with <code class="docutils literal notranslate"><span class="pre">--global</span></code>), with a
@@ -573,6 +577,16 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 <section id="fix">
 <h3>FIX<a class="headerlink" href="#fix" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>Config warnings cleanup: setting a benchmark option (e.g. <code class="docutils literal notranslate"><span class="pre">data_home</span></code>)
+through its <code class="docutils literal notranslate"><span class="pre">BENCHOPT_*</span></code> environment variable no longer warns, since these
+are honored for every benchmark. The unused <code class="docutils literal notranslate"><span class="pre">data_dir</span></code> global option is
+removed, and the internal <code class="docutils literal notranslate"><span class="pre">_g_config_check</span></code>/<code class="docutils literal notranslate"><span class="pre">_bench_config_check</span></code> flags
+no longer leak into the warning’s option list or the documented settings.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1005">#1005</a>)</p></li>
+<li><p>Fix warning onvalid a benchmark option (e.g. <code class="docutils literal notranslate"><span class="pre">data_home</span></code>) passed
+through its <code class="docutils literal notranslate"><span class="pre">BENCHOPT_*</span></code> env var. Also clean up trailing unused or
+private keys from user facing information.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1005">#1005</a>)</p></li>
 <li><p>Fix <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> raising in a <code class="docutils literal notranslate"><span class="pre">Dataset</span></code>’s <code class="docutils literal notranslate"><span class="pre">get_data</span></code> when running with
 <code class="docutils literal notranslate"><span class="pre">-j</span></code> greater than 1. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/984">#984</a>)</p></li>
 <li><p>Fix shell handling on Windows so <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code>/<code class="docutils literal notranslate"><span class="pre">test</span></code> work with a

@@ -33,7 +33,7 @@
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
     <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
-    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=fd6457a4" />
+    <link rel="stylesheet" type="text/css" href="../_static/sg_gallery.css?v=c83e6b79" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="../_static/sg_gallery-rendered-html.css?v=1277b6f3" />
@@ -413,29 +413,27 @@ benchopt’s helpers to call Julia code from Python.</p>
 </li>
 </ul>
 <p>At the end, we run the benchmark and display the comparison.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="c1"># Import example helpers to define the benchmark and</span>
-<span class="c1"># programmatically call the CLI.</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExampleBenchmark</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">benchopt_cli</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.run_examples</span><span class="w"> </span><span class="kn">import</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EXAMPLES_ROOT</span></a>
-</pre></div>
-</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span class="c1"># Import example helpers to define the benchmark and</span><span class="w">
+</span><span class="c1"># programmatically call the CLI.</span><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="nn">.</span><span class="nn">helpers</span><span class="nn">.</span><span class="nn">run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">ExampleBenchmark</span><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="nn">.</span><span class="nn">helpers</span><span class="nn">.</span><span class="nn">run_examples</span><span class="w"> </span><span class="kn">import</span> <span class="n">benchopt_cli</span><span class="w">
+</span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="nn">.</span><span class="nn">helpers</span><span class="nn">.</span><span class="nn">run_examples</span><span class="w"> </span><span class="kn">import</span> <a class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath"><span class="n">EXAMPLES_ROOT</span></a><span class="w">
+</span></pre></div></div>
 <p>First, we define the initial Python benchmark, based on the benchmark
 <code class="docutils literal notranslate"><span class="pre">examples/minimal_benchmark</span></code>. It contains an <code class="docutils literal notranslate"><span class="pre">objective.py</span></code> file,
 a simulated dataset and a full python solver based on gradient descent.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchmark</span> <span class="o">=</span> <span class="n">ExampleBenchmark</span><span class="p">(</span>
-    <span class="n">base</span><span class="o">=</span><span class="s2">"minimal_benchmark"</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">"julia_solver"</span><span class="p">,</span>
-    <span class="n">ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">"custom_plot.py"</span><span class="p">,</span> <span class="s2">"example_config.yml"</span><span class="p">]</span>
-<span class="p">)</span>
-<span class="n">benchmark</span>
-</pre></div>
-</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span class="n">benchmark</span> <span class="o">=</span> <span class="n">ExampleBenchmark</span><span class="p">(</span><span class="w">
+</span>    <span class="n">base</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">minimal_benchmark</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">julia_solver</span><span class="s2">&quot;</span><span class="p">,</span><span class="w">
+</span>    <span class="n">ignore</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;</span><span class="s2">custom_plot.py</span><span class="s2">&quot;</span><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">example_config.yml</span><span class="s2">&quot;</span><span class="p">]</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span><span class="n">benchmark</span><span class="w">
+</span></pre></div></div>
 <div class="output_subarea output_html rendered_html output_result">
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
 
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-d50a553c25124a6899259c2495a80892-0' name='example-benchmark-d50a553c25124a6899259c2495a80892' type='radio'><label for='example-benchmark-d50a553c25124a6899259c2495a80892-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-844ec732393648a5a13f0e8de14037da-0' name='example-benchmark-844ec732393648a5a13f0e8de14037da' type='radio'><label for='example-benchmark-844ec732393648a5a13f0e8de14037da-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -473,7 +471,7 @@ a simulated dataset and a full python solver based on gradient descent.</p>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-d50a553c25124a6899259c2495a80892-1' name='example-benchmark-d50a553c25124a6899259c2495a80892' type='radio'><label for='example-benchmark-d50a553c25124a6899259c2495a80892-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+<input  id='example-benchmark-844ec732393648a5a13f0e8de14037da-1' name='example-benchmark-844ec732393648a5a13f0e8de14037da' type='radio'><label for='example-benchmark-844ec732393648a5a13f0e8de14037da-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -495,7 +493,7 @@ a simulated dataset and a full python solver based on gradient descent.</p>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-d50a553c25124a6899259c2495a80892-2' name='example-benchmark-d50a553c25124a6899259c2495a80892' type='radio'><label for='example-benchmark-d50a553c25124a6899259c2495a80892-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+<input  id='example-benchmark-844ec732393648a5a13f0e8de14037da-2' name='example-benchmark-844ec732393648a5a13f0e8de14037da' type='radio'><label for='example-benchmark-844ec732393648a5a13f0e8de14037da-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -547,7 +545,7 @@ a simulated dataset and a full python solver based on gradient descent.</p>
         <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-d50a553c25124a6899259c2495a80892-3' name='example-benchmark-d50a553c25124a6899259c2495a80892' type='radio'><label for='example-benchmark-d50a553c25124a6899259c2495a80892-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+<input  id='example-benchmark-844ec732393648a5a13f0e8de14037da-3' name='example-benchmark-844ec732393648a5a13f0e8de14037da' type='radio'><label for='example-benchmark-844ec732393648a5a13f0e8de14037da-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
 <span class="nt">plot_configs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -567,21 +565,20 @@ on the <code class="docutils literal notranslate"><span class="pre">JuliaSolver<
 from Python, and to define the dependencies of the solver.
 The Julia code is defined in a separate file <code class="docutils literal notranslate"><span class="pre">julia_gd.jl</span></code>, that is loaded
 and called from the Python solver.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">EXAMPLES_ROOT</span></a> <span class="o">/</span> <span class="s2">"language_solvers"</span> <span class="o">/</span> <span class="s2">"julia_gd.py"</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_PY</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.read_text" title="pathlib.Path.read_text" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">JULIA_SOLVER</span><span class="o">.</span><span class="n">read_text</span></a><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
-<a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_JL</span></a> <span class="o">=</span> <a href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.with_suffix" title="pathlib.PurePath.with_suffix" class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method"><span class="n">JULIA_SOLVER</span><span class="o">.</span><span class="n">with_suffix</span></a><span class="p">(</span><span class="s2">".jl"</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">"utf-8"</span><span class="p">)</span>
-
-<span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span>
-    <span class="n">solvers</span><span class="o">=</span><span class="p">{</span><span class="s2">"julia_gd.py"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_PY</span></a><span class="p">,</span> <span class="s2">"julia_gd.jl"</span><span class="p">:</span> <a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">JULIA_SOLVER_JL</span></a><span class="p">},</span>
-<span class="p">)</span>
-</pre></div>
-</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><a class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath"><span class="n">JULIA_SOLVER</span></a> <span class="o">=</span> <a class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-class sphx-glr-backref-instance reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.PosixPath" title="pathlib.PosixPath"><span class="n">EXAMPLES_ROOT</span></a> <span class="o">/</span> <span class="s2">&quot;</span><span class="s2">language_solvers</span><span class="s2">&quot;</span> <span class="o">/</span> <span class="s2">&quot;</span><span class="s2">julia_gd.py</span><span class="s2">&quot;</span><span class="w">
+</span><a class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="str"><span class="n">JULIA_SOLVER_PY</span></a> <span class="o">=</span> <a class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path.read_text" title="pathlib.Path.read_text"><span class="n">JULIA_SOLVER</span><span class="o">.</span><span class="n">read_text</span></a><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">utf-8</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><a class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="str"><span class="n">JULIA_SOLVER_JL</span></a> <span class="o">=</span> <a class="sphx-glr-backref-module-pathlib sphx-glr-backref-type-py-method reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.PurePath.with_suffix" title="pathlib.PurePath.with_suffix"><span class="n">JULIA_SOLVER</span><span class="o">.</span><span class="n">with_suffix</span></a><span class="p">(</span><span class="s2">&quot;</span><span class="s2">.jl</span><span class="s2">&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">read_text</span><span class="p">(</span><span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;</span><span class="s2">utf-8</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span><span class="w">
+</span><span class="n">benchmark</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="w">
+</span>    <span class="n">solvers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;</span><span class="s2">julia_gd.py</span><span class="s2">&quot;</span><span class="p">:</span> <a class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="str"><span class="n">JULIA_SOLVER_PY</span></a><span class="p">,</span> <span class="s2">&quot;</span><span class="s2">julia_gd.jl</span><span class="s2">&quot;</span><span class="p">:</span> <a class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="str"><span class="n">JULIA_SOLVER_JL</span></a><span class="p">}</span><span class="p">,</span><span class="w">
+</span><span class="p">)</span><span class="w">
+</span></pre></div></div>
 <div class="output_subarea output_html rendered_html output_result">
 <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 <p>We now update the following files:</p><br/>
                 <div class='sd-tab-set'>
-                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                    <input checked="checked" id='example-benchmark-38bd6548b9284fe9b1aa02b067c99fdf-0' name='example-benchmark-38bd6548b9284fe9b1aa02b067c99fdf' type='radio'><label for='example-benchmark-38bd6548b9284fe9b1aa02b067c99fdf-0'>solvers/julia_gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+                    <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                    <input checked="checked" id='example-benchmark-c75aa9190ed0452c93355ad8a6949f9c-0' name='example-benchmark-c75aa9190ed0452c93355ad8a6949f9c' type='radio'><label for='example-benchmark-c75aa9190ed0452c93355ad8a6949f9c-0'>solvers/julia_gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">JuliaSolver</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_jl_interpreter</span>
@@ -618,7 +615,7 @@ and called from the Python solver.</p>
         <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
 </pre></div>
 </div>
-<input  id='example-benchmark-38bd6548b9284fe9b1aa02b067c99fdf-1' name='example-benchmark-38bd6548b9284fe9b1aa02b067c99fdf' type='radio'><label for='example-benchmark-38bd6548b9284fe9b1aa02b067c99fdf-1'>solvers/julia_gd.jl</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
+<input  id='example-benchmark-c75aa9190ed0452c93355ad8a6949f9c-1' name='example-benchmark-c75aa9190ed0452c93355ad8a6949f9c' type='radio'><label for='example-benchmark-c75aa9190ed0452c93355ad8a6949f9c-1'>solvers/julia_gd.jl</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
 
 
 <span class="k">function</span><span class="w"> </span><span class="n">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">lr</span><span class="p">,</span><span class="w"> </span><span class="n">n_iter</span><span class="p">)</span>
@@ -649,11 +646,10 @@ number of iterations to be able to report the curve of the convergence.</p>
 do this with <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">install</span></code>, using with the <code class="docutils literal notranslate"><span class="pre">-s</span></code> option which allow
 to select only this solver if multiple solvers are present. If Julia is not
 available in your environment, this command will use <code class="docutils literal notranslate"><span class="pre">conda</span></code> to install it.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">"install </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -s julia-gd"</span><span class="p">)</span>
-</pre></div>
-</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="s2">install </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -s julia-gd</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span></pre></div></div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_gd2cpc81/julia_solver<span class="w"> </span>-s<span class="w"> </span>julia-gd
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_qfxnrgu4/julia_solver<span class="w"> </span>-s<span class="w"> </span>julia-gd
 </pre></div>
 </pre>
 
@@ -670,1266 +666,19 @@ Installing required packages for:
  - conda-forge
  - https://repo.prefix.dev/julia-forge
 Platform: linux-64
-Collecting package metadata (repodata.json): - \ | / - \ | / - \ | / - \ | / -
-\ done
-Solving environment: / - \ | done
-
-julia-1.12.7         | 168.5 MB  |            |   0%
-perl-5.32.1          | 12.7 MB   |            |   0%
-
-git-2.55.0           | 11.1 MB   |            |   0%
-
-
-openblas-ilp64-0.3.3 | 5.6 MB    |            |   0%
-
-
-
-libopenblas-ilp64-0. | 5.6 MB    |            |   0%
-
-
-
-
-metis-5.1.0          | 3.7 MB    |            |   0%
-
-
-
-
-
-p7zip-16.02          | 2.2 MB    |            |   0%
-
-
-
-
-
-
-libcholmod-5.3.1     | 1.1 MB    |            |   0%
-
-
-
-
-
-
-
-libgit2-1.9.7        | 1.0 MB    |            |   0%
-
-
-
-
-
-
-
-
-mpfr-4.2.2           | 713 KB    |            |   0%
-
-
-
-
-
-
-
-
-
-gmp-6.3.0            | 482 KB    |            |   0%
-
-
-
-
-
-
-
-
-
-
-libumfpack-6.3.5     | 424 KB    |            |   0%
-
-
-
-
-
-
-
-
-
-
-
-libspqr-4.3.4        | 213 KB    |            |   0%
-
-
-
-
-
-
-
-
-
-
-
-
-libklu-2.3.5         | 142 KB    |            |   0%
-
-
-
-
-
-
-
-
-
-
-
-
-
-arpack-3.9.1         | 127 KB    |            |   0%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libcxsparse-4.4.1    | 118 KB    |            |   0%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libopenlibm4-0.8.1   | 102 KB    |            |   0%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-zlib-1.3.2           | 94 KB     |            |   0%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libparu-1.0.0        | 91 KB     |            |   0%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-julia-1.12.7         | 168.5 MB  | 1          |   2% [A
-perl-5.32.1          | 12.7 MB   | #7         |  17%
-
-git-2.55.0           | 11.1 MB   | ##7        |  27%
-
-
-openblas-ilp64-0.3.3 | 5.6 MB    | ####7      |  47%
-
-
-
-libopenblas-ilp64-0. | 5.6 MB    | #####3     |  54%
-
-
-
-julia-1.12.7         | 168.5 MB  | 5          |   6%
-perl-5.32.1          | 12.7 MB   | ####3      |  44%
-
-git-2.55.0           | 11.1 MB   | ######6    |  67%
-
-
-
-
-metis-5.1.0          | 3.7 MB    |            |   0%
-
-
-openblas-ilp64-0.3.3 | 5.6 MB    | ########## | 100%
-
-
-openblas-ilp64-0.3.3 | 5.6 MB    | ########## | 100%
-
-
-
-
-
-p7zip-16.02          | 2.2 MB    |            |   1%
-julia-1.12.7         | 168.5 MB  | 8          |   9%
-
-
-
-
-
-p7zip-16.02          | 2.2 MB    | ########## | 100%
-
-
-
-
-
-
-libcholmod-5.3.1     | 1.1 MB    | 1          |   1%
-
-
-
-
-metis-5.1.0          | 3.7 MB    | ########## | 100%
-
-
-
-
-metis-5.1.0          | 3.7 MB    | ########## | 100%
-
-
-
-
-
-
-libcholmod-5.3.1     | 1.1 MB    | ########## | 100%
-
-
-
-
-
-
-
-julia-1.12.7         | 168.5 MB  | #1         |  12%
-
-
-
-
-
-
-
-
-mpfr-4.2.2           | 713 KB    | 2          |   2%
-
-
-
-
-
-
-
-libgit2-1.9.7        | 1.0 MB    | ########## | 100%
-
-
-
-
-
-
-
-
-mpfr-4.2.2           | 713 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-gmp-6.3.0            | 482 KB    | 3          |   3%
-
-
-
-
-
-
-
-
-
-gmp-6.3.0            | 482 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-libumfpack-6.3.5     | 424 KB    | 3          |   4%
-
-
-
-
-
-
-
-
-
-
-libumfpack-6.3.5     | 424 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-julia-1.12.7         | 168.5 MB  | #4         |  14%
-
-
-
-
-
-
-
-
-
-
-
-libspqr-4.3.4        | 213 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-libklu-2.3.5         | 142 KB    | #1         |  11%
-
-
-
-
-
-
-
-
-
-
-
-
-
-arpack-3.9.1         | 127 KB    | #2         |  13%
-
-
-
-
-
-
-
-
-
-
-
-
-
-arpack-3.9.1         | 127 KB    | ########## | 100%
-
-git-2.55.0           | 11.1 MB   | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-libklu-2.3.5         | 142 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-zlib-1.3.2           | 94 KB     | #7         |  17%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libcxsparse-4.4.1    | 118 KB    | #3         |  14%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libopenlibm4-0.8.1   | 102 KB    | #5         |  16%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-zlib-1.3.2           | 94 KB     | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libopenlibm4-0.8.1   | 102 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libcxsparse-4.4.1    | 118 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libparu-1.0.0        | 91 KB     | #7         |  18%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libparu-1.0.0        | 91 KB     | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-julia-1.12.7         | 168.5 MB  | #6         |  17% [A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...
-julia-1.12.7         | 168.5 MB  | #9         |  19%
-
-
-
-julia-1.12.7         | 168.5 MB  | ###        |  30%
-
-
-
-
-metis-5.1.0          | 3.7 MB    | ########## | 100%
-
-
-julia-1.12.7         | 168.5 MB  | ###6       |  36%
-
-
-
-
-
-
-libcholmod-5.3.1     | 1.1 MB    | ########## | 100%
-
-
-
-
-
-
-julia-1.12.7         | 168.5 MB  | ####       |  41%
-
-
-
-
-
-p7zip-16.02          | 2.2 MB    | ########## | 100%
-
-
-
-
-
-p7zip-16.02          | 2.2 MB    | ########## | 100%
-
-
-
-
-
-
-
-
-mpfr-4.2.2           | 713 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-mpfr-4.2.2           | 713 KB    | ########## | 100%
-
-
-
-
-
-
-
-libgit2-1.9.7        | 1.0 MB    | ########## | 100%
-
-
-
-
-
-
-
-libgit2-1.9.7        | 1.0 MB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-libumfpack-6.3.5     | 424 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-libumfpack-6.3.5     | 424 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-gmp-6.3.0            | 482 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-gmp-6.3.0            | 482 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-libspqr-4.3.4        | 213 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-julia-1.12.7         | 168.5 MB  | ####6      |  46%
-
-
-
-
-
-
-
-
-
-
-
-
-libklu-2.3.5         | 142 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-arpack-3.9.1         | 127 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-libklu-2.3.5         | 142 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-arpack-3.9.1         | 127 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libopenlibm4-0.8.1   | 102 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libopenlibm4-0.8.1   | 102 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-zlib-1.3.2           | 94 KB     | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-julia-1.12.7         | 168.5 MB  | #####1     |  51%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libcxsparse-4.4.1    | 118 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libcxsparse-4.4.1    | 118 KB    | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libparu-1.0.0        | 91 KB     | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-libparu-1.0.0        | 91 KB     | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- ... (more hidden) ...
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-julia-1.12.7         | 168.5 MB  | #########1 |  92% [A
-
-julia-1.12.7         | 168.5 MB  | ########## | 100%
-julia-1.12.7         | 168.5 MB  | ########## | 100%
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                                                     A
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- done
-Preparing transaction: - \ | done
-Verifying transaction: - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | /
-- \ | / - \ | done
-Executing transaction: - \ | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ | /
-- \ | / - \ | / - \ | / - \ | / - done
-Installing pip dependencies: | / - \ | / - \ | / - \ | / - \ | / - \ | / - \ |
-/ - \ | / - \ | / - \ | / - \ | / - \ | / - \ | Ran pip subprocess with
-arguments:
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+Downloading and Extracting Packages: ...working... done
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Installing pip dependencies: ...working... Ran pip subprocess with arguments:
 [&#x27;/home/circleci/miniconda/envs/benchopt-docs/bin/python&#x27;, &#x27;-m&#x27;, &#x27;pip&#x27;,
-&#x27;install&#x27;, &#x27;-U&#x27;, &#x27;-r&#x27;, &#x27;/tmp/condaenv.ajd8hjvs.requirements.txt&#x27;,
+&#x27;install&#x27;, &#x27;-U&#x27;, &#x27;-r&#x27;, &#x27;/tmp/condaenv.76ka876w.requirements.txt&#x27;,
 &#x27;--exists-action=b&#x27;]
 Pip subprocess output:
-Collecting julia (from -r /tmp/condaenv.ajd8hjvs.requirements.txt (line 1))
+Collecting julia (from -r /tmp/condaenv.76ka876w.requirements.txt (line 1))
   Downloading julia-0.6.2-py2.py3-none-any.whl.metadata (2.4 kB)
 Downloading julia-0.6.2-py2.py3-none-any.whl (68 kB)
 Installing collected packages: julia
@@ -1958,11 +707,10 @@ done
 </div>
 <br />
 <br /><p>Then, we can run the benchmark and show the comparison.</p>
-<div class="highlight-Python notranslate"><div class="highlight"><pre><span></span><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">"run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 20 -r 4"</span><span class="p">)</span>
-</pre></div>
-</div>
+<div class="highlight-Python notranslate"><div class="highlight"><pre><span class="n">benchopt_cli</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="s2">run </span><span class="si">{</span><span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span><span class="si">}</span><span class="s2"> -n 20 -r 4</span><span class="s2">&quot;</span><span class="p">)</span><span class="w">
+</span></pre></div></div>
 <div class="output_subarea output_html rendered_html output_result">
-            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_gd2cpc81/julia_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
+            <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_qfxnrgu4/julia_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
 </pre></div>
 </pre>
 
@@ -1974,61 +722,2177 @@ simulated
 No seed was specified. Selected global seed: 0
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
 <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--gd[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
-/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia
-/core.py:715: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia
-objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl =
-Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
-  warnings.warn(
-/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia
-/core.py:715: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia
-objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl =
-Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
-  warnings.warn(
-/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia
-/core.py:715: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia
-objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl =
-Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
-  warnings.warn(
-/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia
-/core.py:715: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia
-objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl =
-Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
-  warnings.warn(
-<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.001]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
-/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia
-/core.py:715: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia
-objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl =
-Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
-  warnings.warn(
-/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia
-/core.py:715: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia
-objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl =
-Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
-  warnings.warn(
-/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia
-/core.py:715: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia
-objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl =
-Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
-  warnings.warn(
-/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia
-/core.py:715: FutureWarning: Accessing `Julia().&lt;name&gt;` to obtain Julia
-objects is deprecated.  Use `from julia import Main; Main.&lt;name&gt;` or `jl =
-Julia(); jl.eval(&#x27;&lt;name&gt;&#x27;)`.
-  warnings.warn(
-<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.01]:</span> <span style="color: #808000; text-decoration-color: #808000; font-weight: bold">done (not enough run)</span>
+[ Info: Julia version info
+[ Info: Julia executable:
+/home/circleci/miniconda/envs/benchopt-docs/bin/julia
+[ Info: Trying to import PyCall...
+┌ Error: `import PyCall` failed
+│   exception =
+│    ArgumentError: Package PyCall [438e738f-606a-5dbb-bf0a-cddfbfd45ab0] is
+required but does not seem to be installed:
+│     - Run `Pkg.instantiate()` to install all recorded dependencies.
+│
+│    Stacktrace:
+│      [1] __require_prelocked(pkg::Base.PkgId, env::Nothing)
+│        @ Base ./loading.jl:2717
+│      [2] _require_prelocked(uuidkey::Base.PkgId, env::Nothing)
+│        @ Base ./loading.jl:2597
+│      [3] _require_prelocked
+│        @ ./loading.jl:2591 [inlined]
+│      [4] macro expansion
+│        @ ./lock.jl:376 [inlined]
+│      [5] __require(uuidkey::Base.PkgId)
+│        @ Base ./loading.jl:2589
+│      [6] require(uuidkey::Base.PkgId)
+│        @ Base ./loading.jl:2587
+│      [7] top-level scope
+│        @
+~/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia/install.jl:3
+6
+│      [8] include(mod::Module, _path::String)
+│        @ Base ./Base.jl:309
+│      [9] exec_options(opts::Base.JLOptions)
+│        @ Base ./client.jl:344
+│     [10] _start()
+│        @ Base ./client.jl:577
+└ @ Main
+~/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/julia/install.jl:3
+8
+[ Info: Installing PyCall...
+  Installing known registries into `~/.julia`
+       Added `General` registry to ~/.julia/registries
+   Resolving package versions...
+   Installed Preferences ───── v1.6.0
+   Installed Conda ─────────── v1.10.3
+   Installed Parsers ───────── v3.0.0
+   Installed PyCall ────────── v1.96.4
+   Installed JSON ──────────── v1.9.0
+   Installed StructUtils ───── v2.9.2
+   Installed MacroTools ────── v0.5.16
+   Installed VersionParsing ── v1.3.0
+   Installed PrecompileTools ─ v1.3.4
+    Updating `~/.julia/environments/v1.13/Project.toml`
+  [438e738f] + PyCall v1.96.4
+    Updating `~/.julia/environments/v1.13/Manifest.toml`
+  [8f4d0f93] + Conda v1.10.3
+  [682c06a0] + JSON v1.9.0
+  [1914dd2f] + MacroTools v0.5.16
+  [69de0a69] + Parsers v3.0.0
+  [aea7be01] + PrecompileTools v1.3.4
+  [21216c6a] + Preferences v1.6.0
+  [438e738f] + PyCall v1.96.4
+  [ec057cc2] + StructUtils v2.9.2
+  [81def892] + VersionParsing v1.3.0
+  [0dad84c5] + ArgTools v1.1.2
+  [56f22d72] + Artifacts v1.11.0
+  [ade2ca70] + Dates v1.11.0
+  [f43a241f] + Downloads v1.7.0
+  [7b1f6079] + FileWatching v1.11.0
+  [b27032c2] + LibCURL v1.0.0
+  [8f399da3] + Libdl v1.11.0
+  [37e2e46d] + LinearAlgebra v1.13.0
+  [56ddb016] + Logging v1.11.0
+  [ca575930] + NetworkOptions v1.3.0
+  [de0858da] + Printf v1.11.0
+  [9a3f8284] + Random v1.11.0
+  [ea8e919c] + SHA v1.0.0
+  [9e88b42a] + Serialization v1.11.0
+  [fa267f1f] + TOML v1.0.3
+  [cf7118a7] + UUIDs v1.11.0
+  [4ec0a83e] + Unicode v1.11.0
+  [e66e0078] + CompilerSupportLibraries_jll v1.5.5+2
+  [deac9b47] + LibCURL_jll v8.18.0+1
+  [29816b5a] + LibSSH2_jll v1.11.103+0
+  [14a3606d] + MozillaCACerts_jll v2026.8.13
+  [4536629a] + OpenBLAS_jll v0.3.30+0
+  [458c3c95] + OpenSSL_jll v3.5.6+0
+  [83775a58] + Zlib_jll v1.3.1+2
+  [3161d3a3] + Zstd_jll v1.5.7+1
+  [8e850b90] + libblastrampoline_jll v5.15.0+0
+  [8e850ede] + nghttp2_jll v1.67.1+0
+    Building Conda ─→
+`~/.julia/scratchspaces/44cfe95a-1eb2-52ea-b672-e2afdf69b78f/8f06b0cfa4c514c7b
+9546756dbae91fcfbc92dc9/build.log`
+    Building PyCall →
+`~/.julia/scratchspaces/44cfe95a-1eb2-52ea-b672-e2afdf69b78f/9816a3826b0ebf49a
+b4926e2b18842ad8b5c8f04/build.log`
+Precompiling packages...
+   1.2 s  ✓ VersionParsing
+   1.5 s  ✓ Preferences
+   1.9 s  ✓ StructUtils
+   0.9 s  ✓ PrecompileTools
+   3.8 s  ✓ MacroTools
+  41.6 s  ✓ Parsers
+  17.6 s  ✓ JSON
+   1.0 s  ✓ Conda
+  19.0 s  ✓ PyCall
+  9 dependencies successfully precompiled in 82 seconds. 19 already
+precompiled.
+Julia Version 1.13.0
+Commit d1c37793dd2 (2026-09-09 19:00 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at
+https://julialang.org
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 24.04.4 LTS
+  uname: Linux 7.0.0-1012-aws #12-Ubuntu SMP PREEMPT Tue Aug 11 15:33:41 UTC
+2026 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1381 s        517 s        173 s       5245 s
+0 s
+       #2     0 MHz       1490 s        748 s        201 s       5034 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1520 s        860 s        172 s       4991 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1471 s        834 s        209 s       5031 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1535 s        881 s        208 s       4936 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1567 s        840 s        190 s       4966 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1485 s        934 s        193 s       4963 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1463 s        840 s        169 s       5108 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1532 s        911 s        169 s       4973 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1534 s        822 s        176 s       5046 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1607 s        801 s        174 s       4994 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1592 s        766 s        182 s       5028 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1559 s        804 s        175 s       5042 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1553 s        797 s        174 s       5058 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1473 s        701 s        176 s       5215 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1515 s        709 s        181 s       5180 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1583 s        633 s        173 s       5171 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1543 s        713 s        171 s       5156 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       2106 s        749 s        157 s       4577 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1670 s        706 s        193 s       5007 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1730 s        682 s        180 s       4991 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1669 s        544 s        211 s       5139 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1589 s        589 s        202 s       5194 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1604 s        554 s        201 s       5207 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1506 s        592 s        215 s       5258 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1639 s        466 s        188 s       5261 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1588 s        513 s        179 s       5284 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1582 s        574 s        191 s       5231 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1638 s        520 s        178 s       5227 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1584 s        488 s        180 s       5306 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1633 s        537 s        177 s       5228 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1636 s        552 s        184 s       5206 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1591 s        606 s        176 s       5204 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1723 s        585 s        178 s       5093 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1670 s        624 s        173 s       5112 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1711 s        617 s        175 s       5069 s
+0 s
+  Memory: 4.0 GB (790.09375 MB free)
+  Uptime: 196.26 sec
+  Load Avg:  8.06  9.1  9.78
+  WORD_SIZE: 64
+  LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 36 virtual cores)
+Environment:
+  MAKEFLAGS =
+  MFLAGS =
+  PATH =
+/home/circleci/miniconda/envs/benchopt-docs/bin:/home/circleci/miniconda/conda
+bin:/home/circleci/miniconda/bin:/home/circleci/bin:/home/circleci/.local/bin:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  HOME = /home/circleci
+  TERM = dumb
+  R_HOME = /home/circleci/miniconda/envs/benchopt-docs/lib/R
+
+Precompiling PyCall...
+Precompiling PyCall... DONE
+PyCall is installed and built successfully.
+
+
+
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/utils/pdb_helpers.py&quot;, line 29, in
+exception_handler
+    yield ctx
+  File &quot;/home/circleci/project/benchopt/runner.py&quot;, line 143, in
+run_one_to_cvg
+    skip, reason = solver._set_objective(objective)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
+    self.set_objective(**objective_dict)
+  File
+&quot;/home/circleci/project/examples/temp_benchmark_qfxnrgu4/julia_solver/solvers/
+julia_gd.py&quot;, line 21, in set_objective
+    jl = get_jl_interpreter()
+         ^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 33, in
+get_jl_interpreter
+    jl_interpreter = julia.Julia(**runtime_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 708, in __init__
+    self.__julia = Julia(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 525, in __init__
+    self._call(&quot;const PyCall = Base.require({0})&quot;.format(PYCALL_PKGID))
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 561, in _call
+    self.check_exception(src)
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 615, in check_exception
+    raise JuliaError(u&#x27;Exception \&#x27;{}\&#x27; occurred while calling julia
+code:\n{}&#x27;
+julia.core.JuliaError: Exception &#x27;LoadError&#x27; occurred while calling julia
+code:
+const PyCall =
+Base.require(Base.PkgId(Base.UUID(&quot;438e738f-606a-5dbb-bf0a-cddfbfd45ab0&quot;),
+&quot;PyCall&quot;))
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.001]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>
+[ Info: Julia version info
+[ Info: Julia executable:
+/home/circleci/miniconda/envs/benchopt-docs/bin/julia
+[ Info: Trying to import PyCall...
+┌ Info: PyCall is already installed and compatible with Python executable.
+│
+│ PyCall:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+│     libpython:
+/home/circleci/miniconda/envs/benchopt-docs/lib/libpython3.12.so.1.0
+│ Python:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+└     libpython:
+Julia Version 1.13.0
+Commit d1c37793dd2 (2026-09-09 19:00 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at
+https://julialang.org
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 24.04.4 LTS
+  uname: Linux 7.0.0-1012-aws #12-Ubuntu SMP PREEMPT Tue Aug 11 15:33:41 UTC
+2026 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1389 s        534 s        175 s       5376 s
+0 s
+       #2     0 MHz       1497 s        771 s        204 s       5162 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1531 s        900 s        174 s       5103 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1486 s        866 s        212 s       5146 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1541 s        928 s        210 s       5045 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1581 s        871 s        193 s       5083 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1492 s        980 s        194 s       5072 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1477 s        870 s        172 s       5226 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1538 s        964 s        171 s       5076 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1554 s        877 s        178 s       5134 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1617 s        861 s        176 s       5085 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        805 s        184 s       5148 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1563 s        845 s        177 s       5159 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1561 s        857 s        176 s       5153 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1499 s        733 s        177 s       5320 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1524 s        760 s        183 s       5283 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        648 s        175 s       5304 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1556 s        746 s        173 s       5273 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       2130 s        807 s        159 s       4658 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1683 s        752 s        196 s       5110 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1742 s        730 s        182 s       5094 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1695 s        561 s        212 s       5258 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1595 s        623 s        204 s       5316 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1629 s        575 s        204 s       5322 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1518 s        604 s        218 s       5394 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1666 s        476 s        192 s       5385 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1596 s        530 s        181 s       5422 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1603 s        584 s        193 s       5363 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1650 s        536 s        181 s       5361 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1590 s        498 s        183 s       5450 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        546 s        180 s       5370 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        582 s        185 s       5332 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1608 s        637 s        178 s       5319 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1733 s        608 s        179 s       5224 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1715 s        634 s        175 s       5220 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1718 s        638 s        177 s       5204 s
+0 s
+  Memory: 4.0 GB (603.578125 MB free)
+  Uptime: 361.42 sec
+  Load Avg:  9.54  9.59  9.87
+  WORD_SIZE: 64
+  LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 36 virtual cores)
+Environment:
+  MAKEFLAGS =
+  MFLAGS =
+  PATH =
+/home/circleci/miniconda/envs/benchopt-docs/bin:/home/circleci/miniconda/conda
+bin:/home/circleci/miniconda/bin:/home/circleci/bin:/home/circleci/.local/bin:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  HOME = /home/circleci
+  TERM = dumb
+  R_HOME = /home/circleci/miniconda/envs/benchopt-docs/lib/R
+
+
+
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/utils/pdb_helpers.py&quot;, line 29, in
+exception_handler
+    yield ctx
+  File &quot;/home/circleci/project/benchopt/runner.py&quot;, line 143, in
+run_one_to_cvg
+    skip, reason = solver._set_objective(objective)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
+    self.set_objective(**objective_dict)
+  File
+&quot;/home/circleci/project/examples/temp_benchmark_qfxnrgu4/julia_solver/solvers/
+julia_gd.py&quot;, line 21, in set_objective
+    jl = get_jl_interpreter()
+         ^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 33, in
+get_jl_interpreter
+    jl_interpreter = julia.Julia(**runtime_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 708, in __init__
+    self.__julia = Julia(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 544, in __init__
+    self.eval(&quot;include&quot;)(
+RuntimeError: &lt;exception str() failed&gt;
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.001]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>
+[ Info: Julia version info
+[ Info: Julia executable:
+/home/circleci/miniconda/envs/benchopt-docs/bin/julia
+[ Info: Trying to import PyCall...
+┌ Info: PyCall is already installed and compatible with Python executable.
+│
+│ PyCall:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+│     libpython:
+/home/circleci/miniconda/envs/benchopt-docs/lib/libpython3.12.so.1.0
+│ Python:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+└     libpython:
+Julia Version 1.13.0
+Commit d1c37793dd2 (2026-09-09 19:00 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at
+https://julialang.org
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 24.04.4 LTS
+  uname: Linux 7.0.0-1012-aws #12-Ubuntu SMP PREEMPT Tue Aug 11 15:33:41 UTC
+2026 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1389 s        534 s        175 s       5380 s
+0 s
+       #2     0 MHz       1497 s        771 s        204 s       5167 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1531 s        904 s        174 s       5103 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1486 s        869 s        212 s       5147 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1541 s        932 s        210 s       5046 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1581 s        875 s        193 s       5084 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1492 s        984 s        194 s       5072 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1477 s        871 s        172 s       5230 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1538 s        964 s        171 s       5080 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1554 s        881 s        178 s       5134 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1617 s        861 s        176 s       5090 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        807 s        184 s       5149 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1563 s        845 s        177 s       5164 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1561 s        857 s        176 s       5158 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1499 s        733 s        177 s       5325 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1524 s        760 s        183 s       5288 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        648 s        175 s       5308 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1556 s        746 s        173 s       5278 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       2130 s        811 s        159 s       4658 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1685 s        752 s        196 s       5113 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1742 s        730 s        182 s       5098 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1695 s        561 s        212 s       5263 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1595 s        623 s        204 s       5320 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1629 s        575 s        204 s       5327 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1518 s        604 s        218 s       5399 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1666 s        476 s        192 s       5390 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1596 s        531 s        181 s       5425 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1603 s        584 s        193 s       5367 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1650 s        536 s        181 s       5365 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1590 s        499 s        183 s       5454 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        547 s        180 s       5374 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        582 s        185 s       5336 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1608 s        637 s        178 s       5324 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1733 s        608 s        179 s       5228 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1717 s        634 s        175 s       5222 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1718 s        638 s        177 s       5209 s
+0 s
+  Memory: 4.0 GB (536.06640625 MB free)
+  Uptime: 366.07 sec
+  Load Avg:  9.5  9.58  9.87
+  WORD_SIZE: 64
+  LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 36 virtual cores)
+Environment:
+  MAKEFLAGS =
+  MFLAGS =
+  PATH =
+/home/circleci/miniconda/envs/benchopt-docs/bin:/home/circleci/miniconda/conda
+bin:/home/circleci/miniconda/bin:/home/circleci/bin:/home/circleci/.local/bin:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  HOME = /home/circleci
+  TERM = dumb
+  R_HOME = /home/circleci/miniconda/envs/benchopt-docs/lib/R
+
+
+
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/utils/pdb_helpers.py&quot;, line 29, in
+exception_handler
+    yield ctx
+  File &quot;/home/circleci/project/benchopt/runner.py&quot;, line 143, in
+run_one_to_cvg
+    skip, reason = solver._set_objective(objective)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
+    self.set_objective(**objective_dict)
+  File
+&quot;/home/circleci/project/examples/temp_benchmark_qfxnrgu4/julia_solver/solvers/
+julia_gd.py&quot;, line 21, in set_objective
+    jl = get_jl_interpreter()
+         ^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 33, in
+get_jl_interpreter
+    jl_interpreter = julia.Julia(**runtime_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 708, in __init__
+    self.__julia = Julia(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 544, in __init__
+    self.eval(&quot;include&quot;)(
+RuntimeError: &lt;exception str() failed&gt;
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.001]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>
+[ Info: Julia version info
+[ Info: Julia executable:
+/home/circleci/miniconda/envs/benchopt-docs/bin/julia
+[ Info: Trying to import PyCall...
+┌ Info: PyCall is already installed and compatible with Python executable.
+│
+│ PyCall:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+│     libpython:
+/home/circleci/miniconda/envs/benchopt-docs/lib/libpython3.12.so.1.0
+│ Python:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+└     libpython:
+Julia Version 1.13.0
+Commit d1c37793dd2 (2026-09-09 19:00 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at
+https://julialang.org
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 24.04.4 LTS
+  uname: Linux 7.0.0-1012-aws #12-Ubuntu SMP PREEMPT Tue Aug 11 15:33:41 UTC
+2026 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1389 s        534 s        175 s       5383 s
+0 s
+       #2     0 MHz       1497 s        771 s        204 s       5170 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1531 s        906 s        174 s       5104 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1486 s        872 s        212 s       5147 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1541 s        932 s        210 s       5048 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1581 s        875 s        193 s       5087 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1492 s        986 s        194 s       5073 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1477 s        871 s        172 s       5233 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1538 s        964 s        171 s       5083 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1554 s        884 s        178 s       5134 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1617 s        861 s        176 s       5093 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        808 s        184 s       5152 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1563 s        848 s        177 s       5164 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1561 s        857 s        176 s       5161 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1499 s        735 s        177 s       5326 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1526 s        760 s        183 s       5289 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        648 s        175 s       5311 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1556 s        748 s        173 s       5279 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       2130 s        814 s        159 s       4658 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1686 s        752 s        196 s       5115 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1742 s        730 s        182 s       5101 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1695 s        561 s        212 s       5266 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1595 s        623 s        204 s       5323 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1629 s        575 s        204 s       5330 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1518 s        604 s        218 s       5402 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1666 s        476 s        192 s       5393 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1596 s        531 s        181 s       5428 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1603 s        584 s        193 s       5370 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1650 s        536 s        181 s       5368 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1590 s        500 s        183 s       5456 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        547 s        180 s       5377 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        582 s        185 s       5339 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1608 s        637 s        178 s       5327 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1733 s        608 s        179 s       5231 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1717 s        634 s        175 s       5225 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1718 s        638 s        177 s       5211 s
+0 s
+  Memory: 4.0 GB (536.05078125 MB free)
+  Uptime: 368.94 sec
+  Load Avg:  9.38  9.55  9.86
+  WORD_SIZE: 64
+  LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 36 virtual cores)
+Environment:
+  MAKEFLAGS =
+  MFLAGS =
+  PATH =
+/home/circleci/miniconda/envs/benchopt-docs/bin:/home/circleci/miniconda/conda
+bin:/home/circleci/miniconda/bin:/home/circleci/bin:/home/circleci/.local/bin:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  HOME = /home/circleci
+  TERM = dumb
+  R_HOME = /home/circleci/miniconda/envs/benchopt-docs/lib/R
+
+
+
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/utils/pdb_helpers.py&quot;, line 29, in
+exception_handler
+    yield ctx
+  File &quot;/home/circleci/project/benchopt/runner.py&quot;, line 143, in
+run_one_to_cvg
+    skip, reason = solver._set_objective(objective)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
+    self.set_objective(**objective_dict)
+  File
+&quot;/home/circleci/project/examples/temp_benchmark_qfxnrgu4/julia_solver/solvers/
+julia_gd.py&quot;, line 21, in set_objective
+    jl = get_jl_interpreter()
+         ^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 33, in
+get_jl_interpreter
+    jl_interpreter = julia.Julia(**runtime_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 708, in __init__
+    self.__julia = Julia(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 544, in __init__
+    self.eval(&quot;include&quot;)(
+RuntimeError: &lt;exception str() failed&gt;
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.001]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>
+[ Info: Julia version info
+[ Info: Julia executable:
+/home/circleci/miniconda/envs/benchopt-docs/bin/julia
+[ Info: Trying to import PyCall...
+┌ Info: PyCall is already installed and compatible with Python executable.
+│
+│ PyCall:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+│     libpython:
+/home/circleci/miniconda/envs/benchopt-docs/lib/libpython3.12.so.1.0
+│ Python:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+└     libpython:
+Julia Version 1.13.0
+Commit d1c37793dd2 (2026-09-09 19:00 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at
+https://julialang.org
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 24.04.4 LTS
+  uname: Linux 7.0.0-1012-aws #12-Ubuntu SMP PREEMPT Tue Aug 11 15:33:41 UTC
+2026 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1389 s        534 s        175 s       5386 s
+0 s
+       #2     0 MHz       1497 s        771 s        204 s       5173 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1531 s        908 s        174 s       5105 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1486 s        875 s        212 s       5147 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1541 s        932 s        210 s       5051 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1581 s        877 s        193 s       5088 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1492 s        989 s        194 s       5073 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1477 s        872 s        172 s       5234 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1538 s        965 s        171 s       5085 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1554 s        885 s        178 s       5136 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1617 s        861 s        176 s       5095 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        809 s        184 s       5154 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1563 s        848 s        177 s       5166 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1561 s        857 s        176 s       5164 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1499 s        736 s        177 s       5327 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1527 s        760 s        183 s       5291 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        649 s        175 s       5314 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1556 s        750 s        173 s       5280 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       2130 s        817 s        159 s       4658 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1686 s        752 s        196 s       5118 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1742 s        730 s        182 s       5104 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1695 s        561 s        212 s       5269 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1595 s        623 s        204 s       5326 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1629 s        575 s        204 s       5332 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1518 s        604 s        218 s       5405 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1666 s        476 s        192 s       5396 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1596 s        531 s        181 s       5431 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1603 s        585 s        193 s       5372 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1651 s        536 s        181 s       5369 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1590 s        501 s        183 s       5458 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        547 s        180 s       5380 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        582 s        185 s       5342 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1608 s        637 s        178 s       5330 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1733 s        608 s        179 s       5234 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1717 s        634 s        175 s       5228 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1718 s        638 s        177 s       5214 s
+0 s
+  Memory: 4.0 GB (536.51953125 MB free)
+  Uptime: 371.82 sec
+  Load Avg:  9.38  9.55  9.86
+  WORD_SIZE: 64
+  LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 36 virtual cores)
+Environment:
+  MAKEFLAGS =
+  MFLAGS =
+  PATH =
+/home/circleci/miniconda/envs/benchopt-docs/bin:/home/circleci/miniconda/conda
+bin:/home/circleci/miniconda/bin:/home/circleci/bin:/home/circleci/.local/bin:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  HOME = /home/circleci
+  TERM = dumb
+  R_HOME = /home/circleci/miniconda/envs/benchopt-docs/lib/R
+
+
+
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/utils/pdb_helpers.py&quot;, line 29, in
+exception_handler
+    yield ctx
+  File &quot;/home/circleci/project/benchopt/runner.py&quot;, line 143, in
+run_one_to_cvg
+    skip, reason = solver._set_objective(objective)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
+    self.set_objective(**objective_dict)
+  File
+&quot;/home/circleci/project/examples/temp_benchmark_qfxnrgu4/julia_solver/solvers/
+julia_gd.py&quot;, line 21, in set_objective
+    jl = get_jl_interpreter()
+         ^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 33, in
+get_jl_interpreter
+    jl_interpreter = julia.Julia(**runtime_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 708, in __init__
+    self.__julia = Julia(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 544, in __init__
+    self.eval(&quot;include&quot;)(
+RuntimeError: &lt;exception str() failed&gt;
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.01]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>
+[ Info: Julia version info
+[ Info: Julia executable:
+/home/circleci/miniconda/envs/benchopt-docs/bin/julia
+[ Info: Trying to import PyCall...
+┌ Info: PyCall is already installed and compatible with Python executable.
+│
+│ PyCall:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+│     libpython:
+/home/circleci/miniconda/envs/benchopt-docs/lib/libpython3.12.so.1.0
+│ Python:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+└     libpython:
+Julia Version 1.13.0
+Commit d1c37793dd2 (2026-09-09 19:00 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at
+https://julialang.org
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 24.04.4 LTS
+  uname: Linux 7.0.0-1012-aws #12-Ubuntu SMP PREEMPT Tue Aug 11 15:33:41 UTC
+2026 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1391 s        534 s        175 s       5387 s
+0 s
+       #2     0 MHz       1497 s        771 s        204 s       5176 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1531 s        908 s        174 s       5108 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1486 s        878 s        212 s       5148 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1541 s        932 s        210 s       5054 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1581 s        880 s        193 s       5088 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1492 s        992 s        194 s       5073 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1477 s        875 s        172 s       5234 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1538 s        965 s        171 s       5088 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1554 s        885 s        178 s       5139 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1617 s        861 s        176 s       5098 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        810 s        184 s       5155 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1563 s        848 s        177 s       5169 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1561 s        857 s        176 s       5167 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1499 s        737 s        177 s       5329 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1527 s        762 s        183 s       5291 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        649 s        175 s       5317 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1556 s        750 s        173 s       5283 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       2130 s        817 s        159 s       4661 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1686 s        752 s        196 s       5121 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1742 s        730 s        182 s       5107 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1695 s        561 s        212 s       5272 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1595 s        623 s        204 s       5329 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1629 s        575 s        204 s       5335 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1518 s        604 s        218 s       5408 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1666 s        476 s        192 s       5399 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1596 s        532 s        181 s       5433 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1603 s        588 s        193 s       5372 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1652 s        536 s        181 s       5371 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1590 s        501 s        183 s       5460 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        547 s        180 s       5383 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        582 s        185 s       5345 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1608 s        637 s        178 s       5333 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1733 s        608 s        179 s       5237 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1717 s        634 s        175 s       5231 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1718 s        638 s        177 s       5217 s
+0 s
+  Memory: 4.0 GB (535.22265625 MB free)
+  Uptime: 374.77 sec
+  Load Avg:  9.19  9.51  9.84
+  WORD_SIZE: 64
+  LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 36 virtual cores)
+Environment:
+  MAKEFLAGS =
+  MFLAGS =
+  PATH =
+/home/circleci/miniconda/envs/benchopt-docs/bin:/home/circleci/miniconda/conda
+bin:/home/circleci/miniconda/bin:/home/circleci/bin:/home/circleci/.local/bin:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  HOME = /home/circleci
+  TERM = dumb
+  R_HOME = /home/circleci/miniconda/envs/benchopt-docs/lib/R
+
+
+
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/utils/pdb_helpers.py&quot;, line 29, in
+exception_handler
+    yield ctx
+  File &quot;/home/circleci/project/benchopt/runner.py&quot;, line 143, in
+run_one_to_cvg
+    skip, reason = solver._set_objective(objective)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
+    self.set_objective(**objective_dict)
+  File
+&quot;/home/circleci/project/examples/temp_benchmark_qfxnrgu4/julia_solver/solvers/
+julia_gd.py&quot;, line 21, in set_objective
+    jl = get_jl_interpreter()
+         ^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 33, in
+get_jl_interpreter
+    jl_interpreter = julia.Julia(**runtime_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 708, in __init__
+    self.__julia = Julia(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 544, in __init__
+    self.eval(&quot;include&quot;)(
+RuntimeError: &lt;exception str() failed&gt;
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.01]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>
+[ Info: Julia version info
+[ Info: Julia executable:
+/home/circleci/miniconda/envs/benchopt-docs/bin/julia
+[ Info: Trying to import PyCall...
+┌ Info: PyCall is already installed and compatible with Python executable.
+│
+│ PyCall:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+│     libpython:
+/home/circleci/miniconda/envs/benchopt-docs/lib/libpython3.12.so.1.0
+│ Python:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+└     libpython:
+Julia Version 1.13.0
+Commit d1c37793dd2 (2026-09-09 19:00 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at
+https://julialang.org
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 24.04.4 LTS
+  uname: Linux 7.0.0-1012-aws #12-Ubuntu SMP PREEMPT Tue Aug 11 15:33:41 UTC
+2026 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1392 s        534 s        175 s       5388 s
+0 s
+       #2     0 MHz       1497 s        771 s        204 s       5178 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1531 s        910 s        174 s       5109 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1486 s        878 s        212 s       5150 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1541 s        935 s        210 s       5054 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1581 s        882 s        193 s       5089 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1492 s        995 s        194 s       5073 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1477 s        878 s        172 s       5234 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1540 s        965 s        171 s       5088 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1554 s        886 s        178 s       5141 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1617 s        861 s        176 s       5101 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        810 s        184 s       5158 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1563 s        850 s        177 s       5171 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1561 s        857 s        176 s       5170 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1499 s        737 s        177 s       5332 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1527 s        762 s        183 s       5294 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        649 s        175 s       5320 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1556 s        750 s        173 s       5286 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       2130 s        817 s        159 s       4664 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1686 s        754 s        196 s       5121 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1742 s        730 s        182 s       5110 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1695 s        561 s        212 s       5275 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1595 s        623 s        204 s       5332 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1629 s        575 s        204 s       5338 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1518 s        604 s        218 s       5411 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1666 s        476 s        192 s       5402 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1596 s        532 s        181 s       5436 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1603 s        588 s        193 s       5375 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1652 s        536 s        181 s       5374 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1590 s        502 s        183 s       5463 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        547 s        180 s       5386 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        582 s        185 s       5348 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1608 s        637 s        178 s       5336 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1733 s        608 s        179 s       5240 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1717 s        634 s        175 s       5234 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1718 s        638 s        177 s       5220 s
+0 s
+  Memory: 4.0 GB (534.13671875 MB free)
+  Uptime: 377.71 sec
+  Load Avg:  9.01  9.47  9.83
+  WORD_SIZE: 64
+  LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 36 virtual cores)
+Environment:
+  MAKEFLAGS =
+  MFLAGS =
+  PATH =
+/home/circleci/miniconda/envs/benchopt-docs/bin:/home/circleci/miniconda/conda
+bin:/home/circleci/miniconda/bin:/home/circleci/bin:/home/circleci/.local/bin:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  HOME = /home/circleci
+  TERM = dumb
+  R_HOME = /home/circleci/miniconda/envs/benchopt-docs/lib/R
+
+
+
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/utils/pdb_helpers.py&quot;, line 29, in
+exception_handler
+    yield ctx
+  File &quot;/home/circleci/project/benchopt/runner.py&quot;, line 143, in
+run_one_to_cvg
+    skip, reason = solver._set_objective(objective)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
+    self.set_objective(**objective_dict)
+  File
+&quot;/home/circleci/project/examples/temp_benchmark_qfxnrgu4/julia_solver/solvers/
+julia_gd.py&quot;, line 21, in set_objective
+    jl = get_jl_interpreter()
+         ^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 33, in
+get_jl_interpreter
+    jl_interpreter = julia.Julia(**runtime_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 708, in __init__
+    self.__julia = Julia(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 544, in __init__
+    self.eval(&quot;include&quot;)(
+RuntimeError: &lt;exception str() failed&gt;
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.01]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>
+[ Info: Julia version info
+[ Info: Julia executable:
+/home/circleci/miniconda/envs/benchopt-docs/bin/julia
+[ Info: Trying to import PyCall...
+┌ Info: PyCall is already installed and compatible with Python executable.
+│
+│ PyCall:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+│     libpython:
+/home/circleci/miniconda/envs/benchopt-docs/lib/libpython3.12.so.1.0
+│ Python:
+│     python: /home/circleci/miniconda/envs/benchopt-docs/bin/python3.12
+└     libpython:
+Julia Version 1.13.0
+Commit d1c37793dd2 (2026-09-09 19:00 UTC)
+Build Info:
+  https://github.com/conda-forge/julia-feedstock
+
+    Note: This is an unofficial build, please report bugs to the project
+    responsible for this build and not to the Julia project unless you can
+    reproduce the issue using official builds available at
+https://julialang.org
+
+Platform Info:
+  OS: Linux (x86_64-conda-linux-gnu)
+      Ubuntu 24.04.4 LTS
+  uname: Linux 7.0.0-1012-aws #12-Ubuntu SMP PREEMPT Tue Aug 11 15:33:41 UTC
+2026 x86_64 x86_64
+  CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1392 s        534 s        176 s       5391 s
+0 s
+       #2     0 MHz       1497 s        771 s        204 s       5181 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1531 s        912 s        174 s       5110 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1486 s        878 s        212 s       5153 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1541 s        938 s        210 s       5054 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1581 s        882 s        193 s       5091 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1492 s        998 s        194 s       5073 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1477 s        878 s        172 s       5237 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1540 s        965 s        171 s       5090 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1554 s        886 s        178 s       5144 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1617 s        861 s        176 s       5104 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        811 s        184 s       5160 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1563 s        850 s        177 s       5173 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1561 s        859 s        176 s       5170 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1499 s        737 s        177 s       5335 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1527 s        762 s        183 s       5297 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1597 s        649 s        175 s       5322 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1556 s        751 s        173 s       5287 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       2130 s        819 s        159 s       4665 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1686 s        756 s        196 s       5123 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1742 s        730 s        182 s       5112 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1695 s        561 s        212 s       5278 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1595 s        623 s        204 s       5335 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1629 s        575 s        204 s       5341 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1518 s        604 s        218 s       5414 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1666 s        476 s        192 s       5404 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1598 s        532 s        181 s       5436 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1603 s        588 s        193 s       5377 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1652 s        536 s        181 s       5377 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1590 s        502 s        183 s       5466 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        547 s        180 s       5389 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1643 s        582 s        185 s       5351 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1608 s        637 s        178 s       5338 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1733 s        608 s        179 s       5243 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1717 s        634 s        175 s       5237 s
+0 s
+       unknown:
+              speed         user         nice          sys         idle
+irq
+       #1     0 MHz       1718 s        638 s        177 s       5223 s
+0 s
+  Memory: 4.0 GB (533.8984375 MB free)
+  Uptime: 380.55 sec
+  Load Avg:  9.01  9.47  9.83
+  WORD_SIZE: 64
+  LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
+  GC: Built with stock GC
+Threads: 1 default, 1 interactive, 1 GC (on 36 virtual cores)
+Environment:
+  MAKEFLAGS =
+  MFLAGS =
+  PATH =
+/home/circleci/miniconda/envs/benchopt-docs/bin:/home/circleci/miniconda/conda
+bin:/home/circleci/miniconda/bin:/home/circleci/bin:/home/circleci/.local/bin:
+/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin
+  HOME = /home/circleci
+  TERM = dumb
+  R_HOME = /home/circleci/miniconda/envs/benchopt-docs/lib/R
+
+
+
+
+Traceback (most recent call last):
+  File &quot;/home/circleci/project/benchopt/utils/pdb_helpers.py&quot;, line 29, in
+exception_handler
+    yield ctx
+  File &quot;/home/circleci/project/benchopt/runner.py&quot;, line 143, in
+run_one_to_cvg
+    skip, reason = solver._set_objective(objective)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
+    self.set_objective(**objective_dict)
+  File
+&quot;/home/circleci/project/examples/temp_benchmark_qfxnrgu4/julia_solver/solvers/
+julia_gd.py&quot;, line 21, in set_objective
+    jl = get_jl_interpreter()
+         ^^^^^^^^^^^^^^^^^^^^
+  File &quot;/home/circleci/project/benchopt/helpers/julia.py&quot;, line 33, in
+get_jl_interpreter
+    jl_interpreter = julia.Julia(**runtime_config)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 708, in __init__
+    self.__julia = Julia(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^
+  File
+&quot;/home/circleci/miniconda/envs/benchopt-docs/lib/python3.12/site-packages/juli
+a/core.py&quot;, line 544, in __init__
+    self.eval(&quot;include&quot;)(
+RuntimeError: &lt;exception str() failed&gt;
+<span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.01]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_gd2cpc81/julia_solver/outputs/benchopt_run_2026-09-01_12h23m20.</span>
+<span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_qfxnrgu4/julia_solver/outputs/benchopt_run_2026-09-20_22h01m07.</span>
 <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">parquet</span>
 Rendering benchmark results...
    Processing
-temp_benchmark_gd2cpc81/julia_solver/outputs/benchopt_run_2026-09-01_12h23m20.
+temp_benchmark_qfxnrgu4/julia_solver/outputs/benchopt_run_2026-09-20_22h01m07.
 parquet
 done
 Writing results to
-temp_benchmark_gd2cpc81/julia_solver/outputs/julia_solver_benchopt_run_2026-09
--01_12h23m20.html
+temp_benchmark_qfxnrgu4/julia_solver/outputs/julia_solver_benchopt_run_2026-09
+-20_22h01m07.html
 Writing julia_solver index to
-temp_benchmark_gd2cpc81/julia_solver/outputs/julia_solver.html
+temp_benchmark_qfxnrgu4/julia_solver/outputs/julia_solver.html
 
 
 
@@ -2046,7 +2910,7 @@ temp_benchmark_gd2cpc81/julia_solver/outputs/julia_solver.html
 <br /><p>Here, you see that the Julia solver is faster than the Python one.
 You also notice that the first iteration seems to take much longer than the
 other, hinting to a loading time for the solver.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (5 minutes 33.739 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> (3 minutes 35.631 seconds)</p>
 <div class="sphx-glr-footer sphx-glr-footer-example docutils container" id="sphx-glr-download-auto-examples-run-julia-solver-py">
 <div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/29629f8c22f6cb2460d350b639bd96ab/run_julia_solver.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">run_julia_solver.ipynb</span></code></a></p>
