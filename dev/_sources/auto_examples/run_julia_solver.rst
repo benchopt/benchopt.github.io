@@ -87,8 +87,8 @@ a simulated dataset and a full python solver based on gradient descent.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                 
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-d9c0143b514a435594f2559766e99e86-0' name='example-benchmark-d9c0143b514a435594f2559766e99e86' type='radio'><label for='example-benchmark-d9c0143b514a435594f2559766e99e86-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4-0' name='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4' type='radio'><label for='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4-0'>objective.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseObjective</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -126,7 +126,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-d9c0143b514a435594f2559766e99e86-1' name='example-benchmark-d9c0143b514a435594f2559766e99e86' type='radio'><label for='example-benchmark-d9c0143b514a435594f2559766e99e86-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
+    <input  id='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4-1' name='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4' type='radio'><label for='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4-1'>datasets/simulated.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseDataset</span>
 
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
@@ -148,7 +148,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">))</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-d9c0143b514a435594f2559766e99e86-2' name='example-benchmark-d9c0143b514a435594f2559766e99e86' type='radio'><label for='example-benchmark-d9c0143b514a435594f2559766e99e86-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
+    <input  id='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4-2' name='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4' type='radio'><label for='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4-2'>solvers/gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt</span><span class="w"> </span><span class="kn">import</span> <span class="n">BaseSolver</span>
     <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 
@@ -200,7 +200,7 @@ a simulated dataset and a full python solver based on gradient descent.
             <span class="k">return</span> <span class="p">{</span><span class="s1">'X_hat'</span><span class="p">:</span> <span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">}</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-d9c0143b514a435594f2559766e99e86-3' name='example-benchmark-d9c0143b514a435594f2559766e99e86' type='radio'><label for='example-benchmark-d9c0143b514a435594f2559766e99e86-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
+    <input  id='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4-3' name='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4' type='radio'><label for='example-benchmark-d4d5a6d01c044bc98f0aa40849dd63f4-3'>config.yml</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="c1">#loaded from minimal_benchmark/config.yml</span>
     <span class="nt">plot_configs</span><span class="p">:</span>
     <span class="w">  </span><span class="nt">Subopt. (log)</span><span class="p">:</span>
     <span class="w">    </span><span class="nt">plot_kind</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">objective_curve</span>
@@ -249,8 +249,8 @@ and called from the Python solver.
     <pre class="code-cell-equiv">            <div class='display_example_benchmark'>
                     <p>We now update the following files:</p><br/>
                     <div class='sd-tab-set'>
-                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
-                        <input checked="checked" id='example-benchmark-3810c229b3a6472d8bc70a5ad77bbadf-0' name='example-benchmark-3810c229b3a6472d8bc70a5ad77bbadf' type='radio'><label for='example-benchmark-3810c229b3a6472d8bc70a5ad77bbadf-0'>solvers/julia_gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
+                        <label onclick="var a=document.createElement('a');a.href='data:application/zip;base64,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';a.download='julia_solver.zip';document.body.appendChild(a);a.click();document.body.removeChild(a);">&#x2B07; Download</label><div style='order:0;flex-basis:100%;height:0;overflow:hidden'></div>
+                        <input checked="checked" id='example-benchmark-1e66a2ead7c647d1b46e51accd5541e5-0' name='example-benchmark-1e66a2ead7c647d1b46e51accd5541e5' type='radio'><label for='example-benchmark-1e66a2ead7c647d1b46e51accd5541e5-0'>solvers/julia_gd.py</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
 
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">JuliaSolver</span>
     <span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.julia</span><span class="w"> </span><span class="kn">import</span> <span class="n">get_jl_interpreter</span>
@@ -287,7 +287,7 @@ and called from the Python solver.
             <span class="k">return</span> <span class="nb">dict</span><span class="p">(</span><span class="n">X_hat</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">X_hat</span><span class="p">)</span>
     </pre></div>
     </div>
-    <input  id='example-benchmark-3810c229b3a6472d8bc70a5ad77bbadf-1' name='example-benchmark-3810c229b3a6472d8bc70a5ad77bbadf' type='radio'><label for='example-benchmark-3810c229b3a6472d8bc70a5ad77bbadf-1'>solvers/julia_gd.jl</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
+    <input  id='example-benchmark-1e66a2ead7c647d1b46e51accd5541e5-1' name='example-benchmark-1e66a2ead7c647d1b46e51accd5541e5' type='radio'><label for='example-benchmark-1e66a2ead7c647d1b46e51accd5541e5-1'>solvers/julia_gd.jl</label><div class='sd-tab-content'><div class="highlight"><pre><span></span><span class="k">using</span><span class="w"> </span><span class="n">Core</span>
 
 
     <span class="k">function</span><span class="w"> </span><span class="n">gradient_descent</span><span class="p">(</span><span class="n">X</span><span class="p">,</span><span class="w"> </span><span class="n">lr</span><span class="p">,</span><span class="w"> </span><span class="n">n_iter</span><span class="p">)</span>
@@ -342,7 +342,7 @@ available in your environment, this command will use ``conda`` to install it.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_4u1ayn94/julia_solver<span class="w"> </span>-s<span class="w"> </span>julia-gd
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>install<span class="w"> </span>temp_benchmark_c3xzoiiv/julia_solver<span class="w"> </span>-s<span class="w"> </span>julia-gd
     </pre></div>
     </pre>
             
@@ -368,10 +368,10 @@ available in your environment, this command will use ``conda`` to install it.
     Executing transaction: ...working... done
     Installing pip dependencies: ...working... Ran pip subprocess with arguments:
     [&#x27;/home/circleci/miniconda/envs/benchopt-docs/bin/python&#x27;, &#x27;-m&#x27;, &#x27;pip&#x27;, 
-    &#x27;install&#x27;, &#x27;-U&#x27;, &#x27;-r&#x27;, &#x27;/tmp/condaenv.vyfsne07.requirements.txt&#x27;, 
+    &#x27;install&#x27;, &#x27;-U&#x27;, &#x27;-r&#x27;, &#x27;/tmp/condaenv.re7vajgj.requirements.txt&#x27;, 
     &#x27;--exists-action=b&#x27;]
     Pip subprocess output:
-    Collecting julia (from -r /tmp/condaenv.vyfsne07.requirements.txt (line 1))
+    Collecting julia (from -r /tmp/condaenv.re7vajgj.requirements.txt (line 1))
       Downloading julia-0.6.2-py2.py3-none-any.whl.metadata (2.4 kB)
     Downloading julia-0.6.2-py2.py3-none-any.whl (68 kB)
     Installing collected packages: julia
@@ -420,7 +420,7 @@ Then, we can run the benchmark and show the comparison.
 .. raw:: html
 
     <div class="output_subarea output_html rendered_html output_result">
-                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_4u1ayn94/julia_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
+                <pre class="code-cell-equiv"><div class="highlight"><pre><span></span><span class="gp">$ </span>benchopt<span class="w"> </span>run<span class="w"> </span>temp_benchmark_c3xzoiiv/julia_solver<span class="w"> </span>-n<span class="w"> </span><span class="m">20</span><span class="w"> </span>-r<span class="w"> </span><span class="m">4</span>
     </pre></div>
     </pre>
             
@@ -472,15 +472,15 @@ Then, we can run the benchmark and show the comparison.
       Installing known registries into `~/.julia`
            Added `General` registry to ~/.julia/registries
        Resolving package versions...
-       Installed PyCall ────────── v1.96.4
-       Installed Conda ─────────── v1.10.3
-       Installed VersionParsing ── v1.3.0
        Installed Parsers ───────── v3.0.0
-       Installed JSON ──────────── v1.9.0
+       Installed Conda ─────────── v1.10.3
        Installed Preferences ───── v1.6.0
+       Installed JSON ──────────── v1.9.0
+       Installed StructUtils ───── v2.9.2
+       Installed PyCall ────────── v1.96.4
        Installed MacroTools ────── v0.5.16
        Installed PrecompileTools ─ v1.3.4
-       Installed StructUtils ───── v2.9.2
+       Installed VersionParsing ── v1.3.0
         Updating `~/.julia/environments/v1.13/Project.toml`
       [438e738f] + PyCall v1.96.4
         Updating `~/.julia/environments/v1.13/Manifest.toml`
@@ -527,16 +527,16 @@ Then, we can run the benchmark and show the comparison.
     `~/.julia/scratchspaces/44cfe95a-1eb2-52ea-b672-e2afdf69b78f/9816a3826b0ebf49a
     b4926e2b18842ad8b5c8f04/build.log`
     Precompiling packages...
-       1.6 s  ✓ VersionParsing
-       1.7 s  ✓ Preferences
+       1.3 s  ✓ VersionParsing
+       1.6 s  ✓ Preferences
        1.9 s  ✓ StructUtils
        0.9 s  ✓ PrecompileTools
        4.1 s  ✓ MacroTools
-      47.8 s  ✓ Parsers
-      18.5 s  ✓ JSON
+      49.3 s  ✓ Parsers
+      21.1 s  ✓ JSON
        1.0 s  ✓ Conda
-      20.6 s  ✓ PyCall
-      9 dependencies successfully precompiled in 91 seconds. 19 already 
+      21.4 s  ✓ PyCall
+      9 dependencies successfully precompiled in 95 seconds. 19 already 
     precompiled.
     Julia Version 1.13.0
     Commit d1c37793dd2 (2026-09-09 19:00 UTC)
@@ -556,183 +556,183 @@ Then, we can run the benchmark and show the comparison.
       CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2290 s        708 s        450 s       8391 s       
+           #1     0 MHz       1524 s        307 s        331 s       6569 s       
     0 s  
-           #2     0 MHz       2597 s        929 s        499 s       8033 s       
-    0 s  
-           unknown: 
-                  speed         user         nice          sys         idle       
-    irq
-           #1     0 MHz       2643 s       1166 s        444 s       7928 s       
+           #2     0 MHz       1737 s        420 s        404 s       6353 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2603 s       1072 s        517 s       7996 s       
+           #1     0 MHz       1653 s        590 s        328 s       6442 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2605 s       1089 s        526 s       7996 s       
+           #1     0 MHz       1676 s        576 s        382 s       6379 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2587 s       1142 s        519 s       7962 s       
+           #1     0 MHz       1725 s        633 s        399 s       6278 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2581 s       1227 s        504 s       7912 s       
+           #1     0 MHz       1685 s        580 s        392 s       6384 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2687 s       1201 s        437 s       7925 s       
+           #1     0 MHz       1680 s        672 s        376 s       6333 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2630 s       1159 s        456 s       8014 s       
+           #1     0 MHz       1730 s        664 s        327 s       6347 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2660 s       1012 s        453 s       8101 s       
+           #1     0 MHz       1718 s        668 s        332 s       6348 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2675 s       1043 s        453 s       8067 s       
+           #1     0 MHz       1692 s        589 s        323 s       6443 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2657 s        989 s        452 s       8144 s       
+           #1     0 MHz       1722 s        638 s        333 s       6361 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2713 s       1145 s        429 s       7976 s       
+           #1     0 MHz       1770 s        581 s        334 s       6368 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2549 s       1168 s        446 s       8090 s       
+           #1     0 MHz       1711 s        622 s        324 s       6400 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2580 s       1134 s        450 s       8106 s       
+           #1     0 MHz       1715 s        597 s        330 s       6413 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2605 s       1084 s        437 s       8139 s       
+           #1     0 MHz       1689 s        630 s        325 s       6400 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2607 s        840 s        445 s       8316 s       
+           #1     0 MHz       1724 s        587 s        320 s       6421 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1082 s        443 s       8123 s       
+           #1     0 MHz       1728 s        428 s        336 s       6535 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       3288 s        997 s        421 s       7565 s       
+           #1     0 MHz       1683 s        546 s        325 s       6499 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2921 s       1018 s        522 s       7748 s       
+           #1     0 MHz       2245 s        467 s        330 s       6010 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2717 s        993 s        448 s       8098 s       
+           #1     0 MHz       1716 s        536 s        387 s       6382 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2694 s        822 s        534 s       8122 s       
+           #1     0 MHz       1827 s        485 s        332 s       6404 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2647 s        984 s        514 s       8069 s       
+           #1     0 MHz       1786 s        347 s        394 s       6474 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2756 s        717 s        525 s       8164 s       
+           #1     0 MHz       1678 s        400 s        380 s       6563 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2589 s        744 s        537 s       8289 s       
+           #1     0 MHz       1764 s        296 s        407 s       6515 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2722 s        689 s        462 s       8308 s       
+           #1     0 MHz       1681 s        357 s        379 s       6591 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2625 s        764 s        482 s       8118 s       
+           #1     0 MHz       1730 s        290 s        340 s       6634 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2897 s        724 s        458 s       8106 s       
+           #1     0 MHz       1726 s        359 s        343 s       6584 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2815 s        792 s        460 s       8137 s       
+           #1     0 MHz       1809 s        318 s        348 s       6537 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2796 s        642 s        471 s       8265 s       
+           #1     0 MHz       1760 s        334 s        341 s       6585 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2842 s        801 s        436 s       8153 s       
+           #1     0 MHz       1786 s        286 s        336 s       6591 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2674 s        821 s        459 s       8262 s       
+           #1     0 MHz       1666 s        390 s        338 s       6647 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2805 s        860 s        446 s       8119 s       
+           #1     0 MHz       1761 s        374 s        328 s       6573 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2722 s        783 s        449 s       8292 s       
+           #1     0 MHz       1751 s        375 s        346 s       6564 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2861 s        801 s        437 s       8141 s       
+           #1     0 MHz       1767 s        341 s        326 s       6602 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2793 s        803 s        448 s       7970 s       
+           #1     0 MHz       1791 s        388 s        335 s       6525 s       
     0 s  
-      Memory: 4.0 GB (739.2421875 MB free)
-      Uptime: 227.5 sec
-      Load Avg:  16.87  15.1  10.69
+           unknown: 
+                  speed         user         nice          sys         idle       
+    irq
+           #1     0 MHz       1795 s        355 s        331 s       6551 s       
+    0 s  
+      Memory: 4.0 GB (744.4921875 MB free)
+      Uptime: 212.78 sec
+      Load Avg:  12.67  14.2  14.48
       WORD_SIZE: 64
       LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
       GC: Built with stock GC
@@ -766,7 +766,7 @@ Then, we can run the benchmark and show the comparison.
       File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
         self.set_objective(**objective_dict)
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_4u1ayn94/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_c3xzoiiv/julia_solver/solvers/
     julia_gd.py&quot;, line 21, in set_objective
         jl = get_jl_interpreter()
              ^^^^^^^^^^^^^^^^^^^^
@@ -829,183 +829,183 @@ Then, we can run the benchmark and show the comparison.
       CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2313 s        732 s        455 s       8506 s       
+           #1     0 MHz       1583 s        324 s        340 s       6659 s       
     0 s  
-           #2     0 MHz       2619 s        961 s        505 s       8146 s       
-    0 s  
-           unknown: 
-                  speed         user         nice          sys         idle       
-    irq
-           #1     0 MHz       2669 s       1209 s        448 s       8031 s       
+           #2     0 MHz       1798 s        435 s        413 s       6444 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2629 s       1122 s        521 s       8093 s       
+           #1     0 MHz       1712 s        608 s        337 s       6536 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2624 s       1136 s        532 s       8101 s       
+           #1     0 MHz       1734 s        595 s        391 s       6473 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2607 s       1196 s        527 s       8058 s       
+           #1     0 MHz       1782 s        650 s        410 s       6372 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2606 s       1272 s        510 s       8015 s       
+           #1     0 MHz       1744 s        602 s        402 s       6473 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2712 s       1254 s        442 s       8020 s       
+           #1     0 MHz       1737 s        692 s        389 s       6424 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2659 s       1201 s        461 s       8117 s       
+           #1     0 MHz       1787 s        686 s        336 s       6441 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2686 s       1066 s        460 s       8194 s       
+           #1     0 MHz       1777 s        686 s        341 s       6441 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2700 s       1099 s        459 s       8159 s       
+           #1     0 MHz       1752 s        609 s        332 s       6533 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2690 s       1024 s        457 s       8250 s       
+           #1     0 MHz       1783 s        658 s        343 s       6452 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2747 s       1188 s        434 s       8073 s       
+           #1     0 MHz       1833 s        596 s        343 s       6462 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2578 s       1201 s        452 s       8202 s       
+           #1     0 MHz       1778 s        642 s        332 s       6486 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2619 s       1162 s        456 s       8211 s       
+           #1     0 MHz       1779 s        615 s        339 s       6503 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1137 s        442 s       8232 s       
+           #1     0 MHz       1748 s        647 s        334 s       6495 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2634 s        879 s        451 s       8422 s       
+           #1     0 MHz       1782 s        604 s        332 s       6516 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2629 s       1117 s        448 s       8239 s       
+           #1     0 MHz       1788 s        445 s        343 s       6632 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       3348 s       1027 s        425 s       7647 s       
+           #1     0 MHz       1742 s        564 s        334 s       6594 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2944 s       1055 s        530 s       7859 s       
+           #1     0 MHz       2312 s        486 s        339 s       6097 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2758 s       1026 s        452 s       8200 s       
+           #1     0 MHz       1774 s        553 s        396 s       6480 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2717 s        854 s        540 s       8240 s       
+           #1     0 MHz       1897 s        499 s        341 s       6492 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2683 s       1018 s        519 s       8171 s       
+           #1     0 MHz       1857 s        364 s        404 s       6558 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2780 s        741 s        532 s       8286 s       
+           #1     0 MHz       1734 s        418 s        391 s       6657 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2618 s        766 s        545 s       8408 s       
+           #1     0 MHz       1823 s        313 s        416 s       6608 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2755 s        708 s        467 s       8427 s       
+           #1     0 MHz       1741 s        371 s        388 s       6689 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2647 s        789 s        487 s       8240 s       
+           #1     0 MHz       1788 s        309 s        350 s       6728 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2923 s        746 s        466 s       8228 s       
+           #1     0 MHz       1788 s        375 s        352 s       6677 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2837 s        823 s        465 s       8257 s       
+           #1     0 MHz       1869 s        334 s        357 s       6633 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2837 s        657 s        476 s       8380 s       
+           #1     0 MHz       1819 s        353 s        350 s       6680 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2869 s        827 s        441 s       8272 s       
+           #1     0 MHz       1852 s        303 s        345 s       6680 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2713 s        847 s        465 s       8370 s       
+           #1     0 MHz       1722 s        407 s        346 s       6746 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2836 s        879 s        452 s       8240 s       
+           #1     0 MHz       1824 s        388 s        336 s       6670 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2749 s        812 s        455 s       8408 s       
+           #1     0 MHz       1814 s        391 s        356 s       6655 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2885 s        832 s        443 s       8258 s       
+           #1     0 MHz       1847 s        355 s        334 s       6680 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2831 s        825 s        454 s       8081 s       
+           #1     0 MHz       1864 s        404 s        343 s       6608 s       
     0 s  
-      Memory: 4.0 GB (492.515625 MB free)
-      Uptime: 408.44 sec
-      Load Avg:  14.92  15.56  11.69
+           unknown: 
+                  speed         user         nice          sys         idle       
+    irq
+           #1     0 MHz       1856 s        372 s        340 s       6646 s       
+    0 s  
+      Memory: 4.0 GB (674.20703125 MB free)
+      Uptime: 398.06 sec
+      Load Avg:  23.93  19.04  16.29
       WORD_SIZE: 64
       LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
       GC: Built with stock GC
@@ -1035,7 +1035,7 @@ Then, we can run the benchmark and show the comparison.
       File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
         self.set_objective(**objective_dict)
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_4u1ayn94/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_c3xzoiiv/julia_solver/solvers/
     julia_gd.py&quot;, line 21, in set_objective
         jl = get_jl_interpreter()
              ^^^^^^^^^^^^^^^^^^^^
@@ -1085,183 +1085,183 @@ Then, we can run the benchmark and show the comparison.
       CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2313 s        734 s        455 s       8510 s       
+           #1     0 MHz       1583 s        324 s        340 s       6663 s       
     0 s  
-           #2     0 MHz       2620 s        962 s        505 s       8149 s       
-    0 s  
-           unknown: 
-                  speed         user         nice          sys         idle       
-    irq
-           #1     0 MHz       2670 s       1210 s        449 s       8034 s       
+           #2     0 MHz       1800 s        435 s        413 s       6447 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2630 s       1124 s        521 s       8095 s       
+           #1     0 MHz       1713 s        608 s        337 s       6539 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2624 s       1138 s        532 s       8104 s       
+           #1     0 MHz       1735 s        596 s        391 s       6476 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1199 s        527 s       8059 s       
+           #1     0 MHz       1784 s        650 s        410 s       6375 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2607 s       1273 s        510 s       8018 s       
+           #1     0 MHz       1746 s        602 s        402 s       6476 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2713 s       1258 s        442 s       8022 s       
+           #1     0 MHz       1739 s        693 s        389 s       6427 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2659 s       1202 s        461 s       8120 s       
+           #1     0 MHz       1788 s        687 s        336 s       6444 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2686 s       1068 s        460 s       8196 s       
+           #1     0 MHz       1779 s        687 s        341 s       6444 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2700 s       1100 s        459 s       8163 s       
+           #1     0 MHz       1753 s        609 s        332 s       6537 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2690 s       1028 s        457 s       8251 s       
+           #1     0 MHz       1784 s        658 s        344 s       6455 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2747 s       1190 s        434 s       8076 s       
+           #1     0 MHz       1833 s        596 s        343 s       6466 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2579 s       1204 s        452 s       8203 s       
+           #1     0 MHz       1780 s        643 s        332 s       6489 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2619 s       1163 s        456 s       8214 s       
+           #1     0 MHz       1782 s        615 s        340 s       6505 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2632 s       1138 s        442 s       8236 s       
+           #1     0 MHz       1750 s        647 s        334 s       6498 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2634 s        879 s        451 s       8427 s       
+           #1     0 MHz       1784 s        605 s        332 s       6517 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2630 s       1117 s        448 s       8243 s       
+           #1     0 MHz       1789 s        445 s        343 s       6635 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       3350 s       1028 s        425 s       7649 s       
+           #1     0 MHz       1744 s        564 s        334 s       6597 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2944 s       1055 s        530 s       7863 s       
+           #1     0 MHz       2314 s        487 s        339 s       6099 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2758 s       1028 s        452 s       8202 s       
+           #1     0 MHz       1775 s        554 s        396 s       6483 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2718 s        854 s        540 s       8244 s       
+           #1     0 MHz       1899 s        499 s        341 s       6494 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2686 s       1018 s        520 s       8172 s       
+           #1     0 MHz       1858 s        365 s        404 s       6559 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2781 s        741 s        532 s       8290 s       
+           #1     0 MHz       1735 s        418 s        391 s       6660 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2618 s        767 s        545 s       8411 s       
+           #1     0 MHz       1824 s        313 s        416 s       6611 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2755 s        709 s        467 s       8431 s       
+           #1     0 MHz       1742 s        371 s        388 s       6691 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2647 s        789 s        487 s       8244 s       
+           #1     0 MHz       1789 s        310 s        350 s       6731 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2923 s        746 s        466 s       8231 s       
+           #1     0 MHz       1790 s        376 s        352 s       6679 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2838 s        824 s        466 s       8261 s       
+           #1     0 MHz       1872 s        334 s        357 s       6634 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2837 s        658 s        476 s       8384 s       
+           #1     0 MHz       1822 s        353 s        350 s       6682 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2870 s        827 s        441 s       8276 s       
+           #1     0 MHz       1852 s        308 s        345 s       6680 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2713 s        847 s        465 s       8374 s       
+           #1     0 MHz       1725 s        408 s        346 s       6748 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2836 s        880 s        452 s       8244 s       
+           #1     0 MHz       1825 s        388 s        336 s       6673 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2749 s        812 s        455 s       8413 s       
+           #1     0 MHz       1818 s        391 s        357 s       6657 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2890 s        832 s        443 s       8258 s       
+           #1     0 MHz       1849 s        355 s        334 s       6682 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2833 s        825 s        454 s       8083 s       
+           #1     0 MHz       1865 s        405 s        343 s       6611 s       
     0 s  
-      Memory: 4.0 GB (425.57421875 MB free)
-      Uptime: 413.56 sec
-      Load Avg:  14.69  15.5  11.7
+           unknown: 
+                  speed         user         nice          sys         idle       
+    irq
+           #1     0 MHz       1858 s        372 s        340 s       6648 s       
+    0 s  
+      Memory: 4.0 GB (597.52734375 MB free)
+      Uptime: 402.94 sec
+      Load Avg:  23.21  18.97  16.28
       WORD_SIZE: 64
       LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
       GC: Built with stock GC
@@ -1291,7 +1291,7 @@ Then, we can run the benchmark and show the comparison.
       File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
         self.set_objective(**objective_dict)
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_4u1ayn94/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_c3xzoiiv/julia_solver/solvers/
     julia_gd.py&quot;, line 21, in set_objective
         jl = get_jl_interpreter()
              ^^^^^^^^^^^^^^^^^^^^
@@ -1341,183 +1341,183 @@ Then, we can run the benchmark and show the comparison.
       CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2313 s        734 s        455 s       8512 s       
+           #1     0 MHz       1584 s        324 s        340 s       6665 s       
     0 s  
-           #2     0 MHz       2621 s        962 s        505 s       8152 s       
-    0 s  
-           unknown: 
-                  speed         user         nice          sys         idle       
-    irq
-           #1     0 MHz       2671 s       1211 s        449 s       8036 s       
+           #2     0 MHz       1800 s        435 s        414 s       6449 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1124 s        521 s       8097 s       
+           #1     0 MHz       1714 s        608 s        337 s       6540 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2625 s       1138 s        532 s       8106 s       
+           #1     0 MHz       1736 s        596 s        391 s       6477 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1199 s        527 s       8062 s       
+           #1     0 MHz       1785 s        651 s        410 s       6377 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2607 s       1275 s        510 s       8019 s       
+           #1     0 MHz       1747 s        603 s        403 s       6478 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2713 s       1260 s        442 s       8022 s       
+           #1     0 MHz       1739 s        693 s        389 s       6429 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2659 s       1203 s        461 s       8122 s       
+           #1     0 MHz       1789 s        687 s        336 s       6446 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2686 s       1069 s        460 s       8198 s       
+           #1     0 MHz       1779 s        688 s        341 s       6446 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2702 s       1100 s        459 s       8164 s       
+           #1     0 MHz       1754 s        609 s        332 s       6539 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2691 s       1028 s        457 s       8253 s       
+           #1     0 MHz       1785 s        658 s        344 s       6457 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2748 s       1190 s        434 s       8078 s       
+           #1     0 MHz       1834 s        597 s        343 s       6468 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2580 s       1205 s        452 s       8205 s       
+           #1     0 MHz       1780 s        643 s        332 s       6492 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2620 s       1164 s        456 s       8215 s       
+           #1     0 MHz       1782 s        616 s        340 s       6508 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2632 s       1138 s        442 s       8238 s       
+           #1     0 MHz       1750 s        647 s        334 s       6500 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2635 s        879 s        451 s       8429 s       
+           #1     0 MHz       1785 s        606 s        332 s       6519 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1118 s        448 s       8245 s       
+           #1     0 MHz       1789 s        446 s        343 s       6637 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       3350 s       1030 s        425 s       7651 s       
+           #1     0 MHz       1744 s        564 s        334 s       6600 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2944 s       1056 s        530 s       7865 s       
+           #1     0 MHz       2314 s        488 s        339 s       6100 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2758 s       1029 s        452 s       8204 s       
+           #1     0 MHz       1776 s        554 s        396 s       6485 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2718 s        854 s        540 s       8246 s       
+           #1     0 MHz       1900 s        499 s        341 s       6496 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2687 s       1018 s        520 s       8174 s       
+           #1     0 MHz       1859 s        365 s        404 s       6561 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2782 s        741 s        532 s       8291 s       
+           #1     0 MHz       1736 s        418 s        391 s       6662 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2618 s        767 s        545 s       8414 s       
+           #1     0 MHz       1825 s        313 s        416 s       6613 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2755 s        709 s        467 s       8434 s       
+           #1     0 MHz       1742 s        373 s        388 s       6692 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2647 s        789 s        487 s       8247 s       
+           #1     0 MHz       1790 s        310 s        350 s       6733 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2923 s        748 s        466 s       8233 s       
+           #1     0 MHz       1791 s        376 s        352 s       6681 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2838 s        824 s        466 s       8263 s       
+           #1     0 MHz       1873 s        334 s        357 s       6637 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2839 s        658 s        477 s       8385 s       
+           #1     0 MHz       1824 s        353 s        350 s       6683 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2870 s        828 s        441 s       8277 s       
+           #1     0 MHz       1854 s        308 s        345 s       6681 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2714 s        849 s        465 s       8376 s       
+           #1     0 MHz       1727 s        408 s        346 s       6748 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2836 s        880 s        452 s       8247 s       
+           #1     0 MHz       1825 s        389 s        336 s       6675 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2750 s        813 s        455 s       8415 s       
+           #1     0 MHz       1820 s        391 s        357 s       6657 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2890 s        833 s        443 s       8260 s       
+           #1     0 MHz       1849 s        355 s        334 s       6684 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2833 s        826 s        454 s       8085 s       
+           #1     0 MHz       1866 s        405 s        343 s       6613 s       
     0 s  
-      Memory: 4.0 GB (427.1015625 MB free)
-      Uptime: 416.63 sec
-      Load Avg:  14.55  15.46  11.7
+           unknown: 
+                  speed         user         nice          sys         idle       
+    irq
+           #1     0 MHz       1861 s        372 s        340 s       6648 s       
+    0 s  
+      Memory: 4.0 GB (596.87109375 MB free)
+      Uptime: 405.97 sec
+      Load Avg:  23.28  19.05  16.32
       WORD_SIZE: 64
       LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
       GC: Built with stock GC
@@ -1547,7 +1547,7 @@ Then, we can run the benchmark and show the comparison.
       File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
         self.set_objective(**objective_dict)
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_4u1ayn94/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_c3xzoiiv/julia_solver/solvers/
     julia_gd.py&quot;, line 21, in set_objective
         jl = get_jl_interpreter()
              ^^^^^^^^^^^^^^^^^^^^
@@ -1597,183 +1597,183 @@ Then, we can run the benchmark and show the comparison.
       CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2314 s        734 s        455 s       8515 s       
+           #1     0 MHz       1584 s        324 s        340 s       6667 s       
     0 s  
-           #2     0 MHz       2621 s        962 s        505 s       8154 s       
-    0 s  
-           unknown: 
-                  speed         user         nice          sys         idle       
-    irq
-           #1     0 MHz       2672 s       1212 s        449 s       8036 s       
+           #2     0 MHz       1801 s        436 s        414 s       6451 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1124 s        521 s       8100 s       
+           #1     0 MHz       1714 s        608 s        338 s       6542 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2626 s       1140 s        532 s       8106 s       
+           #1     0 MHz       1737 s        596 s        391 s       6479 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1199 s        527 s       8065 s       
+           #1     0 MHz       1785 s        652 s        410 s       6378 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2607 s       1278 s        510 s       8019 s       
+           #1     0 MHz       1747 s        604 s        403 s       6479 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2713 s       1261 s        442 s       8024 s       
+           #1     0 MHz       1740 s        693 s        389 s       6431 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2659 s       1206 s        461 s       8122 s       
+           #1     0 MHz       1789 s        688 s        336 s       6448 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2686 s       1069 s        460 s       8201 s       
+           #1     0 MHz       1780 s        688 s        341 s       6448 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2702 s       1102 s        459 s       8166 s       
+           #1     0 MHz       1755 s        609 s        332 s       6541 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2692 s       1028 s        457 s       8255 s       
+           #1     0 MHz       1785 s        658 s        344 s       6460 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2749 s       1190 s        434 s       8079 s       
+           #1     0 MHz       1835 s        597 s        343 s       6470 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2580 s       1206 s        452 s       8207 s       
+           #1     0 MHz       1781 s        643 s        332 s       6493 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2620 s       1166 s        456 s       8217 s       
+           #1     0 MHz       1783 s        616 s        340 s       6510 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2632 s       1138 s        442 s       8241 s       
+           #1     0 MHz       1751 s        648 s        335 s       6502 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2636 s        880 s        451 s       8430 s       
+           #1     0 MHz       1786 s        606 s        332 s       6521 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1119 s        448 s       8247 s       
+           #1     0 MHz       1790 s        446 s        344 s       6639 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       3350 s       1030 s        425 s       7654 s       
+           #1     0 MHz       1744 s        565 s        335 s       6602 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2944 s       1059 s        530 s       7865 s       
+           #1     0 MHz       2316 s        489 s        339 s       6101 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2758 s       1029 s        452 s       8207 s       
+           #1     0 MHz       1776 s        554 s        396 s       6487 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2718 s        854 s        540 s       8249 s       
+           #1     0 MHz       1901 s        499 s        342 s       6498 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2687 s       1018 s        520 s       8177 s       
+           #1     0 MHz       1860 s        365 s        404 s       6563 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2783 s        742 s        532 s       8292 s       
+           #1     0 MHz       1737 s        419 s        391 s       6664 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2619 s        768 s        545 s       8416 s       
+           #1     0 MHz       1825 s        314 s        417 s       6615 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2755 s        710 s        467 s       8436 s       
+           #1     0 MHz       1744 s        373 s        388 s       6694 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2648 s        790 s        487 s       8249 s       
+           #1     0 MHz       1791 s        310 s        350 s       6735 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2925 s        748 s        466 s       8234 s       
+           #1     0 MHz       1793 s        376 s        352 s       6682 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2839 s        824 s        466 s       8265 s       
+           #1     0 MHz       1874 s        335 s        357 s       6638 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2839 s        658 s        477 s       8387 s       
+           #1     0 MHz       1826 s        353 s        350 s       6684 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2870 s        829 s        441 s       8280 s       
+           #1     0 MHz       1854 s        308 s        346 s       6683 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2714 s        849 s        465 s       8379 s       
+           #1     0 MHz       1728 s        408 s        346 s       6750 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2836 s        880 s        452 s       8250 s       
+           #1     0 MHz       1826 s        389 s        336 s       6676 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2750 s        813 s        455 s       8417 s       
+           #1     0 MHz       1821 s        391 s        357 s       6659 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2890 s        834 s        443 s       8262 s       
+           #1     0 MHz       1850 s        356 s        334 s       6685 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2833 s        826 s        454 s       8088 s       
+           #1     0 MHz       1866 s        405 s        343 s       6615 s       
     0 s  
-      Memory: 4.0 GB (425.12890625 MB free)
-      Uptime: 419.65 sec
-      Load Avg:  14.55  15.46  11.7
+           unknown: 
+                  speed         user         nice          sys         idle       
+    irq
+           #1     0 MHz       1861 s        374 s        340 s       6649 s       
+    0 s  
+      Memory: 4.0 GB (599.01171875 MB free)
+      Uptime: 408.97 sec
+      Load Avg:  23.28  19.05  16.32
       WORD_SIZE: 64
       LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
       GC: Built with stock GC
@@ -1803,7 +1803,7 @@ Then, we can run the benchmark and show the comparison.
       File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
         self.set_objective(**objective_dict)
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_4u1ayn94/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_c3xzoiiv/julia_solver/solvers/
     julia_gd.py&quot;, line 21, in set_objective
         jl = get_jl_interpreter()
              ^^^^^^^^^^^^^^^^^^^^
@@ -1853,183 +1853,183 @@ Then, we can run the benchmark and show the comparison.
       CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2315 s        734 s        455 s       8516 s       
+           #1     0 MHz       1585 s        325 s        340 s       6669 s       
     0 s  
-           #2     0 MHz       2621 s        963 s        505 s       8156 s       
-    0 s  
-           unknown: 
-                  speed         user         nice          sys         idle       
-    irq
-           #1     0 MHz       2672 s       1214 s        449 s       8037 s       
+           #2     0 MHz       1801 s        436 s        414 s       6453 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1126 s        521 s       8101 s       
+           #1     0 MHz       1714 s        609 s        338 s       6544 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2626 s       1141 s        532 s       8108 s       
+           #1     0 MHz       1737 s        597 s        391 s       6481 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1201 s        527 s       8066 s       
+           #1     0 MHz       1785 s        652 s        410 s       6380 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1278 s        510 s       8020 s       
+           #1     0 MHz       1748 s        604 s        403 s       6481 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2714 s       1262 s        442 s       8025 s       
+           #1     0 MHz       1741 s        693 s        389 s       6433 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2659 s       1207 s        461 s       8124 s       
+           #1     0 MHz       1790 s        688 s        336 s       6450 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2686 s       1069 s        460 s       8203 s       
+           #1     0 MHz       1781 s        688 s        341 s       6449 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2702 s       1104 s        459 s       8167 s       
+           #1     0 MHz       1755 s        610 s        332 s       6543 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2692 s       1029 s        457 s       8257 s       
+           #1     0 MHz       1786 s        658 s        344 s       6462 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2750 s       1191 s        434 s       8081 s       
+           #1     0 MHz       1836 s        599 s        343 s       6470 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2580 s       1206 s        452 s       8209 s       
+           #1     0 MHz       1781 s        643 s        332 s       6495 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2621 s       1166 s        456 s       8219 s       
+           #1     0 MHz       1783 s        616 s        340 s       6512 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2633 s       1139 s        442 s       8243 s       
+           #1     0 MHz       1753 s        648 s        335 s       6502 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2637 s        880 s        451 s       8432 s       
+           #1     0 MHz       1786 s        606 s        332 s       6523 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1120 s        448 s       8249 s       
+           #1     0 MHz       1791 s        446 s        344 s       6640 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       3351 s       1030 s        425 s       7656 s       
+           #1     0 MHz       1745 s        565 s        335 s       6604 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2944 s       1061 s        530 s       7866 s       
+           #1     0 MHz       2318 s        490 s        339 s       6101 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2758 s       1029 s        452 s       8210 s       
+           #1     0 MHz       1778 s        555 s        396 s       6488 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2718 s        854 s        540 s       8252 s       
+           #1     0 MHz       1902 s        500 s        342 s       6499 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2687 s       1020 s        520 s       8178 s       
+           #1     0 MHz       1861 s        365 s        404 s       6565 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2783 s        743 s        532 s       8295 s       
+           #1     0 MHz       1737 s        419 s        391 s       6666 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2619 s        768 s        545 s       8419 s       
+           #1     0 MHz       1826 s        314 s        417 s       6616 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2755 s        710 s        467 s       8439 s       
+           #1     0 MHz       1745 s        373 s        388 s       6695 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2648 s        790 s        487 s       8252 s       
+           #1     0 MHz       1792 s        310 s        350 s       6736 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2926 s        748 s        466 s       8236 s       
+           #1     0 MHz       1793 s        376 s        352 s       6684 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2839 s        825 s        466 s       8267 s       
+           #1     0 MHz       1875 s        335 s        358 s       6640 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2839 s        658 s        477 s       8390 s       
+           #1     0 MHz       1828 s        353 s        350 s       6684 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2870 s        829 s        441 s       8282 s       
+           #1     0 MHz       1854 s        308 s        346 s       6686 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2715 s        849 s        465 s       8381 s       
+           #1     0 MHz       1729 s        408 s        346 s       6752 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2838 s        880 s        452 s       8251 s       
+           #1     0 MHz       1827 s        390 s        336 s       6677 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2750 s        813 s        455 s       8420 s       
+           #1     0 MHz       1821 s        391 s        357 s       6662 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2892 s        834 s        443 s       8264 s       
+           #1     0 MHz       1852 s        356 s        334 s       6687 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2833 s        826 s        454 s       8090 s       
+           #1     0 MHz       1868 s        405 s        343 s       6616 s       
     0 s  
-      Memory: 4.0 GB (424.4375 MB free)
-      Uptime: 422.69 sec
-      Load Avg:  14.91  15.52  11.74
+           unknown: 
+                  speed         user         nice          sys         idle       
+    irq
+           #1     0 MHz       1862 s        374 s        340 s       6651 s       
+    0 s  
+      Memory: 4.0 GB (596.984375 MB free)
+      Uptime: 411.93 sec
+      Load Avg:  22.85  19.04  16.33
       WORD_SIZE: 64
       LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
       GC: Built with stock GC
@@ -2059,7 +2059,7 @@ Then, we can run the benchmark and show the comparison.
       File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
         self.set_objective(**objective_dict)
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_4u1ayn94/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_c3xzoiiv/julia_solver/solvers/
     julia_gd.py&quot;, line 21, in set_objective
         jl = get_jl_interpreter()
              ^^^^^^^^^^^^^^^^^^^^
@@ -2109,183 +2109,183 @@ Then, we can run the benchmark and show the comparison.
       CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2315 s        735 s        455 s       8519 s       
+           #1     0 MHz       1585 s        325 s        340 s       6671 s       
     0 s  
-           #2     0 MHz       2621 s        963 s        506 s       8159 s       
-    0 s  
-           unknown: 
-                  speed         user         nice          sys         idle       
-    irq
-           #1     0 MHz       2672 s       1215 s        449 s       8039 s       
+           #2     0 MHz       1802 s        436 s        414 s       6455 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1128 s        521 s       8102 s       
+           #1     0 MHz       1715 s        609 s        338 s       6546 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2626 s       1142 s        532 s       8110 s       
+           #1     0 MHz       1738 s        597 s        391 s       6483 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1201 s        527 s       8069 s       
+           #1     0 MHz       1786 s        652 s        410 s       6382 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1280 s        510 s       8021 s       
+           #1     0 MHz       1749 s        604 s        403 s       6483 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2716 s       1262 s        442 s       8026 s       
+           #1     0 MHz       1742 s        693 s        389 s       6435 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2659 s       1208 s        461 s       8126 s       
+           #1     0 MHz       1790 s        688 s        336 s       6452 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2687 s       1070 s        460 s       8205 s       
+           #1     0 MHz       1781 s        688 s        342 s       6451 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2702 s       1104 s        459 s       8169 s       
+           #1     0 MHz       1756 s        610 s        332 s       6544 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2692 s       1031 s        457 s       8258 s       
+           #1     0 MHz       1786 s        658 s        344 s       6464 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2750 s       1193 s        434 s       8082 s       
+           #1     0 MHz       1837 s        599 s        343 s       6471 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2580 s       1207 s        452 s       8211 s       
+           #1     0 MHz       1782 s        644 s        332 s       6497 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2621 s       1166 s        456 s       8222 s       
+           #1     0 MHz       1783 s        617 s        340 s       6514 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2633 s       1139 s        442 s       8246 s       
+           #1     0 MHz       1753 s        648 s        335 s       6505 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2637 s        880 s        451 s       8435 s       
+           #1     0 MHz       1787 s        607 s        332 s       6524 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2632 s       1120 s        448 s       8251 s       
+           #1     0 MHz       1791 s        447 s        344 s       6642 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       3351 s       1031 s        425 s       7658 s       
+           #1     0 MHz       1746 s        565 s        335 s       6605 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2944 s       1063 s        530 s       7867 s       
+           #1     0 MHz       2319 s        491 s        339 s       6101 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2758 s       1029 s        452 s       8212 s       
+           #1     0 MHz       1778 s        556 s        396 s       6489 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2718 s        855 s        540 s       8254 s       
+           #1     0 MHz       1903 s        500 s        342 s       6501 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2687 s       1021 s        520 s       8180 s       
+           #1     0 MHz       1861 s        365 s        404 s       6567 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2783 s        743 s        532 s       8298 s       
+           #1     0 MHz       1738 s        419 s        391 s       6668 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2619 s        768 s        545 s       8421 s       
+           #1     0 MHz       1827 s        314 s        417 s       6618 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2755 s        710 s        467 s       8442 s       
+           #1     0 MHz       1745 s        373 s        388 s       6697 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2648 s        790 s        487 s       8255 s       
+           #1     0 MHz       1792 s        311 s        350 s       6738 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2928 s        748 s        466 s       8237 s       
+           #1     0 MHz       1793 s        377 s        352 s       6686 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2840 s        825 s        466 s       8269 s       
+           #1     0 MHz       1875 s        335 s        358 s       6642 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2839 s        658 s        477 s       8393 s       
+           #1     0 MHz       1829 s        354 s        350 s       6685 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2870 s        829 s        441 s       8285 s       
+           #1     0 MHz       1854 s        308 s        346 s       6688 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2715 s        849 s        465 s       8383 s       
+           #1     0 MHz       1729 s        408 s        346 s       6754 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2839 s        881 s        452 s       8253 s       
+           #1     0 MHz       1828 s        391 s        336 s       6678 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2751 s        813 s        455 s       8422 s       
+           #1     0 MHz       1823 s        392 s        357 s       6662 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2893 s        834 s        443 s       8265 s       
+           #1     0 MHz       1852 s        356 s        334 s       6689 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2835 s        826 s        454 s       8092 s       
+           #1     0 MHz       1869 s        405 s        343 s       6618 s       
     0 s  
-      Memory: 4.0 GB (425.296875 MB free)
-      Uptime: 425.73 sec
-      Load Avg:  14.75  15.47  11.75
+           unknown: 
+                  speed         user         nice          sys         idle       
+    irq
+           #1     0 MHz       1862 s        374 s        340 s       6653 s       
+    0 s  
+      Memory: 4.0 GB (597.98828125 MB free)
+      Uptime: 414.85 sec
+      Load Avg:  21.66  18.85  16.29
       WORD_SIZE: 64
       LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
       GC: Built with stock GC
@@ -2315,7 +2315,7 @@ Then, we can run the benchmark and show the comparison.
       File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
         self.set_objective(**objective_dict)
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_4u1ayn94/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_c3xzoiiv/julia_solver/solvers/
     julia_gd.py&quot;, line 21, in set_objective
         jl = get_jl_interpreter()
              ^^^^^^^^^^^^^^^^^^^^
@@ -2365,183 +2365,183 @@ Then, we can run the benchmark and show the comparison.
       CPU: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2315 s        736 s        455 s       8520 s       
+           #1     0 MHz       1585 s        325 s        340 s       6674 s       
     0 s  
-           #2     0 MHz       2621 s        964 s        506 s       8161 s       
-    0 s  
-           unknown: 
-                  speed         user         nice          sys         idle       
-    irq
-           #1     0 MHz       2672 s       1216 s        449 s       8041 s       
+           #2     0 MHz       1802 s        437 s        414 s       6456 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2631 s       1129 s        522 s       8104 s       
+           #1     0 MHz       1715 s        611 s        338 s       6547 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2626 s       1143 s        532 s       8112 s       
+           #1     0 MHz       1739 s        597 s        391 s       6485 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1201 s        527 s       8072 s       
+           #1     0 MHz       1787 s        652 s        410 s       6384 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2608 s       1283 s        510 s       8022 s       
+           #1     0 MHz       1750 s        604 s        403 s       6485 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2719 s       1263 s        442 s       8026 s       
+           #1     0 MHz       1743 s        693 s        389 s       6436 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2659 s       1208 s        461 s       8128 s       
+           #1     0 MHz       1792 s        689 s        336 s       6453 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2688 s       1071 s        460 s       8206 s       
+           #1     0 MHz       1782 s        689 s        342 s       6453 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2702 s       1105 s        459 s       8171 s       
+           #1     0 MHz       1756 s        610 s        333 s       6547 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2692 s       1033 s        457 s       8259 s       
+           #1     0 MHz       1786 s        658 s        344 s       6466 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2750 s       1193 s        434 s       8085 s       
+           #1     0 MHz       1838 s        599 s        343 s       6473 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2580 s       1208 s        452 s       8213 s       
+           #1     0 MHz       1782 s        644 s        333 s       6499 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2623 s       1166 s        456 s       8223 s       
+           #1     0 MHz       1783 s        618 s        340 s       6516 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2633 s       1140 s        442 s       8248 s       
+           #1     0 MHz       1753 s        648 s        335 s       6508 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2638 s        880 s        451 s       8437 s       
+           #1     0 MHz       1789 s        607 s        332 s       6526 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2632 s       1120 s        448 s       8253 s       
+           #1     0 MHz       1792 s        447 s        344 s       6644 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       3351 s       1032 s        425 s       7660 s       
+           #1     0 MHz       1746 s        565 s        335 s       6608 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2944 s       1065 s        530 s       7868 s       
+           #1     0 MHz       2322 s        491 s        339 s       6101 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2758 s       1030 s        452 s       8214 s       
+           #1     0 MHz       1778 s        556 s        396 s       6491 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2718 s        855 s        541 s       8256 s       
+           #1     0 MHz       1903 s        500 s        342 s       6503 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2688 s       1021 s        520 s       8183 s       
+           #1     0 MHz       1862 s        365 s        404 s       6569 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2783 s        743 s        532 s       8300 s       
+           #1     0 MHz       1739 s        419 s        391 s       6670 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2619 s        768 s        545 s       8424 s       
+           #1     0 MHz       1827 s        314 s        417 s       6621 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2755 s        710 s        467 s       8445 s       
+           #1     0 MHz       1746 s        373 s        388 s       6700 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2648 s        791 s        487 s       8257 s       
+           #1     0 MHz       1792 s        311 s        350 s       6740 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2928 s        748 s        466 s       8240 s       
+           #1     0 MHz       1794 s        377 s        352 s       6688 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2840 s        825 s        466 s       8272 s       
+           #1     0 MHz       1875 s        335 s        358 s       6644 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2840 s        658 s        477 s       8396 s       
+           #1     0 MHz       1830 s        354 s        350 s       6687 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2870 s        829 s        442 s       8287 s       
+           #1     0 MHz       1855 s        309 s        346 s       6691 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2715 s        850 s        465 s       8385 s       
+           #1     0 MHz       1730 s        410 s        346 s       6754 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2839 s        881 s        452 s       8255 s       
+           #1     0 MHz       1828 s        393 s        336 s       6679 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2753 s        813 s        455 s       8423 s       
+           #1     0 MHz       1826 s        392 s        357 s       6662 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2893 s        834 s        443 s       8268 s       
+           #1     0 MHz       1853 s        356 s        334 s       6690 s       
     0 s  
            unknown: 
                   speed         user         nice          sys         idle       
     irq
-           #1     0 MHz       2835 s        828 s        454 s       8092 s       
+           #1     0 MHz       1871 s        406 s        343 s       6618 s       
     0 s  
-      Memory: 4.0 GB (426.7734375 MB free)
-      Uptime: 428.74 sec
-      Load Avg:  14.75  15.47  11.75
+           unknown: 
+                  speed         user         nice          sys         idle       
+    irq
+           #1     0 MHz       1863 s        375 s        340 s       6655 s       
+    0 s  
+      Memory: 4.0 GB (599.59375 MB free)
+      Uptime: 417.77 sec
+      Load Avg:  21.66  18.85  16.29
       WORD_SIZE: 64
       LLVM: libLLVM-20.1.8 (ORCJIT, skylake-avx512)
       GC: Built with stock GC
@@ -2571,7 +2571,7 @@ Then, we can run the benchmark and show the comparison.
       File &quot;/home/circleci/project/benchopt/base.py&quot;, line 160, in _set_objective
         self.set_objective(**objective_dict)
       File 
-    &quot;/home/circleci/project/examples/temp_benchmark_4u1ayn94/julia_solver/solvers/
+    &quot;/home/circleci/project/examples/temp_benchmark_c3xzoiiv/julia_solver/solvers/
     julia_gd.py&quot;, line 21, in set_objective
         jl = get_jl_interpreter()
              ^^^^^^^^^^^^^^^^^^^^
@@ -2591,18 +2591,18 @@ Then, we can run the benchmark and show the comparison.
     RuntimeError: &lt;exception str() failed&gt;
     <span style="color: #000080; text-decoration-color: #000080; font-weight: bold">    |--Julia-GD[lr=0.01]:</span> <span style="color: #800000; text-decoration-color: #800000; font-weight: bold">error</span>                                               
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">Saving result in: </span>
-    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_4u1ayn94/julia_solver/outputs/benchopt_run_2026-09-21_12h01m46.</span>
+    <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">temp_benchmark_c3xzoiiv/julia_solver/outputs/benchopt_run_2026-09-21_15h16m35.</span>
     <span style="color: #008000; text-decoration-color: #008000; font-weight: bold">parquet</span>
     Rendering benchmark results...
        Processing 
-    temp_benchmark_4u1ayn94/julia_solver/outputs/benchopt_run_2026-09-21_12h01m46.
+    temp_benchmark_c3xzoiiv/julia_solver/outputs/benchopt_run_2026-09-21_15h16m35.
     parquet
     done
     Writing results to 
-    temp_benchmark_4u1ayn94/julia_solver/outputs/julia_solver_benchopt_run_2026-09
-    -21_12h01m46.html
+    temp_benchmark_c3xzoiiv/julia_solver/outputs/julia_solver_benchopt_run_2026-09
+    -21_15h16m35.html
     Writing julia_solver index to 
-    temp_benchmark_4u1ayn94/julia_solver/outputs/julia_solver.html
+    temp_benchmark_c3xzoiiv/julia_solver/outputs/julia_solver.html
 
 
 
@@ -2628,7 +2628,7 @@ other, hinting to a loading time for the solver.
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** (4 minutes 1.936 seconds)
+   **Total running time of the script:** (3 minutes 58.472 seconds)
 
 
 .. _sphx_glr_download_auto_examples_run_julia_solver.py:
