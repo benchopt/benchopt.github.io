@@ -394,6 +394,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-datasets">Preparing datasets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-benchmark">Running a benchmark</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-a-solver-or-dataset-from-a-file">Selecting a solver or dataset from a file</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-configuration-file">Using a configuration file</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-solver-runs">Caching solver runs</a></li>
@@ -502,6 +503,20 @@ zsh</label><div class="sd-tab-content docutils">
 <p class="admonition-title">Note</p>
 <p>If a parameter of a solver/dataset is not explicitly set via CLI, benchopt uses all its values specified in the code.</p>
 </div>
+</section>
+<section id="selecting-a-solver-or-dataset-from-a-file">
+<h3>Selecting a solver or dataset from a file<a class="headerlink" href="#selecting-a-solver-or-dataset-from-a-file" title="Link to this heading">#</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">-s</span></code> and <code class="docutils literal notranslate"><span class="pre">-d</span></code> also accept a path to a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file. The <code class="docutils literal notranslate"><span class="pre">Solver</span></code> /
+<code class="docutils literal notranslate"><span class="pre">Dataset</span></code> class is then loaded directly from that file and added to the run,
+even if the file lives outside the benchmark’s <code class="docutils literal notranslate"><span class="pre">solvers/</span></code> / <code class="docutils literal notranslate"><span class="pre">datasets/</span></code>
+folders. This is handy to run a solver that is not part of the benchmark
+repository, e.g. a submission file, without copying it into the benchmark.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>-s<span class="w"> </span>/path/to/my_solver.py<span class="w"> </span>-d<span class="w"> </span>/path/to/my_dataset.py</span>
+</pre></div></div><p>The loaded class keeps its own <code class="docutils literal notranslate"><span class="pre">name</span></code> (used to identify it in the results),
+and is selected exactly, so it never clashes with a benchmark class of the same
+name. The file is loaded as a regular solver, so it can still
+<code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">benchmark_utils</span></code>, and parameter sub-selection works as usual with the
+bracket syntax, e.g. <code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">&quot;/path/to/my_solver.py[p1=1]&quot;</span></code>.</p>
 </section>
 <section id="using-a-configuration-file">
 <span id="run-with-config-file"></span><h3>Using a configuration file<a class="headerlink" href="#using-a-configuration-file" title="Link to this heading">#</a></h3>
@@ -633,6 +648,7 @@ already in the cache into a result file.</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#preparing-datasets">Preparing datasets</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-a-benchmark">Running a benchmark</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#specifying-options-with-cli-flags">Specifying options with CLI flags</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#selecting-a-solver-or-dataset-from-a-file">Selecting a solver or dataset from a file</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#using-a-configuration-file">Using a configuration file</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#run-a-benchmark-using-a-python-script">Run a benchmark using a Python script</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-solver-runs">Caching solver runs</a></li>

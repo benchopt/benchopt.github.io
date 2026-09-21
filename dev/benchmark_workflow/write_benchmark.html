@@ -504,7 +504,8 @@ structure between the different components:</p>
 <p>All three component classes share the following features:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">name</span></code>: human-readable identifier used to filter them in the CLI and to
-identify the results in tables and plots.</p></li>
+identify the results in tables and plots. It must not contain a <code class="docutils literal notranslate"><span class="pre">/</span></code>, which
+would make it ambiguous with a <code class="docutils literal notranslate"><span class="pre">-s</span></code>/<code class="docutils literal notranslate"><span class="pre">-d</span></code> file selector.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">requirements</span></code>: declare package dependencies for a component.
 See <a class="reference internal" href="../user_guide/class_customization.html#specify-requirements"><span class="std std-ref">Specifying requirements</span></a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">parameters</span></code>: run the same class with multiple configurations

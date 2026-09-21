@@ -409,6 +409,11 @@
     <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">dataset_class</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">),</span> <span class="s2">"All dataset should expose a name"</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">dataset_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="p">(</span>
         <span class="s2">"The dataset's name should be a string"</span><span class="p">)</span>
+    <span class="k">assert</span> <span class="s1">'/'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"The dataset's name should not contain '/' (got "</span>
+        <span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">dataset_class</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">'). A '/' makes the name ambiguous with a "</span>
+        <span class="s2">"`-d path/to/dataset.py` file selector."</span>
+    <span class="p">)</span>
 
     <span class="c1"># Ensure that the dataset exposes a `get_data` function</span>
     <span class="c1"># that is callable</span>
@@ -532,6 +537,11 @@
     <span class="k">assert</span> <span class="nb">hasattr</span><span class="p">(</span><span class="n">solver_class</span><span class="p">,</span> <span class="s1">'name'</span><span class="p">),</span> <span class="s2">"All solver should expose a name"</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="nb">str</span><span class="p">),</span> <span class="p">(</span>
         <span class="s2">"The solver's name should be a string"</span>
+    <span class="p">)</span>
+    <span class="k">assert</span> <span class="s1">'/'</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="p">(</span>
+        <span class="sa">f</span><span class="s2">"The solver's name should not contain '/' (got "</span>
+        <span class="sa">f</span><span class="s2">"'</span><span class="si">{</span><span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">'). A '/' makes the name ambiguous with a "</span>
+        <span class="s2">"`-s path/to/solver.py` file selector."</span>
     <span class="p">)</span>
 
     <span class="c1"># Check that the solver_class uses a valid sampling_strategy</span>
@@ -716,7 +726,9 @@
     <span class="n">test_config_file</span> <span class="o">=</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">get_test_config_file</span><span class="p">()</span>
     <span class="k">if</span> <span class="n">test_config_file</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
         <span class="k">return</span> <span class="kc">None</span>
-    <span class="n">test_config_module</span> <span class="o">=</span> <span class="n">_get_module_from_file</span><span class="p">(</span><span class="n">test_config_file</span><span class="p">)</span>
+    <span class="n">test_config_module</span> <span class="o">=</span> <span class="n">_get_module_from_file</span><span class="p">(</span>
+        <span class="n">test_config_file</span><span class="p">,</span> <span class="n">benchmark</span><span class="o">.</span><span class="n">benchmark_dir</span>
+    <span class="p">)</span>
     <span class="n">check_func_name</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">"check_</span><span class="si">{</span><span class="n">request</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">"</span>
     <span class="n">check_func</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">test_config_module</span><span class="p">,</span> <span class="n">check_func_name</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">check_func</span> <span class="ow">is</span> <span class="kc">None</span> <span class="ow">and</span> <span class="n">request</span><span class="o">.</span><span class="n">function</span><span class="o">.</span><span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"test_solver_run"</span><span class="p">:</span>

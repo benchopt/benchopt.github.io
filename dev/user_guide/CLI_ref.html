@@ -668,7 +668,7 @@ dataset), additional values can be given with the following syntax:</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-s">
 <span id="cmdoption-benchopt-run-solver"></span><span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--solver</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;solver_name&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-s" title="Link to this definition">#</a></dt>
-<dd><p>Include &lt;solver_name&gt; in the benchmark. By default, all solvers are included. When <cite>-s</cite> is used, only listed solvers are included. Note that &lt;solver_name&gt; can include parameters, with the syntax <cite>solver[parameter=value]</cite>. To include multiple solvers, use multiple <cite>-s</cite> options.</p>
+<dd><p>Include &lt;solver_name&gt; in the benchmark. By default, all solvers are included. When <cite>-s</cite> is used, only listed solvers are included. Note that &lt;solver_name&gt; can include parameters, with the syntax <cite>solver[parameter=value]</cite>. A path to a <cite>.py</cite> file loads the Solver directly from that file, even outside the benchmark’s <cite>solvers/</cite> folder. To include multiple solvers, use multiple <cite>-s</cite> options.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -680,7 +680,7 @@ dataset), additional values can be given with the following syntax:</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-d">
 <span id="cmdoption-benchopt-run-dataset"></span><span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--dataset</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dataset_name&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-d" title="Link to this definition">#</a></dt>
-<dd><p>Run the benchmark on &lt;dataset_name&gt;. By default, all datasets are included. When <cite>-d</cite> is used, only listed datasets are included. Note that &lt;dataset_name&gt; can include parameters, with the syntax <cite>dataset[parameter=value]</cite>. To include multiple datasets, use multiple <cite>-d</cite> options.</p>
+<dd><p>Run the benchmark on &lt;dataset_name&gt;. By default, all datasets are included. When <cite>-d</cite> is used, only listed datasets are included. Note that &lt;dataset_name&gt; can include parameters, with the syntax <cite>dataset[parameter=value]</cite>. A path to a <cite>.py</cite> file loads the Dataset directly from that file, even outside the benchmark’s <cite>datasets/</cite> folder. To include multiple datasets, use multiple <cite>-d</cite> options.</p>
 </dd></dl>
 
 <dl class="std option">
@@ -793,7 +793,7 @@ dataset), additional values can be given with the following syntax:</p>
 <dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-output">
 <span class="sig-name descname"><span class="pre">--output</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-output" title="Link to this definition">#</a></dt>
-<dd><p>Filename for the result output. If given, the results will be stored at &lt;BENCHMARK&gt;/outputs/&lt;filename&gt;.parquet, if another result file has the same name, a number is happened to distinguish them (ex: &lt;BENCHMARK&gt;/outputs/&lt;filename&gt;_1.parquet). If not provided, the output will be saved as &lt;BENCHMARK&gt;/outputs/benchopt_run_&lt;timestamp&gt;.parquet.</p>
+<dd><p>Name or path for the result output. A bare name is stored at &lt;BENCHMARK&gt;/outputs/&lt;name&gt;.parquet; if another result file has the same name, a number is appended to distinguish them (ex: &lt;BENCHMARK&gt;/outputs/&lt;name&gt;_1.parquet). A value containing a path separator (e.g. <cite>out/results.parquet</cite> or an absolute path) is treated as an explicit path and written exactly there, leaving the benchmark folder untouched. If not provided, the output will be saved as &lt;BENCHMARK&gt;/outputs/benchopt_run_&lt;timestamp&gt;.parquet.</p>
 </dd></dl>
 
 <dl class="std option">

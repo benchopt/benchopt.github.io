@@ -434,6 +434,9 @@ directory, with a <code class="docutils literal notranslate"><span class="pre">.
 By default, the name of the file include the date and time of the run,
 as <code class="docutils literal notranslate"><span class="pre">benchopt_run_&lt;date&gt;_&lt;time&gt;.parquet</span></code> but a custom name can be given using
 the <code class="xref std std-option docutils literal notranslate"><span class="pre">--output</span></code> option of <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.
+A bare name is stored in <code class="docutils literal notranslate"><span class="pre">./outputs</span></code>, while a value containing a path
+separator (e.g. <code class="docutils literal notranslate"><span class="pre">--output</span> <span class="pre">/tmp/results.parquet</span></code>) is treated as an explicit
+path and written exactly there, leaving the benchmark directory untouched.
 The DataFrame contains the following columns:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">objective_name|solver_name|dataset_name</span></code>: the names of the different benchopt
