@@ -516,6 +516,9 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 summarize result file(s) instead of listing benchmark solvers/datasets;
 plain <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">info</span></code> now also lists available result files.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/990">#990</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">info</span> <span class="pre">&lt;benchmark&gt;</span> <span class="pre">--version</span></code> to check that the installed
+benchopt satisfies the benchmark’s <code class="docutils literal notranslate"><span class="pre">min_benchopt_version</span></code>.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1009">#1009</a>)</p></li>
 <li><p>Add a <code class="docutils literal notranslate"><span class="pre">raise_on_error</span></code> config setting (<code class="docutils literal notranslate"><span class="pre">BENCHOPT_RAISE_ON_ERROR</span></code>) that
 re-raises the first solver/dataset/objective error to make a run fail fast,
 without turning on the extra logging of <code class="docutils literal notranslate"><span class="pre">BENCHOPT_DEBUG</span></code>.
