@@ -1866,61 +1866,58 @@ input:checked+.slider:before {
   visibility: visible;
 }
 
-/* Description solver when hovered */
-.curve-description-container {
-  position: relative;
-  display: inline-flex;
+/*----------------------------------------*/
+/***** Param hover icon *****/
+/*----------------------------------------*/
+
+.param-icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 4px;
+  vertical-align: -3px;
+  color: #2563eb;
+  cursor: pointer;
+  flex: none;
+  transition: color .15s ease, transform .15s ease;
 }
+.param-icon:hover { color: #1d4ed8; transform: scale(1.2); }
+.param-icon * { pointer-events: none; }
 
-.curve-description-content {
-  display: flex;
-  flex-direction: column;
-  visibility: hidden;
-  background-color: rgb(55 65 81);
-  color: #fff;
-  border-radius: 6px;
-  padding-top: 0.5em;
-  padding-bottom: 0.6em;
-  padding-left: 0.5em;
-  padding-right: 0.5rem;
-  opacity: 90%;
+#params-tooltip {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  background: #1f2937;
+  color: #f9fafb;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  max-width: 20rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .4);
+}
+#params-tooltip .param-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #374151;
+}
+#params-tooltip table { border-collapse: collapse; }
+#params-tooltip .param-key {
+  color: #93c5fd;
+  font-weight: 600;
+  padding: 1px 12px 1px 0;
+  white-space: nowrap;
+}
+#params-tooltip .param-val { word-break: break-all; }
 
-  width: max-content;
-  max-width: 80ch;
-  max-height: 500px;
+/* Free-text description (e.g. solver docstring) above the params table. */
+#params-tooltip .param-desc {
   white-space: pre-wrap;
-
-  /* position description with respect to container and put it top-center */
-  position: absolute;
-  transform: translate(0, -100%);
-  z-index: 99999;
-}
-
-/* Show description when hovered */
-.curve-description-container:hover .curve-description-content {
-  visibility: visible;
-}
-
-/*Arrow at the bottom of the description*/
-.curve-description-container .curve-description-content::after {
-  content: " ";
-  position: absolute;
-  top: 100%;
-  left: 20px;
-  margin-left: -5px;
-  border-width: 7px;
-  border-style: solid;
-  border-color: rgb(55 65 81) transparent transparent transparent;
-}
-
-.curve-description-title {
-  margin-bottom: 1em;
-  font-weight: bolder;
-}
-
-.curve-description-body {
   max-height: 450px;
   overflow-y: auto;
+  margin-bottom: 6px;
 }
 
 /*Plot config styling as a bag of tags*/
@@ -2129,6 +2126,110 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
 #figsize_controls .unit {
   color: #9ca3af;
 }
+/* Image grid: no boxes, images keep their own aspect ratio */
+.image-title {
+  font-size: 1.25rem;
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.image-grid {
+  display: grid;
+  gap: 2rem 1.5rem;
+  align-items: start;
+}
+
+.image-cell {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  /* Allows sizing images relative to the column width (cqw) */
+  container-type: inline-size;
+}
+
+.image-cell img {
+  width: 100%;
+  height: auto;
+  /* Tall images are capped to a square and shrunk to fit */
+  max-height: 100cqw;
+  object-fit: contain;
+  image-rendering: pixelated;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.image-cell img:hover {
+  opacity: 0.85;
+}
+
+.image-cell figcaption, #image-modal figcaption {
+  font-size: 0.875rem;
+  white-space: pre-line;
+  color: #374151;
+  text-align: center;
+}
+
+#image-modal figcaption {
+  color: white;
+}
+
+.image-incompatible {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+#image-modal {
+  padding: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+#image-modal::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+#image-modal figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#image-modal img {
+  image-rendering: pixelated;
+}
+
+#image-modal button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+#image-modal button svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+#image-modal button:hover, #image-modal button:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+}
+
         </style>
     </head>
     <body>
@@ -2202,132 +2303,162 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                         </div>
                             <div id="objective_curve-custom-params-container">
                                 <div id="objective_curve_dataset_form_group" class="mt-8 px-8">
-                                    <label for="change_objective_curve_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                    <label for="change_objective_curve_dataset" class="block text-sm font-medium text-white">
+                                        dataset
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_objective_curve_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_dataset: this.value})">
-                                                <option value="simulated">simulated</option>
+                                                <option value="simulated" title="simulated" data-desc="">simulated</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="objective_curve_objective_form_group" class="mt-8 px-8">
-                                    <label for="change_objective_curve_objective" class="block text-sm font-medium text-white">objective</label>
+                                    <label for="change_objective_curve_objective" class="block text-sm font-medium text-white">
+                                        objective
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_objective_curve_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_objective: this.value})">
-                                                <option value="Quadratic">Quadratic</option>
+                                                <option value="Quadratic" title="Quadratic" data-desc="">Quadratic</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="objective_curve_objective_column_form_group" class="mt-8 px-8">
-                                    <label for="change_objective_curve_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                    <label for="change_objective_curve_objective_column" class="block text-sm font-medium text-white">
+                                        objective_column
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_objective_curve_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_objective_column: this.value})">
-                                                <option value="objective_value">objective_value</option>
+                                                <option value="objective_value" title="objective_value" data-desc="">objective_value</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="objective_curve_X_axis_form_group" class="mt-8 px-8">
-                                    <label for="change_objective_curve_X_axis" class="block text-sm font-medium text-white">X_axis</label>
+                                    <label for="change_objective_curve_X_axis" class="block text-sm font-medium text-white">
+                                        X_axis
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_objective_curve_X_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_X_axis: this.value})">
-                                                <option value="Time">Time</option>
-                                                <option value="Iteration">Iteration</option>
+                                                <option value="Time" title="Time" data-desc="">Time</option>
+                                                <option value="Iteration" title="Iteration" data-desc="">Iteration</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div id="bar_chart-custom-params-container">
                                 <div id="bar_chart_dataset_form_group" class="mt-8 px-8">
-                                    <label for="change_bar_chart_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                    <label for="change_bar_chart_dataset" class="block text-sm font-medium text-white">
+                                        dataset
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_bar_chart_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_dataset: this.value})">
-                                                <option value="simulated">simulated</option>
+                                                <option value="simulated" title="simulated" data-desc="">simulated</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="bar_chart_objective_form_group" class="mt-8 px-8">
-                                    <label for="change_bar_chart_objective" class="block text-sm font-medium text-white">objective</label>
+                                    <label for="change_bar_chart_objective" class="block text-sm font-medium text-white">
+                                        objective
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_bar_chart_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_objective: this.value})">
-                                                <option value="Quadratic">Quadratic</option>
+                                                <option value="Quadratic" title="Quadratic" data-desc="">Quadratic</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="bar_chart_objective_column_form_group" class="mt-8 px-8">
-                                    <label for="change_bar_chart_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                    <label for="change_bar_chart_objective_column" class="block text-sm font-medium text-white">
+                                        objective_column
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_bar_chart_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_objective_column: this.value})">
-                                                <option value="objective_value">objective_value</option>
+                                                <option value="objective_value" title="objective_value" data-desc="">objective_value</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="bar_chart_minimize_form_group" class="mt-8 px-8">
-                                    <label for="change_bar_chart_minimize" class="block text-sm font-medium text-white">minimize</label>
+                                    <label for="change_bar_chart_minimize" class="block text-sm font-medium text-white">
+                                        minimize
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_bar_chart_minimize" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_minimize: this.value})">
-                                                <option value="True">True</option>
-                                                <option value="False">False</option>
+                                                <option value="True" title="True" data-desc="">True</option>
+                                                <option value="False" title="False" data-desc="">False</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div id="boxplot-custom-params-container">
                                 <div id="boxplot_dataset_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                    <label for="change_boxplot_dataset" class="block text-sm font-medium text-white">
+                                        dataset
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_dataset: this.value})">
-                                                <option value="simulated">simulated</option>
+                                                <option value="simulated" title="simulated" data-desc="">simulated</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="boxplot_objective_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_objective" class="block text-sm font-medium text-white">objective</label>
+                                    <label for="change_boxplot_objective" class="block text-sm font-medium text-white">
+                                        objective
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_objective: this.value})">
-                                                <option value="Quadratic">Quadratic</option>
+                                                <option value="Quadratic" title="Quadratic" data-desc="">Quadratic</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="boxplot_objective_column_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                    <label for="change_boxplot_objective_column" class="block text-sm font-medium text-white">
+                                        objective_column
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_objective_column: this.value})">
-                                                <option value="objective_value">objective_value</option>
+                                                <option value="objective_value" title="objective_value" data-desc="">objective_value</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="boxplot_X_axis_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_X_axis" class="block text-sm font-medium text-white">X_axis</label>
+                                    <label for="change_boxplot_X_axis" class="block text-sm font-medium text-white">
+                                        X_axis
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_X_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_X_axis: this.value})">
-                                                <option value="Solver">Solver</option>
-                                                <option value="Iteration">Iteration</option>
+                                                <option value="Solver" title="Solver" data-desc="">Solver</option>
+                                                <option value="Iteration" title="Iteration" data-desc="">Iteration</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="boxplot_Y_axis_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_Y_axis" class="block text-sm font-medium text-white">Y_axis</label>
+                                    <label for="change_boxplot_Y_axis" class="block text-sm font-medium text-white">
+                                        Y_axis
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_Y_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_Y_axis: this.value})">
-                                                <option value="Time">Time</option>
-                                                <option value="Objective Metric">Objective Metric</option>
+                                                <option value="Time" title="Time" data-desc="">Time</option>
+                                                <option value="Objective Metric" title="Objective Metric" data-desc="">Objective Metric</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div id="table-custom-params-container">
                                 <div id="table_dataset_form_group" class="mt-8 px-8">
-                                    <label for="change_table_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                    <label for="change_table_dataset" class="block text-sm font-medium text-white">
+                                        dataset
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_table_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({table_dataset: this.value})">
-                                                <option value="simulated">simulated</option>
+                                                <option value="simulated" title="simulated" data-desc="">simulated</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="table_objective_form_group" class="mt-8 px-8">
-                                    <label for="change_table_objective" class="block text-sm font-medium text-white">objective</label>
+                                    <label for="change_table_objective" class="block text-sm font-medium text-white">
+                                        objective
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_table_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({table_objective: this.value})">
-                                                <option value="Quadratic">Quadratic</option>
+                                                <option value="Quadratic" title="Quadratic" data-desc="">Quadratic</option>
                                         </select>
                                     </div>
                                 </div>
@@ -2386,7 +2517,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                             <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportConfigs()">Download config</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportHTML()">Download HTML</a>
-                            <a href="benchopt_run_2026-09-21_15h16m35.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                            <a href="benchopt_run_2026-11-02_13h41m52.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
                         </div>
                     </div>
                 </nav>
@@ -2466,132 +2597,162 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                             <div>
                                 <div id="objective_curve-custom-params-container">
                                     <div id="objective_curve_dataset_form_group" class="mt-8 px-8">
-                                        <label for="change_objective_curve_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                        <label for="change_objective_curve_dataset" class="block text-sm font-medium text-white">
+                                            dataset
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_objective_curve_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_dataset: this.value})">
-                                                    <option value="simulated">simulated</option>
+                                                    <option value="simulated" title="simulated" data-desc="">simulated</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="objective_curve_objective_form_group" class="mt-8 px-8">
-                                        <label for="change_objective_curve_objective" class="block text-sm font-medium text-white">objective</label>
+                                        <label for="change_objective_curve_objective" class="block text-sm font-medium text-white">
+                                            objective
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_objective_curve_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_objective: this.value})">
-                                                    <option value="Quadratic">Quadratic</option>
+                                                    <option value="Quadratic" title="Quadratic" data-desc="">Quadratic</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="objective_curve_objective_column_form_group" class="mt-8 px-8">
-                                        <label for="change_objective_curve_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                        <label for="change_objective_curve_objective_column" class="block text-sm font-medium text-white">
+                                            objective_column
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_objective_curve_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_objective_column: this.value})">
-                                                    <option value="objective_value">objective_value</option>
+                                                    <option value="objective_value" title="objective_value" data-desc="">objective_value</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="objective_curve_X_axis_form_group" class="mt-8 px-8">
-                                        <label for="change_objective_curve_X_axis" class="block text-sm font-medium text-white">X_axis</label>
+                                        <label for="change_objective_curve_X_axis" class="block text-sm font-medium text-white">
+                                            X_axis
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_objective_curve_X_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_X_axis: this.value})">
-                                                    <option value="Time">Time</option>
-                                                    <option value="Iteration">Iteration</option>
+                                                    <option value="Time" title="Time" data-desc="">Time</option>
+                                                    <option value="Iteration" title="Iteration" data-desc="">Iteration</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="bar_chart-custom-params-container">
                                     <div id="bar_chart_dataset_form_group" class="mt-8 px-8">
-                                        <label for="change_bar_chart_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                        <label for="change_bar_chart_dataset" class="block text-sm font-medium text-white">
+                                            dataset
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_bar_chart_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_dataset: this.value})">
-                                                    <option value="simulated">simulated</option>
+                                                    <option value="simulated" title="simulated" data-desc="">simulated</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="bar_chart_objective_form_group" class="mt-8 px-8">
-                                        <label for="change_bar_chart_objective" class="block text-sm font-medium text-white">objective</label>
+                                        <label for="change_bar_chart_objective" class="block text-sm font-medium text-white">
+                                            objective
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_bar_chart_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_objective: this.value})">
-                                                    <option value="Quadratic">Quadratic</option>
+                                                    <option value="Quadratic" title="Quadratic" data-desc="">Quadratic</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="bar_chart_objective_column_form_group" class="mt-8 px-8">
-                                        <label for="change_bar_chart_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                        <label for="change_bar_chart_objective_column" class="block text-sm font-medium text-white">
+                                            objective_column
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_bar_chart_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_objective_column: this.value})">
-                                                    <option value="objective_value">objective_value</option>
+                                                    <option value="objective_value" title="objective_value" data-desc="">objective_value</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="bar_chart_minimize_form_group" class="mt-8 px-8">
-                                        <label for="change_bar_chart_minimize" class="block text-sm font-medium text-white">minimize</label>
+                                        <label for="change_bar_chart_minimize" class="block text-sm font-medium text-white">
+                                            minimize
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_bar_chart_minimize" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_minimize: this.value})">
-                                                    <option value="True">True</option>
-                                                    <option value="False">False</option>
+                                                    <option value="True" title="True" data-desc="">True</option>
+                                                    <option value="False" title="False" data-desc="">False</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="boxplot-custom-params-container">
                                     <div id="boxplot_dataset_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                        <label for="change_boxplot_dataset" class="block text-sm font-medium text-white">
+                                            dataset
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_dataset: this.value})">
-                                                    <option value="simulated">simulated</option>
+                                                    <option value="simulated" title="simulated" data-desc="">simulated</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="boxplot_objective_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_objective" class="block text-sm font-medium text-white">objective</label>
+                                        <label for="change_boxplot_objective" class="block text-sm font-medium text-white">
+                                            objective
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_objective: this.value})">
-                                                    <option value="Quadratic">Quadratic</option>
+                                                    <option value="Quadratic" title="Quadratic" data-desc="">Quadratic</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="boxplot_objective_column_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                        <label for="change_boxplot_objective_column" class="block text-sm font-medium text-white">
+                                            objective_column
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_objective_column: this.value})">
-                                                    <option value="objective_value">objective_value</option>
+                                                    <option value="objective_value" title="objective_value" data-desc="">objective_value</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="boxplot_X_axis_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_X_axis" class="block text-sm font-medium text-white">X_axis</label>
+                                        <label for="change_boxplot_X_axis" class="block text-sm font-medium text-white">
+                                            X_axis
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_X_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_X_axis: this.value})">
-                                                    <option value="Solver">Solver</option>
-                                                    <option value="Iteration">Iteration</option>
+                                                    <option value="Solver" title="Solver" data-desc="">Solver</option>
+                                                    <option value="Iteration" title="Iteration" data-desc="">Iteration</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="boxplot_Y_axis_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_Y_axis" class="block text-sm font-medium text-white">Y_axis</label>
+                                        <label for="change_boxplot_Y_axis" class="block text-sm font-medium text-white">
+                                            Y_axis
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_Y_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_Y_axis: this.value})">
-                                                    <option value="Time">Time</option>
-                                                    <option value="Objective Metric">Objective Metric</option>
+                                                    <option value="Time" title="Time" data-desc="">Time</option>
+                                                    <option value="Objective Metric" title="Objective Metric" data-desc="">Objective Metric</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="table-custom-params-container">
                                     <div id="table_dataset_form_group" class="mt-8 px-8">
-                                        <label for="change_table_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                        <label for="change_table_dataset" class="block text-sm font-medium text-white">
+                                            dataset
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_table_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({table_dataset: this.value})">
-                                                    <option value="simulated">simulated</option>
+                                                    <option value="simulated" title="simulated" data-desc="">simulated</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="table_objective_form_group" class="mt-8 px-8">
-                                        <label for="change_table_objective" class="block text-sm font-medium text-white">objective</label>
+                                        <label for="change_table_objective" class="block text-sm font-medium text-white">
+                                            objective
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_table_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({table_objective: this.value})">
-                                                    <option value="Quadratic">Quadratic</option>
+                                                    <option value="Quadratic" title="Quadratic" data-desc="">Quadratic</option>
                                             </select>
                                         </div>
                                     </div>
@@ -2655,7 +2816,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                         </span>
 
                         <span>
-                            <a href="benchopt_run_2026-09-21_15h16m35.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <a href="benchopt_run_2026-11-02_13h41m52.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                 </svg>
@@ -2714,6 +2875,14 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
             </div>
         </div>
 
+        <!-- Enlarged image modal: click anywhere, the cross or press Esc to close -->
+        <dialog id="image-modal" onclick="this.close()">
+            <button type="button" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+            <figure><img alt=""><figcaption></figcaption></figure>
+        </dialog>
+
         <!-- System information modal -->
         <div id="system-modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -2733,10 +2902,10 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                                         <ul class="text-sm text-gray-500">
                                             <li> <b>CPU</b>: 2 </li>
                                             <li> <b>RAM (GB)</b>: 4 </li>
-                                            <li> <b>platform</b>: Linux7.0.0-1012-aws-x86_64 </li>
+                                            <li> <b>platform</b>: Linux7.0.0-1016-aws-x86_64 </li>
                                             <li> <b>processor</b>: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz </li>
                                             
-                                            <li> <b>numpy</b>: 2.5.3 </li>
+                                            <li> <b>numpy</b>: 2.5.4 </li>
                                             
                                             <li> <b>scipy</b>: 1.18.1 </li>
                                         </ul>
@@ -2801,8 +2970,8 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
         </script>
         <!-- Manage plot -->
         <script>
-            window._plots = {"objective_curve": {"objective_curve_simulated_Quadratic_objective_value_Time": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [3.2129992177942768e-06, 1.859849817265058e-05, 2.7460498131404165e-05, 3.704899791046046e-05, 5.235949902271386e-05, 6.350799867504975e-05, 7.632399774593068e-05, 9.264999789593276e-05, 0.00011359949803591007, 0.0001508744999227929, 0.00019878749935742235, 0.00029193250156822614, 0.00040060300034383545, 0.0005585649987551733, 0.0008385909959542914, 0.0011922875000891509, 0.0017595475028429064, 0.0025947860103769926, 0.0037636395018125768, 0.005235862000517955, 0.007290701973943214], "y": [3.500861727043786, 3.4973608653167423, 3.4938635044514257, 3.4903696409469744, 3.4868792713060275, 3.4799089996426864, 3.469479708890849, 3.455622593059089, 3.434940622778992, 3.4041495269337587, 3.356799975453958, 3.287007659442625, 3.1866242083317244, 3.0402465037259585, 2.8346077718637064, 2.5519328195431545, 2.178795035113174, 1.7188464697980295, 1.2049954491758905, 0.7069531455543239, 0.3178452486816206], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "x_low": [2.7024001610698178e-06, 1.6209399109357037e-05, 2.3228599457070234e-05, 3.1445798958884553e-05, 4.66573972516926e-05, 5.835479714733083e-05, 6.892379933560732e-05, 8.039619860937819e-05, 9.596779927960597e-05, 0.0001272704001166858, 0.00017096859810408204, 0.00025787940285226796, 0.0003506362067128066, 0.0004771790041559143, 0.0006788732069253455, 0.0010015126088546821, 0.0015275664078217232, 0.0023789392114849763, 0.0032865498022147223, 0.00479250820899324, 0.006983531375226448], "x_high": [3.6047993489773947e-06, 2.0557598327286543e-05, 3.141719753330108e-05, 4.131219757255167e-05, 5.5992399211390875e-05, 6.822679933975451e-05, 8.49093972647097e-05, 0.00010735379837569781, 0.00013571439958468546, 0.00018773340088955594, 0.000239452803725726, 0.0003343964021041757, 0.0004559106022497872, 0.0006440093995479402, 0.0009606171970517607, 0.0013596988032077207, 0.0019908034075342587, 0.002892123207129771, 0.004271905602217885, 0.005925724203552818, 0.007837773795472458]}, {"x": [2.4865003069862723e-06, 1.3534000572690275e-05, 1.9297500330139883e-05, 2.513349954824662e-05, 3.095350075454917e-05, 3.984450358984759e-05, 4.9573502110433765e-05, 6.133000078989426e-05, 7.653600187040865e-05, 9.933250112226233e-05, 0.0001311155047005741, 0.0001775665077730082, 0.00027564901483856374, 0.0003976625066570705, 0.0005576690055022482, 0.000778326508225291, 0.0011482855143185589, 0.0016591015073572635, 0.0024098060039250413, 0.003558800491191505, 0.0053059220172144705], "y": [3.500861727043786, 3.4658531097733483, 3.431194578675615, 3.3968826328888584, 3.36291380655997, 3.295991821809427, 3.1980975687098647, 3.072079764093397, 2.8923021152704402, 2.642167867232965, 2.29537227129138, 1.8586268960069576, 1.3610787388761885, 0.8486671581357919, 0.41995331897863236, 0.14618285874471026, 0.029871511403855404, 0.002759296160954849, 7.785605585703027e-05, 3.671564142041545e-07, 1.1950127045998446e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "x_low": [2.424000922474079e-06, 1.321680065302644e-05, 1.9009401148650797e-05, 2.4633399880258368e-05, 3.0662999415653756e-05, 3.946320321119856e-05, 4.94188025186304e-05, 6.087700276111718e-05, 7.628480343555566e-05, 9.810000337893144e-05, 0.0001297890063142404, 0.00017581021093064918, 0.0002435542133753188, 0.000344735813268926, 0.0004930192040774273, 0.0007116226053767605, 0.0011090616033470723, 0.001608664593368303, 0.0023564209815958746, 0.0034978291878360324, 0.005232948601769749], "x_high": [2.6369994884589688e-06, 1.4041599933989346e-05, 1.9816799613181503e-05, 2.5530400671414098e-05, 3.127720156044233e-05, 4.027340037282556e-05, 4.984940096619539e-05, 6.216340116225184e-05, 7.759080144751352e-05, 0.00013631660040118736, 0.0001738844039209653, 0.00022052080457797278, 0.0003236034102883423, 0.00046983160864328967, 0.0006953880129003666, 0.0009999732134019724, 0.0014606058135541392, 0.002193391204855289, 0.0032251526074105648, 0.004847262222392602, 0.00705491223925492]}]}, "objective_curve_simulated_Quadratic_objective_value_Iteration": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [3.500861727043786, 3.4973608653167423, 3.4938635044514257, 3.4903696409469744, 3.4868792713060275, 3.4799089996426864, 3.469479708890849, 3.455622593059089, 3.434940622778992, 3.4041495269337587, 3.356799975453958, 3.287007659442625, 3.1866242083317244, 3.0402465037259585, 2.8346077718637064, 2.5519328195431545, 2.178795035113174, 1.7188464697980295, 1.2049954491758905, 0.7069531455543239, 0.3178452486816206], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0}, {"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [3.500861727043786, 3.4658531097733483, 3.431194578675615, 3.3968826328888584, 3.36291380655997, 3.295991821809427, 3.1980975687098647, 3.072079764093397, 2.8923021152704402, 2.642167867232965, 2.29537227129138, 1.8586268960069576, 1.3610787388761885, 0.8486671581357919, 0.41995331897863236, 0.14618285874471026, 0.029871511403855404, 0.002759296160954849, 7.785605585703027e-05, 3.671564142041545e-07, 1.1950127045998446e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1}]}}, "bar_chart": {"bar_chart_simulated_Quadratic_objective_value_True": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.0074495309854683, 0.006761018994438928, 0.007131872962418129, 0.008420138010478695], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [0.0051277770198794315, 0.005308781044732314, 0.009674109031038824, 0.0053030629896966275], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "bar_chart_simulated_Quadratic_objective_value_False": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [2.893999408115633e-06, 3.5319990274729207e-06, 2.4150012905010954e-06, 3.713999831234105e-06], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [2.5169993023155257e-06, 2.3760003386996686e-06, 2.456001311657019e-06, 2.816999767674133e-06], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "boxplot": {"boxplot_simulated_Quadratic_objective_value_Solver_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.0074495309854683, 0.006761018994438928, 0.007131872962418129, 0.008420138010478695]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[0.0051277770198794315, 0.005308781044732314, 0.009674109031038824, 0.0053030629896966275]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Solver_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.3178452486816206, 0.3178452486816206, 0.3178452486816206, 0.3178452486816206]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[1.1950127045998446e-10, 1.1950127045998446e-10, 1.1950127045998446e-10, 1.1950127045998446e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[2.893999408115633e-06, 3.5319990274729207e-06, 2.4150012905010954e-06, 3.713999831234105e-06], [1.8100998204317875e-05, 1.9095998140983284e-05, 1.3372000466915779e-05, 2.274999860674143e-05], [2.5952998839784414e-05, 2.8967997423023917e-05, 1.9142000382998958e-05, 3.509099769871682e-05], [3.591099812183529e-05, 3.818699769908562e-05, 2.4748000214458443e-05, 4.5999997382750735e-05], [4.314199759392068e-05, 4.900099702354055e-05, 5.5718001021887176e-05, 5.6403996495646425e-05], [5.175899786991067e-05, 6.275199666561093e-05, 6.426400068448856e-05, 7.417099732265342e-05], [6.147599924588576e-05, 7.875899609643966e-05, 7.38889993954217e-05, 9.413499901711475e-05], [7.297899901459459e-05, 9.995899745263159e-05, 8.534099833923392e-05, 0.00011844599976029713], [8.856500062393025e-05, 0.00012629599768843036, 0.00010090299838338979, 0.0001498420024290681], [0.00011006900058418978, 0.00016301100004056934, 0.00013873799980501644, 0.0002248170021630358], [0.00014206300147634465, 0.00020733600285893772, 0.00019023899585590698, 0.00028762800502590835], [0.00022598699797526933, 0.0002791410061036004, 0.0003047239970328519, 0.00037890500971116126], [0.00030386500475287903, 0.000381817008019425, 0.0004193889926682459, 0.0005106930166220991], [0.000417922999986331, 0.0005166830069356365, 0.0006004469905747101, 0.0007093530130077852], [0.0005848460004926892, 0.0007415580112137832, 0.0009356239806947997, 0.0009981070215872023], [0.000888966995262308, 0.001076543017916265, 0.0013080319822620368, 0.0014371990346262464], [0.0013932029960415093, 0.0016171420156751992, 0.0019019529900106136, 0.0021240790338197257], [0.002338314987355261, 0.0024060220275714528, 0.0027835499931825325, 0.0030549830280506285], [0.003107546959654428, 0.0034058850305882515, 0.004121393973036902, 0.004497673045989359], [0.004426824993061018, 0.005036297019614722, 0.0054354269814211875, 0.0066611700367502635], [0.0074495309854683, 0.006761018994438928, 0.007131872962418129, 0.008420138010478695]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[2.5169993023155257e-06, 2.3760003386996686e-06, 2.456001311657019e-06, 2.816999767674133e-06], [1.2933000107295811e-05, 1.4610999642172828e-05, 1.3406001016846858e-05, 1.3662000128533691e-05], [1.87700006790692e-05, 2.0403000235091895e-05, 1.9169001461705193e-05, 1.9425999198574573e-05], [2.54380011028843e-05, 2.56690000242088e-05, 2.434000271023251e-05, 2.4828997993608937e-05], [3.091700091317762e-05, 3.099000059592072e-05, 3.170800300722476e-05, 3.028199716936797e-05], [3.9123000533436425e-05, 3.9999002183321863e-05, 3.969000499637332e-05, 4.068499765708111e-05], [4.962300226907246e-05, 4.952400195179507e-05, 4.9261003368883394e-05, 5.018899901187979e-05], [6.289600241871085e-05, 6.098500125517603e-05, 6.071500502002891e-05, 6.167500032461248e-05], [7.87980006862199e-05, 7.628600178577472e-05, 7.628300591022708e-05, 7.678600195504259e-05], [0.00010036900130216964, 0.00019023799904971384, 9.780600703379605e-05, 9.829600094235502e-05], [0.00013240800399216823, 0.00023609900381416082, 0.00012973800767213106, 0.00012982300540897995], [0.00017892600590130314, 0.00028291300259297714, 0.00017620700964471325, 0.0001752150128595531], [0.0002451190121064428, 0.0003497399993648287, 0.00030617901757068466, 0.00024120701527863275], [0.00034508701355662197, 0.000450237999757519, 0.0004992220219719457, 0.00034420901283738203], [0.0004949920021317666, 0.0006203460088727297, 0.0008079510189418215, 0.0004900600069959182], [0.0007148670101742027, 0.0008417860062763793, 0.0012372540240903618, 0.0007067559981805971], [0.0011261300132900942, 0.0011704410153470235, 0.001895853010864812, 0.0010834589884325396], [0.0016113130113808438, 0.0017068900033336831, 0.0029231430071376963, 0.0016046919663494918], [0.0023713610007689567, 0.002448251007081126, 0.004390505007904721, 0.002334010952836252], [0.0034668470216274727, 0.0035991170170746045, 0.006719480030369596, 0.0035184839653084055], [0.0051277770198794315, 0.005308781044732314, 0.009674109031038824, 0.0053030629896966275]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.500861727043786, 3.500861727043786, 3.500861727043786, 3.500861727043786], [3.4973608653167423, 3.4973608653167423, 3.4973608653167423, 3.4973608653167423], [3.4938635044514257, 3.4938635044514257, 3.4938635044514257, 3.4938635044514257], [3.4903696409469744, 3.4903696409469744, 3.4903696409469744, 3.4903696409469744], [3.4868792713060275, 3.4868792713060275, 3.4868792713060275, 3.4868792713060275], [3.4799089996426864, 3.4799089996426864, 3.4799089996426864, 3.4799089996426864], [3.469479708890849, 3.469479708890849, 3.469479708890849, 3.469479708890849], [3.455622593059089, 3.455622593059089, 3.455622593059089, 3.455622593059089], [3.434940622778992, 3.434940622778992, 3.434940622778992, 3.434940622778992], [3.4041495269337587, 3.4041495269337587, 3.4041495269337587, 3.4041495269337587], [3.356799975453958, 3.356799975453958, 3.356799975453958, 3.356799975453958], [3.287007659442625, 3.287007659442625, 3.287007659442625, 3.287007659442625], [3.1866242083317244, 3.1866242083317244, 3.1866242083317244, 3.1866242083317244], [3.0402465037259585, 3.0402465037259585, 3.0402465037259585, 3.0402465037259585], [2.8346077718637064, 2.8346077718637064, 2.8346077718637064, 2.8346077718637064], [2.5519328195431545, 2.5519328195431545, 2.5519328195431545, 2.5519328195431545], [2.178795035113174, 2.178795035113174, 2.178795035113174, 2.178795035113174], [1.7188464697980295, 1.7188464697980295, 1.7188464697980295, 1.7188464697980295], [1.2049954491758905, 1.2049954491758905, 1.2049954491758905, 1.2049954491758905], [0.7069531455543239, 0.7069531455543239, 0.7069531455543239, 0.7069531455543239], [0.3178452486816206, 0.3178452486816206, 0.3178452486816206, 0.3178452486816206]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.500861727043786, 3.500861727043786, 3.500861727043786, 3.500861727043786], [3.4658531097733483, 3.4658531097733483, 3.4658531097733483, 3.4658531097733483], [3.431194578675615, 3.431194578675615, 3.431194578675615, 3.431194578675615], [3.3968826328888584, 3.3968826328888584, 3.3968826328888584, 3.3968826328888584], [3.36291380655997, 3.36291380655997, 3.36291380655997, 3.36291380655997], [3.295991821809427, 3.295991821809427, 3.295991821809427, 3.295991821809427], [3.1980975687098647, 3.1980975687098647, 3.1980975687098647, 3.1980975687098647], [3.072079764093397, 3.072079764093397, 3.072079764093397, 3.072079764093397], [2.8923021152704402, 2.8923021152704402, 2.8923021152704402, 2.8923021152704402], [2.642167867232965, 2.642167867232965, 2.642167867232965, 2.642167867232965], [2.29537227129138, 2.29537227129138, 2.29537227129138, 2.29537227129138], [1.8586268960069576, 1.8586268960069576, 1.8586268960069576, 1.8586268960069576], [1.3610787388761885, 1.3610787388761885, 1.3610787388761885, 1.3610787388761885], [0.8486671581357919, 0.8486671581357919, 0.8486671581357919, 0.8486671581357919], [0.41995331897863236, 0.41995331897863236, 0.41995331897863236, 0.41995331897863236], [0.14618285874471026, 0.14618285874471026, 0.14618285874471026, 0.14618285874471026], [0.029871511403855404, 0.029871511403855404, 0.029871511403855404, 0.029871511403855404], [0.002759296160954849, 0.002759296160954849, 0.002759296160954849, 0.002759296160954849], [7.785605585703027e-05, 7.785605585703027e-05, 7.785605585703027e-05, 7.785605585703027e-05], [3.671564142041545e-07, 3.671564142041545e-07, 3.671564142041545e-07, 3.671564142041545e-07], [1.1950127045998446e-10, 1.1950127045998446e-10, 1.1950127045998446e-10, 1.1950127045998446e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "table": {"table_simulated_Quadratic": {"title": "Quadratic<br />Data: simulated", "columns": ["solver", "value", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [["gd[lr=0.001]", 0.3178452486816206, 0.007290701973943214], ["gd[lr=0.01]", 1.1950127045998446e-10, 0.0053059220172144705]]}}};
-            window.metadata = {"plot_configs": {"Subopt. (log)": {"plot_kind": "objective_curve", "scale": "loglog"}, "Runtimes": {"plot_kind": "bar_chart"}}, "solvers_description": {"gd[lr=0.001]": "", "gd[lr=0.01]": ""}, "obj_description": ""};
+            window._plots = {"objective_curve": {"objective_curve_simulated_Quadratic_objective_value_Time": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [2.8055001166649163e-06, 1.771000006556278e-05, 2.6579500172374537e-05, 3.5322000258020125e-05, 4.305650020342e-05, 5.34300002072996e-05, 6.338850027987064e-05, 7.504400025482028e-05, 9.156700025414466e-05, 0.00011451150010088895, 0.00014645499993548583, 0.00019308800051476283, 0.00026067650003369636, 0.0003805484993790742, 0.0005455809986187887, 0.0007689219983149087, 0.0012442834982948625, 0.0017534904972080767, 0.0025503334971972436, 0.0038010019952707808, 0.006041792992618866], "y": [4.071680305434898, 4.067608625129463, 4.063541016504334, 4.059477475487829, 4.0554179980123415, 4.047311217434315, 4.035181421668353, 4.019064890933518, 3.9950107072402457, 3.9591990961825134, 3.9041291587604836, 3.822957144345051, 3.7062060833927, 3.535961365529666, 3.2967930578841163, 2.9680277063958584, 2.534049478595329, 1.9991058958654506, 1.4014710151638, 0.8222224766498982, 0.36967019555091973], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "x_low": [2.2800000351708148e-06, 1.570560020809353e-05, 2.1768200258520665e-05, 2.7335800314176596e-05, 3.26960003349086e-05, 4.128720038352185e-05, 5.126440037201973e-05, 6.30026001999795e-05, 7.985560027918836e-05, 0.00010217360013484723, 0.00013438500009215203, 0.00018119320047844668, 0.00024912780031627335, 0.0003628735998972843, 0.0005322113992860978, 0.0007554219985649979, 0.0011159367980781098, 0.0016350561974377343, 0.0024502133979240172, 0.003594737796129266, 0.005728650194305374], "x_high": [3.3710001389408718e-06, 2.0233199893482383e-05, 3.2337199991161475e-05, 4.3609800104604805e-05, 5.36202000148478e-05, 6.806039991715807e-05, 8.138539992614825e-05, 9.711180005069765e-05, 0.00011826400000245487, 0.00015131459981603259, 0.00019522539955687537, 0.00025824400036071897, 0.00034959039985551506, 0.0005003570006010705, 0.0007085345993800731, 0.0010125603993401458, 0.0016322969997418116, 0.002317523999590776, 0.003337177198318387, 0.005019864198357028, 0.007598319797216392], "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, {"x": [2.69099996330624e-06, 1.618200019493088e-05, 2.2630500097875483e-05, 2.8188000101181387e-05, 3.3515500035719015e-05, 4.3519000200831215e-05, 5.567300024722499e-05, 7.907550036634348e-05, 0.00010454950029270549, 0.0001303455004517673, 0.0001856505002706399, 0.00023279350034499657, 0.00030071050014157663, 0.00041022099935617007, 0.0005707099990104325, 0.0008001654998679442, 0.001147131999573503, 0.001804154998467311, 0.0025837319983565976, 0.003761836498597404, 0.005579112497116512], "y": [4.071680305434898, 4.030963502380549, 3.9906538673567433, 3.950747328683176, 3.911239855396344, 3.833406182273957, 3.719550185254238, 3.572985066949982, 3.363894514639611, 3.0729756578388954, 2.669634735488537, 2.1616776432965565, 1.5830038222926457, 0.9870430834093016, 0.488427076361914, 0.1700181022132562, 0.03474208756578257, 0.003209201822690985, 9.055055412350627e-05, 4.270215895132155e-07, 1.3898542261360846e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "x_low": [2.386400001341826e-06, 1.487180015828926e-05, 2.2204800143299507e-05, 2.786340005513921e-05, 3.33564000811748e-05, 4.1674399972180255e-05, 5.14369998654729e-05, 7.092239998200967e-05, 8.652479991724248e-05, 0.00010841040002560476, 0.00016733200059206865, 0.00021423080052045406, 0.00028206480078551976, 0.0003924621993064648, 0.000546567198853154, 0.0007953449998694851, 0.0011342035990764999, 0.001678872998309089, 0.002446908196725417, 0.003588883996962977, 0.005349823996630221], "x_high": [3.1527999908576025e-06, 1.8055000100503094e-05, 2.752700015662413e-05, 3.34138002472173e-05, 3.884020011355461e-05, 4.9085600267062546e-05, 6.171500035634381e-05, 9.838140031206424e-05, 0.00012632300022232814, 0.00015293980027308862, 0.00019345859977875078, 0.00024074099983408814, 0.00030875939914949414, 0.00041878659994836197, 0.000577014799182507, 0.0008016543999929127, 0.001230138800929126, 0.002066053399767043, 0.003122970600088593, 0.004721404998963409, 0.006792226598327034], "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}]}, "objective_curve_simulated_Quadratic_objective_value_Iteration": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [4.071680305434898, 4.067608625129463, 4.063541016504334, 4.059477475487829, 4.0554179980123415, 4.047311217434315, 4.035181421668353, 4.019064890933518, 3.9950107072402457, 3.9591990961825134, 3.9041291587604836, 3.822957144345051, 3.7062060833927, 3.535961365529666, 3.2967930578841163, 2.9680277063958584, 2.534049478595329, 1.9991058958654506, 1.4014710151638, 0.8222224766498982, 0.36967019555091973], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, {"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [4.071680305434898, 4.030963502380549, 3.9906538673567433, 3.950747328683176, 3.911239855396344, 3.833406182273957, 3.719550185254238, 3.572985066949982, 3.363894514639611, 3.0729756578388954, 2.669634735488537, 2.1616776432965565, 1.5830038222926457, 0.9870430834093016, 0.488427076361914, 0.1700181022132562, 0.03474208756578257, 0.003209201822690985, 9.055055412350627e-05, 4.270215895132155e-07, 1.3898542261360846e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}]}}, "bar_chart": {"bar_chart_simulated_Quadratic_objective_value_True": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.009763856003473848, 0.00592895699219298, 0.006154628993044753, 0.0054281899974739645], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [0.008292150998613579, 0.005325637997430022, 0.00536594799609702, 0.005792276998136003], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "bar_chart_simulated_Quadratic_objective_value_False": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [3.7820000216015615e-06, 3.0970002171670785e-06, 2.514000016162754e-06, 1.9290000636829063e-06], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [3.786999968724558e-06, 2.651999920999515e-06, 2.7300000056129647e-06, 1.9880001218552934e-06], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "boxplot": {"boxplot_simulated_Quadratic_objective_value_Solver_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.009763856003473848, 0.00592895699219298, 0.006154628993044753, 0.0054281899974739645]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[0.008292150998613579, 0.005325637997430022, 0.00536594799609702, 0.005792276998136003]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Solver_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.36967019555091973, 0.36967019555091973, 0.36967019555091973, 0.36967019555091973]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[1.3898542261360846e-10, 1.3898542261360846e-10, 1.3898542261360846e-10, 1.3898542261360846e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.7820000216015615e-06, 3.0970002171670785e-06, 2.514000016162754e-06, 1.9290000636829063e-06], [2.3957999928825302e-05, 1.7670000261205132e-05, 1.774999986992043e-05, 1.2759000128426123e-05], [3.685999990921118e-05, 2.383700029895408e-05, 2.9322000045794994e-05, 1.866500019787054e-05], [4.71900000320602e-05, 2.942100036307238e-05, 4.122300015296787e-05, 2.4208000240832916e-05], [5.7099000059679383e-05, 3.481200042187993e-05, 5.130099998496007e-05, 2.9522000204451615e-05], [7.416299990836706e-05, 4.286800049158046e-05, 6.399199992301874e-05, 3.891600022143393e-05], [9.235699985765677e-05, 5.270600058793207e-05, 7.407099997180921e-05, 4.910200004815124e-05], [0.00011433899999246933, 6.446100042012404e-05, 8.562700008951651e-05, 6.081499986976269e-05], [0.00014393199990081484, 8.198200043807446e-05, 0.00010115200007021485, 7.666600004085922e-05], [0.00019193999992239696, 0.00010479200045665493, 0.00012423099974512297, 9.824599965213565e-05], [0.000254004999760582, 0.00013687100044990075, 0.0001560389994210709, 0.00013065599955552898], [0.0003417340010400949, 0.00018359200112172402, 0.00020258399990780163, 0.00017759499951353064], [0.0004692730012720858, 0.0002515510011562583, 0.00026980199891113443, 0.00024549299905629596], [0.0006647090021942859, 0.00035172200091437844, 0.00037030799921922153, 0.0003907889995389269], [0.0009441360009532218, 0.0005209859998558386, 0.0005396949989062705, 0.000551466998331307], [0.001370125001130873, 0.0007430649986872595, 0.0007636599984834902, 0.0007741839981463272], [0.0020275710019177495, 0.0013687809982911858, 0.0011197859982985392, 0.0011101629977474659], [0.002994153002418898, 0.0018664379977053613, 0.0016268259985281475, 0.001640542996710792], [0.004435428000533648, 0.002605009996841545, 0.0023820479984806298, 0.002495656997552942], [0.006586508003010749, 0.003975434995254545, 0.0035469909973926406, 0.003626568995287016], [0.009763856003473848, 0.00592895699219298, 0.006154628993044753, 0.0054281899974739645]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.786999968724558e-06, 2.651999920999515e-06, 2.7300000056129647e-06, 1.9880001218552934e-06], [1.6861000176504604e-05, 1.984599998650083e-05, 1.3925000075687421e-05, 1.5503000213357154e-05], [2.2795000177211477e-05, 3.46250001257431e-05, 2.246600001853949e-05, 2.1813000330439536e-05], [2.8269000267755473e-05, 4.113100021641003e-05, 2.8106999934607302e-05, 2.749800023593707e-05], [3.3593000125620165e-05, 4.6711000095456257e-05, 3.3437999945817864e-05, 3.32340002842102e-05], [4.1812000063146115e-05, 5.487500015988189e-05, 4.146799983573146e-05, 4.5226000338516315e-05], [5.1626999947984586e-05, 6.470900007116143e-05, 5.115199974170537e-05, 5.9719000546465395e-05], [0.00012329699984547915, 7.638000010956603e-05, 6.273599979067512e-05, 8.177100062312093e-05], [0.00014012899964654935, 9.197999997923034e-05, 7.834199982426071e-05, 0.00011711900060618063], [0.00016213299977607676, 0.00011388000029910472, 0.00010020599961535481, 0.00014681100060442986], [0.0001944209998328006, 0.00015060400028232834, 0.0001928169997427176, 0.0001784840007985622], [0.00024159899976439192, 0.0001974500000869739, 0.0002401689998805523, 0.00022541800080944085], [0.00030964499933361367, 0.0002652840000791912, 0.00030816899902674777, 0.0002932520012564055], [0.0004108709995307436, 0.00036679899949376704, 0.00040957099918159656, 0.0004306600005747896], [0.0005664779992002877, 0.0005167009983324533, 0.0005749419988205773, 0.0005801239997254015], [0.0007897740003954823, 0.0008012720002170681, 0.0007990589995188202, 0.0008022279996566795], [0.0013401590015291731, 0.0011374719986179116, 0.0011293009997643821, 0.0011567920005290944], [0.0022918220017800195, 0.001692768998509564, 0.0016580289980083762, 0.0019155409984250582], [0.0037489230028313614, 0.002461794998453115, 0.0024245779941338697, 0.00270566899826008], [0.005910844998879838, 0.0035952279981756874, 0.0035793679951439117, 0.003928444999019121], [0.008292150998613579, 0.005325637997430022, 0.00536594799609702, 0.005792276998136003]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[4.071680305434898, 4.071680305434898, 4.071680305434898, 4.071680305434898], [4.067608625129463, 4.067608625129463, 4.067608625129463, 4.067608625129463], [4.063541016504334, 4.063541016504334, 4.063541016504334, 4.063541016504334], [4.059477475487829, 4.059477475487829, 4.059477475487829, 4.059477475487829], [4.0554179980123415, 4.0554179980123415, 4.0554179980123415, 4.0554179980123415], [4.047311217434315, 4.047311217434315, 4.047311217434315, 4.047311217434315], [4.035181421668353, 4.035181421668353, 4.035181421668353, 4.035181421668353], [4.019064890933518, 4.019064890933518, 4.019064890933518, 4.019064890933518], [3.9950107072402457, 3.9950107072402457, 3.9950107072402457, 3.9950107072402457], [3.9591990961825134, 3.9591990961825134, 3.9591990961825134, 3.9591990961825134], [3.9041291587604836, 3.9041291587604836, 3.9041291587604836, 3.9041291587604836], [3.822957144345051, 3.822957144345051, 3.822957144345051, 3.822957144345051], [3.7062060833927, 3.7062060833927, 3.7062060833927, 3.7062060833927], [3.535961365529666, 3.535961365529666, 3.535961365529666, 3.535961365529666], [3.2967930578841163, 3.2967930578841163, 3.2967930578841163, 3.2967930578841163], [2.9680277063958584, 2.9680277063958584, 2.9680277063958584, 2.9680277063958584], [2.534049478595329, 2.534049478595329, 2.534049478595329, 2.534049478595329], [1.9991058958654506, 1.9991058958654506, 1.9991058958654506, 1.9991058958654506], [1.4014710151638, 1.4014710151638, 1.4014710151638, 1.4014710151638], [0.8222224766498982, 0.8222224766498982, 0.8222224766498982, 0.8222224766498982], [0.36967019555091973, 0.36967019555091973, 0.36967019555091973, 0.36967019555091973]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[4.071680305434898, 4.071680305434898, 4.071680305434898, 4.071680305434898], [4.030963502380549, 4.030963502380549, 4.030963502380549, 4.030963502380549], [3.9906538673567433, 3.9906538673567433, 3.9906538673567433, 3.9906538673567433], [3.950747328683176, 3.950747328683176, 3.950747328683176, 3.950747328683176], [3.911239855396344, 3.911239855396344, 3.911239855396344, 3.911239855396344], [3.833406182273957, 3.833406182273957, 3.833406182273957, 3.833406182273957], [3.719550185254238, 3.719550185254238, 3.719550185254238, 3.719550185254238], [3.572985066949982, 3.572985066949982, 3.572985066949982, 3.572985066949982], [3.363894514639611, 3.363894514639611, 3.363894514639611, 3.363894514639611], [3.0729756578388954, 3.0729756578388954, 3.0729756578388954, 3.0729756578388954], [2.669634735488537, 2.669634735488537, 2.669634735488537, 2.669634735488537], [2.1616776432965565, 2.1616776432965565, 2.1616776432965565, 2.1616776432965565], [1.5830038222926457, 1.5830038222926457, 1.5830038222926457, 1.5830038222926457], [0.9870430834093016, 0.9870430834093016, 0.9870430834093016, 0.9870430834093016], [0.488427076361914, 0.488427076361914, 0.488427076361914, 0.488427076361914], [0.1700181022132562, 0.1700181022132562, 0.1700181022132562, 0.1700181022132562], [0.03474208756578257, 0.03474208756578257, 0.03474208756578257, 0.03474208756578257], [0.003209201822690985, 0.003209201822690985, 0.003209201822690985, 0.003209201822690985], [9.055055412350627e-05, 9.055055412350627e-05, 9.055055412350627e-05, 9.055055412350627e-05], [4.270215895132155e-07, 4.270215895132155e-07, 4.270215895132155e-07, 4.270215895132155e-07], [1.3898542261360846e-10, 1.3898542261360846e-10, 1.3898542261360846e-10, 1.3898542261360846e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "table": {"table_simulated_Quadratic": {"title": "Quadratic<br />Data: simulated", "columns": ["solver", "value", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [[{"value": "gd[lr=0.001]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, 0.36967019555091973, 0.006041792992618866], [{"value": "gd[lr=0.01]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}, 1.3898542261360846e-10, 0.005579112497116512]]}}};
+            window.metadata = {"plot_configs": {"Subopt. (log)": {"plot_kind": "objective_curve", "scale": "loglog"}, "Runtimes": {"plot_kind": "bar_chart"}}};
 
             window.addEventListener("load", () => {
                 // Initialize plot state
@@ -3406,6 +3575,9 @@ Object.keys(SYMBOLDEFS).forEach(function(k) {
     drawing.symbolFuncs[n] = symDef.f;
 });
 
+// Number of base plotly symbols. Markers cycle over them, filled only.
+const N_SYMBOLS = Object.keys(SYMBOLDEFS).length;
+
 /**
  * Returns a <path></path> element that have to be placed in a <svg></svg> element.
  * 
@@ -3456,7 +3628,7 @@ function createPathString(symbolNumber, r) {
     return drawing.symbolFuncs[base](r) + (symbolNumber >= 200 ? DOTPATH : '');
 }
 
-            const NON_CONVERGENT_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
+            const UNDEFINED_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
 
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3724,7 +3896,7 @@ const getLayout = () => {
 const getBarData = () => {
   if (!isAvailable()) return [{type:'bar'}];
 
-  const {x, y, colors, texts} = barDataToArrays()
+  const {x, y, colors, texts} = barDataToArrays();
 
   // Add bars
   const barData = [{
@@ -3741,12 +3913,9 @@ const getBarData = () => {
   }];
 
   getPlotData().data.forEach(curveData => {
-    // Add times for each convergent bar
-    // Check if text is not 'Did not converge'
-    curveText = curveData.text || ''
-    if (curveText === '') {
-      let nbTimes = curveData.y.length
-
+    // Add the individual times of bars with several values
+    let nbTimes = curveData.y.length;
+    if (nbTimes > 1) {
       barData.push({
         type: 'scatter',
         x: new Array(nbTimes).fill(curveData.label),
@@ -3835,7 +4004,7 @@ const getScatterData = () => {
         color: curveData.color,
       },
       marker: {
-        symbol: curveData.marker,
+        symbol: curveData.marker % N_SYMBOLS,
         size: 10,
         color: curveData.color,
       },
@@ -4125,6 +4294,69 @@ const renderSidebar = () => {
   renderPlotDropdowns();
 }
 
+const escapeHTML = (s) => String(s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// SVG "info" icon: unlike a text glyph, it stays out of the LaTeX export.
+const infoIconHTML = (attrs = '') =>
+  `<svg class="param-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"` +
+  ` stroke-width="2" stroke-linecap="round" stroke-linejoin="round"${attrs}>` +
+  `<circle cx="12" cy="12" r="10"></circle>` +
+  `<line x1="12" y1="16" x2="12" y2="12"></line>` +
+  `<line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
+const descIconHTML = (text) => infoIconHTML(` data-desc="${escapeHTML(text)}"`);
+
+// Selector icons (`data-desc-state` spans) show the same icon as the legend.
+document.querySelectorAll('span[data-desc-state]').forEach(span => {
+  span.innerHTML = infoIconHTML();
+});
+
+// Tooltip HTML of an icon: its own `data-desc`, or for a selector icon
+// (`data-desc-state`) the `data-desc` of the selected option.
+const descForIcon = (icon) => {
+  if (icon.dataset.desc != null) return icon.dataset.desc;
+  const key = icon.dataset.descState;
+  if (!key) return '';
+  const option = document.querySelector(
+    `#change_${key} option[value="${CSS.escape(String(state()[key]))}"]`
+  );
+  return (option && option.dataset.desc) || '';
+};
+
+/** Show the shared params tooltip. */
+const showDescTooltip = (event, html) => {
+  if (!html) return;
+  const tip = document.getElementById('params-tooltip');
+  tip.innerHTML = html;
+  tip.style.display = 'block';
+  _moveParamsTooltip(event);
+};
+
+/** Hide the shared params tooltip. */
+const hideParamsTooltip = () => {
+  document.getElementById('params-tooltip').style.display = 'none';
+};
+
+// Delegated hover for all icons, as Grid.js re-renders cells on sort/search.
+const PARAMS_ICON_SEL = '[data-desc], [data-desc-state]';
+document.addEventListener('mouseover', (e) => {
+  const icon = e.target.closest?.(PARAMS_ICON_SEL);
+  if (icon) showDescTooltip(e, descForIcon(icon));
+});
+document.addEventListener('mouseout', (e) => {
+  if (e.target.closest?.(PARAMS_ICON_SEL)) hideParamsTooltip();
+});
+
+const _moveParamsTooltip = (event) => {
+  const tip = document.getElementById('params-tooltip');
+  if (!tip || tip.style.display !== 'block') return;
+  tip.style.left = (event.clientX + 14) + 'px';
+  tip.style.top  = (event.clientY - tip.offsetHeight - 8) + 'px';
+};
+
+document.addEventListener('mousemove', _moveParamsTooltip);
+
 /**
  * Render Scale selector
  */
@@ -4277,7 +4509,7 @@ const barDataToArrays = () => {
     x.push(plotData.label);
     y.push(getMedian(plotData.y));
     const plotText = plotData.text || '';
-    colors.push(plotText === '' ? plotData.color : NON_CONVERGENT_COLOR);
+    colors.push(plotData.color || UNDEFINED_COLOR);
     texts.push(plotText);
   });
 
@@ -4358,6 +4590,7 @@ const getBarChartLayout = () => {
       ...MPL_AXIS,
       tickangle: -60,
       ticktext: Array(data.data.map(d => d.label)),
+      categoryorder: 'trace',
       showgrid: false,  // X axis is text: no vertical gridlines
     },
     showlegend: false,
@@ -4511,15 +4744,8 @@ const show = (HTMLElements, style = '') => {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 const getCurveFromEvent = event => {
-  const target = event.currentTarget;
-
-  for (let i = 0; i < target.children.length; i++) {
-    if (target.children[i].className === 'curve') {
-      return target.children[i].firstChild.nodeValue;
-    }
-  }
-
-  return null;
+  const text = event.currentTarget.querySelector(':scope > .curve');
+  return text ? text.dataset.curve : null;
 };
 
 const purgeHiddenCurves = () => setState({hidden_curves: []});
@@ -4580,57 +4806,59 @@ const renderImages = () => {
   // Title
   if (plotData.title) {
     const titleEl = document.createElement('h2');
-    titleEl.className = 'text-xl text-center text-gray-800 mb-6';
+    titleEl.className = 'image-title';
     titleEl.innerText = plotData.title;
     image_container.appendChild(titleEl);
   }
 
   const ncols = plotData.ncols || Math.min(plotData.data.length, 3);
   const grid = document.createElement('div');
-  grid.className = `grid gap-6`;
+  grid.className = 'image-grid';
   grid.style.gridTemplateColumns = `repeat(${ncols}, minmax(0, 1fr))`;
 
   plotData.data.forEach(imgData => {
-    const card = document.createElement('div');
+    const cell = document.createElement('figure');
+    cell.className = 'image-cell';
+    grid.appendChild(cell);
 
-    if (imgData.image === null) {
-      // Empty invisible block for grid alignment
-      grid.appendChild(card);
-      return;
-    }
-
-    card.className = 'bg-white rounded-lg shadow border border-gray-200 p-2 flex flex-col gap-2';
-
-    const imgWrapper = document.createElement('div');
-    imgWrapper.className = 'bg-gray-50 flex items-center justify-center';
-    imgWrapper.style.aspectRatio = '1 / 1';
+    // Empty invisible block for grid alignment
+    if (imgData.image === null) return;
 
     if (imgData.image === '__incompatible__') {
       const msg = document.createElement('span');
-      msg.className = 'text-sm text-gray-500 italic';
+      msg.className = 'image-incompatible';
       msg.innerText = 'Incompatible image';
-      imgWrapper.appendChild(msg);
+      cell.appendChild(msg);
     } else {
       const img = document.createElement('img');
       img.src = imgData.image;
       img.alt = imgData.label || '';
-      img.className = 'block w-full h-full object-contain';
-      img.style.imageRendering = 'pixelated';
-      imgWrapper.appendChild(img);
+      img.title = 'Click to enlarge';
+      img.onclick = () => openImageModal(img, imgData.label);
+      cell.appendChild(img);
     }
-    card.appendChild(imgWrapper);
 
     if (imgData.label) {
-      const labelEl = document.createElement('div');
-      labelEl.className = 'text-sm text-center text-gray-700';
+      const labelEl = document.createElement('figcaption');
       labelEl.innerText = imgData.label;
-      card.appendChild(labelEl);
+      cell.appendChild(labelEl);
     }
-
-    grid.appendChild(card);
   });
 
   image_container.appendChild(grid);
+};
+
+const openImageModal = (img, label) => {
+  const modal = document.getElementById('image-modal');
+  const modalImg = modal.querySelector('img');
+  modalImg.src = img.src;
+  // Upscale to fit the viewport while keeping the aspect ratio
+  modalImg.decode().then(() => {
+    const ratio = modalImg.naturalWidth / modalImg.naturalHeight;
+    modalImg.style.width = `min(90vw, ${80 * ratio}vh)`;
+  });
+  modal.querySelector('figcaption').innerText = label || '';
+  modal.showModal();
 };
 
 /*
@@ -4703,6 +4931,10 @@ const stripMarkup = (value) => CELL_MARKUP.reduce(
   String(value).replace(/\\([*_])/g, (match, c) => PLACEHOLDERS[c])
 ).replace(/[\u0000\u0001]/g, c => LITERALS[c]);
 
+// Value of a cell, unwrapping `{value, description}` cells.
+const cellValue = (cell) =>
+  cell !== null && typeof cell === 'object' ? cell.value : cell;
+
 // Numeric value of a cell, or null if its text is not a single number.
 const cellNumber = (value) => {
   if (typeof value === 'number') return value;
@@ -4745,6 +4977,7 @@ const elementToLatex = (element) => nodeToLatex(element).trim();
  * would make all close numbers compare as equal.
  */
 const compareCells = (a, b) => {
+  [a, b] = [cellValue(a), cellValue(b)];
   const [numA, numB] = [cellNumber(a), cellNumber(b)];
   if (numA !== null && numB !== null) {
     return numA > numB ? 1 : numA < numB ? -1 : 0;
@@ -4867,18 +5100,28 @@ function renderTable() {
   const card = document.createElement("div");
   card.className = "w-full bg-white overflow-hidden mx-auto";
 
+  // A `{value, description}` cell shows its value with a hover icon.
+  const tableCell = (cell) => {
+    const value = cellValue(cell);
+    const desc = cell !== null && typeof cell === 'object' && cell.description;
+    return desc
+      ? gridjs.html(markupToHtml(String(value)) + descIconHTML(desc))
+      : formatCell(value);
+  };
+
   const buildColumns = () => plotData.columns.map(name => ({
     name,
     hidden: tableHiddenColumns.has(name),
     sort: { compare: compareCells },
-    formatter: formatCell,
+    formatter: tableCell,
   }));
 
   tableGrid = new gridjs.Grid({
     columns: buildColumns(),
     data: orderedData,
     sort: true,
-    search: true,
+    // Search the value only, not the description HTML.
+    search: { selector: (cell) => String(cellValue(cell)) },
   });
   if (prevGridHeight) {
     card.style.minHeight = `${prevGridHeight}px`;
@@ -5030,7 +5273,7 @@ async function exportTable() {
     value += "}\n";
   }
   value += "\\begin{tabular}{l";
-  value += "c".repeat(displayedColumns.length);
+  value += "c".repeat(displayedColumns.length - 1);
   value += "}\n";
   value += "\\hline\n";
 
@@ -5057,7 +5300,22 @@ async function exportTable() {
     button.innerHTML = "Copied in clipboard!";
     setTimeout(() => button.innerHTML = defaultText, 2500);
   } catch (err) {
-    button.innerHTML = "Error!";
+    // No clipboard access (e.g. file opened on a phone): show the LaTeX in a
+    // text box so it can be copied by hand.
+    let area = document.getElementById("table-export-text");
+    if (!area) {
+      area = document.createElement("textarea");
+      area.id = "table-export-text";
+      area.readOnly = true;
+      area.rows = 10;
+      area.className = "w-full mt-2 p-2 font-mono text-xs border border-gray-300 rounded-md";
+      area.addEventListener('blur', () => area.remove());
+      button.parentElement.after(area);
+    }
+    area.value = value;
+    area.focus();
+    area.select();
+    button.innerHTML = "Copy the LaTeX below";
     setTimeout(() => button.innerHTML = defaultText, 2500);
   }
 }
@@ -5081,29 +5339,12 @@ const renderLegend = () => {
   show(container);
 
   legend.innerHTML = '';
-  const curvesDescription = window.metadata["solvers_description"];
 
   getCurves().forEach(curve => {
     const curve_data = data(curve);
-    const color = curve_data.color;
-    const symbolNumber = curve_data.marker;
-
-    let legendItem = createLegendItem(curve, color, symbolNumber);
-
-    // preserve compatibility with prev version
-    if(curvesDescription === null || curvesDescription === undefined) {
-      legend.appendChild(legendItem);
-      return;
-    }
-
-    let payload = createSolverDescription(
-      legendItem, {
-        description: curvesDescription[curve],
-      }
+    legend.appendChild(
+      createLegendItem(curve, curve_data.color, curve_data.marker % N_SYMBOLS)
     );
-    if (payload !== undefined) {
-      legend.appendChild(payload);
-    }
   });
 }
 
@@ -5165,8 +5406,15 @@ const createLegendItem = (curve, color, symbolNumber) => {
   // Create the HTML text node for the curve name in the legend
   const textContainer = document.createElement('div');
   textContainer.style.marginLeft = '0.5rem';
+  textContainer.style.flex = '1';
   textContainer.className = 'curve';
+  textContainer.setAttribute('data-curve', curve);
   textContainer.appendChild(document.createTextNode(curve));
+
+  const desc = data(curve).description;
+  if (desc) {
+    textContainer.insertAdjacentHTML('beforeend', descIconHTML(desc));
+  }
 
   // Create the horizontal bar in the legend to represent the curve
   const hBar = document.createElement('div');
@@ -5185,24 +5433,6 @@ const createLegendItem = (curve, color, symbolNumber) => {
   return item;
 }
 
-
-function createSolverDescription(legendItem, { description }) {
-  if (description === null || description === undefined || description === "")
-    return legendItem;
-
-  let descriptionContainer = document.createElement("div");
-  descriptionContainer.setAttribute("class", "curve-description-container")
-
-  descriptionContainer.innerHTML = `
-  <div class="curve-description-content text-sm">
-    <span class="curve-description-body">${description}</span>
-  </div>
-  `;
-
-  descriptionContainer.prepend(legendItem);
-
-  return descriptionContainer;
-}
 
 /**
  * Create the same svg symbol as plotly.
@@ -5291,5 +5521,7 @@ window.addEventListener('resize', () => {
                 }
             )();
         </script>
+        <!-- Shared params tooltip -->
+        <div id="params-tooltip"></div>
     </body>
 </html>

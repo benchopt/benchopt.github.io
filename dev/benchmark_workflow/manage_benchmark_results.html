@@ -598,6 +598,16 @@ can be passed directly:</p>
 </pre></div>
 </div>
 <p>Custom plot classes (see <a class="reference internal" href="../user_guide/add_custom_plot.html#add-custom-plot"><span class="std std-ref">Add a custom plot to a benchmark</span></a>) are also applied.</p>
+<p>By default, all available plot kinds are displayed. The benchmark config file
+(see <a class="reference internal" href="../user_guide/config_benchopt.html#config-benchopt"><span class="std std-ref">Configure Benchopt</span></a>) can restrict them with <code class="docutils literal notranslate"><span class="pre">plots</span></code>, or hide some of
+them with <code class="docutils literal notranslate"><span class="pre">hidden_plots</span></code> while keeping all the others:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">hidden_plots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boxplot</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table</span>
+</pre></div>
+</div>
+<p>Both settings are ignored when plot kinds are explicitly selected with
+<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">plot</span> <span class="pre">--kind</span></code>.</p>
 </section>
 <section id="dashboard-walkthrough">
 <span id="visualize-benchmark"></span><h2>Dashboard walkthrough<a class="headerlink" href="#dashboard-walkthrough" title="Link to this heading">#</a></h2>

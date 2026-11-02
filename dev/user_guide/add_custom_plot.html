@@ -398,6 +398,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-plot">Table Plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-plot">Image Plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-utilities">Plotting Utilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shortened-labels-and-hover-descriptions">Shortened labels and hover descriptions</a></li>
 </ul>
             </nav>
         </div>
@@ -484,7 +485,10 @@ The visualization is rendered using either the <code class="docutils literal not
 <code class="code docutils literal notranslate"><span class="pre">dataset</span></code>, <code class="code docutils literal notranslate"><span class="pre">objective</span></code>, <code class="code docutils literal notranslate"><span class="pre">solver</span></code> will automatically
 try to match columns in the dataframe. Using <code class="code docutils literal notranslate"><span class="pre">...</span></code> as a value
 will populate the options with all unique values from the dataframe
-column <code class="code docutils literal notranslate"><span class="pre">{key}_name</span></code> (e.g. <code class="code docutils literal notranslate"><span class="pre">dataset_name</span></code>).</p>
+column <code class="code docutils literal notranslate"><span class="pre">{key}_name</span></code> (e.g. <code class="code docutils literal notranslate"><span class="pre">dataset_name</span></code>). An option value can
+also be a <code class="code docutils literal notranslate"><span class="pre">{&quot;value&quot;:</span> <span class="pre">...,</span> <span class="pre">&quot;description&quot;:</span> <span class="pre">...}</span></code> dict, to show a hover
+icon with the <code class="code docutils literal notranslate"><span class="pre">description</span></code> HTML next to the selector. <code class="code docutils literal notranslate"><span class="pre">plot</span></code>
+and <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> receive the plain value.</p>
 </section>
 <section id="scatter-plot">
 <h2>Scatter Plot<a class="headerlink" href="#scatter-plot" title="Link to this heading">#</a></h2>
@@ -493,7 +497,11 @@ each dictionary represents a trace in the plot. Each dictionary must contain:</p
 <ul class="simple">
 <li><p><code class="code docutils literal notranslate"><span class="pre">x</span></code>: A list of x values.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">y</span></code>: A list of y values.</p></li>
-<li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the trace</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">label</span></code>: The label of the trace.</p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">description</span></code> (optional): HTML shown by a hover icon next to the
+label in the legend. A trace labeled with a solver, dataset or objective
+name shows its description and fixed parameters by default. Set it to
+override this, or to <code class="code docutils literal notranslate"><span class="pre">None</span></code> to hide the icon.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">color</span></code> (optional): The color of the trace.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">marker</span></code> (optional): The marker style of the trace.</p></li>
 <li><p><code class="code docutils literal notranslate"><span class="pre">y_low</span></code>, <code class="code docutils literal notranslate"><span class="pre">y_high</span></code> (optional): Lists of values to display uncertainty in the plot.
@@ -656,11 +664,17 @@ ordering is in increasing order.</p></li>
 </ul>
 <p>String cells can carry simple formatting with <code class="code docutils literal notranslate"><span class="pre">**bold**</span></code>,
 <code class="code docutils literal notranslate"><span class="pre">*italic*</span></code> and <code class="code docutils literal notranslate"><span class="pre">__underlined__</span></code> markers. A literal marker is
-escaped with a backslash, as in <code class="code docutils literal notranslate"><span class="pre">r&quot;a</span> <span class="pre">*</span> <span class="pre">b&quot;</span></code>.</p>
+escaped with a backslash, as in <code class="code docutils literal notranslate"><span class="pre">r&quot;a</span> <span class="pre">*</span> <span class="pre">b&quot;</span></code>. A cell holding a solver,
+dataset or objective name, with or without markers, gets a hover icon with
+its description. A cell can also be a
+<code class="code docutils literal notranslate"><span class="pre">{&quot;value&quot;:</span> <span class="pre">...,</span> <span class="pre">&quot;description&quot;:</span> <span class="pre">...}</span></code> dict, to set its hover HTML
+explicitly, or hide it with <code class="code docutils literal notranslate"><span class="pre">None</span></code>.</p>
 <p>In the html report, each column header can be clicked to sort on that column,
 and the arrow next to it can be toggled to switch between increasing and
 decreasing order. A search bar allows filtering the rows, and each column can
 be shown or hidden with the checkboxes below the table.</p>
+<p>Solver, dataset and objective names are already shortened (see
+<a class="reference internal" href="#short-labels"><span class="std std-ref">Shortened labels and hover descriptions</span></a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">query</span><span class="p">(</span>
         <span class="s2">"dataset_name == @dataset and objective_name == @objective"</span>
@@ -736,6 +750,46 @@ of the label, ensuring that the same solver always gets the same color.</p>
 </pre></div>
 </div>
 </section>
+<section id="shortened-labels-and-hover-descriptions">
+<span id="short-labels"></span><h2>Shortened labels and hover descriptions<a class="headerlink" href="#shortened-labels-and-hover-descriptions" title="Link to this heading">#</a></h2>
+<p>Parametrized class names (e.g. <code class="docutils literal notranslate"><span class="pre">Solver[alpha=0.1,n_iter=100]</span></code>) can be
+verbose. The HTML report automatically shortens them, keeping only the
+parameters that <em>vary</em> across the results, and a hover icon next to each entry
+reveals its description: the class docstring and the full parameter list.
+Traces, table cells and option values that are a solver, dataset or objective
+name get it implicitly, unless they set an explicit <code class="code docutils literal notranslate"><span class="pre">description</span></code>. If
+names of different kinds share a short label, the description is taken from
+the solver, then the dataset, then the objective.</p>
+<p>This happens <strong>before</strong> <code class="code docutils literal notranslate"><span class="pre">plot</span></code> and <code class="code docutils literal notranslate"><span class="pre">get_metadata</span></code> are called: the
+<code class="docutils literal notranslate"><span class="pre">solver_name</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset_name</span></code> and <code class="docutils literal notranslate"><span class="pre">objective_name</span></code> columns of the <code class="docutils literal notranslate"><span class="pre">df</span></code>
+you receive already hold the short labels, so a custom plot that groups on
+those columns gets short labels for free. The full name of each row is kept in
+the <code class="docutils literal notranslate"><span class="pre">*_full_name</span></code> columns (<code class="docutils literal notranslate"><span class="pre">solver_full_name</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset_full_name</span></code>,
+<code class="docutils literal notranslate"><span class="pre">objective_full_name</span></code>), and the <code class="docutils literal notranslate"><span class="pre">*_description</span></code> columns
+(<code class="docutils literal notranslate"><span class="pre">solver_description</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset_description</span></code>, <code class="docutils literal notranslate"><span class="pre">obj_description</span></code>) hold
+the hover HTML. A trace labeled with a short name gets its hover icon
+automatically:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">plot</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">df</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+    <span class="n">traces</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">solver</span><span class="p">,</span> <span class="n">df_solver</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="s1">'solver_name'</span><span class="p">):</span>
+        <span class="c1"># `solver` is already the short label here.</span>
+        <span class="n">traces</span><span class="o">.</span><span class="n">append</span><span class="p">({</span>
+            <span class="s2">"x"</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">"y"</span><span class="p">:</span> <span class="o">...</span><span class="p">,</span> <span class="s2">"label"</span><span class="p">:</span> <span class="n">solver</span><span class="p">,</span>
+            <span class="o">**</span><span class="bp">self</span><span class="o">.</span><span class="n">get_style</span><span class="p">(</span><span class="n">solver</span><span class="p">),</span>
+        <span class="p">})</span>
+    <span class="k">return</span> <span class="n">traces</span>
+</pre></div>
+</div>
+<p>With another label, pass the matching <code class="docutils literal notranslate"><span class="pre">*_description</span></code> as the trace’s
+<code class="docutils literal notranslate"><span class="pre">description</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="s2">"label"</span><span class="p">:</span> <span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">solver</span><span class="si">}</span><span class="s2"> (</span><span class="si">{</span><span class="n">dataset</span><span class="si">}</span><span class="s2">)"</span><span class="p">,</span>
+<span class="s2">"description"</span><span class="p">:</span> <span class="n">df_solver</span><span class="p">[</span><span class="s2">"solver_description"</span><span class="p">]</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span>
+</pre></div>
+</div>
+<p>The short labels are <strong>display-only</strong> and computed relative to the current
+results. Never write them back into persisted results, and use the
+<code class="docutils literal notranslate"><span class="pre">*_full_name</span></code> columns as the canonical identity.</p>
+</section>
 </section>
 
 
@@ -793,6 +847,7 @@ of the label, ensuring that the same solver always gets the same color.</p>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#table-plot">Table Plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#image-plot">Image Plot</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#plotting-utilities">Plotting Utilities</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shortened-labels-and-hover-descriptions">Shortened labels and hover descriptions</a></li>
 </ul>
   </nav></div>
 

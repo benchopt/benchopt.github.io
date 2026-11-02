@@ -504,7 +504,7 @@ already exists. Mostly useful to deactivate this warning in tests.</p></li>
 <p>This section lists the available settings for a benchmark configuration.</p>
 <dl class="py data">
 <dt class="sig sig-object py" id="benchopt.config.DEFAULT_BENCHMARK_CONFIG">
-<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'data_home':</span> <span class="pre">None,</span> <span class="pre">'data_paths':</span> <span class="pre">{},</span> <span class="pre">'hf_repo':</span> <span class="pre">None,</span> <span class="pre">'plot_configs':</span> <span class="pre">{},</span> <span class="pre">'plots':</span> <span class="pre">None}</span></span><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">benchopt.config.</span></span><span class="sig-name descname"><span class="pre">DEFAULT_BENCHMARK_CONFIG</span></span><span class="property"><span class="w"> </span><span class="p"><span class="pre">=</span></span><span class="w"> </span><span class="pre">{'data_home':</span> <span class="pre">None,</span> <span class="pre">'data_paths':</span> <span class="pre">{},</span> <span class="pre">'hf_repo':</span> <span class="pre">None,</span> <span class="pre">'hidden_plots':</span> <span class="pre">None,</span> <span class="pre">'plot_configs':</span> <span class="pre">{},</span> <span class="pre">'plots':</span> <span class="pre">None}</span></span><a class="headerlink" href="#benchopt.config.DEFAULT_BENCHMARK_CONFIG" title="Link to this definition">#</a></dt>
 <dd><p>These are the config options available for each benchmark, that can be set in
 the benchmark’s <code class="docutils literal notranslate"><span class="pre">config.yml</span></code> file or in the global config file under the
 benchmark’s name. These options change the behavior of benchopt for one
@@ -519,6 +519,15 @@ indented, as:</p>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suboptimality_curve</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">relative_suboptimality_curve</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bar_chart</span>
+</pre></div>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hidden_plots</span></code>, <em>list</em>: Plot kinds to hide from the results, e.g. to drop
+some of the default plots while keeping all the others. It is ignored when
+plot kinds are explicitly selected with <code class="docutils literal notranslate"><span class="pre">--kind</span></code> in <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">plot</span></code>.</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">hidden_plots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boxplot</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">table</span>
 </pre></div>
 </div>
 </li>

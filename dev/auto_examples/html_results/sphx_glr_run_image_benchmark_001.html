@@ -1866,61 +1866,58 @@ input:checked+.slider:before {
   visibility: visible;
 }
 
-/* Description solver when hovered */
-.curve-description-container {
-  position: relative;
-  display: inline-flex;
+/*----------------------------------------*/
+/***** Param hover icon *****/
+/*----------------------------------------*/
+
+.param-icon {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  margin-left: 4px;
+  vertical-align: -3px;
+  color: #2563eb;
+  cursor: pointer;
+  flex: none;
+  transition: color .15s ease, transform .15s ease;
 }
+.param-icon:hover { color: #1d4ed8; transform: scale(1.2); }
+.param-icon * { pointer-events: none; }
 
-.curve-description-content {
-  display: flex;
-  flex-direction: column;
-  visibility: hidden;
-  background-color: rgb(55 65 81);
-  color: #fff;
-  border-radius: 6px;
-  padding-top: 0.5em;
-  padding-bottom: 0.6em;
-  padding-left: 0.5em;
-  padding-right: 0.5rem;
-  opacity: 90%;
+#params-tooltip {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  pointer-events: none;
+  background: #1f2937;
+  color: #f9fafb;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+  font-size: 0.75rem;
+  max-width: 20rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, .4);
+}
+#params-tooltip .param-title {
+  font-weight: 700;
+  margin-bottom: 4px;
+  padding-bottom: 3px;
+  border-bottom: 1px solid #374151;
+}
+#params-tooltip table { border-collapse: collapse; }
+#params-tooltip .param-key {
+  color: #93c5fd;
+  font-weight: 600;
+  padding: 1px 12px 1px 0;
+  white-space: nowrap;
+}
+#params-tooltip .param-val { word-break: break-all; }
 
-  width: max-content;
-  max-width: 80ch;
-  max-height: 500px;
+/* Free-text description (e.g. solver docstring) above the params table. */
+#params-tooltip .param-desc {
   white-space: pre-wrap;
-
-  /* position description with respect to container and put it top-center */
-  position: absolute;
-  transform: translate(0, -100%);
-  z-index: 99999;
-}
-
-/* Show description when hovered */
-.curve-description-container:hover .curve-description-content {
-  visibility: visible;
-}
-
-/*Arrow at the bottom of the description*/
-.curve-description-container .curve-description-content::after {
-  content: " ";
-  position: absolute;
-  top: 100%;
-  left: 20px;
-  margin-left: -5px;
-  border-width: 7px;
-  border-style: solid;
-  border-color: rgb(55 65 81) transparent transparent transparent;
-}
-
-.curve-description-title {
-  margin-bottom: 1em;
-  font-weight: bolder;
-}
-
-.curve-description-body {
   max-height: 450px;
   overflow-y: auto;
+  margin-bottom: 6px;
 }
 
 /*Plot config styling as a bag of tags*/
@@ -2129,6 +2126,110 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
 #figsize_controls .unit {
   color: #9ca3af;
 }
+/* Image grid: no boxes, images keep their own aspect ratio */
+.image-title {
+  font-size: 1.25rem;
+  text-align: center;
+  color: #1f2937;
+  margin-bottom: 1.5rem;
+}
+
+.image-grid {
+  display: grid;
+  gap: 2rem 1.5rem;
+  align-items: start;
+}
+
+.image-cell {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  /* Allows sizing images relative to the column width (cqw) */
+  container-type: inline-size;
+}
+
+.image-cell img {
+  width: 100%;
+  height: auto;
+  /* Tall images are capped to a square and shrunk to fit */
+  max-height: 100cqw;
+  object-fit: contain;
+  image-rendering: pixelated;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.image-cell img:hover {
+  opacity: 0.85;
+}
+
+.image-cell figcaption, #image-modal figcaption {
+  font-size: 0.875rem;
+  white-space: pre-line;
+  color: #374151;
+  text-align: center;
+}
+
+#image-modal figcaption {
+  color: white;
+}
+
+.image-incompatible {
+  font-size: 0.875rem;
+  color: #6b7280;
+  font-style: italic;
+}
+
+#image-modal {
+  padding: 0;
+  border: none;
+  background: transparent;
+  outline: none;
+}
+
+#image-modal::backdrop {
+  background: rgba(0, 0, 0, 0.85);
+}
+
+#image-modal figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+#image-modal img {
+  image-rendering: pixelated;
+}
+
+#image-modal button {
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background: rgba(255, 255, 255, 0.15);
+  outline: none;
+}
+
+#image-modal button svg {
+  width: 1.75rem;
+  height: 1.75rem;
+}
+
+#image-modal button:hover, #image-modal button:focus-visible {
+  background: rgba(255, 255, 255, 0.3);
+}
+
         </style>
     </head>
     <body>
@@ -2202,139 +2303,173 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                         </div>
                             <div id="objective_curve-custom-params-container">
                                 <div id="objective_curve_dataset_form_group" class="mt-8 px-8">
-                                    <label for="change_objective_curve_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                    <label for="change_objective_curve_dataset" class="block text-sm font-medium text-white">
+                                        dataset
+                                        <span class="cursor-help" data-desc-state="objective_curve_dataset"></span>
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_objective_curve_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_dataset: this.value})">
-                                                <option value="simulated[n=32,noise_std=0.3,random_state=42]">simulated[n=32,noise_std=0.3,random_state=42]</option>
-                                                <option value="simulated[n=128,noise_std=0.3,random_state=42]">simulated[n=128,noise_std=0.3,random_state=42]</option>
+                                                <option value="simulated[n=32]" title="simulated[n=32]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=32]</option>
+                                                <option value="simulated[n=128]" title="simulated[n=128]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;128&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=128]</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="objective_curve_objective_form_group" class="mt-8 px-8">
-                                    <label for="change_objective_curve_objective" class="block text-sm font-medium text-white">objective</label>
+                                    <label for="change_objective_curve_objective" class="block text-sm font-medium text-white">
+                                        objective
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_objective_curve_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_objective: this.value})">
-                                                <option value="Image Denoising">Image Denoising</option>
+                                                <option value="Image Denoising" title="Image Denoising" data-desc="">Image Denoising</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="objective_curve_objective_column_form_group" class="mt-8 px-8">
-                                    <label for="change_objective_curve_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                    <label for="change_objective_curve_objective_column" class="block text-sm font-medium text-white">
+                                        objective_column
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_objective_curve_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_objective_column: this.value})">
-                                                <option value="objective_mse">objective_mse</option>
-                                                <option value="objective_frame">objective_frame</option>
+                                                <option value="objective_mse" title="objective_mse" data-desc="">objective_mse</option>
+                                                <option value="objective_frame" title="objective_frame" data-desc="">objective_frame</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="objective_curve_X_axis_form_group" class="mt-8 px-8">
-                                    <label for="change_objective_curve_X_axis" class="block text-sm font-medium text-white">X_axis</label>
+                                    <label for="change_objective_curve_X_axis" class="block text-sm font-medium text-white">
+                                        X_axis
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_objective_curve_X_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_X_axis: this.value})">
-                                                <option value="Time">Time</option>
-                                                <option value="Iteration">Iteration</option>
+                                                <option value="Time" title="Time" data-desc="">Time</option>
+                                                <option value="Iteration" title="Iteration" data-desc="">Iteration</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div id="bar_chart-custom-params-container">
                                 <div id="bar_chart_dataset_form_group" class="mt-8 px-8">
-                                    <label for="change_bar_chart_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                    <label for="change_bar_chart_dataset" class="block text-sm font-medium text-white">
+                                        dataset
+                                        <span class="cursor-help" data-desc-state="bar_chart_dataset"></span>
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_bar_chart_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_dataset: this.value})">
-                                                <option value="simulated[n=32,noise_std=0.3,random_state=42]">simulated[n=32,noise_std=0.3,random_state=42]</option>
-                                                <option value="simulated[n=128,noise_std=0.3,random_state=42]">simulated[n=128,noise_std=0.3,random_state=42]</option>
+                                                <option value="simulated[n=32]" title="simulated[n=32]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=32]</option>
+                                                <option value="simulated[n=128]" title="simulated[n=128]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;128&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=128]</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="bar_chart_objective_form_group" class="mt-8 px-8">
-                                    <label for="change_bar_chart_objective" class="block text-sm font-medium text-white">objective</label>
+                                    <label for="change_bar_chart_objective" class="block text-sm font-medium text-white">
+                                        objective
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_bar_chart_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_objective: this.value})">
-                                                <option value="Image Denoising">Image Denoising</option>
+                                                <option value="Image Denoising" title="Image Denoising" data-desc="">Image Denoising</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="bar_chart_objective_column_form_group" class="mt-8 px-8">
-                                    <label for="change_bar_chart_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                    <label for="change_bar_chart_objective_column" class="block text-sm font-medium text-white">
+                                        objective_column
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_bar_chart_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_objective_column: this.value})">
-                                                <option value="objective_mse">objective_mse</option>
-                                                <option value="objective_frame">objective_frame</option>
+                                                <option value="objective_mse" title="objective_mse" data-desc="">objective_mse</option>
+                                                <option value="objective_frame" title="objective_frame" data-desc="">objective_frame</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="bar_chart_minimize_form_group" class="mt-8 px-8">
-                                    <label for="change_bar_chart_minimize" class="block text-sm font-medium text-white">minimize</label>
+                                    <label for="change_bar_chart_minimize" class="block text-sm font-medium text-white">
+                                        minimize
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_bar_chart_minimize" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_minimize: this.value})">
-                                                <option value="True">True</option>
-                                                <option value="False">False</option>
+                                                <option value="True" title="True" data-desc="">True</option>
+                                                <option value="False" title="False" data-desc="">False</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div id="boxplot-custom-params-container">
                                 <div id="boxplot_dataset_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                    <label for="change_boxplot_dataset" class="block text-sm font-medium text-white">
+                                        dataset
+                                        <span class="cursor-help" data-desc-state="boxplot_dataset"></span>
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_dataset: this.value})">
-                                                <option value="simulated[n=32,noise_std=0.3,random_state=42]">simulated[n=32,noise_std=0.3,random_state=42]</option>
-                                                <option value="simulated[n=128,noise_std=0.3,random_state=42]">simulated[n=128,noise_std=0.3,random_state=42]</option>
+                                                <option value="simulated[n=32]" title="simulated[n=32]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=32]</option>
+                                                <option value="simulated[n=128]" title="simulated[n=128]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;128&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=128]</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="boxplot_objective_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_objective" class="block text-sm font-medium text-white">objective</label>
+                                    <label for="change_boxplot_objective" class="block text-sm font-medium text-white">
+                                        objective
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_objective: this.value})">
-                                                <option value="Image Denoising">Image Denoising</option>
+                                                <option value="Image Denoising" title="Image Denoising" data-desc="">Image Denoising</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="boxplot_objective_column_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                    <label for="change_boxplot_objective_column" class="block text-sm font-medium text-white">
+                                        objective_column
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_objective_column: this.value})">
-                                                <option value="objective_mse">objective_mse</option>
-                                                <option value="objective_frame">objective_frame</option>
+                                                <option value="objective_mse" title="objective_mse" data-desc="">objective_mse</option>
+                                                <option value="objective_frame" title="objective_frame" data-desc="">objective_frame</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="boxplot_X_axis_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_X_axis" class="block text-sm font-medium text-white">X_axis</label>
+                                    <label for="change_boxplot_X_axis" class="block text-sm font-medium text-white">
+                                        X_axis
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_X_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_X_axis: this.value})">
-                                                <option value="Solver">Solver</option>
-                                                <option value="Iteration">Iteration</option>
+                                                <option value="Solver" title="Solver" data-desc="">Solver</option>
+                                                <option value="Iteration" title="Iteration" data-desc="">Iteration</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="boxplot_Y_axis_form_group" class="mt-8 px-8">
-                                    <label for="change_boxplot_Y_axis" class="block text-sm font-medium text-white">Y_axis</label>
+                                    <label for="change_boxplot_Y_axis" class="block text-sm font-medium text-white">
+                                        Y_axis
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_boxplot_Y_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_Y_axis: this.value})">
-                                                <option value="Time">Time</option>
-                                                <option value="Objective Metric">Objective Metric</option>
+                                                <option value="Time" title="Time" data-desc="">Time</option>
+                                                <option value="Objective Metric" title="Objective Metric" data-desc="">Objective Metric</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                             <div id="table-custom-params-container">
                                 <div id="table_dataset_form_group" class="mt-8 px-8">
-                                    <label for="change_table_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                    <label for="change_table_dataset" class="block text-sm font-medium text-white">
+                                        dataset
+                                        <span class="cursor-help" data-desc-state="table_dataset"></span>
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_table_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({table_dataset: this.value})">
-                                                <option value="simulated[n=32,noise_std=0.3,random_state=42]">simulated[n=32,noise_std=0.3,random_state=42]</option>
-                                                <option value="simulated[n=128,noise_std=0.3,random_state=42]">simulated[n=128,noise_std=0.3,random_state=42]</option>
+                                                <option value="simulated[n=32]" title="simulated[n=32]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=32]</option>
+                                                <option value="simulated[n=128]" title="simulated[n=128]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;128&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=128]</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div id="table_objective_form_group" class="mt-8 px-8">
-                                    <label for="change_table_objective" class="block text-sm font-medium text-white">objective</label>
+                                    <label for="change_table_objective" class="block text-sm font-medium text-white">
+                                        objective
+                                    </label>
                                     <div class="mt-1 rounded-md shadow-sm">
                                         <select id="change_table_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({table_objective: this.value})">
-                                                <option value="Image Denoising">Image Denoising</option>
+                                                <option value="Image Denoising" title="Image Denoising" data-desc="">Image Denoising</option>
                                         </select>
                                     </div>
                                 </div>
@@ -2393,7 +2528,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                             <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportConfigs()">Download config</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportHTML()">Download HTML</a>
-                            <a href="benchopt_run_2026-09-21_15h20m14.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                            <a href="benchopt_run_2026-11-02_13h46m21.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
                         </div>
                     </div>
                 </nav>
@@ -2473,139 +2608,173 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                             <div>
                                 <div id="objective_curve-custom-params-container">
                                     <div id="objective_curve_dataset_form_group" class="mt-8 px-8">
-                                        <label for="change_objective_curve_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                        <label for="change_objective_curve_dataset" class="block text-sm font-medium text-white">
+                                            dataset
+                                            <span class="cursor-help" data-desc-state="objective_curve_dataset"></span>
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_objective_curve_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_dataset: this.value})">
-                                                    <option value="simulated[n=32,noise_std=0.3,random_state=42]">simulated[n=32,noise_std=0.3,random_state=42]</option>
-                                                    <option value="simulated[n=128,noise_std=0.3,random_state=42]">simulated[n=128,noise_std=0.3,random_state=42]</option>
+                                                    <option value="simulated[n=32]" title="simulated[n=32]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=32]</option>
+                                                    <option value="simulated[n=128]" title="simulated[n=128]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;128&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=128]</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="objective_curve_objective_form_group" class="mt-8 px-8">
-                                        <label for="change_objective_curve_objective" class="block text-sm font-medium text-white">objective</label>
+                                        <label for="change_objective_curve_objective" class="block text-sm font-medium text-white">
+                                            objective
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_objective_curve_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_objective: this.value})">
-                                                    <option value="Image Denoising">Image Denoising</option>
+                                                    <option value="Image Denoising" title="Image Denoising" data-desc="">Image Denoising</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="objective_curve_objective_column_form_group" class="mt-8 px-8">
-                                        <label for="change_objective_curve_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                        <label for="change_objective_curve_objective_column" class="block text-sm font-medium text-white">
+                                            objective_column
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_objective_curve_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_objective_column: this.value})">
-                                                    <option value="objective_mse">objective_mse</option>
-                                                    <option value="objective_frame">objective_frame</option>
+                                                    <option value="objective_mse" title="objective_mse" data-desc="">objective_mse</option>
+                                                    <option value="objective_frame" title="objective_frame" data-desc="">objective_frame</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="objective_curve_X_axis_form_group" class="mt-8 px-8">
-                                        <label for="change_objective_curve_X_axis" class="block text-sm font-medium text-white">X_axis</label>
+                                        <label for="change_objective_curve_X_axis" class="block text-sm font-medium text-white">
+                                            X_axis
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_objective_curve_X_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({objective_curve_X_axis: this.value})">
-                                                    <option value="Time">Time</option>
-                                                    <option value="Iteration">Iteration</option>
+                                                    <option value="Time" title="Time" data-desc="">Time</option>
+                                                    <option value="Iteration" title="Iteration" data-desc="">Iteration</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="bar_chart-custom-params-container">
                                     <div id="bar_chart_dataset_form_group" class="mt-8 px-8">
-                                        <label for="change_bar_chart_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                        <label for="change_bar_chart_dataset" class="block text-sm font-medium text-white">
+                                            dataset
+                                            <span class="cursor-help" data-desc-state="bar_chart_dataset"></span>
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_bar_chart_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_dataset: this.value})">
-                                                    <option value="simulated[n=32,noise_std=0.3,random_state=42]">simulated[n=32,noise_std=0.3,random_state=42]</option>
-                                                    <option value="simulated[n=128,noise_std=0.3,random_state=42]">simulated[n=128,noise_std=0.3,random_state=42]</option>
+                                                    <option value="simulated[n=32]" title="simulated[n=32]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=32]</option>
+                                                    <option value="simulated[n=128]" title="simulated[n=128]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;128&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=128]</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="bar_chart_objective_form_group" class="mt-8 px-8">
-                                        <label for="change_bar_chart_objective" class="block text-sm font-medium text-white">objective</label>
+                                        <label for="change_bar_chart_objective" class="block text-sm font-medium text-white">
+                                            objective
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_bar_chart_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_objective: this.value})">
-                                                    <option value="Image Denoising">Image Denoising</option>
+                                                    <option value="Image Denoising" title="Image Denoising" data-desc="">Image Denoising</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="bar_chart_objective_column_form_group" class="mt-8 px-8">
-                                        <label for="change_bar_chart_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                        <label for="change_bar_chart_objective_column" class="block text-sm font-medium text-white">
+                                            objective_column
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_bar_chart_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_objective_column: this.value})">
-                                                    <option value="objective_mse">objective_mse</option>
-                                                    <option value="objective_frame">objective_frame</option>
+                                                    <option value="objective_mse" title="objective_mse" data-desc="">objective_mse</option>
+                                                    <option value="objective_frame" title="objective_frame" data-desc="">objective_frame</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="bar_chart_minimize_form_group" class="mt-8 px-8">
-                                        <label for="change_bar_chart_minimize" class="block text-sm font-medium text-white">minimize</label>
+                                        <label for="change_bar_chart_minimize" class="block text-sm font-medium text-white">
+                                            minimize
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_bar_chart_minimize" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({bar_chart_minimize: this.value})">
-                                                    <option value="True">True</option>
-                                                    <option value="False">False</option>
+                                                    <option value="True" title="True" data-desc="">True</option>
+                                                    <option value="False" title="False" data-desc="">False</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="boxplot-custom-params-container">
                                     <div id="boxplot_dataset_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                        <label for="change_boxplot_dataset" class="block text-sm font-medium text-white">
+                                            dataset
+                                            <span class="cursor-help" data-desc-state="boxplot_dataset"></span>
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_dataset: this.value})">
-                                                    <option value="simulated[n=32,noise_std=0.3,random_state=42]">simulated[n=32,noise_std=0.3,random_state=42]</option>
-                                                    <option value="simulated[n=128,noise_std=0.3,random_state=42]">simulated[n=128,noise_std=0.3,random_state=42]</option>
+                                                    <option value="simulated[n=32]" title="simulated[n=32]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=32]</option>
+                                                    <option value="simulated[n=128]" title="simulated[n=128]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;128&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=128]</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="boxplot_objective_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_objective" class="block text-sm font-medium text-white">objective</label>
+                                        <label for="change_boxplot_objective" class="block text-sm font-medium text-white">
+                                            objective
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_objective: this.value})">
-                                                    <option value="Image Denoising">Image Denoising</option>
+                                                    <option value="Image Denoising" title="Image Denoising" data-desc="">Image Denoising</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="boxplot_objective_column_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_objective_column" class="block text-sm font-medium text-white">objective_column</label>
+                                        <label for="change_boxplot_objective_column" class="block text-sm font-medium text-white">
+                                            objective_column
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_objective_column" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_objective_column: this.value})">
-                                                    <option value="objective_mse">objective_mse</option>
-                                                    <option value="objective_frame">objective_frame</option>
+                                                    <option value="objective_mse" title="objective_mse" data-desc="">objective_mse</option>
+                                                    <option value="objective_frame" title="objective_frame" data-desc="">objective_frame</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="boxplot_X_axis_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_X_axis" class="block text-sm font-medium text-white">X_axis</label>
+                                        <label for="change_boxplot_X_axis" class="block text-sm font-medium text-white">
+                                            X_axis
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_X_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_X_axis: this.value})">
-                                                    <option value="Solver">Solver</option>
-                                                    <option value="Iteration">Iteration</option>
+                                                    <option value="Solver" title="Solver" data-desc="">Solver</option>
+                                                    <option value="Iteration" title="Iteration" data-desc="">Iteration</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="boxplot_Y_axis_form_group" class="mt-8 px-8">
-                                        <label for="change_boxplot_Y_axis" class="block text-sm font-medium text-white">Y_axis</label>
+                                        <label for="change_boxplot_Y_axis" class="block text-sm font-medium text-white">
+                                            Y_axis
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_boxplot_Y_axis" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({boxplot_Y_axis: this.value})">
-                                                    <option value="Time">Time</option>
-                                                    <option value="Objective Metric">Objective Metric</option>
+                                                    <option value="Time" title="Time" data-desc="">Time</option>
+                                                    <option value="Objective Metric" title="Objective Metric" data-desc="">Objective Metric</option>
                                             </select>
                                         </div>
                                     </div>
                                 </div>
                                 <div id="table-custom-params-container">
                                     <div id="table_dataset_form_group" class="mt-8 px-8">
-                                        <label for="change_table_dataset" class="block text-sm font-medium text-white">dataset</label>
+                                        <label for="change_table_dataset" class="block text-sm font-medium text-white">
+                                            dataset
+                                            <span class="cursor-help" data-desc-state="table_dataset"></span>
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_table_dataset" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({table_dataset: this.value})">
-                                                    <option value="simulated[n=32,noise_std=0.3,random_state=42]">simulated[n=32,noise_std=0.3,random_state=42]</option>
-                                                    <option value="simulated[n=128,noise_std=0.3,random_state=42]">simulated[n=128,noise_std=0.3,random_state=42]</option>
+                                                    <option value="simulated[n=32]" title="simulated[n=32]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;32&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=32]</option>
+                                                    <option value="simulated[n=128]" title="simulated[n=128]" data-desc="&lt;div class=&#34;param-title&#34;&gt;Parameters&lt;/div&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;n&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;128&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;noise_std&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;0.3&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td class=&#34;param-key&#34;&gt;random_state&lt;/td&gt;&lt;td class=&#34;param-val&#34;&gt;42&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;">simulated[n=128]</option>
                                             </select>
                                         </div>
                                     </div>
                                     <div id="table_objective_form_group" class="mt-8 px-8">
-                                        <label for="change_table_objective" class="block text-sm font-medium text-white">objective</label>
+                                        <label for="change_table_objective" class="block text-sm font-medium text-white">
+                                            objective
+                                        </label>
                                         <div class="mt-1 rounded-md shadow-sm">
                                             <select id="change_table_objective" class="focus:ring-blue-500 focus:border-blue-500 block w-full h-8 px-4 sm:text-sm border-gray-300 rounded-md" onchange="setState({table_objective: this.value})">
-                                                    <option value="Image Denoising">Image Denoising</option>
+                                                    <option value="Image Denoising" title="Image Denoising" data-desc="">Image Denoising</option>
                                             </select>
                                         </div>
                                     </div>
@@ -2669,7 +2838,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                         </span>
 
                         <span>
-                            <a href="benchopt_run_2026-09-21_15h20m14.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <a href="benchopt_run_2026-11-02_13h46m21.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                 </svg>
@@ -2725,6 +2894,14 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
             </div>
         </div>
 
+        <!-- Enlarged image modal: click anywhere, the cross or press Esc to close -->
+        <dialog id="image-modal" onclick="this.close()">
+            <button type="button" aria-label="Close">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+            </button>
+            <figure><img alt=""><figcaption></figcaption></figure>
+        </dialog>
+
         <!-- System information modal -->
         <div id="system-modal" class="hidden relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
@@ -2744,10 +2921,10 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                                         <ul class="text-sm text-gray-500">
                                             <li> <b>CPU</b>: 2 </li>
                                             <li> <b>RAM (GB)</b>: 4 </li>
-                                            <li> <b>platform</b>: Linux7.0.0-1012-aws-x86_64 </li>
+                                            <li> <b>platform</b>: Linux7.0.0-1016-aws-x86_64 </li>
                                             <li> <b>processor</b>: Intel(R) Xeon(R) Platinum 8124M CPU @ 3.00GHz </li>
                                             
-                                            <li> <b>numpy</b>: 2.5.3 </li>
+                                            <li> <b>numpy</b>: 2.5.4 </li>
                                             
                                             <li> <b>scipy</b>: 1.18.1 </li>
                                         </ul>
@@ -2812,8 +2989,8 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
         </script>
         <!-- Manage plot -->
         <script>
-            window._plots = {"objective_curve": {"objective_curve_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Time": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42] ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0.319397861001562, 0.31979724100165186, 0.32016251900131465, 0.3204649290019006, 0.3207589060002647], "y": [0.08709998258024096, 0.06252739648257784, 0.0814545730019271, 0.0937899498686845, 0.10401721875018896], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)", "marker": 7}, {"x": [3.0186000003595836e-05, 0.0005936599991400726, 0.0011175959989486728, 0.0015810429995326558], "y": [0.08709998258024096, 0.11092390530123225, 0.17791009529962157, 0.21024040082708217], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)", "marker": 8}, {"x": [3.5713001125259325e-05, 0.00039237300006789155, 0.0006492889988294337, 0.0008790039973973762], "y": [0.08709998258024096, 0.10414866432548303, 0.12620175170759654, 0.14813094701048435], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)", "marker": 9}, {"x": [5.117200089443941e-05, 0.00023700900055700913, 0.0003923010008293204, 0.0005393820010795025], "y": [0.08709998258024096, 0.20383125298150426, 0.5209075895907315, 0.9617534804882398], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)", "marker": 10}]}, "objective_curve_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Iteration": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42] ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4], "y": [0.08709998258024096, 0.06252739648257784, 0.0814545730019271, 0.0937899498686845, 0.10401721875018896], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)", "marker": 7}, {"x": [0, 1, 2, 3], "y": [0.08709998258024096, 0.11092390530123225, 0.17791009529962157, 0.21024040082708217], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)", "marker": 8}, {"x": [0, 1, 2, 3], "y": [0.08709998258024096, 0.10414866432548303, 0.12620175170759654, 0.14813094701048435], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)", "marker": 9}, {"x": [0, 1, 2, 3], "y": [0.08709998258024096, 0.20383125298150426, 0.5209075895907315, 0.9617534804882398], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)", "marker": 10}]}, "objective_curve_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Time": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42] ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": []}, "objective_curve_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Iteration": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42] ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": []}, "objective_curve_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Time": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42] ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [5.3031999414088205e-05, 0.002750954998191446, 0.005007279996789293, 0.00769425699581916, 0.009722299995701178], "y": [0.09057892528646821, 0.06830142596458394, 0.09003792387834983, 0.10340183761250094, 0.11368447095217332], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)", "marker": 7}, {"x": [6.224900062079541e-05, 0.00967874000161828, 0.018212308001238853, 0.02601628600132244], "y": [0.09057892528646821, 0.1243520910696772, 0.20078047364863624, 0.23362659515858847], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)", "marker": 8}, {"x": [9.11980005184887e-05, 0.001076726000974304, 0.002132767001967295, 0.0032981800013658358], "y": [0.09057892528646821, 0.10961246342896126, 0.13461456883102862, 0.15836449052542717], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)", "marker": 9}, {"x": [8.843000068736728e-05, 0.0010383829994680127, 0.002126237999618752, 0.005503978998603998], "y": [0.09057892528646821, 0.22272173836797704, 0.5934462138339127, 1.0866933779387267], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)", "marker": 10}]}, "objective_curve_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Iteration": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42] ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4], "y": [0.09057892528646821, 0.06830142596458394, 0.09003792387834983, 0.10340183761250094, 0.11368447095217332], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)", "marker": 7}, {"x": [0, 1, 2, 3], "y": [0.09057892528646821, 0.1243520910696772, 0.20078047364863624, 0.23362659515858847], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)", "marker": 8}, {"x": [0, 1, 2, 3], "y": [0.09057892528646821, 0.10961246342896126, 0.13461456883102862, 0.15836449052542717], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)", "marker": 9}, {"x": [0, 1, 2, 3], "y": [0.09057892528646821, 0.22272173836797704, 0.5934462138339127, 1.0866933779387267], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)", "marker": 10}]}, "objective_curve_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Time": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42] ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": []}, "objective_curve_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Iteration": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42] ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": []}}, "bar_chart": {"bar_chart_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_True": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.31979724100165186], "text": "", "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"y": [3.0186000003595836e-05], "text": "", "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"y": [3.5713001125259325e-05], "text": "", "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"y": [5.117200089443941e-05], "text": "", "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "bar_chart_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_False": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.3207589060002647], "text": "", "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"y": [0.0015810429995326558], "text": "", "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"y": [0.0008790039973973762], "text": "", "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"y": [0.0005393820010795025], "text": "", "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "bar_chart_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_True": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "ylabel": "Time [sec]", "type": "bar_chart", "data": []}, "bar_chart_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_False": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "ylabel": "Time [sec]", "type": "bar_chart", "data": []}, "bar_chart_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_True": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.002750954998191446], "text": "", "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"y": [6.224900062079541e-05], "text": "", "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"y": [9.11980005184887e-05], "text": "", "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"y": [8.843000068736728e-05], "text": "", "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "bar_chart_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_False": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.009722299995701178], "text": "", "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"y": [0.02601628600132244], "text": "", "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"y": [0.0032981800013658358], "text": "", "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"y": [0.005503978998603998], "text": "", "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "bar_chart_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_True": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "ylabel": "Time [sec]", "type": "bar_chart", "data": []}, "bar_chart_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_False": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "ylabel": "Time [sec]", "type": "bar_chart", "data": []}}, "boxplot": {"boxplot_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Solver_Time": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.3207589060002647]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.0015810429995326558]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.0008790039973973762]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.0005393820010795025]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Solver_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.10401721875018896]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.21024040082708217]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.14813094701048435]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.9617534804882398]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Iteration_Time": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[0.319397861001562], [0.31979724100165186], [0.32016251900131465], [0.3204649290019006], [0.3207589060002647]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.0186000003595836e-05], [0.0005936599991400726], [0.0011175959989486728], [0.0015810429995326558]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.5713001125259325e-05], [0.00039237300006789155], [0.0006492889988294337], [0.0008790039973973762]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[5.117200089443941e-05], [0.00023700900055700913], [0.0003923010008293204], [0.0005393820010795025]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Iteration_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[0.08709998258024096], [0.06252739648257784], [0.0814545730019271], [0.0937899498686845], [0.10401721875018896]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.08709998258024096], [0.11092390530123225], [0.17791009529962157], [0.21024040082708217]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.08709998258024096], [0.10414866432548303], [0.12620175170759654], [0.14813094701048435]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.08709998258024096], [0.20383125298150426], [0.5209075895907315], [0.9617534804882398]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Solver_Time": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.3207589060002647]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.0015810429995326558]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.0008790039973973762]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.0005393820010795025]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Solver_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": []}, "boxplot_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Iteration_Time": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[0.319397861001562], [0.31979724100165186], [0.32016251900131465], [0.3204649290019006], [0.3207589060002647]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.0186000003595836e-05], [0.0005936599991400726], [0.0011175959989486728], [0.0015810429995326558]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.5713001125259325e-05], [0.00039237300006789155], [0.0006492889988294337], [0.0008790039973973762]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[5.117200089443941e-05], [0.00023700900055700913], [0.0003923010008293204], [0.0005393820010795025]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Iteration_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": []}, "boxplot_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Solver_Time": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.009722299995701178]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.02601628600132244]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.0032981800013658358]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.005503978998603998]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Solver_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.11368447095217332]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.23362659515858847]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.15836449052542717]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[1.0866933779387267]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Iteration_Time": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[5.3031999414088205e-05], [0.002750954998191446], [0.005007279996789293], [0.00769425699581916], [0.009722299995701178]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[6.224900062079541e-05], [0.00967874000161828], [0.018212308001238853], [0.02601628600132244]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[9.11980005184887e-05], [0.001076726000974304], [0.002132767001967295], [0.0032981800013658358]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[8.843000068736728e-05], [0.0010383829994680127], [0.002126237999618752], [0.005503978998603998]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_mse_Iteration_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[0.09057892528646821], [0.06830142596458394], [0.09003792387834983], [0.10340183761250094], [0.11368447095217332]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.09057892528646821], [0.1243520910696772], [0.20078047364863624], [0.23362659515858847]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.09057892528646821], [0.10961246342896126], [0.13461456883102862], [0.15836449052542717]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.09057892528646821], [0.22272173836797704], [0.5934462138339127], [1.0866933779387267]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Solver_Time": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.009722299995701178]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.02601628600132244]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.0032981800013658358]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.005503978998603998]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Solver_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": []}, "boxplot_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Iteration_Time": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[5.3031999414088205e-05], [0.002750954998191446], [0.005007279996789293], [0.00769425699581916], [0.009722299995701178]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[6.224900062079541e-05], [0.00967874000161828], [0.018212308001238853], [0.02601628600132244]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[9.11980005184887e-05], [0.001076726000974304], [0.002132767001967295], [0.0032981800013658358]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[8.843000068736728e-05], [0.0010383829994680127], [0.002126237999618752], [0.005503978998603998]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising_objective_frame_Iteration_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": []}}, "table": {"table_simulated[n=32,noise_std=0.3,random_state=42]_Image Denoising": {"title": "Image Denoising<br />Data: simulated[n=32,noise_std=0.3,random_state=42]", "columns": ["solver", "mse", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [["median_filter[size=3]", 0.10401721875018896, 0.3207589060002647], ["median_filter[size=5]", 0.21024040082708217, 0.0015810429995326558], ["tv_denoise[lam=0.1]", 0.14813094701048435, 0.0008790039973973762], ["tv_denoise[lam=0.5]", 0.9617534804882398, 0.0005393820010795025]]}, "table_simulated[n=128,noise_std=0.3,random_state=42]_Image Denoising": {"title": "Image Denoising<br />Data: simulated[n=128,noise_std=0.3,random_state=42]", "columns": ["solver", "mse", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [["median_filter[size=3]", 0.11368447095217332, 0.009722299995701178], ["median_filter[size=5]", 0.23362659515858847, 0.02601628600132244], ["tv_denoise[lam=0.1]", 0.15836449052542717, 0.0032981800013658358], ["tv_denoise[lam=0.5]", 1.0866933779387267, 0.005503978998603998]]}}};
-            window.metadata = {"plot_configs": {}, "solvers_description": {"median_filter[size=3]": "", "median_filter[size=5]": "", "tv_denoise[lam=0.1]": "", "tv_denoise[lam=0.5]": ""}, "obj_description": ""};
+            window._plots = {"objective_curve": {"objective_curve_simulated[n=32]_Image Denoising_objective_mse_Time": {"title": "Image Denoising<br />Data: simulated[n=32] ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0.2920043760000226, 0.29236257299999124, 0.29268323999986023, 0.2929977469998448, 0.2932672699998875], "y": [0.08709998258024096, 0.06252739648257784, 0.0814545730019271, 0.0937899498686845, 0.10401721875018896], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)", "marker": 7, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">3</td></tr></table>"}, {"x": [3.610600015235832e-05, 0.000663994000206003, 0.0013180810001358623, 0.0019820140005322173], "y": [0.08709998258024096, 0.11092390530123225, 0.17791009529962157, 0.21024040082708217], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)", "marker": 8, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">5</td></tr></table>"}, {"x": [3.615600007833564e-05, 0.000331242000356724, 0.0005875410001863202, 0.0008275950003735488], "y": [0.08709998258024096, 0.10414866432548303, 0.12620175170759654, 0.14813094701048435], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)", "marker": 9, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.1</td></tr></table>"}, {"x": [3.59040000148525e-05, 0.00026633800007402897, 0.0004735769998660544, 0.0007189559996731987], "y": [0.08709998258024096, 0.20383125298150426, 0.5209075895907315, 0.9617534804882398], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)", "marker": 10, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.5</td></tr></table>"}]}, "objective_curve_simulated[n=32]_Image Denoising_objective_mse_Iteration": {"title": "Image Denoising<br />Data: simulated[n=32] ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4], "y": [0.08709998258024096, 0.06252739648257784, 0.0814545730019271, 0.0937899498686845, 0.10401721875018896], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)", "marker": 7, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">3</td></tr></table>"}, {"x": [0, 1, 2, 3], "y": [0.08709998258024096, 0.11092390530123225, 0.17791009529962157, 0.21024040082708217], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)", "marker": 8, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">5</td></tr></table>"}, {"x": [0, 1, 2, 3], "y": [0.08709998258024096, 0.10414866432548303, 0.12620175170759654, 0.14813094701048435], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)", "marker": 9, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.1</td></tr></table>"}, {"x": [0, 1, 2, 3], "y": [0.08709998258024096, 0.20383125298150426, 0.5209075895907315, 0.9617534804882398], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)", "marker": 10, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.5</td></tr></table>"}]}, "objective_curve_simulated[n=32]_Image Denoising_objective_frame_Time": {"title": "Image Denoising<br />Data: simulated[n=32] ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": []}, "objective_curve_simulated[n=32]_Image Denoising_objective_frame_Iteration": {"title": "Image Denoising<br />Data: simulated[n=32] ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": []}, "objective_curve_simulated[n=128]_Image Denoising_objective_mse_Time": {"title": "Image Denoising<br />Data: simulated[n=128] ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [5.17270000273129e-05, 0.0028460439998525544, 0.005473655000059807, 0.008060824000040157, 0.010367492999648675], "y": [0.09057892528646821, 0.06830142596458394, 0.09003792387834983, 0.10340183761250094, 0.11368447095217332], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)", "marker": 7, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">3</td></tr></table>"}, {"x": [5.166199980521924e-05, 0.008359842000118078, 0.016296796999995422, 0.023483364999719925], "y": [0.09057892528646821, 0.1243520910696772, 0.20078047364863624, 0.23362659515858847], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)", "marker": 8, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">5</td></tr></table>"}, {"x": [0.00010123399988515303, 0.0015556690000266826, 0.00254153200012297, 0.0037063079998915782], "y": [0.09057892528646821, 0.10961246342896126, 0.13461456883102862, 0.15836449052542717], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)", "marker": 9, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.1</td></tr></table>"}, {"x": [0.00011605600002440042, 0.0012378139999782434, 0.0025634009998611873, 0.0036179700000502635], "y": [0.09057892528646821, 0.22272173836797704, 0.5934462138339127, 1.0866933779387267], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)", "marker": 10, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.5</td></tr></table>"}]}, "objective_curve_simulated[n=128]_Image Denoising_objective_mse_Iteration": {"title": "Image Denoising<br />Data: simulated[n=128] ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4], "y": [0.09057892528646821, 0.06830142596458394, 0.09003792387834983, 0.10340183761250094, 0.11368447095217332], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)", "marker": 7, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">3</td></tr></table>"}, {"x": [0, 1, 2, 3], "y": [0.09057892528646821, 0.1243520910696772, 0.20078047364863624, 0.23362659515858847], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)", "marker": 8, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">5</td></tr></table>"}, {"x": [0, 1, 2, 3], "y": [0.09057892528646821, 0.10961246342896126, 0.13461456883102862, 0.15836449052542717], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)", "marker": 9, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.1</td></tr></table>"}, {"x": [0, 1, 2, 3], "y": [0.09057892528646821, 0.22272173836797704, 0.5934462138339127, 1.0866933779387267], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)", "marker": 10, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.5</td></tr></table>"}]}, "objective_curve_simulated[n=128]_Image Denoising_objective_frame_Time": {"title": "Image Denoising<br />Data: simulated[n=128] ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": []}, "objective_curve_simulated[n=128]_Image Denoising_objective_frame_Iteration": {"title": "Image Denoising<br />Data: simulated[n=128] ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": []}}, "bar_chart": {"bar_chart_simulated[n=32]_Image Denoising_objective_mse_True": {"title": "Image Denoising<br />Data: simulated[n=32]", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.29236257299999124], "text": "", "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"y": [3.610600015235832e-05], "text": "", "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"y": [3.615600007833564e-05], "text": "", "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"y": [3.59040000148525e-05], "text": "", "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "bar_chart_simulated[n=32]_Image Denoising_objective_mse_False": {"title": "Image Denoising<br />Data: simulated[n=32]", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.2932672699998875], "text": "", "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"y": [0.0019820140005322173], "text": "", "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"y": [0.0008275950003735488], "text": "", "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"y": [0.0007189559996731987], "text": "", "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "bar_chart_simulated[n=32]_Image Denoising_objective_frame_True": {"title": "Image Denoising<br />Data: simulated[n=32]", "ylabel": "Time [sec]", "type": "bar_chart", "data": []}, "bar_chart_simulated[n=32]_Image Denoising_objective_frame_False": {"title": "Image Denoising<br />Data: simulated[n=32]", "ylabel": "Time [sec]", "type": "bar_chart", "data": []}, "bar_chart_simulated[n=128]_Image Denoising_objective_mse_True": {"title": "Image Denoising<br />Data: simulated[n=128]", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.0028460439998525544], "text": "", "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"y": [5.166199980521924e-05], "text": "", "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"y": [0.00010123399988515303], "text": "", "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"y": [0.00011605600002440042], "text": "", "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "bar_chart_simulated[n=128]_Image Denoising_objective_mse_False": {"title": "Image Denoising<br />Data: simulated[n=128]", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.010367492999648675], "text": "", "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"y": [0.023483364999719925], "text": "", "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"y": [0.0037063079998915782], "text": "", "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"y": [0.0036179700000502635], "text": "", "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "bar_chart_simulated[n=128]_Image Denoising_objective_frame_True": {"title": "Image Denoising<br />Data: simulated[n=128]", "ylabel": "Time [sec]", "type": "bar_chart", "data": []}, "bar_chart_simulated[n=128]_Image Denoising_objective_frame_False": {"title": "Image Denoising<br />Data: simulated[n=128]", "ylabel": "Time [sec]", "type": "bar_chart", "data": []}}, "boxplot": {"boxplot_simulated[n=32]_Image Denoising_objective_mse_Solver_Time": {"title": "Image Denoising<br />Data: simulated[n=32]", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.2932672699998875]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.0019820140005322173]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.0008275950003735488]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.0007189559996731987]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32]_Image Denoising_objective_mse_Solver_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=32]", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.10401721875018896]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.21024040082708217]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.14813094701048435]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.9617534804882398]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32]_Image Denoising_objective_mse_Iteration_Time": {"title": "Image Denoising<br />Data: simulated[n=32]", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[0.2920043760000226], [0.29236257299999124], [0.29268323999986023], [0.2929977469998448], [0.2932672699998875]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.610600015235832e-05], [0.000663994000206003], [0.0013180810001358623], [0.0019820140005322173]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.615600007833564e-05], [0.000331242000356724], [0.0005875410001863202], [0.0008275950003735488]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.59040000148525e-05], [0.00026633800007402897], [0.0004735769998660544], [0.0007189559996731987]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32]_Image Denoising_objective_mse_Iteration_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=32]", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[0.08709998258024096], [0.06252739648257784], [0.0814545730019271], [0.0937899498686845], [0.10401721875018896]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.08709998258024096], [0.11092390530123225], [0.17791009529962157], [0.21024040082708217]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.08709998258024096], [0.10414866432548303], [0.12620175170759654], [0.14813094701048435]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.08709998258024096], [0.20383125298150426], [0.5209075895907315], [0.9617534804882398]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32]_Image Denoising_objective_frame_Solver_Time": {"title": "Image Denoising<br />Data: simulated[n=32]", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.2932672699998875]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.0019820140005322173]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.0008275950003735488]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.0007189559996731987]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32]_Image Denoising_objective_frame_Solver_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=32]", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": []}, "boxplot_simulated[n=32]_Image Denoising_objective_frame_Iteration_Time": {"title": "Image Denoising<br />Data: simulated[n=32]", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[0.2920043760000226], [0.29236257299999124], [0.29268323999986023], [0.2929977469998448], [0.2932672699998875]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.610600015235832e-05], [0.000663994000206003], [0.0013180810001358623], [0.0019820140005322173]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.615600007833564e-05], [0.000331242000356724], [0.0005875410001863202], [0.0008275950003735488]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[3.59040000148525e-05], [0.00026633800007402897], [0.0004735769998660544], [0.0007189559996731987]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=32]_Image Denoising_objective_frame_Iteration_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=32]", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": []}, "boxplot_simulated[n=128]_Image Denoising_objective_mse_Solver_Time": {"title": "Image Denoising<br />Data: simulated[n=128]", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.010367492999648675]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.023483364999719925]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.0037063079998915782]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.0036179700000502635]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128]_Image Denoising_objective_mse_Solver_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=128]", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.11368447095217332]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.23362659515858847]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.15836449052542717]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[1.0866933779387267]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128]_Image Denoising_objective_mse_Iteration_Time": {"title": "Image Denoising<br />Data: simulated[n=128]", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[5.17270000273129e-05], [0.0028460439998525544], [0.005473655000059807], [0.008060824000040157], [0.010367492999648675]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[5.166199980521924e-05], [0.008359842000118078], [0.016296796999995422], [0.023483364999719925]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.00010123399988515303], [0.0015556690000266826], [0.00254153200012297], [0.0037063079998915782]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.00011605600002440042], [0.0012378139999782434], [0.0025634009998611873], [0.0036179700000502635]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128]_Image Denoising_objective_mse_Iteration_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=128]", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[0.09057892528646821], [0.06830142596458394], [0.09003792387834983], [0.10340183761250094], [0.11368447095217332]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.09057892528646821], [0.1243520910696772], [0.20078047364863624], [0.23362659515858847]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.09057892528646821], [0.10961246342896126], [0.13461456883102862], [0.15836449052542717]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.09057892528646821], [0.22272173836797704], [0.5934462138339127], [1.0866933779387267]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128]_Image Denoising_objective_frame_Solver_Time": {"title": "Image Denoising<br />Data: simulated[n=128]", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["median_filter[size=3]"], "y": [[0.010367492999648675]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": ["median_filter[size=5]"], "y": [[0.023483364999719925]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": ["tv_denoise[lam=0.1]"], "y": [[0.0037063079998915782]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": ["tv_denoise[lam=0.5]"], "y": [[0.0036179700000502635]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128]_Image Denoising_objective_frame_Solver_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=128]", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": []}, "boxplot_simulated[n=128]_Image Denoising_objective_frame_Iteration_Time": {"title": "Image Denoising<br />Data: simulated[n=128]", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4], "y": [[5.17270000273129e-05], [0.0028460439998525544], [0.005473655000059807], [0.008060824000040157], [0.010367492999648675]], "label": "median_filter[size=3]", "color": "rgba(127, 127, 127, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[5.166199980521924e-05], [0.008359842000118078], [0.016296796999995422], [0.023483364999719925]], "label": "median_filter[size=5]", "color": "rgba(188, 189, 34, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.00010123399988515303], [0.0015556690000266826], [0.00254153200012297], [0.0037063079998915782]], "label": "tv_denoise[lam=0.1]", "color": "rgba(23, 190, 207, 1.0)"}, {"x": [0, 1, 2, 3], "y": [[0.00011605600002440042], [0.0012378139999782434], [0.0025634009998611873], [0.0036179700000502635]], "label": "tv_denoise[lam=0.5]", "color": "rgba(174, 199, 232, 1.0)"}]}, "boxplot_simulated[n=128]_Image Denoising_objective_frame_Iteration_Objective Metric": {"title": "Image Denoising<br />Data: simulated[n=128]", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": []}}, "table": {"table_simulated[n=32]_Image Denoising": {"title": "Image Denoising<br />Data: simulated[n=32]", "columns": ["solver", "mse", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [[{"value": "median_filter[size=3]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">3</td></tr></table>"}, 0.10401721875018896, 0.2932672699998875], [{"value": "median_filter[size=5]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">5</td></tr></table>"}, 0.21024040082708217, 0.0019820140005322173], [{"value": "tv_denoise[lam=0.1]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.1</td></tr></table>"}, 0.14813094701048435, 0.0008275950003735488], [{"value": "tv_denoise[lam=0.5]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.5</td></tr></table>"}, 0.9617534804882398, 0.0007189559996731987]]}, "table_simulated[n=128]_Image Denoising": {"title": "Image Denoising<br />Data: simulated[n=128]", "columns": ["solver", "mse", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [[{"value": "median_filter[size=3]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">3</td></tr></table>"}, 0.11368447095217332, 0.010367492999648675], [{"value": "median_filter[size=5]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">size</td><td class=\"param-val\">5</td></tr></table>"}, 0.23362659515858847, 0.023483364999719925], [{"value": "tv_denoise[lam=0.1]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.1</td></tr></table>"}, 0.15836449052542717, 0.0037063079998915782], [{"value": "tv_denoise[lam=0.5]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lam</td><td class=\"param-val\">0.5</td></tr></table>"}, 1.0866933779387267, 0.0036179700000502635]]}}};
+            window.metadata = {"plot_configs": {}};
 
             window.addEventListener("load", () => {
                 // Initialize plot state
@@ -3417,6 +3594,9 @@ Object.keys(SYMBOLDEFS).forEach(function(k) {
     drawing.symbolFuncs[n] = symDef.f;
 });
 
+// Number of base plotly symbols. Markers cycle over them, filled only.
+const N_SYMBOLS = Object.keys(SYMBOLDEFS).length;
+
 /**
  * Returns a <path></path> element that have to be placed in a <svg></svg> element.
  * 
@@ -3467,7 +3647,7 @@ function createPathString(symbolNumber, r) {
     return drawing.symbolFuncs[base](r) + (symbolNumber >= 200 ? DOTPATH : '');
 }
 
-            const NON_CONVERGENT_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
+            const UNDEFINED_COLOR = 'rgba(0.8627, 0.8627, 0.8627)'
 
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -3735,7 +3915,7 @@ const getLayout = () => {
 const getBarData = () => {
   if (!isAvailable()) return [{type:'bar'}];
 
-  const {x, y, colors, texts} = barDataToArrays()
+  const {x, y, colors, texts} = barDataToArrays();
 
   // Add bars
   const barData = [{
@@ -3752,12 +3932,9 @@ const getBarData = () => {
   }];
 
   getPlotData().data.forEach(curveData => {
-    // Add times for each convergent bar
-    // Check if text is not 'Did not converge'
-    curveText = curveData.text || ''
-    if (curveText === '') {
-      let nbTimes = curveData.y.length
-
+    // Add the individual times of bars with several values
+    let nbTimes = curveData.y.length;
+    if (nbTimes > 1) {
       barData.push({
         type: 'scatter',
         x: new Array(nbTimes).fill(curveData.label),
@@ -3846,7 +4023,7 @@ const getScatterData = () => {
         color: curveData.color,
       },
       marker: {
-        symbol: curveData.marker,
+        symbol: curveData.marker % N_SYMBOLS,
         size: 10,
         color: curveData.color,
       },
@@ -4136,6 +4313,69 @@ const renderSidebar = () => {
   renderPlotDropdowns();
 }
 
+const escapeHTML = (s) => String(s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;')
+  .replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+
+// SVG "info" icon: unlike a text glyph, it stays out of the LaTeX export.
+const infoIconHTML = (attrs = '') =>
+  `<svg class="param-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"` +
+  ` stroke-width="2" stroke-linecap="round" stroke-linejoin="round"${attrs}>` +
+  `<circle cx="12" cy="12" r="10"></circle>` +
+  `<line x1="12" y1="16" x2="12" y2="12"></line>` +
+  `<line x1="12" y1="8" x2="12.01" y2="8"></line></svg>`;
+const descIconHTML = (text) => infoIconHTML(` data-desc="${escapeHTML(text)}"`);
+
+// Selector icons (`data-desc-state` spans) show the same icon as the legend.
+document.querySelectorAll('span[data-desc-state]').forEach(span => {
+  span.innerHTML = infoIconHTML();
+});
+
+// Tooltip HTML of an icon: its own `data-desc`, or for a selector icon
+// (`data-desc-state`) the `data-desc` of the selected option.
+const descForIcon = (icon) => {
+  if (icon.dataset.desc != null) return icon.dataset.desc;
+  const key = icon.dataset.descState;
+  if (!key) return '';
+  const option = document.querySelector(
+    `#change_${key} option[value="${CSS.escape(String(state()[key]))}"]`
+  );
+  return (option && option.dataset.desc) || '';
+};
+
+/** Show the shared params tooltip. */
+const showDescTooltip = (event, html) => {
+  if (!html) return;
+  const tip = document.getElementById('params-tooltip');
+  tip.innerHTML = html;
+  tip.style.display = 'block';
+  _moveParamsTooltip(event);
+};
+
+/** Hide the shared params tooltip. */
+const hideParamsTooltip = () => {
+  document.getElementById('params-tooltip').style.display = 'none';
+};
+
+// Delegated hover for all icons, as Grid.js re-renders cells on sort/search.
+const PARAMS_ICON_SEL = '[data-desc], [data-desc-state]';
+document.addEventListener('mouseover', (e) => {
+  const icon = e.target.closest?.(PARAMS_ICON_SEL);
+  if (icon) showDescTooltip(e, descForIcon(icon));
+});
+document.addEventListener('mouseout', (e) => {
+  if (e.target.closest?.(PARAMS_ICON_SEL)) hideParamsTooltip();
+});
+
+const _moveParamsTooltip = (event) => {
+  const tip = document.getElementById('params-tooltip');
+  if (!tip || tip.style.display !== 'block') return;
+  tip.style.left = (event.clientX + 14) + 'px';
+  tip.style.top  = (event.clientY - tip.offsetHeight - 8) + 'px';
+};
+
+document.addEventListener('mousemove', _moveParamsTooltip);
+
 /**
  * Render Scale selector
  */
@@ -4288,7 +4528,7 @@ const barDataToArrays = () => {
     x.push(plotData.label);
     y.push(getMedian(plotData.y));
     const plotText = plotData.text || '';
-    colors.push(plotText === '' ? plotData.color : NON_CONVERGENT_COLOR);
+    colors.push(plotData.color || UNDEFINED_COLOR);
     texts.push(plotText);
   });
 
@@ -4369,6 +4609,7 @@ const getBarChartLayout = () => {
       ...MPL_AXIS,
       tickangle: -60,
       ticktext: Array(data.data.map(d => d.label)),
+      categoryorder: 'trace',
       showgrid: false,  // X axis is text: no vertical gridlines
     },
     showlegend: false,
@@ -4522,15 +4763,8 @@ const show = (HTMLElements, style = '') => {
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  */
 const getCurveFromEvent = event => {
-  const target = event.currentTarget;
-
-  for (let i = 0; i < target.children.length; i++) {
-    if (target.children[i].className === 'curve') {
-      return target.children[i].firstChild.nodeValue;
-    }
-  }
-
-  return null;
+  const text = event.currentTarget.querySelector(':scope > .curve');
+  return text ? text.dataset.curve : null;
 };
 
 const purgeHiddenCurves = () => setState({hidden_curves: []});
@@ -4591,57 +4825,59 @@ const renderImages = () => {
   // Title
   if (plotData.title) {
     const titleEl = document.createElement('h2');
-    titleEl.className = 'text-xl text-center text-gray-800 mb-6';
+    titleEl.className = 'image-title';
     titleEl.innerText = plotData.title;
     image_container.appendChild(titleEl);
   }
 
   const ncols = plotData.ncols || Math.min(plotData.data.length, 3);
   const grid = document.createElement('div');
-  grid.className = `grid gap-6`;
+  grid.className = 'image-grid';
   grid.style.gridTemplateColumns = `repeat(${ncols}, minmax(0, 1fr))`;
 
   plotData.data.forEach(imgData => {
-    const card = document.createElement('div');
+    const cell = document.createElement('figure');
+    cell.className = 'image-cell';
+    grid.appendChild(cell);
 
-    if (imgData.image === null) {
-      // Empty invisible block for grid alignment
-      grid.appendChild(card);
-      return;
-    }
-
-    card.className = 'bg-white rounded-lg shadow border border-gray-200 p-2 flex flex-col gap-2';
-
-    const imgWrapper = document.createElement('div');
-    imgWrapper.className = 'bg-gray-50 flex items-center justify-center';
-    imgWrapper.style.aspectRatio = '1 / 1';
+    // Empty invisible block for grid alignment
+    if (imgData.image === null) return;
 
     if (imgData.image === '__incompatible__') {
       const msg = document.createElement('span');
-      msg.className = 'text-sm text-gray-500 italic';
+      msg.className = 'image-incompatible';
       msg.innerText = 'Incompatible image';
-      imgWrapper.appendChild(msg);
+      cell.appendChild(msg);
     } else {
       const img = document.createElement('img');
       img.src = imgData.image;
       img.alt = imgData.label || '';
-      img.className = 'block w-full h-full object-contain';
-      img.style.imageRendering = 'pixelated';
-      imgWrapper.appendChild(img);
+      img.title = 'Click to enlarge';
+      img.onclick = () => openImageModal(img, imgData.label);
+      cell.appendChild(img);
     }
-    card.appendChild(imgWrapper);
 
     if (imgData.label) {
-      const labelEl = document.createElement('div');
-      labelEl.className = 'text-sm text-center text-gray-700';
+      const labelEl = document.createElement('figcaption');
       labelEl.innerText = imgData.label;
-      card.appendChild(labelEl);
+      cell.appendChild(labelEl);
     }
-
-    grid.appendChild(card);
   });
 
   image_container.appendChild(grid);
+};
+
+const openImageModal = (img, label) => {
+  const modal = document.getElementById('image-modal');
+  const modalImg = modal.querySelector('img');
+  modalImg.src = img.src;
+  // Upscale to fit the viewport while keeping the aspect ratio
+  modalImg.decode().then(() => {
+    const ratio = modalImg.naturalWidth / modalImg.naturalHeight;
+    modalImg.style.width = `min(90vw, ${80 * ratio}vh)`;
+  });
+  modal.querySelector('figcaption').innerText = label || '';
+  modal.showModal();
 };
 
 /*
@@ -4714,6 +4950,10 @@ const stripMarkup = (value) => CELL_MARKUP.reduce(
   String(value).replace(/\\([*_])/g, (match, c) => PLACEHOLDERS[c])
 ).replace(/[\u0000\u0001]/g, c => LITERALS[c]);
 
+// Value of a cell, unwrapping `{value, description}` cells.
+const cellValue = (cell) =>
+  cell !== null && typeof cell === 'object' ? cell.value : cell;
+
 // Numeric value of a cell, or null if its text is not a single number.
 const cellNumber = (value) => {
   if (typeof value === 'number') return value;
@@ -4756,6 +4996,7 @@ const elementToLatex = (element) => nodeToLatex(element).trim();
  * would make all close numbers compare as equal.
  */
 const compareCells = (a, b) => {
+  [a, b] = [cellValue(a), cellValue(b)];
   const [numA, numB] = [cellNumber(a), cellNumber(b)];
   if (numA !== null && numB !== null) {
     return numA > numB ? 1 : numA < numB ? -1 : 0;
@@ -4878,18 +5119,28 @@ function renderTable() {
   const card = document.createElement("div");
   card.className = "w-full bg-white overflow-hidden mx-auto";
 
+  // A `{value, description}` cell shows its value with a hover icon.
+  const tableCell = (cell) => {
+    const value = cellValue(cell);
+    const desc = cell !== null && typeof cell === 'object' && cell.description;
+    return desc
+      ? gridjs.html(markupToHtml(String(value)) + descIconHTML(desc))
+      : formatCell(value);
+  };
+
   const buildColumns = () => plotData.columns.map(name => ({
     name,
     hidden: tableHiddenColumns.has(name),
     sort: { compare: compareCells },
-    formatter: formatCell,
+    formatter: tableCell,
   }));
 
   tableGrid = new gridjs.Grid({
     columns: buildColumns(),
     data: orderedData,
     sort: true,
-    search: true,
+    // Search the value only, not the description HTML.
+    search: { selector: (cell) => String(cellValue(cell)) },
   });
   if (prevGridHeight) {
     card.style.minHeight = `${prevGridHeight}px`;
@@ -5041,7 +5292,7 @@ async function exportTable() {
     value += "}\n";
   }
   value += "\\begin{tabular}{l";
-  value += "c".repeat(displayedColumns.length);
+  value += "c".repeat(displayedColumns.length - 1);
   value += "}\n";
   value += "\\hline\n";
 
@@ -5068,7 +5319,22 @@ async function exportTable() {
     button.innerHTML = "Copied in clipboard!";
     setTimeout(() => button.innerHTML = defaultText, 2500);
   } catch (err) {
-    button.innerHTML = "Error!";
+    // No clipboard access (e.g. file opened on a phone): show the LaTeX in a
+    // text box so it can be copied by hand.
+    let area = document.getElementById("table-export-text");
+    if (!area) {
+      area = document.createElement("textarea");
+      area.id = "table-export-text";
+      area.readOnly = true;
+      area.rows = 10;
+      area.className = "w-full mt-2 p-2 font-mono text-xs border border-gray-300 rounded-md";
+      area.addEventListener('blur', () => area.remove());
+      button.parentElement.after(area);
+    }
+    area.value = value;
+    area.focus();
+    area.select();
+    button.innerHTML = "Copy the LaTeX below";
     setTimeout(() => button.innerHTML = defaultText, 2500);
   }
 }
@@ -5092,29 +5358,12 @@ const renderLegend = () => {
   show(container);
 
   legend.innerHTML = '';
-  const curvesDescription = window.metadata["solvers_description"];
 
   getCurves().forEach(curve => {
     const curve_data = data(curve);
-    const color = curve_data.color;
-    const symbolNumber = curve_data.marker;
-
-    let legendItem = createLegendItem(curve, color, symbolNumber);
-
-    // preserve compatibility with prev version
-    if(curvesDescription === null || curvesDescription === undefined) {
-      legend.appendChild(legendItem);
-      return;
-    }
-
-    let payload = createSolverDescription(
-      legendItem, {
-        description: curvesDescription[curve],
-      }
+    legend.appendChild(
+      createLegendItem(curve, curve_data.color, curve_data.marker % N_SYMBOLS)
     );
-    if (payload !== undefined) {
-      legend.appendChild(payload);
-    }
   });
 }
 
@@ -5176,8 +5425,15 @@ const createLegendItem = (curve, color, symbolNumber) => {
   // Create the HTML text node for the curve name in the legend
   const textContainer = document.createElement('div');
   textContainer.style.marginLeft = '0.5rem';
+  textContainer.style.flex = '1';
   textContainer.className = 'curve';
+  textContainer.setAttribute('data-curve', curve);
   textContainer.appendChild(document.createTextNode(curve));
+
+  const desc = data(curve).description;
+  if (desc) {
+    textContainer.insertAdjacentHTML('beforeend', descIconHTML(desc));
+  }
 
   // Create the horizontal bar in the legend to represent the curve
   const hBar = document.createElement('div');
@@ -5196,24 +5452,6 @@ const createLegendItem = (curve, color, symbolNumber) => {
   return item;
 }
 
-
-function createSolverDescription(legendItem, { description }) {
-  if (description === null || description === undefined || description === "")
-    return legendItem;
-
-  let descriptionContainer = document.createElement("div");
-  descriptionContainer.setAttribute("class", "curve-description-container")
-
-  descriptionContainer.innerHTML = `
-  <div class="curve-description-content text-sm">
-    <span class="curve-description-body">${description}</span>
-  </div>
-  `;
-
-  descriptionContainer.prepend(legendItem);
-
-  return descriptionContainer;
-}
 
 /**
  * Create the same svg symbol as plotly.
@@ -5302,5 +5540,7 @@ window.addEventListener('resize', () => {
                 }
             )();
         </script>
+        <!-- Shared params tooltip -->
+        <div id="params-tooltip"></div>
     </body>
 </html>
