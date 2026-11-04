@@ -1812,6 +1812,10 @@ input:checked+.slider:before {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  position: relative; /* anchors the width drag handle */
+  /* so the dragged width is the full box: the clamp compares it to the parent */
+  box-sizing: border-box;
+  max-width: 100%;
 }
 
 #legend_title {
@@ -2014,7 +2018,9 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
      keeps the figure (and its right handle) clear of the scrollbar. */
   flex: none;
   position: relative;
-  max-width: calc(100% - 1rem);
+  /* Margin, not padding, so it stays outside the box Plotly measures. */
+  margin: 1.5rem;
+  max-width: calc(100% - 4rem); /* 3rem of margin + 1rem clear of the scrollbar */
 }
 
 /* Drag handles on the right, bottom, and bottom-right corner of the figure. */
@@ -2089,13 +2095,41 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
     transparent 78%);
 }
 
-/* Compact size readout, tucked into the figure's bottom-right corner (left of
-   the diagonal handle). Stays out of the way until you hover the figure or
+/* Shift the figure's own handles out into its margin, so they sit beside the
+   plot instead of over it. Scoped to the figure divs: the legend carries a
+   .resize-handle-x too, and that one belongs on the legend's edge. */
+#plot_container,
+#plot_with_legend_container {
+  --handle: 10px;      /* thickness of the drag bands */
+  --handle-xy: 20px;   /* corner grip */
+  --handle-gap: 4px;   /* clear space between a band and the plot */
+  --handle-offset: calc(-1 * (var(--handle) + var(--handle-gap)));
+}
+#plot_container > .resize-handle-x,
+#plot_with_legend_container > .resize-handle-x {
+  right: var(--handle-offset);
+  width: var(--handle);
+}
+#plot_container > .resize-handle-y,
+#plot_with_legend_container > .resize-handle-y {
+  bottom: var(--handle-offset);
+  height: var(--handle);
+}
+#plot_container > .resize-handle-xy,
+#plot_with_legend_container > .resize-handle-xy {
+  right: var(--handle-offset);
+  bottom: var(--handle-offset);
+  width: var(--handle-xy);
+  height: var(--handle-xy);
+}
+
+/* Compact size readout, tucked into the figure's bottom-right corner (the
+   handles sit outside it). Stays out of the way until you hover the figure or
    drag a handle. JS appends it into the current figure div. */
 #figsize_controls {
   position: absolute;
   bottom: 0.5rem;
-  right: 1.5rem;
+  right: 0.5rem;
   z-index: 7;
   gap: 0.25rem;
   padding: 0.15rem 0.4rem;
@@ -2126,6 +2160,36 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
 #figsize_controls .unit {
   color: #9ca3af;
 }
+
+/* Dropdown next to the PDF button: what to put in the exported file.
+   Split button: PDF and its chevron are fused, only the outer corners round. */
+.pdf-export-btn:not(.no-menu) > a:first-child {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+#pdf-menu-toggle {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-left-color: rgba(255, 255, 255, 0.4);
+}
+
+.pdf-menu {
+  top: 100%;
+  /* Right-aligned: the button sits at the right edge of the toolbar, a
+     left-aligned menu runs off the page. */
+  right: 0;
+  z-index: 20;
+  min-width: 100%;
+  white-space: nowrap;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.pdf-menu a:hover {
+  background-color: #f3f4f6;
+}
+
 /* Image grid: no boxes, images keep their own aspect ratio */
 .image-title {
   font-size: 1.25rem;
@@ -2229,6 +2293,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
 #image-modal button:hover, #image-modal button:focus-visible {
   background: rgba(255, 255, 255, 0.3);
 }
+
 
         </style>
     </head>
@@ -2517,7 +2582,21 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                             <a href="https://github.com/benchopt/benchopt" class="text-white block px-3 py-2 rounded-md text-base font-medium">Github</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportConfigs()">Download config</a>
                             <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportHTML()">Download HTML</a>
-                            <a href="benchopt_run_2026-11-04_07h30m52.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                            <a href="benchopt_run_2026-11-04_08h46m45.parquet" class="text-white block px-3 py-2 rounded-md text-base font-medium">Download data</a>
+                            <span class="pdf-export-btn relative inline-flex items-center">
+                                <a href="#" class="text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportPDF()">Download PDF</a>
+                                <a href="#" title="Choose what to download" class="pdf-legend-choice text-white px-1" onclick="return togglePDFMenu(event)">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                    </svg>
+                                </a>
+                                <div class="pdf-menu absolute mt-1 py-1 bg-white rounded-md" style="display: none">
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" onclick="return exportPDF('both')">Figure with legend</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" onclick="return exportPDF('figure')">Figure only</a>
+                                    <a href="#" class="block px-4 py-2 text-sm text-gray-700" onclick="return exportPDF('legend')">Legend only</a>
+                                </div>
+                            </span>
+                            <a href="#" class="latex-export-btn text-white block px-3 py-2 rounded-md text-base font-medium" onclick="return exportLatex(this)">Copy LaTeX</a>
                         </div>
                     </div>
                 </nav>
@@ -2816,11 +2895,39 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
                         </span>
 
                         <span>
-                            <a href="benchopt_run_2026-11-04_07h30m52.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                            <a href="benchopt_run_2026-11-04_08h46m45.parquet" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
                                 </svg>
                                 <span class="hidden lg:inline">Data</span>
+                            </a>
+                        </span>
+
+                        <span class="pdf-export-btn relative inline-flex">
+                            <a href="#" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" onclick="return exportPDF()">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                                <span class="hidden lg:inline">PDF</span>
+                            </a>
+                            <a href="#" id="pdf-menu-toggle" title="Choose what to download" class="pdf-legend-choice inline-flex items-center px-2 py-2 border border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" onclick="return togglePDFMenu(event)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/>
+                                </svg>
+                            </a>
+                            <div class="pdf-menu absolute mt-1 py-1 bg-white rounded-md" style="display: none">
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" onclick="return exportPDF('both')">Figure with legend</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" onclick="return exportPDF('figure')">Figure only</a>
+                                <a href="#" class="block px-4 py-2 text-sm text-gray-700" onclick="return exportPDF('legend')">Legend only</a>
+                            </div>
+                        </span>
+
+                        <span class="latex-export-btn" style="display: none">
+                            <a href="#" class="inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" onclick="return exportLatex(this)">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+                                </svg>
+                                <span class="hidden lg:inline">LaTeX</span>
                             </a>
                         </span>
                     </div>
@@ -2927,6 +3034,9 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
         <script src="https://cdn.plot.ly/plotly-2.12.1.min.js"></script>
         <!-- Used to render the table plots -->
         <script src="https://cdn.jsdelivr.net/npm/gridjs@6.2.0/dist/gridjs.umd.js"></script>
+        <!-- Used to write the vector PDF exports -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+        <script src="https://unpkg.com/svg2pdf.js@2.2.3/dist/svg2pdf.umd.min.js"></script>
         <!-- Used for the brand animation -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
         <!-- Define the brand animation -->
@@ -2970,7 +3080,7 @@ g.hovertext:has(path + [data-unformatted*="lower fence"])
         </script>
         <!-- Manage plot -->
         <script>
-            window._plots = {"objective_curve": {"objective_curve_simulated_Quadratic_objective_value_Time": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [3.327999820612604e-06, 3.132149959128583e-05, 4.0622999676998006e-05, 5.005349976272555e-05, 5.842599966854323e-05, 8.605749962953269e-05, 0.000128668500110507, 0.0001528894995317387, 0.00018317049989491352, 0.00022242600061872508, 0.0002823870013344276, 0.00036555400083670975, 0.000981578002210881, 0.0011544099997990998, 0.0013549820014304714, 0.0016849645094225707, 0.002165310511827556, 0.002896895016419876, 0.004019678512577229, 0.005584566015386372, 0.007832632516965532], "y": [4.564690796971645, 4.560126106174674, 4.555565980068498, 4.551010414088429, 4.5464594036743415, 4.537371031326396, 4.52377252580814, 4.505704560249496, 4.47873782840987, 4.438590046865784, 4.376852086691306, 4.285851536702351, 4.154963929255737, 3.964105502619164, 3.6959780242953673, 3.327404840320574, 2.8408793093541753, 2.2411632546023514, 1.5711650633772969, 0.9217794843119816, 0.41443090148644807], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "x_low": [3.1701998523203657e-06, 2.8298399774939754e-05, 3.6559799809765536e-05, 4.458779985725414e-05, 5.210739964240929e-05, 8.494239955325611e-05, 0.00011624820035649464, 0.0001406833996952628, 0.00017125059948739363, 0.00021096660038892877, 0.00027191160133952506, 0.00035453020118438874, 0.0006789698038119241, 0.0008950210016337223, 0.001127534006809583, 0.0015104764144780348, 0.00207655461745162, 0.0028644968100707048, 0.003811120003047108, 0.005112619204555813, 0.006996438611167832], "x_high": [3.485799788904842e-06, 3.43445994076319e-05, 4.4686199544230476e-05, 5.551919966819696e-05, 6.474459969467717e-05, 8.717259970580926e-05, 0.0001410887998645194, 0.0001650955993682146, 0.0001950904003024334, 0.0002338854008485214, 0.0002928624013293302, 0.00037657780048903076, 0.0012841862006098383, 0.001413798997964477, 0.00158242999605136, 0.0018594526043671066, 0.002254066406203492, 0.002929293222769047, 0.004228237022107351, 0.006056512826216931, 0.008668826422763232], "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, {"x": [1.8880000425269827e-06, 1.592050011822721e-05, 2.3305000468099024e-05, 3.018400047949399e-05, 3.7326000892790034e-05, 4.798150166607229e-05, 6.321250157270697e-05, 8.556600096198963e-05, 0.00010827050027728546, 0.00013998850135976681, 0.00018732000171439722, 0.0002569810017121199, 0.0003559750020940555, 0.0005051169991929783, 0.0007555405013590644, 0.0010862804988391872, 0.0016309804932461702, 0.003909114992893592, 0.004702399996403983, 0.0058988919950024865, 0.007788758504375437], "y": [4.564690796971645, 4.519043889001928, 4.47385345011191, 4.42911491561079, 4.384823766454682, 4.2975657735022335, 4.169923772463444, 4.005612137832532, 3.771204313969031, 3.445060184595422, 2.992881610104396, 2.4234196459884405, 1.7746783728440019, 1.1065570332324286, 0.5475671990959168, 0.19060437172720077, 0.03894875714270395, 0.003597780996242902, 0.00010151466963583103, 4.787265630034478e-07, 1.558146196685852e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "x_low": [1.8297998394700698e-06, 1.4672799807158299e-05, 2.1283000023686327e-05, 2.7387400041334332e-05, 3.366900054970756e-05, 4.2881201443378815e-05, 5.5100801546359435e-05, 7.334760084631853e-05, 9.212060067511629e-05, 0.00011822080141428159, 0.00015696240352554015, 0.0002137504026904935, 0.0002943712022897671, 0.0004157781977482955, 0.0006067347983844229, 0.0008803673965303461, 0.0013596871909612672, 0.0025782351936868507, 0.0033543445935720227, 0.004533446796267526, 0.0063281044107498016], "x_high": [1.9462002455838954e-06, 1.716820042929612e-05, 2.532700091251172e-05, 3.298060091765365e-05, 4.0983001235872506e-05, 5.3081801888765766e-05, 7.13242015990545e-05, 9.778440107766073e-05, 0.00012442039987945464, 0.00016175620130525202, 0.0002176775999032543, 0.0003002116007337463, 0.000417578801898344, 0.000594455800637661, 0.0009043462043337059, 0.0012921936011480286, 0.0019022737955310732, 0.005239994792100333, 0.0060504553992359435, 0.007264337193737447, 0.009249412598001073], "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}]}, "objective_curve_simulated_Quadratic_objective_value_Iteration": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [4.564690796971645, 4.560126106174674, 4.555565980068498, 4.551010414088429, 4.5464594036743415, 4.537371031326396, 4.52377252580814, 4.505704560249496, 4.47873782840987, 4.438590046865784, 4.376852086691306, 4.285851536702351, 4.154963929255737, 3.964105502619164, 3.6959780242953673, 3.327404840320574, 2.8408793093541753, 2.2411632546023514, 1.5711650633772969, 0.9217794843119816, 0.41443090148644807], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, {"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [4.564690796971645, 4.519043889001928, 4.47385345011191, 4.42911491561079, 4.384823766454682, 4.2975657735022335, 4.169923772463444, 4.005612137832532, 3.771204313969031, 3.445060184595422, 2.992881610104396, 2.4234196459884405, 1.7746783728440019, 1.1065570332324286, 0.5475671990959168, 0.19060437172720077, 0.03894875714270395, 0.003597780996242902, 0.00010151466963583103, 4.787265630034478e-07, 1.558146196685852e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}]}}, "bar_chart": {"bar_chart_simulated_Quadratic_objective_value_True": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.006438976007302699, 0.009226289026628365], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [0.0053543350149993785, 0.010223181993751496], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "bar_chart_simulated_Quadratic_objective_value_False": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [3.590999767766334e-06, 3.0649998734588735e-06], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [1.7909997040987946e-06, 1.985000380955171e-06], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "boxplot": {"boxplot_simulated_Quadratic_objective_value_Solver_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.006438976007302699, 0.009226289026628365]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[0.0053543350149993785, 0.010223181993751496]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Solver_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.41443090148644807, 0.41443090148644807]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[1.558146196685852e-10, 1.558146196685852e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.590999767766334e-06, 3.0649998734588735e-06], [3.6359999285195954e-05, 2.6282999897375703e-05], [4.739499945571879e-05, 3.385099989827722e-05], [5.91629996051779e-05, 4.09439999202732e-05], [6.895699971209979e-05, 4.789499962498667e-05], [8.419899950240506e-05, 8.791599975666031e-05], [0.00014936899970052764, 0.00010796800052048638], [0.00017323299925919855, 0.00013254599980427884], [0.00020303700057411334, 0.0001633039992157137], [0.00024152500100171892, 0.00020332700023573125], [0.00029984600132593187, 0.0002649280013429234], [0.0003839270002572448, 0.0003471810014161747], [0.0014859249995424761, 0.00047723100487928605], [0.0015867249967413954, 0.0007220950028568041], [0.0017340619924652856, 0.0009759020103956573], [0.0019757780009967973, 0.001394151017848344], [0.002313237002454116, 0.0020173840212009964], [0.002842898005837924, 0.002950892027001828], [0.003672080996693694, 0.004367276028460765], [0.00479798799733544, 0.006371144033437304], [0.006438976007302699, 0.009226289026628365]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[1.7909997040987946e-06, 1.985000380955171e-06], [1.3840999599779025e-05, 1.8000000636675395e-05], [1.9934999727411196e-05, 2.6675001208786853e-05], [2.5522999749227893e-05, 3.4845001209760085e-05], [3.123100032098591e-05, 4.3421001464594156e-05], [3.9481001294916496e-05, 5.6482002037228085e-05], [4.969300152879441e-05, 7.673200161661953e-05], [6.520200076920446e-05, 0.0001059300011547748], [8.135400094033685e-05, 0.00013518699961423408], [0.00010370900145062478, 0.00017626800126890885], [0.00013672400473296875, 0.0002379159986958257], [0.00018493000334274257, 0.00032903200008149724], [0.0002533020024202415, 0.0004586480017678696], [0.00035621899678517366, 0.0006540150016007829], [0.0005075309964013286, 0.0010035500063168001], [0.0007430919949911186, 0.0014294690026872559], [0.0011788249894379987, 0.0020831359970543417], [0.00169098199421569, 0.006127247991571494], [0.0024556409916840494, 0.006949159001123917], [0.003623149997110886, 0.008174633992894087], [0.0053543350149993785, 0.010223181993751496]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[4.564690796971645, 4.564690796971645], [4.560126106174674, 4.560126106174674], [4.555565980068498, 4.555565980068498], [4.551010414088429, 4.551010414088429], [4.5464594036743415, 4.5464594036743415], [4.537371031326396, 4.537371031326396], [4.52377252580814, 4.52377252580814], [4.505704560249496, 4.505704560249496], [4.47873782840987, 4.47873782840987], [4.438590046865784, 4.438590046865784], [4.376852086691306, 4.376852086691306], [4.285851536702351, 4.285851536702351], [4.154963929255737, 4.154963929255737], [3.964105502619164, 3.964105502619164], [3.6959780242953673, 3.6959780242953673], [3.327404840320574, 3.327404840320574], [2.8408793093541753, 2.8408793093541753], [2.2411632546023514, 2.2411632546023514], [1.5711650633772969, 1.5711650633772969], [0.9217794843119816, 0.9217794843119816], [0.41443090148644807, 0.41443090148644807]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[4.564690796971645, 4.564690796971645], [4.519043889001928, 4.519043889001928], [4.47385345011191, 4.47385345011191], [4.42911491561079, 4.42911491561079], [4.384823766454682, 4.384823766454682], [4.2975657735022335, 4.2975657735022335], [4.169923772463444, 4.169923772463444], [4.005612137832532, 4.005612137832532], [3.771204313969031, 3.771204313969031], [3.445060184595422, 3.445060184595422], [2.992881610104396, 2.992881610104396], [2.4234196459884405, 2.4234196459884405], [1.7746783728440019, 1.7746783728440019], [1.1065570332324286, 1.1065570332324286], [0.5475671990959168, 0.5475671990959168], [0.19060437172720077, 0.19060437172720077], [0.03894875714270395, 0.03894875714270395], [0.003597780996242902, 0.003597780996242902], [0.00010151466963583103, 0.00010151466963583103], [4.787265630034478e-07, 4.787265630034478e-07], [1.558146196685852e-10, 1.558146196685852e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "table": {"table_simulated_Quadratic": {"title": "Quadratic<br />Data: simulated", "columns": ["solver", "value", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [[{"value": "gd[lr=0.001]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, 0.41443090148644807, 0.007832632516965532], [{"value": "gd[lr=0.01]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}, 1.558146196685852e-10, 0.007788758504375437]]}}};
+            window._plots = {"objective_curve": {"objective_curve_simulated_Quadratic_objective_value_Time": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Time", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [2.6634997993824072e-06, 2.074049962175195e-05, 2.723299940043944e-05, 3.3349998830090044e-05, 3.88024986932578e-05, 4.7771998197276844e-05, 5.7556998854124686e-05, 7.006549822108354e-05, 8.98549969861051e-05, 0.00011687699770845938, 0.00015999399829524918, 0.00022244949786909274, 0.0003176234990860394, 0.00045397949861580855, 0.0006784939978388138, 0.0009650294973653217, 0.0014175609958329005, 0.0020673339836321247, 0.002939662986136682, 0.004348337983174133, 0.006509935489702912], "y": [3.633431918881712, 3.6297984869628306, 3.6261686884758673, 3.6225425197873915, 3.6189199772676046, 3.6116857562330464, 3.60086153040993, 3.5864796750576278, 3.56501452252659, 3.533057433334185, 3.4839148549905614, 3.4114796523290756, 3.307294893309232, 3.155374176184441, 2.941948342671845, 2.6485690907877237, 2.2613013716386035, 1.7839355318654637, 1.2506260653830499, 0.7337239584095053, 0.3298813726070512], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "x_low": [2.378199678787496e-06, 1.8992399418493733e-05, 2.549599921621848e-05, 3.1921398658596445e-05, 3.726379873114638e-05, 4.648619815270649e-05, 5.626279835269088e-05, 6.810199756728253e-05, 8.952079751907149e-05, 0.000113566198888293, 0.00014994099874456878, 0.00020313339846325106, 0.0002881266020267503, 0.000403347001883958, 0.0005818987994643976, 0.0008279256018795423, 0.001234192000265466, 0.0017901765864735352, 0.0025849633926554815, 0.003826725586259272, 0.005692382391134743], "x_high": [2.9487999199773183e-06, 2.248859982501017e-05, 2.89699995846604e-05, 3.477859900158364e-05, 4.0341198655369226e-05, 4.9057798241847196e-05, 5.885119935555849e-05, 7.202899887488456e-05, 9.018919645313872e-05, 0.00012018779652862576, 0.0001700469978459296, 0.0002417655972749344, 0.0003471203961453284, 0.0005046119953476591, 0.00077508919621323, 0.0011021333928511012, 0.0016009299914003352, 0.0023444913807907143, 0.0032943625796178822, 0.004869950380088995, 0.007327488588271081], "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, {"x": [1.8035002540273126e-06, 1.3125500117894262e-05, 1.8807000742526725e-05, 2.4834500891302014e-05, 3.107450083916774e-05, 3.900200044881785e-05, 4.8657500428817e-05, 6.011299910824164e-05, 7.560399899375625e-05, 9.707499884825666e-05, 0.00012848799724451965, 0.00018554399866843596, 0.00025323049840153544, 0.0003524209969327785, 0.0004977614958079357, 0.000715517996923154, 0.001067047488049866, 0.0015886659866737318, 0.0023327804819928133, 0.0034571804808365414, 0.005116383973017946], "y": [3.633431918881712, 3.597097599692895, 3.561126623695966, 3.525515357459006, 3.4902602038844157, 3.420804025827116, 3.3192027254560252, 3.1884128944541827, 3.001827448222799, 2.742221147921333, 2.382293139943199, 1.929009145684335, 1.4126198974787894, 0.8808043794066289, 0.43585605847556885, 0.15171849286516043, 0.031002682042989248, 0.002863784841147554, 8.080429919378712e-05, 3.810598472391705e-07, 1.2402587072801628e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "x_low": [1.7126005332102067e-06, 1.2862999756180216e-05, 1.842300043790601e-05, 2.410100059933029e-05, 3.091100024903426e-05, 3.883700028382009e-05, 4.8630200581101235e-05, 6.010159922880121e-05, 7.557099906989606e-05, 9.698559952084907e-05, 0.00012831939820898697, 0.0001795529989976785, 0.000247608199606475, 0.00034680919870879736, 0.0004928555954393232, 0.0007111037961294642, 0.0010555997889241553, 0.001586888783640461, 0.0023283815839022282, 0.003456157182517927, 0.005111811972528813], "x_high": [1.8943999748444185e-06, 1.3388000479608308e-05, 1.919100104714744e-05, 2.5568001183273738e-05, 3.123800142930122e-05, 3.916700061381562e-05, 4.868480027653277e-05, 6.012439898768207e-05, 7.563699891761644e-05, 9.716439817566424e-05, 0.00012865659628005232, 0.00019153499833919342, 0.0002588527971965959, 0.00035803279515675965, 0.0005026673961765482, 0.0007199321977168438, 0.0010784951871755765, 0.0015904431897070027, 0.0023371793800833983, 0.0034582037791551557, 0.00512095597350708], "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}]}, "objective_curve_simulated_Quadratic_objective_value_Iteration": {"title": "Quadratic<br />Data: simulated ", "xlabel": "Iteration", "ylabel": "Objective Value", "type": "scatter", "data": [{"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [3.633431918881712, 3.6297984869628306, 3.6261686884758673, 3.6225425197873915, 3.6189199772676046, 3.6116857562330464, 3.60086153040993, 3.5864796750576278, 3.56501452252659, 3.533057433334185, 3.4839148549905614, 3.4114796523290756, 3.307294893309232, 3.155374176184441, 2.941948342671845, 2.6485690907877237, 2.2613013716386035, 1.7839355318654637, 1.2506260653830499, 0.7337239584095053, 0.3298813726070512], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)", "marker": 0, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, {"x": [0, 1, 2, 3, 4, 6, 9, 13, 19, 28, 42, 63, 94, 141, 211, 316, 474, 711, 1066, 1599, 2398], "y": [3.633431918881712, 3.597097599692895, 3.561126623695966, 3.525515357459006, 3.4902602038844157, 3.420804025827116, 3.3192027254560252, 3.1884128944541827, 3.001827448222799, 2.742221147921333, 2.382293139943199, 1.929009145684335, 1.4126198974787894, 0.8808043794066289, 0.43585605847556885, 0.15171849286516043, 0.031002682042989248, 0.002863784841147554, 8.080429919378712e-05, 3.810598472391705e-07, 1.2402587072801628e-10], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)", "marker": 1, "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}]}}, "bar_chart": {"bar_chart_simulated_Quadratic_objective_value_True": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [0.005147346992089297, 0.007872523987316526], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [0.005108763972202723, 0.005124003973833169], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "bar_chart_simulated_Quadratic_objective_value_False": {"title": "Quadratic<br />Data: simulated", "ylabel": "Time [sec]", "type": "bar_chart", "data": [{"y": [3.139000000373926e-06, 2.1879995983908884e-06], "text": "", "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"y": [1.6520007193321362e-06, 1.954999788722489e-06], "text": "", "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "boxplot": {"boxplot_simulated_Quadratic_objective_value_Solver_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Time", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.005147346992089297, 0.007872523987316526]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[0.005108763972202723, 0.005124003973833169]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Solver_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Solver", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": ["gd[lr=0.001]"], "y": [[0.3298813726070512, 0.3298813726070512]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": ["gd[lr=0.01]"], "y": [[1.2402587072801628e-10, 1.2402587072801628e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Time": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Time", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.139000000373926e-06, 2.1879995983908884e-06], [2.3653999960515648e-05, 1.7826999282988254e-05], [3.0127999707474373e-05, 2.4337999093404505e-05], [3.573099911591271e-05, 3.096899854426738e-05], [4.1366998630110174e-05, 3.623799875640543e-05], [4.991499827156076e-05, 4.5628998122992925e-05], [5.9713999689847697e-05, 5.5399998018401675e-05], [7.333799931075191e-05, 6.679299713141518e-05], [8.929799787438242e-05, 9.04119960978278e-05], [0.00011135899967484875, 0.00012239499574207002], [0.0001432389990441152, 0.00017674899754638318], [0.00019025599885935662, 0.00025464299687882885], [0.0002684620039872243, 0.00036678499418485444], [0.0003695920040627243, 0.0005383669931688928], [0.0005175020005481201, 0.0008394859951295075], [0.0007365230048890226, 0.001193535989841621], [0.0011119460032205097, 0.0017231759884452913], [0.001605404988367809, 0.0025292629788964405], [0.002348496997001348, 0.0035308289752720157], [0.003478983988316031, 0.005217691978032235], [0.005147346992089297, 0.007872523987316526]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[1.6520007193321362e-06, 1.954999788722489e-06], [1.3563000720751006e-05, 1.2687999515037518e-05], [1.9447001250227913e-05, 1.8167000234825537e-05], [2.605700137792155e-05, 2.3612000404682476e-05], [3.134700182272354e-05, 3.080199985561194e-05], [3.9277000723814126e-05, 3.872700017382158e-05], [4.870300017500995e-05, 4.861200068262406e-05], [6.009399930917425e-05, 6.0131998907309026e-05], [7.565899886685656e-05, 7.554899912065594e-05], [9.6925999969244e-05, 9.722399772726931e-05], [0.00012820699885196518, 0.0001287689956370741], [0.00019552899811969837, 0.00017555899921717355], [0.0002626009963933029, 0.00024386000040976796], [0.0003617739939727471, 0.0003430679998928099], [0.0005059379964222899, 0.0004895849951935816], [0.0007228749982459703, 0.0007081609956003376], [0.0010479679895070149, 0.001086126986592717], [0.0015857039816182805, 0.0015916279917291831], [0.002340111978810455, 0.0023254489851751714], [0.003458885978034232, 0.003455474983638851], [0.005108763972202723, 0.005124003973833169]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}, "boxplot_simulated_Quadratic_objective_value_Iteration_Objective Metric": {"title": "Quadratic<br />Data: simulated", "xlabel": "Iteration", "ylabel": "Objective Metric", "type": "boxplot", "data": [{"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.633431918881712, 3.633431918881712], [3.6297984869628306, 3.6297984869628306], [3.6261686884758673, 3.6261686884758673], [3.6225425197873915, 3.6225425197873915], [3.6189199772676046, 3.6189199772676046], [3.6116857562330464, 3.6116857562330464], [3.60086153040993, 3.60086153040993], [3.5864796750576278, 3.5864796750576278], [3.56501452252659, 3.56501452252659], [3.533057433334185, 3.533057433334185], [3.4839148549905614, 3.4839148549905614], [3.4114796523290756, 3.4114796523290756], [3.307294893309232, 3.307294893309232], [3.155374176184441, 3.155374176184441], [2.941948342671845, 2.941948342671845], [2.6485690907877237, 2.6485690907877237], [2.2613013716386035, 2.2613013716386035], [1.7839355318654637, 1.7839355318654637], [1.2506260653830499, 1.2506260653830499], [0.7337239584095053, 0.7337239584095053], [0.3298813726070512, 0.3298813726070512]], "label": "gd[lr=0.001]", "color": "rgba(31, 119, 180, 1.0)"}, {"x": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20], "y": [[3.633431918881712, 3.633431918881712], [3.597097599692895, 3.597097599692895], [3.561126623695966, 3.561126623695966], [3.525515357459006, 3.525515357459006], [3.4902602038844157, 3.4902602038844157], [3.420804025827116, 3.420804025827116], [3.3192027254560252, 3.3192027254560252], [3.1884128944541827, 3.1884128944541827], [3.001827448222799, 3.001827448222799], [2.742221147921333, 2.742221147921333], [2.382293139943199, 2.382293139943199], [1.929009145684335, 1.929009145684335], [1.4126198974787894, 1.4126198974787894], [0.8808043794066289, 0.8808043794066289], [0.43585605847556885, 0.43585605847556885], [0.15171849286516043, 0.15171849286516043], [0.031002682042989248, 0.031002682042989248], [0.002863784841147554, 0.002863784841147554], [8.080429919378712e-05, 8.080429919378712e-05], [3.810598472391705e-07, 3.810598472391705e-07], [1.2402587072801628e-10, 1.2402587072801628e-10]], "label": "gd[lr=0.01]", "color": "rgba(255, 127, 14, 1.0)"}]}}, "table": {"table_simulated_Quadratic": {"title": "Quadratic<br />Data: simulated", "columns": ["solver", "value", "time (s)"], "default_order_ascending": true, "default_order_column": 0, "type": "table", "data": [[{"value": "gd[lr=0.001]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.001</td></tr></table>"}, 0.3298813726070512, 0.006509935489702912], [{"value": "gd[lr=0.01]", "description": "<div class=\"param-title\">Parameters</div><table><tr><td class=\"param-key\">lr</td><td class=\"param-val\">0.01</td></tr></table>"}, 1.2402587072801628e-10, 0.005116383973017946]]}}};
             window.metadata = {"plot_configs": {"Subopt. (log)": {"plot_kind": "objective_curve", "scale": "loglog"}, "Runtimes": {"plot_kind": "bar_chart"}}};
 
             window.addEventListener("load", () => {
@@ -3822,14 +3932,15 @@ const setFigSize = () => {
 // (Re)create the drag handles on the right ('x') and bottom ('y') edges.
 // Plotly.purge leaves these children in place, so clear any stale ones first.
 const addResizeHandles = (div) => {
-  // Clear from plot_container (the common ancestor) so handles left on the
-  // other chart type's div are removed too, not just those inside `div`.
-  document.getElementById('plot_container')
-    .querySelectorAll('.resize-handle').forEach(h => h.remove());
+  // Clear both figure divs so handles left on the other chart type's div are
+  // removed too. Direct children only: the legend has its own handle.
+  document.querySelectorAll(
+    '#plot_container > .resize-handle, #plot_with_legend_container > .resize-handle'
+  ).forEach(h => h.remove());
   ['x', 'y', 'xy'].forEach(axis => div.appendChild(makeResizeHandle(div, axis)));
 };
 
-const makeResizeHandle = (div, axis) => {
+const makeResizeHandle = (div, axis, onResize = resizeFig) => {
   const handle = document.createElement('div');
   handle.className = `resize-handle resize-handle-${axis}`;
   handle.addEventListener('pointerdown', (e) => {
@@ -3843,7 +3954,7 @@ const makeResizeHandle = (div, axis) => {
         div.style.width = `${Math.max(200, startW + ev.clientX - startX)}px`;
       if (axis !== 'x')
         div.style.height = `${Math.max(200, startH + ev.clientY - startY)}px`;
-      resizeFig(div);
+      onResize(div);
     };
     const onUp = () => {
       div.classList.remove('resizing');
@@ -4020,7 +4131,7 @@ const getScatterData = () => {
       curves.push({
         type: 'scatter',
         mode: 'lines',
-        legend: false,
+        showlegend: false,
         line: {
           width: 0,
           color: curveData.color,
@@ -4050,7 +4161,7 @@ const getScatterData = () => {
       curves.push({
         type: 'scatter',
         mode: 'lines',
-        legend: false,
+        showlegend: false,
         line: {
           width: 0,
           color: curveData.color,
@@ -4275,6 +4386,371 @@ const exportHTML = () => {
   return downloadBlob(blob, location.pathname.split("/").pop());
 };
 
+const exportLatex = (button) => {
+  // Copy the table as displayed by Grid.js to the clipboard as a booktabs
+  // LaTeX tabular, so the output matches the current sorting, search filter,
+  // visible columns and float precision.
+  const columns = Array.from(
+    document.querySelectorAll('#table_container .gridjs-th-content'),
+    elementToLatex);
+  const rows = Array.from(
+    document.querySelectorAll('#table_container .gridjs-table tbody tr'),
+    tr => Array.from(tr.querySelectorAll('td'), elementToLatex));
+
+  const title = (getPlotData() || {}).title;
+  let latex = "% Table generated with benchopt, needs \\usepackage{booktabs}\n";
+  if (title) {
+    // Caption above the table, kept on a single line.
+    latex += "\\begin{table}[h]\n\\centering\n\\caption{";
+    latex += escapeLatex(title.replace(/<br\s*\/?>/g, ", "));
+    latex += "}\n";
+  }
+  latex += '\\begin{tabular}{';
+  latex += 'l'.repeat(columns.length);
+  latex += '}\n\\toprule\n';
+  latex += columns.join(' & ');
+  latex += ' \\\\\n\\midrule\n';
+  latex += rows.map(r => r.join(' & ') + ' \\\\').join('\n');
+  latex += '\n\\bottomrule\n\\end{tabular}';
+  if (title) latex += "\n\\end{table}";
+
+  // Flash feedback on the button label (the trailing span on the desktop
+  // button, the link text itself in the mobile menu).
+  const label = button.querySelector('span:last-child') || button;
+  const original = label.textContent;
+  navigator.clipboard.writeText(latex)
+    .then(() => label.textContent = 'Copied!', () => {
+      // No clipboard access (e.g. file opened on a phone): show the LaTeX in
+      // a text box so it can be copied by hand.
+      let area = document.getElementById("table-export-text");
+      if (!area) {
+        area = document.createElement("textarea");
+        area.id = "table-export-text";
+        area.readOnly = true;
+        area.rows = 10;
+        area.className = "w-full mt-2 p-2 font-mono text-xs border border-gray-300 rounded-md";
+        area.addEventListener('blur', () => area.remove());
+        document.getElementById('table_container').appendChild(area);
+      }
+      area.value = latex;
+      area.focus();
+      area.select();
+      label.textContent = 'Copy below';
+    })
+    .then(() => setTimeout(() => label.textContent = original, 2500));
+  return false;
+};
+
+// svg2pdf lays <tspan>s out on its own and gets them wrong: the exponents of
+// the log ticks end up off the page.
+const flattenText = (svg) => {
+  svg.querySelectorAll('text').forEach(text => {
+    // Text nodes in rendering order, with where each one starts in the string.
+    const runs = [];
+    let index = 0;
+    const walk = node => node.childNodes.forEach(child => {
+      if (child.nodeType === Node.TEXT_NODE) {
+        runs.push({node: child, index: index, parent: node});
+        index += child.length;
+      } else {
+        walk(child);
+      }
+    });
+    walk(text);
+
+    const spans = runs.map(run => {
+      const content = run.node.data.replace(/−/g, '-')
+        .replace(/​/g, '');
+      if (content.trim() === '') return null;
+
+      const at = text.getStartPositionOfChar(run.index);
+      const style = getComputedStyle(run.parent);
+      const span = svgNode('tspan', {
+        x: at.x, y: at.y, fill: style.fill,
+        'font-family': style.fontFamily, 'font-size': style.fontSize,
+        'font-weight': style.fontWeight, 'font-style': style.fontStyle,
+      });
+      span.textContent = content;
+      return span;
+    });
+
+    // The runs carry their own position now, so the anchoring is already done.
+    text.setAttribute('text-anchor', 'start');
+    text.textContent = '';
+    spans.filter(span => span).forEach(span => text.appendChild(span));
+  });
+};
+
+// jsPDF only knows the standard PDF fonts, so the figures would come out in
+// Helvetica instead of the DejaVu Sans they are drawn with.
+const DEJAVU_URL =
+  'https://cdn.jsdelivr.net/npm/dejavu-fonts-ttf@2.37.3/ttf/DejaVuSans.ttf';
+// Private name for the page copy, so the plots on screen keep their font.
+const EXPORT_FONT = 'DejaVu Sans Export';
+let dejaVuFont = null;
+const loadDejaVu = () => {
+  dejaVuFont = dejaVuFont || fetch(DEJAVU_URL)
+    .then(response => response.blob())
+    .then(blob => Promise.all([
+      // Base64 without walking the 750kB of glyphs one character at a time.
+      new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result.split(',')[1]);
+        reader.readAsDataURL(blob);
+      }),
+      // Plotly lays the export out with it, or with the browser's fallback
+      // font when DejaVu is not installed, and the PDF text then overflows.
+      blob.arrayBuffer()
+        .then(buffer => new FontFace(EXPORT_FONT, buffer).load())
+        .then(face => document.fonts.add(face)),
+    ]))
+    .then(([base64]) => base64);
+  return dejaVuFont;
+};
+const embedDejaVu = (pdf) => loadDejaVu().then(base64 => {
+  pdf.addFileToVFS('DejaVuSans.ttf', base64);
+  pdf.addFont('DejaVuSans.ttf', EXPORT_FONT, 'normal');
+}).catch(err => console.warn('Falling back to Helvetica:', err));
+
+// Shrink the title to fit in the figure width.
+const fitTitle = (layout, width) => {
+  const ctx = document.createElement('canvas').getContext('2d');
+  ctx.font = `17px "${EXPORT_FONT}"`;
+  const lines = String((layout.title || {}).text || '')
+    .split(/<br\s*\/?>/).map(line => line.replace(/<[^>]*>/g, ''));
+  const widest = Math.max(...lines.map(line => ctx.measureText(line).width));
+  const size = Math.min(17, Math.floor(17 * (width - 20) / widest));
+  return {...layout.title, font: {...(layout.title || {}).font, size: size}};
+};
+
+// Write the PDF with jsPDF + svg2pdf.js.
+const svgToPDF = (svg, filename, width, height) => {
+  // svg2pdf measures text through getBBox, so the SVG has to be rendered:
+  // park it off-screen for the conversion.
+  svg.style.cssText = 'position:fixed;left:-10000px;top:0';
+  document.body.appendChild(svg);
+
+  flattenText(svg);
+
+  // The orientation has to match, jsPDF sorts the format to fit it otherwise.
+  const pdf = new window.jspdf.jsPDF({
+    unit: 'pt', format: [width, height],
+    orientation: width >= height ? 'landscape' : 'portrait',
+    putOnlyUsedFonts: true,  // or every export carries the 750kB of DejaVu
+  });
+  return embedDejaVu(pdf)
+    .then(() => pdf.svg(svg, {width: width, height: height, x: 0, y: 0}))
+    .then(() => pdf.save(filename + '.pdf'))
+    .catch(err => console.error('PDF export failed:', err))
+    .then(() => svg.remove());
+};
+
+const exportFilename = () => [state().plot_kind,
+  ...getPlotDropdowns().map(dropdown => state()[dropdown])].join('_');
+
+const SVG_NS = 'http://www.w3.org/2000/svg';
+const svgNode = (tag, attrs) => {
+  const node = document.createElementNS(SVG_NS, tag);
+  for (const key in attrs) node.setAttribute(key, attrs[key]);
+  return node;
+};
+
+// The legend is plain HTML, so redraw it as an SVG, reading the position of
+// every piece from the live layout: the export then wraps exactly like what
+// is on screen, whatever width the resize handle was dragged to.
+const legendSVG = () => {
+  const all = Array.from(document.querySelectorAll('#plot_legend .curve'),
+                         label => label.parentElement);
+  // Hidden curves are filtered out
+  const hidden = all.filter(
+    item => !isVisible(item.querySelector('.curve').dataset.curve));
+  hidden.forEach(item => { item.style.display = 'none'; });
+  const items = all.filter(item => !hidden.includes(item));
+  const bounds = items.map(item => item.getBoundingClientRect());
+  const left = Math.min(...bounds.map(b => b.left));
+  const top = Math.min(...bounds.map(b => b.top));
+  const width = Math.ceil(Math.max(...bounds.map(b => b.right)) - left);
+  const height = Math.ceil(Math.max(...bounds.map(b => b.bottom)) - top);
+
+  const svg = svgNode('svg', {
+    xmlns: SVG_NS, width: width, height: height,
+    viewBox: `0 0 ${width} ${height}`,
+  });
+
+  // The HTML legend is left-aligned, the exported one is centred: shift each
+  // wrapped row (items sharing a top) by what is left over on its right.
+  const rowShift = bounds.map(box => {
+    const row = bounds.filter(other => Math.abs(other.top - box.top) < 1);
+    return (width - (Math.max(...row.map(b => b.right))
+                     - Math.min(...row.map(b => b.left)))) / 2
+           - (Math.min(...row.map(b => b.left)) - left);
+  });
+
+  items.forEach((item, i) => {
+    const box = bounds[i];
+    const group = svgNode('g', {transform: `translate(${rowShift[i]}, 0)`});
+    const at = el => {
+      const rect = el.getBoundingClientRect();
+      return {x: rect.left - left, y: rect.top - top,
+              w: rect.width, h: rect.height};
+    };
+
+    // The curve line, a top border on screen (see createLegendItem).
+    const hBar = item.querySelector('div[style*="border-top"]');
+    const bar = at(hBar);
+    // The stroke straddles y, the border is drawn below it: shift by half.
+    group.appendChild(svgNode('line', {
+      x1: bar.x, x2: bar.x + bar.w,
+      y1: bar.y + bar.h / 2, y2: bar.y + bar.h / 2,
+      stroke: getComputedStyle(hBar).borderTopColor, 'stroke-width': 2,
+    }));
+
+    // Marker: the path is drawn around (15, 15) of its holder <svg>, so line
+    // that point up with the middle of the box the <svg> actually occupies.
+    const symbol = item.querySelector('svg');
+    const marker = at(symbol);
+    const holder = svgNode('g', {
+      transform: `translate(${marker.x + marker.w / 2 - 15}, `
+                 + `${marker.y + marker.h / 2 - 15})`,
+    });
+    Array.from(symbol.children).forEach(
+      child => holder.appendChild(child.cloneNode(true)));
+    group.appendChild(holder);
+
+    const label = item.querySelector('.curve');
+    const style = getComputedStyle(label);
+    const text = svgNode('text', {
+      x: at(label).x, y: (box.top + box.bottom) / 2 - top,
+      // svg2pdf reads alignment-baseline (or vertical-align) only, it ignores
+      // dominant-baseline: with that one the text comes out half a line high.
+      'alignment-baseline': 'central',
+      'font-family': style.fontFamily, 'font-size': style.fontSize,
+      fill: style.color,
+    });
+    text.textContent = label.dataset.curve;
+    group.appendChild(text);
+
+    svg.appendChild(group);
+  });
+
+  hidden.forEach(item => { item.style.display = 'flex'; });
+  return {svg: svg, width: width, height: height};
+};
+
+// Matplotlib's loc='best', roughly: drop the legend in whichever corner of the
+// axes holds the fewest visible data points.
+const bestLegendCorner = (data, layout) => {
+  const corners = [
+    {x: 0.98, y: 0.98, xanchor: 'right', yanchor: 'top'},
+    {x: 0.02, y: 0.98, xanchor: 'left', yanchor: 'top'},
+    {x: 0.98, y: 0.02, xanchor: 'right', yanchor: 'bottom'},
+    {x: 0.02, y: 0.02, xanchor: 'left', yanchor: 'bottom'},
+  ];
+
+  // Log axes compared in decades, like the plot draws them.
+  const scale = axis => axis.type === 'log' ? Math.log10 : (v => v);
+  const xs = [], ys = [];
+  data.filter(trace => trace.visible === true && trace.x && trace.y)
+    .forEach(trace => {
+      const x = trace.x.map(scale(layout.xaxis));
+      const y = trace.y.map(scale(layout.yaxis));
+      x.forEach((xi, i) => {
+        if (isFinite(xi) && isFinite(y[i])) { xs.push(xi); ys.push(y[i]); }
+      });
+    });
+  if (xs.length === 0) return corners[0];
+
+  const range = values => values.reduce(
+    ([lo, hi], v) => [Math.min(lo, v), Math.max(hi, v)], [Infinity, -Infinity]);
+  const [xmin, xmax] = range(xs);
+  const [ymin, ymax] = range(ys);
+  const norm = (v, lo, hi) => hi > lo ? (v - lo) / (hi - lo) : 0.5;
+
+  const BOX = 0.4;  // share of the axes the legend is assumed to cover
+  const crowding = corner => xs.reduce((count, x, i) => {
+    const u = norm(x, xmin, xmax), v = norm(ys[i], ymin, ymax);
+    const inX = corner.xanchor === 'right' ? u > 1 - BOX : u < BOX;
+    const inY = corner.yanchor === 'top' ? v > 1 - BOX : v < BOX;
+    return count + (inX && inY ? 1 : 0);
+  }, 0);
+
+  return corners.reduce(
+    (best, corner) => crowding(corner) < crowding(best) ? corner : best,
+    corners[0]);
+};
+
+// Dropdown next to the PDF button, listing what the export can contain. The
+// arrow sits inside the button, so its click must not trigger the export.
+const togglePDFMenu = (event) => {
+  event.stopPropagation();
+  const menu = event.currentTarget.closest('.pdf-export-btn')
+    .querySelector('.pdf-menu');
+  menu.style.display = menu.style.display === 'block' ? 'none' : 'block';
+  return false;
+};
+
+const closePDFMenu = () => {
+  hide(document.querySelectorAll('.pdf-menu'));
+  return false;
+};
+
+document.addEventListener('click', event => {
+  if (!event.target.closest('.pdf-export-btn')) closePDFMenu();
+});
+
+// kind: 'figure', 'legend' or 'both'. Defaults to legend-on-figure, except
+// for charts with no separate legend to add.
+const exportPDF = (kind) => {
+  closePDFMenu();
+  kind = kind || (isChart('scatter') ? 'both' : 'figure');
+  const filename = exportFilename()
+    + {figure: '', legend: '_legend', both: '_with_legend'}[kind];
+
+  if (kind === 'legend') {
+    const legend = legendSVG();
+    svgToPDF(legend.svg, filename, legend.width, legend.height);
+    return false;
+  }
+
+  const plot = getPlotDiv();
+  // Scale small plots (e.g. on a phone) up to matplotlib's default width.
+  const scale = Math.max(1, 460 / (plot.layout.width || plot.clientWidth));
+  const width = scale * (plot.layout.width || plot.clientWidth);
+  const height = scale * (plot.layout.height || plot.clientHeight);
+
+  // Render from a figure object, not the div, so the export changes do not
+  // affect what's on screen. plot.layout, not getLayout(): it carries what is
+  // on screen right now, including the axis ranges and the log dtick.
+  const layout = {...plot.layout};
+  let data = plot.data;
+  if (kind === 'both') {
+    // Drop the hidden curves
+    data = getChartData().filter(trace => trace.visible !== 'legendonly');
+    layout.showlegend = true;
+    layout.legend = {
+      ...bestLegendCorner(data, layout),
+      bgcolor: 'rgba(255, 255, 255, 0.8)',
+      bordercolor: '#cccccc', borderwidth: 1,
+    };
+  }
+
+  loadDejaVu().catch(() => null)
+    .then(() => {
+      layout.font = {...layout.font, family: EXPORT_FONT};
+      layout.title = fitTitle(layout, width);
+      return Plotly.toImage({data: data, layout: layout},
+                            {format: 'svg', width: width, height: height});
+    })
+    .then(dataUrl => svgToPDF(
+      new DOMParser().parseFromString(
+        decodeURIComponent(dataUrl.split(',')[1]), 'image/svg+xml')
+        .documentElement,
+      filename, width, height))
+    .catch(err => console.error('PDF export failed:', err));
+
+  return false;
+};
+
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
  * LEFT SIDEBAR MANAGEMENT
@@ -4292,6 +4768,26 @@ const renderSidebar = () => {
   renderSuboptimalRelativeToggle();
   mapSelectorsToState();
   renderPlotDropdowns();
+  renderExportButtons();
+}
+
+// Tables export to LaTeX, everything else to PDF.
+const renderExportButtons = () => {
+  const isTable = isChart('table');
+  const [shown, hidden] = isTable
+    ? ['.latex-export-btn', '.pdf-export-btn']
+    : ['.pdf-export-btn', '.latex-export-btn'];
+  show(document.querySelectorAll(shown));
+  hide(document.querySelectorAll(hidden));
+
+  // Only scatter has a legend outside the figure, so it is the only chart with
+  // something to choose from.
+  (isChart('scatter') ? show : hide)(
+    document.querySelectorAll('.pdf-legend-choice'));
+  const toggle = document.getElementById('pdf-menu-toggle');
+  // Alone, the PDF button rounds on both sides again.
+  toggle.parentElement.classList.toggle('no-menu', !isChart('scatter'));
+  closePDFMenu();
 }
 
 const escapeHTML = (s) => String(s)
@@ -4552,6 +5048,14 @@ const _getScale = (scale) => {
   }
 }
 
+// Plotly draws 10^n tick labels 25% bigger than the others (formatLog), so a
+// log axis has to ask for less to tick at the same size as a linear one.
+const TICK_SIZE = 12;
+const axisScale = (type) => ({
+  type: type,
+  tickfont: { size: type === 'log' ? TICK_SIZE / 1.25 : TICK_SIZE },
+});
+
 const MPL_AXIS = {
   showline: true,
   linecolor: 'black',
@@ -4559,19 +5063,38 @@ const MPL_AXIS = {
   mirror: true,
   ticks: 'outside',
   tickcolor: 'black',
-  gridcolor: '#d9d9d9',
+  gridcolor: '#b0b0b0',
   griddash: 'dot',
-  gridwidth: 0.5,
+  gridwidth: 1,
   zeroline: false,
   automargin: true,
   exponentformat: 'power',
   minexponent: 2,
+  tickfont: { size: TICK_SIZE },
   minor: { ticks: 'outside', ticklen: 4, tickcolor: 'black', showgrid: false },
 };
 const MPL_LAYOUT = {
   plot_bgcolor: 'white',
   paper_bgcolor: 'white',
   font: { family: 'DejaVu Sans, Arial, sans-serif', color: 'black' },
+};
+
+const TITLE_LINE_HEIGHT = 22;  // one title line at the default 17px font
+const TITLE_GAP = 7;           // space left under the title
+
+const axisTitle = (text) => ({ text, standoff: 10, font: { size: 15 } });
+
+// Top margin sized from the title's line count; the title block is centered on
+// half of it, hence the 2x. Left/right/bottom are grown by the axes' automargin.
+const titleLayout = (text) => {
+  const lines = String(text).split(/<br\s*\/?>/).length;
+  return {
+    title: { text },
+    margin: {
+      l: 5, r: 5, b: 5,
+      t: 2 * (TITLE_LINE_HEIGHT * lines + TITLE_GAP) - 30,
+    },
+  };
 };
 
 const getBarChartLayout = () => {
@@ -4583,8 +5106,8 @@ const getBarChartLayout = () => {
     },
     yaxis: {
       ...MPL_AXIS,
-      type: getScale().yaxis,
-      title: data["ylabel"],
+      ...axisScale(getScale().yaxis),
+      title: axisTitle(data["ylabel"]),
     },
     xaxis: {
       ...MPL_AXIS,
@@ -4594,7 +5117,7 @@ const getBarChartLayout = () => {
       showgrid: false,  // X axis is text: no vertical gridlines
     },
     showlegend: false,
-    title: data["title"],
+    ...titleLayout(data["title"]),
     ...MPL_LAYOUT,
   };
 
@@ -4630,8 +5153,8 @@ const getBoxplotChartLayout = () => {
     },
     yaxis: {
       ...MPL_AXIS,
-      type: getScale().yaxis,
-      title: plot_info["ylabel"],
+      ...axisScale(getScale().yaxis),
+      title: axisTitle(plot_info["ylabel"]),
     },
     xaxis: {
       ...MPL_AXIS,
@@ -4639,7 +5162,7 @@ const getBoxplotChartLayout = () => {
       showgrid: typeof plot_info.data[0].x[0] !== "string",  // hide vertical gridlines for text X axis
     },
     showlegend: false,
-    title: plot_info["title"],
+    ...titleLayout(plot_info["title"]),
     ...MPL_LAYOUT,
   };
 
@@ -4672,16 +5195,16 @@ const getScatterChartLayout = () => {
     },
     xaxis: {
       ...MPL_AXIS,
-      type: getScale().xaxis,
-      title: customData.xlabel,
+      ...axisScale(getScale().xaxis),
+      title: axisTitle(customData.xlabel),
       tickangle: 0,
     },
     yaxis: {
       ...MPL_AXIS,
-      type: getScale().yaxis,
-      title: customData.ylabel,
+      ...axisScale(getScale().yaxis),
+      title: axisTitle(customData.ylabel),
     },
-    title: `${customData.title}`,
+    ...titleLayout(`${customData.title}`),
     ...MPL_LAYOUT,
   };
 
@@ -4953,7 +5476,15 @@ const formatCell = (value) => {
   return gridjs.html(markupToHtml(text));
 };
 
-const escapeLatex = (value) => value.replace(/([&%$#_{}])/g, '\\$1');
+// Single pass: escaping in several passes would re-escape the braces of the
+// `\textbackslash{}` replacements.
+const LATEX_ESCAPES = {
+  '\\': '\\textbackslash{}', '~': '\\textasciitilde{}',
+  '^': '\\textasciicircum{}',
+};
+const escapeLatex = (value) => value.replace(
+  /[\\~^&%$#_{}]/g, c => LATEX_ESCAPES[c] || `\\${c}`
+);
 
 // Recurse: Grid.js wraps formatted cells in a <span>, and markup can be
 // nested (`**__text__**`).
@@ -5228,97 +5759,14 @@ function renderTable() {
   precisionContainer.appendChild(labelPrec);
   precisionContainer.appendChild(btnInc);
 
-  // Export Button (Right)
-  const exportButton = document.createElement("button");
-  exportButton.id = "table-export";
-  exportButton.innerText = "Export LaTeX";
-  exportButton.className = "inline-flex items-center px-4 py-2 space-x-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500";
-
-  exportButton.addEventListener('click', () => {
-    exportTable();
-  });
-
   table_container.appendChild(card);
 
   footer.appendChild(precisionContainer);
-  footer.appendChild(exportButton);
   footerWrapper.appendChild(columnsContainer);
   footerWrapper.appendChild(footer);
   table_container.appendChild(footerWrapper);
 }
 
-
-async function exportTable() {
-  const button = document.getElementById("table-export");
-  const defaultText = button.innerHTML;
-  button.innerHTML = "Copying";
-
-  // Export the table as displayed in the Grid.js table, so that the LaTeX
-  // output matches the current sorting, search filter, visible columns and
-  // float precision.
-  const displayedColumns = Array.from(
-    document.querySelectorAll('#table_container .gridjs-th-content'),
-    elementToLatex
-  );
-  const displayedRows = Array.from(
-    document.querySelectorAll('#table_container .gridjs-table tbody tr')
-  ).map(tr => Array.from(tr.querySelectorAll('td'), elementToLatex));
-
-  const title = (getPlotData() || {}).title;
-  let value = "";
-  if (title) {
-    // Caption above the table, kept on a single line.
-    value += "\\begin{table}[h]\n\\centering\n\\caption{";
-    value += escapeLatex(title.replace(/<br\s*\/?>/g, ", "));
-    value += "}\n";
-  }
-  value += "\\begin{tabular}{l";
-  value += "c".repeat(displayedColumns.length - 1);
-  value += "}\n";
-  value += "\\hline\n";
-
-  value += displayedColumns[0];
-  displayedColumns.slice(1).forEach(metric => value += ` & ${metric}`);
-
-  value += " \\\\\n";
-  value += "\\hline\n";
-
-  displayedRows.forEach(rowData => {
-    value += rowData[0];
-    rowData.slice(1).forEach(cell => {
-      value += ` & ${cell}`;
-    });
-    value += " \\\\\n";
-  });
-
-  value += "\\hline\n";
-  value += "\\end{tabular}";
-  if (title) value += "\n\\end{table}";
-
-  try {
-    await navigator.clipboard.writeText(value);
-    button.innerHTML = "Copied in clipboard!";
-    setTimeout(() => button.innerHTML = defaultText, 2500);
-  } catch (err) {
-    // No clipboard access (e.g. file opened on a phone): show the LaTeX in a
-    // text box so it can be copied by hand.
-    let area = document.getElementById("table-export-text");
-    if (!area) {
-      area = document.createElement("textarea");
-      area.id = "table-export-text";
-      area.readOnly = true;
-      area.rows = 10;
-      area.className = "w-full mt-2 p-2 font-mono text-xs border border-gray-300 rounded-md";
-      area.addEventListener('blur', () => area.remove());
-      button.parentElement.after(area);
-    }
-    area.value = value;
-    area.focus();
-    area.select();
-    button.innerHTML = "Copy the LaTeX below";
-    setTimeout(() => button.innerHTML = defaultText, 2500);
-  }
-}
 
 /*
  * ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -5346,7 +5794,22 @@ const renderLegend = () => {
       createLegendItem(curve, curve_data.color, curve_data.marker % N_SYMBOLS)
     );
   });
+
+  // Width drag handle (the height follows from how the items wrap). Appended
+  // last since the loop above starts from an empty legend.
+  legend.appendChild(makeResizeHandle(legend, 'x', clampLegendWidth));
+  legend.style.width = legendWidth;
 }
+
+// Width the user dragged the legend to ('' until they do).
+let legendWidth = '';
+
+// The legend never gets wider than the column holding it.
+const clampLegendWidth = (legend) => {
+  const max = legend.parentElement.clientWidth;
+  if (legend.offsetWidth > max) legend.style.width = `${max}px`;
+  legendWidth = legend.style.width;
+};
 
 /**
  * Creates a legend item which contains the curve name,
@@ -5416,11 +5879,11 @@ const createLegendItem = (curve, color, symbolNumber) => {
     textContainer.insertAdjacentHTML('beforeend', descIconHTML(desc));
   }
 
-  // Create the horizontal bar in the legend to represent the curve
+  // The curve line, drawn as a top border. legendSVG() picks it out by that.
   const hBar = document.createElement('div');
-  hBar.style.height = '2px';
+  hBar.style.height = '0';
   hBar.style.width = '30px';
-  hBar.style.backgroundColor = color;
+  hBar.style.borderTop = `2px solid ${color}`;
   hBar.style.position = 'absolute';
   hBar.style.left = '1em';
   hBar.style.zIndex = 10;
