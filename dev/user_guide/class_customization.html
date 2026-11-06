@@ -549,6 +549,11 @@ channel <cite>pip</cite> and the <cite>conda</cite> installer. The syntax is the
 <span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pip::pkg'</span><span class="p">]</span>  <span class="c1"># pip package `pkg`</span>
 </pre></div>
 </div>
+<p>To install a package from source, e.g. a branch, a tag or a commit of its git
+repository, give pip a direct reference after the package name:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">requirements</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'pip::pkg @ git+https://github.com/org/pkg@branch'</span><span class="p">]</span>
+</pre></div>
+</div>
 </section>
 <section id="specifying-a-python-version">
 <span id="specify-python-version"></span><h3>Specifying a Python version<a class="headerlink" href="#specifying-a-python-version" title="Link to this heading">#</a></h3>
