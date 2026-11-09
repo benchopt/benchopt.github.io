@@ -755,6 +755,12 @@ dataset), additional values can be given with the following syntax:</p>
 </dd></dl>
 
 <dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-benchopt-run-group-by">
+<span class="sig-name descname"><span class="pre">--group-by</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axes&gt;</span></span><a class="headerlink" href="#cmdoption-benchopt-run-group-by" title="Link to this definition">#</a></dt>
+<dd><p>Comma-separated axes to hold constant per batch of runs (outermost first), grouping runs into fewer execution units to cut per-run overhead, e.g. <cite>–group-by dataset,objective</cite>. Valid axes: dataset, objective, solver, repetition. Overrides <cite>group_by</cite> from –parallel-config. See <a class="reference internal" href="distributed_run.html#run-grouping"><span class="std std-ref">Grouping runs to reduce overhead</span></a>.</p>
+</dd></dl>
+
+<dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-benchopt-run-pdb">
 <span class="sig-name descname"><span class="pre">--pdb</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-benchopt-run-pdb" title="Link to this definition">#</a></dt>
 <dd><p>Launch a debugger if there is an error. This will launch ipdb if it is installed and default to pdb otherwise.</p>

@@ -398,6 +398,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-pre-compilation-and-warmup-effects">Caching pre-compilation and warmup effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-and-memory">Data loading and memory</a></li>
 </ul>
             </nav>
         </div>
@@ -523,6 +524,19 @@ callback (default to 1).</p>
 </pre></div>
 </div>
 </section>
+<section id="data-loading-and-memory">
+<span id="data-memory"></span><h2>Data loading and memory<a class="headerlink" href="#data-loading-and-memory" title="Link to this heading">#</a></h2>
+<p>Benchopt loads each dataset once and keeps its data in memory to run all the
+solvers on it, which avoids reloading the data for every solver. The data is
+released when the run moves to the next dataset. With <code class="docutils literal notranslate"><span class="pre">--group-by</span></code> (see
+<a class="reference internal" href="distributed_run.html#run-grouping"><span class="std std-ref">Grouping runs to reduce overhead</span></a>), this only holds for the first listed axis, while the
+other axes keep all their instances in memory. List the heaviest,
+data-carrying axis (usually <code class="docutils literal notranslate"><span class="pre">dataset</span></code>) first.</p>
+<p>Solvers with a costly setup, such as the warmup described above, can also
+benefit from sharing in parallel runs. <code class="docutils literal notranslate"><span class="pre">--group-by</span> <span class="pre">solver</span></code> runs each solver
+on all datasets in the same worker, at the cost of keeping all the datasets’
+data in that worker’s memory.</p>
+</section>
 </section>
 
 
@@ -580,6 +594,7 @@ callback (default to 1).</p>
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reusing-some-code-in-a-benchmark">Reusing some code in a benchmark</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#caching-pre-compilation-and-warmup-effects">Caching pre-compilation and warmup effects</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#data-loading-and-memory">Data loading and memory</a></li>
 </ul>
   </nav></div>
 

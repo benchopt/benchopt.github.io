@@ -391,6 +391,7 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-in-parallel-with-joblib">Running the benchmark in parallel with <code class="docutils literal notranslate"><span class="pre">joblib</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping-runs-to-reduce-overhead">Grouping runs to reduce overhead</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-computations-with-dask-or-submitit">Distributed computations with <code class="docutils literal notranslate"><span class="pre">dask</span></code> or <code class="docutils literal notranslate"><span class="pre">submitit</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-slurm-with-the-submitit-backend">Running on SLURM with the submitit backend</a></li>
 </ul>
@@ -422,6 +423,45 @@ This will run all computations on the local machine where the command is invoked
 <p>Note that <code class="docutils literal notranslate"><span class="pre">joblib</span></code> tries to mitigate oversubscription by reducing the number of threads that are used in C-level parallelism – such as in BLAS calls.
 This means that these parallel runs might be slower than their sequential counterpart on the same machine, and shouldn’t be compared to each other.</p>
 </section>
+<section id="grouping-runs-to-reduce-overhead">
+<span id="run-grouping"></span><h2>Grouping runs to reduce overhead<a class="headerlink" href="#grouping-runs-to-reduce-overhead" title="Link to this heading">#</a></h2>
+<p>When a run carries heavy fixed overhead – loading a large dataset,
+initializing a GPU, or scheduling a job on a cluster – running each
+<code class="docutils literal notranslate"><span class="pre">(dataset,</span> <span class="pre">objective,</span> <span class="pre">solver,</span> <span class="pre">repetition)</span></code> as its own execution unit is
+inefficient, as that setup is repeated for every run. To reduce overhead, <code class="docutils literal notranslate"><span class="pre">group_by</span></code>
+collapses the runs sharing one or more axes into a single batch, run as one
+unit, so the shared setup is paid once and reused across the batch.</p>
+<p><code class="docutils literal notranslate"><span class="pre">group_by</span></code> is an ordered list of axes to hold constant within a batch
+(outermost first), passed on the CLI or in the parallel config:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
+span.prompt1:before {
+  content: "$ ";
+}
+</style><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>.<span class="w"> </span>--group-by<span class="w"> </span>dataset,objective</span>
+</pre></div></div><div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text">./config_parallel.yml</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">group_by</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dataset</span><span class="w">             </span><span class="c1"># one batch per dataset</span>
+<span class="nt">batch_n_jobs</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span><span class="w">               </span><span class="c1"># 4 workers inside each batch (submitit)</span>
+</pre></div>
+</div>
+</div>
+<p>On submitit, <code class="docutils literal notranslate"><span class="pre">batch_n_jobs</span></code> runs a batch’s runs in parallel with <code class="docutils literal notranslate"><span class="pre">joblib</span></code>.
+It can only be set in the parallel config. It defaults to <code class="docutils literal notranslate"><span class="pre">1</span></code>, which
+maximises the reuse above. Grouping never changes the results, only how runs
+are scheduled.</p>
+<p><strong>Grouping cross-validation folds.</strong> With <code class="docutils literal notranslate"><span class="pre">repetition</span></code> in <code class="docutils literal notranslate"><span class="pre">group_by</span></code> (e.g.
+<code class="docutils literal notranslate"><span class="pre">dataset,objective,repetition</span></code>), each fold is prepared once and shared across
+solvers instead of once per solver. <code class="docutils literal notranslate"><span class="pre">dataset</span></code> and <code class="docutils literal notranslate"><span class="pre">objective</span></code> must be
+listed before <code class="docutils literal notranslate"><span class="pre">repetition</span></code>, and the fold data must be solver-independent. If
+<code class="docutils literal notranslate"><span class="pre">set_data</span></code> seeds on the solver (<code class="docutils literal notranslate"><span class="pre">get_seed(use_solver=True)</span></code>), benchopt
+raises an error.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>On <code class="docutils literal notranslate"><span class="pre">submitit</span></code>, runs with different SLURM configurations (e.g. solvers with
+different <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code>) are never grouped together, and unless
+<code class="docutils literal notranslate"><span class="pre">slurm_time</span></code> is set the job wall-time is sized for the whole batch.</p>
+</div>
+</section>
 <section id="distributed-computations-with-dask-or-submitit">
 <span id="distributed-run"></span><h2>Distributed computations with <code class="docutils literal notranslate"><span class="pre">dask</span></code> or <code class="docutils literal notranslate"><span class="pre">submitit</span></code><a class="headerlink" href="#distributed-computations-with-dask-or-submitit" title="Link to this heading">#</a></h2>
 <p>Benchopt also allows distributed runs for the benchmark on various cluster infrastructure, using <code class="docutils literal notranslate"><span class="pre">dask</span></code> or <code class="docutils literal notranslate"><span class="pre">submitit</span></code> backends.
@@ -430,11 +470,7 @@ Run the following command to install the dependencies of the backend you want to
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-0">
 Submitit</label><div class="sd-tab-content docutils">
-<div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
-span.prompt1:before {
-  content: "$ ";
-}
-</style><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>benchopt<span class="o">[</span>submitit<span class="o">]</span></span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">pip<span class="w"> </span>install<span class="w"> </span>benchopt<span class="o">[</span>submitit<span class="o">]</span></span>
 </pre></div></div></div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
 <label class="sd-tab-label" for="sd-tab-item-1">
@@ -456,8 +492,8 @@ a shared file-system between the nodes used for the computations.</p>
 <p>In the config file passed to <code class="docutils literal notranslate"><span class="pre">--parallel-config</span></code>, you can specify the
 <code class="docutils literal notranslate"><span class="pre">backend</span></code> key to be <code class="docutils literal notranslate"><span class="pre">submitit</span></code> and any key to be passed to the <a class="reference external" href="https://github.com/facebookincubator/submitit/blob/main/submitit/slurm/slurm.py#L386"><code class="docutils literal notranslate"><span class="pre">update_parameters</span></code></a> method of <a class="reference external" href="https://github.com/facebookincubator/submitit/blob/main/submitit/slurm/slurm.py#L214"><code class="docutils literal notranslate"><span class="pre">submitit.SlurmExecutor</span></code></a>.
 Hereafter is an example of such config file:</p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text">./config_parallel.yml</span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text">./config_parallel.yml</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">submitit</span>
 <span class="nt">slurm_time</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">01:00:00</span><span class="w">          </span><span class="c1"># max runtime 1 hour</span>
 <span class="nt">slurm_gres</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gpu:1</span><span class="w">             </span><span class="c1"># requires 1 GPU per job</span>
@@ -544,8 +580,8 @@ configuration.</p>
 <p>In the config file passed to <code class="docutils literal notranslate"><span class="pre">--parallel-config</span></code>, you can specify the
 <code class="docutils literal notranslate"><span class="pre">backend</span></code> key to be <code class="docutils literal notranslate"><span class="pre">dask</span></code> and any key that starts with <code class="docutils literal notranslate"><span class="pre">dask_</span></code> will be passed to set up the <a class="reference external" href="https://distributed.dask.org/en/stable/client.html"><code class="docutils literal notranslate"><span class="pre">dask.Client</span></code></a>, by removing the <code class="docutils literal notranslate"><span class="pre">dask_</span></code> prefix.
 Hereafter is an example of such config file:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text">./config_parallel.yml</span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text">./config_parallel.yml</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dask</span>
 <span class="nt">dask_address</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">127.0.0.1:8786</span>
 </pre></div>
@@ -556,8 +592,8 @@ Hereafter is an example of such config file:</p>
 Coiled is a library that allows setting up a dask cluster on cloud providers such as AWS and GCP.
 To setup the cluster, you can simply add <code class="docutils literal notranslate"><span class="pre">coiled_*</span></code> keys in the config file.
 These keys will be passed to create an instance of <a class="reference external" href="https://docs.coiled.io/user_guide/api.html#coiled.Cluster"><code class="docutils literal notranslate"><span class="pre">coiled.Cluster</span></code></a>, that will be used to perform computations with <code class="docutils literal notranslate"><span class="pre">dask</span></code>:</p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text">./config_parallel.yml</span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text">./config_parallel.yml</span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">backend</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dask</span>
 <span class="nt">coiled_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">my-benchopt-run</span>
 <span class="nt">coiled_n_workers</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
@@ -621,6 +657,7 @@ These keys will be passed to create an instance of <a class="reference external"
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#running-the-benchmark-in-parallel-with-joblib">Running the benchmark in parallel with <code class="docutils literal notranslate"><span class="pre">joblib</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#grouping-runs-to-reduce-overhead">Grouping runs to reduce overhead</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#distributed-computations-with-dask-or-submitit">Distributed computations with <code class="docutils literal notranslate"><span class="pre">dask</span></code> or <code class="docutils literal notranslate"><span class="pre">submitit</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#running-on-slurm-with-the-submitit-backend">Running on SLURM with the submitit backend</a></li>
 </ul>
