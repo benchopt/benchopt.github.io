@@ -541,6 +541,11 @@ e.g. some of the default plots. By <a class="reference external" href="https://w
 <section id="plot">
 <h3>PLOT<a class="headerlink" href="#plot" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>The “Suboptimal Curve” and “Relative Curve” toggles are replaced by a
+<code class="docutils literal notranslate"><span class="pre">Y_axis</span></code> option of the <code class="docutils literal notranslate"><span class="pre">objective_curve</span></code> plot, so they no longer apply
+to custom scatter plots. Views using the deprecated <code class="docutils literal notranslate"><span class="pre">suboptimal_curve</span></code>
+or <code class="docutils literal notranslate"><span class="pre">relative_curve</span></code> keys are converted to <code class="docutils literal notranslate"><span class="pre">objective_curve_Y_axis</span></code>.
+By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1018">#1018</a>)</p></li>
 <li><p>Improve <code class="docutils literal notranslate"><span class="pre">'image'</span></code> plots in the HTML report: borderless grid that keeps
 each image’s aspect ratio, and click-to-enlarge.
 By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1017">#1017</a>)</p></li>
