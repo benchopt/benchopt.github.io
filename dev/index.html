@@ -37,7 +37,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-binder.css?v=f4aeca0c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-dataframe.css?v=2082cf3c" />
     <link rel="stylesheet" type="text/css" href="_static/sg_gallery-rendered-html.css?v=1277b6f3" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=6a604523" />
     <link rel="stylesheet" type="text/css" href="_static/style.css?v=b70fdc00" />
   
   <!-- So that users can add custom icons -->
@@ -53,7 +53,7 @@
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=30646c52"></script>
     <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
-    <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script data-sd-tabs-storage-prefix="sphinx-design-tab-id-" src="_static/design-tabs.js?v=fcb327ea"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'index';</script>
     <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <script src="_static/benchopt.js?v=2bf30a8d"></script>
@@ -484,9 +484,9 @@ run it, visualize it, and publish it</p>
 Most features in benchopt are common to both types of benchmarks.
 The main difference lies in how performance is evaluated:</p>
 <ul class="simple">
-<li><p class="sd-card-text"><strong>Optimization benchmarks</strong>: Track iterative solvers’ convergence
+<li><p><strong>Optimization benchmarks</strong>: Track iterative solvers’ convergence
 over time and iterations.</p></li>
-<li><p class="sd-card-text"><strong>ML benchmarks</strong>: Compare estimators/models on prediction tasks
+<li><p><strong>ML benchmarks</strong>: Compare estimators/models on prediction tasks
 (accuracy, F1, etc.).</p></li>
 </ul>
 <p class="sd-card-text">Use our <a class="reference external" href="https://github.com/benchopt/template_benchmark_ml">ML template</a>
@@ -524,8 +524,8 @@ Benchopt allows to factorize this code by <a class="reference internal" href="us
 <p>Reproducing an existing benchmark should be as easy as running the following commands:</p>
 <div class="sd-tab-set docutils">
 <input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-0">
-NanoGPT</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-0-content" class="sd-tab-label" for="sd-tab-item-0">
+NanoGPT</label><div class="sd-tab-content docutils" id="sd-tab-item-0-content">
 <p>A benchmark comparing various optimizers on training <code class="docutils literal notranslate"><span class="pre">NanoGPT</span></code> models.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><style type="text/css">
 span.prompt1:before {
@@ -539,8 +539,8 @@ span.prompt1:before {
    frameBorder='0' style="position: relative; width: 100%;">
 </iframe></div>
 <input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-1">
-Unsupervised Domain Adaptation</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-1-content" class="sd-tab-label" for="sd-tab-item-1">
+Unsupervised Domain Adaptation</label><div class="sd-tab-content docutils" id="sd-tab-item-1-content">
 <p>A benchmark comparing various methods for unsupervised domain adaptation.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">git<span class="w"> </span>clone<span class="w"> </span>https://github.com/scikit-adaptation/skada-bench.git</span>
 <span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>skada-bench<span class="w"> </span>--config<span class="w"> </span>configs/Simulated.yml<span class="w"> </span>--no-plot</span>
@@ -548,8 +548,8 @@ Unsupervised Domain Adaptation</label><div class="sd-tab-content docutils">
 using instruction on the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> of the <a class="github reference external" href="https://github.com/scikit-adaptation/skada-bench">scikit-adaptation/skada-bench</a>.</p>
 </div>
 <input id="sd-tab-item-2" name="sd-tab-set-0" type="radio">
-<label class="sd-tab-label" for="sd-tab-item-2">
-Minimal benchmark</label><div class="sd-tab-content docutils">
+<label aria-controls="sd-tab-item-2-content" class="sd-tab-label" for="sd-tab-item-2">
+Minimal benchmark</label><div class="sd-tab-content docutils" id="sd-tab-item-2-content">
 <p>A minimal benchmark comparing various solvers on a toy problem.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span class="prompt1">benchopt<span class="w"> </span>run<span class="w"> </span>examples/minimal_benchmark</span>
 </pre></div></div><p>which will produce an interactive HTML report to visualize the results.</p>
