@@ -586,6 +586,9 @@ env with <code class="docutils literal notranslate"><span class="pre">--recreate
 <p>All benchmark classes expose optional methods to customise the workflow.</p>
 <p><strong>BaseDataset</strong></p>
 <ul class="simple">
+<li><p><a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset.skip" title="benchopt.BaseDataset.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseDataset.skip()</span></code></a>: called before launching the runs to skip
+incompatible dataset parameters. Refer to
+<a class="reference internal" href="advanced.html#skipping-config"><span class="std std-ref">Advanced usage</span></a> for an example.</p></li>
 <li><p><a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset.prepare" title="benchopt.BaseDataset.prepare"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseDataset.prepare()</span></code></a>: expensive one-time preparation
 (downloads, extraction, preprocessing) cached by joblib. List parameter
 names that do not affect preparation in <code class="docutils literal notranslate"><span class="pre">prepare_cache_ignore</span></code> to avoid
@@ -593,9 +596,10 @@ redundant runs. Triggered via <a class="reference internal" href="../benchmark_w
 </ul>
 <p><strong>BaseObjective</strong></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip" title="benchopt.BaseObjective.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseObjective.skip()</span></code></a>: called before <code class="docutils literal notranslate"><span class="pre">set_data</span></code> to skip
-dataset/objective combinations that are incompatible. Takes the same
-arguments as <code class="docutils literal notranslate"><span class="pre">set_data</span></code>.</p></li>
+<li><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip" title="benchopt.BaseObjective.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseObjective.skip()</span></code></a>: called before launching the runs to
+skip dataset/objective combinations that are incompatible. Takes the
+dataset of the run. Refer to <a class="reference internal" href="advanced.html#skipping-config"><span class="std std-ref">Advanced usage</span></a> for an
+example.</p></li>
 <li><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.get_one_result" title="benchopt.BaseObjective.get_one_result"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseObjective.get_one_result()</span></code></a>: returns a dummy result dict
 used by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> to validate metric computation. Optional — if not
 implemented, the test-time metric validation step is silently skipped.</p></li>
@@ -605,9 +609,9 @@ file alongside the parquet results.</p></li>
 </ul>
 <p><strong>BaseSolver</strong></p>
 <ul class="simple">
-<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.skip()</span></code></a>: called before <code class="docutils literal notranslate"><span class="pre">set_objective</span></code> to skip
-solver/objective combinations that are incompatible. Takes the same arguments
-as <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>. Refer to <a class="reference internal" href="advanced.html#skipping-solver"><span class="std std-ref">Advanced usage</span></a> for an
+<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.skip()</span></code></a>: called before launching the runs to skip
+solver/objective combinations that are incompatible. Takes the objective and
+the dataset of the run. Refer to <a class="reference internal" href="advanced.html#skipping-config"><span class="std std-ref">Advanced usage</span></a> for an
 example.</p></li>
 <li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.warm_up" title="benchopt.BaseSolver.warm_up"><code class="xref py py-func docutils literal notranslate"><span class="pre">benchopt.BaseSolver.warm_up()</span></code></a>: called once before timed runs. Use
 <code class="docutils literal notranslate"><span class="pre">Solver.run_once()</span></code> here to absorb JIT compilation costs without

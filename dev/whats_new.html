@@ -535,6 +535,11 @@ when the clipboard is unavailable, and no longer adds an extra column. By
 <li><p>Component classes are represented as <code class="docutils literal notranslate"><span class="pre">Solver&lt;name&gt;</span></code>, e.g. in error
 messages, instead of the default class representation.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1032">#1032</a>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Dataset.skip(self)</span></code>, <code class="docutils literal notranslate"><span class="pre">Objective.skip(self,</span> <span class="pre">dataset)</span></code> and
+<code class="docutils literal notranslate"><span class="pre">Solver.skip(self,</span> <span class="pre">objective,</span> <span class="pre">dataset)</span></code> are checked before launching the
+runs, and return the reason to skip or <code class="docutils literal notranslate"><span class="pre">None</span></code>. The old signature and the
+<code class="docutils literal notranslate"><span class="pre">(skip,</span> <span class="pre">reason)</span></code> tuple are deprecated. See <a class="reference internal" href="user_guide/advanced.html#skipping-config"><span class="std std-ref">Skipping a configuration</span></a>.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1031">#1031</a>)</p></li>
 <li><p>Add a <code class="docutils literal notranslate"><span class="pre">hidden_plots</span></code> benchmark config option to hide some plot kinds,
 e.g. some of the default plots. By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1019">#1019</a>)</p></li>
 </ul>

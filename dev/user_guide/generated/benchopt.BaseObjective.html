@@ -509,6 +509,8 @@ of running each separately.</p>
 <dt class="sig sig-object py" id="benchopt.BaseObjective.get_objective">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_objective</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.get_objective" title="Link to this definition">#</a></dt>
 <dd><p>Return the objective parameters for the solver.</p>
+<p>If the objective has a dataset whose data is not set yet, it is loaded
+and passed to <code class="docutils literal notranslate"><span class="pre">set_data</span></code> first.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -598,23 +600,23 @@ by calling <code class="docutils literal notranslate"><span class="pre">data</sp
 
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseObjective.skip">
-<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">data</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.skip" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseObjective.skip" title="Link to this definition">#</a></dt>
 <dd><p>Used to decide if the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> is compatible with the data.</p>
+<p>It is called before launching the runs, so skipping here removes the
+runs of all solvers. Checks on the parameters (e.g.
+<code class="docutils literal notranslate"><span class="pre">dataset.n_samples</span></code>) are free. Calling <code class="docutils literal notranslate"><span class="pre">dataset.get_data()</span></code> loads
+the data on the machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>**data: dict</strong></dt><dd><p>Extra parameters of the objective. This dictionary is retrieved
-by calling <code class="docutils literal notranslate"><span class="pre">data</span> <span class="pre">=</span> <span class="pre">Dataset.get_data()</span></code>.</p>
+<dt><strong>dataset</strong><span class="classifier">benchopt.BaseDataset</span></dt><dd><p>The dataset of the run.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>skip</strong><span class="classifier">bool</span></dt><dd><p>Whether this objective should be skipped or not for this data
-(accessible in the objective attributes).</p>
-</dd>
-<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason why it should be skipped for display purposes.
-If skip is False, the reason should be None.</p>
+<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason to skip this objective for this dataset, displayed in
+the output, or None to run it. Any other value raises an error.</p>
 </dd>
 </dl>
 </dd>

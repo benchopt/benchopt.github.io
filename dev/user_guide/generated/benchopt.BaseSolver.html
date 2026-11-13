@@ -585,22 +585,25 @@ from the benchmark <code class="docutils literal notranslate"><span class="pre">
 
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.skip">
-<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">objective_dict</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Link to this definition">#</a></dt>
 <dd><p>Hook to decide if the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> is compatible with the objective.</p>
+<p>It is called before launching the runs. Checks on the parameters
+(e.g. <code class="docutils literal notranslate"><span class="pre">objective.reg</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset.n_samples</span></code>) are free. Calling
+<code class="docutils literal notranslate"><span class="pre">objective.get_objective()</span></code> or <code class="docutils literal notranslate"><span class="pre">dataset.get_data()</span></code> loads the data
+on the machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>**objective_parameters</strong><span class="classifier">dict</span></dt><dd><p>Dictionary obtained as the output of the method <code class="docutils literal notranslate"><span class="pre">get_objective</span></code>
-from the benchmark <code class="docutils literal notranslate"><span class="pre">Objective</span></code>.</p>
+<dt><strong>objective</strong><span class="classifier">benchopt.BaseObjective</span></dt><dd><p>The objective of the run.</p>
+</dd>
+<dt><strong>dataset</strong><span class="classifier">benchopt.BaseDataset</span></dt><dd><p>The dataset of the run.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>skip</strong><span class="classifier">bool</span></dt><dd><p>Whether this solver should be skipped or not for this objective.</p>
-</dd>
-<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason why it should be skipped for display purposes.
-If skip is False, the reason should be None.</p>
+<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason to skip this solver for this objective, displayed in
+the output, or None to run it. Any other value raises an error.</p>
 </dd>
 </dl>
 </dd>

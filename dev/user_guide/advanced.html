@@ -390,7 +390,7 @@
             </div>
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-configuration">Skipping a configuration</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-final-results-of-a-solver">Saving Final Results of a Solver</a></li>
@@ -414,34 +414,58 @@
 <span id="id1"></span><h1>Advanced usage<a class="headerlink" href="#advanced-usage" title="Link to this heading">#</a></h1>
 <p>This page intends to list some advanced functionality
 to make it easier to use the benchmark.</p>
-<section id="skipping-a-solver-for-a-given-problem">
-<span id="skipping-solver"></span><h2>Skipping a solver for a given problem<a class="headerlink" href="#skipping-a-solver-for-a-given-problem" title="Link to this heading">#</a></h2>
-<p>Some solvers might not be able to run with all the datasets present
-in a benchmark. This is typically the case when some datasets are
-represented using sparse data or for datasets that are too large.</p>
-<p>In these cases, a solver can be skipped at runtime, depending on the
-characteristic of the objective. In order to define for which cases
-a solver should be skip, the user needs to implement a method
-<a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> in the solver class that will take
-the input as the <a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.set_objective" title="benchopt.BaseSolver.set_objective"><code class="xref py py-func docutils literal notranslate"><span class="pre">set_objective()</span></code></a> method.
-This method should return a boolean value that evaluates to <code class="docutils literal notranslate"><span class="pre">True</span></code>
-if the solver should be skipped, and a string giving the reason of
-why the solver is skipped, for display purposes. For instance,
-for a solver where the objective is set with keys <cite>X, y, reg</cite>,
-we get</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+<section id="skipping-a-configuration">
+<span id="skipping-config"></span><h2>Skipping a configuration<a class="headerlink" href="#skipping-a-configuration" title="Link to this heading">#</a></h2>
+<p>Some configurations of a benchmark cannot run. A dataset can have incompatible
+parameters, an objective might not apply to some datasets, and a solver might
+not support sparse data or scale to large datasets. Each component can skip
+them by implementing a <code class="docutils literal notranslate"><span class="pre">skip</span></code> method, which receives the components chosen
+before it:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset.skip" title="benchopt.BaseDataset.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> takes no argument and skips all the runs
+of the dataset.</p></li>
+<li><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip" title="benchopt.BaseObjective.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> receives the dataset and skips the runs
+of all solvers.</p></li>
+<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> receives the objective and the dataset.</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">skip</span></code> returns the reason to skip, displayed in the output, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to
+run. Any other value or a failing <code class="docutils literal notranslate"><span class="pre">skip</span></code> is reported as an error, and its
+runs are not created.</p>
+<p>The skips are checked once per configuration, before launching the runs.
+Checks on the parameters are free. Calling <code class="docutils literal notranslate"><span class="pre">dataset.get_data()</span></code> or
+<code class="docutils literal notranslate"><span class="pre">objective.get_objective()</span></code> loads the data of the first repetition on the
+machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, once per dataset. <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> can use the
+component itself and the ones that <code class="docutils literal notranslate"><span class="pre">skip</span></code> receives. Other components are only
+set when <a class="reference internal" href="distributed_run.html#run-grouping"><span class="std std-ref">group_by</span></a> chooses them first.</p>
+<p>For instance, with an objective parameter <code class="docutils literal notranslate"><span class="pre">reg</span></code> and a dataset giving <code class="docutils literal notranslate"><span class="pre">X</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
     <span class="o">...</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">reg</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_features</span> <span class="o">&gt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">n_samples</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"more features than samples"</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">sparse</span>
 
-        <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
-            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"solver does not support sparse data X."</span>
+        <span class="k">if</span> <span class="n">objective</span><span class="o">.</span><span class="n">reg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">"solver does not work with reg=0"</span>
 
-        <span class="k">if</span> <span class="n">reg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span><span class="p">,</span> <span class="s2">"solver does not work with reg=0"</span>
-
-        <span class="k">return</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">None</span>
+        <span class="c1"># Loads the data on the node running `benchopt run`.</span>
+        <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="s2">"X"</span><span class="p">]):</span>
+            <span class="k">return</span> <span class="s2">"solver does not support sparse data X."</span>
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In older versions, <code class="docutils literal notranslate"><span class="pre">skip</span></code> received the data as keyword arguments,
+e.g. <code class="docutils literal notranslate"><span class="pre">Solver.skip(self,</span> <span class="pre">X,</span> <span class="pre">y,</span> <span class="pre">reg)</span></code> with the output of
+<code class="docutils literal notranslate"><span class="pre">Objective.get_objective</span></code>, and <code class="docutils literal notranslate"><span class="pre">Objective.skip(self,</span> <span class="pre">X,</span> <span class="pre">y)</span></code> with the
+output of <code class="docutils literal notranslate"><span class="pre">Dataset.get_data</span></code>. It returned a <code class="docutils literal notranslate"><span class="pre">(skip,</span> <span class="pre">reason)</span></code> tuple.
+Both still work, with a <code class="docutils literal notranslate"><span class="pre">FutureWarning</span></code>, and are checked before
+launching the runs, but the old signature always loads the data. They will
+be removed in benchopt 1.12.</p>
 </div>
 </section>
 <section id="advanced-usage-of-objective-class">
@@ -586,7 +610,7 @@ data in that worker’s memory.</p>
   </div>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-solver-for-a-given-problem">Skipping a solver for a given problem</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-configuration">Skipping a configuration</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-final-results-of-a-solver">Saving Final Results of a Solver</a></li>

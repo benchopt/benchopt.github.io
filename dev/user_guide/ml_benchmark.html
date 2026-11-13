@@ -431,6 +431,9 @@ must be defined by the user. A typical workflow is the following:</p>
 </div>
 <p>Note that by default, when <code class="docutils literal notranslate"><span class="pre">Objective</span></code> has a <code class="docutils literal notranslate"><span class="pre">cv</span></code> attribute, the number of
 repetitions is set to <code class="docutils literal notranslate"><span class="pre">cv.get_n_splits()</span></code> instead of <code class="docutils literal notranslate"><span class="pre">1</span></code>.
+When <code class="docutils literal notranslate"><span class="pre">-r</span></code> is not set, benchopt looks for an assignment of <code class="docutils literal notranslate"><span class="pre">self.cv</span></code> in the
+objective code. Only then does it load the data on the machine running
+<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, to count the splits.
 When fewer repetitions are requested, only the first splits are evaluated.
 On the contrary, requesting more repetitions than splits will loop over
 the splits, repeating them to get the right number of runs.

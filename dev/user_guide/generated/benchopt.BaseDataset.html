@@ -393,6 +393,7 @@
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset"><code class="docutils literal notranslate"><span class="pre">BaseDataset</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.get_data"><code class="docutils literal notranslate"><span class="pre">BaseDataset.get_data()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.prepare"><code class="docutils literal notranslate"><span class="pre">BaseDataset.prepare()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.skip"><code class="docutils literal notranslate"><span class="pre">BaseDataset.skip()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -427,6 +428,8 @@ extraction, preprocessing) that is cached and separated from loading.</p></li>
 <dt class="sig sig-object py" id="benchopt.BaseDataset.get_data">
 <span class="property"><span class="k"><span class="pre">abstractmethod</span></span><span class="w"> </span></span><span class="sig-name descname"><span class="pre">get_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseDataset.get_data" title="Link to this definition">#</a></dt>
 <dd><p>Return the data to feed to the objective .</p>
+<p>The result is cached on the instance, so calling it again (e.g. in a
+<code class="docutils literal notranslate"><span class="pre">skip</span></code>) does not reload the data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
@@ -473,6 +476,25 @@ with <code class="docutils literal notranslate"><span class="pre">use_dataset=Tr
 repetition seed raises a <code class="docutils literal notranslate"><span class="pre">ValueError</span></code>, as they are not yet defined.
 See <a class="reference internal" href="../controlling_randomness.html#controlling-randomness"><span class="std std-ref">Reproducibility helpers: seeding and run artifacts</span></a>.</p></li>
 </ul>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="benchopt.BaseDataset.skip">
+<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseDataset.skip" title="Link to this definition">#</a></dt>
+<dd><p>Hook to decide if the <code class="docutils literal notranslate"><span class="pre">Dataset</span></code> should be skipped.</p>
+<p>It is called before launching the runs, so skipping here removes the
+runs of all objectives and solvers, e.g. for incompatible parameters.
+Calling <code class="docutils literal notranslate"><span class="pre">self.get_data()</span></code> loads the data of the first repetition, on
+the machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason to skip this dataset, displayed in the output, or None
+to run it. Any other value raises an error.</p>
+</dd>
+</dl>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
@@ -529,6 +551,7 @@ See <a class="reference internal" href="../controlling_randomness.html#controlli
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset"><code class="docutils literal notranslate"><span class="pre">BaseDataset</span></code></a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.get_data"><code class="docutils literal notranslate"><span class="pre">BaseDataset.get_data()</span></code></a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.prepare"><code class="docutils literal notranslate"><span class="pre">BaseDataset.prepare()</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#benchopt.BaseDataset.skip"><code class="docutils literal notranslate"><span class="pre">BaseDataset.skip()</span></code></a></li>
 </ul>
 </li>
 </ul>
