@@ -435,12 +435,9 @@ The output is passed to <code class="docutils literal notranslate"><span class="
 <p>Optionaly, the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> can implement the following methods to change its
 behavior:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">skip(self,</span> <span class="pre">**objective_parameters)</span></code>: decide if the solver is
-compatible with the given objective. Its inputs are the same as
-<code class="docutils literal notranslate"><span class="pre">set_objective</span></code>, and it should return a tuple <code class="docutils literal notranslate"><span class="pre">(skip,</span> <span class="pre">reason)</span></code> where
-<code class="docutils literal notranslate"><span class="pre">skip</span></code> is a boolean indicating whether the solver should be skipped for
-this configuration, and <code class="docutils literal notranslate"><span class="pre">reason</span></code> is a string used to explain why in the
-CLI output. If <code class="docutils literal notranslate"><span class="pre">skip</span></code> is False, <code class="docutils literal notranslate"><span class="pre">reason</span></code> should be None.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skip(self,</span> <span class="pre">objective,</span> <span class="pre">dataset)</span></code>: decide if the solver is compatible
+with the objective and the dataset of the run. It returns the reason to
+skip, displayed in the CLI output, or None to run.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_next(stop_val)</span></code>: Return the next iteration where the result will
 be evaluated. This is only necessary when <cite>sampling_strategy</cite> is set to
 ‘iteration’ or ‘tolerance’ and the default logarithmic spacing is not

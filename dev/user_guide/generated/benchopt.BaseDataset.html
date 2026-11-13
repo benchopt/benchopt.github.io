@@ -421,6 +421,8 @@ as arguments of the objective’s method <code class="docutils literal notransla
 </ul>
 <p>Optionally, datasets can implement:</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">skip()</span></code>: decide if the dataset parameters are compatible. It returns
+the reason to skip, displayed in the CLI output, or None to run.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">prepare()</span></code>: performs expensive one-time preparation (downloads,
 extraction, preprocessing) that is cached and separated from loading.</p></li>
 </ul>

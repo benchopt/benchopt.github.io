@@ -438,6 +438,9 @@ dictionaries, these metrics can be computed on different objects.</p></li>
 <p>Optionally, the <cite>Objective</cite> can implement the following methods to change
 its behavior:</p>
 <ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">skip(dataset)</span></code>: decide if the objective is compatible with the
+dataset of the run. It returns the reason to skip, displayed in the CLI
+output, or None to run.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_one_result()</span></code>: return one dummy result compatible with
 <code class="docutils literal notranslate"><span class="pre">evaluate_result</span></code>. Used by <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">test</span></code> to validate metric
 computation. If not implemented, <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code> works normally but
