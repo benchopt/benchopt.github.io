@@ -550,16 +550,28 @@ callback (default to 1).</p>
 </section>
 <section id="data-loading-and-memory">
 <span id="data-memory"></span><h2>Data loading and memory<a class="headerlink" href="#data-loading-and-memory" title="Link to this heading">#</a></h2>
-<p>Benchopt loads each dataset once and keeps its data in memory to run all the
-solvers on it, which avoids reloading the data for every solver. The data is
-released when the run moves to the next dataset. With <code class="docutils literal notranslate"><span class="pre">--group-by</span></code> (see
-<a class="reference internal" href="distributed_run.html#run-grouping"><span class="std std-ref">Grouping runs to reduce overhead</span></a>), this only holds for the first listed axis, while the
-other axes keep all their instances in memory. List the heaviest,
-data-carrying axis (usually <code class="docutils literal notranslate"><span class="pre">dataset</span></code>) first.</p>
-<p>Solvers with a costly setup, such as the warmup described above, can also
-benefit from sharing in parallel runs. <code class="docutils literal notranslate"><span class="pre">--group-by</span> <span class="pre">solver</span></code> runs each solver
-on all datasets in the same worker, at the cost of keeping all the datasets’
-data in that worker’s memory.</p>
+<p>Consecutive runs in a process reuse the same component instances. Benchopt
+skips the calls whose result is already there: <code class="docutils literal notranslate"><span class="pre">Dataset.get_data</span></code> is not
+called again for the same dataset, and <code class="docutils literal notranslate"><span class="pre">Objective.set_data</span></code> is not called
+again for the same dataset and objective, unless their seed changes with the
+repetition. <code class="docutils literal notranslate"><span class="pre">Solver.set_objective</span></code> and <code class="docutils literal notranslate"><span class="pre">Solver.run</span></code> are called for every
+run. The solver instance keeps its attributes between consecutive runs, so a
+solver can skip costly steps it already did, such as loading model weights.
+Benchopt does not do this for the solver. Its code must check whether the
+attribute is already set, for instance in <code class="docutils literal notranslate"><span class="pre">set_objective</span></code>.</p>
+<p>Once a run uses another component, the previous instance is released: it goes
+back to its state after creation, so its data can be freed. The state of an
+objective depends on its dataset, and the state of a solver on its objective
+and dataset. Each process thus keeps at most one state per component, and
+loads each dataset once per block of consecutive runs using it.</p>
+<p>The order of the runs therefore decides what is reused. By default, the runs
+are ordered by dataset, then objective, then solver, so each dataset is loaded
+once and <code class="docutils literal notranslate"><span class="pre">set_data</span></code> is called once per objective. With <code class="docutils literal notranslate"><span class="pre">--group-by</span></code> (see
+<a class="reference internal" href="distributed_run.html#run-grouping"><span class="std std-ref">Grouping runs to reduce overhead</span></a>), the listed axes come first. For instance,
+<code class="docutils literal notranslate"><span class="pre">--group-by</span> <span class="pre">solver</span></code> runs each solver on all datasets in a row, keeping the
+same solver instance, but reloads each dataset for every solver.</p>
+<p>Attributes stored on an instance during a run do not survive a release. The
+warmup described above is kept, so it runs once per solver and process.</p>
 </section>
 </section>
 

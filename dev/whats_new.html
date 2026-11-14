@@ -524,6 +524,13 @@ is settable from the CLI (<code class="docutils literal notranslate"><span class
 when <code class="docutils literal notranslate"><span class="pre">-r</span></code> is set, and the <code class="docutils literal notranslate"><span class="pre">submitit</span></code> backend no longer keeps every
 dataset in memory while submitting jobs. By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a>
 (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1020">#1020</a>)</p></li>
+<li><p>Consecutive runs in a process share the state of their dataset, objective
+and solver, and release it once a run uses another component. Memory no
+longer grows with the number of solvers, and <code class="docutils literal notranslate"><span class="pre">Objective.set_data</span></code> is
+called once per dataset and objective instead of once per run. The front
+node applies the same rule to the runs it sends to other processes. See
+<a class="reference internal" href="user_guide/advanced.html#data-memory"><span class="std std-ref">Data loading and memory</span></a>. By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> and <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a>
+(<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1030">#1030</a>)</p></li>
 <li><p>The “Export LaTeX” button of the HTML report shows the table in a text box
 when the clipboard is unavailable, and no longer adds an extra column. By
 <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1023">#1023</a>)</p></li>
