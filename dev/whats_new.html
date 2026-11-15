@@ -265,6 +265,8 @@
 <li class="toctree-l4"><a class="reference internal" href="user_guide/generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/generated/benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_guide/generated/benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guide/generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_guide/generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -550,6 +552,11 @@ By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau
 runs, and return the reason to skip or <code class="docutils literal notranslate"><span class="pre">None</span></code>. The old signature and the
 <code class="docutils literal notranslate"><span class="pre">(skip,</span> <span class="pre">reason)</span></code> tuple are deprecated. See <a class="reference internal" href="user_guide/advanced.html#skipping-config"><span class="std std-ref">Skipping a configuration</span></a>.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1031">#1031</a>)</p></li>
+<li><p><a class="reference internal" href="user_guide/generated/benchopt.helpers.requires_gpu.gpu_available.html#benchopt.helpers.requires_gpu.gpu_available" title="benchopt.helpers.requires_gpu.gpu_available"><code class="xref py py-func docutils literal notranslate"><span class="pre">gpu_available()</span></code></a> tells in
+<code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code> if the runs of a solver will have a GPU, using the SLURM
+config of its jobs with the <code class="docutils literal notranslate"><span class="pre">submitit</span></code> backend.
+<a class="reference internal" href="user_guide/generated/benchopt.parallel_backends.get_worker_config.html#benchopt.parallel_backends.get_worker_config" title="benchopt.parallel_backends.get_worker_config"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_worker_config()</span></code></a> gives this config for
+other checks. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1040">#1040</a>)</p></li>
 <li><p>Add a <code class="docutils literal notranslate"><span class="pre">hidden_plots</span></code> benchmark config option to hide some plot kinds,
 e.g. some of the default plots. By <a class="reference external" href="https://www.linkedin.com/in/hippolyte-verninas">Hippolyte Verninas</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1019">#1019</a>)</p></li>
 </ul>

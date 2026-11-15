@@ -266,6 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -455,6 +457,22 @@ set when <a class="reference internal" href="distributed_run.html#run-grouping">
         <span class="c1"># Loads the data on the node running `benchopt run`.</span>
         <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="s2">"X"</span><span class="p">]):</span>
             <span class="k">return</span> <span class="s2">"solver does not support sparse data X."</span>
+</pre></div>
+</div>
+<p>As <code class="docutils literal notranslate"><span class="pre">skip</span></code> runs on the machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, a check on the
+hardware should look at the machine that will run the solver. For a GPU,
+<a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html#benchopt.helpers.requires_gpu.gpu_available" title="benchopt.helpers.requires_gpu.gpu_available"><code class="xref py py-func docutils literal notranslate"><span class="pre">gpu_available()</span></code></a> checks the local
+machine, or with the <a class="reference internal" href="distributed_run.html#slurm-backend"><span class="std std-ref">submitit backend</span></a>, that the
+solver’s jobs request a GPU. For other checks,
+<a class="reference internal" href="generated/benchopt.parallel_backends.get_worker_config.html#benchopt.parallel_backends.get_worker_config" title="benchopt.parallel_backends.get_worker_config"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_worker_config()</span></code></a> returns the config of
+the workers that run the solver.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.requires_gpu</span><span class="w"> </span><span class="kn">import</span> <span class="n">gpu_available</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">gpu_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <span class="k">return</span> <span class="s2">"solver needs a GPU"</span>
 </pre></div>
 </div>
 <div class="admonition note">

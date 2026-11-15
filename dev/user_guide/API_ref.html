@@ -267,6 +267,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -445,6 +447,12 @@ dependencies, and lifecycle hooks.</p>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="generated/benchopt.utils.profile.html#benchopt.utils.profile" title="benchopt.utils.profile"><code class="xref py py-obj docutils literal notranslate"><span class="pre">utils.profile</span></code></a>(func)</p></td>
 <td><p>Decorator to tell line profiler which function to profile.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html#benchopt.helpers.requires_gpu.gpu_available" title="benchopt.helpers.requires_gpu.gpu_available"><code class="xref py py-obj docutils literal notranslate"><span class="pre">helpers.requires_gpu.gpu_available</span></code></a>(solver)</p></td>
+<td><p>Whether the runs of <code class="docutils literal notranslate"><span class="pre">solver</span></code> will have a GPU.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="generated/benchopt.parallel_backends.get_worker_config.html#benchopt.parallel_backends.get_worker_config" title="benchopt.parallel_backends.get_worker_config"><code class="xref py py-obj docutils literal notranslate"><span class="pre">parallel_backends.get_worker_config</span></code></a>(solver)</p></td>
+<td><p>Return the parallel config of the workers that run <code class="docutils literal notranslate"><span class="pre">solver</span></code>.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html#benchopt.results.result_processing.merge" title="benchopt.results.result_processing.merge"><code class="xref py py-obj docutils literal notranslate"><span class="pre">results.result_processing.merge</span></code></a>(result_filenames)</p></td>
 <td><p>Merge result files of a benchmark</p></td>

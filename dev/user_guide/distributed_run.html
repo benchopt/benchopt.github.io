@@ -266,6 +266,8 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.plotting.plot_benchmark.html">benchopt.plotting.plot_benchmark</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
+<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -575,6 +577,11 @@ config, the solver-specific parameters, and the run-specific parameters, with
 priority given to the run-specific parameters. Note that in this case, the jobs
 with different SLURM parameters will be launched as one job array per
 configuration.</p>
+<p>The solvers’ <code class="docutils literal notranslate"><span class="pre">skip</span></code> runs on the node running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, which might
+not have the hardware of the jobs. To skip a solver when its jobs get no GPU,
+use <a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html#benchopt.helpers.requires_gpu.gpu_available" title="benchopt.helpers.requires_gpu.gpu_available"><code class="xref py py-func docutils literal notranslate"><span class="pre">gpu_available()</span></code></a> in <code class="docutils literal notranslate"><span class="pre">skip</span></code>. It
+checks that the merged SLURM configuration of the solver requests a GPU. See
+<a class="reference internal" href="advanced.html#skipping-config"><span class="std std-ref">Skipping a configuration</span></a>.</p>
 <section id="running-computations-on-a-remote-cluster-using-dask">
 <span id="dask-backend"></span><h3>Running computations on a remote Cluster using <code class="docutils literal notranslate"><span class="pre">dask</span></code><a class="headerlink" href="#running-computations-on-a-remote-cluster-using-dask" title="Link to this heading">#</a></h3>
 <p>In the config file passed to <code class="docutils literal notranslate"><span class="pre">--parallel-config</span></code>, you can specify the
