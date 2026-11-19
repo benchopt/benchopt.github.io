@@ -60,7 +60,7 @@
     <link rel="icon" href="../../_static/logo_benchopt.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="benchopt.parallel_backends.get_worker_config" href="benchopt.parallel_backends.get_worker_config.html" />
+    <link rel="next" title="benchopt.results.result_processing.merge" href="benchopt.results.result_processing.merge.html" />
     <link rel="prev" title="benchopt.utils.profile" href="benchopt.utils.profile.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
@@ -267,7 +267,6 @@
 <li class="toctree-l4"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 <li class="toctree-l4 current active"><a class="current reference internal" href="#">benchopt.helpers.requires_gpu.gpu_available</a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -408,22 +407,22 @@
 <h1>benchopt.helpers.requires_gpu.gpu_available<a class="headerlink" href="#benchopt-helpers-requires-gpu-gpu-available" title="Link to this heading">#</a></h1>
 <dl class="py function">
 <dt class="sig sig-object py" id="benchopt.helpers.requires_gpu.gpu_available">
-<span class="sig-prename descclassname"><span class="pre">benchopt.helpers.requires_gpu.</span></span><span class="sig-name descname"><span class="pre">gpu_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">solver</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.helpers.requires_gpu.gpu_available" title="Link to this definition">#</a></dt>
-<dd><p>Whether the runs of <code class="docutils literal notranslate"><span class="pre">solver</span></code> will have a GPU.</p>
-<p>Use it in <code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code> to check this consistently across backends
+<span class="sig-prename descclassname"><span class="pre">benchopt.helpers.requires_gpu.</span></span><span class="sig-name descname"><span class="pre">gpu_available</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.helpers.requires_gpu.gpu_available" title="Link to this definition">#</a></dt>
+<dd><p>Whether the runs of <code class="docutils literal notranslate"><span class="pre">component</span></code> will have a GPU.</p>
+<p>Use it in <code class="docutils literal notranslate"><span class="pre">skip</span></code> to check this consistently across backends
 from the machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>. With <code class="docutils literal notranslate"><span class="pre">submitit</span></code>, a GPU is
 requested by <code class="docutils literal notranslate"><span class="pre">gres</span></code> or a <code class="docutils literal notranslate"><span class="pre">gpus*</span></code> option. With <code class="docutils literal notranslate"><span class="pre">dask</span></code>, workers are
 assumed to have one.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>solver</strong><span class="classifier">benchopt.BaseSolver</span></dt><dd><p>The solver whose runs are checked.</p>
+<dt><strong>component</strong><span class="classifier">benchopt.BaseDataset | benchopt.BaseObjective | benchopt.BaseSolver</span></dt><dd><p>The component whose runs are checked, e.g. <code class="docutils literal notranslate"><span class="pre">self</span></code> in <code class="docutils literal notranslate"><span class="pre">skip</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl class="simple">
-<dt><strong>available</strong><span class="classifier">bool</span></dt><dd><p>True if the runs of <code class="docutils literal notranslate"><span class="pre">solver</span></code> will have a GPU.</p>
+<dt><strong>available</strong><span class="classifier">bool</span></dt><dd><p>True if the runs of <code class="docutils literal notranslate"><span class="pre">component</span></code> will have a GPU.</p>
 </dd>
 </dl>
 </dd>
@@ -453,11 +452,11 @@ assumed to have one.</p>
       </div>
     </a>
     <a class="right-next"
-       href="benchopt.parallel_backends.get_worker_config.html"
+       href="benchopt.results.result_processing.merge.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">benchopt.parallel_backends.get_worker_config</p>
+        <p class="prev-next-title">benchopt.results.result_processing.merge</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>

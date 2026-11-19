@@ -267,7 +267,6 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -393,6 +392,7 @@
             <nav aria-label="Page">
                 <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-configuration">Skipping a configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-the-components-of-the-current-run">Accessing the components of the current run</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-final-results-of-a-solver">Saving Final Results of a Solver</a></li>
@@ -421,14 +421,13 @@ to make it easier to use the benchmark.</p>
 <p>Some configurations of a benchmark cannot run. A dataset can have incompatible
 parameters, an objective might not apply to some datasets, and a solver might
 not support sparse data or scale to large datasets. Each component can skip
-them by implementing a <code class="docutils literal notranslate"><span class="pre">skip</span></code> method, which receives the components chosen
-before it:</p>
+them by implementing a <code class="docutils literal notranslate"><span class="pre">skip(self)</span></code> method, which can use the components
+chosen before it, e.g. <code class="docutils literal notranslate"><span class="pre">self.dataset_</span></code> (see <a class="reference internal" href="#current-run"><span class="std std-ref">Accessing the components of the current run</span></a>):</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset.skip" title="benchopt.BaseDataset.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> takes no argument and skips all the runs
-of the dataset.</p></li>
-<li><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip" title="benchopt.BaseObjective.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> receives the dataset and skips the runs
+<li><p><a class="reference internal" href="generated/benchopt.BaseDataset.html#benchopt.BaseDataset.skip" title="benchopt.BaseDataset.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> skips all the runs of the dataset.</p></li>
+<li><p><a class="reference internal" href="generated/benchopt.BaseObjective.html#benchopt.BaseObjective.skip" title="benchopt.BaseObjective.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> can use the dataset, and skips the runs
 of all solvers.</p></li>
-<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> receives the objective and the dataset.</p></li>
+<li><p><a class="reference internal" href="generated/benchopt.BaseSolver.html#benchopt.BaseSolver.skip" title="benchopt.BaseSolver.skip"><code class="xref py py-func docutils literal notranslate"><span class="pre">skip()</span></code></a> can use the objective and the dataset.</p></li>
 </ul>
 <p><code class="docutils literal notranslate"><span class="pre">skip</span></code> returns the reason to skip, displayed in the output, or <code class="docutils literal notranslate"><span class="pre">None</span></code> to
 run. Any other value or a failing <code class="docutils literal notranslate"><span class="pre">skip</span></code> is reported as an error, and its
@@ -436,9 +435,10 @@ runs are not created.</p>
 <p>The skips are checked once per configuration, before launching the runs.
 Checks on the parameters are free. Calling <code class="docutils literal notranslate"><span class="pre">dataset.get_data()</span></code> or
 <code class="docutils literal notranslate"><span class="pre">objective.get_objective()</span></code> loads the data of the first repetition on the
-machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, once per dataset. <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> can use the
-component itself and the ones that <code class="docutils literal notranslate"><span class="pre">skip</span></code> receives. Other components are only
-set when <a class="reference internal" href="distributed_run.html#run-grouping"><span class="std std-ref">group_by</span></a> chooses them first.</p>
+machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>, once per dataset. <code class="docutils literal notranslate"><span class="pre">get_seed</span></code> and the
+attributes of the current run can use the component itself and the ones
+chosen before it. Other components are only set when <a class="reference internal" href="distributed_run.html#run-grouping"><span class="std std-ref">group_by</span></a> chooses
+them first, and asking for a component that is not set raises an error.</p>
 <p>For instance, with an objective parameter <code class="docutils literal notranslate"><span class="pre">reg</span></code> and a dataset giving <code class="docutils literal notranslate"><span class="pre">X</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Dataset</span><span class="p">(</span><span class="n">BaseDataset</span><span class="p">):</span>
     <span class="o">...</span>
@@ -448,14 +448,14 @@ set when <a class="reference internal" href="distributed_run.html#run-grouping">
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="o">...</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="kn">from</span><span class="w"> </span><span class="nn">scipy</span><span class="w"> </span><span class="kn">import</span> <span class="n">sparse</span>
 
-        <span class="k">if</span> <span class="n">objective</span><span class="o">.</span><span class="n">reg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">objective_</span><span class="o">.</span><span class="n">reg</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">return</span> <span class="s2">"solver does not work with reg=0"</span>
 
         <span class="c1"># Loads the data on the node running `benchopt run`.</span>
-        <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="n">dataset</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="s2">"X"</span><span class="p">]):</span>
+        <span class="k">if</span> <span class="n">sparse</span><span class="o">.</span><span class="n">issparse</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">dataset_</span><span class="o">.</span><span class="n">get_data</span><span class="p">()[</span><span class="s2">"X"</span><span class="p">]):</span>
             <span class="k">return</span> <span class="s2">"solver does not support sparse data X."</span>
 </pre></div>
 </div>
@@ -464,13 +464,13 @@ hardware should look at the machine that will run the solver. For a GPU,
 <a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html#benchopt.helpers.requires_gpu.gpu_available" title="benchopt.helpers.requires_gpu.gpu_available"><code class="xref py py-func docutils literal notranslate"><span class="pre">gpu_available()</span></code></a> checks the local
 machine, or with the <a class="reference internal" href="distributed_run.html#slurm-backend"><span class="std std-ref">submitit backend</span></a>, that the
 solver’s jobs request a GPU. For other checks,
-<a class="reference internal" href="generated/benchopt.parallel_backends.get_worker_config.html#benchopt.parallel_backends.get_worker_config" title="benchopt.parallel_backends.get_worker_config"><code class="xref py py-func docutils literal notranslate"><span class="pre">get_worker_config()</span></code></a> returns the config of
-the workers that run the solver.</p>
+<code class="docutils literal notranslate"><span class="pre">self.run_parallel_config_</span></code> gives the config of the workers
+that run the solver.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.helpers.requires_gpu</span><span class="w"> </span><span class="kn">import</span> <span class="n">gpu_available</span>
 
 <span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
     <span class="o">...</span>
-    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">skip</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">gpu_available</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
             <span class="k">return</span> <span class="s2">"solver needs a GPU"</span>
 </pre></div>
@@ -484,6 +484,40 @@ output of <code class="docutils literal notranslate"><span class="pre">Dataset.g
 Both still work, with a <code class="docutils literal notranslate"><span class="pre">FutureWarning</span></code>, and are checked before
 launching the runs, but the old signature always loads the data. They will
 be removed in benchopt 1.12.</p>
+</div>
+</section>
+<section id="accessing-the-components-of-the-current-run">
+<span id="current-run"></span><h2>Accessing the components of the current run<a class="headerlink" href="#accessing-the-components-of-the-current-run" title="Link to this heading">#</a></h2>
+<p>Each run combines a dataset, an objective, a solver and a repetition. In the
+methods that benchopt calls on a component, e.g. <code class="docutils literal notranslate"><span class="pre">skip</span></code>, <code class="docutils literal notranslate"><span class="pre">get_data</span></code>,
+<code class="docutils literal notranslate"><span class="pre">set_objective</span></code> or a <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> property, the attributes ending with
+<code class="docutils literal notranslate"><span class="pre">_</span></code> describe the current run:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self.dataset_</span></code>, <code class="docutils literal notranslate"><span class="pre">self.objective_</span></code>, <code class="docutils literal notranslate"><span class="pre">self.solver_</span></code>: the components of
+the run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.repetition_</span></code>: the index of the repetition. <code class="docutils literal notranslate"><span class="pre">skip</span></code> is checked for
+the first repetition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.parallel_config_</span></code>: the parallel config given to <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>,
+with <code class="docutils literal notranslate"><span class="pre">--parallel-config</span></code>. It can be used in <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.run_parallel_config_</span></code>: the parallel config of the workers that run it,
+or <code class="docutils literal notranslate"><span class="pre">None</span></code> when the runs are on the local machine. With the
+<a class="reference internal" href="distributed_run.html#slurm-backend"><span class="std std-ref">submitit backend</span></a>, it is the SLURM config of the jobs,
+merged with the <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code> of the solver. It cannot be used in
+<code class="docutils literal notranslate"><span class="pre">slurm_params</span></code>, which it depends on.</p></li>
+</ul>
+<p>A component is only available once it is chosen. The dataset is chosen
+first, then the objective and the solver, unless
+<a class="reference internal" href="distributed_run.html#run-grouping"><span class="std std-ref">group_by</span></a> changes this order. Asking for a component that
+is not chosen yet, e.g. the solver in <code class="docutils literal notranslate"><span class="pre">Dataset.skip</span></code> or during
+<code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">prepare</span></code>, raises an error. Outside of the methods that benchopt
+calls, these attributes raise an error too. They are set by benchopt, and
+setting them in a component raises a warning.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="o">...</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_objective</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">):</span>
+        <span class="c1"># Adapt the solver to the dataset of the run.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">batch_size</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">dataset_</span><span class="o">.</span><span class="n">n_samples</span><span class="p">)</span>
+</pre></div>
 </div>
 </section>
 <section id="advanced-usage-of-objective-class">
@@ -641,6 +675,7 @@ warmup described above is kept, so it runs once per solver and process.</p>
   <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
     <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#skipping-a-configuration">Skipping a configuration</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#accessing-the-components-of-the-current-run">Accessing the components of the current run</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#advanced-usage-of-objective-class">Advanced usage of <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#producing-multiple-evaluations-at-once">Producing multiple evaluations at once</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#saving-final-results-of-a-solver">Saving Final Results of a Solver</a></li>

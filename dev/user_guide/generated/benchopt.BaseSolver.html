@@ -267,7 +267,6 @@
 <li class="toctree-l4"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -437,9 +436,11 @@ The output is passed to <code class="docutils literal notranslate"><span class="
 <p>Optionaly, the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> can implement the following methods to change its
 behavior:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">skip(self,</span> <span class="pre">objective,</span> <span class="pre">dataset)</span></code>: decide if the solver is compatible
-with the objective and the dataset of the run. It returns the reason to
-skip, displayed in the CLI output, or None to run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skip()</span></code>: used to skip some run configs, with incompatible
+parameters, datasets or objectives. It is checked once the dataset and
+the objective are chosen, and accesses them with <code class="docutils literal notranslate"><span class="pre">self.dataset_</span></code>
+and <code class="docutils literal notranslate"><span class="pre">self.objective_</span></code>. It returns the reason to skip, displayed in
+the CLI output, or None to run.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">get_next(stop_val)</span></code>: Return the next iteration where the result will
 be evaluated. This is only necessary when <cite>sampling_strategy</cite> is set to
 ‘iteration’ or ‘tolerance’ and the default logarithmic spacing is not
@@ -584,23 +585,16 @@ from the benchmark <code class="docutils literal notranslate"><span class="pre">
 
 <dl class="py method">
 <dt class="sig sig-object py" id="benchopt.BaseSolver.skip">
-<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">objective</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Link to this definition">#</a></dt>
+<span class="sig-name descname"><span class="pre">skip</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#benchopt.BaseSolver.skip" title="Link to this definition">#</a></dt>
 <dd><p>Hook to decide if the <code class="docutils literal notranslate"><span class="pre">Solver</span></code> is compatible with the objective.</p>
-<p>It is called before launching the runs. Checks on the parameters
-(e.g. <code class="docutils literal notranslate"><span class="pre">objective.reg</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset.n_samples</span></code>) are free. Calling
-<code class="docutils literal notranslate"><span class="pre">objective.get_objective()</span></code> or <code class="docutils literal notranslate"><span class="pre">dataset.get_data()</span></code> loads the data
-on the machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.</p>
+<p>It is called before launching the runs. The objective and the dataset
+are <code class="docutils literal notranslate"><span class="pre">self.objective_</span></code> and <code class="docutils literal notranslate"><span class="pre">self.dataset_</span></code>. Checks on their
+parameters (e.g. <code class="docutils literal notranslate"><span class="pre">objective.reg</span></code>, <code class="docutils literal notranslate"><span class="pre">dataset.n_samples</span></code>) are free.
+Calling <code class="docutils literal notranslate"><span class="pre">objective.get_objective()</span></code> or <code class="docutils literal notranslate"><span class="pre">dataset.get_data()</span></code> loads
+the data on the machine running <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>.</p>
 <dl class="field-list simple">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><dl class="simple">
-<dt><strong>objective</strong><span class="classifier">benchopt.BaseObjective</span></dt><dd><p>The objective of the run.</p>
-</dd>
-<dt><strong>dataset</strong><span class="classifier">benchopt.BaseDataset</span></dt><dd><p>The dataset of the run.</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl class="simple">
 <dt><strong>reason</strong><span class="classifier">str | None</span></dt><dd><p>The reason to skip this solver for this objective, displayed in
 the output, or None to run it. Any other value raises an error.</p>
 </dd>

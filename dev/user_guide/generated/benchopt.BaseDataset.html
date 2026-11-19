@@ -267,7 +267,6 @@
 <li class="toctree-l4"><a class="reference internal" href="benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
-<li class="toctree-l4"><a class="reference internal" href="benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -423,8 +422,9 @@ as arguments of the objective’s method <code class="docutils literal notransla
 </ul>
 <p>Optionally, datasets can implement:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">skip()</span></code>: decide if the dataset parameters are compatible. It returns
-the reason to skip, displayed in the CLI output, or None to run.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">skip()</span></code>: used to skip some run configs, with incompatible
+parameters. It returns the reason to skip, displayed in the CLI output,
+or None to run.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">prepare()</span></code>: performs expensive one-time preparation (downloads,
 extraction, preprocessing) that is cached and separated from loading.</p></li>
 </ul>

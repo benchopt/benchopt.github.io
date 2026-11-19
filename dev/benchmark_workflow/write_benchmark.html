@@ -267,7 +267,6 @@
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../user_guide/generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -520,6 +519,8 @@ See <a class="reference internal" href="../user_guide/controlling_randomness.htm
 (models, plots, logs, …) scoped to the current
 (dataset x objective x solver x repetition) combination.
 See <a class="reference internal" href="../user_guide/controlling_randomness.html#controlling-randomness"><span class="std std-ref">Reproducibility helpers: seeding and run artifacts</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dataset_</span></code>, <code class="docutils literal notranslate"><span class="pre">objective_</span></code>, <code class="docutils literal notranslate"><span class="pre">solver_</span></code>: the dataset, objective or
+solver of the current run, e.g. in <code class="docutils literal notranslate"><span class="pre">skip</span></code>. See <a class="reference internal" href="../user_guide/advanced.html#current-run"><span class="std std-ref">Accessing the components of the current run</span></a>.</p></li>
 </ul>
 <section id="datasets">
 <span id="id1"></span><h2>1. Datasets<a class="headerlink" href="#datasets" title="Link to this heading">#</a></h2>

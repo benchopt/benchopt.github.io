@@ -263,7 +263,6 @@
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.datasets.simulated.make_correlated_data.html">benchopt.datasets.simulated.make_correlated_data</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.utils.profile.html">benchopt.utils.profile</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.helpers.requires_gpu.gpu_available.html">benchopt.helpers.requires_gpu.gpu_available</a></li>
-<li class="toctree-l4"><a class="reference internal" href="generated/benchopt.parallel_backends.get_worker_config.html">benchopt.parallel_backends.get_worker_config</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.merge.html">benchopt.results.result_processing.merge</a></li>
 <li class="toctree-l4"><a class="reference internal" href="generated/benchopt.results.result_processing.describe_results.html">benchopt.results.result_processing.describe_results</a></li>
 </ul>
@@ -455,11 +454,11 @@
 
     <span class="c1"># ensure classes calling `get_seed` work properly. Use placeholder</span>
     <span class="c1"># objective/solver names to mimic known dimension at runtime.</span>
-    <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-        <span class="s2">"dummy"</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="s2">"dummy"</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
-    <span class="p">)</span>
-
-    <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
+    <span class="k">with</span> <span class="n">RunContext</span><span class="p">(</span>
+        <span class="n">objective</span><span class="o">=</span><span class="s2">"dummy"</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"dummy"</span><span class="p">,</span>
+        <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">):</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">get_data</span><span class="p">()</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">dict</span><span class="p">)),</span> <span class="p">(</span>
         <span class="s2">"Output of get_data should be a 2-tuple or a dict."</span>
     <span class="p">)</span>
@@ -482,18 +481,18 @@
 
     <span class="c1"># ensure classes calling `get_seed` work properly. Use a placeholder</span>
     <span class="c1"># solver name so all methods can use any seed dimension.</span>
-    <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-        <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="s2">"dummy"</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
-    <span class="p">)</span>
-
-    <span class="c1"># get one value for the objective, with the test_dataset</span>
-    <span class="n">objective</span><span class="o">.</span><span class="n">_set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">_get_one_result</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span>
-            <span class="s2">"Objective needs to implement get_one_result to be tested."</span>
-        <span class="p">)</span>
-    <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">RunContext</span><span class="p">(</span>
+        <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="s2">"dummy"</span><span class="p">,</span>
+        <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="mi">0</span>
+    <span class="p">):</span>
+        <span class="c1"># get one value for the objective, with the test_dataset</span>
+        <span class="n">objective</span><span class="o">.</span><span class="n">_load_data</span><span class="p">()</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">_get_one_result</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">pytest</span><span class="o">.</span><span class="n">skip</span><span class="p">(</span>
+                <span class="s2">"Objective needs to implement get_one_result to be tested."</span>
+            <span class="p">)</span>
+        <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 
     <span class="c1"># check that the output has proper type and is not empty</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">objective_output</span><span class="p">,</span> <span class="nb">list</span><span class="p">),</span> <span class="p">(</span>
@@ -624,16 +623,15 @@
 
         <span class="c1"># ensure classes calling `get_seed` work properly.</span>
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">])</span>
-        <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-            <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
-            <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
-        <span class="p">)</span>
-
-        <span class="n">objective</span><span class="o">.</span><span class="n">_set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-        <span class="n">result</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">_get_one_result</span><span class="p">()</span>
-        <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">return</span>
-        <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">with</span> <span class="n">RunContext</span><span class="p">(</span>
+            <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="n">solver_class</span><span class="o">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
+        <span class="p">):</span>
+            <span class="n">objective</span><span class="o">.</span><span class="n">_load_data</span><span class="p">()</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">objective</span><span class="o">.</span><span class="n">_get_one_result</span><span class="p">()</span>
+            <span class="k">if</span> <span class="n">result</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="k">return</span>
+            <span class="n">objective_output</span> <span class="o">=</span> <span class="n">objective</span><span class="p">(</span><span class="n">result</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
 
         <span class="n">requested_key</span> <span class="o">=</span> <span class="n">stopping_criterion</span><span class="o">.</span><span class="n">key_to_monitor</span>
         <span class="n">available_keys</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">objective_output</span><span class="o">.</span><span class="n">keys</span><span class="p">())</span>
@@ -664,21 +662,20 @@
         <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'dataset'</span><span class="p">])</span>
         <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'objective'</span><span class="p">])</span>
         <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'solver'</span><span class="p">])</span>
-        <span class="n">RunContext</span><span class="p">()</span><span class="o">.</span><span class="n">set_run_context</span><span class="p">(</span>
-            <span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="p">,</span> <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
-        <span class="p">)</span>
-        <span class="n">objective</span><span class="o">.</span><span class="n">_attach_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-        <span class="n">solver</span><span class="o">.</span><span class="n">_attach_objective</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="p">[</span><span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">solver</span><span class="p">]:</span>
-            <span class="n">reason</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">_skip_reason</span><span class="p">()</span>
-            <span class="k">if</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-                <span class="n">reasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
-                <span class="k">break</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">objective</span><span class="o">.</span><span class="n">_set_dataset</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span>
-            <span class="n">solver</span><span class="o">.</span><span class="n">_set_objective</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
-            <span class="n">_test_solver_one_objective</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">objective</span><span class="p">)</span>
-            <span class="k">return</span>
+        <span class="k">with</span> <span class="n">RunContext</span><span class="p">(</span>
+            <span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">dataset</span><span class="o">=</span><span class="n">dataset</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">,</span>
+            <span class="n">repetition</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">base_seed</span><span class="o">=</span><span class="n">benchmark</span><span class="o">.</span><span class="n">seed</span>
+        <span class="p">):</span>
+            <span class="k">for</span> <span class="n">component</span> <span class="ow">in</span> <span class="p">[</span><span class="n">dataset</span><span class="p">,</span> <span class="n">objective</span><span class="p">,</span> <span class="n">solver</span><span class="p">]:</span>
+                <span class="n">reason</span> <span class="o">=</span> <span class="n">component</span><span class="o">.</span><span class="n">_skip_reason</span><span class="p">()</span>
+                <span class="k">if</span> <span class="n">reason</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+                    <span class="n">reasons</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span>
+                    <span class="k">break</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">objective</span><span class="o">.</span><span class="n">_load_data</span><span class="p">()</span>
+                <span class="n">solver</span><span class="o">.</span><span class="n">_set_objective</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
+                <span class="n">_test_solver_one_objective</span><span class="p">(</span><span class="n">solver</span><span class="p">,</span> <span class="n">objective</span><span class="p">)</span>
+                <span class="k">return</span>
 
     <span class="n">reasons</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">set</span><span class="p">(</span><span class="n">reasons</span><span class="p">))</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">reasons</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
