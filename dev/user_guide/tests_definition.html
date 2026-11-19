@@ -602,10 +602,11 @@
 
     <span class="n">objective</span> <span class="o">=</span> <span class="n">objective_class</span><span class="o">.</span><span class="n">get_instance</span><span class="p">(</span><span class="o">**</span><span class="n">config</span><span class="p">[</span><span class="s1">'objective'</span><span class="p">])</span>
 
-    <span class="c1"># Make sure to inherit the objective if the stopping criterion</span>
-    <span class="c1"># is set globally for this benchmark</span>
-    <span class="n">solver_class</span><span class="o">.</span><span class="n">_inherit_stopping_criterion</span><span class="p">(</span><span class="n">objective</span><span class="p">)</span>
-    <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="n">_stopping_criterion</span>
+    <span class="c1"># The criterion can come from the objective. The solver is not</span>
+    <span class="c1"># initialized, as `__init__` can need its requirements.</span>
+    <span class="n">solver</span> <span class="o">=</span> <span class="n">solver_class</span><span class="o">.</span><span class="fm">__new__</span><span class="p">(</span><span class="n">solver_class</span><span class="p">)</span>
+    <span class="k">with</span> <span class="n">RunContext</span><span class="p">(</span><span class="n">objective</span><span class="o">=</span><span class="n">objective</span><span class="p">,</span> <span class="n">solver</span><span class="o">=</span><span class="n">solver</span><span class="p">):</span>
+        <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">solver</span><span class="o">.</span><span class="n">get_current</span><span class="p">(</span><span class="s1">'_stopping_criterion'</span><span class="p">)</span>
 
     <span class="c1"># check that stopping_criterion has the proper type</span>
     <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">stopping_criterion</span><span class="p">,</span> <span class="n">StoppingCriterion</span><span class="p">),</span> <span class="p">(</span>
@@ -688,7 +689,7 @@
 
     <span class="n">is_convex</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">objective</span><span class="p">,</span> <span class="s2">"is_convex"</span><span class="p">,</span> <span class="kc">False</span><span class="p">)</span>
 
-    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">_solver_strategy</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'iteration'</span><span class="p">,</span> <span class="s1">'callback'</span><span class="p">]:</span>
+    <span class="k">if</span> <span class="n">solver</span><span class="o">.</span><span class="n">get_current</span><span class="p">(</span><span class="s1">'_sampling_strategy'</span><span class="p">)</span> <span class="ow">in</span> <span class="p">[</span><span class="s1">'iteration'</span><span class="p">,</span> <span class="s1">'callback'</span><span class="p">]:</span>
         <span class="n">stop_val</span> <span class="o">=</span> <span class="mi">5000</span> <span class="k">if</span> <span class="n">is_convex</span> <span class="k">else</span> <span class="mi">2</span>
     <span class="k">else</span><span class="p">:</span>
         <span class="n">stop_val</span> <span class="o">=</span> <span class="mf">1e-10</span> <span class="k">if</span> <span class="n">is_convex</span> <span class="k">else</span> <span class="mf">1e-2</span>

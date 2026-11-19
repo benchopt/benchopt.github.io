@@ -521,6 +521,11 @@ is settable from the CLI (<code class="docutils literal notranslate"><span class
 <section id="fix">
 <h3>FIX<a class="headerlink" href="#fix" title="Link to this heading">#</a></h3>
 <ul class="simple">
+<li><p>The sampling strategy, stopping criterion and <code class="docutils literal notranslate"><span class="pre">get_next</span></code> of a solver are
+resolved for each run, from the solver then the <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, instead of
+being copied on the solver class. A <code class="docutils literal notranslate"><span class="pre">&quot;run_once&quot;</span></code> solver now always runs
+once, and an inconsistent strategy only fails its solver. See
+<a class="reference internal" href="user_guide/iterative_solvers.html#global-strategy"><span class="std std-ref">Setting the sampling strategy and stopping criterion globally</span></a>. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1045">#1045</a>)</p></li>
 <li><p>A parameter set in <code class="docutils literal notranslate"><span class="pre">__init__</span></code> to a value that differs from the one passed
 to the component now raises an error, instead of silently ignoring the
 parameter. By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/840">#840</a>)</p></li>

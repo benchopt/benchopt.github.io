@@ -401,6 +401,7 @@
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-are-the-solvers-stopped">When are the solvers stopped?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-sampling-strategy-and-stopping-criterion-globally">Setting the sampling strategy and stopping criterion globally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-new-stopping-criterion">Implementing a new stopping criterion</a></li>
 </ul>
             </nav>
         </div>
@@ -436,7 +437,8 @@ function of the computational budget.</p>
 to sample the performance curve.
 They are chosen by the <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> attribute of each solver, or if
 specified, the <code class="docutils literal notranslate"><span class="pre">strategy</span></code> parameter of the <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code> of the
-solver.</p>
+solver. They can also be set for all the solvers in the <code class="docutils literal notranslate"><span class="pre">Objective</span></code>, as
+described in <a class="reference internal" href="#global-strategy"><span class="std std-ref">Setting the sampling strategy and stopping criterion globally</span></a>.</p>
 <p>When varying the computational budget, there are often the need to be able to
 stop the solver when it has converged, to avoid wasting resources on already
 converged methods.
@@ -475,8 +477,7 @@ The value from one call to the other follows:</p>
 </ul>
 <p>In both cases, if the objective curve is flat (i.e., the variation of the objective between two points is numerically 0), the geometric rate <span class="math notranslate nohighlight">\(\rho\)</span> is multiplied by 1.2.</p>
 <p>Note that the solver is restarted from scratch at each call to <code class="docutils literal notranslate"><span class="pre">solver.run</span></code>.
-For more advanced configurations, the evolution of <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> can be controlled on a per solver basis, by implementing a <code class="docutils literal notranslate"><span class="pre">Solver.get_next</span></code> method, which receives the current value for tolerance/number of iterations, and returns the next one.</p>
-<p>Note that the formula to compute the next <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> can be configured on a per-solver basis, as described in: <a class="reference internal" href="#sampling-strategy"><span class="std std-ref">3. Changing the strategy to grow the computational budget (stop_val)</span></a>.</p>
+The formula to compute the next <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> can be changed, as described in <a class="reference internal" href="#sampling-strategy"><span class="std std-ref">3. Changing the strategy to grow the computational budget (stop_val)</span></a>.</p>
 </section>
 <section id="using-a-callback">
 <span id="callback"></span><h3>2. Using a callback<a class="headerlink" href="#using-a-callback" title="Link to this heading">#</a></h3>
@@ -511,7 +512,8 @@ instance, if a solver needs to be evaluated every 10 iterations, we would have</
         <span class="k">return</span> <span class="n">stop_val</span> <span class="o">+</span> <span class="mi">10</span>
 </pre></div>
 </div>
-<p>This example allows to set a linear growth for the solver computational budget, instead of the default geometric growth.</p>
+<p>This example allows to set a linear growth for the solver computational budget, instead of the default geometric growth.
+Implementing <code class="docutils literal notranslate"><span class="pre">get_next</span></code> in the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> changes the growth for all the solvers that do not implement their own.</p>
 </section>
 </section>
 <section id="when-are-the-solvers-stopped">
@@ -521,23 +523,70 @@ instance, if a solver needs to be evaluated every 10 iterations, we would have</
 The convergence of a solver is determined by the <code class="docutils literal notranslate"><span class="pre">StoppingCriterion.check_convergence()</span></code> method, based on the objective curve so far.
 There are four <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> implemented in benchopt:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">SingleRunCriterion(stop_val)</span></code> only calls the solver once with the given stop_val. This criterion is designed for methods that converge to a given value, when one aims to benchmark final performance of multiple solvers.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SingleRunCriterion(stop_val)</span></code> only calls the solver once with the given stop_val. This criterion is designed for methods that converge to a given value, when one aims to benchmark final performance of multiple solvers. Its strategy is <code class="docutils literal notranslate"><span class="pre">&quot;run_once&quot;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;callback&quot;</span></code> for solvers whose <code class="docutils literal notranslate"><span class="pre">run</span></code> takes a callback, which is then called <code class="docutils literal notranslate"><span class="pre">stop_val</span></code> times. <code class="docutils literal notranslate"><span class="pre">&quot;iteration&quot;</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">&quot;run_once&quot;</span></code>, and <code class="docutils literal notranslate"><span class="pre">&quot;tolerance&quot;</span></code> is not supported.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">NoCriterion()</span></code> runs the solver for a fixed number of steps, given by the <code class="docutils literal notranslate"><span class="pre">--max-runs</span></code> argument. This criterion deactivate the checks for convergence.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SufficientDescentCriterion(eps,</span> <span class="pre">patience,</span> <span class="pre">key_to_monitor,</span> <span class="pre">minimize)</span></code> considers that the solver has converged when the relative decrease of the objective was less than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>. The <code class="docutils literal notranslate"><span class="pre">key_to_monitor</span></code> is the key of the objective dictionary to monitor. By default, it is set to <code class="docutils literal notranslate"><span class="pre">value</span></code>. The <code class="docutils literal notranslate"><span class="pre">minimize</span></code> parameter indicates whether the monitored key should be minimized (<code class="docutils literal notranslate"><span class="pre">True</span></code>, default) or maximized (<code class="docutils literal notranslate"><span class="pre">False</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion(eps,</span> <span class="pre">patience,</span> <span class="pre">key_to_monitor,</span> <span class="pre">minimize)</span></code> considers that the solver has converged when the objective has not decreased by more than a tolerance <code class="docutils literal notranslate"><span class="pre">eps</span></code> for more than <code class="docutils literal notranslate"><span class="pre">patience</span></code> calls to <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>. The <code class="docutils literal notranslate"><span class="pre">key_to_monitor</span></code> is the key of the objective dictionary to monitor. By default, it is set to <code class="docutils literal notranslate"><span class="pre">value</span></code>. The <code class="docutils literal notranslate"><span class="pre">minimize</span></code> parameter indicates whether the monitored key should be minimized (<code class="docutils literal notranslate"><span class="pre">True</span></code>, default) or maximized (<code class="docutils literal notranslate"><span class="pre">False</span></code>).</p></li>
 </ul>
 </section>
 <section id="setting-the-sampling-strategy-and-stopping-criterion-globally">
-<h2>Setting the sampling strategy and stopping criterion globally<a class="headerlink" href="#setting-the-sampling-strategy-and-stopping-criterion-globally" title="Link to this heading">#</a></h2>
-<p>Both the sampling strategy and stopping criterion can be set globally for all solvers by setting the corresponding class attributes in your <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class:</p>
+<span id="global-strategy"></span><h2>Setting the sampling strategy and stopping criterion globally<a class="headerlink" href="#setting-the-sampling-strategy-and-stopping-criterion-globally" title="Link to this heading">#</a></h2>
+<p>The sampling strategy, the stopping criterion and <code class="docutils literal notranslate"><span class="pre">get_next</span></code> can be set for all the solvers in the <code class="docutils literal notranslate"><span class="pre">Objective</span></code> class:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Objective</span><span class="p">(</span><span class="n">BaseObjective</span><span class="p">):</span>
     <span class="n">sampling_strategy</span> <span class="o">=</span> <span class="s2">"callback"</span>  <span class="c1"># or "iteration", "tolerance", "run_once"</span>
     <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">SufficientProgressCriterion</span><span class="p">(</span>
         <span class="n">eps</span><span class="o">=</span><span class="mf">1e-5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">key_to_monitor</span><span class="o">=</span><span class="s2">"value"</span><span class="p">,</span> <span class="n">minimize</span><span class="o">=</span><span class="kc">True</span>
     <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_next</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">stop_val</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">stop_val</span> <span class="o">+</span> <span class="mi">10</span>
 </pre></div>
 </div>
-<p>This allows to avoid setting these attributes in each solver when the same strategy and criterion should be used for most solvers.</p>
+<p>This avoids repeating these settings in each solver when most solvers use the same ones.
+They are resolved for each run, as follows:</p>
+<ul class="simple">
+<li><p>A solver’s own <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code>, <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code> or <code class="docutils literal notranslate"><span class="pre">get_next</span></code> takes precedence over the objective’s.</p></li>
+<li><p>A solver whose strategy is <code class="docutils literal notranslate"><span class="pre">&quot;run_once&quot;</span></code> is run once, whatever the objective’s criterion.</p></li>
+<li><p>Without any setting, solvers use <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span> <span class="pre">=</span> <span class="pre">&quot;iteration&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">SufficientProgressCriterion()</span></code>.</p></li>
+</ul>
+<p>A solver that sets <code class="docutils literal notranslate"><span class="pre">sampling_strategy</span></code> and a <code class="docutils literal notranslate"><span class="pre">stopping_criterion</span></code> with another <code class="docutils literal notranslate"><span class="pre">strategy</span></code> is reported as an error, and its runs are skipped.</p>
+</section>
+<section id="implementing-a-new-stopping-criterion">
+<span id="custom-stopping-criterion"></span><h2>Implementing a new stopping criterion<a class="headerlink" href="#implementing-a-new-stopping-criterion" title="Link to this heading">#</a></h2>
+<p>A new criterion subclasses <code class="docutils literal notranslate"><span class="pre">StoppingCriterion</span></code> and implements <code class="docutils literal notranslate"><span class="pre">check_convergence</span></code>.
+This method receives the list of the objective dictionaries computed so far.
+It returns whether the solver should stop, and its progress in <code class="docutils literal notranslate"><span class="pre">[0,</span> <span class="pre">1]</span></code>, which is displayed in the terminal.
+The base class already handles <code class="docutils literal notranslate"><span class="pre">--max-runs</span></code>, <code class="docutils literal notranslate"><span class="pre">--timeout</span></code> and diverging solvers.</p>
+<p>Benchopt copies the criterion for each run, by calling its constructor with the parameters it received.
+The constructor must thus pass all its parameters to <code class="docutils literal notranslate"><span class="pre">super().__init__</span></code>, with <code class="docutils literal notranslate"><span class="pre">strategy</span></code>, <code class="docutils literal notranslate"><span class="pre">key_to_monitor</span></code> and <code class="docutils literal notranslate"><span class="pre">minimize</span></code>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchopt.stopping_criterion</span><span class="w"> </span><span class="kn">import</span> <span class="n">StoppingCriterion</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ThresholdCriterion</span><span class="p">(</span><span class="n">StoppingCriterion</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Stop once the monitored value goes below a threshold."""</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">threshold</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">key_to_monitor</span><span class="o">=</span><span class="s2">"value"</span><span class="p">,</span>
+                 <span class="n">minimize</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span> <span class="o">=</span> <span class="n">threshold</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span>
+            <span class="n">threshold</span><span class="o">=</span><span class="n">threshold</span><span class="p">,</span> <span class="n">strategy</span><span class="o">=</span><span class="n">strategy</span><span class="p">,</span>
+            <span class="n">key_to_monitor</span><span class="o">=</span><span class="n">key_to_monitor</span><span class="p">,</span> <span class="n">minimize</span><span class="o">=</span><span class="n">minimize</span><span class="p">,</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">check_convergence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">objective_list</span><span class="p">):</span>
+        <span class="c1"># `key_to_monitor_` is the key in the objective dictionaries.</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">objective_list</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="bp">self</span><span class="o">.</span><span class="n">key_to_monitor_</span><span class="p">]</span>
+        <span class="n">stop</span> <span class="o">=</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">threshold</span>
+        <span class="k">return</span> <span class="n">stop</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="n">stop</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The criterion can be defined in <code class="docutils literal notranslate"><span class="pre">benchmark_utils</span></code> and used in a solver or in the objective, like the ones provided by benchopt:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">benchmark_utils</span><span class="w"> </span><span class="kn">import</span> <span class="n">ThresholdCriterion</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Solver</span><span class="p">(</span><span class="n">BaseSolver</span><span class="p">):</span>
+    <span class="n">stopping_criterion</span> <span class="o">=</span> <span class="n">ThresholdCriterion</span><span class="p">(</span><span class="n">threshold</span><span class="o">=</span><span class="mf">1e-6</span><span class="p">)</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -597,6 +646,7 @@ There are four <code class="docutils literal notranslate"><span class="pre">Stop
 </li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#when-are-the-solvers-stopped">When are the solvers stopped?</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setting-the-sampling-strategy-and-stopping-criterion-globally">Setting the sampling strategy and stopping criterion globally</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-a-new-stopping-criterion">Implementing a new stopping criterion</a></li>
 </ul>
   </nav></div>
 
