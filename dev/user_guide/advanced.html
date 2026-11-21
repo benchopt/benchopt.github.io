@@ -497,6 +497,10 @@ methods that benchopt calls on a component, e.g. <code class="docutils literal n
 the run.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">self.repetition_</span></code>: the index of the repetition. <code class="docutils literal notranslate"><span class="pre">skip</span></code> is checked for
 the first repetition.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self.run_id_</span></code>: a short hash of the seed of the benchmark, the names of
+the components and the repetition, which identifies the run. It is the
+<code class="docutils literal notranslate"><span class="pre">run_id</span></code> column of the results, to select the rows of one run, and can
+name the files of the run, e.g. checkpoints.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">self.parallel_config_</span></code>: the parallel config given to <code class="docutils literal notranslate"><span class="pre">benchopt</span> <span class="pre">run</span></code>,
 with <code class="docutils literal notranslate"><span class="pre">--parallel-config</span></code>. It can be used in <code class="docutils literal notranslate"><span class="pre">slurm_params</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">self.run_parallel_config_</span></code>: the parallel config of the workers that run it,

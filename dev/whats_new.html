@@ -569,6 +569,10 @@ calls, including <code class="docutils literal notranslate"><span class="pre">sk
 the component is not chosen yet. See <a class="reference internal" href="user_guide/advanced.html#current-run"><span class="std std-ref">Accessing the components of the current run</span></a>.
 The run context is only attached to the components during these calls.
 By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1042">#1042</a>)</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">run_id_</span></code> attribute of the components and the <code class="docutils literal notranslate"><span class="pre">run_id</span></code> column of
+the results identify each run, with a hash of the seed, the names of its
+components and its repetition. See <a class="reference internal" href="user_guide/advanced.html#current-run"><span class="std std-ref">Accessing the components of the current run</span></a>.
+By <a class="reference external" href="https://tommoral.github.io">Thomas Moreau</a> (<a class="reference external" href="https://github.com/benchopt/benchopt/pull/1049">#1049</a>)</p></li>
 <li><p><a class="reference internal" href="user_guide/generated/benchopt.helpers.requires_gpu.gpu_available.html#benchopt.helpers.requires_gpu.gpu_available" title="benchopt.helpers.requires_gpu.gpu_available"><code class="xref py py-func docutils literal notranslate"><span class="pre">gpu_available()</span></code></a> tells in
 <code class="docutils literal notranslate"><span class="pre">Solver.skip</span></code> if the runs of a solver will have a GPU, using the SLURM
 config of its jobs with the <code class="docutils literal notranslate"><span class="pre">submitit</span></code> backend.
